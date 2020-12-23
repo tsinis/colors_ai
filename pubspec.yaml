@@ -1,0 +1,23 @@
+name: colors_ai
+description: Color scheme generator that uses deep learning from Colormind API.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0-173.0.dev <3.0.0"
+  flutter: ">=1.26.0-2.0.pre.118 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  pedantic: ^1.10.0-nullsafety.3
+# flutter_test:
+#   sdk: flutter
+# integration_test:
+#   sdk: flutter
+flutter:
+  uses-material-design: true
