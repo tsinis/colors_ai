@@ -1,0 +1,2 @@
+# To get a random color palette:
+curl 'http://colormind.io/api/' --data-binary '{"model":"ui"}'
