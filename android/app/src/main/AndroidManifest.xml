@@ -2,7 +2,8 @@
     package="is.tsin.colors_ai.colors_ai">
    <application
         android:label="colors_ai"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -38,4 +39,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <meta-data android:name="io.flutter.network-policy"
+             android:resource="@xml/network_security_config"/>
 </manifest>
