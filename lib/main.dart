@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import './extensions/colors_rgb.dart';
-import 'repositories/data_repository.dart';
+import 'bloc/colors_bloc.dart';
+import 'bloc/colors_event.dart';
+import 'repositories/colors_repository.dart';
+import 'widgets/colors_list.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,33 +15,27 @@ class MyApp extends StatelessWidget {
       MaterialApp(theme: ThemeData(primarySwatch: Colors.grey, brightness: Brightness.dark), home: const MyHomePage());
 }
 
-class MyHomePage extends StatefulWidget {
+class MyHomePage extends StatelessWidget {
   const MyHomePage();
 
+  static const ColorsRepository _colorsRepository = ColorsRepository();
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  Widget build(BuildContext context) => BlocProvider<ColorsBloc>(
+        create: (context) => ColorsBloc(_colorsRepository),
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Colors AI')),
+          floatingActionButton: const GenButton(),
+          body: ColorsAIList(),
+        ),
+      );
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  final DataRepository _data = DataRepository();
+class GenButton extends StatelessWidget {
+  const GenButton();
 
   @override
-  void initState() {
-    _data.getAllColors;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: const Text('Colors AI')),
-        floatingActionButton: FloatingActionButton(
-            onPressed: () => _data.getAllColors.whenComplete(() => setState(() {})),
-            tooltip: 'Generate',
-            child: const Icon(Icons.refresh)),
-        body: Row(children: buildColorsList()),
-      );
-
-  List<Widget> buildColorsList() =>
-      List.generate(_data.colorsList.length, (i) => Flexible(child: Container(color: _data.colorsList[i].toColor())),
-          growable: false);
+  Widget build(BuildContext context) => FloatingActionButton(
+      onPressed: () => BlocProvider.of<ColorsBloc>(context).add(ColorsGenEvent()),
+      tooltip: 'Generate',
+      child: const Icon(Icons.refresh));
 }
