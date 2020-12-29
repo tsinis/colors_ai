@@ -19,9 +19,25 @@ String colorsToJson(ColorsAI colors) => json.encode(colors.toJson());
 /// JSON serialization logic to be generated.
 @JsonSerializable()
 class ColorsAI {
-  const ColorsAI({this.result = const []});
+  const ColorsAI({this.list = const []});
 
-  final List<List<int>> result;
+  final List<List<int>> list;
+
+  ColorsAI swapColor({required int oldIndex, required int newIndex}) {
+    final List<int> swapedColor = list[oldIndex];
+    if (newIndex >= list.length) {
+      list
+        ..removeAt(oldIndex)
+        ..add(swapedColor);
+    } else {
+      list
+        ..removeAt(oldIndex)
+        ..insert(newIndex, swapedColor);
+    }
+
+    final List<List<int>> swapedColors = list;
+    return ColorsAI(list: swapedColors);
+  }
 
   /// A necessary factory constructor for creating a new ColorsAI instance
   /// from a map. Pass the map to the generated `_$ColorsAIFromJson()` constructor.

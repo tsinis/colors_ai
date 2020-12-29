@@ -10,6 +10,5 @@ class ColorsLoadingState extends ColorsState {}
 
 class ColorsLoadedState extends ColorsState {
   ColorsLoadedState(this.colorsAI);
-  // ignore: unused_field
   final ColorsAI colorsAI;
 }

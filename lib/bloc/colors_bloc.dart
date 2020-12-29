@@ -14,8 +14,16 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
     if (event is ColorsGenEvent) {
       yield ColorsLoadingState();
       try {
-        final ColorsAI _loadedUserList = await colorsRepository.getAllColors;
-        yield ColorsLoadedState(_loadedUserList);
+        final ColorsAI _loadedColorsList = await colorsRepository.getAllNewColors;
+        yield ColorsLoadedState(_loadedColorsList);
+        // ignore: avoid_catches_without_on_clauses
+      } catch (_) {
+        yield ColorsErrorState();
+      }
+    }
+    if (event is ColorsReorderEvent) {
+      try {
+        yield ColorsLoadedState(event.colors);
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         yield ColorsErrorState();
