@@ -1,4 +1,4 @@
-import '../models/colors/colors_json.dart';
+import '../../models/colors/colors_json.dart';
 
 abstract class ColorsEvent {}
 

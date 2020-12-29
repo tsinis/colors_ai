@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'services/ui/system_overlays.dart';
-import 'ui/screens/main_screen.dart';
+import 'colors_bloc_observer.dart';
+import 'services/system_ui/system_overlays.dart';
+import 'ui/screens/main_tab.dart';
 
 void main() {
+  Bloc.observer = ColorBlocObserver();
   setupSystemUI();
   runApp(const MyApp());
 }

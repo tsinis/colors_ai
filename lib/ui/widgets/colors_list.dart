@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/colors_bloc.dart';
-import '../../bloc/colors_event.dart';
-import '../../bloc/colors_state.dart';
+import '../../blocs/colors_generated/colors_bloc.dart';
+import '../../blocs/colors_generated/colors_event.dart';
+import '../../blocs/colors_generated/colors_state.dart';
 import '../../extensions/color_to_hex.dart';
 import '../../extensions/list_int_to_rgb.dart';
 import 'list_layout.dart';

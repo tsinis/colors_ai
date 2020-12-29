@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../models/colors/colors_json.dart';
-import '../repositories/colors_repository.dart';
+import '../../models/colors/colors_json.dart';
+import '../../repositories/colors_repository.dart';
 import 'colors_event.dart';
 import 'colors_state.dart';
 

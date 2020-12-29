@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/colors_bloc.dart';
+import '../../blocs/colors_generated/colors_bloc.dart';
+import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../repositories/colors_repository.dart';
 import '../../ui/widgets/colors_list.dart';
 import '../../ui/widgets/generate_button.dart';
@@ -13,8 +14,10 @@ class MainScreen extends StatelessWidget {
   static const ColorsRepository _colorsRepository = ColorsRepository();
 
   @override
-  Widget build(BuildContext context) =>
-      BlocProvider<ColorsBloc>(create: (context) => ColorsBloc(_colorsRepository), child: const AppScafold());
+  Widget build(BuildContext context) => MultiBlocProvider(providers: [
+        BlocProvider<ColorsBloc>(create: (context) => ColorsBloc(_colorsRepository)),
+        BlocProvider<SavedBloc>(create: (context) => SavedBloc()),
+      ], child: const AppScafold());
 }
 
 class AppScafold extends StatefulWidget {
