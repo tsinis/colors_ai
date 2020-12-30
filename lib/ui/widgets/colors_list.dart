@@ -30,7 +30,6 @@ class ColorsAIList extends StatelessWidget {
           return ScrollConfiguration(
             behavior: const MyBehavior(),
             child: CustomReorderableList(
-              // padding: const EdgeInsets.symmetric(horizontal: 0),
               scrollDirection: isLandscape ? Axis.horizontal : Axis.vertical,
               onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
                   .add(ColorsReorderEvent(state.colorsAI.swapColor(oldIndex: oldIndex, newIndex: newIndex))),
@@ -44,11 +43,9 @@ class ColorsAIList extends StatelessWidget {
                   child: OrientationSwitcher(
                     isLandscape: isLandscape,
                     children: [
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(color.toHex()),
-                      ),
-                      const Icon(Icons.lock_open_outlined)
+                      Text(color.toHex(), maxLines: 1),
+                      const Icon(Icons.lock_open_outlined),
+                      const SizedBox(width: 20, height: 20),
                     ],
                   ),
                 );

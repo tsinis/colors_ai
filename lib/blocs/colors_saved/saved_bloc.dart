@@ -16,7 +16,7 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
     if (event is SavedExistingEvent) {
       yield SavedLoadingState();
       try {
-        //TODO! Add caching repositry;
+        //TODO! Add caching repositrory;
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         yield SavedErrorState();

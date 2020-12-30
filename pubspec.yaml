@@ -1,5 +1,8 @@
 name: colors_ai
 description: Color scheme generator that uses deep learning from Colormind API.
+author: Roman Cinis
+repository: https://github.com/tsinis/colors_ai
+issue_tracker: https://github.com/tsinis/colors_ai/issues
 
 publish_to: 'none'
 
@@ -10,6 +13,7 @@ environment:
   flutter: ">=1.26.0-2.0.pre.118 <2.0.0"
 
 dependencies:
+  equatable: ^2.0.0-nullsafety.0
   flutter:
     sdk: flutter
   flutter_bloc: ^7.0.0-nullsafety.0
