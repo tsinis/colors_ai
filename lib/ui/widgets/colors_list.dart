@@ -8,6 +8,8 @@ import '../../blocs/colors_generated/colors_event.dart';
 import '../../blocs/colors_generated/colors_state.dart';
 import '../../extensions/color_to_hex.dart';
 import '../../extensions/list_int_to_rgb.dart';
+import '../utils/never_scroll.dart';
+import 'buttons/lock_color_button.dart';
 import 'list_layout.dart';
 import 'reordable_list.dart';
 
@@ -28,7 +30,7 @@ class ColorsAIList extends StatelessWidget {
           final bool isLandscape = size.width > size.height;
           final List<List<int>> colorList = state.colorsAI.list;
           return ScrollConfiguration(
-            behavior: const MyBehavior(),
+            behavior: const NeverScroll(),
             child: CustomReorderableList(
               scrollDirection: isLandscape ? Axis.horizontal : Axis.vertical,
               onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
@@ -44,7 +46,7 @@ class ColorsAIList extends StatelessWidget {
                     isLandscape: isLandscape,
                     children: [
                       Text(color.toHex(), maxLines: 1),
-                      const Icon(Icons.lock_open_outlined),
+                      LockColorButton(index),
                       const SizedBox(width: 20, height: 20),
                     ],
                   ),
@@ -55,11 +57,4 @@ class ColorsAIList extends StatelessWidget {
         }
         return const Center(child: CircularProgressIndicator(backgroundColor: Colors.red));
       });
-}
-
-class MyBehavior extends ScrollBehavior {
-  const MyBehavior();
-
-  @override
-  ScrollPhysics getScrollPhysics(BuildContext context) => const NeverScrollableScrollPhysics();
 }

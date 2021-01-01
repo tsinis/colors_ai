@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primarySwatch: Colors.grey),
       home: MultiBlocProvider(
         providers: [
-          BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(_colorsRepository)),
           BlocProvider<TabNavigationBloc>(create: (_) => TabNavigationBloc()),
+          BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(_colorsRepository)),
         ],
-        child: NavigationScreen(),
+        child: const NavigationScreen(_colorsRepository),
       ));
 }
