@@ -4,8 +4,13 @@ import '../services/api/api.dart';
 class ColorsRepository {
   const ColorsRepository();
 
-  static final Set<int> _lockedColors = {};
   static const API _apiServices = API();
+  static final Set<int> _lockedColors = {};
+
+  // ignore: prefer_const_constructors
+  static ColorsAI _colorsAI = ColorsAI();
+
+  ColorsAI get colors => _colorsAI;
 
   Set<int> get lockedColors => _lockedColors;
 
@@ -14,5 +19,5 @@ class ColorsRepository {
 
   bool isLockedAt(int colorNumber) => _lockedColors.contains(colorNumber);
 
-  Future<ColorsAI> get getNewColors async => await _apiServices.postRequest(_lockedColors);
+  Future<ColorsAI> get getNewColors async => _colorsAI = await _apiServices.postRequest(_lockedColors);
 }

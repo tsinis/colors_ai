@@ -5,18 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/color_locked/locked_bloc.dart';
 import '../../blocs/color_locked/locked_event.dart';
+import '../../blocs/colors_generated/colors_bloc.dart';
 import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../blocs/colors_saved/saved_event.dart';
-import '../../blocs/tab_navigation/tab_navigation.bloc.dart';
 import '../../repositories/colors_repository.dart';
-import '../widgets/buttons/generate_button.dart';
-import '../widgets/colors_list.dart';
+import 'gen_colors_tab.dart';
 import 'saved_colors_tab.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen(this._colorsRepository);
-  final ColorsRepository _colorsRepository;
-
+  const NavigationScreen();
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
 }
@@ -24,19 +21,22 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationScreenState extends State<NavigationScreen> with TickerProviderStateMixin {
   late final TabController tabController;
   late final AnimationController actionsController, leadingController;
+  static const ColorsRepository colorsRepository = ColorsRepository();
 
-  late List<Widget> screens;
+  late List<Widget> screens = screens = <Widget>[
+    BlocProvider<LockedBloc>(
+        create: (_) => LockedBloc(colorsRepository)..add(UnLockEvent()),
+        child: const ColorsGenerator(appBarHeight: _appBarHeight)),
+    BlocProvider<SavedBloc>(
+      create: (_) => SavedBloc()..add(SavedExistingEvent()),
+      child: const SavedColors(),
+    ),
+  ];
 
   static const double _appBarHeight = 86;
 
   @override
   void initState() {
-    screens = <Widget>[
-      BlocProvider<LockedBloc>(
-          create: (_) => LockedBloc(widget._colorsRepository)..add(UnLockEvent()),
-          child: const ColorsAIList(appBarHeight: _appBarHeight)),
-      BlocProvider<SavedBloc>(create: (_) => SavedBloc()..add(SavedExistingEvent()), child: SavedColors()),
-    ];
     super.initState();
     tabController = TabController(vsync: this, length: screens.length)..addListener(handleTabSelection);
     actionsController = AnimationController(vsync: this, duration: const Duration(milliseconds: 400));
@@ -54,21 +54,10 @@ class _NavigationScreenState extends State<NavigationScreen> with TickerProvider
   void handleTabSelection() => tabController.index == 0 ? leadingController.reverse() : leadingController.forward();
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<TabNavigationBloc, TabNavigationState>(
-        builder: (BuildContext context, TabNavigationState state) {
-          if (state is HomeState) {
-            return buildPage(currentIndex: state.index);
-          }
-          if (state is SavedListState) {
-            return buildPage(currentIndex: state.index);
-          }
-          return Container(color: Colors.red);
-        },
-      );
-
-  Widget buildPage({required int currentIndex}) => Scaffold(
-        floatingActionButton: const GenButton(),
-        body: TabBarView(controller: tabController, children: screens),
+  Widget build(BuildContext context) => Scaffold(
+        body: BlocProvider<ColorsBloc>(
+            create: (_) => ColorsBloc(colorsRepository),
+            child: TabBarView(controller: tabController, children: screens)),
         appBar: AppBar(
           toolbarHeight: _appBarHeight,
           centerTitle: true,
