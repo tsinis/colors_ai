@@ -1,2 +1,16 @@
+const Set<int> colorsAPI = {0, 1, 2, 3, 4};
 const Map<String, String> headers = {'Content-Type': 'application/json'};
-const String host = 'http://colormind.io/', api = 'api/', uiModelName = 'ui', defaultModelName = 'default';
+const String host = 'http://colormind.io/api/',
+    comma = ',',
+    startSquareBracket = '[',
+    endSquareBracket = ']',
+    startCurlyBracket = '{',
+    endCurlyBracket = '}',
+    uiModelName = 'ui',
+    defaultModelName = 'default',
+    uiModelBody = '"model":"$uiModelName"',
+    defaultModelBody = '"model":"$defaultModelName"',
+    uiModel = startCurlyBracket + uiModelBody + endCurlyBracket,
+    defaultModel = startCurlyBracket + defaultModelBody + endCurlyBracket,
+    inputName = '"input":',
+    unlockedColor = '"N"';

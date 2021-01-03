@@ -19,5 +19,6 @@ class ColorsRepository {
 
   bool isLockedAt(int colorNumber) => _lockedColors.contains(colorNumber);
 
-  Future<ColorsAI> get getNewColors async => _colorsAI = await _apiServices.postRequest(_lockedColors);
+  Future<ColorsAI> get getNewColors async =>
+      _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: _lockedColors);
 }

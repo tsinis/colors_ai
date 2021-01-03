@@ -1,0 +1,7 @@
+# To get a random color palette:
+curl 'http://colormind.io/api/' --data-binary '{"model":"ui"}'
+
+####
+
+# To get color suggestions with input, label blank fields with the "N" character:
+curl 'http://colormind.io/api/' --data-binary '{"input":[[44,43,44],[90,83,82],"N","N","N"],"model":"ui"}'
