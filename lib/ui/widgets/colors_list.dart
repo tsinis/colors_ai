@@ -51,6 +51,7 @@ class _ColorsListState extends State<ColorsList> {
                 BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
             children: List.generate(widget.colorList.length, (index) {
               final Color color = widget.colorList[index].toColor();
+              final Color contrastColor = widget.colorList[index].contrastColor();
               return Container(
                 key: ValueKey(index),
                 width: size.width,
@@ -59,8 +60,10 @@ class _ColorsListState extends State<ColorsList> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(color.toHex(), maxLines: 1),
-                    LockColorButton(index),
+                    TextButton(
+                        onPressed: () => print('TODO: Add a colorpicker here.'),
+                        child: Text(color.toHex(), maxLines: 1, style: TextStyle(color: contrastColor))),
+                    LockColorButton(index, color: contrastColor),
                     const SizedBox(width: 20, height: 20),
                   ],
                 ),

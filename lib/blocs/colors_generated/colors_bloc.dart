@@ -23,8 +23,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
     }
     if (event is ColorsReorderEvent) {
       try {
-        _colorsRepository.colors.swapColor(oldIndex: event.oldIndex, newIndex: event.newIndex);
-        //TODO Swap lock.
+        _colorsRepository.swapColors(oldIndex: event.oldIndex, newIndex: event.newIndex);
         yield ColorsLoadedState(_colorsRepository.colors);
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {

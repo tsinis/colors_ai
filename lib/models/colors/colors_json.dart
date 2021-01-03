@@ -23,7 +23,7 @@ class ColorsAI {
 
   final List<List<int>> list;
 
-  ColorsAI swapColor({required int oldIndex, required int newIndex}) {
+  ColorsAI swapColors({required int oldIndex, required int newIndex}) {
     final List<int> swapedColor = list[oldIndex];
     if (newIndex >= list.length) {
       list

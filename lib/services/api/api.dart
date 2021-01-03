@@ -5,29 +5,10 @@ import 'package:http/http.dart' as http;
 
 import '../../models/colors/colors_json.dart';
 import 'constants.dart';
+import 'utils.dart';
 
 class API {
   const API();
-
-  String _colorsToString(List<List<int>> colorslist, {required Set<int> lockedColors}) {
-    final StringBuffer sb = StringBuffer();
-    // ignore: cascade_invocations
-    sb.write(startSquareBracket);
-    for (final List<int> color in colorslist) {
-      final int colorIndex = colorslist.indexOf(color);
-      if (lockedColors.contains(colorIndex)) {
-        sb.write(unlockedColor);
-      } else {
-        sb.write(color);
-      }
-      if (colorIndex != colorslist.length - 1) {
-        sb.write(comma);
-      }
-    }
-
-    sb.write(endSquareBracket + comma);
-    return sb.toString().replaceAll(' ', '');
-  }
 
   Future<http.Response> _colorsFromAPI(List<List<int>> existingColors,
       {required Set<int> lockedColors, required bool isUiModel}) async {
@@ -39,12 +20,11 @@ class API {
           // ignore: prefer_interpolation_to_compose_strings
           startCurlyBracket +
               inputName +
-              _colorsToString(existingColors, lockedColors: lockedColors) +
+              colorsToInput(existingColors, lockedColors: lockedColors) +
               (isUiModel ? uiModelBody : defaultModelBody) +
               endCurlyBracket;
       body = utf8.encode(input);
     }
-
     return await http.post(host, headers: headers, body: body);
   }
 

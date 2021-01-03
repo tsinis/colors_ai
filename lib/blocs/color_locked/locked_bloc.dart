@@ -19,6 +19,12 @@ class LockedBloc extends Bloc<LockEvent, LockedState> {
       } catch (_) {
         yield const LockedErrorState();
       }
+    } else {
+      try {
+        yield LockState(_colorsRepository.lockedColors);
+      } catch (_) {
+        yield const LockedErrorState();
+      }
     }
   }
 }
