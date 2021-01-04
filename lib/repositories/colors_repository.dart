@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import '../models/colors/colors_json.dart';
 import '../services/api/api.dart';
 import '../services/api/constants.dart';
@@ -6,6 +8,7 @@ class ColorsRepository {
   const ColorsRepository();
 
   static const API _apiServices = API();
+  //TODO! Change to List.
   static final Set<int> _lockedColors = {};
 
   // ignore: prefer_const_constructors
@@ -13,13 +16,14 @@ class ColorsRepository {
 
   ColorsAI get colors => _colorsAI;
 
+  void changeColor(Color newColor, int colorIndex) => _colorsAI.changeColor(newColor, colorIndex);
+
   Set<int> get lockedColors => _lockedColors;
 
   void swapColors({required int oldIndex, required int newIndex}) {
-    _colorsAI.swapColors(oldIndex: oldIndex, newIndex: newIndex);
-    _lockedColors
-      ..remove(oldIndex)
-      ..add((newIndex >= colorsAPI.length) ? (colorsAPI.length - 1) : newIndex);
+    final int colorsAvailble = colorsAPI.length - 1;
+    final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
+    _colorsAI.swapColors(oldIndex: oldIndex, newIndex: newIndexUngrowed);
   }
 
   void changeLock(int colorNumber) =>

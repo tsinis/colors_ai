@@ -3,9 +3,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/color_locked/locked_bloc.dart';
-import '../../blocs/color_locked/locked_event.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
+import '../../blocs/colors_locked/locked_bloc.dart';
+import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../blocs/colors_saved/saved_event.dart';
 import '../../repositories/colors_repository.dart';
@@ -23,7 +23,7 @@ class _NavigationScreenState extends State<NavigationScreen> with TickerProvider
   late final AnimationController actionsController, leadingController;
   static const ColorsRepository colorsRepository = ColorsRepository();
 
-  late List<Widget> screens = screens = <Widget>[
+  late List<Widget> screens = <Widget>[
     BlocProvider<LockedBloc>(
         create: (_) => LockedBloc(colorsRepository)..add(UnLockEvent()),
         child: const ColorsGenerator(appBarHeight: _appBarHeight)),

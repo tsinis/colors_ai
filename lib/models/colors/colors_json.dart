@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:json_annotation/json_annotation.dart';
+import '../../extensions/color_to_list_int.dart';
 
 import 'constants.dart';
 
@@ -22,6 +24,11 @@ class ColorsAI {
   const ColorsAI({this.list = const []});
 
   final List<List<int>> list;
+
+  ColorsAI changeColor(Color newColor, int colorIndex) {
+    list[colorIndex] = newColor.toListInt();
+    return ColorsAI(list: list);
+  }
 
   ColorsAI swapColors({required int oldIndex, required int newIndex}) {
     final List<int> swapedColor = list[oldIndex];
