@@ -21,7 +21,7 @@ class ColorsGenerator extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (state is ColorsLoadedState) {
-          return ColorsList(state.colorsAI, appBarHeight: appBarHeight);
+          return ColorsList(state.colorsAI.list, appBarHeight: appBarHeight);
         }
         return const Center(child: CircularProgressIndicator(backgroundColor: Colors.red));
       });

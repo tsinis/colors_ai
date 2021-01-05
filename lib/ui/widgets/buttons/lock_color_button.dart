@@ -11,10 +11,14 @@ class LockColorButton extends StatelessWidget {
   final Color color;
   @override
   Widget build(BuildContext context) => BlocBuilder<LockedBloc, LockedState>(builder: (context, colorState) {
-        final bool isLocked = colorState.isLocked(index);
-        return IconButton(
-            color: color.withOpacity(isLocked ? 0.7 : 0.5),
-            onPressed: () => BlocProvider.of<LockedBloc>(context).add(ChangeLockEvent(index)),
-            icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined));
+        if (colorState is LockState) {
+          final bool isLocked = colorState.isLocked(index);
+          return IconButton(
+              color: color.withOpacity(isLocked ? 0.7 : 0.5),
+              onPressed: () => BlocProvider.of<LockedBloc>(context).add(ChangeLockEvent(index)),
+              icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined));
+        } else {
+          return Container(color: Colors.red); //TODO Edit this.
+        }
       });
 }

@@ -1,4 +1,4 @@
-const Set<int> colorsAPI = {0, 1, 2, 3, 4};
+const List<bool> defaultColorLocks = [false, false, false, false, false];
 const Map<String, String> headers = {'Content-Type': 'application/json'};
 const String host = 'http://colormind.io/api/',
     comma = ',',

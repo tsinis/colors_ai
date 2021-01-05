@@ -1,14 +1,15 @@
-abstract class LockedState {
-  final Set<int> _lockedColors;
-  const LockedState(this._lockedColors);
+import '../../services/api/constants.dart';
 
-  bool isLocked(int index) => _lockedColors.contains(index);
+abstract class LockedState {
+  const LockedState();
 }
 
 class LockState extends LockedState {
-  const LockState(Set<int> lockedColors) : super(lockedColors);
+  const LockState({this.lockedColors = defaultColorLocks});
+  final List<bool> lockedColors;
+  bool isLocked(int index) => lockedColors[index];
 }
 
 class LockedErrorState extends LockedState {
-  const LockedErrorState() : super(const {});
+  const LockedErrorState();
 }

@@ -6,5 +6,5 @@ class InitialDialogState extends DialogState {}
 
 class DialogShowing extends DialogState {}
 
-//TODO! Handel error states.
+//TODO! Handle error states.
 class DialogErrorState extends DialogState {}

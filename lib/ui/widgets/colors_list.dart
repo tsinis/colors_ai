@@ -10,16 +10,15 @@ import '../../blocs/colors_generated/colors_state.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../extensions/list_int_to_rgb.dart';
-import '../../models/colors/colors_json.dart';
 import 'buttons/lock_color_button.dart';
 import 'colorpicker.dart';
 import 'refrashable_reordable.dart';
 
 class ColorsList extends StatefulWidget {
-  final ColorsAI colorsAI;
+  final List<List<int>> colorsList;
   final double appBarHeight;
 
-  const ColorsList(this.colorsAI, {required this.appBarHeight});
+  const ColorsList(this.colorsList, {required this.appBarHeight});
   @override
   _ColorsListState createState() => _ColorsListState();
 }
@@ -35,7 +34,7 @@ class _ColorsListState extends State<ColorsList> {
 
   Size get size => MediaQuery.of(context).size;
   double get statusBarHeight => MediaQueryData.fromWindow(window).padding.top;
-  int get lenght => widget.colorsAI.list.length;
+  int get lenght => widget.colorsList.length;
   double get tileHeight => (size.height - widget.appBarHeight - statusBarHeight) / lenght;
   Size get third => Size(size.width / 3, tileHeight);
 
@@ -55,8 +54,8 @@ class _ColorsListState extends State<ColorsList> {
             onReorder: (int oldIndex, int newIndex) =>
                 BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
             children: List.generate(lenght, (int index) {
-              final Color color = widget.colorsAI.list[index].toColor(),
-                  contrastColor = widget.colorsAI.list[index].contrastColor();
+              final Color color = widget.colorsList[index].toColor(),
+                  contrastColor = widget.colorsList[index].contrastColor();
               return InkWell(
                 onDoubleTap: () => BlocProvider.of<LockedBloc>(context).add(ChangeLockEvent(index)),
                 key: ValueKey(index),
