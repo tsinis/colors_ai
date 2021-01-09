@@ -55,6 +55,7 @@ class _NavigationScreenState extends State<NavigationScreen> with TickerProvider
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: Colors.grey[600], //TODO Provide bg color in theme.
         body: BlocProvider<ColorsBloc>(
             create: (_) => ColorsBloc(colorsRepository),
             child: TabBarView(controller: tabController, children: screens)),

@@ -24,7 +24,7 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
     }
     if (event is SavedRemovingEvent) {
       try {
-        yield SavedLoadedState(event.colors);
+        yield SavedLoadedState();
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         yield SavedErrorState();
