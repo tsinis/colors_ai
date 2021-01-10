@@ -22,7 +22,7 @@ class NavigationScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<NavigationScreen> with TickerProviderStateMixin {
   late final TabController tabController;
-  late final AnimationController actionsController, leadingController, fabController;
+  late final AnimationController fabController, leadingController;
   late Animation<double> animation, fabAnimation;
   static const ColorsRepository colorsRepository = ColorsRepository();
 
@@ -42,15 +42,16 @@ class _NavigationScreenState extends State<NavigationScreen> with TickerProvider
   void initState() {
     super.initState();
     tabController = TabController(vsync: this, length: screens.length)..addListener(handleTabSelection);
-    actionsController = AnimationController(vsync: this, duration: const Duration(milliseconds: 400));
+    fabController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
     leadingController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300));
-    fabAnimation = ReverseAnimation(CurvedAnimation(parent: leadingController, curve: Curves.easeInBack));
+    fabAnimation = CurvedAnimation(parent: fabController, curve: Curves.easeInBack);
+    fabController.forward();
   }
 
   @override
   void dispose() {
     tabController.dispose();
-    actionsController.dispose();
+    fabController.dispose();
     leadingController.dispose();
     super.dispose();
   }
@@ -60,55 +61,65 @@ class _NavigationScreenState extends State<NavigationScreen> with TickerProvider
   bool handleScrollNotification(ScrollNotification notification) {
     final ScrollMetrics metrics = notification.metrics;
     final double scrollPosition = ((metrics.extentInside - metrics.extentAfter) / metrics.extentInside).clamp(0, 1);
-    (scrollPosition > 0.5) ? leadingController.forward() : leadingController.reverse();
+    if (scrollPosition == 0) {
+      fabController.forward();
+    } else if (scrollPosition == 1) {
+      fabController.reverse();
+    } else if (scrollPosition < 0.5 && scrollPosition > 0.2) {
+      fabController.forward();
+      leadingController.reverse();
+    } else if (scrollPosition > 0.5 && scrollPosition < 0.8) {
+      fabController.reverse();
+      leadingController.forward();
+    }
     return false;
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: Colors.grey[600], //TODO Provide bg color in theme.
-        body: BlocProvider<ColorsBloc>(
+  Widget build(BuildContext context) {
+    print(fabAnimation.value);
+    return Scaffold(
+      backgroundColor: Colors.grey[600], //TODO Provide bg color in theme.
+      floatingActionButton: ScaleTransition(scale: fabAnimation, child: SaveColorsFAB(controller: fabController)),
+      body: NotificationListener(
+        onNotification: handleScrollNotification,
+        child: BlocProvider<ColorsBloc>(
           create: (_) => ColorsBloc(colorsRepository),
-          child: NotificationListener(
-            onNotification: handleScrollNotification,
-            child: TabBarView(
-                physics: const ClampingScrollPhysics(),
-                dragStartBehavior: DragStartBehavior.down,
-                controller: tabController,
-                children: screens),
+          child: TabBarView(
+              physics: const ClampingScrollPhysics(),
+              dragStartBehavior: DragStartBehavior.down,
+              controller: tabController,
+              children: screens),
+        ),
+      ),
+      appBar: AppBar(
+        toolbarHeight: _appBarHeight,
+        centerTitle: true,
+        title: const Text('Colors AI', style: TextStyle(fontWeight: FontWeight.w300)),
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          child: Transform.rotate(
+            angle: -math.pi,
+            child: AnimatedIcon(
+                //TODO Provide icon color in theme.
+                icon: AnimatedIcons.list_view,
+                color: Colors.black12,
+                size: 26,
+                progress: leadingController),
           ),
         ),
-        floatingActionButton: FadeTransition(
-          opacity: fabAnimation,
-          child: const SaveColorsFAB(),
-        ),
-        appBar: AppBar(
-          toolbarHeight: _appBarHeight,
-          centerTitle: true,
-          title: const Text('Colors AI', style: TextStyle(fontWeight: FontWeight.w300)),
-          leading: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            child: Transform.rotate(
-              angle: -math.pi,
-              child: AnimatedIcon(
-                  //TODO Provide icon color in theme.
-                  icon: AnimatedIcons.list_view,
-                  color: Colors.black12,
-                  size: 26,
-                  progress: leadingController),
-            ),
+        actions: [
+          IconButton(icon: const Icon(Icons.share), onPressed: () {}),
+          Padding(
+            padding: const EdgeInsets.only(right: 21, left: 7, top: 7),
+            child: AnimatedIcon(icon: AnimatedIcons.menu_close, size: 26, progress: fabController),
           ),
-          actions: [
-            IconButton(icon: const Icon(Icons.share), onPressed: () {}),
-            Padding(
-              padding: const EdgeInsets.only(right: 21, left: 7, top: 7),
-              child: AnimatedIcon(icon: AnimatedIcons.menu_close, size: 26, progress: actionsController),
-            ),
-          ],
-          bottom: TabBar(
-            controller: tabController,
-            tabs: const [Tab(text: 'COLOR'), Tab(text: 'SAVED')],
-          ),
+        ],
+        bottom: TabBar(
+          controller: tabController,
+          tabs: const [Tab(text: 'COLOR'), Tab(text: 'SAVED')],
         ),
-      );
+      ),
+    );
+  }
 }

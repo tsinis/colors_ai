@@ -8,6 +8,10 @@ class ColorsErrorState extends ColorsState {}
 
 class ColorsLoadingState extends ColorsState {}
 
+class ColorsReorderStartState extends ColorsState {}
+
+class ColorsReorderEndState extends ColorsState {}
+
 class ColorsLoadedState extends ColorsState {
   ColorsLoadedState(this.colorsAI);
   final ColorsAI colorsAI;

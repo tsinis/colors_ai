@@ -51,8 +51,8 @@ class _ColorsListState extends State<ColorsList> {
           },
           child: RefreshableReorderableListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            onDragStart: () => print('starting drag'),
-            onDragEnd: () => print('ending drag'),
+            onDragStart: () => BlocProvider.of<ColorsBloc>(context).add(ColorsReorderStartEvent()),
+            onDragEnd: () => BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEndEvent()),
             onReorder: (int oldIndex, int newIndex) =>
                 BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
             children: List.generate(lenght, (int index) {
