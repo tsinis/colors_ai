@@ -46,6 +46,8 @@ import 'package:flutter/widgets.dart';
 /// {@end-tool}
 typedef ReorderCallback = void Function(int oldIndex, int newIndex);
 
+typedef DragCallback = void Function();
+
 /// A list whose items the user can interactively reorder by dragging.
 ///
 /// This class is appropriate for views with a small number of
@@ -61,6 +63,8 @@ class RefreshableReorderableListView extends StatefulWidget {
   RefreshableReorderableListView({
     required this.children,
     required this.onReorder,
+    required this.onDragStart,
+    required this.onDragEnd,
     Key? key,
     this.header,
     this.scrollController,
@@ -128,6 +132,9 @@ class RefreshableReorderableListView extends StatefulWidget {
   /// into a new position.
   final ReorderCallback onReorder;
 
+  // Custom callbacks to hide a FAB, according to Material Design Guidelines.
+  final DragCallback onDragStart, onDragEnd;
+
   @override
   _RefreshableReorderableListViewState createState() => _RefreshableReorderableListViewState();
 }
@@ -162,6 +169,8 @@ class _RefreshableReorderableListViewState extends State<RefreshableReorderableL
           physics: widget.physics,
           padding: widget.padding,
           reverse: widget.reverse,
+          onDragStart: widget.onDragStart,
+          onDragEnd: widget.onDragEnd,
           children: widget.children,
         );
       },
@@ -188,6 +197,8 @@ class _ReorderableListContent extends StatefulWidget {
     required this.padding,
     required this.onReorder,
     required this.reverse,
+    required this.onDragStart,
+    required this.onDragEnd,
   });
 
   final Widget? header;
@@ -196,6 +207,8 @@ class _ReorderableListContent extends StatefulWidget {
   final Axis scrollDirection;
   final EdgeInsets? padding;
   final ReorderCallback onReorder;
+  final DragCallback onDragStart;
+  final DragCallback onDragEnd;
   final bool reverse;
   final ScrollPhysics? physics;
 
@@ -374,6 +387,7 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
 
     // Starts dragging toWrap.
     void onDragStarted() {
+      widget.onDragStart();
       setState(() {
         _dragging = toWrap.key;
         _dragStartIndex = index;
@@ -397,6 +411,7 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
 
     // Drops toWrap into the last position it was hovering over.
     void onDragEnded() {
+      widget.onDragEnd();
       reorder(_dragStartIndex, _currentIndex);
     }
 

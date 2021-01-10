@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import '../extensions/list_int_to_rgb.dart';
 import '../models/colors/colors_json.dart';
 import '../models/locks/locked_colors.dart';
 import '../services/api/api.dart';
@@ -27,6 +28,14 @@ class ColorsRepository {
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
     _colorsAI.swapColors(oldIndex: oldIndex, newIndex: newIndexUngrowed);
     _locked.swapLocks(oldIndex: oldIndex, newIndex: newIndexUngrowed);
+  }
+
+  List<Color> get listAsColors {
+    final List<Color> colorsList = [];
+    for (final List<int> listInt in _colorsAI.list) {
+      colorsList.add(listInt.toColor());
+    }
+    return colorsList;
   }
 
   Future<ColorsAI> get getNewColors async =>
