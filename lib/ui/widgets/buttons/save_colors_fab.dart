@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../blocs/colors_generated/colors_bloc.dart';
-import '../../../blocs/colors_generated/colors_event.dart';
-
-import '../../../blocs/colors_generated/colors_state.dart';
+import '../../../blocs/colors_saved/saved_bloc.dart';
+import '../../../blocs/colors_saved/saved_event.dart';
+import '../../../blocs/fab_bloc/fab_bloc.dart';
+import '../../../blocs/fab_bloc/fab_state.dart';
+import '../../../repositories/colors_repository.dart';
 
 class SaveColorsFAB extends StatelessWidget {
   const SaveColorsFAB({required this.controller});
   final AnimationController controller;
   @override
-  Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(builder: (context, state) {
-        //TODO! Create and move to UI Bloc,
-        if (state is ColorsReorderStartEvent) {
-          controller.reverse();
-        } else if (state is ColorsReorderEndEvent) {
-          controller.forward();
-        }
-        return FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.playlist_add),
-        );
-      });
+  Widget build(BuildContext context) => BlocBuilder<FabBloc, FabState>(
+        builder: (BuildContext dialogContext, FabState state) {
+          // https://material.io/design/environment/elevation.html#elevation-in-material-design
+          if (state is FabReorderStartState) {
+            controller.reverse();
+          } else if (state is FabReorderEndState) {
+            controller.forward();
+          }
+          return FloatingActionButton(
+            onPressed: () => BlocProvider.of<SavedBloc>(context)
+                .add(SavedAddEvent(colorsToSave: context.read<ColorsRepository>().listAsColors)),
+            child: const Icon(Icons.playlist_add),
+          );
+        },
+      );
 }

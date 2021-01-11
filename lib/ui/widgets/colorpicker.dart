@@ -30,20 +30,23 @@ class Colorpicker extends StatelessWidget {
             if (state is DialogShowing) {
               SchedulerBinding.instance?.addPostFrameCallback((_) async {
                 await showDialog<void>(
-                    context: dialogContext,
-                    builder: (_) => AlertDialog(
-                          scrollable: true,
-                          titlePadding: const EdgeInsets.all(0),
-                          contentPadding: const EdgeInsets.all(0),
-                          content: ColorPicker(
-                            enableAlpha: false,
-                            portraitOnly: true,
-                            displayThumbColor: true,
-                            pickerColor: color,
-                            onColorChanged: (newColor) =>
-                                BlocProvider.of<ColorsBloc>(context).add(ColorsChangeEvent(newColor, index)),
-                          ),
-                        ));
+                  context: dialogContext,
+                  builder: (_) => SimpleDialog(
+                    // https://material.io/components/dialogs#simple-dialog
+                    contentPadding: const EdgeInsets.all(0),
+                    children: [
+                      ColorPicker(
+                        colorPickerWidth: 332,
+                        enableAlpha: false,
+                        portraitOnly: true,
+                        displayThumbColor: true,
+                        pickerColor: color,
+                        onColorChanged: (newColor) =>
+                            BlocProvider.of<ColorsBloc>(context).add(ColorsChangeEvent(newColor, index)),
+                      ),
+                    ],
+                  ),
+                );
               });
               BlocProvider.of<DialogBloc>(dialogContext).add(VisibleDialog());
             }

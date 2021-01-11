@@ -1,43 +1,39 @@
 import 'package:flutter/material.dart';
 
 class SavedList extends StatelessWidget {
-  const SavedList();
-
+  const SavedList({this.savedColors = const {}});
+  final Set<List<Color>> savedColors;
   @override
-  Widget build(BuildContext context) => ListView.separated(
-        separatorBuilder: (_, __) => const Divider(color: Colors.white),
-        itemCount: item.length,
+  Widget build(BuildContext context) => ListView.builder(
+        // separatorBuilder: (_, __) => const Divider(color: Colors.white),
+        itemCount: savedColors.length,
         itemBuilder: (context, listIndex) => Dismissible(
+          //TODO Create custom widget with swipe right to move back.
+          direction: DismissDirection.endToStart,
           key: Key(listIndex.toString()),
           onDismissed: (_) => print('removed'),
-          background: ColoredBox(
+          background: const ColoredBox(
             color: Colors.red,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Icon(Icons.cancel, color: Colors.white70),
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Icon(Icons.cancel, color: Colors.white70),
-                )
-              ],
+            child: Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 40),
+                child: Icon(Icons.delete_forever, color: Colors.white70),
+              ),
             ),
           ),
           child: ListTile(
             tileColor: Colors.grey[600],
             enableFeedback: true,
-            minVerticalPadding: 10,
+            minVerticalPadding: 16,
             title: Row(
               children: List<Widget>.generate(
-                item.elementAt(listIndex).length,
+                savedColors.elementAt(listIndex).length,
                 (int childIndex) => Expanded(
                   child: AspectRatio(
                     aspectRatio: 1,
                     child: Card(
-                      color: item.elementAt(listIndex)[childIndex],
+                      color: savedColors.elementAt(listIndex)[childIndex],
                       elevation: 6,
                     ),
                   ),
@@ -48,8 +44,3 @@ class SavedList extends StatelessWidget {
         ),
       );
 }
-
-final Set<List<Color>> item = {
-  [Colors.red, Colors.blueGrey, Colors.amber, Colors.green, Colors.orange],
-  [Colors.deepOrange, Colors.lightBlue, Colors.lightGreen, Colors.grey, Colors.pink]
-};

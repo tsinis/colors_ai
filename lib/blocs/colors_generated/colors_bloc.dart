@@ -36,19 +36,5 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
         yield ColorsErrorState();
       }
     }
-    if (event is ColorsReorderStartEvent) {
-      try {
-        yield ColorsReorderStartState();
-      } catch (_) {
-        yield ColorsErrorState();
-      }
-    }
-    if (event is ColorsReorderEndEvent) {
-      try {
-        yield ColorsReorderEndState();
-      } catch (_) {
-        yield ColorsErrorState();
-      }
-    }
   }
 }

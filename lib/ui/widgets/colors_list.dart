@@ -9,6 +9,8 @@ import '../../blocs/colors_generated/colors_event.dart';
 import '../../blocs/colors_generated/colors_state.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
+import '../../blocs/fab_bloc/fab_bloc.dart';
+import '../../blocs/fab_bloc/fab_event.dart';
 import '../../extensions/list_int_to_rgb.dart';
 import 'buttons/lock_color_button.dart';
 import 'colorpicker.dart';
@@ -51,8 +53,8 @@ class _ColorsListState extends State<ColorsList> {
           },
           child: RefreshableReorderableListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            onDragStart: () => BlocProvider.of<ColorsBloc>(context).add(ColorsReorderStartEvent()),
-            onDragEnd: () => BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEndEvent()),
+            onDragStart: () => BlocProvider.of<FabBloc>(context).add(FabReorderStartEvent()),
+            onDragEnd: () => BlocProvider.of<FabBloc>(context).add(FabReorderEndEvent()),
             onReorder: (int oldIndex, int newIndex) =>
                 BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
             children: List.generate(lenght, (int index) {

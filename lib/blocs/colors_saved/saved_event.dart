@@ -1,10 +1,14 @@
-import '../../models/colors/colors_json.dart';
+import 'package:flutter/cupertino.dart';
 
-abstract class SavedEvent {}
+abstract class SavedEvent {
+  const SavedEvent();
+}
 
 class SavedExistingEvent extends SavedEvent {}
 
-class SavedRemovingEvent extends SavedEvent {
-  SavedRemovingEvent(this.colors);
-  final ColorsAI colors;
+class SavedAddEvent extends SavedEvent {
+  const SavedAddEvent({required this.colorsToSave});
+  final List<Color> colorsToSave;
 }
+
+class SavedRemovingEvent extends SavedEvent {}

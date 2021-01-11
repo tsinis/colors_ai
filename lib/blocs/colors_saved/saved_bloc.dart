@@ -1,31 +1,29 @@
+// ignore_for_file: avoid_catches_without_on_clauses
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// import '../../models/colors/colors_json.dart';
-// import '../../repositories/colors_repository.dart';
+import '../../repositories/saved_favorites_repository.dart';
 import 'saved_event.dart';
 import 'saved_state.dart';
 
 class SavedBloc extends Bloc<SavedEvent, SavedState> {
   SavedBloc() : super(SavedEmptyState());
-  //TODO! Add inital state.
-  // final ColorsRepository colorsRepository;
-  // SavedBloc(this.colorsRepository) : super(SavedEmptyState());
+
+  // ignore: prefer_const_constructors
+  static final SavedColors _savedRepository = SavedColors();
 
   @override
   Stream<SavedState> mapEventToState(SavedEvent event) async* {
-    if (event is SavedExistingEvent) {
-      yield SavedLoadingState();
+    if (event is SavedAddEvent) {
+      _savedRepository.add(event.colorsToSave);
       try {
-        //TODO! Add caching repositrory;
-        // ignore: avoid_catches_without_on_clauses
+        yield SavedLoadedState(_savedRepository);
       } catch (_) {
         yield SavedErrorState();
       }
     }
     if (event is SavedRemovingEvent) {
       try {
-        yield SavedLoadedState();
-        // ignore: avoid_catches_without_on_clauses
+        yield SavedLoadedState(_savedRepository);
       } catch (_) {
         yield SavedErrorState();
       }
