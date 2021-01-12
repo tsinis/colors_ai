@@ -1,6 +1,5 @@
 import 'dart:math' as math;
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,10 +27,12 @@ class _NavigationScreenState extends State<NavigationScreen> with TickerProvider
         BlocProvider<LockedBloc>(
             create: (_) => LockedBloc(context.read<ColorsRepository>()),
             child: const ColorsGenerator(appBarHeight: _appBarHeight)),
-        const SavedColorsList(),
+        SavedColorsList(returnToFirstTab),
       ];
 
   static const double _appBarHeight = 86;
+
+  void returnToFirstTab() => tabController.animateTo(0, curve: Curves.fastLinearToSlowEaseIn);
 
   @override
   void initState() {
@@ -89,7 +90,7 @@ class _NavigationScreenState extends State<NavigationScreen> with TickerProvider
               create: (_) => ColorsBloc(context.read<ColorsRepository>()),
               child: TabBarView(
                   physics: const ClampingScrollPhysics(),
-                  dragStartBehavior: DragStartBehavior.down,
+                  // dragStartBehavior: DragStartBehavior.down,
                   controller: tabController,
                   children: screens),
             ),

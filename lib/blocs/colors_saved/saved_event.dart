@@ -11,4 +11,8 @@ class SavedAddEvent extends SavedEvent {
   final List<Color> colorsToSave;
 }
 
-class SavedRemovingEvent extends SavedEvent {}
+class SavedRemovingEvent extends SavedEvent {
+  final int colorToRemoveIndex;
+
+  SavedRemovingEvent({required this.colorToRemoveIndex});
+}

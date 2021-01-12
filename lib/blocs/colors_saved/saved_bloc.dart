@@ -22,6 +22,7 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
       }
     }
     if (event is SavedRemovingEvent) {
+      _savedRepository.remove(event.colorToRemoveIndex);
       try {
         yield SavedLoadedState(_savedRepository);
       } catch (_) {

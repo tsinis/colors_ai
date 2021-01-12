@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../blocs/colors_saved/saved_bloc.dart';
+import '../../blocs/colors_saved/saved_event.dart';
+import 'customized_default_widgets/swipe_back_dissmissible.dart';
 
 class SavedList extends StatelessWidget {
-  const SavedList({this.savedColors = const {}});
-  final Set<List<Color>> savedColors;
+  const SavedList({required this.moveBack, this.savedColors = const []});
+  final List<List<Color>> savedColors;
+  final Function() moveBack;
   @override
   Widget build(BuildContext context) => ListView.builder(
-        // separatorBuilder: (_, __) => const Divider(color: Colors.white),
         itemCount: savedColors.length,
-        itemBuilder: (context, listIndex) => Dismissible(
-          //TODO Create custom widget with swipe right to move back.
-          direction: DismissDirection.endToStart,
-          key: Key(listIndex.toString()),
-          onDismissed: (_) => print('removed'),
+        itemBuilder: (context, listIndex) => SwipeBackDismissible(
+          direction: CustomDismissDirection.endToStart,
+          key: UniqueKey(),
+          onSwipeBack: moveBack,
+          onDismissed: (_) =>
+              BlocProvider.of<SavedBloc>(context).add(SavedRemovingEvent(colorToRemoveIndex: listIndex)),
           background: const ColoredBox(
             color: Colors.red,
             child: Align(

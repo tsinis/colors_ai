@@ -14,7 +14,7 @@ import '../../blocs/fab_bloc/fab_event.dart';
 import '../../extensions/list_int_to_rgb.dart';
 import 'buttons/lock_color_button.dart';
 import 'colorpicker.dart';
-import 'refrashable_reordable.dart';
+import 'customized_default_widgets/refrashable_reordable.dart';
 
 class ColorsList extends StatefulWidget {
   final List<List<int>> colorsList;

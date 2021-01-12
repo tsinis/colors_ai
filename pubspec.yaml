@@ -13,7 +13,7 @@ environment:
   flutter: ">=1.26.0-2.0.pre.118 <2.0.0"
 
 dependencies:
-  equatable: ^2.0.0-nullsafety.0
+  equatable: ^2.0.0-nullsafety.1
   flutter:
     sdk: flutter
   flutter_bloc: ^7.0.0-nullsafety.0
