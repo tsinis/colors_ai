@@ -1,7 +1,9 @@
-abstract class FabEvent {}
+abstract class FabEvent {
+  const FabEvent();
+}
 
 class FabInitialEvent extends FabEvent {}
 
-class FabReorderStartEvent extends FabEvent {}
+class FabHideEvent extends FabEvent {}
 
-class FabReorderEndEvent extends FabEvent {}
+class FabShowEvent extends FabEvent {}

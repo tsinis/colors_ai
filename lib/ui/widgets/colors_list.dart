@@ -11,7 +11,7 @@ import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/fab_bloc/fab_bloc.dart';
 import '../../blocs/fab_bloc/fab_event.dart';
-import '../../extensions/list_int_to_rgb.dart';
+import '../../extensions/list_int_to_color.dart';
 import 'buttons/lock_color_button.dart';
 import 'colorpicker.dart';
 import 'customized_default_widgets/refrashable_reordable.dart';
@@ -48,13 +48,14 @@ class _ColorsListState extends State<ColorsList> {
         },
         builder: (context, state) => RefreshIndicator(
           onRefresh: () {
+            BlocProvider.of<FabBloc>(context).add(FabShowEvent());
             BlocProvider.of<ColorsBloc>(context).add(ColorsGenEvent());
             return _refreshCompleter.future;
           },
           child: RefreshableReorderableListView(
             physics: const AlwaysScrollableScrollPhysics(),
-            onDragStart: () => BlocProvider.of<FabBloc>(context).add(FabReorderStartEvent()),
-            onDragEnd: () => BlocProvider.of<FabBloc>(context).add(FabReorderEndEvent()),
+            onDragStart: () => BlocProvider.of<FabBloc>(context).add(FabHideEvent()),
+            onDragEnd: () => BlocProvider.of<FabBloc>(context).add(FabShowEvent()),
             onReorder: (int oldIndex, int newIndex) =>
                 BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
             children: List.generate(lenght, (int index) {

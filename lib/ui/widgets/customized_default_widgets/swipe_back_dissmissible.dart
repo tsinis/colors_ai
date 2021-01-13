@@ -17,7 +17,7 @@ const double _kSwipeBackThreshold = 0.12;
 typedef DismissDirectionCallback = void Function(CustomDismissDirection direction);
 
 /// Signature used by [SwipeBackDismissible] to give the application an opportunity to
-/// confirm or veto a dismiss gesture.
+/// confirm or veto a dismiss gesture and return back by swipe back gesture.
 ///
 /// Used by [SwipeBackDismissible.confirmDismiss].
 typedef ConfirmDismissCallback = Future<bool?> Function(CustomDismissDirection direction);
@@ -69,7 +69,7 @@ enum CustomDismissDirection {
 /// list item, it must have a key that distinguishes it from the other items and
 /// its [onDismissed] callback must remove the item from the list.
 class SwipeBackDismissible extends StatefulWidget {
-  /// Creates a widget that can be dismissed.
+  /// Creates a widget that can be dismissed and swiped to return back.
   ///
   /// The [key] argument must not be null because [SwipeBackDismissible]s are commonly
   /// used in lists and removed from the list when dismissed. Without keys, the

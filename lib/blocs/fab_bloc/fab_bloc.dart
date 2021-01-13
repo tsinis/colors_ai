@@ -9,13 +9,13 @@ class FabBloc extends Bloc<FabEvent, FabState> {
   FabBloc() : super(FabShowingState());
   @override
   Stream<FabState> mapEventToState(FabEvent event) async* {
-    if (event is FabReorderStartEvent) {
+    if (event is FabHideEvent) {
       try {
         yield FabReorderStartState();
       } catch (_) {
         yield FabShowingState();
       }
-    } else if (event is FabReorderEndEvent) {
+    } else if (event is FabShowEvent) {
       try {
         yield FabReorderEndState();
       } catch (_) {

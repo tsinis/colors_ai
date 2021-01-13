@@ -8,6 +8,8 @@ import '../../blocs/colorpicker_dialog/colorpicker_event.dart';
 import '../../blocs/colorpicker_dialog/colorpicker_state.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
 import '../../blocs/colors_generated/colors_event.dart';
+import '../../blocs/fab_bloc/fab_bloc.dart';
+import '../../blocs/fab_bloc/fab_event.dart';
 import '../../extensions/color_to_hex.dart';
 
 class Colorpicker extends StatelessWidget {
@@ -41,8 +43,10 @@ class Colorpicker extends StatelessWidget {
                         portraitOnly: true,
                         displayThumbColor: true,
                         pickerColor: color,
-                        onColorChanged: (newColor) =>
-                            BlocProvider.of<ColorsBloc>(context).add(ColorsChangeEvent(newColor, index)),
+                        onColorChanged: (newColor) {
+                          BlocProvider.of<FabBloc>(context).add(FabShowEvent());
+                          BlocProvider.of<ColorsBloc>(context).add(ColorsChangeEvent(newColor, index));
+                        },
                       ),
                     ],
                   ),

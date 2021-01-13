@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../blocs/colors_saved/saved_event.dart';
+import '../../extensions/color_to_hex.dart';
 import 'customized_default_widgets/swipe_back_dissmissible.dart';
 
 class SavedList extends StatelessWidget {
@@ -35,15 +36,22 @@ class SavedList extends StatelessWidget {
             title: Row(
               children: List<Widget>.generate(
                 savedColors.elementAt(listIndex).length,
-                (int childIndex) => Expanded(
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Card(
-                      color: savedColors.elementAt(listIndex)[childIndex],
-                      elevation: 6,
+                (int childIndex) {
+                  final Color color = savedColors.elementAt(listIndex)[childIndex];
+                  final Color textColor = savedColors.elementAt(listIndex)[childIndex].contrastColor();
+                  return Expanded(
+                    child: AspectRatio(
+                      aspectRatio: 1,
+                      child: Card(
+                        color: color,
+                        child: Center(
+                          child: Text(color.toHex(),
+                              maxLines: 2, textAlign: TextAlign.center, style: TextStyle(color: textColor)),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ),

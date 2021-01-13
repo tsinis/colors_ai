@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import '../extensions/list_int_to_rgb.dart';
+import '../extensions/list_int_to_color.dart';
 import '../models/colors/colors_json.dart';
 import '../models/locks/locked_colors.dart';
 import '../services/api/api.dart';
