@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mdi/mdi.dart';
 import 'package:vibration/vibration.dart';
 
 import '../../../blocs/colors_saved/saved_bloc.dart';
@@ -22,20 +23,16 @@ class SaveColorsFAB extends StatelessWidget {
           }
           return FloatingActionButton(
             onPressed: () async {
-              final bool hasVibrator = await Vibration.hasVibrator() ?? false;
-              final bool hasExtendedVibrator = await Vibration.hasCustomVibrationsSupport() ?? false;
-              if (hasExtendedVibrator) {
-                await Vibration.vibrate(duration: 140);
-              } else if (hasVibrator) {
+              if (await Vibration.hasCustomVibrationsSupport() ?? false) {
                 // ignore: unawaited_futures
-                Vibration.vibrate();
+                Vibration.vibrate(duration: 120);
               }
               BlocProvider.of<SavedBloc>(context)
                   .add(SavedAddEvent(colorsToSave: context.read<ColorsRepository>().listAsColors));
               // ignore: unawaited_futures
               controller.reverse();
             },
-            child: const Icon(Icons.playlist_add),
+            child: const Icon(Mdi.bookmarkPlusOutline),
           );
         },
       );

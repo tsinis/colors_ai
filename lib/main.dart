@@ -5,9 +5,9 @@ import 'colors_bloc_observer.dart';
 import 'repositories/colors_repository.dart';
 import 'services/system_ui/system_overlays.dart';
 import 'ui/screens/navigation.dart';
+import 'ui/theme/theme.dart';
 
 //TODO: Add sounds.
-//TODO: Add theme.
 //TODO: Add PDF export.
 //TODO: Add dif. color profiles.
 //TODO: Add list saving.
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.grey),
+      theme: appTheme,
       home: RepositoryProvider<ColorsRepository>(
           create: (_) => const ColorsRepository(), child: const NavigationScreen()));
 }

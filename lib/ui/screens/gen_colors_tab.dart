@@ -15,7 +15,7 @@ class ColorsGenerator extends StatelessWidget {
         if (state is ColorsEmptyState || state is ColorsErrorState) {
           return Center(
               child: MaterialButton(
-                  color: Colors.white, //TODO Provide button color in theme.
+                  color: Colors.white,
                   onPressed: () => BlocProvider.of<ColorsBloc>(context).add(ColorsInitalGenEvent()),
                   child: const Text('GET COLORS')));
         } else if (state is ColorsLoadingState) {
