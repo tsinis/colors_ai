@@ -17,10 +17,8 @@ import 'colorpicker.dart';
 import 'customized_default_widgets/refrashable_reordable.dart';
 
 class ColorsList extends StatefulWidget {
+  const ColorsList(this.colorsList);
   final List<List<int>> colorsList;
-  final double appBarHeight;
-
-  const ColorsList(this.colorsList, {required this.appBarHeight});
   @override
   _ColorsListState createState() => _ColorsListState();
 }
@@ -35,9 +33,10 @@ class _ColorsListState extends State<ColorsList> {
   }
 
   Size get size => MediaQuery.of(context).size;
-  double get statusBarHeight => MediaQueryData.fromWindow(window).padding.top;
+  double get padding => MediaQueryData.fromWindow(window).padding.vertical;
   int get lenght => widget.colorsList.length;
-  double get tileHeight => (size.height - widget.appBarHeight - statusBarHeight) / lenght;
+  double get tileHeight =>
+      (size.height - kBottomNavigationBarHeight - kToolbarHeight - padding - (lenght / (lenght + 1))) / lenght;
   Size get third => Size(size.width / 3, tileHeight);
 
   @override
@@ -52,34 +51,43 @@ class _ColorsListState extends State<ColorsList> {
             BlocProvider.of<ColorsBloc>(context).add(ColorsGenEvent());
             return _refreshCompleter.future;
           },
-          child: RefreshableReorderableListView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            onDragStart: () => BlocProvider.of<FabBloc>(context).add(FabHideEvent()),
-            onDragEnd: () => BlocProvider.of<FabBloc>(context).add(FabShowEvent()),
-            onReorder: (int oldIndex, int newIndex) =>
-                BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
-            children: List.generate(lenght, (int index) {
-              final Color color = widget.colorsList[index].toColor(),
-                  contrastColor = widget.colorsList[index].contrastColor();
-              return InkWell(
-                onDoubleTap: () => BlocProvider.of<LockedBloc>(context).add(ChangeLockEvent(index)),
-                key: ValueKey(index),
-                child: Container(
-                  width: size.width,
-                  height: tileHeight,
-                  color: color,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Colorpicker(index, color: color, textColor: contrastColor, buttonSize: third),
-                      LockColorButton(index, color: contrastColor),
-                      SizedBox.fromSize(size: third),
-                    ],
+          child: ScrollConfiguration(
+            behavior: const NoGlowBehavior(),
+            child: RefreshableReorderableListView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              onDragStart: () => BlocProvider.of<FabBloc>(context).add(FabHideEvent()),
+              onDragEnd: () => BlocProvider.of<FabBloc>(context).add(FabShowEvent()),
+              onReorder: (int oldIndex, int newIndex) =>
+                  BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
+              children: List.generate(lenght, (int index) {
+                final Color color = widget.colorsList[index].toColor(),
+                    contrastColor = widget.colorsList[index].contrastColor();
+                return InkWell(
+                  onDoubleTap: () => BlocProvider.of<LockedBloc>(context).add(ChangeLockEvent(index)),
+                  key: ValueKey(index),
+                  child: Container(
+                    width: size.width,
+                    height: tileHeight,
+                    color: color,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Colorpicker(index, color: color, textColor: contrastColor, buttonSize: third),
+                        LockColorButton(index, color: contrastColor),
+                        SizedBox.fromSize(size: third),
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }, growable: false),
+                );
+              }, growable: false),
+            ),
           ),
         ),
       );
+}
+
+class NoGlowBehavior extends ScrollBehavior {
+  const NoGlowBehavior();
+  @override
+  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) => child;
 }

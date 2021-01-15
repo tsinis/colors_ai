@@ -4,31 +4,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../blocs/colors_saved/saved_event.dart';
 import '../../extensions/color_to_hex.dart';
-import 'customized_default_widgets/swipe_back_dissmissible.dart';
 
 class SavedList extends StatelessWidget {
-  const SavedList({required this.moveBack, this.savedColors = const []});
+  const SavedList(this.savedColors);
   final List<List<Color>> savedColors;
-  final Function() moveBack;
   @override
-  Widget build(BuildContext context) => ListView.builder(
+  Widget build(BuildContext context) => ListView.separated(
+        separatorBuilder: (_, __) => const Divider(height: 1.2),
         itemCount: savedColors.length,
-        itemBuilder: (context, listIndex) => SwipeBackDismissible(
-          direction: CustomDismissDirection.endToStart,
+        itemBuilder: (context, listIndex) => Dismissible(
           key: UniqueKey(),
-          onSwipeBack: moveBack,
           onDismissed: (_) =>
               BlocProvider.of<SavedBloc>(context).add(SavedRemovingEvent(colorToRemoveIndex: listIndex)),
-          background: const ColoredBox(
-            color: Colors.red,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                child: Icon(Icons.delete_forever, color: Colors.white70),
-              ),
-            ),
-          ),
+          secondaryBackground: const RemoveBackground(secondary: true),
+          background: const RemoveBackground(),
           child: ListTile(
             tileColor: Colors.grey[600],
             enableFeedback: true,
@@ -54,6 +43,22 @@ class SavedList extends StatelessWidget {
                 },
               ),
             ),
+          ),
+        ),
+      );
+}
+
+class RemoveBackground extends StatelessWidget {
+  const RemoveBackground({this.secondary = false});
+  final bool secondary;
+  @override
+  Widget build(BuildContext context) => ColoredBox(
+        color: Colors.red,
+        child: Align(
+          alignment: secondary ? Alignment.centerRight : Alignment.centerLeft,
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 40),
+            child: Icon(Icons.delete_forever, color: Colors.white70),
           ),
         ),
       );

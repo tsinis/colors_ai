@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'colors_bloc_observer.dart';
 import 'repositories/colors_repository.dart';
 import 'services/system_ui/system_overlays.dart';
-import 'ui/screens/navigation.dart';
+import 'ui/screens/scaffold_and_navigation.dart';
 import 'ui/theme/theme.dart';
 
 //TODO: Add sounds.

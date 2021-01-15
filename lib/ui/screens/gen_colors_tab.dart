@@ -7,8 +7,7 @@ import '../../blocs/colors_generated/colors_state.dart';
 import '../widgets/colors_list.dart';
 
 class ColorsGenerator extends StatelessWidget {
-  const ColorsGenerator({required this.appBarHeight});
-  final double appBarHeight;
+  const ColorsGenerator();
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(builder: (context, state) {
@@ -22,7 +21,7 @@ class ColorsGenerator extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
         if (state is ColorsLoadedState) {
-          return ColorsList(state.colorsAI.list, appBarHeight: appBarHeight);
+          return ColorsList(state.colorsAI.list);
         }
         return const Center(child: CircularProgressIndicator(backgroundColor: Colors.red));
       });

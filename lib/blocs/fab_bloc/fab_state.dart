@@ -1,6 +1,8 @@
 abstract class FabState {}
 
-class FabShowingState extends FabState {}
+class FabDefaultState extends FabState {}
+
+class FabErrorState extends FabState {} //TODO: Handle this state.
 
 class FabReorderStartState extends FabState {}
 
