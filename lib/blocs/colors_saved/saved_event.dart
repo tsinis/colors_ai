@@ -4,15 +4,18 @@ abstract class SavedEvent {
   const SavedEvent();
 }
 
-class SavedExistingEvent extends SavedEvent {}
-
 class SavedAddEvent extends SavedEvent {
   const SavedAddEvent({required this.colorsToSave});
+
   final List<Color> colorsToSave;
 }
 
-class SavedRemovingEvent extends SavedEvent {
-  final int colorToRemoveIndex;
+class SavedRemoveAllEvent extends SavedEvent {
+  const SavedRemoveAllEvent();
+}
 
+class SavedRemovingEvent extends SavedEvent {
   SavedRemovingEvent({required this.colorToRemoveIndex});
+
+  final int colorToRemoveIndex;
 }

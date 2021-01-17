@@ -18,7 +18,7 @@ class ColorsRepository {
   // ignore: prefer_final_fields
   static LockedColors _locked = LockedColors();
   List<bool> get lockedColors => _locked.list;
-
+  void get unlockAll => _locked.unlockAll;
   void changeLock(int colorIndex) => _locked.changeLock(colorIndex);
 
   void changeColor(Color newColor, int colorIndex) => _colorsAI.changeColor(newColor, colorIndex);

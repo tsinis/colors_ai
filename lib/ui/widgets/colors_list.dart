@@ -47,16 +47,16 @@ class _ColorsListState extends State<ColorsList> {
         },
         builder: (context, state) => RefreshIndicator(
           onRefresh: () {
-            BlocProvider.of<FabBloc>(context).add(FabShowEvent());
-            BlocProvider.of<ColorsBloc>(context).add(ColorsGenEvent());
+            BlocProvider.of<ColorsBloc>(context).add(const ColorsGenEvent());
+            BlocProvider.of<FabBloc>(context).add(const FabShowEvent());
             return _refreshCompleter.future;
           },
           child: ScrollConfiguration(
             behavior: const NoGlowBehavior(),
             child: RefreshableReorderableListView(
               physics: const AlwaysScrollableScrollPhysics(),
-              onDragStart: () => BlocProvider.of<FabBloc>(context).add(FabHideEvent()),
-              onDragEnd: () => BlocProvider.of<FabBloc>(context).add(FabShowEvent()),
+              onDragStart: () => BlocProvider.of<FabBloc>(context).add(const FabHideEvent()),
+              onDragEnd: () => BlocProvider.of<FabBloc>(context).add(const FabShowEvent()),
               onReorder: (int oldIndex, int newIndex) =>
                   BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
               children: List.generate(lenght, (int index) {

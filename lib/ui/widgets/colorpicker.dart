@@ -44,7 +44,7 @@ class Colorpicker extends StatelessWidget {
                         displayThumbColor: true,
                         pickerColor: color,
                         onColorChanged: (newColor) {
-                          BlocProvider.of<FabBloc>(context).add(FabShowEvent());
+                          BlocProvider.of<FabBloc>(context).add(const FabShowEvent());
                           BlocProvider.of<ColorsBloc>(context).add(ColorsChangeEvent(newColor, index));
                         },
                       ),
@@ -52,11 +52,11 @@ class Colorpicker extends StatelessWidget {
                   ),
                 );
               });
-              BlocProvider.of<DialogBloc>(dialogContext).add(VisibleDialog());
+              BlocProvider.of<DialogBloc>(dialogContext).add(const VisibleDialog());
             }
             return TextButton(
                 style: ButtonStyle(enableFeedback: true, minimumSize: MaterialStateProperty.all<Size>(buttonSize)),
-                onPressed: () => BlocProvider.of<DialogBloc>(dialogContext).add(ShowDialog()),
+                onPressed: () => BlocProvider.of<DialogBloc>(dialogContext).add(const ShowDialog()),
                 child:
                     Text(color.toHex(), maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)));
           },

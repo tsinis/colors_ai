@@ -4,14 +4,14 @@ import 'colorpicker_event.dart';
 import 'colorpicker_state.dart';
 
 class DialogBloc extends Bloc<DialogEvent, DialogState> {
-  DialogBloc() : super(InitialDialogState());
+  DialogBloc() : super(const DialogHidedState());
 
   @override
   Stream<DialogState> mapEventToState(DialogEvent event) async* {
     if (event is ShowDialog) {
-      yield DialogShowing();
+      yield const DialogShowing();
     } else {
-      yield InitialDialogState();
+      yield const DialogHidedState();
     }
   }
 }

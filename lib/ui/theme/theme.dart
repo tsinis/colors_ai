@@ -9,6 +9,7 @@ ThemeData appTheme = ThemeData(
   dividerColor: Colors.grey[800],
   floatingActionButtonTheme:
       FloatingActionButtonThemeData(backgroundColor: Colors.grey[350], foregroundColor: Colors.grey[850]),
+  appBarTheme: AppBarTheme(iconTheme: IconThemeData(color: Colors.grey[800])),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedIconTheme: IconThemeData(size: 24),
       unselectedIconTheme: IconThemeData(size: 20),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/colors_generated/colors_bloc.dart';
-import '../../blocs/colors_generated/colors_event.dart';
-import '../../blocs/colors_generated/colors_state.dart';
-import '../widgets/colors_list.dart';
+import '../../../blocs/colors_generated/colors_bloc.dart';
+import '../../../blocs/colors_generated/colors_event.dart';
+import '../../../blocs/colors_generated/colors_state.dart';
+import '../../widgets/colors_list.dart';
 
 class ColorsGenerator extends StatelessWidget {
   const ColorsGenerator();
@@ -15,7 +15,7 @@ class ColorsGenerator extends StatelessWidget {
           return Center(
               child: MaterialButton(
                   color: Colors.white,
-                  onPressed: () => BlocProvider.of<ColorsBloc>(context).add(ColorsInitalGenEvent()),
+                  onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsInitalGenEvent()),
                   child: const Text('GET COLORS')));
         } else if (state is ColorsLoadingState) {
           return const Center(child: CircularProgressIndicator());

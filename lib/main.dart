@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'blocs/fab_bloc/fab_bloc.dart';
 import 'colors_bloc_observer.dart';
 import 'repositories/colors_repository.dart';
 import 'services/system_ui/system_overlays.dart';
@@ -26,7 +27,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
-      theme: appTheme,
-      home: RepositoryProvider<ColorsRepository>(
-          create: (_) => const ColorsRepository(), child: const NavigationScreen()));
+        theme: appTheme,
+        home: BlocProvider<FabBloc>(
+          create: (_) => FabBloc(),
+          child: RepositoryProvider<ColorsRepository>(
+            create: (_) => const ColorsRepository(),
+            child: const NavigationScreen(),
+          ),
+        ),
+      );
 }

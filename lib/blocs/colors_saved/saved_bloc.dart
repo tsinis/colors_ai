@@ -6,19 +6,20 @@ import 'saved_event.dart';
 import 'saved_state.dart';
 
 class SavedBloc extends Bloc<SavedEvent, SavedState> {
-  SavedBloc() : super(SavedEmptyState());
+  SavedBloc() : super(const SavedEmptyState());
 
   // ignore: prefer_const_constructors
   static final SavedColors _savedRepository = SavedColors();
 
   @override
   Stream<SavedState> mapEventToState(SavedEvent event) async* {
+    //TODO Handle SavedRemoveAllEvent.
     if (event is SavedAddEvent) {
       _savedRepository.add(event.colorsToSave);
       try {
         yield SavedLoadedState(_savedRepository);
       } catch (_) {
-        yield SavedErrorState();
+        yield const SavedErrorState();
       }
     }
     if (event is SavedRemovingEvent) {
@@ -26,7 +27,7 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
       try {
         yield SavedLoadedState(_savedRepository);
       } catch (_) {
-        yield SavedErrorState();
+        yield const SavedErrorState();
       }
     }
   }

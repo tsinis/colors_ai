@@ -1,10 +1,16 @@
-abstract class DialogState {}
+abstract class DialogState {
+  const DialogState();
+}
 
-class InitialDialogState extends DialogState {}
+class DialogHidedState extends DialogState {
+  const DialogHidedState();
+}
 
-// class DialogHidding extends DialogState {}
-
-class DialogShowing extends DialogState {}
+class DialogShowing extends DialogState {
+  const DialogShowing();
+}
 
 //TODO! Handle error states.
-class DialogErrorState extends DialogState {}
+class DialogErrorState extends DialogState {
+  const DialogErrorState();
+}

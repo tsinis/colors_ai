@@ -8,7 +8,7 @@ import 'colors_state.dart';
 
 class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   final ColorsRepository _colorsRepository;
-  ColorsBloc(this._colorsRepository) : super(ColorsEmptyState());
+  ColorsBloc(this._colorsRepository) : super(const ColorsEmptyState());
   @override
   Stream<ColorsState> mapEventToState(ColorsEvent event) async* {
     if (event is ColorsChangeEvent) {
@@ -19,13 +19,13 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
     }
     if (event is ColorsGenEvent || event is ColorsInitalGenEvent) {
       if (event is ColorsInitalGenEvent) {
-        yield ColorsLoadingState();
+        yield const ColorsLoadingState();
       }
       try {
         await _colorsRepository.getNewColors;
         yield ColorsLoadedState(_colorsRepository.colors);
       } catch (_) {
-        yield ColorsErrorState();
+        yield const ColorsErrorState();
       }
     }
     if (event is ColorsReorderEvent) {
@@ -33,7 +33,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
         _colorsRepository.swapColors(oldIndex: event.oldIndex, newIndex: event.newIndex);
         yield ColorsLoadedState(_colorsRepository.colors);
       } catch (_) {
-        yield ColorsErrorState();
+        yield const ColorsErrorState();
       }
     }
   }

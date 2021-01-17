@@ -8,4 +8,5 @@ class SavedColors {
   // void getColorAt(int index) => _list.elementAt(index);
   void add(List<Color> color) => _list.add(color);
   void remove(int colorIndex) => _list.removeAt(colorIndex);
+  void get removeAll => _list.clear();
 }

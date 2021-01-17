@@ -1,7 +1,11 @@
-abstract class DialogEvent {}
+abstract class DialogEvent {
+  const DialogEvent();
+}
 
-class ShowDialog extends DialogEvent {}
+class ShowDialog extends DialogEvent {
+  const ShowDialog();
+}
 
-// class HidenDialog extends DialogEvent {}
-
-class VisibleDialog extends DialogEvent {}
+class VisibleDialog extends DialogEvent {
+  const VisibleDialog();
+}

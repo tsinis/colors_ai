@@ -4,9 +4,17 @@ abstract class SavedState {
   const SavedState();
 }
 
-class SavedEmptyState extends SavedState {}
+class SavedEmptyState extends SavedState {
+  const SavedEmptyState();
+}
 
-class SavedErrorState extends SavedState {}
+class SavedErrorState extends SavedState {
+  const SavedErrorState();
+}
+
+class SavedRemoveAll extends SavedState {
+  const SavedRemoveAll();
+}
 
 class SavedLoadingState extends SavedState {}
 

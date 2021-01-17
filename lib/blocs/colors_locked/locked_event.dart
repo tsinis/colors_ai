@@ -1,8 +1,16 @@
-abstract class LockEvent {}
+abstract class LockEvent {
+  const LockEvent();
+}
 
-class UnLockEvent extends LockEvent {}
+class ShowLockEvent extends LockEvent {
+  const ShowLockEvent();
+}
+
+class UnlockAllEvent extends LockEvent {
+  // const UnlockAllEvent();
+}
 
 class ChangeLockEvent extends LockEvent {
-  ChangeLockEvent(this.index);
+  const ChangeLockEvent(this.index);
   final int index;
 }

@@ -6,20 +6,20 @@ import 'fab_state.dart';
 // ignore_for_file: avoid_catches_without_on_clauses
 
 class FabBloc extends Bloc<FabEvent, FabState> {
-  FabBloc() : super(FabDefaultState());
+  FabBloc() : super(const FabDefaultState());
   @override
   Stream<FabState> mapEventToState(FabEvent event) async* {
     if (event is FabHideEvent) {
       try {
-        yield FabReorderStartState();
+        yield FabHideState();
       } catch (_) {
-        yield FabErrorState();
+        yield const FabErrorState();
       }
     } else if (event is FabShowEvent) {
       try {
-        yield FabReorderEndState();
+        yield FabShowState();
       } catch (_) {
-        yield FabErrorState();
+        yield const FabErrorState();
       }
     }
   }
