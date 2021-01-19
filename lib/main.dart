@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'blocs/fab_bloc/fab_bloc.dart';
+import 'blocs/floating_action_button/fab_bloc.dart';
 import 'colors_bloc_observer.dart';
 import 'repositories/colors_repository.dart';
 import 'services/system_ui/system_overlays.dart';

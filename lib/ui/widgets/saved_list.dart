@@ -14,8 +14,7 @@ class SavedList extends StatelessWidget {
         itemCount: savedColors.length,
         itemBuilder: (context, listIndex) => Dismissible(
           key: UniqueKey(),
-          onDismissed: (_) =>
-              BlocProvider.of<SavedBloc>(context).add(SavedRemovingEvent(colorToRemoveIndex: listIndex)),
+          onDismissed: (_) => BlocProvider.of<SavedBloc>(context).add(SavedRemoveEvent(colorToRemoveIndex: listIndex)),
           secondaryBackground: const RemoveBackground(secondary: true),
           background: const RemoveBackground(),
           child: ListTile(

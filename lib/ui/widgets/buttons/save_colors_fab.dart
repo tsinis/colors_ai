@@ -5,8 +5,8 @@ import 'package:vibration/vibration.dart';
 
 import '../../../blocs/colors_saved/saved_bloc.dart';
 import '../../../blocs/colors_saved/saved_event.dart';
-import '../../../blocs/fab_bloc/fab_bloc.dart';
-import '../../../blocs/fab_bloc/fab_state.dart';
+import '../../../blocs/floating_action_button/fab_bloc.dart';
+import '../../../blocs/floating_action_button/fab_state.dart';
 import '../../../repositories/colors_repository.dart';
 
 class SaveColorsFAB extends StatefulWidget {

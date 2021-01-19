@@ -14,8 +14,8 @@ class SavedRemoveAllEvent extends SavedEvent {
   const SavedRemoveAllEvent();
 }
 
-class SavedRemovingEvent extends SavedEvent {
-  SavedRemovingEvent({required this.colorToRemoveIndex});
+class SavedRemoveEvent extends SavedEvent {
+  SavedRemoveEvent({required this.colorToRemoveIndex});
 
   final int colorToRemoveIndex;
 }

@@ -1,11 +1,11 @@
-abstract class DialogEvent {
-  const DialogEvent();
+abstract class ColorPickerEvent {
+  const ColorPickerEvent();
 }
 
-class ShowDialog extends DialogEvent {
-  const ShowDialog();
+class ShowColorPicker extends ColorPickerEvent {
+  const ShowColorPicker();
 }
 
-class VisibleDialog extends DialogEvent {
-  const VisibleDialog();
+class VisibleColorPicker extends ColorPickerEvent {
+  const VisibleColorPicker();
 }

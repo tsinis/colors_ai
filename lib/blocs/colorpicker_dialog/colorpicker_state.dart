@@ -1,16 +1,16 @@
-abstract class DialogState {
-  const DialogState();
+abstract class ColorPickerState {
+  const ColorPickerState();
 }
 
-class DialogHidedState extends DialogState {
-  const DialogHidedState();
+class ColorPickerHiddenState extends ColorPickerState {
+  const ColorPickerHiddenState();
 }
 
-class DialogShowing extends DialogState {
-  const DialogShowing();
+class ColorPickerShowingState extends ColorPickerState {
+  const ColorPickerShowingState();
 }
 
 //TODO! Handle error states.
-class DialogErrorState extends DialogState {
-  const DialogErrorState();
+class ColorPickerErrorState extends ColorPickerState {
+  const ColorPickerErrorState();
 }

@@ -8,8 +8,10 @@ import '../../blocs/colorpicker_dialog/colorpicker_event.dart';
 import '../../blocs/colorpicker_dialog/colorpicker_state.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
 import '../../blocs/colors_generated/colors_event.dart';
-import '../../blocs/fab_bloc/fab_bloc.dart';
-import '../../blocs/fab_bloc/fab_event.dart';
+import '../../blocs/colors_locked/locked_bloc.dart';
+import '../../blocs/colors_locked/locked_event.dart';
+import '../../blocs/floating_action_button/fab_bloc.dart';
+import '../../blocs/floating_action_button/fab_event.dart';
 import '../../extensions/color_to_hex.dart';
 
 class Colorpicker extends StatelessWidget {
@@ -25,11 +27,11 @@ class Colorpicker extends StatelessWidget {
   final Size buttonSize;
 
   @override
-  Widget build(BuildContext context) => BlocProvider<DialogBloc>(
-        create: (_) => DialogBloc(),
-        child: BlocBuilder<DialogBloc, DialogState>(
-          builder: (BuildContext dialogContext, DialogState state) {
-            if (state is DialogShowing) {
+  Widget build(BuildContext context) => BlocProvider<ColorPickerBLoc>(
+        create: (_) => ColorPickerBLoc(),
+        child: BlocBuilder<ColorPickerBLoc, ColorPickerState>(
+          builder: (BuildContext dialogContext, ColorPickerState state) {
+            if (state is ColorPickerShowingState) {
               SchedulerBinding.instance?.addPostFrameCallback((_) async {
                 await showDialog<void>(
                   context: dialogContext,
@@ -52,11 +54,14 @@ class Colorpicker extends StatelessWidget {
                   ),
                 );
               });
-              BlocProvider.of<DialogBloc>(dialogContext).add(const VisibleDialog());
+              BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const VisibleColorPicker());
             }
             return TextButton(
                 style: ButtonStyle(enableFeedback: true, minimumSize: MaterialStateProperty.all<Size>(buttonSize)),
-                onPressed: () => BlocProvider.of<DialogBloc>(dialogContext).add(const ShowDialog()),
+                onPressed: () {
+                  BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ShowColorPicker());
+                  BlocProvider.of<LockedBloc>(dialogContext).add(ChangeLockEvent(index));
+                },
                 child:
                     Text(color.toHex(), maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)));
           },
