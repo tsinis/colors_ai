@@ -8,6 +8,6 @@ import 'navigation_tabs/share_colors_tab.dart';
 
 //TODO Provide in l10n.
 const List<String> tabLabels = ['Share Colors', 'Generate Colors', 'Saved Colors'];
-
 const List<Widget> navTabs = <Widget>[ShareColors(), ColorsGenerator(), SavedColorsList()];
+
 const List<Widget> appBarActions = <Widget>[SizedBox.shrink(), UnlockAllButton(), RemoveAllSavedButton()];

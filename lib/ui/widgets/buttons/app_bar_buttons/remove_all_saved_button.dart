@@ -25,9 +25,7 @@ class RemoveAllSavedButton extends StatelessWidget {
                   builder: (_) => AlertDialog(
                     content: const Text('Remove all saved colors?'),
                     actions: <TextButton>[
-                      TextButton(
-                          onPressed: () => Navigator.pop(dialogContext, false),
-                          child: const Text('CANCEL', style: TextStyle(color: Colors.black))),
+                      TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('CANCEL')),
                       TextButton(
                           onPressed: () => Navigator.pop(dialogContext, true),
                           child: const Text('REMOVE', style: TextStyle(color: Colors.red)))

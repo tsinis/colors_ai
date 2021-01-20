@@ -22,6 +22,10 @@ class LockedColors {
     }
   }
 
+  void lock(int colorIndex) => _list
+    ..removeAt(colorIndex)
+    ..insert(colorIndex, true);
+
   void changeLock(int colorIndex) {
     final bool invertedLock = !_list[colorIndex];
     _list

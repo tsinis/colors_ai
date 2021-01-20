@@ -8,14 +8,14 @@ import 'services/system_ui/system_overlays.dart';
 import 'ui/screens/scaffold_and_navigation.dart';
 import 'ui/theme/theme.dart';
 
-//TODO: Add sounds.
 //TODO: Add PDF export.
-//TODO: Add dif. color profiles.
-//TODO: Add list saving.
-//TODO: Add onboarding.
-//TODO: Add app icon.
 //TODO: Add share.
-//TODO: Add settings menu.
+//TODO: Add list saving.
+//TODO: Add sounds.
+//TODO: Add onboarding.
+//TODO Add dif. color profiles.
+//TODO: Add app icon.
+//TODO? Add settings menu.
 
 void main() {
   Bloc.observer = ColorBlocObserver();

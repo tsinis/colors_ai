@@ -13,10 +13,13 @@ class ColorsGenerator extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(builder: (context, state) {
         if (state is ColorsEmptyState || state is ColorsErrorState) {
           return Center(
-              child: MaterialButton(
-                  color: Colors.white,
-                  onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsInitalGenEvent()),
-                  child: const Text('GET COLORS')));
+            child: ElevatedButton.icon(
+              icon: const Icon(Icons.refresh_outlined, size: 20),
+              label: const Text('GET COLORS'),
+              autofocus: true,
+              onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsInitalGenEvent()),
+            ),
+          );
         } else if (state is ColorsLoadingState) {
           return const Center(child: CircularProgressIndicator());
         }

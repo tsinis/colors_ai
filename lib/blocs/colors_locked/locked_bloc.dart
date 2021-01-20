@@ -11,7 +11,7 @@ class LockedBloc extends Bloc<LockEvent, LockedState> {
   @override
   Stream<LockedState> mapEventToState(LockEvent event) async* {
     if (event is ChangeLockEvent) {
-      _colorsRepository.changeLock(event.index);
+      event.onlyLock ? _colorsRepository.lock(event.index) : _colorsRepository.changeLock(event.index);
     } else if (event is UnlockAllEvent) {
       _colorsRepository.unlockAll;
     }

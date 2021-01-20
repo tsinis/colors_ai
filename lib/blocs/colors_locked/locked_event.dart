@@ -11,6 +11,7 @@ class UnlockAllEvent extends LockEvent {
 }
 
 class ChangeLockEvent extends LockEvent {
-  const ChangeLockEvent(this.index);
+  const ChangeLockEvent(this.index, {this.onlyLock = false});
   final int index;
+  final bool onlyLock;
 }

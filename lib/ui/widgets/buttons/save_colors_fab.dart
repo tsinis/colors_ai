@@ -46,9 +46,9 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
             }
             return FloatingActionButton(
               onPressed: () async {
-                if (await Vibration.hasCustomVibrationsSupport() ?? false) {
+                if (await Vibration.hasCustomVibrationsSupport() == true) {
                   // ignore: unawaited_futures
-                  Vibration.vibrate(duration: 120);
+                  Vibration.vibrate(duration: 100);
                 }
                 BlocProvider.of<SavedBloc>(context)
                     .add(SavedAddEvent(colorsToSave: context.read<ColorsRepository>().listAsColors));

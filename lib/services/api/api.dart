@@ -29,7 +29,7 @@ class API {
   }
 
   Future<ColorsAI> getNewColors(ColorsAI existingColors,
-      {List<bool> lockedColors = defaultColorLocks, bool forUI = false}) async {
+      {List<bool> lockedColors = defaultColorLocks, bool forUI = true}) async {
     final List<bool> invertedLocks = [];
     // ignore: avoid_function_literals_in_foreach_calls
     lockedColors.forEach((isLocked) => invertedLocks.add(!isLocked));

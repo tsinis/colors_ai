@@ -20,6 +20,7 @@ class ColorsRepository {
   List<bool> get lockedColors => _locked.list;
   void get unlockAll => _locked.unlockAll;
   void changeLock(int colorIndex) => _locked.changeLock(colorIndex);
+  void lock(int colorIndex) => _locked.lock(colorIndex);
 
   void changeColor(Color newColor, int colorIndex) => _colorsAI.changeColor(newColor, colorIndex);
 

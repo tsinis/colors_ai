@@ -40,7 +40,7 @@ class Colorpicker extends StatelessWidget {
                     contentPadding: const EdgeInsets.all(0),
                     children: [
                       ColorPicker(
-                        colorPickerWidth: 332,
+                        colorPickerWidth: 280, //beacuse stepWidth = 56 * 5.
                         enableAlpha: false,
                         portraitOnly: true,
                         displayThumbColor: true,
@@ -60,7 +60,7 @@ class Colorpicker extends StatelessWidget {
                 style: ButtonStyle(enableFeedback: true, minimumSize: MaterialStateProperty.all<Size>(buttonSize)),
                 onPressed: () {
                   BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ShowColorPicker());
-                  BlocProvider.of<LockedBloc>(dialogContext).add(ChangeLockEvent(index));
+                  BlocProvider.of<LockedBloc>(dialogContext).add(ChangeLockEvent(index, onlyLock: true));
                 },
                 child:
                     Text(color.toHex(), maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)));
