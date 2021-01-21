@@ -5,9 +5,12 @@ import '../../blocs/colors_generated/colors_bloc.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/colors_saved/saved_bloc.dart';
+import '../../blocs/colors_share/share_bloc.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
 import '../../repositories/colors_repository.dart';
+import '../../repositories/saved_favorites_repository.dart';
+import '../../repositories/share_repository.dart';
 import '../widgets/buttons/app_bar_buttons/about_button.dart';
 import '../widgets/buttons/save_colors_fab.dart';
 import 'constants.dart';
@@ -28,11 +31,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
     BlocProvider.of<FabBloc>(context).add((_currentTabIndex == 1) ? const FabShowEvent() : const FabHideEvent());
   }
 
+  // ignore: prefer_const_constructors
+  final SavedColors _savedRepository = SavedColors();
+
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
           // We need access to them in app bar.
-          BlocProvider<SavedBloc>(create: (_) => SavedBloc()),
+          BlocProvider<SavedBloc>(create: (_) => SavedBloc(_savedRepository)),
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const ShowLockEvent())),
         ],
@@ -42,9 +48,14 @@ class _NavigationScreenState extends State<NavigationScreen> {
             title: Text(tabLabels[_currentTabIndex], style: const TextStyle(fontWeight: FontWeight.w400)),
             actions: [appBarActions[_currentTabIndex], const AboutButton()],
           ),
-          body: BlocProvider<ColorsBloc>(
-              create: (_) => ColorsBloc(context.read<ColorsRepository>()),
-              child: SafeArea(child: navTabs.elementAt(_currentTabIndex))),
+          body: MultiBlocProvider(providers: [
+            BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(context.read<ColorsRepository>())),
+            BlocProvider<ShareBloc>(
+              create: (_) => ShareBloc(
+                ShareRepository(savedColors: _savedRepository.list),
+              ),
+            ),
+          ], child: SafeArea(child: navTabs.elementAt(_currentTabIndex))),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentTabIndex,
             onTap: _switchScreen,

@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 ThemeData appTheme = ThemeData(
   primarySwatch: Colors.grey,
   primaryColor: Colors.grey,
-  scaffoldBackgroundColor: Colors.grey[600],
+  scaffoldBackgroundColor: Colors.grey[400], //AAA compliant.
   primaryIconTheme: IconThemeData(color: Colors.grey[850]),
   dialogBackgroundColor: Colors.grey[350],
+  splashColor: Colors.grey[350],
   dividerColor: _grey800,
   dialogTheme: DialogTheme(backgroundColor: Colors.grey[100]),
   appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: _grey800)),
+  radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.black)),
   textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: Colors.grey[850])),
-  // https://material.io/design/environment/elevation.html#default-elevations have to be darker than FAB.
   elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[350])),
   outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-          primary: Colors.grey[850], backgroundColor: Colors.transparent, side: const BorderSide(color: Colors.grey))),
+          primary: Colors.grey[850], backgroundColor: Colors.transparent, side: const BorderSide(color: _grey800))),
   floatingActionButtonTheme:
       FloatingActionButtonThemeData(backgroundColor: Colors.grey[300], foregroundColor: Colors.grey[850]),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(

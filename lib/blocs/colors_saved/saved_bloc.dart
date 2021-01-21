@@ -6,10 +6,10 @@ import 'saved_event.dart';
 import 'saved_state.dart';
 
 class SavedBloc extends Bloc<SavedEvent, SavedState> {
-  SavedBloc() : super(const SavedEmptyState());
+  SavedBloc(this._savedRepository) : super(const SavedEmptyState());
 
   // ignore: prefer_const_constructors
-  static final SavedColors _savedRepository = SavedColors();
+  final SavedColors _savedRepository;
 
   @override
   Stream<SavedState> mapEventToState(SavedEvent event) async* {

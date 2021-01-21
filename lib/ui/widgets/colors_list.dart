@@ -35,8 +35,7 @@ class _ColorsListState extends State<ColorsList> {
   Size get size => MediaQuery.of(context).size;
   double get padding => MediaQueryData.fromWindow(window).padding.vertical;
   int get lenght => widget.colorsList.length;
-  double get tileHeight =>
-      (size.height - kBottomNavigationBarHeight - kToolbarHeight - padding - (lenght / (lenght + 1))) / lenght;
+  double get tileHeight => (size.height - kBottomNavigationBarHeight - kToolbarHeight - padding) / lenght;
   Size get third => Size(size.width / 3, tileHeight);
 
   @override

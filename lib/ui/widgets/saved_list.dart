@@ -18,7 +18,7 @@ class SavedList extends StatelessWidget {
           secondaryBackground: const RemoveBackground(secondary: true),
           background: const RemoveBackground(),
           child: ListTile(
-            tileColor: Colors.grey[600],
+            tileColor: Theme.of(context).scaffoldBackgroundColor,
             enableFeedback: true,
             minVerticalPadding: 16,
             title: Row(

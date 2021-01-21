@@ -7,8 +7,10 @@ import 'colors_state.dart';
 // ignore_for_file: avoid_catches_without_on_clauses
 
 class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
-  final ColorsRepository _colorsRepository;
   ColorsBloc(this._colorsRepository) : super(const ColorsEmptyState());
+
+  final ColorsRepository _colorsRepository;
+
   @override
   Stream<ColorsState> mapEventToState(ColorsEvent event) async* {
     if (event is ColorsChangeEvent) {

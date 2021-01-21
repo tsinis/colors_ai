@@ -21,6 +21,7 @@ dependencies:
   http:
   json_annotation: ^4.0.0-nullsafety.0
   mdi: ^5.0.0-nullsafety.0
+  share: ^2.0.0-nullsafety.2
   url_launcher: ^6.0.0-nullsafety.4
   vibration: ^1.7.4-nullsafety.0
 
