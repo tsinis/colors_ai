@@ -1,16 +1,20 @@
-abstract class AlertDialogState {
+import 'package:equatable/equatable.dart';
+
+abstract class AlertDialogState extends Equatable {
   const AlertDialogState();
+
+  @override
+  List<Object> get props => [];
 }
 
-class AlertDialogHiddenState extends AlertDialogState {
-  const AlertDialogHiddenState();
+class AlertDialogCloseInitial extends AlertDialogState {
+  const AlertDialogCloseInitial();
 }
 
-class AlertDialogShowingState extends AlertDialogState {
-  const AlertDialogShowingState();
+class AlertDialogOpenInitial extends AlertDialogState {
+  const AlertDialogOpenInitial();
 }
 
-//TODO! Handle error states.
-class AlertDialogErrorState extends AlertDialogState {
-  const AlertDialogErrorState();
+class AlertDialogFailure extends AlertDialogState {
+  const AlertDialogFailure();
 }

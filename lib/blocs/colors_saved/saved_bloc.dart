@@ -5,38 +5,38 @@ import '../../repositories/saved_favorites_repository.dart';
 import 'saved_event.dart';
 import 'saved_state.dart';
 
-class SavedBloc extends Bloc<SavedEvent, SavedState> {
-  SavedBloc(this._savedRepository) : super(const SavedEmptyState());
+class SavedBloc extends Bloc<SaveEvent, SaveState> {
+  SavedBloc(this._savedRepository) : super(const SaveEmptyInitial());
 
   // ignore: prefer_const_constructors
   final SavedColors _savedRepository;
 
   @override
-  Stream<SavedState> mapEventToState(SavedEvent event) async* {
-    if (event is SavedAddEvent) {
+  Stream<SaveState> mapEventToState(SaveEvent event) async* {
+    if (event is SaveAdded) {
       _savedRepository.add(event.colorsToSave);
       try {
-        yield SavedLoadedState(_savedRepository);
+        yield SaveLoadSuccess(_savedRepository);
       } catch (_) {
-        yield const SavedErrorState();
+        yield const SaveFailure();
       }
-    } else if (event is SavedRemoveEvent) {
+    } else if (event is SaveOneRemoved) {
       _savedRepository.remove(event.colorToRemoveIndex);
       try {
         if (_savedRepository.list.isEmpty) {
-          yield const SavedEmptyState();
+          yield const SaveEmptyInitial();
         } else {
-          yield SavedLoadedState(_savedRepository);
+          yield SaveLoadSuccess(_savedRepository);
         }
       } catch (_) {
-        yield const SavedErrorState();
+        yield const SaveFailure();
       }
-    } else if (event is SavedRemoveAllEvent) {
+    } else if (event is SaveAllRemoved) {
       _savedRepository.removeAll;
       try {
-        yield const SavedEmptyState();
+        yield const SaveEmptyInitial();
       } catch (_) {
-        yield const SavedErrorState();
+        yield const SaveFailure();
       }
     }
   }

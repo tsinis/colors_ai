@@ -28,7 +28,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   void _switchScreen(int newTabIndex) {
     //TODO! Handle it in NavigationBloc.
     setState(() => _currentTabIndex = newTabIndex);
-    BlocProvider.of<FabBloc>(context).add((_currentTabIndex == 1) ? const FabShowEvent() : const FabHideEvent());
+    BlocProvider.of<FabBloc>(context).add((_currentTabIndex == 1) ? const FabShowed() : const FabHided());
   }
 
   // ignore: prefer_const_constructors
@@ -40,7 +40,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           // We need access to them in app bar.
           BlocProvider<SavedBloc>(create: (_) => SavedBloc(_savedRepository)),
           BlocProvider<LockedBloc>(
-              create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const ShowLockEvent())),
+              create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockShowed())),
         ],
         child: Scaffold(
           floatingActionButton: const SaveColorsFAB(),

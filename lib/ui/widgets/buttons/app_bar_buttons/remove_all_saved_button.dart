@@ -17,7 +17,7 @@ class RemoveAllSavedButton extends StatelessWidget {
         create: (_) => AlertDialogBloc(),
         child: BlocBuilder<AlertDialogBloc, AlertDialogState>(
           builder: (BuildContext dialogContext, AlertDialogState state) {
-            if (state is AlertDialogShowingState) {
+            if (state is AlertDialogOpenInitial) {
               SchedulerBinding.instance?.addPostFrameCallback((_) async {
                 await showDialog<bool>(
                   context: dialogContext,
@@ -31,17 +31,16 @@ class RemoveAllSavedButton extends StatelessWidget {
                           child: const Text('REMOVE', style: TextStyle(color: Colors.red)))
                     ],
                   ),
-                ).then((toRemoveAll) => (toRemoveAll == true)
-                    ? BlocProvider.of<SavedBloc>(context).add(const SavedRemoveAllEvent())
-                    : null);
+                ).then((toRemoveAll) =>
+                    (toRemoveAll == true) ? BlocProvider.of<SavedBloc>(context).add(const SaveAllRemoved()) : null);
               });
-              BlocProvider.of<AlertDialogBloc>(dialogContext).add(const HideAlertDialog());
+              BlocProvider.of<AlertDialogBloc>(dialogContext).add(const AlertDialogHided());
             }
-            return BlocBuilder<SavedBloc, SavedState>(
+            return BlocBuilder<SavedBloc, SaveState>(
                 builder: (_, state) => IconButton(
                     icon: const Icon(Mdi.bookmarkRemoveOutline, size: 25),
-                    onPressed: (state is SavedLoadedState)
-                        ? () => BlocProvider.of<AlertDialogBloc>(dialogContext).add(const ShowAlertDialog())
+                    onPressed: (state is SaveLoadSuccess)
+                        ? () => BlocProvider.of<AlertDialogBloc>(dialogContext).add(const AlertDialogShowed())
                         : null));
           },
         ),

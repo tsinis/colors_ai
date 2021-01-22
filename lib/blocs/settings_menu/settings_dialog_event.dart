@@ -1,11 +1,16 @@
-abstract class SettingsDialogEvent {
+import 'package:equatable/equatable.dart';
+
+abstract class SettingsDialogEvent extends Equatable {
   const SettingsDialogEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
-class ShowSettingsDialog extends SettingsDialogEvent {
-  const ShowSettingsDialog();
+class SettingsDialogShowed extends SettingsDialogEvent {
+  const SettingsDialogShowed();
 }
 
-class HideSettingsDialog extends SettingsDialogEvent {
-  const HideSettingsDialog();
+class SettingsDialogHided extends SettingsDialogEvent {
+  const SettingsDialogHided();
 }

@@ -9,7 +9,7 @@ class GenButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => FloatingActionButton(
-      onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsGenEvent()),
+      onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated()),
       tooltip: 'Generate',
       child: const Icon(Icons.refresh));
 }

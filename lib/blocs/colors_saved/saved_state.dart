@@ -1,25 +1,24 @@
 import '../../repositories/saved_favorites_repository.dart';
 
-abstract class SavedState {
-  const SavedState();
+abstract class SaveState {
+  const SaveState();
 }
 
-class SavedEmptyState extends SavedState {
-  const SavedEmptyState();
+class SaveEmptyInitial extends SaveState {
+  const SaveEmptyInitial();
 }
 
-class SavedErrorState extends SavedState {
-  const SavedErrorState();
+class SaveFailure extends SaveState {
+  const SaveFailure();
 }
 
-class SavedRemoveAll extends SavedState {
-  const SavedRemoveAll();
+class SaveRemoveAllSuccess extends SaveState {
+  const SaveRemoveAllSuccess();
 }
 
-class SavedLoadingState extends SavedState {}
+class SaveLoadInProgress extends SaveState {}
 
-class SavedLoadedState extends SavedState {
+class SaveLoadSuccess extends SaveState {
+  SaveLoadSuccess(this.savedColors);
   final SavedColors savedColors;
-
-  const SavedLoadedState(this.savedColors);
 }

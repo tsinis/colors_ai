@@ -1,6 +1,6 @@
 import 'dart:ui' show Color;
 
-const double opacity = 0.8,
+const double opacity = 0.87,
     redMultiplier = 0.299,
     greenMultiplier = 0.587,
     blueMultiplier = 0.114,

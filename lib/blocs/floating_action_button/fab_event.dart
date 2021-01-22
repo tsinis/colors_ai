@@ -1,15 +1,20 @@
-abstract class FabEvent {
+import 'package:equatable/equatable.dart';
+
+abstract class FabEvent extends Equatable {
   const FabEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
-class FabInitialEvent extends FabEvent {
-  const FabInitialEvent();
+class FabStarted extends FabEvent {
+  const FabStarted();
 }
 
-class FabHideEvent extends FabEvent {
-  const FabHideEvent();
+class FabHided extends FabEvent {
+  const FabHided();
 }
 
-class FabShowEvent extends FabEvent {
-  const FabShowEvent();
+class FabShowed extends FabEvent {
+  const FabShowed();
 }

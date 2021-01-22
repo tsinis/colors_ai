@@ -1,11 +1,16 @@
-abstract class AlertDialogEvent {
+import 'package:equatable/equatable.dart';
+
+abstract class AlertDialogEvent extends Equatable {
   const AlertDialogEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
-class ShowAlertDialog extends AlertDialogEvent {
-  const ShowAlertDialog();
+class AlertDialogShowed extends AlertDialogEvent {
+  const AlertDialogShowed();
 }
 
-class HideAlertDialog extends AlertDialogEvent {
-  const HideAlertDialog();
+class AlertDialogHided extends AlertDialogEvent {
+  const AlertDialogHided();
 }

@@ -1,15 +1,23 @@
+import 'package:equatable/equatable.dart';
+
 import '../../services/api/constants.dart';
 
-abstract class LockedState {
-  const LockedState();
+abstract class LockState extends Equatable {
+  const LockState();
+
+  @override
+  List<Object> get props => [];
 }
 
-class LockState extends LockedState {
-  const LockState({this.lockedColors = defaultColorLocks});
+class LockSuccess extends LockState {
+  const LockSuccess({this.lockedColors = defaultColorLocks});
   final List<bool> lockedColors;
   bool isLocked(int index) => lockedColors[index];
+
+  @override
+  List<Object> get props => [isLocked];
 }
 
-class LockedErrorState extends LockedState {
-  const LockedErrorState();
+class LockFailure extends LockState {
+  const LockFailure();
 }

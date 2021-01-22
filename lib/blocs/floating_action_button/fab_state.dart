@@ -2,14 +2,14 @@ abstract class FabState {
   const FabState();
 }
 
-class FabDefaultState extends FabState {
-  const FabDefaultState();
+class FabInitial extends FabState {
+  const FabInitial();
 }
 
-class FabErrorState extends FabState {
-  const FabErrorState();
-} //TODO: Handle this state.
+class FabFailure extends FabState {
+  const FabFailure();
+}
 
-class FabHideState extends FabState {}
+class FabHideInitial extends FabState {}
 
-class FabShowState extends FabState {}
+class FabShowInitial extends FabState {}

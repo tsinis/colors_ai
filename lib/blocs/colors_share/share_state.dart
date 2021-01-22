@@ -7,10 +7,14 @@ abstract class ShareState extends Equatable {
   List<Object> get props => [];
 }
 
-class ShareErrorState extends ShareState {
-  const ShareErrorState();
+class ShareFailure extends ShareState {
+  const ShareFailure();
 }
 
-class ShareCurrentColorsState extends ShareState {}
+class ShareCurrentInitial extends ShareState {
+  const ShareCurrentInitial();
+}
 
-class ShareSavedColorsState extends ShareState {}
+class ShareSavedInitial extends ShareState {
+  const ShareSavedInitial();
+}

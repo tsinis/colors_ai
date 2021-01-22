@@ -46,23 +46,23 @@ class _ColorsListState extends State<ColorsList> {
         },
         builder: (context, state) => RefreshIndicator(
           onRefresh: () {
-            BlocProvider.of<ColorsBloc>(context).add(const ColorsGenEvent());
-            BlocProvider.of<FabBloc>(context).add(const FabShowEvent());
+            BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
+            BlocProvider.of<FabBloc>(context).add(const FabShowed());
             return _refreshCompleter.future;
           },
           child: ScrollConfiguration(
             behavior: const NoGlowBehavior(),
             child: RefreshableReorderableListView(
               physics: const AlwaysScrollableScrollPhysics(),
-              onDragStart: () => BlocProvider.of<FabBloc>(context).add(const FabHideEvent()),
-              onDragEnd: () => BlocProvider.of<FabBloc>(context).add(const FabShowEvent()),
+              onDragStart: () => BlocProvider.of<FabBloc>(context).add(const FabHided()),
+              onDragEnd: () => BlocProvider.of<FabBloc>(context).add(const FabShowed()),
               onReorder: (int oldIndex, int newIndex) =>
-                  BlocProvider.of<ColorsBloc>(context).add(ColorsReorderEvent(oldIndex: oldIndex, newIndex: newIndex)),
+                  BlocProvider.of<ColorsBloc>(context).add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
               children: List.generate(lenght, (int index) {
                 final Color color = widget.colorsList[index].toColor(),
                     contrastColor = widget.colorsList[index].contrastColor();
                 return InkWell(
-                  onDoubleTap: () => BlocProvider.of<LockedBloc>(context).add(ChangeLockEvent(index)),
+                  onDoubleTap: () => BlocProvider.of<LockedBloc>(context).add(LockChanged(index)),
                   key: ValueKey(index),
                   child: Container(
                     width: size.width,

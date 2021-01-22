@@ -39,9 +39,9 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
         child: BlocBuilder<FabBloc, FabState>(
           builder: (BuildContext dialogContext, FabState state) {
             // https://material.io/design/environment/elevation.html#elevation-in-material-design
-            if (state is FabHideState) {
+            if (state is FabHideInitial) {
               controller.reverse();
-            } else if (state is FabShowState) {
+            } else if (state is FabShowInitial) {
               controller.forward();
             }
             return FloatingActionButton(
@@ -51,7 +51,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                   Vibration.vibrate(duration: 100);
                 }
                 BlocProvider.of<SavedBloc>(context)
-                    .add(SavedAddEvent(colorsToSave: context.read<ColorsRepository>().listAsColors));
+                    .add(SaveAdded(colorsToSave: context.read<ColorsRepository>().listAsColors));
                 // ignore: unawaited_futures
                 controller.reverse();
               },

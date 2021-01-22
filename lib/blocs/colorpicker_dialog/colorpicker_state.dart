@@ -1,16 +1,20 @@
-abstract class ColorPickerState {
+import 'package:equatable/equatable.dart';
+
+abstract class ColorPickerState extends Equatable {
   const ColorPickerState();
+
+  @override
+  List<Object> get props => [];
 }
 
-class ColorPickerHiddenState extends ColorPickerState {
-  const ColorPickerHiddenState();
+class ColorPickerCloseInitial extends ColorPickerState {
+  const ColorPickerCloseInitial();
 }
 
-class ColorPickerShowingState extends ColorPickerState {
-  const ColorPickerShowingState();
+class ColorPickerOpenInitial extends ColorPickerState {
+  const ColorPickerOpenInitial();
 }
 
-//TODO! Handle error states.
-class ColorPickerErrorState extends ColorPickerState {
-  const ColorPickerErrorState();
+class ColorPickerFailure extends ColorPickerState {
+  const ColorPickerFailure();
 }

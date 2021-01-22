@@ -1,11 +1,16 @@
-abstract class ColorPickerEvent {
+import 'package:equatable/equatable.dart';
+
+abstract class ColorPickerEvent extends Equatable {
   const ColorPickerEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
-class ShowColorPicker extends ColorPickerEvent {
-  const ShowColorPicker();
+class ColorPickerShowed extends ColorPickerEvent {
+  const ColorPickerShowed();
 }
 
-class VisibleColorPicker extends ColorPickerEvent {
-  const VisibleColorPicker();
+class ColorPickerHided extends ColorPickerEvent {
+  const ColorPickerHided();
 }

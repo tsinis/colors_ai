@@ -7,12 +7,12 @@ abstract class ShareEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ShareUrlEvent extends ShareEvent {
-  const ShareUrlEvent({required this.currentColors});
+class ShareUrlCShared extends ShareEvent {
+  const ShareUrlCShared({required this.currentColors});
   final List<Color> currentColors;
 }
 
-class CopyUrlEvent extends ShareEvent {
-  const CopyUrlEvent({required this.currentColors});
+class ShareUrlCopied extends ShareEvent {
+  const ShareUrlCopied({required this.currentColors});
   final List<Color> currentColors;
 }

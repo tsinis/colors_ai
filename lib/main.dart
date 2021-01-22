@@ -9,10 +9,10 @@ import 'ui/screens/scaffold_and_navigation.dart';
 import 'ui/theme/theme.dart';
 
 //TODO: Add PDF export.
-//TODO: Add share.
 //TODO: Add list saving.
 //TODO: Add sounds.
 //TODO: Add onboarding.
+//TODO: Handle Failure States in Bloc.
 //TODO Add dif. color profiles.
 //TODO: Add app icon.
 //TODO? Add settings menu.

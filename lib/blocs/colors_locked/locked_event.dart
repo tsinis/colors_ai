@@ -1,17 +1,22 @@
-abstract class LockEvent {
+import 'package:equatable/equatable.dart';
+
+abstract class LockEvent extends Equatable {
   const LockEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
-class ShowLockEvent extends LockEvent {
-  const ShowLockEvent();
+class LockShowed extends LockEvent {
+  const LockShowed();
 }
 
-class UnlockAllEvent extends LockEvent {
-  // const UnlockAllEvent();
+class LockUnlocked extends LockEvent {
+  // const LockUnlocked();
 }
 
-class ChangeLockEvent extends LockEvent {
-  const ChangeLockEvent(this.index, {this.onlyLock = false});
+class LockChanged extends LockEvent {
+  const LockChanged(this.index, {this.onlyLock = false});
   final int index;
   final bool onlyLock;
 }

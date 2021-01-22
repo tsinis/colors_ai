@@ -4,14 +4,14 @@ import 'colorpicker_event.dart';
 import 'colorpicker_state.dart';
 
 class ColorPickerBLoc extends Bloc<ColorPickerEvent, ColorPickerState> {
-  ColorPickerBLoc() : super(const ColorPickerHiddenState());
+  ColorPickerBLoc() : super(const ColorPickerCloseInitial());
 
   @override
   Stream<ColorPickerState> mapEventToState(ColorPickerEvent event) async* {
-    if (event is ShowColorPicker) {
-      yield const ColorPickerShowingState();
+    if (event is ColorPickerShowed) {
+      yield const ColorPickerOpenInitial();
     } else {
-      yield const ColorPickerHiddenState();
+      yield const ColorPickerCloseInitial();
     }
   }
 }

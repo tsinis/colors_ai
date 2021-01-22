@@ -1,16 +1,20 @@
-abstract class SettingsDialogState {
+import 'package:equatable/equatable.dart';
+
+abstract class SettingsDialogState extends Equatable {
   const SettingsDialogState();
+
+  @override
+  List<Object> get props => [];
 }
 
-class SettingsDialogHiddenState extends SettingsDialogState {
-  const SettingsDialogHiddenState();
+class SettingsDialogCloseInitial extends SettingsDialogState {
+  const SettingsDialogCloseInitial();
 }
 
-class SettingsDialogShowingState extends SettingsDialogState {
-  const SettingsDialogShowingState();
+class SettingsDialogOpenInitial extends SettingsDialogState {
+  const SettingsDialogOpenInitial();
 }
 
-//TODO! Handle error states.
-class SettingsDialogErrorState extends SettingsDialogState {
-  const SettingsDialogErrorState();
+class SettingsDialogFailure extends SettingsDialogState {
+  const SettingsDialogFailure();
 }

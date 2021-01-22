@@ -8,11 +8,11 @@ import '../../widgets/saved_list.dart';
 class SavedColorsList extends StatelessWidget {
   const SavedColorsList();
   @override
-  Widget build(BuildContext context) => BlocBuilder<SavedBloc, SavedState>(
+  Widget build(BuildContext context) => BlocBuilder<SavedBloc, SaveState>(
         builder: (BuildContext context, state) {
-          if (state is SavedEmptyState) {
+          if (state is SaveEmptyInitial) {
             return const Center(child: FlutterLogo());
-          } else if (state is SavedLoadedState) {
+          } else if (state is SaveLoadSuccess) {
             return SavedList(state.savedColors.list);
           }
           return Container(color: Colors.red);

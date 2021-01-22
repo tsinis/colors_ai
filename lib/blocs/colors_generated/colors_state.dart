@@ -1,22 +1,20 @@
-import '../../models/colors/colors_json.dart';
-
 abstract class ColorsState {
   const ColorsState();
 }
 
-class ColorsEmptyState extends ColorsState {
-  const ColorsEmptyState();
+class ColorsInitial extends ColorsState {
+  const ColorsInitial();
 }
 
-class ColorsErrorState extends ColorsState {
-  const ColorsErrorState();
+class ColorsFailure extends ColorsState {
+  const ColorsFailure();
 }
 
-class ColorsLoadingState extends ColorsState {
-  const ColorsLoadingState();
+class ColorsLoadInProgress extends ColorsState {
+  const ColorsLoadInProgress();
 }
 
-class ColorsLoadedState extends ColorsState {
-  const ColorsLoadedState(this.colorsAI);
-  final ColorsAI colorsAI;
+class ColorsLoadSuccess extends ColorsState {
+  const ColorsLoadSuccess(this.colorsAI);
+  final List<List<int>> colorsAI;
 }

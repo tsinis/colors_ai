@@ -9,6 +9,6 @@ class UnlockAllButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => IconButton(
         icon: const Icon(Icons.lock_open_sharp),
-        onPressed: () => BlocProvider.of<LockedBloc>(context).add(UnlockAllEvent()),
+        onPressed: () => BlocProvider.of<LockedBloc>(context).add(LockUnlocked()),
       );
 }

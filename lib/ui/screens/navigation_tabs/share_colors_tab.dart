@@ -72,13 +72,13 @@ class ShareColors extends StatelessWidget {
                   icon: const Icon(Icons.content_copy_outlined, size: 20),
                   label: const Text('COPY URL'),
                   onPressed: () => BlocProvider.of<ShareBloc>(context)
-                      .add(CopyUrlEvent(currentColors: context.read<ColorsRepository>().listAsColors)),
+                      .add(ShareUrlCopied(currentColors: context.read<ColorsRepository>().listAsColors)),
                 ),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.link, size: 20),
                   label: const Text('SHARE URL'),
                   onPressed: () => BlocProvider.of<ShareBloc>(context)
-                      .add(ShareUrlEvent(currentColors: context.read<ColorsRepository>().listAsColors)),
+                      .add(ShareUrlCShared(currentColors: context.read<ColorsRepository>().listAsColors)),
                 ),
               ],
             )

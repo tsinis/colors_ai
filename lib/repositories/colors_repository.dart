@@ -11,21 +11,24 @@ class ColorsRepository {
 
   static const API _apiServices = API();
 
-  // ignore: prefer_const_constructors
-  static ColorsAI _colorsAI = ColorsAI();
-  ColorsAI get colors => _colorsAI;
-
   // ignore: prefer_final_fields
   static LockedColors _locked = LockedColors();
+
   List<bool> get lockedColors => _locked.list;
   void get unlockAll => _locked.unlockAll;
   void changeLock(int colorIndex) => _locked.changeLock(colorIndex);
   void lock(int colorIndex) => _locked.lock(colorIndex);
 
+  // ignore: prefer_const_constructors
+  static ColorsAI _colorsAI = ColorsAI();
+
+  ColorsAI get colors => _colorsAI;
+
   void changeColor(Color newColor, int colorIndex) => _colorsAI.changeColor(newColor, colorIndex);
 
   void swapColors({required int oldIndex, required int newIndex}) {
     final int colorsAvailble = defaultColorLocks.length - 1;
+    // List can be temporary growable, in some cases, for example on long drag at the last tile.
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
     _colorsAI.swapColors(oldIndex: oldIndex, newIndex: newIndexUngrowed);
     _locked.swapLocks(oldIndex: oldIndex, newIndex: newIndexUngrowed);

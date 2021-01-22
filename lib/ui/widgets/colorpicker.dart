@@ -31,7 +31,7 @@ class Colorpicker extends StatelessWidget {
         create: (_) => ColorPickerBLoc(),
         child: BlocBuilder<ColorPickerBLoc, ColorPickerState>(
           builder: (BuildContext dialogContext, ColorPickerState state) {
-            if (state is ColorPickerShowingState) {
+            if (state is ColorPickerOpenInitial) {
               SchedulerBinding.instance?.addPostFrameCallback((_) async {
                 await showDialog<void>(
                   context: dialogContext,
@@ -46,21 +46,21 @@ class Colorpicker extends StatelessWidget {
                         displayThumbColor: true,
                         pickerColor: color,
                         onColorChanged: (newColor) {
-                          BlocProvider.of<FabBloc>(context).add(const FabShowEvent());
-                          BlocProvider.of<ColorsBloc>(context).add(ColorsChangeEvent(newColor, index));
+                          BlocProvider.of<FabBloc>(context).add(const FabShowed());
+                          BlocProvider.of<ColorsBloc>(context).add(ColorsChanged(newColor, index));
                         },
                       ),
                     ],
                   ),
                 );
               });
-              BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const VisibleColorPicker());
+              BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerHided());
             }
             return TextButton(
                 style: ButtonStyle(enableFeedback: true, minimumSize: MaterialStateProperty.all<Size>(buttonSize)),
                 onPressed: () {
-                  BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ShowColorPicker());
-                  BlocProvider.of<LockedBloc>(dialogContext).add(ChangeLockEvent(index, onlyLock: true));
+                  BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
+                  BlocProvider.of<LockedBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
                 },
                 child:
                     Text(color.toHex(), maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)));

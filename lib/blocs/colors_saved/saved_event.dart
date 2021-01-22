@@ -1,21 +1,20 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 
-abstract class SavedEvent {
-  const SavedEvent();
+abstract class SaveEvent {
+  const SaveEvent();
 }
 
-class SavedAddEvent extends SavedEvent {
-  const SavedAddEvent({required this.colorsToSave});
+class SaveAdded extends SaveEvent {
+  const SaveAdded({required this.colorsToSave});
 
   final List<Color> colorsToSave;
 }
 
-class SavedRemoveAllEvent extends SavedEvent {
-  const SavedRemoveAllEvent();
+class SaveAllRemoved extends SaveEvent {
+  const SaveAllRemoved();
 }
 
-class SavedRemoveEvent extends SavedEvent {
-  SavedRemoveEvent({required this.colorToRemoveIndex});
-
+class SaveOneRemoved extends SaveEvent {
+  const SaveOneRemoved({required this.colorToRemoveIndex});
   final int colorToRemoveIndex;
 }
