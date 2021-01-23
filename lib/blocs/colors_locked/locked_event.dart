@@ -11,8 +11,8 @@ class LockShowed extends LockEvent {
   const LockShowed();
 }
 
-class LockUnlocked extends LockEvent {
-  // const LockUnlocked();
+class LockAllUnlocked extends LockEvent {
+  // const LockAllUnlocked();
 }
 
 class LockChanged extends LockEvent {

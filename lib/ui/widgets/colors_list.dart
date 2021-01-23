@@ -11,6 +11,7 @@ import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
+import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../extensions/list_int_to_color.dart';
 import 'buttons/lock_color_button.dart';
 import 'colorpicker.dart';
@@ -48,6 +49,7 @@ class _ColorsListState extends State<ColorsList> {
           onRefresh: () {
             BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
             BlocProvider.of<FabBloc>(context).add(const FabShowed());
+            BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
             return _refreshCompleter.future;
           },
           child: ScrollConfiguration(

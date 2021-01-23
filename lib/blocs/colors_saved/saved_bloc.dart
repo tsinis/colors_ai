@@ -9,7 +9,7 @@ class SavedBloc extends Bloc<SaveEvent, SaveState> {
   SavedBloc(this._savedRepository) : super(const SaveEmptyInitial());
 
   // ignore: prefer_const_constructors
-  final SavedColors _savedRepository;
+  final SavedColorsRepository _savedRepository;
 
   @override
   Stream<SaveState> mapEventToState(SaveEvent event) async* {

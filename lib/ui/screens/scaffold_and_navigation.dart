@@ -8,6 +8,7 @@ import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../blocs/colors_share/share_bloc.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
+import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../repositories/colors_repository.dart';
 import '../../repositories/saved_favorites_repository.dart';
 import '../../repositories/share_repository.dart';
@@ -32,12 +33,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
   }
 
   // ignore: prefer_const_constructors
-  final SavedColors _savedRepository = SavedColors();
+  final SavedColorsRepository _savedRepository = SavedColorsRepository();
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          // We need access to them in app bar.
+          BlocProvider(create: (_) => SoundBloc()..add(const SoundStarted())),
+          // We need access to those 2 in app bar.
           BlocProvider<SavedBloc>(create: (_) => SavedBloc(_savedRepository)),
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockShowed())),
@@ -51,9 +53,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           body: MultiBlocProvider(providers: [
             BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(context.read<ColorsRepository>())),
             BlocProvider<ShareBloc>(
-              create: (_) => ShareBloc(
-                ShareRepository(savedColors: _savedRepository.list),
-              ),
+              create: (_) => ShareBloc(ShareRepository(savedColors: _savedRepository.list)),
             ),
           ], child: SafeArea(child: navTabs.elementAt(_currentTabIndex))),
           bottomNavigationBar: BottomNavigationBar(

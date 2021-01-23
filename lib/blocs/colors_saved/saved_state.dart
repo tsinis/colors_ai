@@ -20,5 +20,5 @@ class SaveLoadInProgress extends SaveState {}
 
 class SaveLoadSuccess extends SaveState {
   SaveLoadSuccess(this.savedColors);
-  final SavedColors savedColors;
+  final SavedColorsRepository savedColors;
 }

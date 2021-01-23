@@ -34,7 +34,9 @@ class SavedList extends StatelessWidget {
                         color: color,
                         child: Center(
                           child: Text(color.toHex(),
-                              maxLines: 2, textAlign: TextAlign.center, style: TextStyle(color: textColor)),
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: textColor, fontSize: 11)),
                         ),
                       ),
                     ),
