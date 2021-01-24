@@ -7,6 +7,7 @@ import '../../../blocs/colors_saved/saved_bloc.dart';
 import '../../../blocs/colors_saved/saved_event.dart';
 import '../../../blocs/floating_action_button/fab_bloc.dart';
 import '../../../blocs/floating_action_button/fab_state.dart';
+import '../../../blocs/sounds_audio/sound_bloc.dart';
 import '../../../repositories/colors_repository.dart';
 
 class SaveColorsFAB extends StatefulWidget {
@@ -46,14 +47,15 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
             }
             return FloatingActionButton(
               onPressed: () async {
-                if (await Vibration.hasCustomVibrationsSupport() == true) {
-                  // ignore: unawaited_futures
-                  Vibration.vibrate(duration: 100);
-                }
+                BlocProvider.of<SoundBloc>(context).add(const SoundSaved());
                 BlocProvider.of<SavedBloc>(context)
                     .add(SaveAdded(colorsToSave: context.read<ColorsRepository>().listAsColors));
                 // ignore: unawaited_futures
                 controller.reverse();
+                if (await Vibration.hasCustomVibrationsSupport() == true) {
+                  // ignore: unawaited_futures
+                  Vibration.vibrate(duration: 100);
+                }
               },
               child: const Icon(Mdi.bookmarkPlusOutline),
             );

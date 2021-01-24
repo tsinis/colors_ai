@@ -1,28 +1,57 @@
+import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart';
-import 'package:mdi/mdi.dart';
+
+import '../../../../services/url_launcher/constants.dart';
 import '../../../../services/url_launcher/url_launcher.dart';
 
 class AboutButton extends StatelessWidget {
   const AboutButton();
 
-  //TODO Provide all those data from pubspec.yaml.
+  static final Color _linkColor = Colors.blueGrey[600]!;
+
   @override
   Widget build(BuildContext context) => IconButton(
         icon: const Icon(Icons.info_outline),
         onPressed: () => showAboutDialog(
           context: context,
           applicationIcon: const FlutterLogo(),
+          //TODO Provide all those data from pubspec.yaml.
           applicationName: 'Colors AI',
           applicationVersion: '1.0.0',
-          applicationLegalese: '© 2021 Roman Cinis',
+          applicationLegalese: '2021 © Roman Cinis',
           children: <Widget>[
             const SizedBox(height: 20),
-            const Text('Color scheme generator that uses deep learning from Colormind API.'),
-            const SizedBox(height: 20),
-            SizedBox(
-              width: 100,
-              child: OutlinedButton.icon(
-                  icon: const Icon(Mdi.github), label: const Text('SOURCE CODE'), onPressed: UrlLauncher.openURL),
+            RichText(
+              text: TextSpan(
+                style: Theme.of(context).textTheme.bodyText2,
+                children: [
+                  const TextSpan(text: 'Color scheme generator that uses deep learning from'),
+                  TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
+                      text: ' Colormind API',
+                      recognizer: TapGestureRecognizer()..onTap = () => UrlLauncher.openURL(url: aboutColormindAPI)),
+                  const TextSpan(text: '. The source code of this application is available at'),
+                  TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
+                      text: ' this GitHub repository.',
+                      recognizer: TapGestureRecognizer()..onTap = () => UrlLauncher.openURL),
+                  const TextSpan(text: '\n\nATTRIBUTION:\n\nUI sounds used in this application:'),
+                  TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
+                      text: ' "Material Product Sounds"',
+                      recognizer: TapGestureRecognizer()..onTap = () => UrlLauncher.openURL(url: materialSounds)),
+                  const TextSpan(text: ' by'),
+                  TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
+                      text: ' Google',
+                      recognizer: TapGestureRecognizer()..onTap = () => UrlLauncher.openURL(url: aboutGoogle)),
+                  const TextSpan(text: ' are licensed under'),
+                  TextSpan(
+                      style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
+                      text: ' CC BY 4.0',
+                      recognizer: TapGestureRecognizer()..onTap = () => UrlLauncher.openURL(url: soundsLicense)),
+                ],
+              ),
             ),
           ],
         ),

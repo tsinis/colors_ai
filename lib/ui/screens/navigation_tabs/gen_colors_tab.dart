@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../blocs/colors_generated/colors_bloc.dart';
 import '../../../blocs/colors_generated/colors_event.dart';
 import '../../../blocs/colors_generated/colors_state.dart';
+import '../../widgets/animated/no_network.dart';
 import '../../widgets/colors_list.dart';
 
 class ColorsGenerator extends StatelessWidget {
@@ -13,11 +14,27 @@ class ColorsGenerator extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(builder: (context, state) {
         if (state is ColorsInitial || state is ColorsFailure) {
           return Center(
-            child: ElevatedButton.icon(
-              icon: const Icon(Icons.refresh_outlined, size: 20),
-              label: const Text('GET COLORS'),
-              autofocus: true,
-              onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsStarted()),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(height: 10),
+                const Flexible(child: NoNetwork()),
+                const SizedBox(height: 16),
+                const Text(
+                  'OH NO!',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                const Text('No internet connection with a server.'),
+                const SizedBox(height: 12),
+                ElevatedButton.icon(
+                  icon: const Icon(Icons.refresh_outlined, size: 20),
+                  label: const Text('TRY AGAIN'),
+                  autofocus: true,
+                  onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsStarted()),
+                ),
+                const SizedBox(height: 16),
+              ],
             ),
           );
         } else if (state is ColorsLoadInProgress) {

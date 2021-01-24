@@ -10,7 +10,7 @@ import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
 import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../repositories/colors_repository.dart';
-import '../../repositories/saved_favorites_repository.dart';
+// import '../../repositories/saved_favorites_repository.dart';
 import '../../repositories/share_repository.dart';
 import '../widgets/buttons/app_bar_buttons/about_button.dart';
 import '../widgets/buttons/save_colors_fab.dart';
@@ -26,21 +26,28 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationScreenState extends State<NavigationScreen> {
   int _currentTabIndex = 1;
 
+  final SoundBloc _soundBloc = SoundBloc();
+
+  @override
+  void initState() {
+    _soundBloc.add(const SoundStarted());
+    super.initState();
+  }
+
   void _switchScreen(int newTabIndex) {
     //TODO! Handle it in NavigationBloc.
     setState(() => _currentTabIndex = newTabIndex);
     BlocProvider.of<FabBloc>(context).add((_currentTabIndex == 1) ? const FabShowed() : const FabHided());
   }
 
-  // ignore: prefer_const_constructors
-  final SavedColorsRepository _savedRepository = SavedColorsRepository();
+  // static const SavedColorsRepository _savedRepository = SavedColorsRepository();
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => SoundBloc()..add(const SoundStarted())),
+          BlocProvider(create: (_) => _soundBloc),
           // We need access to those 2 in app bar.
-          BlocProvider<SavedBloc>(create: (_) => SavedBloc(_savedRepository)),
+          BlocProvider<SavedBloc>(create: (_) => SavedBloc()),
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockShowed())),
         ],
@@ -52,9 +59,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           ),
           body: MultiBlocProvider(providers: [
             BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(context.read<ColorsRepository>())),
-            BlocProvider<ShareBloc>(
-              create: (_) => ShareBloc(ShareRepository(savedColors: _savedRepository.list)),
-            ),
+            BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
           ], child: SafeArea(child: navTabs.elementAt(_currentTabIndex))),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentTabIndex,

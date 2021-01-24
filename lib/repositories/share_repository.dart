@@ -4,7 +4,7 @@ import 'package:share/share.dart';
 import '../services/share_url_providers/coolors.dart';
 
 class ShareRepository {
-  const ShareRepository({required this.savedColors});
+  const ShareRepository({this.savedColors = const []});
 
   final List<List<Color>> savedColors;
 

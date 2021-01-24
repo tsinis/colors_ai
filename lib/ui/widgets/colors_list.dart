@@ -47,9 +47,9 @@ class _ColorsListState extends State<ColorsList> {
         },
         builder: (context, state) => RefreshIndicator(
           onRefresh: () {
+            BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
             BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
             BlocProvider.of<FabBloc>(context).add(const FabShowed());
-            BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
             return _refreshCompleter.future;
           },
           child: ScrollConfiguration(

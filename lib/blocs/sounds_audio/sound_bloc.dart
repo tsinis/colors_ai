@@ -16,19 +16,19 @@ class SoundBloc extends Bloc<SoundEvent, SoundState> {
   @override
   Stream<SoundState> mapEventToState(SoundEvent event) async* {
     if (event is SoundStarted) {
-      await _savedRepository.initial;
-      try {
-        yield const SoundLoadSuccess();
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
-        yield const SoundLoadFailure();
-      }
-    }
-    if (event is SoundLocked) {
-      _savedRepository.playLock;
-    }
-    if (event is SoundRefreshed) {
+      _savedRepository.playSaved;
+    } else if (event is SoundRefreshed) {
       _savedRepository.playRefresh;
+    } else if (event is SoundSaved) {
+      _savedRepository.playSaved;
+    } else if (event is SoundLocked) {
+      _savedRepository.playLock;
+    } else if (event is SoundCopied) {
+      _savedRepository.playCopy;
+    } else if (event is SoundLeftSwiped) {
+      _savedRepository.playSwipeLeft;
+    } else if (event is SoundRightSwiped) {
+      _savedRepository.playSwipeRight;
     }
   }
 }

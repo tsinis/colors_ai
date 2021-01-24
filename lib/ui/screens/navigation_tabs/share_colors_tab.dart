@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mdi/mdi.dart';
 
 import '../../../blocs/colors_share/share_bloc.dart';
+import '../../../blocs/sounds_audio/sound_bloc.dart';
 import '../../../repositories/colors_repository.dart';
 import '../../theme/theme.dart';
 
@@ -71,8 +72,11 @@ class ShareColors extends StatelessWidget {
                 OutlinedButton.icon(
                   icon: const Icon(Icons.content_copy_outlined, size: 20),
                   label: const Text('COPY URL'),
-                  onPressed: () => BlocProvider.of<ShareBloc>(context)
-                      .add(ShareUrlCopied(currentColors: context.read<ColorsRepository>().listAsColors)),
+                  onPressed: () {
+                    BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
+                    BlocProvider.of<ShareBloc>(context)
+                        .add(ShareUrlCopied(currentColors: context.read<ColorsRepository>().listAsColors));
+                  },
                 ),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.link, size: 20),

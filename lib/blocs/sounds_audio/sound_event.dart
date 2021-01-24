@@ -18,3 +18,19 @@ class SoundLocked extends SoundEvent {
 class SoundRefreshed extends SoundEvent {
   const SoundRefreshed();
 }
+
+class SoundCopied extends SoundEvent {
+  const SoundCopied();
+}
+
+class SoundSaved extends SoundEvent {
+  const SoundSaved();
+}
+
+class SoundLeftSwiped extends SoundEvent {
+  const SoundLeftSwiped();
+}
+
+class SoundRightSwiped extends SoundEvent {
+  const SoundRightSwiped();
+}

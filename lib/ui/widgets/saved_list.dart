@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../blocs/colors_saved/saved_event.dart';
+import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../extensions/color_to_hex.dart';
 
 class SavedList extends StatelessWidget {
@@ -14,7 +15,11 @@ class SavedList extends StatelessWidget {
         itemCount: savedColors.length,
         itemBuilder: (context, listIndex) => Dismissible(
           key: UniqueKey(),
-          onDismissed: (_) => BlocProvider.of<SavedBloc>(context).add(SaveOneRemoved(colorToRemoveIndex: listIndex)),
+          onDismissed: (direction) {
+            BlocProvider.of<SoundBloc>(context)
+                .add((direction == DismissDirection.startToEnd) ? const SoundLeftSwiped() : const SoundRightSwiped());
+            BlocProvider.of<SavedBloc>(context).add(SaveOneRemoved(colorToRemoveIndex: listIndex));
+          },
           secondaryBackground: const RemoveBackground(secondary: true),
           background: const RemoveBackground(),
           child: ListTile(

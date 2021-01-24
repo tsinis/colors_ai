@@ -11,8 +11,8 @@ class UnlockAllButton extends StatelessWidget {
   Widget build(BuildContext context) => IconButton(
         icon: const Icon(Icons.lock_open_sharp),
         onPressed: () {
-          BlocProvider.of<LockedBloc>(context).add(LockAllUnlocked());
           BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
+          BlocProvider.of<LockedBloc>(context).add(LockAllUnlocked());
         },
       );
 }
