@@ -10,7 +10,7 @@ class PulseAnimation extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Rect rect = Rect.fromLTRB(0, 150, size.width, size.height);
-    for (int wave = 4; wave >= 0; wave--) {
+    for (int wave = 3; wave >= 0; wave--) {
       circle(canvas, rect, wave + animation.value);
     }
   }

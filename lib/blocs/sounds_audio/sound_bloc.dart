@@ -25,10 +25,11 @@ class SoundBloc extends Bloc<SoundEvent, SoundState> {
       _savedRepository.playLock;
     } else if (event is SoundCopied) {
       _savedRepository.playCopy;
-    } else if (event is SoundLeftSwiped) {
-      _savedRepository.playSwipeLeft;
-    } else if (event is SoundRightSwiped) {
-      _savedRepository.playSwipeRight;
     }
+    //  else if (event is SoundLeftSwiped) {
+    //   _savedRepository.playSwipeLeft;
+    // } else if (event is SoundRightSwiped) {
+    //   _savedRepository.playSwipeRight;
+    // }
   }
 }

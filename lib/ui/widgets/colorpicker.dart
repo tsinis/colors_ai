@@ -12,6 +12,7 @@ import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
+import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../extensions/color_to_hex.dart';
 
 class Colorpicker extends StatelessWidget {
@@ -59,6 +60,7 @@ class Colorpicker extends StatelessWidget {
             return TextButton(
                 style: ButtonStyle(enableFeedback: true, minimumSize: MaterialStateProperty.all<Size>(buttonSize)),
                 onPressed: () {
+                  BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
                   BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
                   BlocProvider.of<LockedBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
                 },

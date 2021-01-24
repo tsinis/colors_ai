@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocs/colors_saved/saved_bloc.dart';
-import '../../blocs/colors_saved/saved_event.dart';
-import '../../blocs/sounds_audio/sound_bloc.dart';
-import '../../extensions/color_to_hex.dart';
+import '../../../blocs/colors_saved/saved_bloc.dart';
+import '../../../blocs/colors_saved/saved_event.dart';
+import '../../../extensions/color_to_hex.dart';
 
 class SavedList extends StatelessWidget {
   const SavedList(this.savedColors);
@@ -16,8 +15,8 @@ class SavedList extends StatelessWidget {
         itemBuilder: (context, listIndex) => Dismissible(
           key: UniqueKey(),
           onDismissed: (direction) {
-            BlocProvider.of<SoundBloc>(context)
-                .add((direction == DismissDirection.startToEnd) ? const SoundLeftSwiped() : const SoundRightSwiped());
+            // BlocProvider.of<SoundBloc>(context)
+            //     .add((direction == DismissDirection.startToEnd) ? const SoundLeftSwiped() : const SoundRightSwiped());
             BlocProvider.of<SavedBloc>(context).add(SaveOneRemoved(colorToRemoveIndex: listIndex));
           },
           secondaryBackground: const RemoveBackground(secondary: true),

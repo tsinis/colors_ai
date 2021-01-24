@@ -42,6 +42,11 @@ class ColorsRepository {
     return colorsList;
   }
 
-  Future<ColorsAI> get getNewColors async =>
-      _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: _locked.list);
+  Future<ColorsAI> get getNewColors async {
+    if (!_locked.list.contains(false)) {
+      return _colorsAI;
+    } else {
+      return _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: _locked.list);
+    }
+  }
 }

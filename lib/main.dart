@@ -8,10 +8,10 @@ import 'services/system_ui/system_overlays.dart';
 import 'ui/screens/scaffold_and_navigation.dart';
 import 'ui/theme/theme.dart';
 
-//TODO: Add PDF export.
 //TODO: Add list saving.
 //TODO: Add onboarding.
 //TODO: Handle Failure States in Bloc.
+//TODO: Add PDF export.
 //TODO: Add dif. color profiles.
 //TODO: Add app icon.
 //TODO: Provide all text string via l10n Bloc.

@@ -5,7 +5,7 @@ class DecorativeSymbols extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
-      ..color = Colors.white38
+      ..color = Colors.white30
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
 

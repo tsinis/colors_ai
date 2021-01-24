@@ -5,7 +5,7 @@ import '../../../blocs/colors_generated/colors_bloc.dart';
 import '../../../blocs/colors_generated/colors_event.dart';
 import '../../../blocs/colors_generated/colors_state.dart';
 import '../../widgets/animated/no_network.dart';
-import '../../widgets/colors_list.dart';
+import '../../widgets/lists/colors_list.dart';
 
 class ColorsGenerator extends StatelessWidget {
   const ColorsGenerator();
@@ -20,12 +20,9 @@ class ColorsGenerator extends StatelessWidget {
                 const SizedBox(height: 10),
                 const Flexible(child: NoNetwork()),
                 const SizedBox(height: 16),
-                const Text(
-                  'OH NO!',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                const Text('OH NO!', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 10),
-                const Text('No internet connection with a server.'),
+                const Text('Unable to connect AI to server.'),
                 const SizedBox(height: 12),
                 ElevatedButton.icon(
                   icon: const Icon(Icons.refresh_outlined, size: 20),

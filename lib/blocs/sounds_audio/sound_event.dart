@@ -27,10 +27,10 @@ class SoundSaved extends SoundEvent {
   const SoundSaved();
 }
 
-class SoundLeftSwiped extends SoundEvent {
-  const SoundLeftSwiped();
-}
+// class SoundLeftSwiped extends SoundEvent {
+//   const SoundLeftSwiped();
+// }
 
-class SoundRightSwiped extends SoundEvent {
-  const SoundRightSwiped();
-}
+// class SoundRightSwiped extends SoundEvent {
+//   const SoundRightSwiped();
+// }
