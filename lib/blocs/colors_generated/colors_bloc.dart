@@ -23,10 +23,15 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
       if (event is ColorsStarted) {
         yield const ColorsLoadInProgress();
       }
-      try {
-        await _colorsRepository.getNewColors;
-        yield ColorsLoadSuccess(_colorsRepository.colors.list);
-      } catch (_) {
+
+      final bool isGenerated = await _colorsRepository.getNewColors;
+      if (isGenerated) {
+        try {
+          yield ColorsLoadSuccess(_colorsRepository.colors.list);
+        } catch (_) {
+          yield const ColorsFailure();
+        }
+      } else {
         yield const ColorsFailure();
       }
     }

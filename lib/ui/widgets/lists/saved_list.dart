@@ -14,7 +14,7 @@ class SavedList extends StatelessWidget {
         itemCount: savedColors.length,
         itemBuilder: (context, listIndex) => Dismissible(
           key: UniqueKey(),
-          onDismissed: (direction) {
+          onDismissed: (_) {
             // BlocProvider.of<SoundBloc>(context)
             //     .add((direction == DismissDirection.startToEnd) ? const SoundLeftSwiped() : const SoundRightSwiped());
             BlocProvider.of<SavedBloc>(context).add(SaveOneRemoved(colorToRemoveIndex: listIndex));
@@ -58,7 +58,7 @@ class RemoveBackground extends StatelessWidget {
   final bool secondary;
   @override
   Widget build(BuildContext context) => ColoredBox(
-        color: Colors.red,
+        color: Theme.of(context).errorColor,
         child: Align(
           alignment: secondary ? Alignment.centerRight : Alignment.centerLeft,
           child: const Padding(

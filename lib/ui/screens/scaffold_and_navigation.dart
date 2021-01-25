@@ -8,10 +8,10 @@ import '../../blocs/colors_saved/saved_bloc.dart';
 import '../../blocs/colors_share/share_bloc.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
+import '../../blocs/navigation/navigation_bloc.dart';
 import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../repositories/colors_repository.dart';
 // import '../../repositories/saved_favorites_repository.dart';
-import '../../repositories/share_repository.dart';
 import '../widgets/buttons/app_bar_buttons/about_button.dart';
 import '../widgets/buttons/save_colors_fab.dart';
 import 'constants.dart';
@@ -24,8 +24,6 @@ class NavigationScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<NavigationScreen> {
-  int _currentTabIndex = 1;
-
   final SoundBloc _soundBloc = SoundBloc();
 
   @override
@@ -33,13 +31,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
     _soundBloc.add(const SoundStarted());
     super.initState();
   }
-
-  void _switchScreen(int newTabIndex) {
-    //TODO! Handle it in NavigationBloc.
-    setState(() => _currentTabIndex = newTabIndex);
-    BlocProvider.of<FabBloc>(context).add((_currentTabIndex == 1) ? const FabShowed() : const FabHided());
-  }
-
   // static const SavedColorsRepository _savedRepository = SavedColorsRepository();
 
   @override
@@ -51,26 +42,33 @@ class _NavigationScreenState extends State<NavigationScreen> {
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockShowed())),
         ],
-        child: Scaffold(
-          floatingActionButton: const SaveColorsFAB(),
-          appBar: AppBar(
-            title: Text(tabLabels[_currentTabIndex], style: const TextStyle(fontWeight: FontWeight.w400)),
-            actions: [appBarActions[_currentTabIndex], const AboutButton()],
-          ),
-          body: MultiBlocProvider(providers: [
-            BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(context.read<ColorsRepository>())),
-            BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
-          ], child: SafeArea(child: navTabs.elementAt(_currentTabIndex))),
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentTabIndex,
-            onTap: _switchScreen,
-            items: [
-              BottomNavigationBarItem(label: tabLabels.first, icon: const Icon(Icons.share_outlined)),
-              BottomNavigationBarItem(label: tabLabels[1], icon: const Icon(Icons.palette_outlined)),
-              //TODO Add "Saved" icon or animation.
-              BottomNavigationBarItem(label: tabLabels.last, icon: const Icon(Icons.bookmark_border_outlined)),
-            ],
-          ),
+        child: BlocBuilder<NavigationBloc, NavigationState>(
+          builder: (context, state) {
+            if (state.tabIndex != 1) {
+              BlocProvider.of<FabBloc>(context).add(const FabHided());
+            }
+            return Scaffold(
+              floatingActionButton: const SaveColorsFAB(),
+              appBar: AppBar(
+                  title: Text(state.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),
+                  actions: [appBarActions[state.tabIndex], const AboutButton()]),
+              body: MultiBlocProvider(providers: [
+                BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(context.read<ColorsRepository>())),
+                BlocProvider<ShareBloc>(create: (_) => ShareBloc()),
+              ], child: SafeArea(child: navTabs.elementAt(state.tabIndex))),
+              bottomNavigationBar: BottomNavigationBar(
+                currentIndex: state.tabIndex,
+                onTap: (int tabIndex) => BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(tabIndex)),
+                items: [
+                  BottomNavigationBarItem(label: state.tabLabels.first, icon: const Icon(Icons.share_outlined)),
+                  BottomNavigationBarItem(label: state.tabLabels[1], icon: const Icon(Icons.palette_outlined)),
+                  //TODO Add "Saved" icon or animation.
+                  BottomNavigationBarItem(
+                      label: state.tabLabels.last, icon: const Icon(Icons.bookmark_border_outlined)),
+                ],
+              ),
+            );
+          },
         ),
       );
 }

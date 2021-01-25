@@ -11,7 +11,9 @@ part 'share_state.dart';
 // ignore_for_file: avoid_catches_without_on_clauses
 
 class ShareBloc extends Bloc<ShareEvent, ShareState> {
-  ShareBloc(this._shareRepository) : super(const ShareCurrentInitial());
+  ShareBloc({ShareRepository shareRepository = const ShareRepository()})
+      : _shareRepository = shareRepository,
+        super(const ShareCurrentInitial());
 
   final ShareRepository _shareRepository;
 

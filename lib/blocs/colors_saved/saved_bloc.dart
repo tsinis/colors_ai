@@ -13,11 +13,19 @@ class SavedBloc extends Bloc<SaveEvent, SaveState> {
   @override
   Stream<SaveState> mapEventToState(SaveEvent event) async* {
     if (event is SaveAdded) {
-      _savedRepository.add(event.colorsToSave);
-      try {
-        yield SaveLoadSuccess(_savedRepository);
-      } catch (_) {
-        yield const SaveFailure();
+      if (event.colorsToSave.isNotEmpty) {
+        _savedRepository.add(event.colorsToSave);
+        try {
+          yield SaveLoadSuccess(_savedRepository);
+        } catch (_) {
+          yield const SaveFailure();
+        }
+      } else {
+        try {
+          yield const SaveEmptyInitial();
+        } catch (_) {
+          yield const SaveFailure();
+        }
       }
     } else if (event is SaveOneRemoved) {
       _savedRepository.remove(event.colorToRemoveIndex);

@@ -7,7 +7,7 @@ import '../../../../services/url_launcher/url_launcher.dart';
 class AboutButton extends StatelessWidget {
   const AboutButton();
 
-  static final Color _linkColor = Colors.blueGrey[600]!;
+  static const Color _linkColor = Colors.blue;
 
   @override
   Widget build(BuildContext context) => IconButton(

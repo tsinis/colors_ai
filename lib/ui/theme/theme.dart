@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 ThemeData appTheme = ThemeData(
   primarySwatch: Colors.grey,
   primaryColor: Colors.grey,
+  errorColor: Colors.red[900]!,
   scaffoldBackgroundColor: Colors.grey[400], //AAA compliant.
   primaryIconTheme: IconThemeData(color: Colors.grey[850]),
   dialogBackgroundColor: Colors.grey[350],

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import '../extensions/color_to_list_int.dart';
 import '../extensions/list_int_to_color.dart';
 import '../models/colors/colors_json.dart';
 import '../models/locks/locked_colors.dart';
@@ -42,11 +43,26 @@ class ColorsRepository {
     return colorsList;
   }
 
-  Future<ColorsAI> get getNewColors async {
-    if (!_locked.list.contains(false)) {
-      return _colorsAI;
+  //TODO! Continue.
+  void fromSaved(List<Color> savedList) {
+    final List<List<int>> colorsIntList = [];
+    for (final Color color in savedList) {
+      colorsIntList.add(color.toListInt());
+    }
+    _colorsAI = ColorsAI(list: colorsIntList);
+  }
+
+  Future<bool> get getNewColors async {
+    if (_locked.list.contains(false)) {
+      try {
+        _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: _locked.list);
+        return true;
+        // ignore: avoid_catches_without_on_clauses
+      } catch (_) {
+        return false;
+      }
     } else {
-      return _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: _locked.list);
+      return true;
     }
   }
 }
