@@ -25,7 +25,7 @@ class ColorsGenerator extends StatelessWidget {
         BlocProvider.of<FabBloc>(context).add(const FabHided());
         return Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const Flexible(child: FractionallySizedBox(widthFactor: 0.6, heightFactor: 0.6, child: NoNetwork())),
               Padding(

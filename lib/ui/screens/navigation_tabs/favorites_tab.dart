@@ -16,7 +16,7 @@ class FavoritesTab extends StatelessWidget {
           if (state is FavoritesEmptyInitial) {
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const Flexible(
                       child: FractionallySizedBox(widthFactor: 0.5, heightFactor: 0.6, child: NoFavorites())),
