@@ -17,6 +17,12 @@ class ColorsStarted extends ColorsEvent {
   const ColorsStarted();
 }
 
+class ColorsRestored extends ColorsEvent {
+  const ColorsRestored({required this.colorsToRestore});
+
+  final List<Color> colorsToRestore;
+}
+
 class ColorsChanged extends ColorsEvent {
   const ColorsChanged(this.newColor, this.colorIndex);
   final Color? newColor;

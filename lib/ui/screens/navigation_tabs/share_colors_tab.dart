@@ -23,9 +23,9 @@ class ShareColors extends StatelessWidget {
               onChanged: print,
             ),
             RadioListTile<ColorsToShare>(
-              title: const Text('All Saved Colors'),
+              title: const Text('All Favorites'),
               secondary: const Padding(padding: EdgeInsets.only(right: 8), child: Icon(Icons.grid_on_outlined)),
-              value: ColorsToShare.saved,
+              value: ColorsToShare.favorites,
               groupValue: _colorsToShare,
               onChanged: print,
             ),
@@ -91,7 +91,7 @@ class ShareColors extends StatelessWidget {
       );
 }
 
-enum ColorsToShare { current, saved }
+enum ColorsToShare { current, favorites }
 ColorsToShare _colorsToShare = ColorsToShare.current;
 
 // enum FileFormat { jpg, pdf }

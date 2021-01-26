@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'no_saved_colors/list.dart';
-import 'no_saved_colors/magnifier.dart';
+import 'no_favorites/list.dart';
+import 'no_favorites/magnifier.dart';
 
-class NoSavedColors extends StatefulWidget {
-  const NoSavedColors();
+class NoFavorites extends StatefulWidget {
+  const NoFavorites();
 
   @override
-  _NoSavedColorsState createState() => _NoSavedColorsState();
+  _NoFavoritesState createState() => _NoFavoritesState();
 }
 
-class _NoSavedColorsState extends State<NoSavedColors> with SingleTickerProviderStateMixin {
+class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation, reverseAnimation;
 

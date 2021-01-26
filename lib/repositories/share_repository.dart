@@ -4,9 +4,9 @@ import 'package:share/share.dart';
 import '../services/share_url_providers/coolors.dart';
 
 class ShareRepository {
-  const ShareRepository({this.savedColors = const []});
+  const ShareRepository({this.favoriteColors = const []});
 
-  final List<List<Color>> savedColors;
+  final List<List<Color>> favoriteColors;
 
   void shareUrl(List<Color> currentColors) => _convertColorsToUrl(currentColors);
   void copyUrl(List<Color> currentColors) => _convertColorsToUrl(currentColors, copyOnly: true);

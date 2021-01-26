@@ -7,12 +7,12 @@ abstract class LockEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LockShowed extends LockEvent {
-  const LockShowed();
+class LockStarted extends LockEvent {
+  const LockStarted();
 }
 
 class LockAllUnlocked extends LockEvent {
-  // const LockAllUnlocked();
+  const LockAllUnlocked();
 }
 
 class LockChanged extends LockEvent {

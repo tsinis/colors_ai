@@ -24,7 +24,7 @@ class SoundsAssets {
   void get playLock => _playSound(lock);
   void get playRefresh => _playSound(refresh);
   void get playCopy => _playSound(notificationHigh, volume: 0.1);
-  void get playSaved => _playSound(notificationSimple2, volume: 0.1);
+  void get playFavoritesAdded => _playSound(notificationSimple2, volume: 0.1);
   // void get playSwipeLeft => _playSound(transitionLeft);
   // void get playSwipeRight => _playSound(transitionRight);
 }

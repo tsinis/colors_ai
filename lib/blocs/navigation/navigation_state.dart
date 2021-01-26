@@ -5,7 +5,7 @@ abstract class NavigationState extends Equatable {
 
   final int _tabIndex;
 
-  static const List<String> _tabLabels = ['Share Colors', 'Generate Colors', 'Saved Colors'];
+  static const List<String> _tabLabels = ['Share Colors', 'Generate Colors', 'Favorite Colors'];
 
   List<String> get tabLabels => _tabLabels;
   String get currentTabName => _tabLabels[_tabIndex];

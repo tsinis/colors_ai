@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mdi/mdi.dart';
 import 'package:vibration/vibration.dart';
 
-import '../../../blocs/colors_saved/saved_bloc.dart';
-import '../../../blocs/colors_saved/saved_event.dart';
+import '../../../blocs/favorite_colors/favorites_bloc.dart';
+import '../../../blocs/favorite_colors/favorites_event.dart';
 import '../../../blocs/floating_action_button/fab_bloc.dart';
 import '../../../blocs/floating_action_button/fab_state.dart';
 import '../../../blocs/sounds_audio/sound_bloc.dart';
@@ -38,7 +38,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
   Widget build(BuildContext context) => ScaleTransition(
         scale: fabAnimation,
         child: BlocBuilder<FabBloc, FabState>(
-          builder: (BuildContext dialogContext, FabState state) {
+          builder: (BuildContext context, FabState state) {
             // https://material.io/design/environment/elevation.html#elevation-in-material-design
             if (state is FabHideInitial) {
               controller.reverse();
@@ -47,9 +47,9 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
             }
             return FloatingActionButton(
               onPressed: () async {
-                BlocProvider.of<SoundBloc>(context).add(const SoundSaved());
-                BlocProvider.of<SavedBloc>(context)
-                    .add(SaveAdded(colorsToSave: context.read<ColorsRepository>().listAsColors));
+                BlocProvider.of<SoundBloc>(context).add(const SoundFavoritesAdded());
+                BlocProvider.of<FavoritesBloc>(context)
+                    .add(FavoritesAdded(colorsToSave: context.read<ColorsRepository>().listAsColors));
                 // ignore: unawaited_futures
                 controller.reverse();
                 if (await Vibration.hasCustomVibrationsSupport() == true) {

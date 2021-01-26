@@ -43,10 +43,9 @@ class ColorsRepository {
     return colorsList;
   }
 
-  //TODO! Continue.
-  void fromSaved(List<Color> savedList) {
+  void fromFavorites(List<Color> favoritesList) {
     final List<List<int>> colorsIntList = [];
-    for (final Color color in savedList) {
+    for (final Color color in favoritesList) {
       colorsIntList.add(color.toListInt());
     }
     _colorsAI = ColorsAI(list: colorsIntList);

@@ -18,8 +18,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
         _colorsRepository.changeColor(event.newColor!, event.colorIndex);
       }
       yield ColorsLoadSuccess(_colorsRepository.colors.list);
-    }
-    if (event is ColorsGenerated || event is ColorsStarted) {
+    } else if (event is ColorsGenerated || event is ColorsStarted) {
       if (event is ColorsStarted) {
         yield const ColorsLoadInProgress();
       }
@@ -34,10 +33,16 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
       } else {
         yield const ColorsFailure();
       }
-    }
-    if (event is ColorsReordered) {
+    } else if (event is ColorsReordered) {
       try {
         _colorsRepository.swapColors(oldIndex: event.oldIndex, newIndex: event.newIndex);
+        yield ColorsLoadSuccess(_colorsRepository.colors.list);
+      } catch (_) {
+        yield const ColorsFailure();
+      }
+    } else if (event is ColorsRestored) {
+      try {
+        _colorsRepository.fromFavorites(event.colorsToRestore);
         yield ColorsLoadSuccess(_colorsRepository.colors.list);
       } catch (_) {
         yield const ColorsFailure();

@@ -15,6 +15,6 @@ class ShareCurrentInitial extends ShareState {
   const ShareCurrentInitial();
 }
 
-class ShareSavedInitial extends ShareState {
-  const ShareSavedInitial();
+class ShareFavoritesInitial extends ShareState {
+  const ShareFavoritesInitial();
 }
