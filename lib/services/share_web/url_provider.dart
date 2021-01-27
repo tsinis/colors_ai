@@ -1,11 +1,25 @@
-import 'dart:ui';
-
+import 'dart:ui' show Color;
 import '../../extensions/color_to_hex.dart';
 
+part 'providers/colordesigner.dart';
+part 'providers/muzli_colors.dart';
+part 'providers/coolors.dart';
+part 'providers/palettable.dart';
+part 'providers/art_google.dart';
+part 'providers/poolors.dart';
+part 'providers/colordot.dart';
+part 'providers/icolorpalette.dart';
+
 abstract class ColorsUrlProvider {
-  ColorsUrlProvider(this.colors, {required this.baseUrl, this.separateSymbol = '-'});
+  const ColorsUrlProvider(
+    this.colors, {
+    required this.baseUrl,
+    required this.providerName,
+    this.formats = '',
+    this.separateSymbol = '-',
+  });
   final List<Color> colors;
-  final String baseUrl, separateSymbol;
+  final String baseUrl, separateSymbol, formats, providerName;
 
   String get url {
     final StringBuffer sb = StringBuffer();

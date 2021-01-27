@@ -25,7 +25,7 @@ class LockColorButton extends StatelessWidget {
                 },
                 icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined));
           } else {
-            return Container(color: Colors.blue); //TODO Edit this.
+            return Container(color: Colors.blue);
           }
         },
       );
