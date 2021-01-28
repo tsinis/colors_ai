@@ -17,6 +17,7 @@ import '../buttons/lock_color_button.dart';
 import '../colorpicker.dart';
 import '../customized_default_widgets/refrashable_reordable.dart';
 import 'default_grey_colors_list.dart';
+import 'onboarding_list.dart';
 
 class ColorsList extends StatefulWidget {
   const ColorsList(this.colorsList);
@@ -114,6 +115,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
               ),
             ),
           ),
+          OnboardingList(tileWidth: size.width, tileHeight: tileHeight),
         ],
       );
 }

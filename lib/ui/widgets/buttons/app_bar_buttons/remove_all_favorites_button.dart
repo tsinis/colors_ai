@@ -39,6 +39,7 @@ class RemoveAllFavoritesButton extends StatelessWidget {
             }
             return BlocBuilder<FavoritesBloc, FavoritesState>(
                 builder: (_, state) => IconButton(
+                    tooltip: 'Remove all favorite colors',
                     icon: const Icon(Mdi.bookmarkRemoveOutline, size: 25),
                     onPressed: (state is FavoritesLoadSuccess)
                         ? () => BlocProvider.of<AlertDialogBloc>(dialogContext).add(const AlertDialogShowed())

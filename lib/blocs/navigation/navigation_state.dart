@@ -23,8 +23,8 @@ class NavigationShareTabInitial extends NavigationState {
   const NavigationShareTabInitial() : super(0);
 }
 
-class NavigationSaveTabInitial extends NavigationState {
-  const NavigationSaveTabInitial() : super(2);
+class NavigationFavoritesTabInitial extends NavigationState {
+  const NavigationFavoritesTabInitial() : super(2);
 }
 
 class NavigationGenerateTabInitial extends NavigationState {

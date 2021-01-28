@@ -13,7 +13,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
   static const List<NavigationState> _stateList = <NavigationState>[
     NavigationShareTabInitial(),
     NavigationGenerateTabInitial(),
-    NavigationSaveTabInitial()
+    NavigationFavoritesTabInitial()
   ];
 
   @override
@@ -32,7 +32,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       }
       // } else if (event is NavigationSaverTabStarted) {
       //   try {
-      //     yield const NavigationSaveTabInitial();
+      //     yield const NavigationFavoritesTabInitial();
       //   } catch (_) {
       //     yield const NavigationFailure();
       //   }

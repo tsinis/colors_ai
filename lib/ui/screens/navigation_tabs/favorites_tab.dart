@@ -19,26 +19,26 @@ class FavoritesTab extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   const Flexible(
-                      child: FractionallySizedBox(widthFactor: 0.5, heightFactor: 0.6, child: NoFavorites())),
+                      child: FractionallySizedBox(widthFactor: 0.6, heightFactor: 0.7, child: NoFavorites())),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: const TextSpan(
                         text: 'OOPS!',
-                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.black),
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: '\nFavorite colors list is empty.',
+                            text: '\nSave the colors you like, and they will show up here.',
                             style:
-                                TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black, height: 2),
+                                TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black, height: 3),
                           )
                         ],
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.only(top: 56, bottom: 24),
                     child: ElevatedButton.icon(
                       icon: const Icon(Icons.add, size: 20),
                       label: const Text('ADD SOME'),

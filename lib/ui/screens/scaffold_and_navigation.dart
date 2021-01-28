@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/colors_generated/colors_bloc.dart';
+import '../../blocs/colors_generated/colors_event.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/colors_share/share_bloc.dart';
@@ -34,6 +35,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
   }
   // static const FavoritesRepository _favoritesRepository = FavoritesRepository();
 
+  int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
+  int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
+  int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
+
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
@@ -45,7 +50,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ],
         child: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (context, state) {
-            if (state.tabIndex != 1) {
+            if (state.tabIndex != _colorsGenTabIndex) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
             return Scaffold(
@@ -54,34 +59,36 @@ class _NavigationScreenState extends State<NavigationScreen> {
                   title: Text(state.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),
                   actions: [appBarActions[state.tabIndex], const AboutButton()]),
               body: MultiBlocProvider(providers: [
-                BlocProvider<ColorsBloc>(create: (_) => ColorsBloc(context.read<ColorsRepository>())),
+                BlocProvider<ColorsBloc>(
+                    create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsGenerated())),
                 BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
               ], child: SafeArea(child: navTabs.elementAt(state.tabIndex))),
               bottomNavigationBar: BlocBuilder<FavoritesBloc, FavoritesState>(
                 builder: (context, saveState) {
-                  final bool _isFavoritesEmpty = saveState is FavoritesEmptyInitial;
+                  final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
                   return BottomNavigationBar(
                     currentIndex: state.tabIndex,
-                    onTap: (int tabIndex) {
-                      if (!(_isFavoritesEmpty && tabIndex == 2)) {
-                        BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(tabIndex));
+                    onTap: (int newTabIndex) {
+                      if (!(isFavoritesEmpty && newTabIndex == _favoritesTabIndex)) {
+                        BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
                       }
                     },
                     items: [
                       BottomNavigationBarItem(
-                          label: state.tabLabels.first,
-                          icon: const Icon(Icons.share_outlined),
-                          activeIcon: const Icon(Icons.share)),
+                        label: state.tabLabels[_shareTabIndex],
+                        activeIcon: const Icon(Icons.share),
+                        icon: const Icon(Icons.share_outlined),
+                      ),
                       BottomNavigationBarItem(
-                          label: state.tabLabels[1],
+                          label: state.tabLabels[_colorsGenTabIndex],
                           icon: const Icon(Icons.palette_outlined),
                           activeIcon: const Icon(Icons.palette)),
                       BottomNavigationBarItem(
-                        tooltip: _isFavoritesEmpty ? 'No ${state.tabLabels.last}' : state.tabLabels.last,
-                        label: state.tabLabels.last,
+                        tooltip: isFavoritesEmpty ? 'No ${state.tabLabels.last}' : state.tabLabels.last,
+                        label: state.tabLabels[_favoritesTabIndex],
                         activeIcon: const Icon(Icons.bookmarks),
                         icon: Icon(Icons.bookmarks_outlined,
-                            color: _isFavoritesEmpty
+                            color: isFavoritesEmpty
                                 ? Theme.of(context).disabledColor
                                 : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
                       ),

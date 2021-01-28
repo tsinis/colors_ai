@@ -11,6 +11,7 @@ class AboutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconButton(
+        tooltip: 'About this app',
         icon: const Icon(Icons.info_outline),
         onPressed: () => showAboutDialog(
           context: context,

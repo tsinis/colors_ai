@@ -14,7 +14,7 @@ class ColorsGenerator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(builder: (context, state) {
-        if (state is ColorsLoadInProgress) {
+        if (state is ColorsLoadInProgress || state is ColorsInitial) {
           BlocProvider.of<FabBloc>(context).add(const FabHided());
           return const Center(child: CircularProgressIndicator());
         }
@@ -27,7 +27,7 @@ class ColorsGenerator extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Flexible(child: FractionallySizedBox(widthFactor: 0.6, heightFactor: 0.6, child: NoNetwork())),
+              const Flexible(child: FractionallySizedBox(widthFactor: 0.8, heightFactor: 0.8, child: NoNetwork())),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: RichText(
@@ -35,21 +35,21 @@ class ColorsGenerator extends StatelessWidget {
                   text: const TextSpan(
                     text: 'OH NO!',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
                     children: <TextSpan>[
                       TextSpan(
                         text: '\nUnable to connect to AI server.',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black, height: 2),
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black, height: 3),
                       )
                     ],
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.only(top: 56, bottom: 24),
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.refresh_outlined, size: 20),
                   label: const Text('TRY AGAIN'),
