@@ -501,6 +501,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.3"
+  simple_animations:
+    dependency: "direct main"
+    description:
+      name: simple_animations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0-nullsafety.3"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -548,6 +555,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  supercharged:
+    dependency: transitive
+    description:
+      name: supercharged
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0-nullsafety.1"
+  supercharged_dart:
+    dependency: transitive
+    description:
+      name: supercharged_dart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0-nullsafety.1"
   term_glyph:
     dependency: transitive
     description:
@@ -669,4 +690,4 @@ packages:
     version: "2.2.1"
 sdks:
   dart: ">=2.12.0-173.0.dev <3.0.0"
-  flutter: ">=1.26.0-2.0.pre.118"
+  flutter: ">=1.24.0-10.2.pre"

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mdi/mdi.dart';
 
+import '../animated/pull_to_refresh.dart';
 import 'default_grey_colors_list.dart';
 
 class OnboardingList extends DefaultGreyList {
@@ -66,14 +67,15 @@ class OnboardingList extends DefaultGreyList {
                       end: Alignment.bottomCenter),
                 ),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(
-                      width: tileWidth / 3.8,
+                      width: tileWidth / 3.6,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          const Text('Pull down to generate new colors', style: TextStyle(color: Colors.white)),
+                          const Text('Pull down to generate new colors', style: TextStyle(color: Colors.amber)),
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(primary: Colors.greenAccent),
                             // icon: const Icon(Icons.check, size: 20, color: Colors.white),
@@ -83,9 +85,9 @@ class OnboardingList extends DefaultGreyList {
                         ],
                       ),
                     ),
-                    SizedBox(width: tileWidth / 4),
+                    SizedBox(width: tileWidth / 6, height: tileHeight, child: const PullToRefreshAnimation()),
                     SizedBox(
-                      width: tileWidth / 3.4,
+                      width: tileWidth / 3.6,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [

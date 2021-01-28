@@ -10,7 +10,7 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.12.0-173.0.dev <3.0.0"
-  flutter: ">=1.26.0-2.0.pre.118 <2.0.0"
+  flutter: ">1.22.6 <2.0.0"
 
 dependencies:
   equatable: ^2.0.0-nullsafety.1
@@ -23,6 +23,7 @@ dependencies:
   just_audio: ^0.6.9
   mdi: ^5.0.0-nullsafety.0
   share: ^2.0.0-nullsafety.2
+  simple_animations: ^3.0.0-nullsafety.3
   url_launcher: ^6.0.0-nullsafety.4
   vibration: ^1.7.4-nullsafety.0
 
