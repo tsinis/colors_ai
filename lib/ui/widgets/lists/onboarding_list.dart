@@ -16,8 +16,9 @@ class OnboardingList extends DefaultGreyList {
         child: DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
+              begin: const Alignment(-0.6, 0),
               colors:
-                  leftAlign ? [Colors.grey, Colors.grey.withOpacity(0.5)] : [Colors.grey.withOpacity(0.5), Colors.grey],
+                  leftAlign ? [Colors.grey, Colors.grey.withOpacity(0.1)] : [Colors.grey.withOpacity(0.1), Colors.grey],
             ),
           ),
           child: Align(
@@ -38,14 +39,14 @@ class OnboardingList extends DefaultGreyList {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<DataStorageBloc, DataStorageState>(builder: (context, state) {
-        if (state is DataStorageOnboardingLoadSuccess) {
+        if (state is DataStorageGenerateLoadSuccess || state is DataStorageOnboardingLoadSuccess) {
           return const SizedBox.shrink();
         } else {
           return Stack(
             children: [
               IgnorePointer(
                 child: ColoredBox(
-                  color: Colors.grey.withOpacity(0.2),
+                  color: Colors.grey.withOpacity(0.1),
                   child: Column(
                     children: <SizedBox>[
                       _onboardingTile('Double tap anywhere to lock the color'),
@@ -56,7 +57,8 @@ class OnboardingList extends DefaultGreyList {
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                  begin: Alignment.center, colors: [Colors.grey, Colors.grey.withOpacity(0.5)])),
+                                  begin: const Alignment(-0.1, 0),
+                                  colors: [Colors.grey, Colors.grey.withOpacity(0.1)])),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -78,8 +80,8 @@ class OnboardingList extends DefaultGreyList {
                         child: DecoratedBox(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                                colors: [Colors.grey, Colors.grey.withOpacity(0.5)],
-                                begin: const Alignment(0, -0.7),
+                                colors: [Colors.grey, Colors.grey.withOpacity(0.1)],
+                                begin: const Alignment(0, -0.6),
                                 end: Alignment.bottomCenter),
                           ),
                           child: Row(
@@ -100,7 +102,7 @@ class OnboardingList extends DefaultGreyList {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: tileWidth / 6, height: tileHeight, child: const PullToRefreshAnimation()),
+                              SizedBox(width: tileWidth / 7, height: tileHeight, child: const PullToRefreshAnimation()),
                               SizedBox(
                                 width: tileWidth / 3.5,
                                 child: Column(

@@ -25,7 +25,7 @@ void main() {
     Bloc.observer = ColorBlocObserver();
     await Hive.initFlutter();
     runApp(BlocProvider(
-      create: (context) => DataStorageBloc()..add(const DataStorageOnboardingStarted()),
+      create: (_) => DataStorageBloc()..add(const DataStorageOnboardingStarted()),
       child: const MyApp(),
     ));
   });

@@ -9,7 +9,7 @@ ThemeData appTheme = ThemeData(
   primaryIconTheme: IconThemeData(color: Colors.grey[850]),
   dialogBackgroundColor: Colors.grey[350],
   splashColor: Colors.grey[350],
-  dividerColor: _grey800,
+  dividerColor: Colors.grey[700],
   dialogTheme: DialogTheme(backgroundColor: Colors.grey[100]),
   appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: _grey800)),
   radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.black)),

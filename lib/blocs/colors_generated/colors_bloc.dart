@@ -13,16 +13,16 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
 
   @override
   Stream<ColorsState> mapEventToState(ColorsEvent event) async* {
-    if (event is ColorsChanged) {
+    if (event is ColorsStarted) {
+      yield const ColorsLoadInProgress();
+      _colorsRepository.initColors;
+      yield ColorsLoadSuccess(_colorsRepository.colors.list);
+    } else if (event is ColorsChanged) {
       if (event.newColor != null) {
         _colorsRepository.changeColor(event.newColor!, event.colorIndex);
       }
       yield ColorsLoadSuccess(_colorsRepository.colors.list);
-    } else if (event is ColorsGenerated || event is ColorsStarted) {
-      if (event is ColorsStarted) {
-        yield const ColorsLoadInProgress();
-      }
-
+    } else if (event is ColorsGenerated) {
       final bool isGenerated = await _colorsRepository.getNewColors;
       if (isGenerated) {
         try {

@@ -56,14 +56,14 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
 
   Size get size => MediaQuery.of(context).size;
   double get padding => MediaQueryData.fromWindow(window).padding.vertical;
-  int get lenght => widget.colorsList.length;
-  double get tileHeight => (size.height - kBottomNavigationBarHeight - kToolbarHeight - padding) / lenght;
+  int get length => widget.colorsList.length;
+  double get tileHeight => (size.height - kBottomNavigationBarHeight - kToolbarHeight - padding) / length;
   Size get third => Size(size.width / 3, tileHeight);
 
   @override
   Widget build(BuildContext context) => Stack(
         children: [
-          DefaultGreyList(lenght: lenght, tileWidth: size.width, tileHeight: tileHeight),
+          DefaultGreyList(length: length, tileWidth: size.width, tileHeight: tileHeight),
           BlocConsumer<ColorsBloc, ColorsState>(
             listener: (context, state) {
               _refreshCompleter.complete();
@@ -87,14 +87,14 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     onDragEnd: () => BlocProvider.of<FabBloc>(context).add(const FabShowed()),
                     onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
                         .add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
-                    children: List.generate(lenght, (int index) {
+                    children: List.generate(length, (int index) {
                       final Color color = widget.colorsList[index].toColor(),
                           contrastColor = widget.colorsList[index].contrastColor();
                       return AnimatedListItem(
                         index: index,
                         height: tileHeight,
                         key: ValueKey<int>(index),
-                        lenght: lenght,
+                        length: length,
                         child: InkWell(
                           onDoubleTap: () {
                             BlocProvider.of<SoundBloc>(context).add(const SoundLocked());

@@ -19,17 +19,31 @@ class DataStorageBloc extends Bloc<DataStorageEvent, DataStorageState> {
   Stream<DataStorageState> mapEventToState(DataStorageEvent event) async* {
     if (event is DataStorageOnboardingStarted) {
       yield const DataStorageOnboardingLoadInProgress();
-      final bool isFirstRun = await _dataStorageRepository.loadOnboardingData;
-      print('FirstRun i BLOC is : $isFirstRun');
+      final bool isFirstGenerate = await _dataStorageRepository.loadOnboardingData();
       try {
-        yield isFirstRun ? const DataStorageOnboardingLoadFailure() : const DataStorageOnboardingLoadSuccess();
+        yield isFirstGenerate ? const DataStorageOnboardingLoadFailure() : const DataStorageGenerateLoadSuccess();
       } catch (_) {
         yield const DataStorageOnboardingLoadFailure();
       }
+      if (!isFirstGenerate) {
+        final bool isFirstFavorite = await _dataStorageRepository.loadOnboardingData(forFavorites: true);
+        try {
+          yield isFirstFavorite ? const DataStorageGenerateLoadSuccess() : const DataStorageOnboardingLoadSuccess();
+        } catch (_) {
+          yield const DataStorageOnboardingLoadFailure();
+        }
+      }
     } else if (event is DataStorageOnboardingGenFinished) {
-      await _dataStorageRepository.onboardingGenerateDone;
+      await _dataStorageRepository.onboardingDone();
       try {
-        yield const DataStorageOnboardingLoadSuccess();
+        yield const DataStorageGenerateLoadSuccess();
+      } catch (_) {
+        yield const DataStorageOnboardingLoadFailure();
+      }
+    } else if (event is DataStorageOnboardingFavsFinished) {
+      await _dataStorageRepository.onboardingDone(forFavorites: true);
+      try {
+        yield const DataStorageFavsBoardingLoadSuccess();
       } catch (_) {
         yield const DataStorageOnboardingLoadFailure();
       }

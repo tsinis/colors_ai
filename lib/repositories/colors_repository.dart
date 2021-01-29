@@ -3,6 +3,7 @@ import 'dart:ui';
 import '../extensions/color_to_list_int.dart';
 import '../extensions/list_int_to_color.dart';
 import '../models/colors/colors_json.dart';
+import '../models/colors/constants.dart';
 import '../models/locks/locked_colors.dart';
 import '../services/api/api.dart';
 import '../services/api/constants.dart';
@@ -41,6 +42,14 @@ class ColorsRepository {
       colorsList.add(listInt.toColor());
     }
     return colorsList;
+  }
+
+  void get initColors {
+    final List<List<int>> colorsIntList = [];
+    for (final Color color in defaultColors) {
+      colorsIntList.add(color.toListInt());
+    }
+    _colorsAI = ColorsAI(list: colorsIntList);
   }
 
   void fromFavorites(List<Color> favoritesList) {

@@ -6,6 +6,7 @@ import '../../blocs/colors_generated/colors_event.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/colors_share/share_bloc.dart';
+import '../../blocs/data_saving/datasaving_bloc.dart';
 import '../../blocs/favorite_colors/favorites_bloc.dart';
 import '../../blocs/favorite_colors/favorites_state.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
@@ -62,24 +63,31 @@ class _NavigationScreenState extends State<MainScreen> {
               body: MultiBlocProvider(
                   providers: [
                     BlocProvider<ColorsBloc>(
-                        create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsGenerated())),
+                        create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted())),
                     BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
                   ],
                   child: BlocListener<NavigationBloc, NavigationState>(
-                      listener: (context, state) {
-                        if (state is NavigationFavoritesTabInitial) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Theme.of(context).dividerColor,
-                              duration: const Duration(seconds: 5),
-                              content:
-                                  const Text('Tap on the row to restore colors.\nSwipe right/left to remove them.'),
-                              action: SnackBarAction(
-                                label: 'GOT IT!',
-                                onPressed: () {},
-                              ),
-                            ),
-                          );
+                      listener: (context, navState) {
+                        if (navState is NavigationFavoritesTabInitial) {
+                          Future.delayed(
+                              const Duration(seconds: 1),
+                              () => ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      // behavior: SnackBarBehavior.floating,
+                                      backgroundColor: Theme.of(context).dividerColor,
+                                      duration: const Duration(seconds: 5),
+                                      content: const Text(
+                                          'Tap on the row to restore colors.\nSwipe right/left to remove them.'),
+                                      action: SnackBarAction(
+                                        textColor: Colors.greenAccent,
+                                        label: 'GOT IT!',
+                                        onPressed: () =>
+                                            DataStorageBloc()..add(const DataStorageOnboardingFavsFinished()),
+                                      ),
+                                    ),
+                                  ));
+                        } else {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
                         }
                       },
                       child: SafeArea(child: navTabs.elementAt(state.tabIndex)))),

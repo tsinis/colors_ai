@@ -44,7 +44,7 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [_color.value!, Colors.white.withOpacity(_opacity.value.clamp(0.3, 1))],
+                  colors: [_color.value!, Colors.amber.withOpacity(_opacity.value.clamp(0.1, 1))],
                 ),
                 border: Border.all(color: Colors.white.withOpacity(_opacity.value), width: 4),
                 borderRadius: const BorderRadius.all(Radius.circular(100))),

@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
+import '../../../models/colors/constants.dart';
 
 class DefaultGreyList extends StatelessWidget {
-  const DefaultGreyList({required this.tileWidth, required this.tileHeight, this.lenght = 5});
+  const DefaultGreyList({required this.tileWidth, required this.tileHeight, this.length});
 
-  final int lenght;
+  final int? length;
   final double tileWidth, tileHeight;
 
   @override
   Widget build(BuildContext context) => Column(
         children: List.generate(
-          lenght,
-          (int index) => Container(
-            width: tileWidth,
-            height: tileHeight,
-            color: Colors.grey[600]!.withOpacity((0.33 + (index / 8)).clamp(0.33, 1)),
-            // color: Colors.grey[400 + (100 * index)],
-          ),
-          growable: false,
-        ),
+            length ?? defaultColors.length,
+            (int index) => Container(
+                  width: tileWidth,
+                  height: tileHeight,
+                  color: defaultColors[index],
+                ),
+            growable: false),
       );
 }

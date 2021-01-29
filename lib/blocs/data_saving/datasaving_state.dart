@@ -19,6 +19,14 @@ class DataStorageOnboardingLoadFailure extends DataStorageState {
   const DataStorageOnboardingLoadFailure();
 }
 
+class DataStorageGenerateLoadSuccess extends DataStorageState {
+  const DataStorageGenerateLoadSuccess();
+}
+
+class DataStorageFavsBoardingLoadSuccess extends DataStorageState {
+  const DataStorageFavsBoardingLoadSuccess();
+}
+
 class DataStorageOnboardingLoadSuccess extends DataStorageState {
   const DataStorageOnboardingLoadSuccess();
 }

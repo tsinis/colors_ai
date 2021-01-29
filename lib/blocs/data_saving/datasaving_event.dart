@@ -14,3 +14,7 @@ class DataStorageOnboardingStarted extends DataStorageEvent {
 class DataStorageOnboardingGenFinished extends DataStorageEvent {
   const DataStorageOnboardingGenFinished();
 }
+
+class DataStorageOnboardingFavsFinished extends DataStorageEvent {
+  const DataStorageOnboardingFavsFinished();
+}

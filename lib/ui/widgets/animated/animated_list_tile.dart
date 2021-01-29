@@ -4,14 +4,14 @@ class AnimatedListItem extends StatefulWidget {
   const AnimatedListItem({
     required this.index,
     required this.child,
-    required this.lenght,
+    required this.length,
     this.height,
     Key? key,
   }) : super(key: key);
 
   final Widget child;
   final int index;
-  final int lenght;
+  final int length;
   final double? height;
 
   @override
@@ -33,7 +33,7 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
   Widget build(BuildContext context) => (widget.height != null)
       ? AnimatedContainer(
           curve: Curves.easeOutQuart,
-          height: isAnimationDone ? widget.height! : widget.index + 1 * widget.height! * widget.lenght,
+          height: isAnimationDone ? widget.height! : widget.index + 1 * widget.height! * widget.length,
           duration: const Duration(milliseconds: 600),
           decoration: BoxDecoration(
             boxShadow: [
