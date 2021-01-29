@@ -13,6 +13,7 @@ import '../../../blocs/floating_action_button/fab_bloc.dart';
 import '../../../blocs/floating_action_button/fab_event.dart';
 import '../../../blocs/sounds_audio/sound_bloc.dart';
 import '../../../extensions/list_int_to_color.dart';
+import '../animated/animated_list_tile.dart';
 import '../buttons/lock_color_button.dart';
 import '../colorpicker.dart';
 import '../customized_default_widgets/refrashable_reordable.dart';
@@ -89,23 +90,28 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     children: List.generate(lenght, (int index) {
                       final Color color = widget.colorsList[index].toColor(),
                           contrastColor = widget.colorsList[index].contrastColor();
-                      return InkWell(
-                        onDoubleTap: () {
-                          BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
-                          BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
-                        },
-                        key: ValueKey(index),
-                        child: Container(
-                          width: size.width,
-                          height: tileHeight,
-                          color: color,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Colorpicker(index, color: color, textColor: contrastColor, buttonSize: third),
-                              LockColorButton(index, color: contrastColor),
-                              SizedBox.fromSize(size: third),
-                            ],
+                      return AnimatedListItem(
+                        index: index,
+                        height: tileHeight,
+                        key: ValueKey<int>(index),
+                        lenght: lenght,
+                        child: InkWell(
+                          onDoubleTap: () {
+                            BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
+                            BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
+                          },
+                          child: Container(
+                            width: size.width,
+                            height: tileHeight,
+                            color: color,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Colorpicker(index, color: color, textColor: contrastColor, buttonSize: third),
+                                LockColorButton(index, color: contrastColor),
+                                SizedBox.fromSize(size: third),
+                              ],
+                            ),
                           ),
                         ),
                       );

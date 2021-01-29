@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
+import 'blocs/data_saving/datasaving_bloc.dart';
 import 'blocs/floating_action_button/fab_bloc.dart';
 import 'blocs/navigation/navigation_bloc.dart';
 import 'colors_bloc_observer.dart';
 import 'repositories/colors_repository.dart';
 import 'services/system_ui/system_overlays.dart';
 import 'ui/screens/scaffold_and_navigation.dart';
+import 'ui/screens/splash_screen.dart';
 import 'ui/theme/theme.dart';
 
-//TODO: Add list saving.
-//TODO: Add onboarding.
 //TODO: Handle Failure States in Bloc.
 //TODO: Add PDF export.
 //TODO: Add dif. color profiles.
@@ -19,8 +21,14 @@ import 'ui/theme/theme.dart';
 //TODO? Add settings menu.
 
 void main() {
-  Bloc.observer = ColorBlocObserver();
-  setupSystemUI().whenComplete(() => runApp(const MyApp()));
+  SystemUI.initUI().whenComplete(() async {
+    Bloc.observer = ColorBlocObserver();
+    await Hive.initFlutter();
+    runApp(BlocProvider(
+      create: (context) => DataStorageBloc()..add(const DataStorageOnboardingStarted()),
+      child: const MyApp(),
+    ));
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +44,12 @@ class MyApp extends StatelessWidget {
           ],
           child: RepositoryProvider<ColorsRepository>(
             create: (_) => const ColorsRepository(),
-            child: const NavigationScreen(),
+            child: BlocBuilder<DataStorageBloc, DataStorageState>(
+              builder: (context, state) => AnimatedOpacity(
+                  duration: const Duration(seconds: 2),
+                  opacity: state is DataStorageOnboardingLoadInProgress ? 0.5 : 1,
+                  child: state is DataStorageOnboardingLoadInProgress ? const SplashScreen() : const MainScreen()),
+            ),
           ),
         ),
       );

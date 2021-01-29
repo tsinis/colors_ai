@@ -18,14 +18,14 @@ import '../widgets/buttons/app_bar_buttons/about_button.dart';
 import '../widgets/buttons/save_colors_fab.dart';
 import 'constants.dart';
 
-class NavigationScreen extends StatefulWidget {
-  const NavigationScreen();
+class MainScreen extends StatefulWidget {
+  const MainScreen();
 
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> {
+class _NavigationScreenState extends State<MainScreen> {
   final SoundBloc _soundBloc = SoundBloc();
 
   @override
@@ -43,7 +43,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
           BlocProvider(create: (_) => _soundBloc),
-          // We need access to those 2 in app bar.
+          // We need access to those 2 below in app bar.
           BlocProvider<FavoritesBloc>(create: (_) => FavoritesBloc()),
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockStarted())),
@@ -54,15 +54,35 @@ class _NavigationScreenState extends State<NavigationScreen> {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
             return Scaffold(
+              key: const ValueKey<bool>(false),
               floatingActionButton: const SaveColorsFAB(),
               appBar: AppBar(
                   title: Text(state.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),
                   actions: [appBarActions[state.tabIndex], const AboutButton()]),
-              body: MultiBlocProvider(providers: [
-                BlocProvider<ColorsBloc>(
-                    create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsGenerated())),
-                BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
-              ], child: SafeArea(child: navTabs.elementAt(state.tabIndex))),
+              body: MultiBlocProvider(
+                  providers: [
+                    BlocProvider<ColorsBloc>(
+                        create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsGenerated())),
+                    BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
+                  ],
+                  child: BlocListener<NavigationBloc, NavigationState>(
+                      listener: (context, state) {
+                        if (state is NavigationFavoritesTabInitial) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Theme.of(context).dividerColor,
+                              duration: const Duration(seconds: 5),
+                              content:
+                                  const Text('Tap on the row to restore colors.\nSwipe right/left to remove them.'),
+                              action: SnackBarAction(
+                                label: 'GOT IT!',
+                                onPressed: () {},
+                              ),
+                            ),
+                          );
+                        }
+                      },
+                      child: SafeArea(child: navTabs.elementAt(state.tabIndex)))),
               bottomNavigationBar: BlocBuilder<FavoritesBloc, FavoritesState>(
                 builder: (context, saveState) {
                   final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;

@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:http/http.dart' as http;
 
 import '../../models/colors/colors_json.dart';
@@ -25,7 +24,7 @@ class API {
     } else {
       body = utf8.encode(isUiModel ? uiModel : defaultModel);
     }
-    return await http.post(host, headers: headers, body: body);
+    return await http.post(Uri.parse(host), headers: headers, body: body);
   }
 
   Future<ColorsAI> getNewColors(ColorsAI existingColors,
@@ -35,7 +34,7 @@ class API {
     lockedColors.forEach((isLocked) => invertedLocks.add(!isLocked));
     final http.Response response =
         await _colorsFromAPI(existingColors.list, isUiModel: forUI, lockedColors: invertedLocks);
-    if (response.statusCode != 200 || response.body == null) {
+    if (response.statusCode != 200) {
       // TODO! Handle status codes.
       throw Exception('Error, Status Code: ${response.statusCode}');
     } else {
