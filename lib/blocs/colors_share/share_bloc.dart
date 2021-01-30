@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:ui';
+import 'dart:ui' show Color;
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';

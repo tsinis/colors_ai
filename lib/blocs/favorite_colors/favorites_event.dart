@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' show Color;
 
 abstract class FavoritesEvent {
   const FavoritesEvent();
@@ -6,7 +6,6 @@ abstract class FavoritesEvent {
 
 class FavoritesAdded extends FavoritesEvent {
   const FavoritesAdded({required this.colorsToSave});
-
   final List<Color> colorsToSave;
 }
 
@@ -17,4 +16,8 @@ class FavoritesAllRemoved extends FavoritesEvent {
 class FavoritesOneRemoved extends FavoritesEvent {
   const FavoritesOneRemoved({required this.colorToRemoveIndex});
   final int colorToRemoveIndex;
+}
+
+class FavoritesLoadStarted extends FavoritesEvent {
+  const FavoritesLoadStarted();
 }

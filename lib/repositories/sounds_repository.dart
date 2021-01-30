@@ -14,9 +14,9 @@ class SoundsAssets {
 
   Future<void> _playSound(String soundName, {double volume = 0.4}) async {
     try {
-      await _player.setVolume(volume);
-      await _player.setAsset(_sounds.assetPath(soundName));
-      await _player.play().whenComplete(_player.stop);
+      // await _player.setVolume(volume);
+      // await _player.setAsset(_sounds.assetPath(soundName));
+      // await _player.play().whenComplete(_player.stop);
       // ignore: avoid_catches_without_on_clauses
     } catch (_) {}
   }

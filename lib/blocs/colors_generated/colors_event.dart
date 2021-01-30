@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' show Color;
 
 import 'package:equatable/equatable.dart';
 

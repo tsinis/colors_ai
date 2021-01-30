@@ -12,14 +12,32 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
 
   @override
   Stream<FavoritesState> mapEventToState(FavoritesEvent event) async* {
-    if (event is FavoritesAdded) {
-      if (event.colorsToSave.isNotEmpty) {
-        _favoritesRepository.add(event.colorsToSave);
+    if (event is FavoritesLoadStarted) {
+      yield const FavoritesLoadInProgress();
+      final bool? isDataLoaded = await _favoritesRepository.loadStoredFavorites;
+      print('ISDATALOADED: $isDataLoaded');
+      if (isDataLoaded == true || isDataLoaded == null) {
         try {
-          yield FavoritesLoadSuccess(_favoritesRepository);
+          yield const FavoritesLoadSuccess(_favoritesRepository);
         } catch (_) {
           yield const FavoritesFailure();
         }
+      } else {
+        try {
+          yield const FavoritesEmptyInitial();
+        } catch (_) {
+          yield const FavoritesFailure();
+        }
+      }
+    } else if (event is FavoritesAdded) {
+      if (event.colorsToSave.isNotEmpty) {
+        _favoritesRepository.add(event.colorsToSave);
+        try {
+          yield const FavoritesLoadSuccess(_favoritesRepository);
+        } catch (_) {
+          yield const FavoritesFailure();
+        }
+        await _favoritesRepository.updateStorage;
       } else {
         try {
           yield const FavoritesEmptyInitial();
@@ -32,8 +50,10 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       try {
         if (_favoritesRepository.list.isEmpty) {
           yield const FavoritesEmptyInitial();
+          await _favoritesRepository.clearStorage;
         } else {
-          yield FavoritesLoadSuccess(_favoritesRepository);
+          yield const FavoritesLoadSuccess(_favoritesRepository);
+          await _favoritesRepository.updateStorage;
         }
       } catch (_) {
         yield const FavoritesFailure();
@@ -45,6 +65,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       } catch (_) {
         yield const FavoritesFailure();
       }
+      await _favoritesRepository.clearStorage;
     }
   }
 }

@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' show Color;
 
 import '../extensions/color_to_list_int.dart';
 import '../extensions/list_int_to_color.dart';

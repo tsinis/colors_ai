@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:ui';
+import 'dart:ui' show Color;
 
 import 'package:json_annotation/json_annotation.dart';
 import '../../extensions/color_to_list_int.dart';

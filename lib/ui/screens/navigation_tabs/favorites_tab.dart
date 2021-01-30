@@ -12,7 +12,7 @@ class FavoritesTab extends StatelessWidget {
   const FavoritesTab();
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
-        builder: (BuildContext context, state) => AnimatedSwitcher(
+      builder: (BuildContext context, state) => AnimatedSwitcher(
             duration: const Duration(milliseconds: 600),
             switchInCurve: Curves.easeInQuart,
             switchOutCurve: Curves.easeOutQuart,
@@ -55,6 +55,6 @@ class FavoritesTab extends StatelessWidget {
                   )
                 : (state is FavoritesLoadSuccess)
                     ? FavoritesList(state.favoriteColors.list)
-                    : Container(color: Colors.blue)),
-      );
+                    : const Center(child: CircularProgressIndicator()),
+          ));
 }

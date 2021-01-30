@@ -1,7 +1,11 @@
+import 'package:equatable/equatable.dart';
+
 import '../../repositories/favorites_repository.dart';
 
-abstract class FavoritesState {
+abstract class FavoritesState extends Equatable {
   const FavoritesState();
+  @override
+  List<Object> get props => [];
 }
 
 class FavoritesEmptyInitial extends FavoritesState {
@@ -16,9 +20,11 @@ class FavoritesRemoveAllSuccess extends FavoritesState {
   const FavoritesRemoveAllSuccess();
 }
 
-class FavoritesLoadInProgress extends FavoritesState {}
+class FavoritesLoadInProgress extends FavoritesState {
+  const FavoritesLoadInProgress();
+}
 
 class FavoritesLoadSuccess extends FavoritesState {
-  FavoritesLoadSuccess(this.favoriteColors);
+  const FavoritesLoadSuccess(this.favoriteColors);
   final FavoritesRepository favoriteColors;
 }

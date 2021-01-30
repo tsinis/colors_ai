@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'dart:ui' show Color;
 
 import '../../services/share_web/url_provider.dart';
 
