@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
 class PullToRefreshAnimation extends StatefulWidget {
-  const PullToRefreshAnimation();
+  const PullToRefreshAnimation({this.color = Colors.black});
+
+  final Color color;
 
   @override
   _PullToRefreshAnimationState createState() => _PullToRefreshAnimationState();
@@ -26,7 +28,7 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
     _fade = ReverseAnimation(_fadeController);
     _opacity = Tween<double>(begin: 1, end: 0).chain(CurveTween(curve: _curve)).animate(_opacityController);
     _height = Tween<double>(begin: 100, end: 200).chain(CurveTween(curve: _curve)).animate(_heightController);
-    _color = ColorTween(begin: Colors.grey, end: Colors.grey.withOpacity(0))
+    _color = ColorTween(begin: Colors.grey[400]!.withOpacity(0.8), end: widget.color.withOpacity(0.4))
         .chain(CurveTween(curve: _curve))
         .animate(_colorController);
     super.initState();
@@ -44,9 +46,9 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [_color.value!, Colors.amber.withOpacity(_opacity.value.clamp(0.1, 1))],
+                  colors: [_color.value!, widget.color.withOpacity(_opacity.value)],
                 ),
-                border: Border.all(color: Colors.white.withOpacity(_opacity.value), width: 4),
+                border: Border.all(color: Colors.grey[400]!.withOpacity(_opacity.value), width: 4),
                 borderRadius: const BorderRadius.all(Radius.circular(100))),
             child: FadeTransition(
               opacity: _fade,
@@ -55,7 +57,7 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
                 child: Container(
                   height: 90,
                   decoration:
-                      const BoxDecoration(color: Colors.amber, borderRadius: BorderRadius.all(Radius.circular(50))),
+                      BoxDecoration(color: widget.color, borderRadius: const BorderRadius.all(Radius.circular(50))),
                 ),
               ),
             ),

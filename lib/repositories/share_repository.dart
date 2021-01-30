@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 import 'package:share/share.dart';
 
 import '../models/url_providers/url_providers.dart';
+import '../services/clipboard/clipboard.dart';
 import '../services/share_web/url_provider.dart';
 
 class ShareRepository {
@@ -11,6 +11,7 @@ class ShareRepository {
 
   final List<List<Color>> favoriteColors;
 
+  static const Clipboards _clipboard = Clipboards();
   static int _selectedProvider = 0;
 
   // ignore: avoid_setters_without_getters
@@ -27,7 +28,7 @@ class ShareRepository {
     final ColorsUrlProvider provider = urlProviders.list[_selectedProvider];
 
     if (copyOnly) {
-      await Clipboard.setData(ClipboardData(text: provider.url));
+      await _clipboard.copyURL(provider.url);
     } else {
       await Share.share(provider.url, subject: 'Colors AI');
     }

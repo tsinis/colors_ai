@@ -23,9 +23,10 @@ class ShareBloc extends Bloc<ShareEvent, ShareState> {
 
   @override
   Stream<ShareState> mapEventToState(ShareEvent event) async* {
-    if (event is ShareUrlCShared) {
+    if (event is ShareUrlShared) {
       _shareRepository.shareUrl(event.currentColors);
     } else if (event is ShareUrlCopied) {
+      yield const ShareCopySuccess();
       _shareRepository.copyUrl(event.currentColors);
     } else if (event is ShareUrlProviderChanged) {
       _shareRepository.changeProvider = event.newProviderIndex;

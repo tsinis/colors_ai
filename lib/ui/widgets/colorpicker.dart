@@ -59,6 +59,7 @@ class Colorpicker extends StatelessWidget {
             }
             return TextButton(
                 style: ButtonStyle(enableFeedback: true, minimumSize: MaterialStateProperty.all<Size>(buttonSize)),
+                onLongPress: () => BlocProvider.of<ColorPickerBLoc>(context).add(ColorPickerCopied(color)),
                 onPressed: () {
                   BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
                   BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());

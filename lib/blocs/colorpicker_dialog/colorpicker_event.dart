@@ -1,3 +1,5 @@
+import 'dart:ui' show Color;
+
 import 'package:equatable/equatable.dart';
 
 abstract class ColorPickerEvent extends Equatable {
@@ -13,4 +15,9 @@ class ColorPickerShowed extends ColorPickerEvent {
 
 class ColorPickerHided extends ColorPickerEvent {
   const ColorPickerHided();
+}
+
+class ColorPickerCopied extends ColorPickerEvent {
+  const ColorPickerCopied(this.color);
+  final Color color;
 }

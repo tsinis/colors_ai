@@ -18,3 +18,8 @@ class ColorPickerOpenInitial extends ColorPickerState {
 class ColorPickerFailure extends ColorPickerState {
   const ColorPickerFailure();
 }
+
+class ColorPickerCopySuccess extends ColorPickerState {
+  const ColorPickerCopySuccess({required this.copiedColor});
+  final String copiedColor;
+}

@@ -10,24 +10,9 @@ class SplashScreen extends StatelessWidget {
         body: const Center(child: CircularProgressIndicator()),
         bottomNavigationBar: BottomNavigationBar(
           items: const [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.share_outlined,
-                  color: Colors.transparent,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.palette,
-                  color: Colors.transparent,
-                ),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.bookmarks_outlined,
-                  color: Colors.transparent,
-                ),
-                label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.share_outlined, color: Colors.transparent), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.palette, color: Colors.transparent), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.bookmarks_outlined, color: Colors.transparent), label: ''),
           ],
         ),
       );

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../blocs/colorpicker_dialog/colorpicker_bloc.dart';
+import '../../blocs/colorpicker_dialog/colorpicker_state.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
 import '../../blocs/colors_generated/colors_event.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/colors_share/share_bloc.dart';
-import '../../blocs/data_saving/datasaving_bloc.dart';
 import '../../blocs/favorite_colors/favorites_bloc.dart';
 import '../../blocs/favorite_colors/favorites_state.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
@@ -61,36 +62,39 @@ class _NavigationScreenState extends State<MainScreen> {
                   title: Text(state.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),
                   actions: [appBarActions[state.tabIndex], const AboutButton()]),
               body: MultiBlocProvider(
-                  providers: [
-                    BlocProvider<ColorsBloc>(
-                        create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted())),
-                    BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
-                  ],
-                  child: BlocListener<NavigationBloc, NavigationState>(
-                      listener: (context, navState) {
-                        if (navState is NavigationFavoritesTabInitial) {
-                          Future.delayed(
-                              const Duration(seconds: 1),
-                              () => ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      // behavior: SnackBarBehavior.floating,
-                                      backgroundColor: Theme.of(context).dividerColor,
-                                      duration: const Duration(seconds: 5),
-                                      content: const Text(
-                                          'Tap on the row to restore colors.\nSwipe right/left to remove them.'),
-                                      action: SnackBarAction(
-                                        textColor: Colors.greenAccent,
-                                        label: 'GOT IT!',
-                                        onPressed: () =>
-                                            DataStorageBloc()..add(const DataStorageOnboardingFavsFinished()),
-                                      ),
-                                    ),
-                                  ));
-                        } else {
-                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                providers: [
+                  BlocProvider<ColorsBloc>(
+                      create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted())),
+                  BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
+                  BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
+                ],
+                child: MultiBlocListener(
+                  listeners: [
+                    BlocListener<ShareBloc, ShareState>(
+                      listener: (_, shareState) {
+                        if (shareState is ShareCopySuccess) {
+                          BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(duration: Duration(seconds: 1), content: Text('Link copied!')));
                         }
                       },
-                      child: SafeArea(child: navTabs.elementAt(state.tabIndex)))),
+                    ),
+                    BlocListener<ColorPickerBLoc, ColorPickerState>(
+                      listener: (_, pickerState) {
+                        if (pickerState is ColorPickerCopySuccess) {
+                          BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            duration: const Duration(seconds: 1),
+                            content: Text('Color ${pickerState.copiedColor} copied!'),
+                            behavior: SnackBarBehavior.floating,
+                          ));
+                        }
+                      },
+                    ),
+                  ],
+                  child: SafeArea(child: navTabs.elementAt(state.tabIndex)),
+                ),
+              ),
               bottomNavigationBar: BlocBuilder<FavoritesBloc, FavoritesState>(
                 builder: (context, saveState) {
                   final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;

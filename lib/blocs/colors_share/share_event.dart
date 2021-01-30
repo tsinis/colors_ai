@@ -12,8 +12,8 @@ class ShareUrlProviderChanged extends ShareEvent {
   final int newProviderIndex;
 }
 
-class ShareUrlCShared extends ShareEvent {
-  const ShareUrlCShared(this.currentColors);
+class ShareUrlShared extends ShareEvent {
+  const ShareUrlShared(this.currentColors);
   final List<Color> currentColors;
 }
 
