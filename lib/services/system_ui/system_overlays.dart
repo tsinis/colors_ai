@@ -7,7 +7,7 @@ class SystemUI {
 
   static Future<void> initUI() async {
     //TODO Lock native splash too.
-    WidgetsFlutterBinding.ensureInitialized();
+    // WidgetsFlutterBinding.ensureInitialized(); //Done in Hive init.
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

@@ -22,5 +22,32 @@
                 "--no-sound-null-safety"
             ]
         },
+        {
+            "name": "Unit/Widget Tests Run",
+            "request": "launch",
+            "type": "dart",
+            "codeLens": {
+                "for": [
+                    "run-test"
+                ],
+                "path": "test",
+            },
+            "args": [
+                "--no-sound-null-safety"
+            ]
+        },{
+            "name": "Unit/Widget Tests Debug",
+            "request": "launch",
+            "type": "dart",
+            "codeLens": {
+                "for": [
+                    "debug-test"
+                ],
+                "path": "test",
+            },
+            "args": [
+                "--no-sound-null-safety"
+            ]
+        },
     ]
 }

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mdi/mdi.dart';
 
 import '../../../blocs/onboarding/onboarding_bloc.dart';
+import '../../../flutter_colors_ai_keys.dart';
 import '../animated/pull_to_refresh.dart';
 import 'default_grey_colors_list.dart';
 
@@ -40,7 +41,7 @@ class OnboardingList extends DefaultGreyList {
   @override
   Widget build(BuildContext context) => BlocBuilder<OnboardingBloc, OnboardingState>(
         builder: (context, state) => (state is OnboardingDoneSuccess)
-            ? const SizedBox.shrink()
+            ? const SizedBox.shrink(key: FlutterColorsAIKeys.disappearedOnboard)
             : Stack(
                 children: [
                   IgnorePointer(
@@ -134,7 +135,7 @@ class OnboardingList extends DefaultGreyList {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: Colors.greenAccent),
                           onPressed: () => BlocProvider.of<OnboardingBloc>(context).add(const OnboardingFinished()),
-                          child: const Text('GOT IT!', textScaleFactor: 1),
+                          child: const Text('GOT IT!', textScaleFactor: 1, key: FlutterColorsAIKeys.onboardingFinish),
                         ),
                       ),
                     ),

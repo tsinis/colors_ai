@@ -18,7 +18,7 @@ class AboutButton extends StatelessWidget {
           applicationIcon: Image.asset('assets/images/app_icon.png'),
           //TODO Provide all those data from pubspec.yaml.
           applicationName: 'Colors AI',
-          applicationVersion: '1.0.0',
+          applicationVersion: '1.0.1',
           applicationLegalese: '2021 © Roman Cinis',
           children: <Widget>[
             const SizedBox(height: 20),
@@ -31,11 +31,11 @@ class AboutButton extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
                       text: ' Colormind API',
                       recognizer: TapGestureRecognizer()..onTap = () => UrlLauncher.openURL(url: aboutColormindAPI)),
-                  const TextSpan(text: '. The source code of this application is available at'),
+                  const TextSpan(text: '. The source code of this application '),
                   TextSpan(
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
-                      text: ' this GitHub repository.',
-                      recognizer: TapGestureRecognizer()..onTap = () => UrlLauncher.openURL),
+                      text: 'is available at this GitHub repository.',
+                      recognizer: TapGestureRecognizer()..onTap = UrlLauncher.openURL),
                   const TextSpan(text: '\n\nATTRIBUTION:\n\nUI sounds used in this application:'),
                   TextSpan(
                       style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),

@@ -24,9 +24,9 @@ import 'ui/theme/theme.dart';
 //TODO? Add settings menu.
 
 void main() {
-  SystemUI.initUI().whenComplete(() async {
+  Hive.initFlutter().whenComplete(() async {
     Bloc.observer = ColorBlocObserver();
-    await Hive.initFlutter();
+    await SystemUI.initUI();
     runApp(BlocProvider<OnboardingBloc>(
       create: (_) => OnboardingBloc()..add(const OnboardingLoadDataStarted()),
       child: const MyApp(),
