@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:hive/hive.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'blocs/favorite_colors/favorites_bloc.dart';
+import 'blocs/favorite_colors/favorites_event.dart';
 import 'blocs/floating_action_button/fab_bloc.dart';
 import 'blocs/navigation/navigation_bloc.dart';
 import 'blocs/onboarding/onboarding_bloc.dart';
@@ -15,8 +19,7 @@ import 'ui/theme/theme.dart';
 
 //TODO: Handle Failure States in Bloc.
 //TODO: Add PDF export.
-//TODO: Add dif. color profiles.
-//TODO: Add app icon.
+//TODO: Add diff. color profiles.
 //TODO: Provide all text strings via l10n Bloc.
 //TODO? Add settings menu.
 
@@ -39,6 +42,7 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         home: MultiBlocProvider(
           providers: [
+            BlocProvider<FavoritesBloc>(create: (_) => FavoritesBloc()..add(const FavoritesLoadStarted())),
             BlocProvider<FabBloc>(create: (_) => FabBloc()),
             BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
           ],

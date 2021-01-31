@@ -9,6 +9,7 @@ import '../models/hive_adapters/color_adapter.dart';
 class FavoritesRepository {
   const FavoritesRepository();
 
+  static bool _boxInitialized = false;
   static const String _favoritesBox = 'favorite';
   static final List<List<Color>> _list = [];
 
@@ -16,11 +17,14 @@ class FavoritesRepository {
 
   void add(List<Color> color) => _list.add(color);
 
-  void remove(int colorIndex) => _list.removeAt(colorIndex);
+  void remove(int colorIndex) {
+    try {
+      _list.removeAt(colorIndex);
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {}
+  }
 
   void get removeAll => _list.clear();
-
-  static bool _boxInitialized = false;
 
   Future<Box<Color>> get clearStorage async {
     final Box<Color> favoritesBox = await Hive.openBox<Color>(_favoritesBox);
@@ -35,20 +39,7 @@ class FavoritesRepository {
             await favoritesBox.add(color);
           });
         }
-        print(favoritesBox.values);
       });
-
-  void _joinColorsLists(List<Color> onlyColors) {
-    _list.clear();
-    final int len = onlyColors.length, size = defaultColors.length;
-    for (var i = 0; i < len; i += size) {
-      final int end = (i + size < len) ? i + size : len;
-      _list.add(onlyColors.sublist(i, end));
-    }
-    print('----------');
-    print('joined data: $_list');
-    print('joined data lenght: ${_list.length}');
-  }
 
   Future<bool?> get loadStoredFavorites async {
     if (!_boxInitialized) {
@@ -57,13 +48,20 @@ class FavoritesRepository {
         Hive.registerAdapter(ColorAdapter());
         final Box<Color> favoritesBox = await Hive.openBox<Color>(_favoritesBox);
         _joinColorsLists(favoritesBox.values.toList());
-        print(favoritesBox.values);
-        print('restored: ${favoritesBox.values}');
         return _list.isNotEmpty;
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         return false;
       }
+    }
+  }
+
+  void _joinColorsLists(List<Color> onlyColors) {
+    _list.clear();
+    final int len = onlyColors.length, size = defaultColors.length;
+    for (var i = 0; i < len; i += size) {
+      final int end = (i + size < len) ? i + size : len;
+      _list.add(onlyColors.sublist(i, end));
     }
   }
 }

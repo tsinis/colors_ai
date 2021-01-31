@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_catches_without_on_clauses
+// ignore_for_file: avoid_catches_without_on_clauses, unawaited_futures
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../repositories/favorites_repository.dart';
@@ -15,7 +15,6 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     if (event is FavoritesLoadStarted) {
       yield const FavoritesLoadInProgress();
       final bool? isDataLoaded = await _favoritesRepository.loadStoredFavorites;
-      print('ISDATALOADED: $isDataLoaded');
       if (isDataLoaded == true || isDataLoaded == null) {
         try {
           yield const FavoritesLoadSuccess(_favoritesRepository);
@@ -37,7 +36,8 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         } catch (_) {
           yield const FavoritesFailure();
         }
-        await _favoritesRepository.updateStorage;
+
+        _favoritesRepository.updateStorage;
       } else {
         try {
           yield const FavoritesEmptyInitial();
@@ -48,12 +48,12 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     } else if (event is FavoritesOneRemoved) {
       _favoritesRepository.remove(event.colorToRemoveIndex);
       try {
-        if (_favoritesRepository.list.isEmpty) {
+        if (_favoritesRepository.list.isNotEmpty) {
+          yield const FavoritesLoadSuccess(_favoritesRepository);
+          _favoritesRepository.updateStorage;
+        } else {
           yield const FavoritesEmptyInitial();
           await _favoritesRepository.clearStorage;
-        } else {
-          yield const FavoritesLoadSuccess(_favoritesRepository);
-          await _favoritesRepository.updateStorage;
         }
       } catch (_) {
         yield const FavoritesFailure();

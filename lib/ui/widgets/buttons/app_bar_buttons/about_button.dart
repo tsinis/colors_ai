@@ -15,7 +15,7 @@ class AboutButton extends StatelessWidget {
         icon: const Icon(Icons.info_outline),
         onPressed: () => showAboutDialog(
           context: context,
-          applicationIcon: const FlutterLogo(),
+          applicationIcon: Image.asset('assets/images/app_icon.png'),
           //TODO Provide all those data from pubspec.yaml.
           applicationName: 'Colors AI',
           applicationVersion: '1.0.0',

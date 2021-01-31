@@ -9,7 +9,6 @@ import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/colors_share/share_bloc.dart';
 import '../../blocs/favorite_colors/favorites_bloc.dart';
-import '../../blocs/favorite_colors/favorites_event.dart';
 import '../../blocs/favorite_colors/favorites_state.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
@@ -30,11 +29,9 @@ class MainScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<MainScreen> {
   final SoundBloc _soundBloc = SoundBloc();
-  final FavoritesBloc _favsBloc = FavoritesBloc();
 
   @override
   void initState() {
-    _favsBloc.add(const FavoritesLoadStarted());
     _soundBloc.add(const SoundStarted());
     super.initState();
   }
@@ -48,7 +45,6 @@ class _NavigationScreenState extends State<MainScreen> {
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
           BlocProvider<SoundBloc>(create: (_) => _soundBloc),
-          BlocProvider<FavoritesBloc>(create: (_) => _favsBloc),
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockStarted())),
         ],
@@ -118,7 +114,7 @@ class _NavigationScreenState extends State<MainScreen> {
                           icon: const Icon(Icons.palette_outlined),
                           activeIcon: const Icon(Icons.palette)),
                       BottomNavigationBarItem(
-                        // tooltip: isFavoritesEmpty ? 'No ${state.tabLabels.last}' : state.tabLabels.last,
+                        tooltip: isFavoritesEmpty ? 'No ${state.tabLabels.last}' : state.tabLabels.last,
                         label: state.tabLabels[_favoritesTabIndex],
                         activeIcon: const Icon(Icons.bookmarks),
                         icon: Icon(Icons.bookmarks_outlined,

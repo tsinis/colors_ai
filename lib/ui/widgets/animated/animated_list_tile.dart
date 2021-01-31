@@ -38,7 +38,7 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                  color: isAnimationDone ? Colors.black12 : Colors.black26,
+                  color: isAnimationDone ? Colors.black.withOpacity(0) : Colors.black26,
                   blurRadius: shadowToZero,
                   offset: Offset(0, shadowToZero),
                   spreadRadius: shadowToZero)

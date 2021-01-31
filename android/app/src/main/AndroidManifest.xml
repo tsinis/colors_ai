@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="is.tsin.colors_ai.colors_ai">
    <application
-        android:label="colors_ai"
+        android:label="Colors AI"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity
