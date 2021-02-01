@@ -21,7 +21,7 @@ packages:
       name: audio_session
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.11"
+    version: "0.1.0-nullsafety.3"
   bloc:
     dependency: transitive
     description:
@@ -64,15 +64,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0-nullsafety.5"
-  convert:
-    dependency: transitive
-    description:
-      name: convert
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
   crypto:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: crypto
       url: "https://pub.dartlang.org"
@@ -175,11 +168,9 @@ packages:
     version: "4.0.0-nullsafety"
   integration_test:
     dependency: "direct dev"
-    description:
-      name: integration_test
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2+2"
+    description: flutter
+    source: sdk
+    version: "0.9.2+2"
   js:
     dependency: transitive
     description:
@@ -200,21 +191,21 @@ packages:
       name: just_audio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.9"
+    version: "0.7.0-nullsafety.0"
   just_audio_platform_interface:
     dependency: transitive
     description:
       name: just_audio_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "3.0.0-nullsafety.0"
   just_audio_web:
     dependency: transitive
     description:
       name: just_audio_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.3"
+    version: "0.3.0-nullsafety.0"
   matcher:
     dependency: transitive
     description:
@@ -333,7 +324,7 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.25.0"
+    version: "0.26.0-nullsafety.1"
   share:
     dependency: "direct main"
     description:
@@ -464,7 +455,7 @@ packages:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.2"
+    version: "3.0.0-nullsafety.0"
   vector_math:
     dependency: transitive
     description:

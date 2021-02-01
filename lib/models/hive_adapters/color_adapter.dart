@@ -1,5 +1,4 @@
 import 'dart:ui' show Color;
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:hive/hive.dart';
 
 class ColorAdapter extends TypeAdapter<Color> {

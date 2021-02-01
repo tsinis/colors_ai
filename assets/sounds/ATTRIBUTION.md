@@ -4,8 +4,6 @@ The following is a list of sound assets used in this application and their prope
 
 Assets Used:
 
-* navigation_transition-left.ogg
-* navigation_transition-right.ogg
 * notification_decorative-01.ogg
 * notification_decorative-02.ogg
 * notification_high-intensity.ogg

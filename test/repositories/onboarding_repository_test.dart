@@ -1,6 +1,5 @@
 import 'package:colors_ai/repositories/onboarding_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:hive/hive.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:hive_flutter/hive_flutter.dart';

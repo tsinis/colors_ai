@@ -1,4 +1,3 @@
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:just_audio/just_audio.dart';
 import '../models/sounds/constants.dart';
 import '../models/sounds/sounds_audio.dart';

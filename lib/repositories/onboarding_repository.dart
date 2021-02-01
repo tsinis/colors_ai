@@ -1,4 +1,3 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe, avoid_print
 import 'package:hive/hive.dart';
 
 class OnboardingRepository {

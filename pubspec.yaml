@@ -22,15 +22,15 @@ dependencies:
   hive_flutter:
   http: ^0.13.0-nullsafety.0
   json_annotation: ^4.0.0-nullsafety.0
-  just_audio: ^0.6.9
+  just_audio: ^0.7.0-nullsafety.0
   mdi: ^5.0.0-nullsafety.0
   share: ^2.0.0-nullsafety.2
   simple_animations: ^3.0.0-nullsafety.3
   url_launcher: ^6.0.0-nullsafety.6
   vibration: ^1.7.4-nullsafety.0
 
-dependency_overrides:
-  crypto: ^3.0.0-nullsafety.0
+# dependency_overrides:
+#   crypto: ^3.0.0-nullsafety.0
 
 dev_dependencies:
   # build_runner:
@@ -42,9 +42,9 @@ dev_dependencies:
   # flutter_native_splash: ^0.2.9
   flutter_test:
     sdk: flutter
-  # integration_test:
-  #   sdk: flutter
-  integration_test: ^1.0.2+2
+  integration_test:
+    sdk: flutter
+  # integration_test: ^1.0.2+2
   # mockito: ^5.0.0-nullsafety.5
   pedantic: ^1.10.0-nullsafety.3
 
