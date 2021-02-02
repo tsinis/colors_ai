@@ -37,13 +37,12 @@ class _FavoritesListState extends State<FavoritesList> {
           // separatorBuilder: (_, __) => const Divider(height: 1.2),
           itemCount: widget.favoriteColors.length,
           itemBuilder: (context, listIndex) => Dismissible(
-            // resizeDuration: const Duration(milliseconds: 800),
             key: UniqueKey(),
             onResize: () {
               if (_isDissmised) {
                 BlocProvider.of<FavoritesBloc>(context).add(FavoritesOneRemoved(colorToRemoveIndex: listIndex));
               }
-              setState(() => _isDissmised = false);
+              _isDissmised = false;
             },
             onDismissed: (_) => setState(() => _isDissmised = true),
             secondaryBackground: const RemoveBackground(secondary: true),
