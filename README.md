@@ -1,3 +1,7 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![pedantic on pub.dev](https://img.shields.io/badge/style-pedantic-blue)](https://pub.dev/packages/pedantic)
+[![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
+
 # Colors AI 🎨
 
 ## Table of content

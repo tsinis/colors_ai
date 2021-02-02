@@ -14,5 +14,5 @@ class ColorAdapter extends TypeAdapter<Color> {
   }
 
   @override
-  int get typeId => 0;
+  int get typeId => 200;
 }

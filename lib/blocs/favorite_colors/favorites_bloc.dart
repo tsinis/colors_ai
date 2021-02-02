@@ -36,8 +36,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         } catch (_) {
           yield const FavoritesFailure();
         }
-
-        _favoritesRepository.updateStorage;
+        _favoritesRepository.addToStorage;
       } else {
         try {
           yield const FavoritesEmptyInitial();
