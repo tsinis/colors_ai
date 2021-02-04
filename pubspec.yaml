@@ -6,7 +6,7 @@ issue_tracker: https://github.com/tsinis/colors_ai/issues
 
 publish_to: 'none'
 
-version: 1.0.1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.12.0-133.7.beta <3.0.0"
@@ -22,7 +22,7 @@ dependencies:
   hive_flutter:
   http: ^0.13.0-nullsafety.0
   json_annotation: ^4.0.0-nullsafety.0
-  just_audio: ^0.7.0-nullsafety.0
+  just_audio: ^0.7.0-nullsafety.1
   mdi: ^5.0.0-nullsafety.0
   share: ^2.0.0-nullsafety.2
   simple_animations: ^3.0.0-nullsafety.3

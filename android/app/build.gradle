@@ -39,12 +39,14 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "is.tsin.colors_ai.colors_ai"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        ndk {
+            debugSymbolLevel 'SYMBOL_TABLE'
+        }
     }
     signingConfigs {
         release {
@@ -59,6 +61,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
+    ndkVersion "22.0.7026061"
 }
 
 flutter {

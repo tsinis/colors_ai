@@ -22,7 +22,7 @@ You can watch a **preview video of it (with main functionality highlight) here:*
 
 ## Description
 
-Colors AI is a gesture-first color scheme generator that uses **deep learning from Colormind API**. Application is made with Flutter and available for Android devices.
+Colors AI is a gesture-first color scheme generator that uses **deep learning from Colormind API**. Application is made with Flutter and available for Android™ devices.
 
 ## Technical Data
 
@@ -31,7 +31,7 @@ App is made with a reactive style **BLoC pattern**, in four-layered architecture
 
 Application is **partially covered with Unit, Widget, and Integration tests**. More to come in the future.
 
-All Dart code is linted with [Pedantic](https://pub.dev/packages/pedantic). Hive with custom Color TypeAdapter is used here for local data storage. HTTP package is used for network requests to Colormind API.
+All Dart code is linted with [Pedantic](https://pub.dev/packages/pedantic). [Hive](https://pub.dev/packages/hive) with custom Color TypeAdapters is used here for local data storage. [HTTP](https://pub.dev/packages/http) package is used for network requests to Colormind API.
 
 **Application is null-safety ready**, there is only one dependency missing to be fully "sound" null safe ATM.
 
@@ -78,4 +78,8 @@ Assets Used:
 
 ## Releases
 
-You can find signed binaries for the Android platform in the [Releases](https://github.com/tsinis/colors_ai/releases) section of this GitHub repository.
+You can find signed binaries for the Android platform in the [Releases](https://github.com/tsinis/colors_ai/releases) section of this GitHub repository. Or just:
+
+[![Colors AI](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
+
+Android, Google Play and the Google Play logo are trademarks of Google LLC.
