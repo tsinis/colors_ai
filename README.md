@@ -33,14 +33,14 @@ Application is **partially covered with Unit, Widget, and Integration tests**. M
 
 All Dart code is linted with [Pedantic](https://pub.dev/packages/pedantic). [Hive](https://pub.dev/packages/hive) with custom Color TypeAdapters is used here for local data storage. [HTTP](https://pub.dev/packages/http) package is used for network requests to Colormind API.
 
-**Application is null-safety ready**, there is only one dependency missing to be fully "sound" null safe ATM.
+**Application is fully sound null-safe**.
 
 ### How to run it
 
 Flutter version **1.23** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```bash
-flutter run --no-sound-null-safety
+flutter run
 ```
 
 ## UI/UX Design

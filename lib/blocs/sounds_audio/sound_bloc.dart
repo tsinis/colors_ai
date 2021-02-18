@@ -11,25 +11,25 @@ part 'sound_state.dart';
 class SoundBloc extends Bloc<SoundEvent, SoundState> {
   SoundBloc() : super(const SoundInitial());
 
-  static const SoundsAssets _favoritesRepository = SoundsAssets();
+  static const SoundsAssets _soundRepository = SoundsAssets();
 
   @override
   Stream<SoundState> mapEventToState(SoundEvent event) async* {
     if (event is SoundStarted) {
-      _favoritesRepository.playFavoritesAdded;
+      _soundRepository.playFavoritesAdded;
     } else if (event is SoundRefreshed) {
-      _favoritesRepository.playRefresh;
+      _soundRepository.playRefresh;
     } else if (event is SoundFavoritesAdded) {
-      _favoritesRepository.playFavoritesAdded;
+      _soundRepository.playFavoritesAdded;
     } else if (event is SoundLocked) {
-      _favoritesRepository.playLock;
+      _soundRepository.playLock;
     } else if (event is SoundCopied) {
-      _favoritesRepository.playCopy;
+      _soundRepository.playCopy;
     }
     //  else if (event is SoundLeftSwiped) {
-    //   _favoritesRepository.playSwipeLeft;
+    //   _soundRepository.playSwipeLeft;
     // } else if (event is SoundRightSwiped) {
-    //   _favoritesRepository.playSwipeRight;
+    //   _soundRepository.playSwipeRight;
     // }
   }
 }

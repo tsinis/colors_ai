@@ -1,9 +1,7 @@
 import 'constants.dart';
 
 String colorsToInput(List<List<int>> colorslist, {required List<bool> lockedColors}) {
-  final StringBuffer sb = StringBuffer();
-  // ignore: cascade_invocations
-  sb.write(startSquareBracket);
+  final StringBuffer sb = StringBuffer()..write(startSquareBracket);
   for (final List<int> color in colorslist) {
     final int colorIndex = colorslist.indexOf(color);
     if (lockedColors[colorIndex]) {

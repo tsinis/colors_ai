@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../blocs/about_dialog/about_bloc.dart';
 import '../../blocs/colorpicker_dialog/colorpicker_bloc.dart';
 import '../../blocs/colorpicker_dialog/colorpicker_state.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
@@ -58,7 +59,11 @@ class _NavigationScreenState extends State<MainScreen> {
               floatingActionButton: const SaveColorsFAB(),
               appBar: AppBar(
                   title: Text(state.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),
-                  actions: [appBarActions[state.tabIndex], const AboutButton()]),
+                  actions: [
+                    appBarActions[state.tabIndex],
+                    BlocProvider(
+                        create: (context) => AboutBloc()..add(const AboutStarted()), child: const AboutButton())
+                  ]),
               body: MultiBlocProvider(
                 providers: [
                   BlocProvider<ColorsBloc>(

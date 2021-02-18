@@ -6,18 +6,18 @@ class ColorBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    // print('onEvent $event');
+    // debugPrint'onEvent $event');
   }
 
   @override
   void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    // print('onTransition $transition');
+    // debugPrint'onTransition $transition');
   }
 
   @override
   void onError(Bloc bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
-    // print('onError $error');
+    // debugPrint'onError $error');
   }
 }
