@@ -65,8 +65,7 @@ class ColorsRepository {
       try {
         _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: _locked.list);
         return true;
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
+      } on Exception catch (_) {
         return false;
       }
     } else {

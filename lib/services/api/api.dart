@@ -13,13 +13,11 @@ class API {
       {required List<bool> lockedColors, required bool isUiModel}) async {
     final List<int> body;
     if (lockedColors.contains(true)) {
-      final String input =
-          // ignore: prefer_interpolation_to_compose_strings
-          startCurlyBracket +
-              inputName +
-              colorsToInput(existingColors, lockedColors: lockedColors) +
-              (isUiModel ? uiModelBody : defaultModelBody) +
-              endCurlyBracket;
+      final String input = startCurlyBracket +
+          inputName +
+          colorsToInput(existingColors, lockedColors: lockedColors) +
+          (isUiModel ? uiModelBody : defaultModelBody) +
+          endCurlyBracket;
       body = utf8.encode(input);
     } else {
       body = utf8.encode(isUiModel ? uiModel : defaultModel);
@@ -30,8 +28,9 @@ class API {
   Future<ColorsAI> getNewColors(ColorsAI existingColors,
       {List<bool> lockedColors = defaultColorLocks, bool forUI = true}) async {
     final List<bool> invertedLocks = [];
-    // ignore: avoid_function_literals_in_foreach_calls
-    lockedColors.forEach((isLocked) => invertedLocks.add(!isLocked));
+    for (final isLocked in lockedColors) {
+      invertedLocks.add(!isLocked);
+    }
     final http.Response response =
         await _colorsFromAPI(existingColors.list, isUiModel: forUI, lockedColors: invertedLocks);
     if (response.statusCode != 200) {

@@ -10,8 +10,6 @@ import '../../services/share_web/url_provider.dart';
 part 'share_event.dart';
 part 'share_state.dart';
 
-// ignore_for_file: avoid_catches_without_on_clauses
-
 class ShareBloc extends Bloc<ShareEvent, ShareState> {
   ShareBloc(this._shareRepository)
       : super(ShareCurrentInitial(
@@ -36,7 +34,7 @@ class ShareBloc extends Bloc<ShareEvent, ShareState> {
         _shareRepository.selectedProvider,
         providersList: _shareRepository.providersList,
       );
-    } catch (_) {
+    } on Exception catch (_) {
       yield const ShareFailure();
     }
   }

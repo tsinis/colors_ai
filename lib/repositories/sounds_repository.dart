@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 import '../models/sounds/constants.dart';
 import '../models/sounds/sounds_audio.dart';
@@ -16,8 +17,10 @@ class SoundsAssets {
       await _player.setVolume(volume);
       await _player.setAsset(_sounds.assetPath(soundName));
       await _player.play().whenComplete(_player.stop);
-      // ignore: avoid_catches_without_on_clauses
-    } catch (_) {}
+    } on Exception catch (e) {
+      debugPrint(e.toString());
+      rethrow;
+    }
   }
 
   void get playLock => _playSound(lock);

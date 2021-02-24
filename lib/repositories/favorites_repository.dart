@@ -1,5 +1,6 @@
 import 'dart:ui' show Color;
 
+import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
 import '../extensions/list_color_to_color_list.dart';
@@ -48,8 +49,8 @@ class FavoritesRepository {
           _list.add(color.list);
         }
         return _list.isNotEmpty;
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
+      } on Exception catch (e) {
+        debugPrint(e.toString());
         return false;
       }
     }

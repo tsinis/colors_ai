@@ -10,7 +10,7 @@
             "type": "dart",
             "flutterMode": "debug",
             "args": [
-                "--no-sound-null-safety"
+                // "--no-sound-null-safety"
             ]
         },
         {
@@ -19,7 +19,7 @@
             "type": "dart",
             "flutterMode": "release",
             "args": [
-                "--no-sound-null-safety"
+                // "--no-sound-null-safety"
             ]
         },
         {
@@ -33,7 +33,7 @@
                 "path": "test",
             },
             "args": [
-                "--no-sound-null-safety"
+                // "--no-sound-null-safety"
             ]
         },{
             "name": "Unit/Widget Tests Debug",
@@ -46,7 +46,7 @@
                 "path": "test",
             },
             "args": [
-                "--no-sound-null-safety"
+                // "--no-sound-null-safety"
             ]
         },
     ]

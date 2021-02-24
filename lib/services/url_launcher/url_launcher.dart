@@ -3,6 +3,5 @@ import 'constants.dart';
 
 class UrlLauncher {
   Future<void> openURL({String url = sourceCodeURL}) async =>
-      // ignore: only_throw_errors
-      await canLaunch(url) ? await launch(url) : throw 'Could not launch $url';
+      await canLaunch(url) ? await launch(url) : throw UnsupportedError('Could not launch $url');
 }

@@ -8,7 +8,6 @@ import 'blocs/favorite_colors/favorites_event.dart';
 import 'blocs/floating_action_button/fab_bloc.dart';
 import 'blocs/navigation/navigation_bloc.dart';
 import 'blocs/onboarding/onboarding_bloc.dart';
-import 'colors_bloc_observer.dart';
 import 'repositories/colors_repository.dart';
 import 'services/system_ui/system_overlays.dart';
 import 'ui/screens/scaffold_and_navigation.dart';
@@ -23,7 +22,6 @@ import 'ui/theme/theme.dart';
 
 void main() {
   Hive.initFlutter().whenComplete(() async {
-    Bloc.observer = ColorBlocObserver();
     await SystemUI.initUI();
     runApp(BlocProvider<OnboardingBloc>(
       create: (_) => OnboardingBloc()..add(const OnboardingLoadDataStarted()),

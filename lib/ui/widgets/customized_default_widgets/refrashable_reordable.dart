@@ -1,6 +1,5 @@
 // @dart = 2.12
 
-// ignore_for_file: prefer_expression_function_bodies, always_put_control_body_on_new_line
 library refreshable_reorderable_list;
 
 // Copyright 2014 The Flutter Authors. All rights reserved.
@@ -160,29 +159,23 @@ class _RefreshableReorderableListViewState extends State<RefreshableReorderableL
     super.initState();
     _listOverlayEntry = OverlayEntry(
       opaque: true,
-      builder: (BuildContext context) {
-        return _ReorderableListContent(
-          header: widget.header,
-          scrollController: widget.scrollController,
-          scrollDirection: widget.scrollDirection,
-          onReorder: widget.onReorder,
-          physics: widget.physics,
-          padding: widget.padding,
-          reverse: widget.reverse,
-          onDragStart: widget.onDragStart,
-          onDragEnd: widget.onDragEnd,
-          children: widget.children,
-        );
-      },
+      builder: (BuildContext context) => _ReorderableListContent(
+        header: widget.header,
+        scrollController: widget.scrollController,
+        scrollDirection: widget.scrollDirection,
+        onReorder: widget.onReorder,
+        physics: widget.physics,
+        padding: widget.padding,
+        reverse: widget.reverse,
+        onDragStart: widget.onDragStart,
+        onDragEnd: widget.onDragEnd,
+        children: widget.children,
+      ),
     );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Overlay(key: _overlayKey, initialEntries: <OverlayEntry>[
-      _listOverlayEntry,
-    ]);
-  }
+  Widget build(BuildContext context) => Overlay(key: _overlayKey, initialEntries: <OverlayEntry>[_listOverlayEntry]);
 }
 
 // This widget is responsible for the inside of the Overlay in the
@@ -329,7 +322,9 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
 
   // Scrolls to a target context if that context is not on the screen.
   void _scrollTo(BuildContext context) {
-    if (_scrolling) return;
+    if (_scrolling) {
+      return;
+    }
     final RenderObject contextObject = context.findRenderObject()!;
     final RenderAbstractViewport viewport = RenderAbstractViewport.of(contextObject)!;
     // If and only if the current scroll offset falls in-between the offsets
@@ -401,7 +396,9 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
     // Places the value from startIndex one space before the element at endIndex.
     void reorder(int startIndex, int endIndex) {
       setState(() {
-        if (startIndex != endIndex) widget.onReorder(startIndex, endIndex);
+        if (startIndex != endIndex) {
+          widget.onReorder(startIndex, endIndex);
+        }
         // Animates leftover space in the drop area closed.
         _ghostController.reverse(from: 0.1);
         _entranceController.reverse(from: 0.1);
@@ -551,28 +548,27 @@ class _ReorderableListContentState extends State<_ReorderableListContent>
     }
 
     // We wrap the drag target in a Builder so that we can scroll to its specific context.
-    return Builder(builder: (BuildContext context) {
-      return DragTarget<Key>(
-        builder: buildDragTarget,
-        onWillAccept: (Key? toAccept) {
-          setState(() {
-            _nextIndex = index;
-            _requestAnimationToNextIndex();
-          });
-          _scrollTo(context);
-          // If the target is not the original starting point, then we will accept the drop.
-          return _dragging == toAccept && toAccept != toWrap.key;
-        },
-        onAccept: (Key accepted) {},
-        onLeave: (Object? leaving) {},
-      );
-    });
+    return Builder(
+        builder: (BuildContext context) => DragTarget<Key>(
+              builder: buildDragTarget,
+              onWillAccept: (Key? toAccept) {
+                setState(() {
+                  _nextIndex = index;
+                  _requestAnimationToNextIndex();
+                });
+                _scrollTo(context);
+                // If the target is not the original starting point, then we will accept the drop.
+                return _dragging == toAccept && toAccept != toWrap.key;
+              },
+              onAccept: (Key accepted) {},
+              onLeave: (Object? leaving) {},
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_asserts_with_message
-    assert(debugCheckHasMaterialLocalizations(context));
+    assert(debugCheckHasMaterialLocalizations(context),
+        'Given context has a [Localizations] ancestor that contains a [MaterialLocalizations] delegate');
     // We use the layout builder to constrain the cross-axis size of dragging child widgets.
     return LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
       const Key endWidgetKey = Key('DraggableList - End Widget');
@@ -629,7 +625,9 @@ class _CustomReorderableListChildGlobalKey extends GlobalObjectKey {
 
   @override
   bool operator ==(Object other) {
-    if (other.runtimeType != runtimeType) return false;
+    if (other.runtimeType != runtimeType) {
+      return false;
+    }
     return other is _CustomReorderableListChildGlobalKey && other.subKey == subKey && other.state == state;
   }
 

@@ -1,4 +1,3 @@
-// ignore_for_file: avoid_catches_without_on_clauses
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -21,13 +20,13 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     if (event is NavigationGeneratorTabStarted) {
       try {
         yield const NavigationGenerateTabInitial();
-      } catch (_) {
+      } on Exception catch (_) {
         yield const NavigationFailure();
       }
     } else if (event is NavigationTabChanged) {
       try {
         yield _stateList[event.newTabIndex];
-      } catch (_) {
+      } on Exception catch (_) {
         yield const NavigationFailure();
       }
       // } else if (event is NavigationSaverTabStarted) {

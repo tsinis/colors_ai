@@ -17,8 +17,7 @@ class LockedBloc extends Bloc<LockEvent, LockState> {
     }
     try {
       yield LockSuccess(lockedColors: _colorsRepository.lockedColors);
-      // ignore: avoid_catches_without_on_clauses
-    } catch (_) {
+    } on Exception catch (_) {
       yield const LockFailure();
     }
   }

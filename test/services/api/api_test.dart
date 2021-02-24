@@ -1,15 +1,15 @@
-import 'package:colors_ai/models/colors/colors_json.dart';
-import 'package:colors_ai/services/api/api.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main() {
-  test('api returns new colors', () async {
-    const api = API();
-    const colorsAI = ColorsAI();
-    ColorsAI newColors;
+// ignore_for_file: avoid_relative_lib_imports
+import '../../../lib/models/colors/colors_json.dart';
+import '../../../lib/services/api/api.dart';
 
-    newColors = await api.getNewColors(colorsAI);
+void main() => test('API returns new colors', () async {
+      const api = API();
+      const colorsAI = ColorsAI();
+      ColorsAI newColors;
 
-    expect(newColors.list.isNotEmpty, true);
-  });
-}
+      newColors = await api.getNewColors(colorsAI);
+
+      expect(newColors.list.isNotEmpty, true);
+    });

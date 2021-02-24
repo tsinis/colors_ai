@@ -22,9 +22,7 @@ abstract class ColorsUrlProvider {
   final String baseUrl, separateSymbol, formats, providerName;
 
   String get url {
-    final StringBuffer sb = StringBuffer();
-    // ignore: cascade_invocations
-    sb.write(baseUrl);
+    final StringBuffer sb = StringBuffer()..write(baseUrl);
     for (final Color color in colors) {
       sb..write(color.toHex().toLowerCase())..write(separateSymbol);
     }
