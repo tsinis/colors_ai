@@ -1,6 +1,9 @@
+[![Google Play Store](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![pedantic on pub.dev](https://img.shields.io/badge/style-pedantic-blue)](https://pub.dev/packages/pedantic)
+[![pedantic on pub.dev](https://img.shields.io/badge/Style-pedantic-blue)](https://pub.dev/packages/pedantic)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
+
+
 
 # Colors AI 🎨
 
