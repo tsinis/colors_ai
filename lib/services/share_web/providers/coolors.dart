@@ -1,9 +1,9 @@
 part of '../url_provider.dart';
 
 class Coolors extends ColorsUrlProvider {
-  const Coolors(List<Color> colors)
+  const Coolors(ColorPalette palette)
       : super(
-          colors,
+          palette,
           baseUrl: 'https://coolors.co/',
           formats: 'ASE, CSS, PDF, PNG, SVG +',
           providerName: 'Coolors',

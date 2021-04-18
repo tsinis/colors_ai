@@ -16,20 +16,15 @@ class SoundBloc extends Bloc<SoundEvent, SoundState> {
   @override
   Stream<SoundState> mapEventToState(SoundEvent event) async* {
     if (event is SoundStarted) {
-      _soundRepository.playFavoritesAdded;
+      _soundRepository.playFavoritesAdded();
     } else if (event is SoundRefreshed) {
-      _soundRepository.playRefresh;
+      _soundRepository.playRefresh();
     } else if (event is SoundFavoritesAdded) {
-      _soundRepository.playFavoritesAdded;
+      _soundRepository.playFavoritesAdded();
     } else if (event is SoundLocked) {
-      _soundRepository.playLock;
+      _soundRepository.playLock();
     } else if (event is SoundCopied) {
-      _soundRepository.playCopy;
+      _soundRepository.playCopy();
     }
-    //  else if (event is SoundLeftSwiped) {
-    //   _soundRepository.playSwipeLeft;
-    // } else if (event is SoundRightSwiped) {
-    //   _soundRepository.playSwipeRight;
-    // }
   }
 }

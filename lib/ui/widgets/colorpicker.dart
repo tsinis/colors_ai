@@ -4,12 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../../blocs/colorpicker_dialog/colorpicker_bloc.dart';
-import '../../blocs/colorpicker_dialog/colorpicker_event.dart';
-import '../../blocs/colorpicker_dialog/colorpicker_state.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
-import '../../blocs/colors_generated/colors_event.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
-import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
 import '../../blocs/sounds_audio/sound_bloc.dart';

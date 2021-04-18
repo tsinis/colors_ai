@@ -1,12 +1,12 @@
-import 'dart:ui' show Color;
+import '../../models/hive/color_palette.dart';
 
 abstract class FavoritesEvent {
   const FavoritesEvent();
 }
 
 class FavoritesAdded extends FavoritesEvent {
-  const FavoritesAdded({required this.colorsToSave});
-  final List<Color> colorsToSave;
+  const FavoritesAdded({required this.favorite});
+  final ColorPalette favorite;
 }
 
 class FavoritesAllRemoved extends FavoritesEvent {

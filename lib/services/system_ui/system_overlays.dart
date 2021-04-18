@@ -6,7 +6,6 @@ class SystemUI {
   static const Color _uiColor = Colors.grey;
 
   static Future<void> initUI() async {
-    // WidgetsFlutterBinding.ensureInitialized(); //Done in Hive init.
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

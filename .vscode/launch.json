@@ -5,49 +5,34 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug: Unsound null-safety",
+            "name": "Debug",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "debug",
-            "args": [
-                // "--no-sound-null-safety"
-            ]
+            "flutterMode": "debug"
         },
         {
-            "name": "Release: Unsound null-safety",
+            "name": "Release",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release",
-            "args": [
-                // "--no-sound-null-safety"
-            ]
+            "flutterMode": "release"
         },
         {
             "name": "Unit/Widget Tests Run",
             "request": "launch",
             "type": "dart",
             "codeLens": {
-                "for": [
-                    "run-test"
-                ],
+                "for": ["run-test"],
                 "path": "test",
-            },
-            "args": [
-                // "--no-sound-null-safety"
-            ]
-        },{
+            }
+        },
+        {
             "name": "Unit/Widget Tests Debug",
             "request": "launch",
             "type": "dart",
             "codeLens": {
-                "for": [
-                    "debug-test"
-                ],
+                "for": ["debug-test"],
                 "path": "test",
-            },
-            "args": [
-                // "--no-sound-null-safety"
-            ]
+            }
         },
     ]
 }

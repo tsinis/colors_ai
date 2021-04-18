@@ -3,6 +3,7 @@ part of 'share_bloc.dart';
 abstract class ShareState extends Equatable {
   const ShareState({this.selectedProvider = 0});
   final int selectedProvider;
+
   @override
   List<Object> get props => [selectedProvider];
 }

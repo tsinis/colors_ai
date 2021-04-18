@@ -1,9 +1,9 @@
 part of '../url_provider.dart';
 
 class Colordot extends ColorsUrlProvider {
-  const Colordot(List<Color> colors)
+  const Colordot(ColorPalette palette)
       : super(
-          colors,
+          palette,
           baseUrl: 'https://color.hailpixel.com/#',
           separateSymbol: ',',
           providerName: 'Colordot',

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/colors_generated/colors_bloc.dart';
-import '../../../blocs/colors_generated/colors_event.dart';
-import '../../../blocs/colors_generated/colors_state.dart';
 import '../../../blocs/floating_action_button/fab_bloc.dart';
 import '../../../blocs/floating_action_button/fab_event.dart';
 import '../../widgets/animated/no_network.dart';
@@ -13,7 +11,7 @@ class ColorsGenerator extends StatelessWidget {
   const ColorsGenerator();
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(builder: (context, state) {
+  Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(builder: (_, state) {
         if (state is ColorsLoadInProgress || state is ColorsInitial) {
           BlocProvider.of<FabBloc>(context).add(const FabHided());
           return const Center(child: CircularProgressIndicator());

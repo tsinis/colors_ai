@@ -1,16 +1,16 @@
-import 'dart:ui' show Color;
-
 import '../../services/share_web/url_provider.dart';
 
-class UrlProviders {
-  const UrlProviders({this.colors = const []});
+import '../hive/color_palette.dart';
 
-  final List<Color> colors;
+class UrlProviders {
+  const UrlProviders({required this.palette});
+
+  final ColorPalette palette;
 
   List<ColorsUrlProvider> get list => [
-        ArtsGoogle(colors),
-        Coolors(colors),
-        MuzliColors(colors),
-        Palettable(colors),
+        ArtsGoogle(palette),
+        Coolors(palette),
+        MuzliColors(palette),
+        Palettable(palette),
       ];
 }

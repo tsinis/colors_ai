@@ -1,6 +1,4 @@
-import 'dart:ui' show Color;
-
-import 'package:equatable/equatable.dart';
+part of 'colorpicker_bloc.dart';
 
 abstract class ColorPickerEvent extends Equatable {
   const ColorPickerEvent();

@@ -2,28 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/colors_generated/colors_bloc.dart';
-import '../../../blocs/colors_generated/colors_event.dart';
 import '../../../blocs/colors_locked/locked_bloc.dart';
-import '../../../blocs/colors_locked/locked_event.dart';
 import '../../../blocs/favorite_colors/favorites_bloc.dart';
 import '../../../blocs/favorite_colors/favorites_event.dart';
 import '../../../blocs/navigation/navigation_bloc.dart';
 import '../../../extensions/color_to_hex.dart';
+import '../../../models/hive/color_palette.dart';
 
 class FavoritesList extends StatefulWidget {
-  const FavoritesList(this.favoriteColors);
-  final List<List<Color>> favoriteColors;
+  const FavoritesList(this._favorites);
+  final List<ColorPalette> _favorites;
 
   @override
   _FavoritesListState createState() => _FavoritesListState();
 }
 
 class _FavoritesListState extends State<FavoritesList> {
-  bool _isDissmised = true;
+  bool isDissmised = true;
 
   @override
   Widget build(BuildContext context) {
-    _isDissmised = true;
+    isDissmised = true;
     return Stack(
       alignment: AlignmentDirectional.topCenter,
       children: [
@@ -34,25 +33,23 @@ class _FavoritesListState extends State<FavoritesList> {
               style: TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300),
             )),
         ListView.builder(
-          // separatorBuilder: (_, __) => const Divider(height: 1.2),
-          itemCount: widget.favoriteColors.length,
-          itemBuilder: (context, listIndex) => Dismissible(
+          itemCount: widget._favorites.length,
+          itemBuilder: (_, paletteIndex) => Dismissible(
             key: UniqueKey(),
             onResize: () {
-              if (_isDissmised) {
-                BlocProvider.of<FavoritesBloc>(context).add(FavoritesOneRemoved(colorToRemoveIndex: listIndex));
+              if (isDissmised) {
+                BlocProvider.of<FavoritesBloc>(context).add(FavoritesOneRemoved(colorToRemoveIndex: paletteIndex));
               }
-              _isDissmised = false;
+              isDissmised = false;
             },
-            onDismissed: (_) => setState(() => _isDissmised = true),
+            onDismissed: (_) => setState(() => isDissmised = true),
             secondaryBackground: const RemoveBackground(secondary: true),
             background: const RemoveBackground(),
             child: InkWell(
               onTap: () {
                 BlocProvider.of<LockedBloc>(context).add(const LockAllUnlocked());
                 BlocProvider.of<ColorsBloc>(context)
-                    .add(ColorsRestored(colorsToRestore: widget.favoriteColors.elementAt(listIndex)));
-
+                    .add(ColorsRestored(palette: widget._favorites.elementAt(paletteIndex)));
                 BlocProvider.of<NavigationBloc>(context).add(const NavigationGeneratorTabStarted());
               },
               child: DecoratedBox(
@@ -67,10 +64,11 @@ class _FavoritesListState extends State<FavoritesList> {
                   minVerticalPadding: 16,
                   title: Row(
                     children: List<Widget>.generate(
-                      widget.favoriteColors.elementAt(listIndex).length,
-                      (int childIndex) {
-                        final Color color = widget.favoriteColors.elementAt(listIndex)[childIndex];
-                        final Color textColor = widget.favoriteColors.elementAt(listIndex)[childIndex].contrastColor();
+                      widget._favorites.elementAt(paletteIndex).colors.length,
+                      (int colorIndex) {
+                        final Color color = widget._favorites.elementAt(paletteIndex).colors[colorIndex];
+                        final Color textColor =
+                            widget._favorites.elementAt(paletteIndex).colors[colorIndex].contrastColor();
                         return Expanded(
                           child: AspectRatio(
                             aspectRatio: 1,
@@ -101,6 +99,7 @@ class _FavoritesListState extends State<FavoritesList> {
 class RemoveBackground extends StatelessWidget {
   const RemoveBackground({this.secondary = false});
   final bool secondary;
+
   @override
   Widget build(BuildContext context) => ColoredBox(
         color: Theme.of(context).errorColor,

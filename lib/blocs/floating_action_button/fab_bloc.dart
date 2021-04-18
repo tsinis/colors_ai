@@ -5,6 +5,7 @@ import 'fab_state.dart';
 
 class FabBloc extends Bloc<FabEvent, FabState> {
   FabBloc() : super(const FabInitial());
+
   @override
   Stream<FabState> mapEventToState(FabEvent event) async* {
     if (event is FabHided) {

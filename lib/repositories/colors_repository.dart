@@ -1,9 +1,11 @@
 import 'dart:ui' show Color;
 
 import '../extensions/color_to_list_int.dart';
+import '../extensions/list_color_to_palette.dart';
 import '../extensions/list_int_to_color.dart';
 import '../models/colors/colors_json.dart';
 import '../models/colors/constants.dart';
+import '../models/hive/color_palette.dart';
 import '../models/locks/locked_colors.dart';
 import '../services/api/api.dart';
 import '../services/api/constants.dart';
@@ -17,7 +19,7 @@ class ColorsRepository {
   static LockedColors _locked = LockedColors();
 
   List<bool> get lockedColors => _locked.list;
-  void get unlockAll => _locked.unlockAll;
+  void unlockAll() => _locked.unlockAll();
   void changeLock(int colorIndex) => _locked.changeLock(colorIndex);
   void lock(int colorIndex) => _locked.lock(colorIndex);
 
@@ -36,15 +38,15 @@ class ColorsRepository {
     _locked.swapLocks(oldIndex: oldIndex, newIndex: newIndexUngrowed);
   }
 
-  List<Color> get listAsColors {
+  ColorPalette get asPalette {
     final List<Color> colorsList = [];
     for (final List<int> listInt in _colorsAI.list) {
       colorsList.add(listInt.toColor());
     }
-    return colorsList;
+    return colorsList.toPalette();
   }
 
-  void get initColors {
+  void initColors() {
     final List<List<int>> colorsIntList = [];
     for (final Color color in defaultColors) {
       colorsIntList.add(color.toListInt());
@@ -52,9 +54,9 @@ class ColorsRepository {
     _colorsAI = ColorsAI(list: colorsIntList);
   }
 
-  void fromFavorites(List<Color> favoritesList) {
+  void fromFavorites(ColorPalette palette) {
     final List<List<int>> colorsIntList = [];
-    for (final Color color in favoritesList) {
+    for (final Color color in palette.colors) {
       colorsIntList.add(color.toListInt());
     }
     _colorsAI = ColorsAI(list: colorsIntList);

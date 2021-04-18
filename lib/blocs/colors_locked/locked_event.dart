@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'locked_bloc.dart';
 
 abstract class LockEvent extends Equatable {
   const LockEvent();

@@ -16,7 +16,7 @@ class OnboardingRepository {
     }
   }
 
-  Future<void> get onboardingDone async {
+  Future<void> onboardingDone() async {
     final Box onboard = await Hive.openBox<bool>(_onboardingBox);
     await onboard.put(_isFirstRun, false);
     await onboard.close();

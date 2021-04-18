@@ -11,26 +11,26 @@ part 'about_state.dart';
 class AboutBloc extends Bloc<AboutEvent, AboutState> {
   AboutBloc() : super(const AboutCloseInitial());
 
-  static final AboutRepository _aboutRepository = AboutRepository();
+  final AboutRepository _aboutRepository = AboutRepository();
 
   @override
   Stream<AboutState> mapEventToState(AboutEvent event) async* {
     if (event is AboutStarted) {
-      _aboutRepository.initAppInfo;
+      _aboutRepository.initAppInfo();
     } else if (event is AboutClosed) {
       yield const AboutCloseInitial();
     } else if (event is AboutOpened) {
       yield AboutOpenInitial(appName: _aboutRepository.name, appVersion: _aboutRepository.version);
     } else if (event is AboutApiProviderTaped) {
-      _aboutRepository.openAboutApi;
+      _aboutRepository.openAboutApi();
     } else if (event is AboutSourceCodeTaped) {
-      _aboutRepository.openSourceCode;
+      _aboutRepository.openSourceCode();
     } else if (event is AboutSoundAssetsTaped) {
-      _aboutRepository.openAboutSounds;
+      _aboutRepository.openAboutSounds();
     } else if (event is AboutGoogleTaped) {
-      _aboutRepository.openAboutGoogle;
+      _aboutRepository.openAboutGoogle();
     } else if (event is AboutLicenseTaped) {
-      _aboutRepository.openAboutLicenses;
+      _aboutRepository.openAboutLicenses();
     }
   }
 }

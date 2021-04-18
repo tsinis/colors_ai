@@ -5,7 +5,7 @@ class LockedColors {
 
   List<bool> get list => _list;
 
-  void get unlockAll => _list
+  void unlockAll() => _list
     ..clear()
     ..addAll(defaultColorLocks);
 

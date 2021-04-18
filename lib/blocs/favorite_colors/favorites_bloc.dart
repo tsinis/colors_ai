@@ -2,22 +2,23 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../repositories/favorites_repository.dart';
+
 import 'favorites_event.dart';
 import 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
   FavoritesBloc() : super(const FavoritesEmptyInitial());
 
-  static const FavoritesRepository _favoritesRepository = FavoritesRepository();
+  static const FavoritesRepository _favorites = FavoritesRepository();
 
   @override
   Stream<FavoritesState> mapEventToState(FavoritesEvent event) async* {
     if (event is FavoritesLoadStarted) {
       yield const FavoritesLoadInProgress();
-      final bool? isDataLoaded = await _favoritesRepository.loadStoredFavorites;
-      if (isDataLoaded == true || isDataLoaded == null) {
+      final bool? isDataLoaded = await _favorites.loadStoredFavorites;
+      if (isDataLoaded != false) {
         try {
-          yield const FavoritesLoadSuccess(_favoritesRepository);
+          yield const FavoritesLoadSuccess(_favorites);
         } catch (_) {
           yield const FavoritesFailure();
         }
@@ -29,14 +30,14 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         }
       }
     } else if (event is FavoritesAdded) {
-      if (event.colorsToSave.isNotEmpty) {
-        _favoritesRepository.add(event.colorsToSave);
+      if (event.favorite.colors.isNotEmpty) {
+        _favorites.add(event.favorite);
         try {
-          yield const FavoritesLoadSuccess(_favoritesRepository);
+          yield const FavoritesLoadSuccess(_favorites);
         } catch (_) {
           yield const FavoritesFailure();
         }
-        _favoritesRepository.addToStorage;
+        _favorites.addToStorage();
       } else {
         try {
           yield const FavoritesEmptyInitial();
@@ -45,26 +46,26 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         }
       }
     } else if (event is FavoritesOneRemoved) {
-      _favoritesRepository.remove(event.colorToRemoveIndex);
+      _favorites.remove(event.colorToRemoveIndex);
       try {
-        if (_favoritesRepository.list.isNotEmpty) {
-          yield const FavoritesLoadSuccess(_favoritesRepository);
-          _favoritesRepository.updateStorage;
+        if (_favorites.list.isNotEmpty) {
+          yield const FavoritesLoadSuccess(_favorites);
+          _favorites.updateStorage();
         } else {
           yield const FavoritesEmptyInitial();
-          await _favoritesRepository.clearStorage;
+          await _favorites.clearStorage();
         }
       } catch (_) {
         yield const FavoritesFailure();
       }
     } else if (event is FavoritesAllRemoved) {
-      _favoritesRepository.removeAll;
+      _favorites.removeAll();
       try {
         yield const FavoritesEmptyInitial();
       } catch (_) {
         yield const FavoritesFailure();
       }
-      await _favoritesRepository.clearStorage;
+      await _favorites.clearStorage();
     }
   }
 }

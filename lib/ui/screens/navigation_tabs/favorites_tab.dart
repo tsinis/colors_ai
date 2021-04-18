@@ -12,7 +12,7 @@ class FavoritesTab extends StatelessWidget {
   const FavoritesTab();
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
-      builder: (BuildContext context, state) => AnimatedSwitcher(
+      builder: (_, state) => AnimatedSwitcher(
             duration: const Duration(milliseconds: 600),
             switchInCurve: Curves.easeInQuart,
             switchOutCurve: Curves.easeOutQuart,
@@ -47,7 +47,7 @@ class FavoritesTab extends StatelessWidget {
                             label: const Text('ADD SOME'),
                             autofocus: true,
                             onPressed: () => BlocProvider.of<FavoritesBloc>(context)
-                                .add(FavoritesAdded(colorsToSave: context.read<ColorsRepository>().listAsColors)),
+                                .add(FavoritesAdded(favorite: context.read<ColorsRepository>().asPalette)),
                           ),
                         ),
                       ],

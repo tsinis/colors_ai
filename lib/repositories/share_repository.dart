@@ -2,6 +2,7 @@ import 'dart:ui' show Color;
 
 import 'package:share/share.dart';
 
+import '../models/hive/color_palette.dart';
 import '../models/url_providers/url_providers.dart';
 import '../services/clipboard/clipboard.dart';
 import '../services/share_web/url_provider.dart';
@@ -18,13 +19,13 @@ class ShareRepository {
   set changeProvider(int newPoviderIndex) => _selectedProvider = newPoviderIndex;
   int get selectedProvider => _selectedProvider;
 
-  void shareUrl(List<Color> currentColors) => _convertColorsToUrl(currentColors);
-  void copyUrl(List<Color> currentColors) => _convertColorsToUrl(currentColors, copyOnly: true);
+  void shareUrl(ColorPalette palette) => _convertColorsToUrl(palette);
+  void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
 
-  List<ColorsUrlProvider> get providersList => const UrlProviders().list;
+  List<ColorsUrlProvider> get providersList => const UrlProviders(palette: ColorPalette()).list;
 
-  Future<void> _convertColorsToUrl(List<Color> colorList, {bool copyOnly = false}) async {
-    final UrlProviders urlProviders = UrlProviders(colors: colorList);
+  Future<void> _convertColorsToUrl(ColorPalette colors, {bool copyOnly = false}) async {
+    final UrlProviders urlProviders = UrlProviders(palette: colors);
     final ColorsUrlProvider provider = urlProviders.list[_selectedProvider];
 
     if (copyOnly) {

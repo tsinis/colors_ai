@@ -1,9 +1,9 @@
 part of '../url_provider.dart';
 
 class Poolors extends ColorsUrlProvider {
-  const Poolors(List<Color> colors)
+  const Poolors(ColorPalette palette)
       : super(
-          colors,
+          palette,
           baseUrl: 'https://poolors.com/',
           providerName: 'Poolors',
         );

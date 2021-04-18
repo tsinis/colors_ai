@@ -1,6 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-import '../../services/api/constants.dart';
+part of 'locked_bloc.dart';
 
 abstract class LockState extends Equatable {
   const LockState();

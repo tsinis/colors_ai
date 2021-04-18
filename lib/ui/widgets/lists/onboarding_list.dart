@@ -40,7 +40,7 @@ class OnboardingList extends DefaultGreyList {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<OnboardingBloc, OnboardingState>(
-        builder: (context, state) => (state is OnboardingDoneSuccess)
+        builder: (_, state) => (state is OnboardingDoneSuccess)
             ? const SizedBox.shrink(key: FlutterColorsAIKeys.disappearedOnboard)
             : Stack(
                 children: [

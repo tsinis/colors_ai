@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'colorpicker_bloc.dart';
 
 abstract class ColorPickerState extends Equatable {
   const ColorPickerState();

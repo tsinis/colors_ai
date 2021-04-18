@@ -1,9 +1,9 @@
 part of '../url_provider.dart';
 
 class ArtsGoogle extends ColorsUrlProvider {
-  const ArtsGoogle(List<Color> colors)
+  const ArtsGoogle(ColorPalette palette)
       : super(
-          colors,
+          palette,
           baseUrl: 'https://artsexperiments.withgoogle.com/artpalette/colors/',
           providerName: 'Arts & Culture (Google)',
         );

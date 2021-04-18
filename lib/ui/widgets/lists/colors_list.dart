@@ -5,10 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/colors_generated/colors_bloc.dart';
-import '../../../blocs/colors_generated/colors_event.dart';
-import '../../../blocs/colors_generated/colors_state.dart';
 import '../../../blocs/colors_locked/locked_bloc.dart';
-import '../../../blocs/colors_locked/locked_event.dart';
 import '../../../blocs/floating_action_button/fab_bloc.dart';
 import '../../../blocs/floating_action_button/fab_event.dart';
 import '../../../blocs/sounds_audio/sound_bloc.dart';
@@ -65,11 +62,11 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
         children: [
           DefaultGreyList(length: length, tileWidth: size.width, tileHeight: tileHeight),
           BlocConsumer<ColorsBloc, ColorsState>(
-            listener: (context, state) {
+            listener: (_, state) {
               _refreshCompleter.complete();
               _refreshCompleter = Completer();
             },
-            builder: (context, state) => RefreshIndicator(
+            builder: (_, state) => RefreshIndicator(
               onRefresh: () {
                 _controller.reverse();
                 BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());

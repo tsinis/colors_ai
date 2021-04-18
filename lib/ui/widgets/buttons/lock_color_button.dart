@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/colors_locked/locked_bloc.dart';
-import '../../../blocs/colors_locked/locked_event.dart';
-import '../../../blocs/colors_locked/locked_state.dart';
 import '../../../blocs/sounds_audio/sound_bloc.dart';
 
 class LockColorButton extends StatelessWidget {
@@ -11,9 +9,10 @@ class LockColorButton extends StatelessWidget {
   final int index;
   final Color color;
   final Size buttonSize;
+
   @override
   Widget build(BuildContext context) => BlocBuilder<LockedBloc, LockState>(
-        builder: (context, colorState) {
+        builder: (_, colorState) {
           if (colorState is LockSuccess) {
             final bool isLocked = colorState.isLocked(index);
             return IconButton(

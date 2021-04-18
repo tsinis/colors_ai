@@ -1,40 +1,35 @@
-import 'dart:ui' show Color;
-
-import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 
-import '../extensions/list_color_to_color_list.dart';
-import '../models/hive_adapters/color_adapter.dart';
-import '../models/hive_adapters/color_list.dart';
+import '../models/hive/color_adapter.dart';
+import '../models/hive/color_palette.dart';
 
 class FavoritesRepository {
   const FavoritesRepository();
 
   static bool _boxInitialized = false;
+  static final List<ColorPalette> _list = [];
+  static Box<ColorPalette> _storageBox = Hive.box(_favoritesBox);
+
   static const String _favoritesBox = 'favorite';
-  static final List<List<Color>> _list = [];
-  static Box<ColorList> _storageBox = Hive.box(_favoritesBox);
 
-  List<List<Color>> get list => _list;
+  List<ColorPalette> get list => _list;
 
-  void add(List<Color> color) => _list.add(color);
+  void add(ColorPalette colors) => _list.add(colors);
 
   void remove(int colorIndex) => _list.removeAt(colorIndex);
 
-  void get removeAll => _list.clear();
+  void removeAll() => _list.clear();
 
-  Future<Box<ColorList>> get _openBoxStorage async => await Hive.openBox<ColorList>(_favoritesBox);
+  Future<Box<ColorPalette>> get _openBoxStorage async => await Hive.openBox<ColorPalette>(_favoritesBox);
 
-  Future<void> get clearStorage async => _storageBox.clear();
+  Future<void> clearStorage() async => _storageBox.clear();
 
-  Future<void> get addToStorage async => _storageBox.add(_list.last.toColorList());
+  Future<void> addToStorage() async => _storageBox.add(_list.last);
 
-  // Future<void> removeFromStorage(int colorIndex) async => _storageBox.deleteAt(colorIndex);
-
-  Future<void> get updateStorage async {
-    await clearStorage;
-    for (final List<Color> listColor in _list) {
-      await _storageBox.add(listColor.toColorList());
+  Future<void> updateStorage() async {
+    await clearStorage();
+    for (final ColorPalette colors in _list) {
+      await _storageBox.add(colors);
     }
   }
 
@@ -42,15 +37,12 @@ class FavoritesRepository {
     if (!_boxInitialized) {
       _boxInitialized = true;
       try {
-        Hive..registerAdapter(ColorListAdapter())..registerAdapter(ColorAdapter());
+        Hive..registerAdapter(ColorPaletteAdapter())..registerAdapter(ColorAdapter());
         _storageBox = await _openBoxStorage;
         _list.clear();
-        for (final ColorList color in _storageBox.values) {
-          _list.add(color.list);
-        }
+        _storageBox.values.forEach(_list.add);
         return _list.isNotEmpty;
-      } on Exception catch (e) {
-        debugPrint(e.toString());
+      } on Exception catch (_) {
         return false;
       }
     }

@@ -38,7 +38,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
   Widget build(BuildContext context) => ScaleTransition(
         scale: fabAnimation,
         child: BlocBuilder<FabBloc, FabState>(
-          builder: (BuildContext context, FabState state) {
+          builder: (_, state) {
             // https://material.io/design/environment/elevation.html#elevation-in-material-design
             if (state is FabHideInitial) {
               controller.reverse();
@@ -49,7 +49,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
               onPressed: () async {
                 BlocProvider.of<SoundBloc>(context).add(const SoundFavoritesAdded());
                 BlocProvider.of<FavoritesBloc>(context)
-                    .add(FavoritesAdded(colorsToSave: context.read<ColorsRepository>().listAsColors));
+                    .add(FavoritesAdded(favorite: context.read<ColorsRepository>().asPalette));
                 // ignore: unawaited_futures
                 controller.reverse();
                 if (await Vibration.hasCustomVibrationsSupport() == true) {

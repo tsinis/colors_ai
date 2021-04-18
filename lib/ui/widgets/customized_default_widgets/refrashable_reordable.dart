@@ -1,4 +1,4 @@
-// @dart = 2.12
+// @dart = 2.13
 
 library refreshable_reorderable_list;
 

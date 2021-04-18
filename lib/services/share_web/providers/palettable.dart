@@ -1,9 +1,9 @@
 part of '../url_provider.dart';
 
 class Palettable extends ColorsUrlProvider {
-  const Palettable(List<Color> colors)
+  const Palettable(ColorPalette palette)
       : super(
-          colors,
+          palette,
           baseUrl: 'https://www.palettable.io/',
           formats: 'PNG',
           providerName: 'Palettable',

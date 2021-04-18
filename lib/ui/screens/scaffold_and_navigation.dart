@@ -3,11 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/about_dialog/about_bloc.dart';
 import '../../blocs/colorpicker_dialog/colorpicker_bloc.dart';
-import '../../blocs/colorpicker_dialog/colorpicker_state.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
-import '../../blocs/colors_generated/colors_event.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
-import '../../blocs/colors_locked/locked_event.dart';
 import '../../blocs/colors_share/share_bloc.dart';
 import '../../blocs/favorite_colors/favorites_bloc.dart';
 import '../../blocs/favorite_colors/favorites_state.dart';
@@ -36,7 +33,6 @@ class _NavigationScreenState extends State<MainScreen> {
     _soundBloc.add(const SoundStarted());
     super.initState();
   }
-  // static const FavoritesRepository _favoritesRepository = FavoritesRepository();
 
   int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
   int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
@@ -50,7 +46,7 @@ class _NavigationScreenState extends State<MainScreen> {
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockStarted())),
         ],
         child: BlocBuilder<NavigationBloc, NavigationState>(
-          builder: (context, state) {
+          builder: (_, state) {
             if (state.tabIndex != _colorsGenTabIndex) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
@@ -74,7 +70,7 @@ class _NavigationScreenState extends State<MainScreen> {
                 child: MultiBlocListener(
                   listeners: [
                     BlocListener<ShareBloc, ShareState>(
-                      listener: (_, shareState) {
+                      listener: (context, shareState) {
                         if (shareState is ShareCopySuccess) {
                           BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -83,7 +79,7 @@ class _NavigationScreenState extends State<MainScreen> {
                       },
                     ),
                     BlocListener<ColorPickerBLoc, ColorPickerState>(
-                      listener: (_, pickerState) {
+                      listener: (context, pickerState) {
                         if (pickerState is ColorPickerCopySuccess) {
                           BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -99,7 +95,7 @@ class _NavigationScreenState extends State<MainScreen> {
                 ),
               ),
               bottomNavigationBar: BlocBuilder<FavoritesBloc, FavoritesState>(
-                builder: (context, saveState) {
+                builder: (_, saveState) {
                   final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
                   return BottomNavigationBar(
                     currentIndex: state.tabIndex,

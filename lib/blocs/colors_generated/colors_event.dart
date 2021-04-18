@@ -1,6 +1,4 @@
-import 'dart:ui' show Color;
-
-import 'package:equatable/equatable.dart';
+part of 'colors_bloc.dart';
 
 abstract class ColorsEvent extends Equatable {
   const ColorsEvent();
@@ -18,9 +16,9 @@ class ColorsStarted extends ColorsEvent {
 }
 
 class ColorsRestored extends ColorsEvent {
-  const ColorsRestored({required this.colorsToRestore});
+  const ColorsRestored({required this.palette});
 
-  final List<Color> colorsToRestore;
+  final ColorPalette palette;
 }
 
 class ColorsChanged extends ColorsEvent {

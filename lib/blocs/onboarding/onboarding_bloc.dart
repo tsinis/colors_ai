@@ -25,7 +25,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
       }
     } else if (event is OnboardingFinished) {
       yield const OnboardingDoneSuccess();
-      await _onboardingRepository.onboardingDone;
+      await _onboardingRepository.onboardingDone();
     }
   }
 }

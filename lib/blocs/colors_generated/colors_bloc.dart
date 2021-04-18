@@ -1,10 +1,15 @@
+// ignore_for_file: avoid_catches_without_on_clauses
+
+import 'dart:ui' show Color;
+
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../models/hive/color_palette.dart';
 import '../../repositories/colors_repository.dart';
-import 'colors_event.dart';
-import 'colors_state.dart';
 
-// ignore_for_file: avoid_catches_without_on_clauses
+part 'colors_event.dart';
+part 'colors_state.dart';
 
 class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   ColorsBloc(this._colorsRepository) : super(const ColorsInitial());
@@ -15,7 +20,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   Stream<ColorsState> mapEventToState(ColorsEvent event) async* {
     if (event is ColorsStarted) {
       yield const ColorsLoadInProgress();
-      _colorsRepository.initColors;
+      _colorsRepository.initColors();
       yield ColorsLoadSuccess(_colorsRepository.colors.list);
     } else if (event is ColorsChanged) {
       if (event.newColor != null) {
@@ -42,7 +47,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
       }
     } else if (event is ColorsRestored) {
       try {
-        _colorsRepository.fromFavorites(event.colorsToRestore);
+        _colorsRepository.fromFavorites(event.palette);
         yield ColorsLoadSuccess(_colorsRepository.colors.list);
       } catch (_) {
         yield const ColorsFailure();

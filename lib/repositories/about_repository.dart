@@ -6,14 +6,14 @@ class AboutRepository {
   final AppInfo _appInfo = AppInfo();
   final UrlLauncher _urlLauncher = UrlLauncher();
 
-  void get initAppInfo => _appInfo.init();
+  void initAppInfo() => _appInfo.init();
 
   String get version => _appInfo.version;
   String get name => _appInfo.name;
 
-  void get openAboutApi => _urlLauncher.openURL(url: aboutColormindApi);
-  void get openSourceCode => _urlLauncher.openURL();
-  void get openAboutGoogle => _urlLauncher.openURL(url: aboutGoogle);
-  void get openAboutSounds => _urlLauncher.openURL(url: materialSounds);
-  void get openAboutLicenses => _urlLauncher.openURL(url: soundsLicense);
+  void openSourceCode() => _urlLauncher.openURL(sourceCode);
+  void openAboutGoogle() => _urlLauncher.openURL(aboutGoogle);
+  void openAboutApi() => _urlLauncher.openURL(aboutColormindApi);
+  void openAboutSounds() => _urlLauncher.openURL(materialSounds);
+  void openAboutLicenses() => _urlLauncher.openURL(soundsLicense);
 }

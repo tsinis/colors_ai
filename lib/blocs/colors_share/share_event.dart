@@ -13,11 +13,11 @@ class ShareUrlProviderChanged extends ShareEvent {
 }
 
 class ShareUrlShared extends ShareEvent {
-  const ShareUrlShared(this.currentColors);
-  final List<Color> currentColors;
+  const ShareUrlShared(this.palette);
+  final ColorPalette palette;
 }
 
 class ShareUrlCopied extends ShareEvent {
-  const ShareUrlCopied(this.currentColors);
-  final List<Color> currentColors;
+  const ShareUrlCopied(this.palette);
+  final ColorPalette palette;
 }

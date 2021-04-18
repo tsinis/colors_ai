@@ -1,8 +1,13 @@
+import 'dart:ui' show Color;
+
+import 'package:equatable/equatable.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../services/clipboard/clipboard.dart';
-import 'colorpicker_event.dart';
-import 'colorpicker_state.dart';
+
+part 'colorpicker_event.dart';
+part 'colorpicker_state.dart';
 
 class ColorPickerBLoc extends Bloc<ColorPickerEvent, ColorPickerState> {
   ColorPickerBLoc() : super(const ColorPickerCloseInitial());

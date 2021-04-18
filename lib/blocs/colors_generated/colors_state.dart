@@ -1,3 +1,5 @@
+part of 'colors_bloc.dart';
+
 abstract class ColorsState {
   const ColorsState();
 }

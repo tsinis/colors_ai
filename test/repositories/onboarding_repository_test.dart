@@ -10,7 +10,7 @@ void main() => group('Onboarding storage:', () {
 
       test('save onboarding data as done', () async {
         await Hive.initFlutter();
-        await onboardingRepo.onboardingDone;
+        await onboardingRepo.onboardingDone();
 
         final bool isFirstRun = await onboardingRepo.loadOnboardData;
 
