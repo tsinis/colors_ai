@@ -14,7 +14,7 @@ class FavoritesRepository {
 
   List<ColorPalette> get list => _list;
 
-  void add(ColorPalette colors) => _list.add(colors);
+  void add(ColorPalette palette) => _list.add(palette);
 
   void remove(int colorIndex) => _list.removeAt(colorIndex);
 
