@@ -8,7 +8,6 @@ import '../models/colors/constants.dart';
 import '../models/hive/color_palette.dart';
 import '../models/locks/locked_colors.dart';
 import '../services/api/api.dart';
-import '../services/api/constants.dart';
 
 class ColorsRepository {
   const ColorsRepository();
@@ -31,7 +30,7 @@ class ColorsRepository {
   void changeColor(Color newColor, int colorIndex) => _colorsAI.changeColor(newColor, colorIndex);
 
   void swapColors({required int oldIndex, required int newIndex}) {
-    final int colorsAvailble = defaultColorLocks.length - 1;
+    final int colorsAvailble = defaultColors.length - 1;
     // List can be temporary growable, in some cases, for example on long drag at the last tile.
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
     _colorsAI.swapColors(oldIndex: oldIndex, newIndex: newIndexUngrowed);

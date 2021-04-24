@@ -1,9 +1,8 @@
-part of '../url_provider.dart';
+part of '../../url_providers/url_providers.dart';
 
 class MuzliColors extends ColorsUrlProvider {
-  const MuzliColors(ColorPalette palette)
+  const MuzliColors()
       : super(
-          palette,
           baseUrl: 'https://colors.muz.li/palette/',
           separateSymbol: '/',
           formats: 'InVision UI Kit, SVG',

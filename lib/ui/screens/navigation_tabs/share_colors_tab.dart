@@ -19,15 +19,17 @@ class ShareColors extends StatelessWidget {
                 ...List.generate(
                   state.providersList.length,
                   (int index) => RadioListTile(
-                    title: Text(state.providersList[index].providerName),
-                    subtitle: Text((state.providersList[index].formats.isEmpty)
+                    title: Text(state.providersList[index].name),
+                    subtitle: Text((state.providersList[index].formats == null)
                         ? 'Arts that match your colors'
                         : 'Export to: ${state.providersList[index].formats}'),
                     value: index,
                     groupValue: state.selectedProvider,
                     onChanged: (newProviderIndex) {
                       if (newProviderIndex is int) {
-                        BlocProvider.of<ShareBloc>(context).add(ShareUrlProviderChanged(newProviderIndex));
+                        BlocProvider.of<ShareBloc>(context).add(
+                          ShareUrlProviderSelected(providerIndex: newProviderIndex),
+                        );
                       }
                     },
                   ),

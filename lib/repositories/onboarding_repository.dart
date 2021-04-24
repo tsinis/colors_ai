@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class OnboardingRepository {
@@ -6,13 +7,15 @@ class OnboardingRepository {
   static const String _onboardingBox = 'onboard', _isFirstRun = 'firstRun';
 
   Future<bool> get loadOnboardData async {
-    final Box onboard = await Hive.openBox<bool>(_onboardingBox);
-    final dynamic isFirstRun = await onboard.get(_isFirstRun);
-    await onboard.close();
-    if (isFirstRun is bool) {
-      return isFirstRun;
-    } else {
+    final Box<bool> onboardBox = await Hive.openBox<bool>(_onboardingBox);
+    try {
+      final bool? isFirstRun = onboardBox.get(_isFirstRun, defaultValue: true);
+      return !(isFirstRun == false);
+    } on Exception catch (e) {
+      debugPrint('Exception during box opening: $e');
       return true;
+    } finally {
+      await onboardBox.close();
     }
   }
 

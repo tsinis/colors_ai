@@ -25,8 +25,11 @@ class API {
     return await http.post(Uri.parse(host), headers: headers, body: body).timeout(const Duration(seconds: 8));
   }
 
-  Future<ColorsAI> getNewColors(ColorsAI existingColors,
-      {List<bool> lockedColors = defaultColorLocks, bool forUI = true}) async {
+  Future<ColorsAI> getNewColors(
+    ColorsAI existingColors, {
+    required List<bool> lockedColors,
+    bool forUI = true,
+  }) async {
     final List<bool> invertedLocks = [];
     for (final isLocked in lockedColors) {
       invertedLocks.add(!isLocked);
@@ -35,7 +38,7 @@ class API {
         await _colorsFromAPI(existingColors.list, isUiModel: forUI, lockedColors: invertedLocks);
     if (response.statusCode != 200) {
       // TODO! Handle status codes.
-      throw Exception('Error, Status Code: ${response.statusCode}');
+      throw Exception('Network error, Status Code: ${response.statusCode}');
     } else {
       return colorsFromJson(response.body);
     }

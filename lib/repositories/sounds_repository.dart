@@ -15,7 +15,7 @@ class SoundsAssets {
       await _player.setAsset(_sounds.assetPath(soundName));
       await _player.play().whenComplete(_player.stop);
     } on Exception catch (e) {
-      debugPrint(e.toString());
+      debugPrint('Exception during audio playback $e');
       rethrow;
     }
   }
@@ -23,5 +23,5 @@ class SoundsAssets {
   void playLock() => _playSound(lock);
   void playRefresh() => _playSound(refresh);
   void playCopy() => _playSound(notificationHigh, volume: 0.1);
-  void playFavoritesAdded() => _playSound(notificationSimple2, volume: 0.1);
+  void playFavoritesAdded() => _playSound(notificationSimple, volume: 0.1);
 }

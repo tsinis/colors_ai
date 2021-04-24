@@ -1,9 +1,8 @@
-part of '../url_provider.dart';
+part of '../../url_providers/url_providers.dart';
 
 class IColorPalette extends ColorsUrlProvider {
-  const IColorPalette(ColorPalette palette)
+  const IColorPalette()
       : super(
-          palette,
           baseUrl: 'https://icolorpalette.com/',
           separateSymbol: '_',
           formats: 'ASE, PDF, PNG, SVG +',

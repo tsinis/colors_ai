@@ -1,17 +1,16 @@
-import '../../services/api/constants.dart';
-
 class LockedColors {
-  final List<bool> _list = [...defaultColorLocks];
+  static const List<bool> defaults = [false, false, false, false, false];
+  final List<bool> _list = [...defaults];
 
   List<bool> get list => _list;
 
   void unlockAll() => _list
     ..clear()
-    ..addAll(defaultColorLocks);
+    ..addAll(defaults);
 
   void swapLocks({required int oldIndex, required int newIndex}) {
     final bool swapedLock = _list[oldIndex];
-    if (newIndex > defaultColorLocks.length - 1) {
+    if (newIndex > defaults.length - 1) {
       _list
         ..removeAt(oldIndex)
         ..add(swapedLock);

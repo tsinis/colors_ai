@@ -1,9 +1,8 @@
-part of '../url_provider.dart';
+part of '../../url_providers/url_providers.dart';
 
 class ColorDesigner extends ColorsUrlProvider {
-  const ColorDesigner(ColorPalette palette)
+  const ColorDesigner()
       : super(
-          palette,
           baseUrl: 'https://colordesigner.io/?presentationMode=true#',
           providerName: 'Color Designer',
         );

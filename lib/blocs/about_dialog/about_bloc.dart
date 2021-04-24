@@ -11,7 +11,7 @@ part 'about_state.dart';
 class AboutBloc extends Bloc<AboutEvent, AboutState> {
   AboutBloc() : super(const AboutCloseInitial());
 
-  final AboutRepository _aboutRepository = AboutRepository();
+  static const AboutRepository _aboutRepository = AboutRepository();
 
   @override
   Stream<AboutState> mapEventToState(AboutEvent event) async* {

@@ -13,7 +13,6 @@ import '../../blocs/floating_action_button/fab_event.dart';
 import '../../blocs/navigation/navigation_bloc.dart';
 import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../repositories/colors_repository.dart';
-import '../../repositories/share_repository.dart';
 import '../widgets/buttons/app_bar_buttons/about_button.dart';
 import '../widgets/buttons/save_colors_fab.dart';
 import 'constants.dart';
@@ -64,7 +63,7 @@ class _NavigationScreenState extends State<MainScreen> {
                 providers: [
                   BlocProvider<ColorsBloc>(
                       create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted())),
-                  BlocProvider<ShareBloc>(create: (_) => ShareBloc(const ShareRepository())),
+                  BlocProvider<ShareBloc>(create: (_) => ShareBloc()..add(const ShareUrlProviderSelected())),
                   BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
                 ],
                 child: MultiBlocListener(

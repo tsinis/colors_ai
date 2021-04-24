@@ -3,8 +3,9 @@ import '../services/url_launcher/constants.dart';
 import '../services/url_launcher/url_launcher.dart';
 
 class AboutRepository {
-  final AppInfo _appInfo = AppInfo();
-  final UrlLauncher _urlLauncher = UrlLauncher();
+  const AboutRepository();
+  static const AppInfo _appInfo = AppInfo();
+  static const UrlLauncher _urlLauncher = UrlLauncher();
 
   void initAppInfo() => _appInfo.init();
 

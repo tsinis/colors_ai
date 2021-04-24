@@ -12,6 +12,10 @@ class ShareFailure extends ShareState {
   const ShareFailure() : super();
 }
 
+class ShareEmptyInitial extends ShareState {
+  const ShareEmptyInitial() : super();
+}
+
 class ShareCurrentInitial extends ShareState {
   const ShareCurrentInitial(int _selectedProvider, {required this.providersList})
       : super(selectedProvider: _selectedProvider);

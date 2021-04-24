@@ -4,22 +4,16 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../models/hive/color_palette.dart';
+import '../../models/url_providers/url_providers.dart';
 import '../../repositories/share_repository.dart';
-import '../../services/share_web/url_provider.dart';
 
 part 'share_event.dart';
 part 'share_state.dart';
 
 class ShareBloc extends Bloc<ShareEvent, ShareState> {
-  ShareBloc(this._shareRepository)
-      : super(
-          ShareCurrentInitial(
-            _shareRepository.selectedProvider,
-            providersList: _shareRepository.providersList,
-          ),
-        );
+  ShareBloc() : super(const ShareEmptyInitial());
 
-  final ShareRepository _shareRepository;
+  static const ShareRepository _shareRepository = ShareRepository();
 
   @override
   Stream<ShareState> mapEventToState(ShareEvent event) async* {
@@ -28,13 +22,13 @@ class ShareBloc extends Bloc<ShareEvent, ShareState> {
     } else if (event is ShareUrlCopied) {
       yield const ShareCopySuccess();
       _shareRepository.copyUrl(event.palette);
-    } else if (event is ShareUrlProviderChanged) {
-      _shareRepository.changeProvider = event.newProviderIndex;
+    } else if (event is ShareUrlProviderSelected) {
+      _shareRepository.changeProvider = event.providerIndex;
     }
     try {
       yield ShareCurrentInitial(
         _shareRepository.selectedProvider,
-        providersList: _shareRepository.providersList,
+        providersList: _shareRepository.providers,
       );
     } on Exception catch (_) {
       yield const ShareFailure();

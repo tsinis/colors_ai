@@ -7,9 +7,9 @@ abstract class ShareEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ShareUrlProviderChanged extends ShareEvent {
-  const ShareUrlProviderChanged(this.newProviderIndex);
-  final int newProviderIndex;
+class ShareUrlProviderSelected extends ShareEvent {
+  const ShareUrlProviderSelected({this.providerIndex = 0});
+  final int providerIndex;
 }
 
 class ShareUrlShared extends ShareEvent {
