@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class SystemUI {
+  const SystemUI();
   static const Brightness _uiBrightness = Brightness.dark;
   static const Color _uiColor = Colors.grey;
 
-  static Future<void> initUI() async {
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  static void initUI() {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: _uiColor,

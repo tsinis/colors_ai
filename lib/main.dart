@@ -14,6 +14,7 @@ import 'ui/screens/scaffold_and_navigation.dart';
 import 'ui/screens/splash_screen.dart';
 import 'ui/theme/theme.dart';
 
+//TODO! Add warrning about server maintance.
 //TODO: Handle Failure States in Bloc.
 //TODO: Add PDF export.
 //TODO: Add diff. color profiles.
@@ -21,8 +22,8 @@ import 'ui/theme/theme.dart';
 //TODO? Add settings menu.
 
 void main() {
-  Hive.initFlutter().whenComplete(() async {
-    await SystemUI.initUI();
+  Hive.initFlutter().whenComplete(() {
+    SystemUI.initUI();
     runApp(BlocProvider<OnboardingBloc>(
       create: (_) => OnboardingBloc()..add(const OnboardingLoadDataStarted()),
       child: const MyApp(),

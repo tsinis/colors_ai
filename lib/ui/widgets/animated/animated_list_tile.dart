@@ -24,10 +24,12 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: widget.index * 120), () => setState(() => isAnimationDone = true));
+    Future.delayed(Duration(milliseconds: widget.index * 120), () {
+      if (mounted) {
+        setState(() => isAnimationDone = true);
+      }
+    });
   }
-
-  // double get shadowFromZero => isAnimationDone ? 5 : 0;
 
   @override
   Widget build(BuildContext context) => (widget.height != null)
@@ -35,15 +37,6 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
           curve: Curves.easeOutQuart,
           height: isAnimationDone ? widget.height! : widget.index + 1 * widget.height! * widget.length,
           duration: const Duration(milliseconds: 600),
-          // decoration: BoxDecoration(
-          //   boxShadow: [
-          //     BoxShadow(
-          //         color: Colors.black26,
-          //         blurRadius: shadowFromZero / 1.5,
-          //         offset: Offset(0, shadowFromZero),
-          //         spreadRadius: shadowFromZero)
-          //   ],
-          // ),
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 600),
             opacity: isAnimationDone ? 1 : 0,

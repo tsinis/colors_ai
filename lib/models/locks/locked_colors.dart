@@ -1,6 +1,7 @@
 class LockedColors {
+  const LockedColors();
   static const List<bool> defaults = [false, false, false, false, false];
-  final List<bool> _list = [...defaults];
+  static final List<bool> _list = [...defaults];
 
   List<bool> get list => _list;
 

@@ -10,17 +10,15 @@ import '../models/locks/locked_colors.dart';
 import '../services/api/api.dart';
 
 class ColorsRepository {
-  const ColorsRepository();
+  const ColorsRepository({this.locked = const LockedColors()});
+  final LockedColors locked;
 
   static const API _apiServices = API();
 
-  // ignore: prefer_final_fields
-  static LockedColors _locked = LockedColors();
-
-  List<bool> get lockedColors => _locked.list;
-  void unlockAll() => _locked.unlockAll();
-  void changeLock(int colorIndex) => _locked.changeLock(colorIndex);
-  void lock(int colorIndex) => _locked.lock(colorIndex);
+  List<bool> get lockedColors => locked.list;
+  void unlockAll() => locked.unlockAll();
+  void changeLock(int colorIndex) => locked.changeLock(colorIndex);
+  void lock(int colorIndex) => locked.lock(colorIndex);
 
   // ignore: prefer_const_constructors
   static ColorsAI _colorsAI = ColorsAI();
@@ -34,7 +32,7 @@ class ColorsRepository {
     // List can be temporary growable, in some cases, for example on long drag at the last tile.
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
     _colorsAI.swapColors(oldIndex: oldIndex, newIndex: newIndexUngrowed);
-    _locked.swapLocks(oldIndex: oldIndex, newIndex: newIndexUngrowed);
+    locked.swapLocks(oldIndex: oldIndex, newIndex: newIndexUngrowed);
   }
 
   ColorPalette get asPalette {
@@ -62,9 +60,9 @@ class ColorsRepository {
   }
 
   Future<bool> get getNewColors async {
-    if (_locked.list.contains(false)) {
+    if (locked.list.contains(false)) {
       try {
-        _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: _locked.list);
+        _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: locked.list);
         return true;
       } on Exception catch (_) {
         return false;
