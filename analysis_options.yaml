@@ -49,6 +49,7 @@ linter:
     # Disabled
     always_specify_types: false
     avoid_annotating_with_dynamic: false
+    avoid_as: false # depricated
     avoid_types_on_closure_parameters: false
     comment_references: false
     diagnostic_describe_all_properties: false
@@ -65,7 +66,6 @@ linter:
     # Enabled
     always_put_control_body_on_new_line: true
     always_put_required_named_parameters_first: true
-    avoid_as: true
     avoid_bool_literals_in_conditional_expressions: true
     avoid_classes_with_only_static_members: true
     avoid_double_and_int_checks: true

@@ -1,9 +1,13 @@
-import 'dart:convert';
 import 'dart:ui' show Color;
 
 import 'package:json_annotation/json_annotation.dart';
-import '../../extensions/color_to_list_int.dart';
 
+import '../../extensions/color_to_list_int.dart';
+import '../../extensions/list_color_to_palette.dart';
+import '../../extensions/list_int_to_color.dart';
+import '../../interfaces/color_palette.dart';
+import '../../interfaces/manipulate_list.dart';
+import '../hive/color_palette.dart';
 import 'constants.dart';
 
 /// This allows the `ColorsAI` class to access private members in
@@ -11,26 +15,22 @@ import 'constants.dart';
 /// the star denotes the source file name.
 part 'colors_json.g.dart';
 
-ColorsAI colorsFromJson(String dataFromAPI) =>
-    // ignore: avoid_as
-    ColorsAI.fromJson(json.decode(dataFromAPI) as Map<String, dynamic>);
-
-String colorsToJson(ColorsAI colors) => json.encode(colors.toJson());
-
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.
-@JsonSerializable()
-class ColorsAI {
-  const ColorsAI({this.list = const []});
+@JsonSerializable(createToJson: false)
+class ColorsAI implements ManipulateListInterface, ColorPaletteInterface {
+  ColorsAI({this.list = const []});
 
+  /// An annotation used to specify how a field is serialized.
+  @override
+  @JsonKey(name: key, required: true)
   final List<List<int>> list;
 
-  ColorsAI changeColor(Color newColor, int colorIndex) {
-    list[colorIndex] = newColor.toListInt();
-    return ColorsAI(list: list);
-  }
+  @override
+  void change(int colorIndex, [Color? newColor]) => list[colorIndex] = newColor!.toListInt();
 
-  ColorsAI swapColors({required int oldIndex, required int newIndex}) {
+  @override
+  void swap({required int oldIndex, required int newIndex}) {
     final List<int> swapedColor = list[oldIndex];
     if (newIndex >= list.length) {
       list
@@ -41,18 +41,35 @@ class ColorsAI {
         ..removeAt(oldIndex)
         ..insert(newIndex, swapedColor);
     }
+  }
 
-    final List<List<int>> swapedColors = list;
-    return ColorsAI(list: swapedColors);
+  @override
+  void add(covariant List<int> color) => list.add(color);
+
+  @override
+  void addAll(covariant List<List<int>> newColors) => list
+    ..clear()
+    ..addAll(newColors);
+
+  @override
+  void fromPalette(ColorPalette palette) {
+    list.clear();
+    for (final Color color in palette.colors) {
+      list.add(color.toListInt());
+    }
+  }
+
+  @override
+  ColorPalette get asPalette {
+    final List<Color> colorsList = [];
+    for (final List<int> colorAsListInt in list) {
+      colorsList.add(colorAsListInt.toColor());
+    }
+    return colorsList.toPalette();
   }
 
   /// A necessary factory constructor for creating a new ColorsAI instance
   /// from a map. Pass the map to the generated `_$ColorsAIFromJson()` constructor.
   /// The constructor is named after the source class, in this case, ColorsAI.
   factory ColorsAI.fromJson(Map<String, dynamic> json) => _$ColorsAIFromJson(json);
-
-  /// `toJson` is the convention for a class to declare support for serialization
-  /// to JSON. The implementation simply calls the private, generated
-  /// helper method `_$ColorsAIToJson`.
-  Map<String, dynamic> toJson() => _$ColorsAIToJson(this);
 }

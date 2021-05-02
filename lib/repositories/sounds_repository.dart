@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
 import '../models/sounds/constants.dart';
@@ -10,13 +12,15 @@ class SoundsAssets {
   static const SoundsSource _sounds = SoundsSource();
 
   Future<void> _playSound(String soundName, {double volume = 0.4}) async {
-    try {
-      await _player.setVolume(volume);
-      await _player.setAsset(_sounds.assetPath(soundName));
-      await _player.play().whenComplete(_player.stop);
-    } on Exception catch (e) {
-      debugPrint('Exception during audio playback $e');
-      rethrow;
+    if (Platform.isAndroid) {
+      try {
+        await _player.setVolume(volume);
+        await _player.setAsset(_sounds.assetPath(soundName));
+        await _player.play().whenComplete(_player.stop);
+      } on Exception catch (e) {
+        debugPrint('Exception during audio playback $e');
+        rethrow;
+      }
     }
   }
 

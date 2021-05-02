@@ -39,7 +39,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   json_serializable: ^4.0.0-nullsafety.0
-  mockito: ^5.0.0-nullsafety.5
+  # mockito: ^5.0.0-nullsafety.5
   pedantic: ^1.10.0-nullsafety.3
 
 flutter:

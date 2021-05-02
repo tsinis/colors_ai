@@ -1,8 +1,6 @@
 import 'dart:ui' show Color;
 
 import '../extensions/color_to_list_int.dart';
-import '../extensions/list_color_to_palette.dart';
-import '../extensions/list_int_to_color.dart';
 import '../models/colors/colors_json.dart';
 import '../models/colors/constants.dart';
 import '../models/hive/color_palette.dart';
@@ -10,59 +8,47 @@ import '../models/locks/locked_colors.dart';
 import '../services/api/api.dart';
 
 class ColorsRepository {
-  const ColorsRepository({this.locked = const LockedColors()});
-  final LockedColors locked;
+  ColorsRepository() {
+    for (final Color color in defaultColors) {
+      _colorsAI.add(color.toListInt());
+      _locked.add();
+    }
+  }
 
   static const API _apiServices = API();
 
-  List<bool> get lockedColors => locked.list;
-  void unlockAll() => locked.unlockAll();
-  void changeLock(int colorIndex) => locked.changeLock(colorIndex);
-  void lock(int colorIndex) => locked.lock(colorIndex);
+  final ColorsAI _colorsAI = ColorsAI(list: []);
+  final LockedColors _locked = LockedColors(list: []);
 
-  // ignore: prefer_const_constructors
-  static ColorsAI _colorsAI = ColorsAI();
+  List<bool> get lockedColors => _locked.list;
+  void unlockAll() => _locked.unlockAll();
+  void changeLock(int colorIndex) => _locked.change(colorIndex);
+  void lock(int colorIndex) => _locked.lock(colorIndex);
 
   ColorsAI get colors => _colorsAI;
 
-  void changeColor(Color newColor, int colorIndex) => _colorsAI.changeColor(newColor, colorIndex);
+  void changeColor(Color newColor, int colorIndex) => _colorsAI.change(colorIndex, newColor);
 
   void swapColors({required int oldIndex, required int newIndex}) {
     final int colorsAvailble = defaultColors.length - 1;
     // List can be temporary growable, in some cases, for example on long drag at the last tile.
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
-    _colorsAI.swapColors(oldIndex: oldIndex, newIndex: newIndexUngrowed);
-    locked.swapLocks(oldIndex: oldIndex, newIndex: newIndexUngrowed);
+    _colorsAI.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
+    _locked.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
   }
 
-  ColorPalette get asPalette {
-    final List<Color> colorsList = [];
-    for (final List<int> listInt in _colorsAI.list) {
-      colorsList.add(listInt.toColor());
-    }
-    return colorsList.toPalette();
-  }
+  ColorPalette get asPalette => _colorsAI.asPalette;
 
-  void initColors() {
-    final List<List<int>> colorsIntList = [];
-    for (final Color color in defaultColors) {
-      colorsIntList.add(color.toListInt());
-    }
-    _colorsAI = ColorsAI(list: colorsIntList);
-  }
-
-  void fromFavorites(ColorPalette palette) {
-    final List<List<int>> colorsIntList = [];
-    for (final Color color in palette.colors) {
-      colorsIntList.add(color.toListInt());
-    }
-    _colorsAI = ColorsAI(list: colorsIntList);
-  }
+  void fromFavorites(ColorPalette palette) => _colorsAI.fromPalette(palette);
 
   Future<bool> get getNewColors async {
-    if (locked.list.contains(false)) {
+    if (_locked.list.contains(false)) {
       try {
-        _colorsAI = await _apiServices.getNewColors(_colorsAI, lockedColors: locked.list);
+        final newColors = await _apiServices.getNewColors(
+          _colorsAI,
+          lockedColors: _locked.list,
+        );
+        _colorsAI.addAll(newColors.list);
         return true;
       } on Exception catch (_) {
         return false;

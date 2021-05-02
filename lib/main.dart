@@ -44,12 +44,16 @@ class MyApp extends StatelessWidget {
             BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
           ],
           child: RepositoryProvider<ColorsRepository>(
-            create: (_) => const ColorsRepository(),
+            create: (_) => ColorsRepository(),
             child: BlocBuilder<OnboardingBloc, OnboardingState>(
-              builder: (_, state) => AnimatedOpacity(
-                  duration: const Duration(seconds: 2),
-                  opacity: state is OnboardingLoadInProgress ? 0.5 : 1,
-                  child: state is OnboardingLoadInProgress ? const SplashScreen() : const MainScreen()),
+              builder: (_, state) {
+                final bool isLoading = state is OnboardingLoadInProgress || state is OnboardingInitial;
+                return AnimatedOpacity(
+                    curve: Curves.fastOutSlowIn,
+                    duration: const Duration(seconds: 2),
+                    opacity: isLoading ? 0.5 : 1,
+                    child: isLoading ? const SplashScreen() : const MainScreen());
+              },
             ),
           ),
         ),

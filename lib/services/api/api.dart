@@ -40,7 +40,8 @@ class API {
       // TODO! Handle status codes.
       throw Exception('Network error, Status Code: ${response.statusCode}');
     } else {
-      return colorsFromJson(response.body);
+      final responseMap = jsonDecode(response.body) as Map<String, dynamic>;
+      return ColorsAI.fromJson(responseMap);
     }
   }
 }

@@ -20,7 +20,6 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   Stream<ColorsState> mapEventToState(ColorsEvent event) async* {
     if (event is ColorsStarted) {
       yield const ColorsLoadInProgress();
-      _colorsRepository.initColors();
       yield ColorsLoadSuccess(_colorsRepository.colors.list);
     } else if (event is ColorsChanged) {
       if (event.newColor != null) {

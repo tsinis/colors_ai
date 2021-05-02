@@ -35,5 +35,7 @@ class ColorPaletteAdapter extends TypeAdapter<ColorPalette> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is ColorPaletteAdapter && runtimeType == other.runtimeType && typeId == other.typeId;
+      other is ColorPaletteAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
 }
