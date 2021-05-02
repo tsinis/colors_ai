@@ -12,7 +12,7 @@ class OnboardingRepository {
       final bool? isFirstRun = onboardBox.get(_isFirstRun, defaultValue: true);
       return !(isFirstRun == false);
     } on Exception catch (e) {
-      debugPrint('Exception during box opening: $e');
+      debugPrint('Exception during onboarding box opening: $e');
       return true;
     } finally {
       await onboardBox.close();

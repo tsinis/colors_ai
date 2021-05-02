@@ -12,7 +12,7 @@ class NoNetwork extends StatefulWidget {
 }
 
 class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+  late final AnimationController controller;
 
   @override
   void dispose() {

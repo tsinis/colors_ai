@@ -48,11 +48,14 @@ class MyApp extends StatelessWidget {
             child: BlocBuilder<OnboardingBloc, OnboardingState>(
               builder: (_, state) {
                 final bool isLoading = state is OnboardingLoadInProgress || state is OnboardingInitial;
-                return AnimatedOpacity(
-                    curve: Curves.fastOutSlowIn,
-                    duration: const Duration(seconds: 2),
-                    opacity: isLoading ? 0.5 : 1,
-                    child: isLoading ? const SplashScreen() : const MainScreen());
+                return ColoredBox(
+                  color: Colors.grey,
+                  child: AnimatedOpacity(
+                      curve: Curves.easeOutQuint,
+                      duration: const Duration(seconds: 2),
+                      opacity: isLoading ? 0.5 : 1,
+                      child: isLoading ? const SplashScreen() : const MainScreen()),
+                );
               },
             ),
           ),

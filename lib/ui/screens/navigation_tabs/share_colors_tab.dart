@@ -20,7 +20,7 @@ class ShareColors extends StatelessWidget {
                   state.providersList.length,
                   (int index) => RadioListTile(
                     title: Text(state.providersList[index].name),
-                    subtitle: Text((state.providersList[index].formats == null)
+                    subtitle: Text((index == 0)
                         ? 'Arts that match your colors'
                         : 'Export to: ${state.providersList[index].formats}'),
                     value: index,

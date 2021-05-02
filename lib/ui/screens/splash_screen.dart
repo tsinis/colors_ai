@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.share_outlined, color: Colors.transparent), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.palette, color: Colors.transparent), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.palette_outlined), label: ''),
             BottomNavigationBarItem(icon: Icon(Icons.bookmarks_outlined, color: Colors.transparent), label: ''),
           ],
         ),

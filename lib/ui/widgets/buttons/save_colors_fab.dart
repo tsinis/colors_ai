@@ -18,7 +18,7 @@ class SaveColorsFAB extends StatefulWidget {
 }
 
 class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProviderStateMixin {
-  late Animation<double> fabAnimation;
+  late final Animation<double> fabAnimation;
   late final AnimationController controller;
 
   @override

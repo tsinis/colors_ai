@@ -11,8 +11,8 @@ class NoFavorites extends StatefulWidget {
 }
 
 class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-  late Animation<double> animation, reverseAnimation;
+  late final AnimationController controller;
+  late final Animation<double> animation, reverseAnimation;
 
   @override
   void dispose() {

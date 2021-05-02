@@ -56,8 +56,7 @@ class _NavigationScreenState extends State<MainScreen> {
                   title: Text(state.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),
                   actions: [
                     appBarActions[state.tabIndex],
-                    BlocProvider(
-                        create: (context) => AboutBloc()..add(const AboutStarted()), child: const AboutButton())
+                    BlocProvider(create: (context) => AboutBloc(), child: const AboutButton())
                   ]),
               body: MultiBlocProvider(
                 providers: [

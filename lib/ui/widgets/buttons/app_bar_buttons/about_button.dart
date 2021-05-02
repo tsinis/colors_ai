@@ -17,10 +17,10 @@ class AboutButton extends StatelessWidget {
             SchedulerBinding.instance?.addPostFrameCallback((_) async {
               showAboutDialog(
                 context: context,
-                applicationIcon: Image.asset('assets/images/app_icon.png'),
-                applicationName: state.appName,
+                applicationName: 'Colors AI',
                 applicationVersion: state.appVersion,
                 applicationLegalese: '2021 © Roman Cinis',
+                applicationIcon: Image.asset('assets/images/app_icon.png'),
                 children: <Widget>[
                   const SizedBox(height: 20),
                   RichText(
@@ -33,12 +33,13 @@ class AboutButton extends StatelessWidget {
                             text: ' Colormind API',
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutApiProviderTaped())),
-                        const TextSpan(text: '. The source code of this application '),
+                        const TextSpan(text: '. The source code of this application is available at'),
                         TextSpan(
                             style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),
-                            text: 'is available at this GitHub repository.',
+                            text: ' this GitHub repository',
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutSourceCodeTaped())),
+                        const TextSpan(text: '.'),
                         const TextSpan(text: '\n\nATTRIBUTION:\n\nUI sounds used in this application:'),
                         TextSpan(
                             style: Theme.of(context).textTheme.bodyText2!.copyWith(color: _linkColor),

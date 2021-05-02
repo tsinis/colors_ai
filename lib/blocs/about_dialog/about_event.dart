@@ -7,10 +7,6 @@ abstract class AboutEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AboutStarted extends AboutEvent {
-  const AboutStarted();
-}
-
 class AboutClosed extends AboutEvent {
   const AboutClosed();
 }

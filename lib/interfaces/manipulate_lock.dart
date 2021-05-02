@@ -1,5 +1,3 @@
-const bool locked = true, unlocked = false;
-
 abstract class LockInterface {
   const LockInterface();
 

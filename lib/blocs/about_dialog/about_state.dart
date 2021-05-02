@@ -12,9 +12,9 @@ class AboutCloseInitial extends AboutState {
 }
 
 class AboutOpenInitial extends AboutState {
-  const AboutOpenInitial({required this.appVersion, required this.appName});
+  const AboutOpenInitial({required this.appVersion});
 
-  final String appVersion, appName;
+  final String appVersion;
 }
 
 class AboutFailure extends AboutState {

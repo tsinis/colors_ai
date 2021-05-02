@@ -16,7 +16,7 @@ abstract class ColorsUrlProvider {
   const ColorsUrlProvider({
     required this.baseUrl,
     this.providerName,
-    this.formats = '',
+    this.formats,
     this.separateSymbol = '-',
   });
   final String baseUrl, separateSymbol;
