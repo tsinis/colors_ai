@@ -1,4 +1,4 @@
-part of 'share_bloc.dart';
+part of 'share_hydrated_bloc.dart';
 
 abstract class ShareEvent extends Equatable {
   const ShareEvent();
@@ -8,8 +8,8 @@ abstract class ShareEvent extends Equatable {
 }
 
 class ShareUrlProviderSelected extends ShareEvent {
-  const ShareUrlProviderSelected({this.providerIndex = 0});
-  final int providerIndex;
+  const ShareUrlProviderSelected({this.providerIndex});
+  final int? providerIndex;
 }
 
 class ShareUrlShared extends ShareEvent {

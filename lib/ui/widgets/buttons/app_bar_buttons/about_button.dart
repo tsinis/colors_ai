@@ -12,7 +12,7 @@ class AboutButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<AboutBloc, AboutState>(
-        builder: (BuildContext dialogContext, AboutState state) {
+        builder: (dialogContext, state) {
           if (state is AboutOpenInitial) {
             SchedulerBinding.instance?.addPostFrameCallback((_) async {
               showAboutDialog(

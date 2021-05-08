@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../services/clipboard/clipboard.dart';
+import '../../services/clipboard.dart';
 
 part 'colorpicker_event.dart';
 part 'colorpicker_state.dart';

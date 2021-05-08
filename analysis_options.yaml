@@ -139,6 +139,7 @@ linter:
     use_full_hex_values_for_flutter_colors: true
     use_raw_strings: true
     use_string_buffers: true
+    unnecessary_await_in_return: true
     valid_regexps: true
     void_checks: true
 

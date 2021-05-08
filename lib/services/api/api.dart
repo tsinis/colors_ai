@@ -22,7 +22,7 @@ class API {
     } else {
       body = utf8.encode(isUiModel ? uiModel : defaultModel);
     }
-    return await http.post(Uri.parse(host), headers: headers, body: body).timeout(const Duration(seconds: 8));
+    return http.post(Uri.parse(host), headers: headers, body: body).timeout(const Duration(seconds: 8));
   }
 
   Future<ColorsAI> getNewColors(

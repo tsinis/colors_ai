@@ -12,9 +12,9 @@ class LockColorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LockedBloc, LockState>(
-        builder: (_, colorState) {
-          if (colorState is LockSuccess) {
-            final bool isLocked = colorState.isLocked(index);
+        builder: (_, state) {
+          if (state is LockSuccess) {
+            final bool isLocked = state.isLocked(index);
             return IconButton(
                 constraints: BoxConstraints(minWidth: buttonSize.width, minHeight: buttonSize.height),
                 color: color.withOpacity(isLocked ? 0.87 : 0.6),

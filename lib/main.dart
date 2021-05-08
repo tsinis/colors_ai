@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import 'blocs/favorite_colors/favorites_bloc.dart';
 import 'blocs/favorite_colors/favorites_event.dart';
@@ -9,7 +7,8 @@ import 'blocs/floating_action_button/fab_bloc.dart';
 import 'blocs/navigation/navigation_bloc.dart';
 import 'blocs/onboarding/onboarding_bloc.dart';
 import 'repositories/colors_repository.dart';
-import 'services/system_ui/system_overlays.dart';
+import 'services/data_storage.dart';
+import 'services/system_overlays.dart';
 import 'ui/screens/scaffold_and_navigation.dart';
 import 'ui/screens/splash_screen.dart';
 import 'ui/theme/theme.dart';
@@ -22,8 +21,8 @@ import 'ui/theme/theme.dart';
 //TODO? Add settings menu.
 
 void main() {
-  Hive.initFlutter().whenComplete(() {
-    SystemUI.initUI();
+  DataStorage.init().whenComplete(() {
+    SystemUI.init();
     runApp(BlocProvider<OnboardingBloc>(
       create: (_) => OnboardingBloc()..add(const OnboardingLoadDataStarted()),
       child: const MyApp(),

@@ -20,6 +20,7 @@ import 'onboarding_list.dart';
 class ColorsList extends StatefulWidget {
   const ColorsList(this.colorsList);
   final List<List<int>> colorsList;
+
   @override
   _ColorsListState createState() => _ColorsListState();
 }
@@ -27,27 +28,19 @@ class ColorsList extends StatefulWidget {
 class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateMixin {
   late Completer<void> refreshCompleter;
   late final AnimationController controller;
-  late final Animation<double> animation;
-
-  bool isReordering = false, isRefreshed = false;
+  late final Animation<double> animation, reverseAnimation;
 
   @override
   void initState() {
     super.initState();
     refreshCompleter = Completer<void>();
-    controller = AnimationController(duration: const Duration(milliseconds: 700), vsync: this)
-      ..addStatusListener(
-        (status) {
-          if (status == AnimationStatus.dismissed) {
-            controller.forward();
-          }
-        },
-      );
-    animation = CurvedAnimation(
-      parent: controller,
-      curve: Curves.easeIn,
-      reverseCurve: Curves.easeOut,
-    );
+    controller = AnimationController(duration: const Duration(milliseconds: 600), lowerBound: 0.2, vsync: this)
+      ..addStatusListener((animationStatus) {
+        // ignore: always_put_control_body_on_new_line
+        if (animationStatus == AnimationStatus.dismissed) controller.forward();
+      });
+    animation = CurvedAnimation(parent: controller, curve: Curves.easeInCubic, reverseCurve: Curves.easeInExpo);
+    reverseAnimation = ReverseAnimation(animation);
     controller.forward();
   }
 
@@ -65,30 +58,28 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
           final Size third = Size(size.maxWidth / 3, tileHeight);
           return Stack(
             children: [
-              if (isReordering)
-                const SizedBox.shrink()
-              else ...[
-                DefaultGreyList(length: length, tileWidth: size.maxWidth, tileHeight: tileHeight),
-                if (!isRefreshed)
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
+              FadeTransition(
+                opacity: animation,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
                       padding: EdgeInsets.only(bottom: tileHeight / 3),
-                      child: Text('Pull to Refresh', style: TextStyle(color: Theme.of(context).splashColor)),
-                    ),
-                  ),
-              ],
+                      child: const Text('Pull down to refresh',
+                          style: TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
+                ),
+              ),
+              FadeTransition(
+                  opacity: reverseAnimation,
+                  child: DefaultGreyList(length: length, tileWidth: size.maxWidth, tileHeight: tileHeight)),
               BlocConsumer<ColorsBloc, ColorsState>(
-                listener: (_, state) {
+                listener: (_, __) {
                   refreshCompleter.complete();
                   refreshCompleter = Completer();
                 },
-                builder: (_, state) => RefreshIndicator(
+                builder: (_, __) => RefreshIndicator(
                   triggerMode: RefreshIndicatorTriggerMode.anywhere,
                   displacement: tileHeight,
                   onRefresh: () {
-                    // ignore: always_put_control_body_on_new_line
-                    if (!isRefreshed) setState(() => isRefreshed = true);
                     controller.reverse();
                     BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
                     BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
@@ -101,14 +92,8 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                       opacity: animation,
                       child: RefreshableReorderableListView(
                         physics: const AlwaysScrollableScrollPhysics(),
-                        onDragStart: () {
-                          BlocProvider.of<FabBloc>(context).add(const FabHided());
-                          setState(() => isReordering = true);
-                        },
-                        onDragEnd: () {
-                          BlocProvider.of<FabBloc>(context).add(const FabShowed());
-                          setState(() => isReordering = false);
-                        },
+                        onDragStart: () => BlocProvider.of<FabBloc>(context).add(const FabHided()),
+                        onDragEnd: () => BlocProvider.of<FabBloc>(context).add(const FabShowed()),
                         onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
                             .add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
                         children: List.generate(length, (int index) {
