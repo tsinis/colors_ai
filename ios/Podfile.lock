@@ -10,6 +10,8 @@ PODS:
     - Flutter
   - path_provider (0.0.1):
     - Flutter
+  - printing (1.0.0):
+    - Flutter
   - share (0.0.1):
     - Flutter
   - url_launcher (0.0.1):
@@ -24,6 +26,7 @@ DEPENDENCIES:
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - printing (from `.symlinks/plugins/printing/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
   - vibration (from `.symlinks/plugins/vibration/ios`)
@@ -41,6 +44,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/package_info/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  printing:
+    :path: ".symlinks/plugins/printing/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
   url_launcher:
@@ -55,6 +60,7 @@ SPEC CHECKSUMS:
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  printing: eafa00acb682c0ca029d4d98d0798f55a1e27102
   share: 0b2c3e82132f5888bccca3351c504d0003b3b410
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
   vibration: 1ec279c4a1a7a646627b54039d812334b3f1114a

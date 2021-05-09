@@ -7,10 +7,12 @@ import 'package:hive/hive.dart';
 
 class DataStorage {
   const DataStorage();
+  static Future<Directory> get directory async => getApplicationDocumentsDirectory();
+
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
-    final Directory dir = await getApplicationDocumentsDirectory();
-    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: dir);
-    Hive.init(dir.path);
+    final Directory storage = await directory;
+    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: storage);
+    Hive.init(storage.path);
   }
 }

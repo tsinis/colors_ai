@@ -1,9 +1,10 @@
 part of 'share_hydrated_bloc.dart';
 
 abstract class ShareState extends Equatable {
-  const ShareState({this.providersList = const [], this.selectedProvider});
+  const ShareState({this.selectedProvider});
   final int? selectedProvider;
-  final List<ColorsUrlProvider> providersList;
+
+  List<ColorsUrlProvider> get providersList => ShareRepository.providers;
 
   @override
   List<int?> get props => [selectedProvider];
@@ -18,13 +19,9 @@ class ShareEmptyInitial extends ShareState {
 }
 
 class ShareSelectedInitial extends ShareState {
-  const ShareSelectedInitial(this.providers, {int? providerIndex})
-      : super(selectedProvider: providerIndex, providersList: providers);
-  final List<ColorsUrlProvider> providers;
+  const ShareSelectedInitial({int? providerIndex}) : super(selectedProvider: providerIndex);
 }
 
 class ShareCopySuccess extends ShareState {
-  const ShareCopySuccess(this.providers, {int? providerIndex})
-      : super(selectedProvider: providerIndex, providersList: providers);
-  final List<ColorsUrlProvider> providers;
+  const ShareCopySuccess({int? providerIndex}) : super(selectedProvider: providerIndex);
 }

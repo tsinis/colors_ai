@@ -8,8 +8,12 @@ abstract class ShareEvent extends Equatable {
 }
 
 class ShareUrlProviderSelected extends ShareEvent {
-  const ShareUrlProviderSelected({this.providerIndex});
-  final int? providerIndex;
+  const ShareUrlProviderSelected({required this.providerIndex});
+  final int providerIndex;
+}
+
+class ShareStarted extends ShareEvent {
+  const ShareStarted();
 }
 
 class ShareUrlShared extends ShareEvent {
@@ -19,5 +23,15 @@ class ShareUrlShared extends ShareEvent {
 
 class ShareUrlCopied extends ShareEvent {
   const ShareUrlCopied(this.palette);
+  final ColorPalette palette;
+}
+
+class SharePdfShared extends ShareEvent {
+  const SharePdfShared(this.palette);
+  final ColorPalette palette;
+}
+
+class ShareImageShared extends ShareEvent {
+  const ShareImageShared(this.palette);
   final ColorPalette palette;
 }

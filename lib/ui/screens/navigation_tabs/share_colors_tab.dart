@@ -76,6 +76,23 @@ class ShareColors extends StatelessWidget {
                   ],
                 ),
                 const Divider(),
+                ButtonBar(
+                  mainAxisSize: MainAxisSize.max,
+                  alignment: MainAxisAlignment.center,
+                  buttonMinWidth: 200,
+                  children: <Widget>[
+                    OutlinedButton.icon(
+                      icon: const Icon(Icons.image_outlined, size: 20),
+                      label: const Text('SHARE PNG'),
+                      onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareImageShared(palette)),
+                    ),
+                    ElevatedButton.icon(
+                      icon: const Icon(Icons.file_present, size: 20),
+                      label: const Text('SHARE PDF'),
+                      onPressed: () => BlocProvider.of<ShareBloc>(context).add(SharePdfShared(palette)),
+                    ),
+                  ],
+                ),
               ],
             );
           } else {

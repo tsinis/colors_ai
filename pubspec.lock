@@ -169,6 +169,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+  color_converter:
+    dependency: "direct main"
+    description:
+      name: color_converter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   convert:
     dependency: transitive
     description:
@@ -501,7 +508,7 @@ packages:
     source: hosted
     version: "2.0.1"
   pdf:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: pdf
       url: "https://pub.dartlang.org"
@@ -542,6 +549,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0"
+  printing:
+    dependency: "direct main"
+    description:
+      name: printing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.1"
   process:
     dependency: transitive
     description:

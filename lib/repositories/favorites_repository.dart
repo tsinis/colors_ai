@@ -25,12 +25,7 @@ class FavoritesRepository {
 
   Future<void> addToStorage() => _storageBox.add(_list.last);
 
-  Future<void> updateStorage() async {
-    await clearStorage();
-    for (final ColorPalette colors in _list) {
-      await _storageBox.add(colors);
-    }
-  }
+  Future<void> updateStorage(int index) => _storageBox.deleteAt(index);
 
   Future<bool?> get loadStoredFavorites async {
     try {

@@ -13,8 +13,9 @@ environment:
   flutter: ">=2.1.0-12.2.pre <3.0.0"
 
 dependencies:
-  equatable: ^2.0.0
-  flutter:
+  color_converter: ^0.2.1
+  equatable: ^2.0.0 # From Flutter Community
+  flutter:  # From Google
     sdk: flutter
   flutter_bloc: ^7.0.0 # Flutter Favorite
   flutter_colorpicker: ^0.4.0-nullsafety.0
@@ -25,8 +26,8 @@ dependencies:
   mdi: ^5.0.0-nullsafety.0
   package_info: ^2.0.0 # From Google
   path_provider: ^2.0.1 # From Google
-  pdf: ^3.3.0
-  share: ^2.0.0-nullsafety.2 # Flutter Favorite
+  printing: ^5.2.1
+  share: ^2.0.0-nullsafety.2 # From Google
   simple_animations: ^3.0.0-nullsafety.4
   url_launcher: ^6.0.0-nullsafety.7 # From Google
   vibration: ^1.7.4-nullsafety.0
@@ -34,10 +35,10 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.0.2 # From Google
   # flutter_native_splash: ^0.2.11
-  flutter_test:
+  flutter_test: # From Google
     sdk: flutter
   hive_generator: ^1.1.0
-  integration_test:
+  integration_test: # From Google
     sdk: flutter
   json_serializable: ^4.0.0-nullsafety.0 # From Google
   mockito: ^5.0.0-nullsafety.5 # From Google

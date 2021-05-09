@@ -13,25 +13,33 @@ part 'share_state.dart';
 class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   ShareBloc() : super(const ShareEmptyInitial());
 
-  final ShareRepository _shareRepository = ShareRepository();
+  final ShareRepository _share = ShareRepository();
 
   @override
   Stream<ShareState> mapEventToState(ShareEvent event) async* {
+    if (event is ShareStarted) {
+      // ignore: unawaited_futures
+      _share.init();
+    }
+    if (event is SharePdfShared) {
+      await _share.asPdf(event.palette);
+    }
+    if (event is ShareImageShared) {
+      await _share.asPng(event.palette);
+    }
     if (event is ShareUrlShared) {
-      _shareRepository.shareUrl(event.palette);
+      _share.asUrl(event.palette);
+    } else if (event is ShareUrlProviderSelected) {
+      _share.providerIndex = event.providerIndex;
     } else if (event is ShareUrlCopied) {
-      _shareRepository.copyUrl(event.palette);
+      _share.copyUrl(event.palette);
       yield ShareCopySuccess(
-        _shareRepository.providers,
-        providerIndex: _shareRepository.providerIndex,
+        providerIndex: _share.providerIndex,
       );
-    } else if (event is ShareUrlProviderSelected && event.providerIndex != null) {
-      _shareRepository.providerIndex = event.providerIndex;
     }
     try {
       yield ShareSelectedInitial(
-        _shareRepository.providers,
-        providerIndex: _shareRepository.providerIndex,
+        providerIndex: _share.providerIndex,
       );
     } on Exception catch (_) {
       yield const ShareFailure();
@@ -40,17 +48,13 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
-    _shareRepository.providerIndex = json['index'] as int;
-    return ShareSelectedInitial(
-      _shareRepository.providers,
-      providerIndex: _shareRepository.providerIndex,
-    );
+    _share.providerIndex = json['index'] as int;
   }
 
   @override
-  Map<String, int>? toJson(ShareState state) {
+  Map<String, dynamic>? toJson(ShareState state) {
     if (state is ShareSelectedInitial && state.selectedProvider != null) {
-      return {'index': state.selectedProvider!};
+      return <String, int>{'index': state.selectedProvider!};
     }
   }
 }

@@ -62,7 +62,7 @@ class _NavigationScreenState extends State<MainScreen> {
                 providers: [
                   BlocProvider<ColorsBloc>(
                       create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted())),
-                  BlocProvider<ShareBloc>(create: (_) => ShareBloc()..add(const ShareUrlProviderSelected())),
+                  BlocProvider<ShareBloc>(create: (_) => ShareBloc()..add(const ShareStarted())),
                   BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
                 ],
                 child: MultiBlocListener(
@@ -104,10 +104,9 @@ class _NavigationScreenState extends State<MainScreen> {
                     },
                     items: [
                       BottomNavigationBarItem(
-                        label: navState.tabLabels[_shareTabIndex],
-                        activeIcon: const Icon(Icons.share),
-                        icon: const Icon(Icons.share_outlined),
-                      ),
+                          label: navState.tabLabels[_shareTabIndex],
+                          activeIcon: const Icon(Icons.share),
+                          icon: const Icon(Icons.share_outlined)),
                       BottomNavigationBarItem(
                           label: navState.tabLabels[_colorsGenTabIndex],
                           icon: const Icon(Icons.palette_outlined),
