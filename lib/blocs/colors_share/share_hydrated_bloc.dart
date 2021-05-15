@@ -20,14 +20,13 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     if (event is ShareStarted) {
       // ignore: unawaited_futures
       _share.init();
-    }
-    if (event is SharePdfShared) {
+    } else if (event is ShareFormatSelected) {
+      _share.isLetter = event.isLetter;
+    } else if (event is SharePdfShared) {
       await _share.asPdf(event.palette);
-    }
-    if (event is ShareImageShared) {
+    } else if (event is ShareImageShared) {
       await _share.asPng(event.palette);
-    }
-    if (event is ShareUrlShared) {
+    } else if (event is ShareUrlShared) {
       _share.asUrl(event.palette);
     } else if (event is ShareUrlProviderSelected) {
       _share.providerIndex = event.providerIndex;
@@ -35,11 +34,13 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
       _share.copyUrl(event.palette);
       yield ShareCopySuccess(
         providerIndex: _share.providerIndex,
+        isLetter: _share.isLetter,
       );
     }
     try {
       yield ShareSelectedInitial(
         providerIndex: _share.providerIndex,
+        isLetter: _share.isLetter,
       );
     } on Exception catch (_) {
       yield const ShareFailure();
@@ -48,13 +49,20 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
-    _share.providerIndex = json['index'] as int;
+    final int? savedProvider = json['index'] as int?;
+    final bool? savedFormat = json['isLetter'] as bool?;
+    if (savedProvider != null) {
+      _share.providerIndex = savedProvider;
+    }
+    if (savedFormat != null) {
+      _share.isLetter = savedFormat;
+    }
   }
 
   @override
   Map<String, dynamic>? toJson(ShareState state) {
-    if (state is ShareSelectedInitial && state.selectedProvider != null) {
-      return <String, int>{'index': state.selectedProvider!};
+    if (state is ShareSelectedInitial) {
+      return <String, dynamic>{'index': state.selectedProvider, 'isLetter': state.isLetter};
     }
   }
 }

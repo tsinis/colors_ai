@@ -35,3 +35,8 @@ class ShareImageShared extends ShareEvent {
   const ShareImageShared(this.palette);
   final ColorPalette palette;
 }
+
+class ShareFormatSelected extends ShareEvent {
+  const ShareFormatSelected({required this.isLetter});
+  final bool isLetter;
+}

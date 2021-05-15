@@ -23,10 +23,29 @@ class ShareRepository with FileCreator {
     Poolors(),
   ];
 
-  int? providerIndex;
   late final String storagePath;
 
   static const Clipboards _clipboard = Clipboards();
+  static const String _subject = 'Colors AI';
+
+  bool? _isLetter;
+  int? _providerIndex;
+
+  bool? get isLetter => _isLetter;
+
+  set isLetter(bool? isLetter) {
+    if (isLetter != null && isLetter != _isLetter) {
+      _isLetter = isLetter;
+    }
+  }
+
+  int? get providerIndex => _providerIndex;
+
+  set providerIndex(int? newProviderIndex) {
+    if (newProviderIndex != null && newProviderIndex != _providerIndex) {
+      _providerIndex = newProviderIndex;
+    }
+  }
 
   Future<void> init() async => storagePath = (await DataStorage.directory).path;
 
@@ -57,7 +76,7 @@ class ShareRepository with FileCreator {
     final String filePath = '$storagePath/colors_ai.$fileExtension';
     final File file = File(filePath)..writeAsBytesSync(bytes.toList());
     if (file.existsSync()) {
-      await Share.shareFiles([filePath]);
+      await Share.shareFiles([filePath], subject: _subject);
       return true;
     } else {
       return false;
@@ -67,6 +86,6 @@ class ShareRepository with FileCreator {
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider provider = providers[providerIndex ?? 0];
     final String url = provider.url(palette);
-    copyOnly ? await _clipboard.copyURL(url) : await Share.share(url, subject: 'Colors AI');
+    copyOnly ? await _clipboard.copyURL(url) : await Share.share(url, subject: _subject);
   }
 }

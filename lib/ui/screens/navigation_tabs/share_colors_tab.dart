@@ -28,7 +28,7 @@ class ShareColors extends StatelessWidget {
                         filled: true,
                         fillColor: Colors.grey[350],
                         labelText: 'Share a link via:',
-                        helperStyle: const TextStyle(color: Colors.black, fontStyle: FontStyle.italic, fontSize: 13),
+                        helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black54),
                         helperMaxLines: 1,
                         helperText: (selectedProviderIndex == _firstProvider)
                             ? 'Arts that match your colors'
@@ -76,6 +76,50 @@ class ShareColors extends StatelessWidget {
                   ],
                 ),
                 const Divider(),
+                RadioListTile<bool>(
+                    dense: true,
+                    title: RichText(
+                      text: const TextSpan(
+                        text: 'A4',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: ' (210 by 297 millimetres)',
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
+                          )
+                        ],
+                      ),
+                    ),
+                    subtitle: const Text('International ISO 216 Standard'),
+                    value: false,
+                    groupValue: state.isLetter ?? false,
+                    onChanged: (isLetterSelected) {
+                      if (isLetterSelected != null) {
+                        BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(isLetter: isLetterSelected));
+                      }
+                    }),
+                RadioListTile<bool>(
+                    dense: true,
+                    title: RichText(
+                      text: const TextSpan(
+                        text: 'US Letter',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: ' (8.5 by 11 inches)',
+                            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
+                          )
+                        ],
+                      ),
+                    ),
+                    subtitle: const Text('North American ANSI Standard'),
+                    value: true,
+                    groupValue: state.isLetter ?? false,
+                    onChanged: (isLetterSelected) {
+                      if (isLetterSelected != null) {
+                        BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(isLetter: isLetterSelected));
+                      }
+                    }),
                 ButtonBar(
                   mainAxisSize: MainAxisSize.max,
                   alignment: MainAxisAlignment.center,
@@ -87,7 +131,7 @@ class ShareColors extends StatelessWidget {
                       onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareImageShared(palette)),
                     ),
                     ElevatedButton.icon(
-                      icon: const Icon(Icons.file_present, size: 20),
+                      icon: const Icon(Icons.picture_as_pdf_outlined, size: 20),
                       label: const Text('SHARE PDF'),
                       onPressed: () => BlocProvider.of<ShareBloc>(context).add(SharePdfShared(palette)),
                     ),

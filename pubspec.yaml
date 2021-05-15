@@ -33,7 +33,7 @@ dependencies:
   vibration: ^1.7.4-nullsafety.0
 
 dev_dependencies:
-  build_runner: ^2.0.2 # From Google
+  build_runner: ^2.0.3 # From Google
   # flutter_native_splash: ^0.2.11
   flutter_test: # From Google
     sdk: flutter

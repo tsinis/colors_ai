@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mdi/mdi.dart';
 
 import '../../../blocs/onboarding/onboarding_bloc.dart';
 import '../../../flutter_colors_ai_keys.dart';
@@ -69,7 +68,7 @@ class OnboardingList extends DefaultGreyList {
                                       textScaleFactor: 1,
                                     ),
                                   ),
-                                  const Icon(Mdi.dragHorizontalVariant, size: 32)
+                                  const Icon(Icons.drag_handle_outlined)
                                 ],
                               ),
                             ),

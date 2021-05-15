@@ -3,9 +3,7 @@
 [![pedantic on pub.dev](https://img.shields.io/badge/Style-pedantic-blue)](https://pub.dev/packages/pedantic)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
 
-
-
-# Colors AI 🎨
+# Colors AI 🤖
 
 ## Table of content
 
@@ -40,7 +38,7 @@ All Dart code is linted with [Pedantic](https://pub.dev/packages/pedantic). [Hiv
 
 ### How to run it
 
-Flutter version **1.23** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
+Flutter version **2.1.0** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```bash
 flutter run
@@ -56,7 +54,7 @@ All animations here are made with pure Flutter. The application's UI is designed
 * [ ] Separate data layer more.
 * [ ] Create more interfaces for Data and Repository layers.
 * [ ] Add dependencies list in README.
-* [ ] Add exports to PDF and JPG.
+* [x] Add exports to PDF and PNG.
 * [ ] L10N.
 
 ## Licenses

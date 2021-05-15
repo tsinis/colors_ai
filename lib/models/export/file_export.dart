@@ -56,10 +56,10 @@ class FileLayout extends StatelessWidget {
                 final String colorSpace = _colorSpaces.elementAt(spacesIndex);
                 return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                   Text(colorSpace,
-                      style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey500)),
+                      style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600)),
                   Spacer(),
                   Text(_colorValue(colorSpace, hex),
-                      style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey900 : PdfColors.grey600))
+                      style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600))
                 ]);
               })))
         ]);

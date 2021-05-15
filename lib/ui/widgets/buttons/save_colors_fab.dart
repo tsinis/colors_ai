@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mdi/mdi.dart';
 import 'package:vibration/vibration.dart';
 
 import '../../../blocs/favorite_colors/favorites_bloc.dart';
@@ -57,7 +56,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                   Vibration.vibrate(duration: 100);
                 }
               },
-              child: const Icon(Mdi.bookmarkPlusOutline),
+              child: const Icon(Icons.bookmark_add_outlined),
             );
           },
         ),
