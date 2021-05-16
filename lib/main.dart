@@ -13,7 +13,6 @@ import 'ui/screens/scaffold_and_navigation.dart';
 import 'ui/screens/splash_screen.dart';
 import 'ui/theme/theme.dart';
 
-//TODO! Add warrning about server maintance.
 //TODO: Handle Failure States in Bloc.
 //TODO: Provide all text strings via l10n Bloc.
 //TODO? Add settings menu.

@@ -71,7 +71,6 @@ class ShareRepository with FileCreator {
   }
 
   Future<bool> _shareFile(Uint8List bytes, {bool isPdf = true}) async {
-    //TODO Add subject.
     final String fileExtension = isPdf ? 'pdf' : 'png';
     final String filePath = '$storagePath/colors_ai.$fileExtension';
     final File file = File(filePath)..writeAsBytesSync(bytes.toList());
@@ -86,6 +85,6 @@ class ShareRepository with FileCreator {
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider provider = providers[providerIndex ?? 0];
     final String url = provider.url(palette);
-    copyOnly ? await _clipboard.copyURL(url) : await Share.share(url, subject: _subject);
+    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: _subject);
   }
 }

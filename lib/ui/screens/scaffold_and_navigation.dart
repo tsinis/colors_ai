@@ -11,6 +11,7 @@ import '../../blocs/favorite_colors/favorites_state.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
 import '../../blocs/navigation/navigation_bloc.dart';
+import '../../blocs/snackbar_bloc/snackbars_bloc.dart';
 import '../../blocs/sounds_audio/sound_bloc.dart';
 import '../../repositories/colors_repository.dart';
 import '../widgets/buttons/app_bar_buttons/about_button.dart';
@@ -64,31 +65,36 @@ class _NavigationScreenState extends State<MainScreen> {
                       create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted())),
                   BlocProvider<ShareBloc>(create: (_) => ShareBloc()..add(const ShareStarted())),
                   BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
+                  BlocProvider<SnackbarBloc>(create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess())),
                 ],
-                child: MultiBlocListener(
-                  listeners: [
-                    BlocListener<ShareBloc, ShareState>(
-                      listener: (context, shareState) {
-                        if (shareState is ShareCopySuccess) {
-                          BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(duration: Duration(seconds: 1), content: Text('Link copied!')));
-                        }
-                      },
-                    ),
-                    BlocListener<ColorPickerBLoc, ColorPickerState>(
-                      listener: (context, pickerState) {
-                        if (pickerState is ColorPickerCopySuccess) {
-                          BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            duration: const Duration(seconds: 1),
-                            content: Text('Color ${pickerState.copiedColor} copied!'),
-                            behavior: SnackBarBehavior.floating,
-                          ));
-                        }
-                      },
-                    ),
-                  ],
+                child: BlocListener<SnackbarBloc, SnackbarState>(
+                  listener: (context, snackbarState) {
+                    BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
+                    if (snackbarState is! SnackbarsInitial) {
+                      late String message;
+                      if (snackbarState is UrlCopySuccess) {
+                        message = 'Link copied!';
+                      } else if (snackbarState is ColorCopySuccess) {
+                        message = 'Color ${snackbarState.clipboard} copied!';
+                      } else if (snackbarState is ServerStatusCheckSuccess) {
+                        message = 'The server is updated at midnight PDT, so it may be unavailable for 30 sec.';
+                      }
+                      final bool isUrlCopied = snackbarState is UrlCopySuccess;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          duration: const Duration(seconds: 2),
+                          content: Text(message),
+                          behavior: isUrlCopied ? SnackBarBehavior.fixed : SnackBarBehavior.floating,
+                          action: isUrlCopied
+                              ? SnackBarAction(
+                                  textColor: Colors.grey[400],
+                                  label: 'OPEN',
+                                  onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(const UrlOpenedSuccess()))
+                              : null,
+                        ),
+                      );
+                    } else if (snackbarState is ServerStatusCheckSuccess) {}
+                  },
                   child: SafeArea(child: navTabs.elementAt(navState.tabIndex)),
                 ),
               ),

@@ -28,14 +28,10 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
       await _share.asPng(event.palette);
     } else if (event is ShareUrlShared) {
       _share.asUrl(event.palette);
-    } else if (event is ShareUrlProviderSelected) {
-      _share.providerIndex = event.providerIndex;
     } else if (event is ShareUrlCopied) {
       _share.copyUrl(event.palette);
-      yield ShareCopySuccess(
-        providerIndex: _share.providerIndex,
-        isLetter: _share.isLetter,
-      );
+    } else if (event is ShareUrlProviderSelected) {
+      _share.providerIndex = event.providerIndex;
     }
     try {
       yield ShareSelectedInitial(

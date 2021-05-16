@@ -23,8 +23,3 @@ class ShareSelectedInitial extends ShareState {
   const ShareSelectedInitial({int? providerIndex, bool? isLetter})
       : super(selectedProvider: providerIndex, isLetter: isLetter);
 }
-
-class ShareCopySuccess extends ShareState {
-  const ShareCopySuccess({int? providerIndex, bool? isLetter})
-      : super(selectedProvider: providerIndex, isLetter: isLetter);
-}

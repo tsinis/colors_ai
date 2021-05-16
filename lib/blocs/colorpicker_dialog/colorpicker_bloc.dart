@@ -17,8 +17,7 @@ class ColorPickerBLoc extends Bloc<ColorPickerEvent, ColorPickerState> {
   @override
   Stream<ColorPickerState> mapEventToState(ColorPickerEvent event) async* {
     if (event is ColorPickerCopied) {
-      final String colorAsHexString = await _clipboard.copyColor(event.color);
-      yield ColorPickerCopySuccess(copiedColor: colorAsHexString);
+      await _clipboard.copyColor(event.color);
       yield const ColorPickerCloseInitial();
     } else if (event is ColorPickerShowed) {
       yield const ColorPickerOpenInitial();

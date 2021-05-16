@@ -6,11 +6,9 @@ import '../extensions/color_to_hex.dart';
 
 class Clipboards {
   const Clipboards();
-  Future<void> copyURL(String url) => Clipboard.setData(ClipboardData(text: url));
+  Future<void> copyUrl(String url) async => Clipboard.setData(ClipboardData(text: url));
 
-  Future<String> copyColor(Color color) async {
-    final String colorAsHexString = color.toHex();
-    await Clipboard.setData(ClipboardData(text: colorAsHexString));
-    return colorAsHexString;
-  }
+  Future<void> copyColor(Color color) async => Clipboard.setData(ClipboardData(text: color.toHex()));
+
+  Future<String?> get data async => (await Clipboard.getData('text/plain'))?.text;
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/colors_share/share_hydrated_bloc.dart';
+import '../../../blocs/snackbar_bloc/snackbars_bloc.dart';
 import '../../../models/hive/color_palette.dart';
 import '../../../repositories/colors_repository.dart';
 
@@ -65,7 +66,10 @@ class ShareColors extends StatelessWidget {
                     OutlinedButton.icon(
                       icon: const Icon(Icons.content_copy_outlined, size: 20),
                       label: const Text('COPY URL'),
-                      onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette)),
+                      onPressed: () {
+                        BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
+                        BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
+                      },
                     ),
                     ElevatedButton.icon(
                       icon: const Icon(Icons.link, size: 20),
