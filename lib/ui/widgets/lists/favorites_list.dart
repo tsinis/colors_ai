@@ -18,8 +18,8 @@ class FavoritesList extends StatefulWidget {
 }
 
 class _FavoritesListState extends State<FavoritesList> {
-  bool isDissmised = true;
   static const double padding = 16, tipHeight = 42;
+  bool isDissmised = true;
 
   int get colorsCount {
     try {

@@ -36,8 +36,9 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     refreshCompleter = Completer<void>();
     controller = AnimationController(duration: const Duration(milliseconds: 600), lowerBound: 0.2, vsync: this)
       ..addStatusListener((animationStatus) {
-        // ignore: always_put_control_body_on_new_line
-        if (animationStatus == AnimationStatus.dismissed) controller.forward();
+        if (animationStatus == AnimationStatus.dismissed) {
+          controller.forward();
+        }
       });
     animation = CurvedAnimation(parent: controller, curve: Curves.easeInCubic, reverseCurve: Curves.easeInExpo);
     reverseAnimation = ReverseAnimation(animation);

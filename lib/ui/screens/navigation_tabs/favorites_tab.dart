@@ -10,6 +10,7 @@ import '../../widgets/lists/favorites_list.dart';
 
 class FavoritesTab extends StatelessWidget {
   const FavoritesTab();
+
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
       builder: (_, state) => AnimatedSwitcher(

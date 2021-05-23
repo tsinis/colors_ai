@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class TransmitterTower extends CustomPainter {
   const TransmitterTower();
+
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()

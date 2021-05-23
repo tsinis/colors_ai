@@ -11,9 +11,9 @@ class PullToRefreshAnimation extends StatefulWidget {
 }
 
 class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with AnimationMixin {
-  static const Duration _duration = Duration(seconds: 1);
+  static const Duration duration = Duration(seconds: 1);
+  static const Curve curve = Curves.easeInOutQuart;
 
-  final Curve curve = Curves.easeInOutQuart;
   late final Animation<Color?> color;
   late final Animation<double> opacity, height, fade;
   late final AnimationController opacityController, heightController, colorController, fadeController;
@@ -21,9 +21,9 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
   @override
   void initState() {
     fadeController = createController()..loop(duration: const Duration(seconds: 2));
-    opacityController = createController()..mirror(duration: _duration);
-    heightController = createController()..mirror(duration: _duration);
-    colorController = createController()..mirror(duration: _duration);
+    opacityController = createController()..mirror(duration: duration);
+    heightController = createController()..mirror(duration: duration);
+    colorController = createController()..mirror(duration: duration);
 
     fade = ReverseAnimation(fadeController);
     opacity = Tween<double>(begin: 1, end: 0).chain(CurveTween(curve: curve)).animate(opacityController);

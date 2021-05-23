@@ -51,6 +51,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                     .add(FavoritesAdded(favorite: context.read<ColorsRepository>().asPalette));
                 // ignore: unawaited_futures
                 controller.reverse();
+                //TODO Move to the BLoC?
                 if (await Vibration.hasCustomVibrationsSupport() == true) {
                   // ignore: unawaited_futures
                   Vibration.vibrate(duration: 100);

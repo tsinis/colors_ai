@@ -35,7 +35,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.0"
+    version: "2.6.1"
   audio_session:
     dependency: transitive
     description:
@@ -203,7 +203,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   fake_async:
     dependency: transitive
     description:
@@ -224,7 +224,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.1.0"
+    version: "6.1.1"
   fixnum:
     dependency: transitive
     description:
@@ -247,10 +247,12 @@ packages:
   flutter_colorpicker:
     dependency: "direct main"
     description:
-      name: flutter_colorpicker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.0-nullsafety.0"
+      path: "."
+      ref: patch-1
+      resolved-ref: f0a4fe7d635bb343d4d5bfa1c02f99c27073e410
+      url: "git://github.com/tsinis/flutter_colorpicker.git"
+    source: git
+    version: "0.4.0"
   flutter_driver:
     dependency: transitive
     description: flutter
@@ -863,5 +865,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.13.0-116.0.dev <3.0.0"
-  flutter: ">=2.1.0-12.2.pre"
+  dart: ">=2.14.0-129.0.dev <3.0.0"
+  flutter: ">=2.3.0-13.0.pre.63"

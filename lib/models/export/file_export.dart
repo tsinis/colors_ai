@@ -1,6 +1,6 @@
+import 'package:color_converter/color_converter.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
-import 'package:color_converter/color_converter.dart';
 
 import '../../extensions/color_to_hex.dart';
 import '../../models/hive/color_palette.dart';

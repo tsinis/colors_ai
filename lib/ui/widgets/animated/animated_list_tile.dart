@@ -5,14 +5,13 @@ class AnimatedListItem extends StatefulWidget {
     required this.index,
     required this.child,
     required this.length,
-    this.height,
-    Key? key,
+    required this.height,
+    required Key key,
   }) : super(key: key);
 
   final Widget child;
-  final int index;
-  final int length;
-  final double? height;
+  final int index, length;
+  final double height;
 
   @override
   _AnimatedListItemState createState() => _AnimatedListItemState();
@@ -32,20 +31,14 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
   }
 
   @override
-  Widget build(BuildContext context) => (widget.height != null)
-      ? AnimatedContainer(
-          curve: Curves.easeOutQuart,
-          height: isAnimationDone ? widget.height! : widget.index + 1 * widget.height! * widget.length,
-          duration: const Duration(milliseconds: 600),
-          child: AnimatedOpacity(
-            duration: const Duration(milliseconds: 600),
-            opacity: isAnimationDone ? 1 : 0,
-            child: widget.child,
-          ),
-        )
-      : AnimatedOpacity(
+  Widget build(BuildContext context) => AnimatedContainer(
+        curve: Curves.easeOutQuart,
+        height: isAnimationDone ? widget.height : widget.index + 1 * widget.height * widget.length,
+        duration: const Duration(milliseconds: 600),
+        child: AnimatedOpacity(
           duration: const Duration(milliseconds: 600),
           opacity: isAnimationDone ? 1 : 0,
           child: widget.child,
-        );
+        ),
+      );
 }

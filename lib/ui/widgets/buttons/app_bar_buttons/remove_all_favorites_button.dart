@@ -12,31 +12,33 @@ import '../../../../blocs/remove_favorites/alert_dialog_state.dart';
 
 class RemoveAllFavoritesButton extends StatelessWidget {
   const RemoveAllFavoritesButton();
+
   @override
   Widget build(BuildContext context) => BlocProvider<AlertDialogBloc>(
         create: (_) => AlertDialogBloc(),
         child: BlocBuilder<AlertDialogBloc, AlertDialogState>(
           builder: (BuildContext dialogContext, AlertDialogState state) {
             if (state is AlertDialogOpenInitial) {
-              SchedulerBinding.instance?.addPostFrameCallback((_) async {
-                await showDialog<bool>(
-                  context: dialogContext,
-                  // https://material.io/components/dialogs#alert-dialog
-                  builder: (_) => AlertDialog(
-                    content: const Text('Remove all favorite colors?'),
-                    actions: <TextButton>[
-                      TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('CANCEL')),
-                      TextButton(
-                          onPressed: () => Navigator.pop(dialogContext, true),
-                          child: Text('REMOVE', style: TextStyle(color: Theme.of(context).errorColor)))
-                    ],
-                  ),
-                ).then((toRemoveAll) => (toRemoveAll == true)
-                    ? BlocProvider.of<FavoritesBloc>(context).add(const FavoritesAllRemoved())
-                    : null);
-              });
+              SchedulerBinding.instance?.addPostFrameCallback((_) async => showDialog<bool>(
+                    context: dialogContext,
+                    // https://material.io/components/dialogs#alert-dialog
+                    builder: (_) => AlertDialog(
+                      content: const Text('Remove all favorite colors?'),
+                      actions: <TextButton>[
+                        TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('CANCEL')),
+                        TextButton(
+                            onPressed: () => Navigator.pop(dialogContext, true),
+                            child: Text('REMOVE', style: TextStyle(color: Theme.of(context).errorColor)))
+                      ],
+                    ),
+                  ).then((toRemoveAll) {
+                    if (toRemoveAll == true) {
+                      BlocProvider.of<FavoritesBloc>(context).add(const FavoritesAllRemoved());
+                    }
+                  }));
               BlocProvider.of<AlertDialogBloc>(dialogContext).add(const AlertDialogHided());
             }
+
             return BlocBuilder<FavoritesBloc, FavoritesState>(
                 builder: (_, state) => IconButton(
                     tooltip: 'Remove all favorite colors',

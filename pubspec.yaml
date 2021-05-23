@@ -9,16 +9,20 @@ publish_to: 'none'
 version: 1.0.2+3
 
 environment:
-  sdk: ">=2.13.0-116.0.dev <3.0.0"
-  flutter: ">=2.1.0-12.2.pre <3.0.0"
+  sdk: ">=2.14.0-129.0.dev <3.0.0" # with NavigationBar from Material You
+  # git clone -b feature-navigationBar https://github.com/johnsonmh/flutter.git
+  flutter: ">=2.3.0-13.0.pre.63 <3.0.0"
 
 dependencies:
   color_converter: ^0.2.1
-  equatable: ^2.0.0 # From Flutter Community
+  equatable: ^2.0.2 # From Flutter Community
   flutter:  # From Google
     sdk: flutter
   flutter_bloc: ^7.0.0 # Flutter Favorite
-  flutter_colorpicker: ^0.4.0-nullsafety.0
+  flutter_colorpicker:
+    git:
+      url: git://github.com/tsinis/flutter_colorpicker.git
+      ref: patch-1
   http: ^0.13.0-nullsafety.0 # From Google
   hydrated_bloc: ^7.0.0
   json_annotation: ^4.0.0-nullsafety.0 # From Google

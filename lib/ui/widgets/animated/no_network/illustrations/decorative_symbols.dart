@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class DecorativeSymbols extends CustomPainter {
   const DecorativeSymbols();
+
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()

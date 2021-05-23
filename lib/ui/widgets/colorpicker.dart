@@ -30,28 +30,26 @@ class Colorpicker extends StatelessWidget {
         child: BlocBuilder<ColorPickerBLoc, ColorPickerState>(
           builder: (dialogContext, state) {
             if (state is ColorPickerOpenInitial) {
-              SchedulerBinding.instance?.addPostFrameCallback((_) async {
-                await showDialog<void>(
-                  context: dialogContext,
-                  builder: (_) => SimpleDialog(
-                    // https://material.io/components/dialogs#simple-dialog
-                    contentPadding: const EdgeInsets.all(0),
-                    children: [
-                      ColorPicker(
-                        colorPickerWidth: 280, //beacuse stepWidth = 56 * 5.
-                        enableAlpha: false,
-                        portraitOnly: true,
-                        displayThumbColor: true,
-                        pickerColor: color,
-                        onColorChanged: (newColor) {
-                          BlocProvider.of<FabBloc>(context).add(const FabShowed());
-                          BlocProvider.of<ColorsBloc>(context).add(ColorsChanged(newColor, index));
-                        },
-                      ),
-                    ],
-                  ),
-                );
-              });
+              SchedulerBinding.instance?.addPostFrameCallback((_) async => showDialog<void>(
+                    context: dialogContext,
+                    builder: (_) => SimpleDialog(
+                      // https://material.io/components/dialogs#simple-dialog
+                      contentPadding: const EdgeInsets.all(0),
+                      children: [
+                        ColorPicker(
+                          colorPickerWidth: 280, //beacuse stepWidth = 56 * 5.
+                          enableAlpha: false,
+                          portraitOnly: true,
+                          displayThumbColor: true,
+                          pickerColor: color,
+                          onColorChanged: (newColor) {
+                            BlocProvider.of<FabBloc>(context).add(const FabShowed());
+                            BlocProvider.of<ColorsBloc>(context).add(ColorsChanged(newColor, index));
+                          },
+                        ),
+                      ],
+                    ),
+                  ));
               BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerHided());
             }
             return TextButton(

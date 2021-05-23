@@ -9,13 +9,8 @@ class DefaultGreyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Column(
-        children: List.generate(
-            length ?? defaultColors.length,
-            (int index) => Container(
-                  width: tileWidth,
-                  height: tileHeight,
-                  color: defaultColors[index],
-                ),
+        children: List.generate(length ?? defaultColors.length,
+            (int i) => Container(width: tileWidth, height: tileHeight, color: defaultColors[i]),
             growable: false),
       );
 }

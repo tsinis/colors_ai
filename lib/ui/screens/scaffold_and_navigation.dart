@@ -101,27 +101,28 @@ class _NavigationScreenState extends State<MainScreen> {
               bottomNavigationBar: BlocBuilder<FavoritesBloc, FavoritesState>(
                 builder: (_, saveState) {
                   final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
-                  return BottomNavigationBar(
-                    currentIndex: navState.tabIndex,
+                  return NavigationBar(
+                    backgroundColor: Colors.grey,
+                    labelBehavior: NavigationBarDestinationLabelBehavior.alwaysHide,
+                    selectedIndex: navState.tabIndex,
                     onTap: (int newTabIndex) {
                       if (!(isFavoritesEmpty && newTabIndex == _favoritesTabIndex)) {
                         BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
                       }
                     },
-                    items: [
-                      BottomNavigationBarItem(
+                    destinations: [
+                      NavigationBarDestination(
                           label: navState.tabLabels[_shareTabIndex],
-                          activeIcon: const Icon(Icons.share),
-                          icon: const Icon(Icons.share_outlined)),
-                      BottomNavigationBarItem(
+                          icon: const Icon(Icons.share),
+                          unselectedIcon: const Icon(Icons.share_outlined)),
+                      NavigationBarDestination(
                           label: navState.tabLabels[_colorsGenTabIndex],
-                          icon: const Icon(Icons.palette_outlined),
-                          activeIcon: const Icon(Icons.palette)),
-                      BottomNavigationBarItem(
-                        tooltip: isFavoritesEmpty ? 'No ${navState.tabLabels.last}' : navState.tabLabels.last,
-                        label: navState.tabLabels[_favoritesTabIndex],
-                        activeIcon: const Icon(Icons.bookmarks),
-                        icon: Icon(Icons.bookmarks_outlined,
+                          unselectedIcon: const Icon(Icons.palette_outlined),
+                          icon: const Icon(Icons.palette)),
+                      NavigationBarDestination(
+                        label: isFavoritesEmpty ? 'No ${navState.tabLabels.last}' : navState.tabLabels.last,
+                        icon: const Icon(Icons.bookmarks),
+                        unselectedIcon: Icon(Icons.bookmarks_outlined,
                             color: isFavoritesEmpty
                                 ? Theme.of(context).disabledColor
                                 : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
