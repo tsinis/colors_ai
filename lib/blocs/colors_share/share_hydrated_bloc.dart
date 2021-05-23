@@ -18,8 +18,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   @override
   Stream<ShareState> mapEventToState(ShareEvent event) async* {
     if (event is ShareStarted) {
-      // ignore: unawaited_futures
-      _share.init();
+      await _share.init();
     } else if (event is ShareFormatSelected) {
       _share.isLetter = event.isLetter;
     } else if (event is SharePdfShared) {
@@ -37,6 +36,8 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
       yield ShareSelectedInitial(
         providerIndex: _share.providerIndex,
         isLetter: _share.isLetter,
+        canSharePdf: _share.canSharePdf,
+        canSharePng: _share.canSharePng,
       );
     } on Exception catch (_) {
       yield const ShareFailure();

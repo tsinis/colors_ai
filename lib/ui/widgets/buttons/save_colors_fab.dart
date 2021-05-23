@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vibration/vibration.dart';
 
 import '../../../blocs/favorite_colors/favorites_bloc.dart';
 import '../../../blocs/favorite_colors/favorites_event.dart';
 import '../../../blocs/floating_action_button/fab_bloc.dart';
 import '../../../blocs/floating_action_button/fab_state.dart';
-import '../../../blocs/sounds_audio/sound_bloc.dart';
+import '../../../blocs/sounds_vibration/sound_bloc.dart';
 import '../../../repositories/colors_repository.dart';
 
 class SaveColorsFAB extends StatefulWidget {
@@ -45,17 +44,11 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
               controller.forward();
             }
             return FloatingActionButton(
-              onPressed: () async {
+              onPressed: () {
                 BlocProvider.of<SoundBloc>(context).add(const SoundFavoritesAdded());
                 BlocProvider.of<FavoritesBloc>(context)
                     .add(FavoritesAdded(favorite: context.read<ColorsRepository>().asPalette));
-                // ignore: unawaited_futures
                 controller.reverse();
-                //TODO Move to the BLoC?
-                if (await Vibration.hasCustomVibrationsSupport() == true) {
-                  // ignore: unawaited_futures
-                  Vibration.vibrate(duration: 100);
-                }
               },
               child: const Icon(Icons.bookmark_add_outlined),
             );

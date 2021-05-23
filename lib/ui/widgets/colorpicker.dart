@@ -8,8 +8,8 @@ import '../../blocs/colors_generated/colors_bloc.dart';
 import '../../blocs/colors_locked/locked_bloc.dart';
 import '../../blocs/floating_action_button/fab_bloc.dart';
 import '../../blocs/floating_action_button/fab_event.dart';
-import '../../blocs/snackbar_bloc/snackbars_bloc.dart';
-import '../../blocs/sounds_audio/sound_bloc.dart';
+import '../../blocs/snackbars/snackbars_bloc.dart';
+import '../../blocs/sounds_vibration/sound_bloc.dart';
 import '../../extensions/color_to_hex.dart';
 
 class Colorpicker extends StatelessWidget {

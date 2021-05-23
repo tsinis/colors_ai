@@ -20,7 +20,6 @@ class ColorsGenerator extends StatelessWidget {
           BlocProvider.of<FabBloc>(context).add(const FabShowed());
           return ColorsList(state.colorsAI);
         }
-        BlocProvider.of<FabBloc>(context).add(const FabHided());
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

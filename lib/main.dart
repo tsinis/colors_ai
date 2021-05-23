@@ -46,10 +46,11 @@ class MyApp extends StatelessWidget {
                 final bool isLoading = state is OnboardingLoadInProgress || state is OnboardingInitial;
                 return ColoredBox(
                   color: Colors.grey,
+                  //TODO Change to navigator transition.
                   child: AnimatedOpacity(
-                      curve: Curves.easeOutQuint,
+                      curve: Curves.easeInCirc,
                       duration: const Duration(seconds: 2),
-                      opacity: isLoading ? 0.5 : 1,
+                      opacity: isLoading ? 0 : 1,
                       child: isLoading ? const SplashScreen() : const MainScreen()),
                 );
               },

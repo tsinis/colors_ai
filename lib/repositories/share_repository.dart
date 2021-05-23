@@ -5,13 +5,13 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:printing/printing.dart';
 import 'package:share/share.dart';
 
+import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
 import '../models/hive/color_palette.dart';
 import '../models/url_providers/url_providers.dart';
 import '../services/clipboard.dart';
-import '../services/data_storage.dart';
 
-class ShareRepository with FileCreator {
+class ShareRepository with FileCreator, DeviceCapabilities {
   static const List<ColorsUrlProvider> providers = [
     ArtsGoogle(),
     ColorCombos(),
@@ -22,8 +22,6 @@ class ShareRepository with FileCreator {
     Palettable(),
     Poolors(),
   ];
-
-  late final String storagePath;
 
   static const Clipboards _clipboard = Clipboards();
   static const String _subject = 'Colors AI';
@@ -47,8 +45,6 @@ class ShareRepository with FileCreator {
     }
   }
 
-  Future<void> init() async => storagePath = (await DataStorage.directory).path;
-
   void asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
 
   void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
@@ -58,11 +54,10 @@ class ShareRepository with FileCreator {
   Future<bool> asPng(ColorPalette pallete) async {
     //TODO! Add try/catch in bloc and show error in UI.
     bool canShare = true;
-    await Printing.raster(await generateFile(pallete), pages: [0, 1]).forEach((page) async {
+    await Printing.raster(await generateFile(pallete)).forEach((page) async {
       try {
         canShare = await _shareFile(await page.toPng(), isPdf: false);
-        // ignore: avoid_catches_without_on_clauses
-      } catch (e) {
+      } on Exception catch (e) {
         debugPrint('Cannot create PNG, error :$e');
         canShare = false;
       }

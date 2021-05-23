@@ -26,11 +26,3 @@ class SoundCopied extends SoundEvent {
 class SoundFavoritesAdded extends SoundEvent {
   const SoundFavoritesAdded();
 }
-
-// class SoundLeftSwiped extends SoundEvent {
-//   const SoundLeftSwiped();
-// }
-
-// class SoundRightSwiped extends SoundEvent {
-//   const SoundRightSwiped();
-// }

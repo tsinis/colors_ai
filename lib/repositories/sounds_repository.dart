@@ -2,14 +2,14 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
+
+import '../mixins/vibration.dart';
 import '../models/sounds/constants.dart';
 import '../models/sounds/sounds_audio.dart';
 
-class SoundsAssets {
-  const SoundsAssets();
-
-  static final AudioPlayer _player = AudioPlayer();
+class SoundsRepository with Vibrations {
   static const SoundsSource _sounds = SoundsSource();
+  final AudioPlayer _player = AudioPlayer();
 
   Future<void> _playSound(String soundName, {double volume = 0.4}) async {
     if (Platform.isAndroid) {

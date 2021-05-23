@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../blocs/colors_locked/locked_bloc.dart';
-import '../../../blocs/sounds_audio/sound_bloc.dart';
+import '../../../blocs/sounds_vibration/sound_bloc.dart';
 
 class LockColorButton extends StatelessWidget {
   const LockColorButton(this.index, {required this.color, this.buttonSize = const Size(24, 24)});

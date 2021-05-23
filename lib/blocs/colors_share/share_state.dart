@@ -20,6 +20,11 @@ class ShareEmptyInitial extends ShareState {
 }
 
 class ShareSelectedInitial extends ShareState {
-  const ShareSelectedInitial({int? providerIndex, bool? isLetter})
-      : super(selectedProvider: providerIndex, isLetter: isLetter);
+  const ShareSelectedInitial({
+    required this.canSharePdf,
+    required this.canSharePng,
+    int? providerIndex,
+    bool? isLetter,
+  }) : super(selectedProvider: providerIndex, isLetter: isLetter);
+  final bool canSharePdf, canSharePng;
 }
