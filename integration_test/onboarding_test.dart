@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 // ignore_for_file: avoid_relative_lib_imports
-import '../lib/flutter_colors_ai_keys.dart';
 import '../lib/main.dart' as app;
+import '../lib/testing/test_keys.dart';
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
@@ -20,9 +20,9 @@ void main() {
           'Expection is: $expection. Because: Infinity loop "Pull to refresh" animation is showed, cannot wait till settle');
     }
     debugPrint('App is pumped');
-    final button = find.byKey(FlutterColorsAIKeys.onboardingFinish);
+    final button = find.byKey(TestKeys.onboardingFinish);
     debugPrint('Described BUTTON: $button');
-    final dissapear = find.byKey(FlutterColorsAIKeys.disappearedOnboard);
+    final dissapear = find.byKey(TestKeys.disappearedOnboard);
     debugPrint('Described DISSAPEAR: $dissapear');
     await tester.ensureVisible(button);
     debugPrint('Ensured button is visible');
