@@ -5,9 +5,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        key: const ValueKey<bool>(true),
         appBar: AppBar(),
-        body: const Center(child: CircularProgressIndicator()),
         bottomNavigationBar: const NavigationBar(
           backgroundColor: Colors.grey,
           labelBehavior: NavigationBarDestinationLabelBehavior.alwaysHide,

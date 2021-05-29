@@ -3,6 +3,6 @@ import '../models/hive/color_palette.dart';
 abstract class ColorPaletteInterface {
   const ColorPaletteInterface();
 
-  ColorPalette get asPalette => const ColorPalette();
+  ColorPalette get asPalette;
   void fromPalette(ColorPalette palette);
 }

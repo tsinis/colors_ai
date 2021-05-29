@@ -60,13 +60,7 @@ class ColorsAI implements ManipulateListInterface, ColorPaletteInterface {
   }
 
   @override
-  ColorPalette get asPalette {
-    final List<Color> colorsList = [];
-    for (final List<int> colorAsListInt in list) {
-      colorsList.add(colorAsListInt.toColor());
-    }
-    return colorsList.toPalette();
-  }
+  ColorPalette get asPalette => list.map((intColor) => intColor.toColor()).toList().toPalette();
 
   /// A necessary factory constructor for creating a new ColorsAI instance
   /// from a map. Pass the map to the generated `_$ColorsAIFromJson()` constructor.

@@ -51,7 +51,6 @@ class _NavigationScreenState extends State<MainScreen> {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
             return Scaffold(
-              key: const ValueKey<bool>(false),
               floatingActionButton: const SaveColorsFAB(),
               appBar: AppBar(
                   title: Text(navState.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),

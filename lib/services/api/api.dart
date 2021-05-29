@@ -30,10 +30,7 @@ class API {
     required List<bool> lockedColors,
     bool forUI = true,
   }) async {
-    final List<bool> invertedLocks = [];
-    for (final isLocked in lockedColors) {
-      invertedLocks.add(!isLocked);
-    }
+    final List<bool> invertedLocks = lockedColors.map((isLocked) => !isLocked).toList();
     final http.Response response =
         await _colorsFromAPI(existingColors.list, isUiModel: forUI, lockedColors: invertedLocks);
     if (response.statusCode != 200) {

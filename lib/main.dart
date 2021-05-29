@@ -42,18 +42,19 @@ class MyApp extends StatelessWidget {
           child: RepositoryProvider<ColorsRepository>(
             create: (_) => ColorsRepository(),
             child: BlocBuilder<OnboardingBloc, OnboardingState>(
-              builder: (_, state) {
-                final bool isLoading = state is OnboardingLoadInProgress || state is OnboardingInitial;
-                return ColoredBox(
-                  color: Colors.grey,
-                  //TODO Change to navigator transition.
-                  child: AnimatedOpacity(
-                      curve: Curves.easeInCirc,
-                      duration: const Duration(seconds: 2),
-                      opacity: isLoading ? 0 : 1,
-                      child: isLoading ? const SplashScreen() : const MainScreen()),
-                );
-              },
+              builder: (_, state) => ColoredBox(
+                color: Colors.grey,
+                child: Stack(
+                  children: [
+                    const SplashScreen(),
+                    AnimatedOpacity(
+                        curve: Curves.easeInOutCubicEmphasized,
+                        duration: const Duration(seconds: 1),
+                        opacity: state is OnboardingLoadInProgress || state is OnboardingInitial ? 0 : 1,
+                        child: const MainScreen()),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

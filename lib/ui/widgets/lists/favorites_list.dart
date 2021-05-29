@@ -35,7 +35,7 @@ class _FavoritesListState extends State<FavoritesList> {
   Widget build(BuildContext context) => LayoutBuilder(builder: (_, size) {
         final double cardHeight = (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
         final double maxHeighForTip = size.maxHeight - padding - (tipHeight * MediaQuery.of(context).textScaleFactor);
-        final bool canShowTip = (widget._favorites.length * (cardHeight + (padding * 2.5))) <= maxHeighForTip;
+        final bool canShowTip = widget._favorites.length * (cardHeight + (padding * 2.5)) <= maxHeighForTip;
         return Stack(
           alignment: AlignmentDirectional.topCenter,
           children: [
