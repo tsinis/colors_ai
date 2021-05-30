@@ -77,7 +77,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (_, size) {
           final int length = palette.length;
-          final double tileHeight = (size.maxHeight + 1) / length;
+          final double tileHeight = size.maxHeight / length;
           final Size third = Size(size.maxWidth / 3, tileHeight);
           return Stack(
             children: [
@@ -93,8 +93,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
               ),
               FadeTransition(
                   opacity: reverseAnimation,
-                  child:
-                      DefaultGreyList(length: length, tileWidth: size.maxWidth, tileHeight: tileHeight - (1 / length))),
+                  child: DefaultGreyList(length: length, tileWidth: size.maxWidth, tileHeight: tileHeight)),
               BlocConsumer<ColorsBloc, ColorsState>(
                 listener: (_, __) {
                   refreshCompleter.complete();
@@ -155,7 +154,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                   ),
                 ),
               ),
-              OnboardingOverlay(tileWidth: size.maxWidth, tileHeight: tileHeight - (1 / length)),
+              OnboardingOverlay(tileWidth: size.maxWidth, tileHeight: tileHeight),
             ],
           );
         },

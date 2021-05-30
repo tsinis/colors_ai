@@ -1,3 +1,4 @@
+import 'package:colors_ai/about/ui/widgets/app_icon.dart';
 import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -20,7 +21,7 @@ class AboutButton extends StatelessWidget {
                   applicationName: 'Colors AI',
                   applicationVersion: state.appVersion,
                   applicationLegalese: '2021 © Roman Cinis',
-                  applicationIcon: Image.asset('assets/images/app_icon.png'),
+                  applicationIcon: const AppIcon(),
                   children: <Widget>[
                     const SizedBox(height: 20),
                     RichText(
