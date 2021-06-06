@@ -1,10 +1,10 @@
-import 'package:colors_ai/about/ui/widgets/app_icon.dart';
 import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../blocs/about_dialog/about_bloc.dart';
+import '../widgets/app_icon.dart';
 
 class AboutButton extends StatelessWidget {
   const AboutButton();

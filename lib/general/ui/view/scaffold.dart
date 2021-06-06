@@ -66,19 +66,22 @@ class _NavigationScreenState extends State<MainScreen> {
                     BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                     if (snackbarState is! SnackbarsInitial) {
                       late String message;
-                      if (snackbarState is UrlCopySuccess) {
+                      final bool isUrlCopied = snackbarState is UrlCopySuccess;
+                      final bool isShareFailed = snackbarState is ShareAttemptFailure;
+                      if (isUrlCopied) {
                         message = 'Link copied!';
                       } else if (snackbarState is ColorCopySuccess) {
                         message = 'Color ${snackbarState.clipboard} copied!';
                       } else if (snackbarState is ServerStatusCheckSuccess) {
                         message = 'The server is updated at midnight PDT, so it may be unavailable for 30 sec.';
+                      } else if (isShareFailed) {
+                        message = 'Failed to share, try another type';
                       }
-                      final bool isUrlCopied = snackbarState is UrlCopySuccess;
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           duration: const Duration(seconds: 2),
                           content: Text(message),
-                          behavior: isUrlCopied ? SnackBarBehavior.fixed : SnackBarBehavior.floating,
+                          behavior: (isUrlCopied || isShareFailed) ? SnackBarBehavior.fixed : SnackBarBehavior.floating,
                           action: isUrlCopied
                               ? SnackBarAction(
                                   textColor: Theme.of(context).scaffoldBackgroundColor,

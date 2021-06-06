@@ -167,7 +167,8 @@ class ShareColors extends StatelessWidget {
               ),
             );
           } else {
-            return const CircularProgressIndicator();
+            BlocProvider.of<SnackbarBloc>(context).add(const ShareFail());
+            return const Center(child: CircularProgressIndicator());
           }
         },
       );

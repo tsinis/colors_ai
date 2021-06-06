@@ -7,6 +7,10 @@ abstract class SnackbarEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class ShareFail extends SnackbarEvent {
+  const ShareFail();
+}
+
 class UrlCopiedSuccess extends SnackbarEvent {
   const UrlCopiedSuccess();
 }

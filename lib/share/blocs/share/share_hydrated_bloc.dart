@@ -22,9 +22,21 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     } else if (event is ShareFormatSelected) {
       _share.isLetter = event.isLetter;
     } else if (event is SharePdfShared) {
-      await _share.asPdf(event.palette);
+      try {
+        await _share.asPdf(event.palette);
+        // ignore: avoid_catches_without_on_clauses
+      } catch (_) {
+        yield const ShareFailure();
+        await _shareFailed();
+      }
     } else if (event is ShareImageShared) {
-      await _share.asPng(event.palette);
+      try {
+        await _share.asPng(event.palette);
+        // ignore: avoid_catches_without_on_clauses
+      } catch (_) {
+        yield const ShareFailure();
+        await _shareFailed();
+      }
     } else if (event is ShareUrlShared) {
       _share.asUrl(event.palette);
     } else if (event is ShareUrlCopied) {
@@ -41,8 +53,11 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
       );
     } on Exception catch (_) {
       yield const ShareFailure();
+      await _shareFailed();
     }
   }
+
+  Future<void> _shareFailed() async => Future.delayed(Duration.zero, () async {});
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {

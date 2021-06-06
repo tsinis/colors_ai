@@ -12,6 +12,9 @@ part 'providers/cohesive_colors.dart';
 part 'providers/muzli_colors.dart';
 part 'providers/palettable.dart';
 part 'providers/poolors.dart';
+part 'providers/make_tints_and_shades.dart';
+part 'providers/palette_ninja.dart';
+part 'providers/sessions_college.dart';
 
 abstract class ColorsUrlProvider {
   const ColorsUrlProvider({
@@ -24,8 +27,10 @@ abstract class ColorsUrlProvider {
   final String? providerName, formats;
   final String baseUrl, separateSymbol;
 
+  String get _fullUrl => 'https://$baseUrl';
+
   String url(ColorPalette palette) {
-    final StringBuffer sb = StringBuffer()..write(baseUrl);
+    final StringBuffer sb = StringBuffer()..write(_fullUrl);
     for (final Color color in palette.colors) {
       sb..write(color.toHex().toLowerCase())..write(separateSymbol);
     }

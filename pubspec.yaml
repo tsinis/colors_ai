@@ -6,7 +6,7 @@ issue_tracker: https://github.com/tsinis/colors_ai/issues
 
 publish_to: 'none'
 
-version: 1.0.2+3
+version: 1.1.0+3
 
 environment:
   sdk: ">=2.14.0-129.0.dev <3.0.0" # with NavigationBar from Material You
@@ -21,10 +21,9 @@ dependencies:
   flutter_bloc: ^7.0.0 # Flutter Favorite
   flutter_colorpicker:
     git:
-      url: git://github.com/tsinis/flutter_colorpicker.git
-      ref: patch-1
+      url: git://github.com/mchome/flutter_colorpicker.git
   http: ^0.13.0-nullsafety.0 # From Google
-  hydrated_bloc: ^7.0.0
+  hydrated_bloc: ^7.0.1
   json_annotation: ^4.0.0-nullsafety.0 # From Google
   just_audio: ^0.7.5 # Flutter Favorite
   mdi: ^5.0.0-nullsafety.0

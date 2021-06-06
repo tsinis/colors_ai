@@ -1,13 +1,12 @@
 part of '../url_providers.dart';
 
 class ColorCombos extends ColorsUrlProvider {
-  const ColorCombos()
-      : super(baseUrl: 'https://www.colorcombos.com/combotester.html?', separateSymbol: '&', formats: 'PNG +');
+  const ColorCombos() : super(baseUrl: 'www.colorcombos.com/combotester.html?', separateSymbol: '&', formats: 'PNG +');
 
   @override
   String url(ColorPalette palette) {
     int index = 0;
-    final StringBuffer sb = StringBuffer()..write(baseUrl);
+    final StringBuffer sb = StringBuffer()..write(_fullUrl);
     for (final Color color in palette.colors) {
       sb..write('color$index=')..write(color.toHex().toLowerCase())..write(separateSymbol);
       index++;

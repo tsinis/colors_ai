@@ -35,6 +35,8 @@ class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
       if (DateTime.now().toUtc().hour == 7) {
         yield const ServerStatusCheckSuccess();
       }
+    } else if (event is ShareFail) {
+      yield const ShareAttemptFailure();
     }
     yield const SnackbarsInitial();
   }

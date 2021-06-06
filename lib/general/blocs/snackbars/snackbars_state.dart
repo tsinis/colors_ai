@@ -25,3 +25,7 @@ class ColorCopySuccess extends SnackbarState {
 class ServerStatusCheckSuccess extends SnackbarState {
   const ServerStatusCheckSuccess() : super('');
 }
+
+class ShareAttemptFailure extends SnackbarState {
+  const ShareAttemptFailure() : super('');
+}
