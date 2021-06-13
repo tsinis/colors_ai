@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../general/repository/colors_repository.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
@@ -48,7 +49,10 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                     .add(FavoritesAdded(favorite: context.read<ColorsRepository>().toPalette()));
                 controller.reverse();
               },
-              child: const Icon(Icons.bookmark_add_outlined),
+              child: Icon(
+                Icons.bookmark_add_outlined,
+                semanticLabel: AppLocalizations.of(context).savePaletteToFavorites,
+              ),
             );
           },
         ),

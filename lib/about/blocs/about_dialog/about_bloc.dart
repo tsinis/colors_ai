@@ -17,6 +17,8 @@ class AboutBloc extends Bloc<AboutEvent, AboutState> {
   Stream<AboutState> mapEventToState(AboutEvent event) async* {
     if (event is AboutClosed) {
       yield const AboutCloseInitial();
+    } else if (event is AboutStarted) {
+      _aboutRepository.init(event.currentLocale);
     } else if (event is AboutOpened) {
       yield AboutOpenInitial(appVersion: _aboutRepository.version);
     } else if (event is AboutApiProviderTaped) {
@@ -26,9 +28,9 @@ class AboutBloc extends Bloc<AboutEvent, AboutState> {
     } else if (event is AboutSoundAssetsTaped) {
       _aboutRepository.openAboutSounds();
     } else if (event is AboutGoogleTaped) {
-      _aboutRepository.openAboutGoogle();
+      _aboutRepository.openAboutGoogle(_aboutRepository.locale); //TODO Fix it.
     } else if (event is AboutLicenseTaped) {
-      _aboutRepository.openAboutLicenses();
+      _aboutRepository.openAboutLicenses(_aboutRepository.locale); //TODO Fix it.
     }
   }
 }

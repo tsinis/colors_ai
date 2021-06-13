@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'favorites/blocs/add_favorites/fab_bloc.dart';
 import 'favorites/blocs/list_favorites/favorites_bloc.dart';
@@ -15,6 +16,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         theme: appTheme,
         home: MultiBlocProvider(
           providers: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../general/repository/colors_repository.dart';
 import '../../blocs/list_favorites/favorites_bloc.dart';
@@ -25,14 +26,15 @@ class FavoritesTab extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
                           child: RichText(
+                            textScaleFactor: MediaQuery.of(context).textScaleFactor,
                             textAlign: TextAlign.center,
-                            text: const TextSpan(
-                              text: 'OOPS!',
-                              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
-                              children: <TextSpan>[
+                            text: TextSpan(
+                              text: AppLocalizations.of(context).noFavoritesTitle.toUpperCase(),
+                              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                              children: [
                                 TextSpan(
-                                  text: '\nFavorite Colors list is empty now.',
-                                  style: TextStyle(
+                                  text: '\n${AppLocalizations.of(context).noFavoritesDescription}',
+                                  style: const TextStyle(
                                       fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black, height: 3),
                                 )
                               ],
@@ -43,7 +45,7 @@ class FavoritesTab extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 56, bottom: 24),
                           child: ElevatedButton.icon(
                             icon: const Icon(Icons.add, size: 20),
-                            label: const Text('ADD SOME'),
+                            label: Text(AppLocalizations.of(context).addFavoritesButtonLabel.toUpperCase()),
                             autofocus: true,
                             onPressed: () => BlocProvider.of<FavoritesBloc>(context)
                                 .add(FavoritesAdded(favorite: context.read<ColorsRepository>().toPalette())),

@@ -1,0 +1,204 @@
+{
+    "aboutGenerator": "Color scheme generator that uses deep learning from",
+    "@aboutGenerator": {
+        "description": "App description in about dialog, followed by API name."
+    },
+    "aboutSourceCode": "The source code of this application is available at",
+    "@aboutSourceCode": {
+        "description": "App source code description in about dialog, followed by repository provider name."
+    },
+    "aboutSourceRepository": "this GitHub repository",
+    "@aboutSourceRepository": {
+        "description": "App source repository description in about dialog with the URL link."
+    },
+    "aboutAttribution": "Attribution",
+    "@aboutAttribution": {
+        "description": "App attribution header in about dialog."
+    },
+    "aboutSounds": "UI sounds used in this application:",
+    "@aboutSounds": {
+        "description": "App sounds attribution in about dialog."
+    },
+    "aboutByGoogle": "by",
+    "@aboutByGoogle": {
+        "description": "App Google attribution at about dialog."
+    },
+    "aboutSoundsLicense": "are licensed under",
+    "@aboutSoundsLicense": {
+        "description": "App sounds license description in about dialog."
+    },
+    "aboutThisAppTooltip": "About this app",
+    "@aboutThisAppTooltip": {
+        "description": "Tooltip used for \"About app\" icon."
+    },
+    "noConnectionTitle": "Oh no!",
+    "@noConnectionTitle": {
+        "description": "Title of the message on the main screen, when no connection with the server is available."
+    },
+    "noConnectionDescription": "Unable to connect to AI server.",
+    "@noConnectionDescription": {
+        "description": "Description of the message on the main screen, when no connection with the server is available."
+    },
+    "returnButtonLabel": "Return",
+    "@returnButtonLabel": {
+        "description": "Label of the button on the main screen, when no connection with the server is available."
+    },
+    "noFavoritesTitle": "Oops!",
+    "@noFavoritesTitle": {
+        "description": "Title of the message on favorites screen, where there are no favorite palettes."
+    },
+    "noFavoritesDescription": "Favorite Palettes list is empty now.",
+    "@noFavoritesDescription": {
+        "description": "Description of the message on favorites screen, where there are no favorite palettes."
+    },
+    "addFavoritesButtonLabel": "Add some",
+    "@addFavoritesButtonLabel": {
+        "description": "Label of the button, to add favorite palette when there are no favorite palettes available."
+    },
+    "removeAllTitle": "Remove all favorite palettes",
+    "@removeAllTitle": {
+        "description": "Title of pop-up dialog, when removing all stored favorite palettes."
+    },
+    "cancelButtonLabel": "Cancel",
+    "@cancelButtonLabel": {
+        "description": "Label of the cancel text-button in \"Remove all favorite palettes\" dialog."
+    },
+    "removeButtonLabel": "Remove",
+    "@removeButtonLabel": {
+        "description": "Label of the remove text-button in \"Remove all favorite palettes\" dialog."
+    },
+    "urlCopiedMessage": "Link copied!",
+    "@urlCopiedMessage": {
+        "description": "Label of snack bar message, after success URL copy."
+    },
+    "urlOpenButtonLabel": "Open",
+    "@urlOpenButtonLabel": {
+        "description": "Label of snack bar action, after success URL copy."
+    },
+    "colorCopiedMessage": "Color {colorHexValue} copied!",
+    "@colorCopiedMessage": {
+        "description": "Label of snack bar action, after success color value copy.",
+        "placeholders": {
+            "colorHexValue": {}
+        }
+    },
+    "serverMaintanceMessage": "The server is updated at midnight PDT, so it may be unavailable for 30 sec.",
+    "@serverMaintanceMessage": {
+        "description": "Label of snack bar message, after server maintenance detected."
+    },
+    "shareFailedMessage": "Failed to share, try another type.",
+    "@shareFailedMessage": {
+        "description": "Label of snack bar message, after failed share."
+    },
+    "removeFavoritesTip": "Tap on the row to restore colors.\nSwipe right/left to remove them.",
+    "@removeFavoritesTip": {
+        "description": "Tip on the bottom of the favorites screen."
+    },
+    "pullToRefreshTip": "Pull down to refresh",
+    "@pullToRefreshTip": {
+        "description": "Tip on the bottom of the main screen, under the last tile."
+    },
+    "onboardingLockTip": "Double tap anywhere to lock the color",
+    "@onboardingLockTip": {
+        "description": "Label on the first color tile, during onboarding."
+    },
+    "onboardingSelectTip": "Tap on the left part to select a color",
+    "@onboardingSelectTip": {
+        "description": "Label on the second color tile, during onboarding."
+    },
+    "onboardingMoveTip": "The position of the colors does\nmatter, hold & drag to reorder them",
+    "@onboardingMoveTip": {
+        "description": "Label on the third color tile, during onboarding."
+    },
+    "onboardingGenerateTip": "Pull down to generate new colors",
+    "@onboardingGenerateTip": {
+        "description": "Message under the fourth color tile, on the main screen."
+    },
+    "onboardingSaveTip": "Tap the button below to save your colors",
+    "@onboardingSaveTip": {
+        "description": "Message under the last color tile, on the main screen."
+    },
+    "onboardingDoneButtonLabel": "Got it!",
+    "@onboardingDoneButtonLabel": {
+        "description": "Label on the \"Done\" button, during onboarding."
+    },
+    "shareTabLabel": "Share Palette",
+    "@shareTabLabel": {
+        "description": "Tooltip on the first tab of the bottom navigation bar."
+    },
+    "generateTabLabel": "Generate Palette",
+    "@generateTabLabel": {
+        "description": "Tooltip on the second tab of the bottom navigation bar."
+    },
+    "noFavoritesTabLabel": "No Favorite Palettes",
+    "@noFavoritesTabLabel": {
+        "description": "Tooltip on the last tab of the bottom navigation bar, when there are no favorite pallets saved."
+    },
+    "favoritesTabLabel": "Favorite Palettes",
+    "@favoritesTabLabel": {
+        "description": "Tooltip on the last tab of the bottom navigation bar."
+    },
+    "shareLinksLabel": "Share a link via:",
+    "@shareLinksLabel": {
+        "description": "Label of the dropdown menu, on share tab."
+    },
+    "googleArtsExport": "Arts that match your colors",
+    "@googleArtsExport": {
+        "description": "Hint under dropdown menu, on share tab, when first URL provider selected."
+    },
+    "exportTo": "Export to:",
+    "@exportTo": {
+        "description": "Hint under dropdown menu, on share tab, when URL provider has some export options."
+    },
+    "copyUrlButtonLabel": "Copy URL",
+    "@copyUrlButtonLabel": {
+        "description": "Label on the top left button on share tab."
+    },
+    "shareUrlButtonLabel": "Share URL",
+    "@shareUrlButtonLabel": {
+        "description": "Label on the top right button on share tab."
+    },
+    "a4DimensionsTitle": "210 by 297 millimetres",
+    "@a4DimensionsTitle": {
+        "description": "Title of the top radio button list tile, on share tab."
+    },
+    "a4DimensionsSubtitle": "International ISO 216 Standard",
+    "@a4DimensionsSubtitle": {
+        "description": "Subtitle of the top radio button list tile, on share tab."
+    },
+    "letterLabel": "US Letter",
+    "@letterLabel": {
+        "description": "Label of the bottom radio button list tile, on share tab."
+    },
+    "letterDimensionsTitle": "8.5 by 11 inches",
+    "@letterDimensionsTitle": {
+        "description": "Title of the bottom radio button list tile, on share tab."
+    },
+    "letterDimensionsSubtitle": "North American ANSI Standard",
+    "@letterDimensionsSubtitle": {
+        "description": "Subtitle of the bottom radio button list tile, on share tab."
+    },
+    "sharePngButtonLabel": "Share PNG",
+    "@sharePngButtonLabel": {
+        "description": "Label on the bottom left button on share tab."
+    },
+    "sharePdfButtonLabel": "Share PDF",
+    "@sharePdfButtonLabel": {
+        "description": "Label on the bottom right button on share tab."
+    },
+    "unlockAllColors": "Unlock all colors",
+    "@unlockAllColors": {
+        "description": "Label on top right lock icon, at the main screen."
+    },
+    "savePaletteToFavorites": "Save this palette to favorites",
+    "@savePaletteToFavorites": {
+        "description": "Semantic label of the floating action button."
+    },
+    "favoritePaletteSematic": "Favorite color palette number: {paletteIndex}",
+    "@favoritePaletteSematic": {
+        "description": "Semantic label of favorite palette at favorites tab",
+        "placeholders": {
+            "paletteIndex": {}
+        }
+    }
+}

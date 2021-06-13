@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../general/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../testing/test_keys.dart';
@@ -29,7 +30,6 @@ class OnboardingOverlay extends DefaultGreyList {
                 child: Text(
                   text,
                   textAlign: leftAlign ? TextAlign.left : TextAlign.right,
-                  textScaleFactor: 1,
                 ),
               ),
             ),
@@ -48,8 +48,8 @@ class OnboardingOverlay extends DefaultGreyList {
                       color: Colors.grey.withOpacity(0.1),
                       child: Column(
                         children: <SizedBox>[
-                          _onboardingTile('Double tap anywhere to lock the color'),
-                          _onboardingTile('Tap on the left part to select a color', leftAlign: false),
+                          _onboardingTile(AppLocalizations.of(context).onboardingLockTip),
+                          _onboardingTile(AppLocalizations.of(context).onboardingSelectTip, leftAlign: false),
                           SizedBox(
                             width: tileWidth,
                             height: tileHeight,
@@ -62,12 +62,8 @@ class OnboardingOverlay extends DefaultGreyList {
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   SizedBox(
-                                    width: tileWidth / 1.4,
-                                    child: const Text(
-                                      'The position of the colors does\nmatter, hold & drag to reorder them',
-                                      textScaleFactor: 1,
-                                    ),
-                                  ),
+                                      width: tileWidth / 1.4,
+                                      child: Text(AppLocalizations.of(context).onboardingMoveTip)),
                                   const Icon(Icons.drag_handle_outlined)
                                 ],
                               ),
@@ -92,11 +88,8 @@ class OnboardingOverlay extends DefaultGreyList {
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
-                                        const Text(
-                                          'Pull down to generate new colors',
-                                          textScaleFactor: 1,
-                                          style: TextStyle(fontWeight: FontWeight.bold),
-                                        ),
+                                        Text(AppLocalizations.of(context).onboardingGenerateTip,
+                                            style: const TextStyle(fontWeight: FontWeight.bold)),
                                         SizedBox(height: tileHeight / 2)
                                       ],
                                     ),
@@ -108,10 +101,9 @@ class OnboardingOverlay extends DefaultGreyList {
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       children: [
-                                        const Text(
-                                          'Tap the button below to save your colors',
+                                        Text(
+                                          AppLocalizations.of(context).onboardingSaveTip,
                                           textAlign: TextAlign.right,
-                                          textScaleFactor: 1,
                                         ),
                                         SizedBox(height: tileHeight / 2)
                                       ],
@@ -134,8 +126,8 @@ class OnboardingOverlay extends DefaultGreyList {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: Theme.of(context).focusColor),
                           onPressed: () => BlocProvider.of<OnboardingBloc>(context).add(const OnboardingFinished()),
-                          child: const Text('GOT IT!',
-                              key: TestKeys.onboardingFinish, style: TextStyle(color: Colors.white)),
+                          child: Text(AppLocalizations.of(context).onboardingDoneButtonLabel.toUpperCase(),
+                              key: TestKeys.onboardingFinish, style: const TextStyle(color: Colors.white)),
                         ),
                       ),
                     ),

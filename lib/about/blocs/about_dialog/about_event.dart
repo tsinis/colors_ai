@@ -11,6 +11,11 @@ class AboutClosed extends AboutEvent {
   const AboutClosed();
 }
 
+class AboutStarted extends AboutEvent {
+  const AboutStarted({required this.currentLocale});
+  final String currentLocale;
+}
+
 class AboutOpened extends AboutEvent {
   const AboutOpened();
 }

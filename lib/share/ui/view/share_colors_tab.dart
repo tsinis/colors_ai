@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../general/blocs/snackbars/snackbars_bloc.dart';
 import '../../../general/models/color_palette/color_palette.dart';
@@ -28,14 +29,14 @@ class ShareColors extends StatelessWidget {
                       decoration: InputDecoration(
                           filled: true,
                           fillColor: Theme.of(context).splashColor,
-                          labelText: 'Share a link via:',
+                          labelText: AppLocalizations.of(context).shareLinksLabel,
                           helperStyle:
                               const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black54),
                           helperMaxLines: 1,
                           helperText: (selectedProviderIndex == _firstProvider)
-                              ? 'Arts that match your colors'
+                              ? AppLocalizations.of(context).googleArtsExport
                               : (exportFormats != null)
-                                  ? '* Export to: $exportFormats'
+                                  ? '* ${AppLocalizations.of(context).exportTo} $exportFormats'
                                   : null),
                       value: selectedProviderIndex,
                       onChanged: (newProviderIndex) {
@@ -49,6 +50,7 @@ class ShareColors extends StatelessWidget {
                         (int index) => DropdownMenuItem<int>(
                           value: index,
                           child: RichText(
+                              textScaleFactor: MediaQuery.of(context).textScaleFactor,
                               text: TextSpan(
                                   style: const TextStyle(color: Colors.black),
                                   text: state.providersList[index].name,
@@ -67,7 +69,7 @@ class ShareColors extends StatelessWidget {
                       children: <Widget>[
                         OutlinedButton.icon(
                           icon: const Icon(Icons.content_copy_outlined, size: 20),
-                          label: const Text('COPY URL'),
+                          label: Text(AppLocalizations.of(context).copyUrlButtonLabel.toUpperCase()),
                           onPressed: () {
                             BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
                             BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
@@ -75,7 +77,7 @@ class ShareColors extends StatelessWidget {
                         ),
                         ElevatedButton.icon(
                           icon: const Icon(Icons.link, size: 20),
-                          label: const Text('SHARE URL'),
+                          label: Text(AppLocalizations.of(context).shareUrlButtonLabel.toUpperCase()),
                           autofocus: true,
                           onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),
                         ),
@@ -93,19 +95,21 @@ class ShareColors extends StatelessWidget {
                               RadioListTile<bool>(
                                   dense: true,
                                   title: RichText(
-                                    text: const TextSpan(
+                                    textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                                    text: TextSpan(
                                       text: 'A4',
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                                      style: const TextStyle(
+                                          fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
                                       children: <TextSpan>[
                                         TextSpan(
-                                          text: ' (210 by 297 millimetres)',
-                                          style:
-                                              TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
+                                          text: ' ${AppLocalizations.of(context).a4DimensionsTitle}',
+                                          style: const TextStyle(
+                                              fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
                                         )
                                       ],
                                     ),
                                   ),
-                                  subtitle: const Text('International ISO 216 Standard'),
+                                  subtitle: Text(AppLocalizations.of(context).a4DimensionsSubtitle),
                                   value: false,
                                   groupValue: state.isLetter ?? false,
                                   onChanged: (isLetterSelected) {
@@ -117,19 +121,21 @@ class ShareColors extends StatelessWidget {
                               RadioListTile<bool>(
                                   dense: true,
                                   title: RichText(
-                                    text: const TextSpan(
-                                      text: 'US Letter',
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
-                                      children: <TextSpan>[
+                                    textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                                    text: TextSpan(
+                                      text: AppLocalizations.of(context).letterLabel,
+                                      style: const TextStyle(
+                                          fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                                      children: [
                                         TextSpan(
-                                          text: ' (8.5 by 11 inches)',
-                                          style:
-                                              TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
+                                          text: ' ${AppLocalizations.of(context).letterDimensionsTitle}',
+                                          style: const TextStyle(
+                                              fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
                                         )
                                       ],
                                     ),
                                   ),
-                                  subtitle: const Text('North American ANSI Standard'),
+                                  subtitle: Text(AppLocalizations.of(context).letterDimensionsSubtitle),
                                   value: true,
                                   groupValue: state.isLetter ?? false,
                                   onChanged: (isLetterSelected) {
@@ -146,14 +152,14 @@ class ShareColors extends StatelessWidget {
                                   children: <Widget>[
                                     OutlinedButton.icon(
                                       icon: const Icon(Icons.image_outlined, size: 20),
-                                      label: const Text('SHARE PNG'),
+                                      label: Text(AppLocalizations.of(context).sharePngButtonLabel.toUpperCase()),
                                       onPressed: state.canSharePng
                                           ? () => BlocProvider.of<ShareBloc>(context).add(ShareImageShared(palette))
                                           : null,
                                     ),
                                     ElevatedButton.icon(
                                       icon: const Icon(Icons.picture_as_pdf_outlined, size: 20),
-                                      label: const Text('SHARE PDF'),
+                                      label: Text(AppLocalizations.of(context).sharePdfButtonLabel.toUpperCase()),
                                       onPressed: () => BlocProvider.of<ShareBloc>(context).add(SharePdfShared(palette)),
                                     ),
                                   ],

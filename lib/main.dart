@@ -6,8 +6,8 @@ import 'general/services/data_storage.dart';
 import 'oboarding/blocs/onboarding/onboarding_bloc.dart';
 import 'theme/services/system_overlays.dart';
 
-//TODO! Add Robot to file exports.
-//TODO: Provide all text strings via l10n Bloc.
+//TODO! Add Robot to file exports after License Change to OFL.
+//TODO Prevent color changes after locking.
 //TODO: Handle Failure States in Bloc.
 //TODO? Add settings menu.
 

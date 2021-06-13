@@ -5,6 +5,7 @@ import 'package:async/async.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../color_picker/ui/view/colorpicker_dialog.dart';
 import '../../../../favorites/blocs/add_favorites/fab_bloc.dart';
@@ -87,8 +88,8 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                   alignment: Alignment.bottomCenter,
                   child: Padding(
                       padding: EdgeInsets.only(bottom: tileHeight / 3),
-                      child: const Text('Pull down to refresh',
-                          style: TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
+                      child: Text(AppLocalizations.of(context).pullToRefreshTip,
+                          style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
                 ),
               ),
               FadeTransition(

@@ -22,8 +22,11 @@ dependencies:
   flutter_colorpicker:
     git:
       url: git://github.com/mchome/flutter_colorpicker.git
+  flutter_localizations: # From Google
+     sdk: flutter
   http: ^0.13.0-nullsafety.0 # From Google
   hydrated_bloc: ^7.0.1
+  intl: ^0.17.0 # From Google
   json_annotation: ^4.0.0-nullsafety.0 # From Google
   just_audio: ^0.7.5 # Flutter Favorite
   mdi: ^5.0.0-nullsafety.0
@@ -48,6 +51,7 @@ dev_dependencies:
   pedantic: ^1.10.0-nullsafety.3 # From Google
 
 flutter:
+  generate: true
   uses-material-design: true
   assets:
     - assets/sounds/

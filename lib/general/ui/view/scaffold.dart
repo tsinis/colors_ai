@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../about/blocs/about_dialog/about_bloc.dart';
 import '../../../about/ui/view/about_dialog.dart';
@@ -25,18 +26,18 @@ class MainScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<MainScreen> {
-  final SoundBloc _soundBloc = SoundBloc();
+  final SoundBloc soundBloc = SoundBloc();
 
   @override
   void initState() {
-    _soundBloc.add(const SoundStarted());
+    soundBloc.add(const SoundStarted());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
-          BlocProvider<SoundBloc>(create: (_) => _soundBloc),
+          BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockStarted())),
         ],
@@ -45,21 +46,37 @@ class _NavigationScreenState extends State<MainScreen> {
             if (navState.tabIndex != const NavigationGenerateTabInitial().tabIndex) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
+            final List<String> tabLabels = tabNames(AppLocalizations.of(context));
             return Scaffold(
               floatingActionButton: const SaveColorsFAB(),
               appBar: AppBar(
-                  title: Text(navState.currentTabName, style: const TextStyle(fontWeight: FontWeight.w400)),
-                  actions: [
-                    appBarActions[navState.tabIndex],
-                    BlocProvider(create: (context) => AboutBloc(), child: const AboutButton())
-                  ]),
+                title: Text(
+                  tabLabels.elementAt(navState.tabIndex),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                actions: [
+                  appBarActions[navState.tabIndex],
+                  BlocProvider(
+                    create: (_) =>
+                        AboutBloc()..add(AboutStarted(currentLocale: AppLocalizations.of(context).localeName)),
+                    child: const AboutButton(),
+                  )
+                ],
+              ),
               body: MultiBlocProvider(
                 providers: [
                   BlocProvider<ColorsBloc>(
-                      create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted())),
-                  BlocProvider<ShareBloc>(create: (_) => ShareBloc()..add(const ShareStarted())),
+                    create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted()),
+                  ),
                   BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
-                  BlocProvider<SnackbarBloc>(create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess())),
+                  BlocProvider<SnackbarBloc>(
+                    create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
+                  ),
+                  BlocProvider<ShareBloc>(
+                    create: (_) => ShareBloc()..add(const ShareStarted()),
+                  ),
                 ],
                 child: BlocListener<SnackbarBloc, SnackbarState>(
                   listener: (context, snackbarState) {
@@ -69,13 +86,13 @@ class _NavigationScreenState extends State<MainScreen> {
                       final bool isUrlCopied = snackbarState is UrlCopySuccess;
                       final bool isShareFailed = snackbarState is ShareAttemptFailure;
                       if (isUrlCopied) {
-                        message = 'Link copied!';
+                        message = AppLocalizations.of(context).urlCopiedMessage;
                       } else if (snackbarState is ColorCopySuccess) {
-                        message = 'Color ${snackbarState.clipboard} copied!';
+                        message = AppLocalizations.of(context).colorCopiedMessage(snackbarState.clipboard);
                       } else if (snackbarState is ServerStatusCheckSuccess) {
-                        message = 'The server is updated at midnight PDT, so it may be unavailable for 30 sec.';
+                        message = AppLocalizations.of(context).serverMaintanceMessage;
                       } else if (isShareFailed) {
-                        message = 'Failed to share, try another type';
+                        message = AppLocalizations.of(context).shareFailedMessage;
                       }
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -85,12 +102,12 @@ class _NavigationScreenState extends State<MainScreen> {
                           action: isUrlCopied
                               ? SnackBarAction(
                                   textColor: Theme.of(context).scaffoldBackgroundColor,
-                                  label: 'OPEN',
+                                  label: AppLocalizations.of(context).urlOpenButtonLabel.toUpperCase(),
                                   onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(const UrlOpenedSuccess()))
                               : null,
                         ),
                       );
-                    } else if (snackbarState is ServerStatusCheckSuccess) {}
+                    }
                   },
                   child: SafeArea(child: navTabs.elementAt(navState.tabIndex)),
                 ),

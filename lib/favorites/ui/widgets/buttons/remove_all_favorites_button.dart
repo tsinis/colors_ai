@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mdi/mdi.dart';
 
 import '../../../blocs/list_favorites/favorites_bloc.dart';
@@ -21,12 +22,16 @@ class RemoveAllFavoritesButton extends StatelessWidget {
                     context: dialogContext,
                     // https://material.io/components/dialogs#alert-dialog
                     builder: (_) => AlertDialog(
-                      content: const Text('Remove all favorite colors?'),
+                      content: Text('${AppLocalizations.of(context).removeAllTitle}?'),
                       actions: <TextButton>[
-                        TextButton(onPressed: () => Navigator.pop(dialogContext, false), child: const Text('CANCEL')),
+                        TextButton(
+                          onPressed: () => Navigator.pop(dialogContext, false),
+                          child: Text(AppLocalizations.of(context).cancelButtonLabel.toUpperCase()),
+                        ),
                         TextButton(
                             onPressed: () => Navigator.pop(dialogContext, true),
-                            child: Text('REMOVE', style: TextStyle(color: Theme.of(context).errorColor)))
+                            child: Text(AppLocalizations.of(context).removeButtonLabel.toUpperCase(),
+                                style: TextStyle(color: Theme.of(context).errorColor)))
                       ],
                     ),
                   ).then((toRemoveAll) {
@@ -39,7 +44,7 @@ class RemoveAllFavoritesButton extends StatelessWidget {
 
             return BlocBuilder<FavoritesBloc, FavoritesState>(
                 builder: (_, state) => IconButton(
-                    tooltip: 'Remove all favorite colors',
+                    tooltip: AppLocalizations.of(context).removeAllTitle,
                     icon: const Icon(Mdi.bookmarkRemoveOutline, size: 25),
                     onPressed: (state is FavoritesLoadSuccess)
                         ? () => BlocProvider.of<AlertDialogBloc>(dialogContext).add(const AlertDialogShowed())
