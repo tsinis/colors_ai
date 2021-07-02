@@ -12,7 +12,7 @@ class SoundsRepository with Vibrations {
   final AudioPlayer _player = AudioPlayer();
 
   Future<void> _playSound(String soundName, {double volume = 0.4}) async {
-    if (Platform.isAndroid) {
+    if (!Platform.isIOS) {
       try {
         await _player.setVolume(volume);
         await _player.setAsset(_sounds.assetPath(soundName));

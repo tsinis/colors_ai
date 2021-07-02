@@ -1,4 +1,4 @@
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import '../mixins/about_urls_launcher.dart';
 
 class AboutRepository with AboutUrlsLauncher {

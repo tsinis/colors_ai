@@ -2,7 +2,7 @@ import 'dart:io' show File;
 import 'dart:typed_data' show Uint8List;
 
 import 'package:printing/printing.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../general/models/color_palette/color_palette.dart';
 import '../../general/services/clipboard.dart';
