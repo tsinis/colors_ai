@@ -80,8 +80,8 @@ class _NavigationScreenState extends State<MainScreen> {
                 ],
                 child: BlocListener<SnackbarBloc, SnackbarState>(
                   listener: (context, snackbarState) {
-                    BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                     if (snackbarState is! SnackbarsInitial) {
+                      BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                       late String message;
                       final bool isUrlCopied = snackbarState is UrlCopySuccess;
                       final bool isShareFailed = snackbarState is ShareAttemptFailure;

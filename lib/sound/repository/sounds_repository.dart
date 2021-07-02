@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -12,7 +13,7 @@ class SoundsRepository with Vibrations {
   final AudioPlayer _player = AudioPlayer();
 
   Future<void> _playSound(String soundName, {double volume = 0.4}) async {
-    if (!Platform.isIOS) {
+    if (kIsWeb || Platform.isAndroid) {
       try {
         await _player.setVolume(volume);
         await _player.setAsset(_sounds.assetPath(soundName));

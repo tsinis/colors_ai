@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -10,9 +11,15 @@ class DataStorage {
   static Future<Directory> get directory async => getApplicationDocumentsDirectory();
 
   static Future<void> init() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    final Directory storage = await directory;
-    HydratedBloc.storage = await HydratedStorage.build(storageDirectory: storage);
-    Hive.init(storage.path);
+    if (kIsWeb) {
+      HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory: HydratedStorage.webStorageDirectory,
+      );
+    } else {
+      WidgetsFlutterBinding.ensureInitialized();
+      final Directory storage = await directory;
+      HydratedBloc.storage = await HydratedStorage.build(storageDirectory: storage);
+      Hive.init(storage.path);
+    }
   }
 }

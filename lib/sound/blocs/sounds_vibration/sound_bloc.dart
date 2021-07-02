@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../repository/sounds_repository.dart';
 
@@ -18,8 +19,10 @@ class SoundBloc extends Bloc<SoundEvent, SoundState> {
     if (event is SoundStarted) {
       // ignore: unawaited_futures
       _soundRepository.init();
-      // ignore: cascade_invocations
-      _soundRepository.playFavoritesAdded();
+      // On web it's not allowed to play sounds without user interaction first.
+      if (!kIsWeb) {
+        _soundRepository.playFavoritesAdded();
+      }
     } else if (event is SoundRefreshed) {
       _soundRepository.playRefresh();
     } else if (event is SoundFavoritesAdded) {

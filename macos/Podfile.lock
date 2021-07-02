@@ -1,0 +1,58 @@
+PODS:
+  - audio_session (0.0.1):
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
+  - just_audio (0.0.1):
+    - FlutterMacOS
+  - package_info_plus_macos (0.0.1):
+    - FlutterMacOS
+  - path_provider_macos (0.0.1):
+    - FlutterMacOS
+  - printing (1.0.0):
+    - FlutterMacOS
+  - share_plus_macos (0.0.1):
+    - FlutterMacOS
+  - url_launcher_macos (0.0.1):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - audio_session (from `Flutter/ephemeral/.symlinks/plugins/audio_session/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - just_audio (from `Flutter/ephemeral/.symlinks/plugins/just_audio/macos`)
+  - package_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos`)
+  - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
+  - printing (from `Flutter/ephemeral/.symlinks/plugins/printing/macos`)
+  - share_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/share_plus_macos/macos`)
+  - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
+
+EXTERNAL SOURCES:
+  audio_session:
+    :path: Flutter/ephemeral/.symlinks/plugins/audio_session/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  just_audio:
+    :path: Flutter/ephemeral/.symlinks/plugins/just_audio/macos
+  package_info_plus_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos
+  path_provider_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos
+  printing:
+    :path: Flutter/ephemeral/.symlinks/plugins/printing/macos
+  share_plus_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/share_plus_macos/macos
+  url_launcher_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
+
+SPEC CHECKSUMS:
+  audio_session: dea1f41890dbf1718f04a56f1d6150fd50039b72
+  FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
+  just_audio: 1a11463e7e522bd4e8caa925b4247f1360cbe5a2
+  package_info_plus_macos: f010621b07802a241d96d01876d6705f15e77c1c
+  path_provider_macos: a0a3fd666cb7cd0448e936fb4abad4052961002b
+  printing: e4b7e232ff3d5d50a70b20d959aa71035a5c31f9
+  share_plus_macos: 853ee48e7dce06b633998ca0735d482dd671ade4
+  url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
+
+PODFILE CHECKSUM: 6eac6b3292e5142cfc23bdeb71848a40ec51c14c
+
+COCOAPODS: 1.10.1
