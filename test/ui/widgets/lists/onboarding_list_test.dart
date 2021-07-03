@@ -14,7 +14,6 @@ void main() => testWidgets('Onboarding should dissapear after tap on "GOT IT" bu
 
       final button = find.byKey(TestKeys.onboardingFinish);
       final dissapear = find.byKey(TestKeys.disappearedOnboard);
-      final TestViewConfiguration defaultConfig = TestViewConfiguration();
 
       await tester.pumpWidget(
         BlocProvider(
@@ -22,10 +21,11 @@ void main() => testWidgets('Onboarding should dissapear after tap on "GOT IT" bu
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: FittedBox(
-              child: OnboardingOverlay(
-                tileWidth: defaultConfig.size.width,
-                tileHeight: defaultConfig.size.height / defaultColors.length,
-              ),
+              child: LayoutBuilder(
+                  builder: (_, size) => OnboardingOverlay(
+                        size: size,
+                        length: defaultColors.length,
+                      )),
             ),
           ),
         ),

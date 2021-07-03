@@ -17,11 +17,13 @@ class Colorpicker extends StatelessWidget {
     required this.color,
     required this.textColor,
     required this.buttonSize,
+    required this.isPortrait,
   });
 
   final Color color, textColor;
   final int index;
   final Size buttonSize;
+  final bool isPortrait;
 
   @override
   Widget build(BuildContext context) => BlocProvider<ColorPickerBLoc>(
@@ -52,18 +54,33 @@ class Colorpicker extends StatelessWidget {
               BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerHided());
             }
             return TextButton(
-                style: ButtonStyle(enableFeedback: true, minimumSize: MaterialStateProperty.all<Size>(buttonSize)),
-                onLongPress: () {
-                  BlocProvider.of<ColorPickerBLoc>(context).add(ColorPickerCopied(color));
-                  BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
-                },
-                onPressed: () {
-                  BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
-                  BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
-                  BlocProvider.of<LockedBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
-                },
-                child:
-                    Text(color.toHex(), maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)));
+              style: ButtonStyle(
+                  enableFeedback: true,
+                  minimumSize: MaterialStateProperty.all<Size>(buttonSize),
+                  maximumSize: MaterialStateProperty.all<Size>(buttonSize)),
+              onLongPress: isPortrait
+                  ? () {
+                      BlocProvider.of<ColorPickerBLoc>(context).add(ColorPickerCopied(color));
+                      BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
+                    }
+                  : null, //TODO Add hex copy on desktops.
+              onPressed: () {
+                BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
+                BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
+                BlocProvider.of<LockedBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
+              },
+              child: Align(
+                alignment: isPortrait ? Alignment.centerLeft : Alignment.topCenter,
+                child: SizedBox(
+                  height: buttonSize.height / 3,
+                  width: buttonSize.width,
+                  child: Center(
+                    child: Text(color.toHex(),
+                        maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)),
+                  ),
+                ),
+              ),
+            );
           },
         ),
       );

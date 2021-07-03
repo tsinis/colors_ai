@@ -5,13 +5,13 @@ class AnimatedListItem extends StatefulWidget {
     required this.index,
     required this.child,
     required this.length,
-    required this.height,
+    required this.size,
     required Key key,
   }) : super(key: key);
 
   final Widget child;
   final int index, length;
-  final double height;
+  final BoxConstraints size;
 
   @override
   _AnimatedListItemState createState() => _AnimatedListItemState();
@@ -31,10 +31,23 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
     });
   }
 
+  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+  double get tileHeight => widget.size.maxHeight / widget.length;
+  double get tileWeight => widget.size.maxWidth / widget.length;
+
   @override
   Widget build(BuildContext context) => AnimatedContainer(
         curve: Curves.decelerate,
-        height: isAnimationDone ? widget.height : widget.index + 1 * widget.height * widget.length,
+        height: isPortrait
+            ? isAnimationDone
+                ? tileHeight
+                : widget.index + 1 * tileHeight * widget.length
+            : widget.size.maxHeight,
+        width: isPortrait
+            ? widget.size.maxWidth
+            : isAnimationDone
+                ? tileWeight
+                : widget.index + 1 * tileWeight * widget.length,
         duration: duration,
         child: AnimatedOpacity(
           duration: duration,

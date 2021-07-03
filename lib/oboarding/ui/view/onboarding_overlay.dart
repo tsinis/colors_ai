@@ -2,137 +2,99 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../general/ui/widgets/lists/default_grey_colors_list.dart';
+import '../../../general/ui/widgets/helpers/orientation_switcher.dart';
 import '../../../testing/test_keys.dart';
 import '../../blocs/onboarding/onboarding_bloc.dart';
+import '../widgets/onboarding_tile.dart';
 import '../widgets/pull_to_refresh.dart';
 
-class OnboardingOverlay extends DefaultGreyList {
-  const OnboardingOverlay({required double tileWidth, required double tileHeight})
-      : super(tileWidth: tileWidth, tileHeight: tileHeight);
+class OnboardingOverlay extends StatelessWidget {
+  const OnboardingOverlay({required this.size, required this.length});
 
-  SizedBox _onboardingTile(String text, {bool leftAlign = true}) => SizedBox(
-        height: tileHeight,
-        width: tileWidth,
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: const Alignment(-0.6, 0),
-              colors:
-                  leftAlign ? [Colors.grey, Colors.grey.withOpacity(0.1)] : [Colors.grey.withOpacity(0.1), Colors.grey],
-            ),
-          ),
-          child: Align(
-            alignment: Alignment(leftAlign ? -0.8 : 0.8, 0),
-            child: SizedBox(
-              width: tileWidth / 3,
-              child: Center(
-                child: Text(
-                  text,
-                  textAlign: leftAlign ? TextAlign.left : TextAlign.right,
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
+  final BoxConstraints size;
+  final int length;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<OnboardingBloc, OnboardingState>(
-        builder: (_, state) => (state is OnboardingDoneSuccess)
-            ? const SizedBox.shrink(key: TestKeys.disappearedOnboard)
-            : Stack(
-                children: [
-                  IgnorePointer(
-                    child: ColoredBox(
-                      color: Colors.grey.withOpacity(0.1),
-                      child: Column(
-                        children: <SizedBox>[
-                          _onboardingTile(AppLocalizations.of(context).onboardingLockTip),
-                          _onboardingTile(AppLocalizations.of(context).onboardingSelectTip, leftAlign: false),
-                          SizedBox(
-                            width: tileWidth,
-                            height: tileHeight,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: const Alignment(-0.1, 0),
-                                      colors: [Colors.grey, Colors.grey.withOpacity(0.1)])),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  SizedBox(
-                                      width: tileWidth / 1.4,
-                                      child: Text(AppLocalizations.of(context).onboardingMoveTip)),
-                                  const Icon(Icons.drag_handle_outlined)
-                                ],
-                              ),
+        builder: (_, state) {
+          final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+          return (state is OnboardingDoneSuccess)
+              ? const SizedBox.shrink(key: TestKeys.disappearedOnboard)
+              : Stack(
+                  children: [
+                    IgnorePointer(
+                      child: ColoredBox(
+                        color: Colors.grey.withOpacity(0.1),
+                        child: OrientationSwitcher(
+                          isPortrait: isPortrait,
+                          children: [
+                            OnboardingTile(
+                              AppLocalizations.of(context).onboardingLockTip,
+                              isPortrait: isPortrait,
                             ),
-                          ),
-                          SizedBox(
-                            width: tileWidth,
-                            height: tileHeight * 2,
-                            child: DecoratedBox(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [Colors.grey, Colors.grey.withOpacity(0.1)],
-                                    begin: const Alignment(0, -0.6),
-                                    end: Alignment.bottomCenter),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SizedBox(
-                                    width: tileWidth / 3.5,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(AppLocalizations.of(context).onboardingGenerateTip,
-                                            style: const TextStyle(fontWeight: FontWeight.bold)),
-                                        SizedBox(height: tileHeight / 2)
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      width: tileWidth / 7, height: tileHeight, child: const PullToRefreshAnimation()),
-                                  SizedBox(
-                                    width: tileWidth / 3.5,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text(
-                                          AppLocalizations.of(context).onboardingSaveTip,
-                                          textAlign: TextAlign.right,
-                                        ),
-                                        SizedBox(height: tileHeight / 2)
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            OnboardingTile(
+                              AppLocalizations.of(context).onboardingSelectTip,
+                              begin: -0.6,
+                              end: 0.1,
+                              isPortrait: isPortrait,
+                              oppositeSide: true,
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomLeft,
-                    child: SizedBox(
-                      width: tileWidth / 3,
-                      height: tileHeight,
-                      child: Center(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary: Theme.of(context).focusColor),
-                          onPressed: () => BlocProvider.of<OnboardingBloc>(context).add(const OnboardingFinished()),
-                          child: Text(AppLocalizations.of(context).onboardingDoneButtonLabel.toUpperCase(),
-                              key: TestKeys.onboardingFinish, style: const TextStyle(color: Colors.white)),
+                            OnboardingTile(
+                              AppLocalizations.of(context).onboardingMoveTip,
+                              isPortrait: isPortrait,
+                              icon: Icons.drag_handle_outlined,
+                            ),
+                            if (isPortrait)
+                              OnboardingTile(
+                                AppLocalizations.of(context).onboardingSaveTip,
+                                begin: 0.5,
+                                additionalText: AppLocalizations.of(context).onboardingGenerateTip,
+                                isPortrait: isPortrait,
+                                oppositeSide: true,
+                              )
+                            else
+                              OnboardingTile(
+                                AppLocalizations.of(context).onboardingGenerateTip, //TODO Adapt text to desktops.
+                                end: 1,
+                                isPortrait: isPortrait,
+                                oppositeSide: true,
+                              ),
+                            if (isPortrait)
+                              OnboardingTile('', begin: -0.1, end: 0.8, isPortrait: isPortrait)
+                            else
+                              OnboardingTile(AppLocalizations.of(context).onboardingSaveTip, isPortrait: isPortrait),
+                          ],
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
+                    if (isPortrait)
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: size.maxHeight / length,
+                        child: SizedBox(
+                          width: size.maxWidth * 0.66,
+                          height: size.maxHeight / (length - 2),
+                          child: Transform.scale(scale: 0.66, child: const PullToRefreshAnimation()),
+                        ),
+                      ),
+                    Align(
+                      alignment: Alignment.bottomLeft,
+                      child: SizedBox(
+                        width: size.maxWidth / (isPortrait ? 3 : length),
+                        height: size.maxHeight / length,
+                        child: Center(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(primary: Theme.of(context).focusColor),
+                            onPressed: () => BlocProvider.of<OnboardingBloc>(context).add(const OnboardingFinished()),
+                            child: Text(AppLocalizations.of(context).onboardingDoneButtonLabel.toUpperCase(),
+                                key: TestKeys.onboardingFinish, style: const TextStyle(color: Colors.white)),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                );
+        },
       );
 }

@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 
 import '../../../../color_generator/models/colors/constants.dart';
+import '../helpers/orientation_switcher.dart';
 
 class DefaultGreyList extends StatelessWidget {
-  const DefaultGreyList({required this.tileWidth, required this.tileHeight, this.length});
+  const DefaultGreyList({this.length});
 
   final int? length;
-  final double tileWidth, tileHeight;
 
   @override
-  Widget build(BuildContext context) => Column(
-        children: List.generate(length ?? defaultColors.length,
-            (int i) => Container(width: tileWidth, height: tileHeight, color: defaultColors[i]),
+  Widget build(BuildContext context) => OrientationSwitcher(
+        isPortrait: MediaQuery.of(context).orientation == Orientation.portrait,
+        children: List.generate(
+            length ?? defaultColors.length,
+            (int i) => Flexible(
+                    child: Container(
+                  color: defaultColors[i],
+                )),
             growable: false),
       );
 }

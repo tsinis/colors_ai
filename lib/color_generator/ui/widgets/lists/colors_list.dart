@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:async/async.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,27 +76,29 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     controller.forward();
   }
 
+  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (_, size) {
           final int length = palette.length;
           final double tileHeight = size.maxHeight / length;
-          final Size third = Size(size.maxWidth / 3, tileHeight);
+          final Size third =
+              isPortrait ? Size(size.maxWidth / 3, tileHeight) : Size(size.maxWidth / length, size.maxHeight / 3);
           return Stack(
             children: [
-              FadeTransition(
-                opacity: animation,
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                      padding: EdgeInsets.only(bottom: tileHeight / 3),
-                      child: Text(AppLocalizations.of(context).pullToRefreshTip,
-                          style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
+              if (!kIsWeb && Platform.isIOS)
+                FadeTransition(
+                  opacity: animation,
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                        padding: EdgeInsets.only(bottom: tileHeight / 3),
+                        child: Text(AppLocalizations.of(context).pullToRefreshTip,
+                            style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
+                  ),
                 ),
-              ),
-              FadeTransition(
-                  opacity: reverseAnimation,
-                  child: DefaultGreyList(length: length, tileWidth: size.maxWidth, tileHeight: tileHeight)),
+              FadeTransition(opacity: reverseAnimation, child: DefaultGreyList(length: length)),
               BlocConsumer<ColorsBloc, ColorsState>(
                 listener: (_, __) {
                   refreshCompleter.complete();
@@ -113,6 +117,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                   child: FadeTransition(
                     opacity: animation,
                     child: ReorderableListView(
+                      scrollDirection: isPortrait ? Axis.vertical : Axis.horizontal,
                       buildDefaultDragHandles: false,
                       dragStartBehavior: DragStartBehavior.down,
                       physics: const AlwaysScrollableScrollPhysics(),
@@ -122,7 +127,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                         final Color color = palette[index], contrastColor = color.contrastColor();
                         return AnimatedListItem(
                           index: index,
-                          height: tileHeight,
+                          size: size,
                           key: ValueKey<int>(index),
                           length: length,
                           child: ReorderableDragListener(
@@ -138,12 +143,22 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                                 width: size.maxWidth,
                                 height: tileHeight,
                                 color: color,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                child: Stack(
+                                  alignment: Alignment.centerLeft,
                                   children: [
-                                    Colorpicker(index, color: color, textColor: contrastColor, buttonSize: third),
-                                    LockColorButton(index, color: contrastColor),
-                                    SizedBox.fromSize(size: third),
+                                    Colorpicker(
+                                      index,
+                                      color: color,
+                                      isPortrait: isPortrait,
+                                      textColor: contrastColor,
+                                      buttonSize: isPortrait
+                                          ? third
+                                          : Size(
+                                              size.maxWidth / length,
+                                              size.maxHeight,
+                                            ),
+                                    ),
+                                    Center(child: LockColorButton(index, color: contrastColor, buttonSize: third)),
                                   ],
                                 ),
                               ),
@@ -155,7 +170,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                   ),
                 ),
               ),
-              OnboardingOverlay(tileWidth: size.maxWidth, tileHeight: tileHeight),
+              OnboardingOverlay(length: length, size: size),
             ],
           );
         },
