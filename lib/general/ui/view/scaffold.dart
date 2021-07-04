@@ -1,4 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -12,6 +14,7 @@ import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
 import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../navigation/ui/constants.dart';
 import '../../../navigation/ui/widgets/navigation_bar.dart';
+import '../../../navigation/ui/widgets/navigation_rail.dart';
 import '../../../share/blocs/share/share_hydrated_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../blocs/snackbars/snackbars_bloc.dart';
@@ -34,6 +37,8 @@ class _NavigationScreenState extends State<MainScreen> {
     super.initState();
   }
 
+  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
@@ -48,7 +53,7 @@ class _NavigationScreenState extends State<MainScreen> {
             }
             final List<String> tabLabels = tabNames(AppLocalizations.of(context));
             return Scaffold(
-              floatingActionButton: const SaveColorsFAB(),
+              floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
               appBar: AppBar(
                 title: Text(
                   tabLabels.elementAt(navState.tabIndex),
@@ -109,10 +114,35 @@ class _NavigationScreenState extends State<MainScreen> {
                       );
                     }
                   },
-                  child: SafeArea(child: navTabs.elementAt(navState.tabIndex)),
+                  child: SafeArea(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (!isPortrait) NavRail(navState),
+                        if (!isPortrait) const VerticalDivider(width: 1),
+                        Expanded(
+                            child: Builder(
+                          builder: (BuildContext newContext) => RawKeyboardListener(
+                              focusNode: FocusNode(),
+                              includeSemantics: false,
+                              autofocus: navState.tabIndex == 1,
+                              onKey: (RawKeyEvent event) {
+                                if (event.isKeyPressed(LogicalKeyboardKey.space)) {
+                                  if (kIsWeb) {
+                                    BlocProvider.of<SoundBloc>(newContext).add(const SoundRefreshed());
+                                  }
+                                  BlocProvider.of<ColorsBloc>(newContext).add(const ColorsGenerated());
+                                  // BlocProvider.of<FabBloc>(newContext).add(const FabShowed());
+                                }
+                              },
+                              child: navTabs.elementAt(navState.tabIndex)),
+                        ))
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              bottomNavigationBar: BottomNavBar(navState),
+              bottomNavigationBar: isPortrait ? BottomNavBar(navState) : null,
             );
           },
         ),

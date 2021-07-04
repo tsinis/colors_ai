@@ -85,93 +85,100 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
           final double tileHeight = size.maxHeight / length;
           final Size third =
               isPortrait ? Size(size.maxWidth / 3, tileHeight) : Size(size.maxWidth / length, size.maxHeight / 3);
-          return Stack(
-            children: [
-              if (!kIsWeb && Platform.isIOS)
-                FadeTransition(
-                  opacity: animation,
-                  child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                        padding: EdgeInsets.only(bottom: tileHeight / 3),
-                        child: Text(AppLocalizations.of(context).pullToRefreshTip,
-                            style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
-                  ),
-                ),
-              FadeTransition(opacity: reverseAnimation, child: DefaultGreyList(length: length)),
-              BlocConsumer<ColorsBloc, ColorsState>(
-                listener: (_, __) {
-                  refreshCompleter.complete();
-                  refreshCompleter = Completer();
-                },
-                builder: (_, __) => RefreshIndicator(
-                  triggerMode: RefreshIndicatorTriggerMode.anywhere,
-                  displacement: tileHeight,
-                  onRefresh: () {
-                    controller.reverse();
-                    BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
-                    BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
-                    BlocProvider.of<FabBloc>(context).add(const FabShowed());
-                    return refreshCompleter.future;
-                  },
-                  child: FadeTransition(
+          return BlocListener<ColorsBloc, ColorsState>(
+            listener: (_, colorsState) {
+              if (colorsState is ColorsLoadSuccess) {
+                controller.reverse();
+              }
+            },
+            child: Stack(
+              children: [
+                if (!kIsWeb && Platform.isIOS)
+                  FadeTransition(
                     opacity: animation,
-                    child: ReorderableListView(
-                      scrollDirection: isPortrait ? Axis.vertical : Axis.horizontal,
-                      buildDefaultDragHandles: false,
-                      dragStartBehavior: DragStartBehavior.down,
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
-                          .add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
-                      children: List.generate(length, (int index) {
-                        final Color color = palette[index], contrastColor = color.contrastColor();
-                        return AnimatedListItem(
-                          index: index,
-                          size: size,
-                          key: ValueKey<int>(index),
-                          length: length,
-                          child: ReorderableDragListener(
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: Padding(
+                          padding: EdgeInsets.only(bottom: tileHeight / 3),
+                          child: Text(AppLocalizations.of(context).pullToRefreshTip,
+                              style:
+                                  const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
+                    ),
+                  ),
+                FadeTransition(opacity: reverseAnimation, child: DefaultGreyList(length: length)),
+                BlocConsumer<ColorsBloc, ColorsState>(
+                  listener: (_, __) {
+                    refreshCompleter.complete();
+                    refreshCompleter = Completer();
+                  },
+                  builder: (_, __) => RefreshIndicator(
+                    triggerMode: RefreshIndicatorTriggerMode.anywhere,
+                    displacement: tileHeight,
+                    onRefresh: () {
+                      BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
+                      BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
+                      BlocProvider.of<FabBloc>(context).add(const FabShowed());
+                      return refreshCompleter.future;
+                    },
+                    child: FadeTransition(
+                      opacity: animation,
+                      child: ReorderableListView(
+                        scrollDirection: isPortrait ? Axis.vertical : Axis.horizontal,
+                        buildDefaultDragHandles: false,
+                        dragStartBehavior: DragStartBehavior.down,
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
+                            .add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
+                        children: List.generate(length, (int index) {
+                          final Color color = palette[index], contrastColor = color.contrastColor();
+                          return AnimatedListItem(
                             index: index,
-                            onDragStarted: setOperation,
-                            onDragEnded: cancelOperation,
-                            child: InkWell(
-                              onDoubleTap: () {
-                                BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
-                                BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
-                              },
-                              child: Container(
-                                width: size.maxWidth,
-                                height: tileHeight,
-                                color: color,
-                                child: Stack(
-                                  alignment: Alignment.centerLeft,
-                                  children: [
-                                    Colorpicker(
-                                      index,
-                                      color: color,
-                                      isPortrait: isPortrait,
-                                      textColor: contrastColor,
-                                      buttonSize: isPortrait
-                                          ? third
-                                          : Size(
-                                              size.maxWidth / length,
-                                              size.maxHeight,
-                                            ),
-                                    ),
-                                    Center(child: LockColorButton(index, color: contrastColor, buttonSize: third)),
-                                  ],
+                            size: size,
+                            key: ValueKey<int>(index),
+                            length: length,
+                            child: ReorderableDragListener(
+                              index: index,
+                              onDragStarted: setOperation,
+                              onDragEnded: cancelOperation,
+                              child: InkWell(
+                                onDoubleTap: () {
+                                  BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
+                                  BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
+                                },
+                                child: Container(
+                                  width: size.maxWidth,
+                                  height: tileHeight,
+                                  color: color,
+                                  child: Stack(
+                                    alignment: Alignment.centerLeft,
+                                    children: [
+                                      Colorpicker(
+                                        index,
+                                        color: color,
+                                        isPortrait: isPortrait,
+                                        textColor: contrastColor,
+                                        buttonSize: isPortrait
+                                            ? third
+                                            : Size(
+                                                size.maxWidth / length,
+                                                size.maxHeight,
+                                              ),
+                                      ),
+                                      Center(child: LockColorButton(index, color: contrastColor, buttonSize: third)),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      }, growable: false),
+                          );
+                        }, growable: false),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              OnboardingOverlay(length: length, size: size),
-            ],
+                OnboardingOverlay(length: length, size: size),
+              ],
+            ),
           );
         },
       );

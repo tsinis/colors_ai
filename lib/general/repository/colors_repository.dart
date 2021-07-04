@@ -1,5 +1,7 @@
 import 'dart:ui' show Color;
 
+import 'package:flutter/foundation.dart' show debugPrint;
+
 import '../../color_generator/models/colors/colors_json.dart';
 import '../../color_generator/models/colors/constants.dart';
 import '../../color_generator/models/locks/locked_colors.dart';
@@ -52,7 +54,8 @@ class ColorsRepository {
         );
         _colorsAI.addAll(newColors.list);
         return true;
-      } on Exception catch (_) {
+      } on Exception catch (e) {
+        debugPrint(e.toString());
         return false;
       }
     } else {
