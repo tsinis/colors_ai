@@ -30,8 +30,10 @@ class ColorsRepository {
   void changeColor(Color newColor, int colorIndex) => _colorsAI.change(colorIndex, newColor);
 
   void swapColors({required int oldIndex, required int newIndex}) {
+    // https://github.com/flutter/flutter/issues/24786 newIndex may be wrong :(
+    // ignore: parameter_assignments, always_put_control_body_on_new_line
+    if (oldIndex < newIndex) newIndex -= 1;
     final int colorsAvailble = defaultColors.length - 1;
-    // List can be temporary growable, in some cases, for example on long drag at the last tile.
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
     _colorsAI.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
     _locked.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);

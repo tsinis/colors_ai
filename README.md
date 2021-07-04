@@ -83,10 +83,10 @@ The following is a list of sound assets used in this application and their prope
 
 Assets Used:
 
-* notification_high-intensity.ogg
-* notification_simple-02.ogg
-* ui_lock.ogg
-* ui_refresh-feed.ogg
+* notification_high-intensity.wav
+* notification_simple-02.wav
+* ui_lock.wav
+* ui_refresh-feed.wav
 
 ## Releases
 

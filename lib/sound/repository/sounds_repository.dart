@@ -12,8 +12,8 @@ class SoundsRepository with Vibrations {
   static const SoundsSource _sounds = SoundsSource();
   final AudioPlayer _player = AudioPlayer();
 
-  Future<void> _playSound(String soundName, {double volume = 0.4}) async {
-    if (kIsWeb || Platform.isAndroid) {
+  Future<void> _playSound(String soundName, {double volume = 0.6}) async {
+    if (kIsWeb || Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
       try {
         await _player.setVolume(volume);
         await _player.setAsset(_sounds.assetPath(soundName));
