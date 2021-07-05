@@ -40,7 +40,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
     } else if (event is ColorsReordered) {
       try {
         _colorsRepository.swapColors(oldIndex: event.oldIndex, newIndex: event.newIndex);
-        yield ColorsLoadSuccess(_colorsRepository.colors.toPalette());
+        yield ColorsReorderSuccess(_colorsRepository.colors.toPalette());
       } catch (_) {
         yield const ColorsFailure();
       }

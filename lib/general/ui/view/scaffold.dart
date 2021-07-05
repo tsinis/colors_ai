@@ -20,6 +20,7 @@ import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../blocs/snackbars/snackbars_bloc.dart';
 import '../../repository/colors_repository.dart';
 import '../constants.dart';
+import '../widgets/app_bar_info_title.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen();
@@ -51,16 +52,10 @@ class _NavigationScreenState extends State<MainScreen> {
             if (navState.tabIndex != const NavigationGenerateTabInitial().tabIndex) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
-            final List<String> tabLabels = tabNames(AppLocalizations.of(context));
             return Scaffold(
               floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
               appBar: AppBar(
-                title: Text(
-                  tabLabels.elementAt(navState.tabIndex),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                title: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
                 actions: [
                   appBarActions[navState.tabIndex],
                   BlocProvider(

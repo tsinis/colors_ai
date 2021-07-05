@@ -14,15 +14,11 @@ class FavoritesFailure extends FavoritesState {
   const FavoritesFailure();
 }
 
-class FavoritesRemoveAllSuccess extends FavoritesState {
-  const FavoritesRemoveAllSuccess();
-}
-
 class FavoritesLoadInProgress extends FavoritesState {
   const FavoritesLoadInProgress();
 }
 
 class FavoritesLoadSuccess extends FavoritesState {
-  const FavoritesLoadSuccess(this.favoriteColors);
-  final FavoritesRepository favoriteColors;
+  const FavoritesLoadSuccess(this.palettes);
+  final List<ColorPalette> palettes;
 }

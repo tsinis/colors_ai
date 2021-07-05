@@ -16,7 +16,13 @@ class NavRail extends StatefulWidget {
 }
 
 class _NavRailState extends State<NavRail> {
-  bool isExtended = false;
+  late bool isExtended;
+
+  @override
+  void didChangeDependencies() {
+    isExtended = MediaQuery.of(context).size.width >= 1366;
+    super.didChangeDependencies();
+  }
 
   int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
   int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;

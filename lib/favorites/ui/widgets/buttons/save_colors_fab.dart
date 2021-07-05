@@ -72,7 +72,8 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                       BlocListener<ColorsBloc, ColorsState>(
                           listener: (_, colorState) => isFailed = colorState is ColorsFailure),
                     BlocListener<NavigationBloc, NavigationState>(
-                      listener: (_, navState) => isGenerateTab = navState.tabIndex == 1,
+                      listener: (_, navState) =>
+                          isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex,
                     ),
                   ],
                   child: FloatingActionButton.extended(

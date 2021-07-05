@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'favorites/blocs/add_favorites/fab_bloc.dart';
 import 'favorites/blocs/list_favorites/favorites_bloc.dart';
+import 'favorites/blocs/remove_favorites/remove_favs_bloc.dart';
 import 'general/repository/colors_repository.dart';
 import 'general/ui/view/scaffold.dart';
 import 'general/ui/view/splash_screen.dart';
@@ -24,6 +25,7 @@ class App extends StatelessWidget {
             BlocProvider<FavoritesBloc>(create: (_) => FavoritesBloc()..add(const FavoritesLoadStarted())),
             BlocProvider<FabBloc>(create: (_) => FabBloc()),
             BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
+            BlocProvider<RemoveFavoritesBloc>(create: (_) => RemoveFavoritesBloc()),
           ],
           child: RepositoryProvider<ColorsRepository>(
             create: (_) => ColorsRepository(),

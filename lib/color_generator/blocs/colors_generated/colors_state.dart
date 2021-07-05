@@ -16,7 +16,11 @@ class ColorsLoadInProgress extends ColorsState {
   const ColorsLoadInProgress();
 }
 
-class ColorsLoadSuccess extends ColorsState {
-  const ColorsLoadSuccess(this.palette);
+class ColorsReorderSuccess extends ColorsState {
+  const ColorsReorderSuccess(this.palette);
   final ColorPalette palette;
+}
+
+class ColorsLoadSuccess extends ColorsReorderSuccess {
+  ColorsLoadSuccess(ColorPalette palette) : super(palette);
 }

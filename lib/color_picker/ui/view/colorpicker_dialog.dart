@@ -63,7 +63,7 @@ class Colorpicker extends StatelessWidget {
                       BlocProvider.of<ColorPickerBLoc>(context).add(ColorPickerCopied(color));
                       BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
                     }
-                  : null, //TODO Add hex copy on desktops.
+                  : null,
               onPressed: () {
                 BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
                 BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
@@ -75,8 +75,16 @@ class Colorpicker extends StatelessWidget {
                   height: buttonSize.height / 3,
                   width: buttonSize.width,
                   child: Center(
-                    child: Text(color.toHex(),
-                        maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)),
+                    child: GestureDetector(
+                      onTap: isPortrait
+                          ? null
+                          : () {
+                              BlocProvider.of<ColorPickerBLoc>(context).add(ColorPickerCopied(color));
+                              BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
+                            },
+                      child: Text(color.toHex(),
+                          maxLines: 1, textAlign: TextAlign.center, style: TextStyle(color: textColor)),
+                    ),
                   ),
                 ),
               ),

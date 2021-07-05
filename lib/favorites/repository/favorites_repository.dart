@@ -1,42 +1,23 @@
-import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-
 import '../../general/models/color_palette/color_palette.dart';
-import '../models/color_adapter.dart';
+import '../mixins/favorites_storage.dart';
 
-class FavoritesRepository {
-  const FavoritesRepository();
+class FavoritesRepository with FavoritesStorage {
+  const FavoritesRepository(this._palettes);
 
-  static const String _favoritesBox = 'favorite';
-  static final List<ColorPalette> _list = [];
-  static Box<ColorPalette> _storageBox = Hive.box(_favoritesBox);
+  final List<ColorPalette> _palettes;
 
-  List<ColorPalette> get list => _list;
+  List<ColorPalette> get palettes => _palettes;
 
-  void add(ColorPalette palette) => _list.add(palette);
+  void add(ColorPalette palette) => _palettes.add(palette);
 
-  void remove(int colorIndex) => _list.removeAt(colorIndex);
+  void remove(int colorIndex) => _palettes.removeAt(colorIndex);
 
-  void removeAll() => _list.clear();
+  void removeAll() => _palettes.clear();
 
-  Future<Box<ColorPalette>> get _openBoxStorage => Hive.openBox<ColorPalette>(_favoritesBox);
-
-  Future<void> clearStorage() => _storageBox.clear();
-
-  Future<void> addToStorage() => _storageBox.add(_list.last);
-
-  Future<void> updateStorage(int index) => _storageBox.deleteAt(index);
-
-  Future<bool?> get loadStoredFavorites async {
-    try {
-      Hive..registerAdapter(ColorPaletteAdapter())..registerAdapter(ColorAdapter());
-      _storageBox = await _openBoxStorage;
-      _list.clear();
-      _storageBox.values.forEach(_list.add);
-      return _list.isNotEmpty;
-    } on Exception catch (e) {
-      debugPrint('Exception during favorites box opening: $e');
-      return false;
-    }
+  Future<bool> get loadStoredFavorites async {
+    _palettes
+      ..clear()
+      ..addAll(await storedFavorites);
+    return _palettes.isNotEmpty;
   }
 }
