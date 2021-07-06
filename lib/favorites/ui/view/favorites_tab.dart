@@ -5,7 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../general/repository/colors_repository.dart';
 import '../../blocs/list_favorites/favorites_bloc.dart';
 import '../widgets/animated/no_favorites.dart';
-import '../widgets/lists/favorites_list.dart';
+import '../widgets/lists/favorites_list_adaptive.dart';
+import '../widgets/lists/favorites_list_swipeable.dart';
 
 class FavoritesTab extends StatelessWidget {
   const FavoritesTab();
@@ -54,7 +55,9 @@ class FavoritesTab extends StatelessWidget {
                     ],
                   ),
                 )
-              : const FavoritesList(),
+              : MediaQuery.of(context).orientation == Orientation.portrait
+                  ? const FavoritesListSwipeable()
+                  : const FavoritesListAdaptive(),
         ),
       );
 }

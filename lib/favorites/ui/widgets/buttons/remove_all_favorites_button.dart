@@ -13,12 +13,15 @@ class RemoveAllFavoritesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
         builder: (BuildContext dialogContext, RemoveFavoritesState state) {
+          final bool haveSelection = state.selections.isNotEmpty;
           if (state is RemoveFavoritesOpenDialogInitial) {
             SchedulerBinding.instance?.addPostFrameCallback((_) async => showDialog<bool>(
                   context: dialogContext,
                   // https://material.io/components/dialogs#alert-dialog
                   builder: (_) => AlertDialog(
-                    content: Text('${AppLocalizations.of(context).removeAllTitle}?'),
+                    content: Text(haveSelection
+                        ? 'Remove ${state.selections.length} palettes?' //TODO Add L10N
+                        : '${AppLocalizations.of(context).removeAllTitle}?'),
                     actions: <TextButton>[
                       TextButton(
                         onPressed: () => Navigator.pop(dialogContext, false),
@@ -30,20 +33,26 @@ class RemoveAllFavoritesButton extends StatelessWidget {
                               style: TextStyle(color: Theme.of(context).errorColor)))
                     ],
                   ),
-                ).then((toRemoveAll) {
-                  if (toRemoveAll == true) {
-                    BlocProvider.of<FavoritesBloc>(context).add(const FavoritesAllRemoved());
-                  }
-                }));
+                ).then(
+                  (toRemove) {
+                    if (toRemove == true) {
+                      BlocProvider.of<FavoritesBloc>(context).add(FavoritesSeveralRemoved(state.selections));
+                      BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
+                    }
+                  },
+                ));
             BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(const RemoveFavoritesHided());
           }
 
           return BlocBuilder<FavoritesBloc, FavoritesState>(
-              //TODO Change to RemoveFavoritesBloc.
-              builder: (_, state) => IconButton(
-                  tooltip: AppLocalizations.of(context).removeAllTitle,
-                  icon: const Icon(Mdi.bookmarkRemoveOutline, size: 25),
-                  onPressed: (state is FavoritesLoadSuccess)
+              builder: (_, favState) => IconButton(
+                  tooltip: AppLocalizations.of(context).removeAllTitle, //TODO Replace L10N.
+                  icon: Icon(
+                    Mdi.bookmarkRemoveOutline,
+                    size: 25,
+                    color: haveSelection ? Theme.of(context).errorColor : null,
+                  ),
+                  onPressed: (favState is FavoritesLoadSuccess)
                       ? () => BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(const RemoveFavoritesShowed())
                       : null));
         },

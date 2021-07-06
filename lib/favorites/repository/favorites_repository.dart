@@ -10,9 +10,20 @@ class FavoritesRepository with FavoritesStorage {
 
   void add(ColorPalette palette) => _palettes.add(palette);
 
-  void remove(int colorIndex) => _palettes.removeAt(colorIndex);
-
-  void removeAll() => _palettes.clear();
+  void remove(Set<int> indexes) {
+    final Set<int> palettesToRemove = Set<int>.from(indexes);
+    if (palettesToRemove.length == _palettes.length || palettesToRemove.isEmpty) {
+      _palettes.clear();
+    } else if (palettesToRemove.length == 1) {
+      _palettes.removeAt(palettesToRemove.first);
+    } else {
+      final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(_palettes.asMap())
+        ..removeWhere((index, _) => palettesToRemove.contains(index));
+      _palettes
+        ..clear()
+        ..addAll(indexMap.values);
+    }
+  }
 
   Future<bool> get loadStoredFavorites async {
     _palettes

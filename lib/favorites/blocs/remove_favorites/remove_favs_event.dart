@@ -19,3 +19,7 @@ class RemoveFavoritesSelected extends RemoveFavoritesEvent {
   const RemoveFavoritesSelected(this.paletteIndex);
   final int paletteIndex;
 }
+
+class RemoveFavoritesRemoved extends RemoveFavoritesEvent {
+  const RemoveFavoritesRemoved();
+}

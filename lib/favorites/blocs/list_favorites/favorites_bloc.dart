@@ -48,11 +48,11 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         }
       }
     } else if (event is FavoritesOneRemoved) {
-      _favorites.remove(event.colorToRemoveIndex);
+      _favorites.remove({event.colorToRemoveIndex});
       try {
         if (_favorites.palettes.isNotEmpty) {
           yield FavoritesLoadSuccess(_favorites.palettes);
-          _favorites.updateStorage(event.colorToRemoveIndex);
+          _favorites.updateStorage({event.colorToRemoveIndex});
         } else {
           yield const FavoritesEmptyInitial();
           await _favorites.clearStorage();
@@ -60,14 +60,18 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       } catch (_) {
         yield const FavoritesFailure();
       }
-    } else if (event is FavoritesAllRemoved) {
-      _favorites.removeAll();
+    } else if (event is FavoritesSeveralRemoved) {
+      _favorites.remove(event.palettesIndex);
       try {
-        yield const FavoritesEmptyInitial();
+        if (_favorites.palettes.isNotEmpty) {
+          yield FavoritesLoadSuccess(_favorites.palettes);
+        } else {
+          yield const FavoritesEmptyInitial();
+        }
       } catch (_) {
         yield const FavoritesFailure();
       }
-      await _favorites.clearStorage();
+      _favorites.updateStorage(event.palettesIndex);
     }
   }
 }

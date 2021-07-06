@@ -15,6 +15,10 @@ class RemoveFavoritesBloc extends Bloc<RemoveFavoritesEvent, RemoveFavoritesStat
   Stream<RemoveFavoritesState> mapEventToState(RemoveFavoritesEvent event) async* {
     if (event is RemoveFavoritesShowed) {
       yield RemoveFavoritesOpenDialogInitial(_removedFavs.selectons);
+    } else if (event is RemoveFavoritesRemoved) {
+      yield RemoveFavoritesSelectionSelected(_removedFavs.selectons);
+      _removedFavs.clearSelections();
+      yield RemoveFavoritesSelectionChanged(_removedFavs.selectons);
     } else if (event is RemoveFavoritesSelected) {
       yield RemoveFavoritesSelectionSelected(_removedFavs.selectons);
       _removedFavs.changeSelection(event.paletteIndex);

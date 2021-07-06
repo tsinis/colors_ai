@@ -81,7 +81,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                     backgroundColor: isDisabled ? Theme.of(context).scaffoldBackgroundColor : null,
                     isExtended: isExtended,
                     onPressed: isDisabled ? null : onFabPressed,
-                    label: const Text('Add to Favorites'), //TODO Add to AppLocalizations.
+                    label: const Text('Add to Favorites'), //TODO Add to L10N.
                     icon: icon,
                     tooltip: tooltip,
                   ),

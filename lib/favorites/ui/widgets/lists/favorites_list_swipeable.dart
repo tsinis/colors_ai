@@ -10,62 +10,64 @@ import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favs_bloc.dart';
 
-class FavoritesList extends StatefulWidget {
-  const FavoritesList();
+class FavoritesListSwipeable extends StatefulWidget {
+  const FavoritesListSwipeable();
 
   @override
   _FavoritesListState createState() => _FavoritesListState();
 }
 
-class _FavoritesListState extends State<FavoritesList> {
+class _FavoritesListState extends State<FavoritesListSwipeable> {
   static const double padding = 16, tipHeight = 42;
   bool isDissmised = true;
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
-        builder: (_, state) {
-          if (state is FavoritesLoadSuccess) {
-            final List<ColorPalette> favorites = state.palettes;
-            return LayoutBuilder(
-              builder: (_, size) {
-                final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
-                final double cardHeight = (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
-                final double maxHeighForTip =
-                    size.maxHeight - padding - (tipHeight * MediaQuery.of(context).textScaleFactor);
-                final bool canShowTip = favorites.length * (cardHeight + (padding * 2.5)) <= maxHeighForTip;
-                return Stack(
-                  alignment: AlignmentDirectional.topCenter,
-                  children: [
-                    Positioned(
-                      bottom: padding,
-                      child: AnimatedOpacity(
-                        duration: const Duration(milliseconds: 800),
-                        opacity: canShowTip ? 1 : 0,
-                        child: Text(
-                          AppLocalizations.of(context).removeFavoritesTip,
-                          style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300),
+  Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
+        builder: (_, removeState) => BlocBuilder<FavoritesBloc, FavoritesState>(
+          builder: (_, state) {
+            if (state is FavoritesLoadSuccess) {
+              final List<ColorPalette> favorites = state.palettes;
+              return LayoutBuilder(
+                builder: (_, size) {
+                  final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
+                  final double cardHeight =
+                      (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
+                  final double maxHeighForTip =
+                      size.maxHeight - padding - (tipHeight * MediaQuery.of(context).textScaleFactor);
+                  final bool canShowTip = favorites.length * (cardHeight + (padding * 2.5)) <= maxHeighForTip;
+                  return Stack(
+                    alignment: AlignmentDirectional.topCenter,
+                    children: [
+                      Positioned(
+                        bottom: padding,
+                        child: AnimatedOpacity(
+                          duration: const Duration(milliseconds: 800),
+                          opacity: canShowTip ? 1 : 0,
+                          child: Text(
+                            AppLocalizations.of(context).removeFavoritesTip,
+                            style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300),
+                          ),
                         ),
                       ),
-                    ),
-                    ListView.separated(
-                      itemCount: favorites.length,
-                      separatorBuilder: (_, __) => const Divider(height: 1),
-                      itemBuilder: (_, paletteIndex) => Dismissible(
-                        key: UniqueKey(),
-                        onResize: () {
-                          if (isDissmised) {
-                            BlocProvider.of<FavoritesBloc>(context)
-                                .add(FavoritesOneRemoved(colorToRemoveIndex: paletteIndex));
-                            isDissmised = false;
-                          }
-                        },
-                        onDismissed: (_) => setState(() => isDissmised = true),
-                        secondaryBackground: const RemoveBackground(secondary: true),
-                        background: const RemoveBackground(),
-                        child: Semantics(
-                          label: AppLocalizations.of(context).favoritePaletteSematic(paletteIndex),
-                          child: BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
-                            builder: (_, removeState) => ListTile(
+                      ListView.separated(
+                        itemCount: favorites.length,
+                        separatorBuilder: (_, __) => const Divider(height: 1),
+                        itemBuilder: (_, paletteIndex) => Dismissible(
+                          key: UniqueKey(),
+                          onResize: () {
+                            if (isDissmised) {
+                              BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
+                              BlocProvider.of<FavoritesBloc>(context)
+                                  .add(FavoritesOneRemoved(colorToRemoveIndex: paletteIndex));
+                              isDissmised = false;
+                            }
+                          },
+                          onDismissed: (_) => setState(() => isDissmised = true),
+                          secondaryBackground: const RemoveBackground(secondary: true),
+                          background: const RemoveBackground(),
+                          child: Semantics(
+                            label: AppLocalizations.of(context).favoritePaletteSematic(paletteIndex),
+                            child: ListTile(
                               onLongPress: () => setState(() => BlocProvider.of<RemoveFavoritesBloc>(context)
                                   .add(RemoveFavoritesSelected(paletteIndex))),
                               enableFeedback: true,
@@ -108,15 +110,15 @@ class _FavoritesListState extends State<FavoritesList> {
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              },
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+                    ],
+                  );
+                },
+              );
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
       );
 }
 

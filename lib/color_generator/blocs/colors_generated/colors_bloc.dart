@@ -25,7 +25,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
       if (event.newColor != null) {
         _colorsRepository.changeColor(event.newColor!, event.colorIndex);
       }
-      yield ColorsLoadSuccess(_colorsRepository.colors.toPalette());
+      yield ColorsChangeSuccess(_colorsRepository.colors.toPalette());
     } else if (event is ColorsGenerated) {
       final bool isGenerated = await _colorsRepository.getNewColors;
       if (isGenerated) {
@@ -40,7 +40,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
     } else if (event is ColorsReordered) {
       try {
         _colorsRepository.swapColors(oldIndex: event.oldIndex, newIndex: event.newIndex);
-        yield ColorsReorderSuccess(_colorsRepository.colors.toPalette());
+        yield ColorsChangeSuccess(_colorsRepository.colors.toPalette());
       } catch (_) {
         yield const ColorsFailure();
       }

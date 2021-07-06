@@ -9,8 +9,9 @@ class FavoritesAdded extends FavoritesEvent {
   final ColorPalette favorite;
 }
 
-class FavoritesAllRemoved extends FavoritesEvent {
-  const FavoritesAllRemoved();
+class FavoritesSeveralRemoved extends FavoritesEvent {
+  const FavoritesSeveralRemoved(this.palettesIndex);
+  final Set<int> palettesIndex;
 }
 
 class FavoritesOneRemoved extends FavoritesEvent {
