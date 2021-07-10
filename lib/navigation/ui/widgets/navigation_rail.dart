@@ -37,6 +37,12 @@ class _NavRailState extends State<NavRail> {
             final List<String> tabLabels = tabNames(AppLocalizations.of(context));
             return NavigationRail(
               backgroundColor: Theme.of(context).primaryColor,
+              unselectedLabelTextStyle: TextStyle(
+                color: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+              ),
+              unselectedIconTheme: IconThemeData(
+                color: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
+              ),
               selectedLabelTextStyle: TextStyle(
                 color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
               ),
@@ -67,10 +73,12 @@ class _NavRailState extends State<NavRail> {
                         : AppLocalizations.of(context).favoritesTabLabel,
                   ),
                   selectedIcon: const Icon(Icons.bookmarks),
-                  icon: Icon(Icons.bookmarks_outlined,
-                      color: isFavoritesEmpty
-                          ? Theme.of(context).disabledColor
-                          : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
+                  icon: Icon(
+                    Icons.bookmarks_outlined,
+                    color: isFavoritesEmpty
+                        ? Theme.of(context).bottomNavigationBarTheme.unselectedItemColor
+                        : Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+                  ),
                 ),
               ],
             );

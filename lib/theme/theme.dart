@@ -29,8 +29,8 @@ ThemeData appTheme = ThemeData(
       selectedIconTheme: const IconThemeData(size: 24),
       unselectedIconTheme: const IconThemeData(size: 20),
       backgroundColor: Colors.grey,
-      unselectedItemColor: _grey800,
-      selectedItemColor: Colors.grey[850],
+      unselectedItemColor: Colors.grey[850],
+      selectedItemColor: Colors.grey[900],
       showUnselectedLabels: false,
       showSelectedLabels: false),
 );

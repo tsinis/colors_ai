@@ -18,7 +18,7 @@ class FavoritesListSwipeable extends StatefulWidget {
 }
 
 class _FavoritesListState extends State<FavoritesListSwipeable> {
-  static const double padding = 16, tipHeight = 42;
+  static const double padding = 20, tipHeight = 42;
   bool isDissmised = true;
 
   @override
@@ -49,9 +49,8 @@ class _FavoritesListState extends State<FavoritesListSwipeable> {
                           ),
                         ),
                       ),
-                      ListView.separated(
+                      ListView.builder(
                         itemCount: favorites.length,
-                        separatorBuilder: (_, __) => const Divider(height: 1),
                         itemBuilder: (_, paletteIndex) => Dismissible(
                           key: UniqueKey(),
                           onResize: () {
@@ -72,7 +71,7 @@ class _FavoritesListState extends State<FavoritesListSwipeable> {
                                   .add(RemoveFavoritesSelected(paletteIndex))),
                               enableFeedback: true,
                               minVerticalPadding: padding,
-                              selectedTileColor: Theme.of(context).errorColor,
+                              selectedTileColor: Theme.of(context).errorColor.withOpacity(0.2),
                               selected: removeState.selections.contains(paletteIndex),
                               contentPadding: const EdgeInsets.symmetric(horizontal: padding),
                               onTap: () {
@@ -92,7 +91,11 @@ class _FavoritesListState extends State<FavoritesListSwipeable> {
                                       child: AspectRatio(
                                         aspectRatio: 1,
                                         child: Card(
-                                          margin: const EdgeInsets.all(padding / 4),
+                                          elevation: removeState.selections.contains(paletteIndex) ? 6 : 2,
+                                          shape:
+                                              RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(0)),
+                                          clipBehavior: Clip.none,
+                                          margin: EdgeInsets.zero,
                                           color: color,
                                           child: Center(
                                             child: Text(color.toHex(),

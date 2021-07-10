@@ -55,9 +55,14 @@ class FavoritesTab extends StatelessWidget {
                     ],
                   ),
                 )
-              : MediaQuery.of(context).orientation == Orientation.portrait
-                  ? const FavoritesListSwipeable()
-                  : const FavoritesListAdaptive(),
+              : AnimatedSwitcher(
+                  switchInCurve: Curves.decelerate,
+                  switchOutCurve: Curves.decelerate,
+                  duration: const Duration(milliseconds: 800),
+                  child: MediaQuery.of(context).orientation == Orientation.portrait
+                      ? const FavoritesListSwipeable()
+                      : const FavoritesListAdaptive(),
+                ),
         ),
       );
 }
