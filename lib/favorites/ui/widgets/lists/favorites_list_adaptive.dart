@@ -53,11 +53,9 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                       ),
                     ),
                     SingleChildScrollView(
-                      clipBehavior: Clip.none,
                       padding: const EdgeInsets.all(padding),
                       child: SizedBox(
                         width: windowSize.maxWidth,
-                        height: windowSize.maxHeight,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: Wrap(

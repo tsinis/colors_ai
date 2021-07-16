@@ -10,7 +10,7 @@ class FileLayout extends StatelessWidget {
   final PdfPageFormat _format;
   final ColorPalette _palette;
 
-  static const Set<String> _colorSpaces = {'HEX', 'RGB', 'CMYK', 'HSB', 'HSL', 'LAB', 'XYZ'};
+  static const Set<String> colorSpaces = {'HEX', 'RGB', 'CMYK', 'HSB', 'HSL', 'LAB', 'XYZ'};
 
   String _colorValue(String space, String hex) {
     switch (space) {
@@ -51,9 +51,9 @@ class FileLayout extends StatelessWidget {
           SizedBox(
               width: _width * 0.9,
               child: Column(
-                  children: List.generate(_colorSpaces.length, (spacesIndex) {
+                  children: List.generate(colorSpaces.length, (spacesIndex) {
                 final bool isEven = spacesIndex.isEven;
-                final String colorSpace = _colorSpaces.elementAt(spacesIndex);
+                final String colorSpace = colorSpaces.elementAt(spacesIndex);
                 return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                   Text(colorSpace,
                       style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600)),

@@ -30,7 +30,11 @@ class _NavRailState extends State<NavRail> {
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () => setState(() => isExtended = !isExtended),
+        onTap: () {
+          if (MediaQuery.of(context).size.width > 840 || isExtended) {
+            setState(() => isExtended = !isExtended);
+          }
+        },
         child: BlocBuilder<FavoritesBloc, FavoritesState>(
           builder: (_, saveState) {
             final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
