@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -17,59 +18,68 @@ class AboutButton extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<AboutBloc, AboutState>(
         builder: (dialogContext, state) {
           if (state is AboutOpenInitial) {
-            SchedulerBinding.instance?.addPostFrameCallback((_) async => showAboutDialog(
-                  context: context,
-                  applicationName: 'Colors AI',
-                  applicationVersion: state.appVersion,
-                  applicationLegalese: '2021 © Roman Cinis',
-                  applicationIcon: const AppIcon(),
-                  children: <Widget>[
-                    const SizedBox(height: 20),
-                    RichText(
-                      textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                      text: TextSpan(
-                        style: Theme.of(context).textTheme.bodyText2,
-                        children: [
-                          TextSpan(text: AppLocalizations.of(context).aboutGenerator),
-                          TextSpan(
-                              style: _linkStyle(context),
-                              text: ' Colormind API',
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutApiProviderTaped())),
-                          TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
-                          TextSpan(
-                              style: _linkStyle(context),
-                              text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutSourceCodeTaped())),
-                          const TextSpan(text: '.'),
-                          TextSpan(
-                            text:
-                                '\n\n${AppLocalizations.of(context).aboutAttribution.toUpperCase()}:\n\n${AppLocalizations.of(context).aboutSounds}',
+            SchedulerBinding.instance?.addPostFrameCallback((_) async => showModal<void>(
+                context: dialogContext,
+                configuration: const FadeScaleTransitionConfiguration(
+                  transitionDuration: Duration(milliseconds: 400),
+                  reverseTransitionDuration: Duration(milliseconds: 200),
+                ),
+                useRootNavigator: true,
+                builder: (_) => AboutDialog(
+                      applicationName: 'Colors AI',
+                      applicationVersion: state.appVersion,
+                      applicationLegalese: '2021 © Roman Cinis',
+                      applicationIcon: const AppIcon(),
+                      children: <Widget>[
+                        const SizedBox(height: 20),
+                        RichText(
+                          textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                          text: TextSpan(
+                            style: Theme.of(context).textTheme.bodyText2,
+                            children: [
+                              TextSpan(text: AppLocalizations.of(context).aboutGenerator),
+                              TextSpan(
+                                  style: _linkStyle(context),
+                                  text: ' Colormind API',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap =
+                                        () => BlocProvider.of<AboutBloc>(context).add(const AboutApiProviderTaped())),
+                              TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
+                              TextSpan(
+                                  style: _linkStyle(context),
+                                  text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap =
+                                        () => BlocProvider.of<AboutBloc>(context).add(const AboutSourceCodeTaped())),
+                              const TextSpan(text: '.'),
+                              TextSpan(
+                                text:
+                                    '\n\n${AppLocalizations.of(context).aboutAttribution.toUpperCase()}:\n\n${AppLocalizations.of(context).aboutSounds}',
+                              ),
+                              TextSpan(
+                                  style: _linkStyle(context),
+                                  text: ' "Material Product Sounds"',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap =
+                                        () => BlocProvider.of<AboutBloc>(context).add(const AboutSoundAssetsTaped())),
+                              TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
+                              TextSpan(
+                                  style: _linkStyle(context),
+                                  text: ' Google',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutGoogleTaped())),
+                              TextSpan(text: ' ${AppLocalizations.of(context).aboutSoundsLicense}'),
+                              TextSpan(
+                                  style: _linkStyle(context),
+                                  text: ' CC BY 4.0',
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutLicenseTaped())),
+                              const TextSpan(text: '.'),
+                            ],
                           ),
-                          TextSpan(
-                              style: _linkStyle(context),
-                              text: ' "Material Product Sounds"',
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutSoundAssetsTaped())),
-                          TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
-                          TextSpan(
-                              style: _linkStyle(context),
-                              text: ' Google',
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutGoogleTaped())),
-                          TextSpan(text: ' ${AppLocalizations.of(context).aboutSoundsLicense}'),
-                          TextSpan(
-                              style: _linkStyle(context),
-                              text: ' CC BY 4.0',
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutLicenseTaped())),
-                          const TextSpan(text: '.'),
-                        ],
-                      ),
-                    ),
-                  ],
-                ));
+                        ),
+                      ],
+                    )));
             BlocProvider.of<AboutBloc>(dialogContext).add(const AboutClosed());
           }
 

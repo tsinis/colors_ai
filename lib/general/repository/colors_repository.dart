@@ -8,6 +8,7 @@ import '../../color_generator/models/locks/locked_colors.dart';
 import '../../color_generator/services/api/api.dart';
 import '../extensions/color.dart';
 import '../models/color_palette/color_palette.dart';
+import '../models/typedef_aliases/int_rgb_color.dart';
 
 class ColorsRepository {
   ColorsRepository() {
@@ -52,7 +53,8 @@ class ColorsRepository {
           _colorsAI,
           lockedColors: _locked.list,
         );
-        _colorsAI.addAll(newColors.list);
+        final filteredColors = _filterLockedColors(newColors);
+        _colorsAI.addAll(filteredColors);
         return true;
       } on Exception catch (e) {
         debugPrint(e.toString());
@@ -61,5 +63,14 @@ class ColorsRepository {
     } else {
       return true;
     }
+  }
+
+  List<IntRGBColor> _filterLockedColors(ColorsAI newColors) {
+    final List<IntRGBColor> newColorsList = List<IntRGBColor>.from(newColors.list, growable: false);
+    final Map<int, bool> _lockedMap = _locked.list.asMap();
+    final List<IntRGBColor> filteredColors = [];
+    _lockedMap.forEach((index, isLocked) =>
+        filteredColors.add(isLocked ? _colorsAI.list.elementAt(index) : newColorsList.elementAt(index)));
+    return filteredColors;
   }
 }

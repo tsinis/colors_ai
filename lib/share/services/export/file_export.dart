@@ -42,26 +42,42 @@ class FileLayout extends StatelessWidget {
 
   @override
   Widget build(Context context) => Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: List.generate(_palette.colors.length, (colorsIndex) {
-        final String hex = _palette.colors.elementAt(colorsIndex).toHex();
-        return Column(children: [
-          Container(width: _width, height: _height * (3 / 4), color: PdfColor.fromHex(hex)),
-          Spacer(),
-          SizedBox(
-              width: _width * 0.9,
-              child: Column(
-                  children: List.generate(colorSpaces.length, (spacesIndex) {
-                final bool isEven = spacesIndex.isEven;
-                final String colorSpace = colorSpaces.elementAt(spacesIndex);
-                return Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                  Text(colorSpace,
-                      style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600)),
-                  Spacer(),
-                  Text(_colorValue(colorSpace, hex),
-                      style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600))
-                ]);
-              })))
-        ]);
-      }));
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: List.generate(
+          _palette.colors.length,
+          (colorsIndex) {
+            final String hex = _palette.colors.elementAt(colorsIndex).toHex();
+            return Column(
+              children: [
+                Container(width: _width, height: _height * (3 / 4), color: PdfColor.fromHex(hex)),
+                Spacer(),
+                SizedBox(
+                  width: _width * 0.9,
+                  child: Column(
+                    children: List.generate(
+                      colorSpaces.length,
+                      (spacesIndex) {
+                        final bool isEven = spacesIndex.isEven;
+                        final String colorSpace = colorSpaces.elementAt(spacesIndex);
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(colorSpace,
+                                style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600)),
+                            Spacer(),
+                            Text(_colorValue(colorSpace, hex),
+                                style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600))
+                          ],
+                        );
+                      },
+                      growable: false,
+                    ),
+                  ),
+                )
+              ],
+            );
+          },
+          growable: false,
+        ),
+      );
 }

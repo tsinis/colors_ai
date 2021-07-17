@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,8 +32,13 @@ class Colorpicker extends StatelessWidget {
         child: BlocBuilder<ColorPickerBLoc, ColorPickerState>(
           builder: (dialogContext, state) {
             if (state is ColorPickerOpenInitial) {
-              SchedulerBinding.instance?.addPostFrameCallback((_) async => showDialog<void>(
+              SchedulerBinding.instance?.addPostFrameCallback((_) async => showModal<void>(
                     context: dialogContext,
+                    configuration: const FadeScaleTransitionConfiguration(
+                      barrierColor: Colors.transparent,
+                      transitionDuration: Duration(milliseconds: 400),
+                      reverseTransitionDuration: Duration(milliseconds: 200),
+                    ),
                     builder: (_) => SimpleDialog(
                       // https://material.io/components/dialogs#simple-dialog
                       contentPadding: const EdgeInsets.all(0),

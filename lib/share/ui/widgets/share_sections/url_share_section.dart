@@ -26,7 +26,7 @@ class UrlShareSection extends ShareSection {
   Widget build(BuildContext context) {
     final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.4),
+      constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
       child: Column(
         children: [
           Padding(
@@ -65,6 +65,7 @@ class UrlShareSection extends ShareSection {
                               ? const [TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
                               : null)),
                 ),
+                growable: false,
               ),
             ),
           ),

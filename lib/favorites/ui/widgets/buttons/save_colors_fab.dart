@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -54,8 +55,8 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
   static const Icon icon = Icon(Icons.bookmark_add_outlined);
 
   @override
-  Widget build(BuildContext context) => ScaleTransition(
-        scale: fabAnimation,
+  Widget build(BuildContext context) => FadeScaleTransition(
+        animation: fabAnimation,
         child: BlocBuilder<FabBloc, FabState>(
           builder: (_, state) {
             // https://material.io/design/environment/elevation.html#elevation-in-material-design
@@ -66,28 +67,28 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
             }
             return Padding(
                 padding: isExtended ? const EdgeInsets.fromLTRB(16, 8, 16, 0) : const EdgeInsets.only(top: 8),
-                child: MultiBlocListener(
-                  listeners: [
-                    if (alwaysShow)
-                      BlocListener<ColorsBloc, ColorsState>(
-                          listener: (_, colorState) => isFailed = colorState is ColorsFailure),
-                    BlocListener<NavigationBloc, NavigationState>(
-                      listener: (_, navState) =>
-                          isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex,
-                    ),
-                  ],
-                  child: AnimatedSize(
-                    duration: const Duration(milliseconds: 400),
-                    child: FloatingActionButton.extended(
-                      disabledElevation: 2,
-                      backgroundColor: isDisabled ? Theme.of(context).scaffoldBackgroundColor : null,
-                      isExtended: isExtended,
-                      onPressed: isDisabled ? null : onFabPressed,
-                      label: const Text('Add to Favorites'), //TODO Add to L10N.
-                      icon: icon,
-                      tooltip: tooltip,
-                    ),
-                  ),
+                child: BlocBuilder<NavigationBloc, NavigationState>(
+                  builder: (_, navState) {
+                    isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
+                    return BlocBuilder<ColorsBloc, ColorsState>(
+                      builder: (_, colorState) {
+                        // ignore: always_put_control_body_on_new_line
+                        if (alwaysShow) isFailed = colorState is ColorsFailure;
+                        return AnimatedSize(
+                          duration: const Duration(milliseconds: 400),
+                          child: FloatingActionButton.extended(
+                            disabledElevation: 2,
+                            backgroundColor: isDisabled ? Theme.of(context).scaffoldBackgroundColor : null,
+                            isExtended: isExtended,
+                            onPressed: isDisabled ? null : onFabPressed,
+                            label: const Text('Add to Favorites'), //TODO Add to L10N.
+                            icon: icon,
+                            tooltip: tooltip,
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ));
           },
         ),

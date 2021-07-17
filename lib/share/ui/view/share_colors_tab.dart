@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../general/blocs/snackbars/snackbars_bloc.dart';
 import '../../../general/models/color_palette/color_palette.dart';
 import '../../../general/repository/colors_repository.dart';
-import '../../../general/ui/widgets/helpers/orientation_switcher.dart';
 import '../../blocs/share/share_hydrated_bloc.dart';
 import '../widgets/file_export_preview.dart';
 import '../widgets/share_sections/file_share_section.dart';
@@ -30,12 +29,11 @@ class ShareColors extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (!isPortrait) const SizedBox(height: 16),
-                      OrientationSwitcher(
-                        mainAxisAlignment: isPortrait ? MainAxisAlignment.spaceAround : MainAxisAlignment.spaceAround,
-                        isPortrait: isPortrait,
-                        children: [
-                          if (isPortrait)
+                      if (!isPortrait) const SizedBox(height: 24),
+                      if (isPortrait)
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
                             UrlShareSection(
                               palette,
                               width: size.maxWidth,
@@ -44,20 +42,39 @@ class ShareColors extends StatelessWidget {
                               exportFormats: exportFormats,
                               providersList: state.providersList,
                             ),
-                          AnimatedOpacity(
-                            curve: Curves.easeInOutCubicEmphasized,
-                            duration: const Duration(seconds: 1),
-                            opacity: state is ShareSelectedInitial ? 1 : 0,
-                            child: (state is ShareSelectedInitial && state.canSharePdf)
-                                ? FileShareSection(
-                                    palette,
-                                    width: size.maxWidth,
-                                    isLetter: state.isLetter,
-                                    canSharePng: state.canSharePdf,
-                                  )
-                                : const SizedBox.shrink(),
-                          ),
-                          if (!isPortrait)
+                            AnimatedOpacity(
+                              curve: Curves.easeInOutCubicEmphasized,
+                              duration: const Duration(seconds: 1),
+                              opacity: state is ShareSelectedInitial ? 1 : 0,
+                              child: (state is ShareSelectedInitial && state.canSharePdf)
+                                  ? FileShareSection(
+                                      palette,
+                                      width: size.maxWidth,
+                                      isLetter: state.isLetter,
+                                      canSharePng: state.canSharePdf,
+                                    )
+                                  : const SizedBox.shrink(),
+                            ),
+                          ],
+                        )
+                      else
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            AnimatedOpacity(
+                              curve: Curves.easeInOutCubicEmphasized,
+                              duration: const Duration(seconds: 1),
+                              opacity: state is ShareSelectedInitial ? 1 : 0,
+                              child: (state is ShareSelectedInitial && state.canSharePdf)
+                                  ? FileShareSection(
+                                      palette,
+                                      width: size.maxWidth,
+                                      isLetter: state.isLetter,
+                                      canSharePng: state.canSharePdf,
+                                    )
+                                  : const SizedBox.shrink(),
+                            ),
+                            SizedBox(height: size.maxHeight / 6, child: const VerticalDivider(color: Colors.black12)),
                             UrlShareSection(
                               palette,
                               width: size.maxWidth,
@@ -66,11 +83,12 @@ class ShareColors extends StatelessWidget {
                               exportFormats: exportFormats,
                               providersList: state.providersList,
                             ),
-                        ],
-                      ),
+                          ],
+                        ),
                       Flexible(
-                        child: Align(
-                          alignment: Alignment.topCenter,
+                        child: AnimatedAlign(
+                          duration: const Duration(milliseconds: 400),
+                          alignment: isPortrait ? Alignment.topCenter : Alignment.center,
                           child: Padding(
                             padding: const EdgeInsets.all(24),
                             child: ConstrainedBox(

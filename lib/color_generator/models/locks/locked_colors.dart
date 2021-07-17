@@ -10,7 +10,7 @@ class LockedColors implements ManipulateListInterface, LockInterface {
   final List<bool> list;
 
   @override
-  void unlockAll() => list.replaceRange(0, list.length, List.filled(list.length, _unlocked));
+  void unlockAll() => list.replaceRange(0, list.length, List.filled(list.length, _unlocked, growable: false));
 
   @override
   void swap({required int oldIndex, required int newIndex}) {

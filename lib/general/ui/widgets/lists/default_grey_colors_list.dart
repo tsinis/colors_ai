@@ -9,14 +9,16 @@ class DefaultGreyList extends StatelessWidget {
   final int? length;
 
   @override
-  Widget build(BuildContext context) => OrientationSwitcher(
-        isPortrait: MediaQuery.of(context).orientation == Orientation.portrait,
-        children: List.generate(
-            length ?? defaultColors.length,
-            (int i) => Flexible(
-                    child: Container(
-                  color: defaultColors[i],
-                )),
-            growable: false),
+  Widget build(BuildContext context) => OrientationBuilder(
+        builder: (_, Orientation orientation) => OrientationSwitcher(
+          isPortrait: orientation == Orientation.portrait,
+          children: List.generate(
+              length ?? defaultColors.length,
+              (int i) => Flexible(
+                      child: Container(
+                    color: defaultColors[i],
+                  )),
+              growable: false),
+        ),
       );
 }

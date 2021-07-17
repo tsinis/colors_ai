@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,8 +46,12 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
         builder: (BuildContext dialogContext, RemoveFavoritesState state) {
           final bool haveSelection = state.selections.isNotEmpty;
           if (state is RemoveFavoritesOpenDialogInitial) {
-            SchedulerBinding.instance?.addPostFrameCallback((_) async => showDialog<bool>(
+            SchedulerBinding.instance?.addPostFrameCallback((_) async => showModal<bool>(
                   context: dialogContext,
+                  configuration: const FadeScaleTransitionConfiguration(
+                    transitionDuration: Duration(milliseconds: 400),
+                    reverseTransitionDuration: Duration(milliseconds: 200),
+                  ),
                   // https://material.io/components/dialogs#alert-dialog
                   builder: (_) => AlertDialog(
                     content: Text(haveSelection

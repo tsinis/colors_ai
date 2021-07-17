@@ -15,10 +15,10 @@ class OnboardingOverlay extends StatelessWidget {
   final int length;
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<OnboardingBloc, OnboardingState>(
-        builder: (_, state) {
-          final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
-          return (state is OnboardingDoneSuccess)
+  Widget build(BuildContext context) => OrientationBuilder(builder: (_, Orientation orientation) {
+        final bool isPortrait = orientation == Orientation.portrait;
+        return BlocBuilder<OnboardingBloc, OnboardingState>(
+          builder: (_, state) => (state is OnboardingDoneSuccess)
               ? const SizedBox.shrink(key: TestKeys.disappearedOnboard)
               : Stack(
                   children: [
@@ -94,7 +94,7 @@ class OnboardingOverlay extends StatelessWidget {
                       ),
                     )
                   ],
-                );
-        },
-      );
+                ),
+        );
+      });
 }

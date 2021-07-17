@@ -46,6 +46,9 @@ class _NavigationScreenState extends State<MainScreen> {
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockedBloc>(
               create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockStarted())),
+          BlocProvider<ColorsBloc>(
+            create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted()),
+          ),
         ],
         child: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (_, navState) {
@@ -67,9 +70,6 @@ class _NavigationScreenState extends State<MainScreen> {
               ),
               body: MultiBlocProvider(
                 providers: [
-                  BlocProvider<ColorsBloc>(
-                    create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted()),
-                  ),
                   BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
                   BlocProvider<SnackbarBloc>(
                     create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
@@ -116,22 +116,24 @@ class _NavigationScreenState extends State<MainScreen> {
                         if (!isPortrait) NavRail(navState),
                         if (!isPortrait) const VerticalDivider(width: 1),
                         Expanded(
-                            child: Builder(
-                          builder: (BuildContext newContext) => RawKeyboardListener(
-                              focusNode: FocusNode(),
-                              includeSemantics: false,
-                              autofocus: navState.tabIndex == 1,
-                              onKey: (RawKeyEvent event) {
-                                if (event.isKeyPressed(LogicalKeyboardKey.space)) {
-                                  if (kIsWeb) {
-                                    BlocProvider.of<SoundBloc>(newContext).add(const SoundRefreshed());
+                          child: Builder(
+                            builder: (BuildContext newContext) => RawKeyboardListener(
+                                focusNode: FocusNode(),
+                                includeSemantics: false,
+                                autofocus: navState.tabIndex == 1,
+                                onKey: (RawKeyEvent event) {
+                                  if (event.isKeyPressed(LogicalKeyboardKey.space) &&
+                                      navState.tabIndex == const NavigationGenerateTabInitial().tabIndex) {
+                                    if (kIsWeb) {
+                                      BlocProvider.of<SoundBloc>(newContext).add(const SoundRefreshed());
+                                    }
+                                    BlocProvider.of<ColorsBloc>(newContext).add(const ColorsGenerated());
+                                    // BlocProvider.of<FabBloc>(newContext).add(const FabShowed());
                                   }
-                                  BlocProvider.of<ColorsBloc>(newContext).add(const ColorsGenerated());
-                                  // BlocProvider.of<FabBloc>(newContext).add(const FabShowed());
-                                }
-                              },
-                              child: navTabs.elementAt(navState.tabIndex)),
-                        ))
+                                },
+                                child: navTabs.elementAt(navState.tabIndex)),
+                          ),
+                        )
                       ],
                     ),
                   ),

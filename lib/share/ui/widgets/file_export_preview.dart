@@ -1,8 +1,8 @@
-import 'package:colors_ai/share/blocs/share/share_hydrated_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../general/models/color_palette/color_palette.dart';
+import '../../blocs/share/share_hydrated_bloc.dart';
 import '../../services/export/file_export.dart';
 
 class FileExportPreview extends StatefulWidget {
@@ -54,7 +54,7 @@ class _FileExportPreviewState extends State<FileExportPreview> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Expanded(
-                                    flex: 48,
+                                    flex: 12,
                                     child: AnimatedSize(
                                       duration: duration,
                                       curve: curve,
@@ -67,9 +67,9 @@ class _FileExportPreviewState extends State<FileExportPreview> {
                                       ),
                                     ),
                                   ),
-                                  const Expanded(flex: 5, child: SizedBox()),
+                                  const Expanded(child: SizedBox()),
                                   Flexible(
-                                    flex: 10,
+                                    flex: 2,
                                     child: Padding(
                                       padding: const EdgeInsets.all(4),
                                       child: ListView.separated(
@@ -84,6 +84,7 @@ class _FileExportPreviewState extends State<FileExportPreview> {
                                 ],
                               ),
                             ),
+                            growable: false,
                           ),
                         ),
                       ),
