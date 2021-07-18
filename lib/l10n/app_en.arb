@@ -200,5 +200,40 @@
         "placeholders": {
             "paletteIndex": {}
         }
+    },
+    "removeSomeTitle": "{count, plural, one{Remove {count} palette} other{Remove {count} palettes}}",
+    "@removeSomeTitle": {
+        "description": "Title of pop-up dialog and app bar, when removing some stored favorite palettes.",
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "addToFavorites": "Add to Favorites",
+    "@addToFavorites": {
+        "description": "Tooltip of floating action button that's saving palette to Favorites"
+    },
+    "removeFavoritesTipLandscape": "Press on the palette to restore colors.\nPress on the text label to copy HEX value",
+    "@removeFavoritesTipLandscape": {
+        "description": "Tip on the bottom of the favorites screen, in landscape mode."
+    },
+    "removeFavoritesTooltip": "Remove this palette",
+    "@removeFavoritesTooltip": {
+        "description": "Tooltip on the trash icon button at Favorites screen in landscape mode."
+    },
+    "selectToRemoveFavoritesTooltip": "Select this palette to remove",
+    "@selectToRemoveFavoritesTooltip": {
+        "description": "Tooltip on the checkbox at Favorites screen in landscape mode."
+    },
+    "onboardingGenerateTipLandscape": "Press Spacebar on keyboard to generate new colors",
+    "@onboardingGenerateTipLandscape": {
+        "description": "Message under the fourth color tile, on the main screen, in landscape mode."
+    },
+    "onboardingSelectTipLandscape": "Press anywhare (outside the lock zone) to select a color",
+    "@onboardingSelectTipLandscape": {
+        "description": "Label on the second color tile, during onboarding in landscape mode."
+    },
+    "onboardingSaveTipLandscape": "Press the button at the top left of the screen to save colors",
+    "@onboardingSaveTipLandscape": {
+        "description": "Message under the last color tile, on the main screen."
     }
 }

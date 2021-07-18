@@ -45,6 +45,7 @@ class _FavoritesListState extends State<FavoritesListSwipeable> {
                           opacity: canShowTip ? 1 : 0,
                           child: Text(
                             AppLocalizations.of(context).removeFavoritesTip,
+                            textAlign: TextAlign.center,
                             style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300),
                           ),
                         ),

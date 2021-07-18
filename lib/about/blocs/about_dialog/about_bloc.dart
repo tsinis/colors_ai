@@ -28,9 +28,9 @@ class AboutBloc extends Bloc<AboutEvent, AboutState> {
     } else if (event is AboutSoundAssetsTaped) {
       _aboutRepository.openAboutSounds();
     } else if (event is AboutGoogleTaped) {
-      _aboutRepository.openAboutGoogle(_aboutRepository.locale); //TODO Fix it.
+      _aboutRepository.openAboutGoogle();
     } else if (event is AboutLicenseTaped) {
-      _aboutRepository.openAboutLicenses(_aboutRepository.locale); //TODO Fix it.
+      _aboutRepository.openAboutLicenses();
     }
   }
 }

@@ -6,10 +6,7 @@ class AboutRepository with AboutUrlsLauncher {
     PackageInfo.fromPlatform().then((info) => _version = info.version);
   }
 
-  late final String _version, _locale;
-
-  void init(String? currentLocale) => _locale = currentLocale ?? 'en';
+  late final String _version;
 
   String get version => _version;
-  String get locale => _locale;
 }

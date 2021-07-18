@@ -6,7 +6,7 @@ import 'general/services/data_storage.dart';
 import 'oboarding/blocs/onboarding/onboarding_bloc.dart';
 import 'theme/services/system_overlays.dart';
 
-//TODO! Add Robot to file exports after License Change to OFL.
+//TODO! Add Roboto to file exports after License Change to OFL.
 //TODO: Handle Failure States in Bloc.
 //TODO Add settings menu.
 //TODO Change Android icon to SVG.

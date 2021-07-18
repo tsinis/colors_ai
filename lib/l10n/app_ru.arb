@@ -57,5 +57,18 @@
         "placeholders": {
             "paletteIndex": {}
         }
-    }
+    },
+    "removeSomeTitle": "{count, plural, one{Удалить {count} палитру} two{Удалить {count} палитры} few{Удалить {count} палитры} many{Удалить {count} палитр} other{Удалить {count} палитры}}",
+    "@removeSomeTitle": {
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "addToFavorites": "Добавить в избранное",
+    "removeFavoritesTipLandscape": "Нажмите на палитру, чтобы восстановить цвета.\nНажмите на текстовую метку, чтобы скопировать HEX-значение",
+    "removeFavoritesTooltip": "Удалить эту палитру",
+    "selectToRemoveFavoritesTooltip": "Выберите эту палитру для удаления",
+    "onboardingGenerateTipLandscape": "Нажмите пробел на клавиатуре для генерации новых цветов",
+    "onboardingSelectTipLandscape": "Нажмите на любую область (вне зоны блокировки), чтобы выбрать цвет",
+    "onboardingSaveTipLandscape": "Нажмите кнопку в левом верхнем углу экрана, чтобы сохранить цвета"
 }

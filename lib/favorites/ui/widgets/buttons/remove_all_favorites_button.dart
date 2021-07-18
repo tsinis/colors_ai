@@ -55,7 +55,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                   // https://material.io/components/dialogs#alert-dialog
                   builder: (_) => AlertDialog(
                     content: Text(haveSelection
-                        ? 'Remove ${state.selections.length} palettes?' //TODO Add L10N
+                        ? '${AppLocalizations.of(context).removeSomeTitle(state.selections.length)}?'
                         : '${AppLocalizations.of(context).removeAllTitle}?'),
                     actions: <TextButton>[
                       TextButton(
@@ -81,7 +81,9 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
 
           return BlocBuilder<FavoritesBloc, FavoritesState>(
               builder: (_, favState) => IconButton(
-                  tooltip: AppLocalizations.of(context).removeAllTitle, //TODO Replace L10N.
+                  tooltip: haveSelection
+                      ? AppLocalizations.of(context).removeSomeTitle(state.selections.length)
+                      : AppLocalizations.of(context).removeAllTitle,
                   icon: Stack(
                     children: [
                       if (haveSelection)

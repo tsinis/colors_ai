@@ -98,7 +98,11 @@ class _NavigationScreenState extends State<MainScreen> {
                         SnackBar(
                           duration: const Duration(seconds: 2),
                           content: Text(message),
-                          behavior: (isUrlCopied || isShareFailed) ? SnackBarBehavior.fixed : SnackBarBehavior.floating,
+                          behavior: (isUrlCopied || isShareFailed)
+                              ? isPortrait
+                                  ? SnackBarBehavior.fixed
+                                  : SnackBarBehavior.floating
+                              : SnackBarBehavior.floating,
                           action: isUrlCopied
                               ? SnackBarAction(
                                   textColor: Theme.of(context).scaffoldBackgroundColor,

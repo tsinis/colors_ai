@@ -8,9 +8,13 @@ mixin AboutUrlsLauncher {
       _soundsLicense = 'https://creativecommons.org/licenses/by/4.0/legalcode.',
       _materialSounds = 'https://material.io/design/sound/sound-resources.html';
 
+  late final String locale;
+
+  void init(String? currentLocale) => locale = currentLocale ?? 'en';
+
   void openSourceCode() => _urlLauncher.openURL(_sourceCode);
   void openAboutApi() => _urlLauncher.openURL(_aboutColormind);
   void openAboutSounds() => _urlLauncher.openURL(_materialSounds);
-  void openAboutGoogle(String locale) => _urlLauncher.openURL(_aboutGoogle + locale);
-  void openAboutLicenses(String locale) => _urlLauncher.openURL(_soundsLicense + locale);
+  void openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + locale);
+  void openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + locale);
 }

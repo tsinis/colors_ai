@@ -34,9 +34,8 @@ class API {
     final List<bool> invertedLocks = lockedColors.map((isLocked) => !isLocked).toList();
     final http.Response response =
         await _colorsFromAPI(existingColors.list, isUiModel: forUI, lockedColors: invertedLocks);
-    if (response.statusCode != 200) {
-      // TODO! Handle status codes.
-      throw Exception('Network error, Status Code: ${response.statusCode}');
+    if (response.statusCode < 200 || response.statusCode > 299) {
+      throw Exception('Network error, status Code: ${response.statusCode}');
     } else {
       final responseMap = jsonDecode(response.body) as Map<String, dynamic>;
       return ColorsAI.fromJson(responseMap);

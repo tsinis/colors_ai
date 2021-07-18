@@ -17,7 +17,7 @@ class AppBarInfoTitle extends StatelessWidget {
           final List<String> tabLabels = tabNames(AppLocalizations.of(context));
           late String? appBarInfo;
           if (selectedTabIndex == const NavigationFavoritesTabInitial().tabIndex && favState.selections.isNotEmpty) {
-            appBarInfo = 'Palettes to remove: ${favState.selections.length}';
+            appBarInfo = AppLocalizations.of(context).removeSomeTitle(favState.selections.length);
           } else {
             appBarInfo = null;
           }

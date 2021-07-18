@@ -13,7 +13,7 @@ class SystemUI {
   static void init() {
     if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
       setWindowTitle('Colors AI');
-      setWindowMinSize(const Size(338, 488));
+      setWindowMinSize(const Size(338, 554));
     }
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,

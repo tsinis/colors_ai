@@ -47,7 +47,8 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                         duration: const Duration(milliseconds: 800),
                         opacity: canShowTip ? 1 : 0,
                         child: Text(
-                          AppLocalizations.of(context).removeFavoritesTip, //TODO Add adopted L10N.
+                          AppLocalizations.of(context).removeFavoritesTipLandscape,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300),
                         ),
                       ),
@@ -89,7 +90,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                               children: [
                                                 Tooltip(
                                                   preferBelow: false,
-                                                  message: 'Remove this palette', //TODO Add to L10N
+                                                  message: AppLocalizations.of(context).removeFavoritesTooltip,
                                                   child: IconButton(
                                                     splashRadius: size / 4,
                                                     onPressed: () {
@@ -109,7 +110,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                   ),
                                                 ),
                                                 Tooltip(
-                                                  message: 'Select this palette to remove', //TODO Add to L10N,
+                                                  message: AppLocalizations.of(context).selectToRemoveFavoritesTooltip,
                                                   child: Checkbox(
                                                     value: isSelectedToRemove,
                                                     onChanged: (i) => setState(() =>
