@@ -23,86 +23,91 @@ class ShareColors extends StatelessWidget {
             final String? exportFormats = state.providersList[selectedProviderIndex].formats;
             final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
             return LayoutBuilder(
-              builder: (_, size) => SingleChildScrollView(
-                child: SizedBox(
-                  height: size.maxHeight,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (!isPortrait) const SizedBox(height: 24),
-                      if (isPortrait)
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            UrlShareSection(
-                              palette,
-                              width: size.maxWidth,
-                              selectedProviderIndex: selectedProviderIndex,
-                              firstProvider: _firstProvider,
-                              exportFormats: exportFormats,
-                              providersList: state.providersList,
-                            ),
-                            AnimatedOpacity(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              duration: const Duration(seconds: 1),
-                              opacity: state is ShareSelectedInitial ? 1 : 0,
-                              child: (state is ShareSelectedInitial && state.canSharePdf)
-                                  ? FileShareSection(
-                                      palette,
-                                      width: size.maxWidth,
-                                      isLetter: state.isLetter,
-                                      canSharePng: state.canSharePdf,
-                                    )
-                                  : const SizedBox.shrink(),
-                            ),
-                          ],
-                        )
-                      else
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            AnimatedOpacity(
-                              curve: Curves.easeInOutCubicEmphasized,
-                              duration: const Duration(seconds: 1),
-                              opacity: state is ShareSelectedInitial ? 1 : 0,
-                              child: (state is ShareSelectedInitial && state.canSharePdf)
-                                  ? FileShareSection(
-                                      palette,
-                                      width: size.maxWidth,
-                                      isLetter: state.isLetter,
-                                      canSharePng: state.canSharePdf,
-                                    )
-                                  : const SizedBox.shrink(),
-                            ),
-                            SizedBox(height: size.maxHeight / 6, child: const VerticalDivider(color: Colors.black12)),
-                            UrlShareSection(
-                              palette,
-                              width: size.maxWidth,
-                              selectedProviderIndex: selectedProviderIndex,
-                              firstProvider: _firstProvider,
-                              exportFormats: exportFormats,
-                              providersList: state.providersList,
-                            ),
-                          ],
+              builder: (_, size) => isPortrait
+                  ? ListView(
+                      children: [
+                        UrlShareSection(
+                          palette,
+                          width: size.maxWidth,
+                          selectedProviderIndex: selectedProviderIndex,
+                          firstProvider: _firstProvider,
+                          exportFormats: exportFormats,
+                          providersList: state.providersList,
                         ),
-                      Flexible(
-                        child: AnimatedAlign(
-                          duration: const Duration(milliseconds: 400),
-                          alignment: isPortrait ? Alignment.topCenter : Alignment.center,
-                          child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: ConstrainedBox(
-                              constraints:
-                                  BoxConstraints(maxHeight: size.maxHeight * 0.6, maxWidth: size.maxWidth * 0.8),
-                              child: FileExportPreview(palette),
-                            ),
+                        AnimatedOpacity(
+                          curve: Curves.easeInOutCubicEmphasized,
+                          duration: const Duration(seconds: 1),
+                          opacity: state is ShareSelectedInitial ? 1 : 0,
+                          child: (state is ShareSelectedInitial && state.canSharePdf)
+                              ? FileShareSection(
+                                  palette,
+                                  width: size.maxWidth,
+                                  isLetter: state.isLetter,
+                                  canSharePng: state.canSharePdf,
+                                )
+                              : const SizedBox.shrink(),
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.92,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(maxHeight: size.maxHeight * 0.6, maxWidth: size.maxWidth * 0.8),
+                            child: FileExportPreview(palette),
                           ),
                         ),
+                        const SizedBox(height: 16)
+                      ],
+                    )
+                  : SingleChildScrollView(
+                      child: SizedBox(
+                        height: size.maxHeight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 24),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                AnimatedOpacity(
+                                  curve: Curves.easeInOutCubicEmphasized,
+                                  duration: const Duration(seconds: 1),
+                                  opacity: state is ShareSelectedInitial ? 1 : 0,
+                                  child: (state is ShareSelectedInitial && state.canSharePdf)
+                                      ? FileShareSection(
+                                          palette,
+                                          width: size.maxWidth,
+                                          isLetter: state.isLetter,
+                                          canSharePng: state.canSharePdf,
+                                        )
+                                      : const SizedBox.shrink(),
+                                ),
+                                SizedBox(
+                                    height: size.maxHeight / 6, child: const VerticalDivider(color: Colors.black12)),
+                                UrlShareSection(
+                                  palette,
+                                  width: size.maxWidth,
+                                  selectedProviderIndex: selectedProviderIndex,
+                                  firstProvider: _firstProvider,
+                                  exportFormats: exportFormats,
+                                  providersList: state.providersList,
+                                ),
+                              ],
+                            ),
+                            Flexible(
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24),
+                                  child: ConstrainedBox(
+                                    constraints:
+                                        BoxConstraints(maxHeight: size.maxHeight * 0.6, maxWidth: size.maxWidth * 0.8),
+                                    child: FileExportPreview(palette),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
+                    ),
             );
           } else {
             BlocProvider.of<SnackbarBloc>(context).add(const ShareFail());
