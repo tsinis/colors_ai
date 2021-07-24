@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../general/ui/widgets/helpers/orientation_switcher.dart';
+import '../../../common/ui/widgets/helpers/orientation_switcher.dart';
 
 class OnboardingTile extends StatelessWidget {
   const OnboardingTile(

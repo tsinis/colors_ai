@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:printing/printing.dart';
-import '../../general/services/data_storage.dart';
+import '../../core/services/data_storage.dart';
 
 mixin DeviceCapabilities {
   late final bool canSharePdf, canSharePng;

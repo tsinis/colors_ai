@@ -2,11 +2,11 @@ import 'dart:ui' show Color;
 
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../general/extensions/color.dart';
-import '../../../general/extensions/list_color_to_palette.dart';
-import '../../../general/extensions/list_int_to_color.dart';
-import '../../../general/models/color_palette/color_palette.dart';
-import '../../../general/models/typedef_aliases/int_rgb_color.dart';
+import '../../../core/extensions/color.dart';
+import '../../../core/extensions/list_color_to_palette.dart';
+import '../../../core/extensions/list_int_to_color.dart';
+import '../../../core/models/color_palette/color_palette.dart';
+import '../../../core/models/typedef_aliases/int_rgb_color.dart';
 import '../../interfaces/color_palette.dart';
 import '../../interfaces/manipulate_list.dart';
 import 'constants.dart';

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import '../../../general/models/color_palette/color_palette.dart';
+import '../../../core/models/color_palette/color_palette.dart';
 import '../../repository/share_repository.dart';
 import '../../services/url_providers/url_providers.dart';
 

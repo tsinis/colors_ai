@@ -1,7 +1,7 @@
 import 'dart:ui' show Color;
 
-import '../../../general/extensions/color.dart';
-import '../../../general/models/color_palette/color_palette.dart';
+import '../../../core/extensions/color.dart';
+import '../../../core/models/color_palette/color_palette.dart';
 
 part 'providers/art_google.dart';
 part 'providers/colordesigner.dart';

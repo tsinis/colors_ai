@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
-import '../../general/models/color_palette/color_palette.dart';
+import '../../core/models/color_palette/color_palette.dart';
 import '../models/color_adapter.dart';
 
 mixin FavoritesStorage {

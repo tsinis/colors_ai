@@ -1,4 +1,4 @@
-import '../../general/models/color_palette/color_palette.dart';
+import '../../core/models/color_palette/color_palette.dart';
 import '../mixins/favorites_storage.dart';
 
 class FavoritesRepository with FavoritesStorage {

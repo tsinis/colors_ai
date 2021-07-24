@@ -6,9 +6,9 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../color_generator/blocs/colors_locked/locked_bloc.dart';
+import '../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../core/extensions/color.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
-import '../../../general/blocs/snackbars/snackbars_bloc.dart';
-import '../../../general/extensions/color.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../blocs/colorpicker_dialog/colorpicker_bloc.dart';
 
@@ -40,7 +40,6 @@ class Colorpicker extends StatelessWidget {
                       reverseTransitionDuration: Duration(milliseconds: 200),
                     ),
                     builder: (_) => SimpleDialog(
-                      // https://material.io/components/dialogs#simple-dialog
                       contentPadding: const EdgeInsets.all(0),
                       children: [
                         ColorPicker(

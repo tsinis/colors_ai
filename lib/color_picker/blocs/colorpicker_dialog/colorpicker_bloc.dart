@@ -3,7 +3,7 @@ import 'dart:ui' show Color;
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../general/services/clipboard.dart';
+import '../../../core/services/clipboard.dart';
 
 part 'colorpicker_event.dart';
 part 'colorpicker_state.dart';

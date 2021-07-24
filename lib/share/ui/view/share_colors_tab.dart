@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../general/blocs/snackbars/snackbars_bloc.dart';
-import '../../../general/models/color_palette/color_palette.dart';
-import '../../../general/repository/colors_repository.dart';
+import '../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../core/models/color_palette/color_palette.dart';
+import '../../../core/repository/colors_repository.dart';
 import '../../blocs/share/share_hydrated_bloc.dart';
 import '../widgets/file_export_preview.dart';
 import '../widgets/share_sections/file_share_section.dart';

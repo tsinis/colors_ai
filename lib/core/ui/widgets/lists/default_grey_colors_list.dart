@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../color_generator/models/colors/constants.dart';
-import '../helpers/orientation_switcher.dart';
+import '../../../../common/ui/widgets/helpers/orientation_switcher.dart';
 
 class DefaultGreyList extends StatelessWidget {
   const DefaultGreyList({this.length});

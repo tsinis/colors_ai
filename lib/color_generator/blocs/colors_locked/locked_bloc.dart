@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../general/repository/colors_repository.dart';
+import '../../../core/repository/colors_repository.dart';
 
 part 'locked_event.dart';
 part 'locked_state.dart';

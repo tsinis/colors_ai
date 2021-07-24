@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../../../general/models/typedef_aliases/int_rgb_color.dart';
+import '../../../core/models/typedef_aliases/int_rgb_color.dart';
 import '../../models/colors/colors_json.dart';
 import 'constants.dart';
 import 'utils.dart';

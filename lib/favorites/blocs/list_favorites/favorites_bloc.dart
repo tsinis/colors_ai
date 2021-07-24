@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../general/models/color_palette/color_palette.dart';
+import '../../../core/models/color_palette/color_palette.dart';
 import '../../repository/favorites_repository.dart';
 
 part 'favorites_event.dart';

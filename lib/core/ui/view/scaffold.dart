@@ -9,6 +9,8 @@ import '../../../about/ui/view/about_dialog.dart';
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../color_generator/blocs/colors_locked/locked_bloc.dart';
 import '../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
+import '../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../common/ui/widgets/app_bar_info_title.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
 import '../../../navigation/blocs/navigation/navigation_bloc.dart';
@@ -17,10 +19,8 @@ import '../../../navigation/ui/widgets/navigation_bar.dart';
 import '../../../navigation/ui/widgets/navigation_rail.dart';
 import '../../../share/blocs/share/share_hydrated_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
-import '../../blocs/snackbars/snackbars_bloc.dart';
 import '../../repository/colors_repository.dart';
 import '../constants.dart';
-import '../widgets/app_bar_info_title.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen();

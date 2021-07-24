@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../general/models/color_palette/color_palette.dart';
-import '../../general/services/clipboard.dart';
+import '../../core/models/color_palette/color_palette.dart';
+import '../../core/services/clipboard.dart';
 import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
 import '../services/url_providers/url_providers.dart';

@@ -2,8 +2,8 @@ import 'package:color_converter/color_converter.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
-import '../../../general/extensions/color.dart';
-import '../../../general/models/color_palette/color_palette.dart';
+import '../../../core/extensions/color.dart';
+import '../../../core/models/color_palette/color_palette.dart';
 
 class FileLayout extends StatelessWidget {
   FileLayout(this._palette, this._format);

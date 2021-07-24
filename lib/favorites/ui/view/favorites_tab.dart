@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../general/repository/colors_repository.dart';
+import '../../../core/repository/colors_repository.dart';
 import '../../blocs/list_favorites/favorites_bloc.dart';
 import '../widgets/animated/no_favorites.dart';
 import '../widgets/lists/favorites_list_adaptive.dart';

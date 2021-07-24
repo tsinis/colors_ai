@@ -1,4 +1,4 @@
-import '../../general/services/url_launcher.dart';
+import '../../core/services/url_launcher.dart';
 
 mixin AboutUrlsLauncher {
   static const UrlLauncher _urlLauncher = UrlLauncher();

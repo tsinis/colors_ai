@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../services/clipboard.dart';
-import '../../services/url_launcher.dart';
+import '../../../core/services/clipboard.dart';
+import '../../../core/services/url_launcher.dart';
 
 part 'snackbars_event.dart';
 part 'snackbars_state.dart';

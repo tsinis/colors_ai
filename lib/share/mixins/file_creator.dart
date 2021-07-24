@@ -3,7 +3,7 @@ import 'dart:typed_data' show Uint8List;
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
-import '../../general/models/color_palette/color_palette.dart';
+import '../../core/models/color_palette/color_palette.dart';
 import '../services/export/file_export.dart';
 
 mixin FileCreator {

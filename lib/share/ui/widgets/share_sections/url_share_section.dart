@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../general/blocs/snackbars/snackbars_bloc.dart';
-import '../../../../general/models/color_palette/color_palette.dart';
+import '../../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../blocs/share/share_hydrated_bloc.dart';
 import '../../../services/url_providers/url_providers.dart';
 import 'share_section_interface.dart';

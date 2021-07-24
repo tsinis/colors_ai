@@ -10,10 +10,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../color_picker/ui/view/colorpicker_dialog.dart';
+import '../../../../core/extensions/color.dart';
+import '../../../../core/models/color_palette/color_palette.dart';
+import '../../../../core/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../../favorites/blocs/add_favorites/fab_bloc.dart';
-import '../../../../general/extensions/color.dart';
-import '../../../../general/models/color_palette/color_palette.dart';
-import '../../../../general/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../../oboarding/ui/view/onboarding_overlay.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../../blocs/colors_generated/colors_bloc.dart';

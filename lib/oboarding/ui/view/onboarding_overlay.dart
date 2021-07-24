@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../general/ui/widgets/helpers/orientation_switcher.dart';
+import '../../../common/ui/widgets/helpers/orientation_switcher.dart';
 import '../../../testing/test_keys.dart';
 import '../../blocs/onboarding/onboarding_bloc.dart';
 import '../widgets/onboarding_tile.dart';

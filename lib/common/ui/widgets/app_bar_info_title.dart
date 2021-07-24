@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/remove_favorites/remove_favs_bloc.dart';
 import '../../../navigation/blocs/navigation/navigation_bloc.dart';
-import '../constants.dart';
 
 class AppBarInfoTitle extends StatelessWidget {
   const AppBarInfoTitle({required this.selectedTabIndex});

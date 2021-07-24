@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'favorites/blocs/add_favorites/fab_bloc.dart';
-import 'favorites/blocs/list_favorites/favorites_bloc.dart';
-import 'favorites/blocs/remove_favorites/remove_favs_bloc.dart';
-import 'general/repository/colors_repository.dart';
-import 'general/ui/view/scaffold.dart';
-import 'general/ui/view/splash_screen.dart';
-import 'navigation/blocs/navigation/navigation_bloc.dart';
-import 'oboarding/blocs/onboarding/onboarding_bloc.dart';
+import '../core/repository/colors_repository.dart';
+import '../core/ui/view/scaffold.dart';
+import '../core/ui/view/splash_screen.dart';
+import '../favorites/blocs/add_favorites/fab_bloc.dart';
+import '../favorites/blocs/list_favorites/favorites_bloc.dart';
+import '../favorites/blocs/remove_favorites/remove_favs_bloc.dart';
+import '../navigation/blocs/navigation/navigation_bloc.dart';
+import '../oboarding/blocs/onboarding/onboarding_bloc.dart';
 import 'theme/theme.dart';
 
 class App extends StatelessWidget {

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 // ignore_for_file: avoid_relative_lib_imports
 import '../../../../lib/color_generator/models/colors/constants.dart';
-import '../../../../lib/general/services/data_storage.dart';
+import '../../../../lib/core/services/data_storage.dart';
 import '../../../../lib/oboarding/blocs/onboarding/onboarding_bloc.dart';
 import '../../../../lib/oboarding/ui/view/onboarding_overlay.dart';
 import '../../../../lib/testing/test_keys.dart';

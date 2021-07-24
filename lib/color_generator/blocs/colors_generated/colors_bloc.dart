@@ -5,8 +5,8 @@ import 'dart:ui' show Color;
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../general/models/color_palette/color_palette.dart';
-import '../../../general/repository/colors_repository.dart';
+import '../../../core/models/color_palette/color_palette.dart';
+import '../../../core/repository/colors_repository.dart';
 
 part 'colors_event.dart';
 part 'colors_state.dart';

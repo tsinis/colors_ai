@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
-import '../../../general/ui/constants.dart';
 import '../../blocs/navigation/navigation_bloc.dart';
 
 class NavRail extends StatefulWidget {

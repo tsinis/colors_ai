@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../general/models/color_palette/color_palette.dart';
+import '../../../core/models/color_palette/color_palette.dart';
 import '../../blocs/share/share_hydrated_bloc.dart';
 import '../../services/export/file_export.dart';
 

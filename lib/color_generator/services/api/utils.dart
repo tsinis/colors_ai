@@ -1,4 +1,4 @@
-import '../../../general/models/typedef_aliases/int_rgb_color.dart';
+import '../../../core/models/typedef_aliases/int_rgb_color.dart';
 
 import 'constants.dart';
 

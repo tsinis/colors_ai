@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
-import '../../../../general/repository/colors_repository.dart';
+import '../../../../core/repository/colors_repository.dart';
 import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../../blocs/add_favorites/fab_bloc.dart';
