@@ -32,10 +32,10 @@ class BottomNavBar extends StatelessWidget {
               NavigationBarDestination(
                   label: tabLabels[_shareTabIndex],
                   icon: const Icon(Icons.share),
-                  unselectedIcon: const Icon(Icons.share_outlined)),
+                  unselectedIcon: Icon(Icons.share_outlined, color: Theme.of(context).primaryIconTheme.color)),
               NavigationBarDestination(
                   label: tabLabels[_colorsGenTabIndex],
-                  unselectedIcon: const Icon(Icons.palette_outlined),
+                  unselectedIcon: Icon(Icons.palette_outlined, color: Theme.of(context).primaryIconTheme.color),
                   icon: const Icon(Icons.palette)),
               NavigationBarDestination(
                 label: isFavoritesEmpty
@@ -43,9 +43,8 @@ class BottomNavBar extends StatelessWidget {
                     : AppLocalizations.of(context).favoritesTabLabel,
                 icon: const Icon(Icons.bookmarks),
                 unselectedIcon: Icon(Icons.bookmarks_outlined,
-                    color: isFavoritesEmpty
-                        ? Theme.of(context).disabledColor
-                        : Theme.of(context).bottomNavigationBarTheme.unselectedItemColor),
+                    color:
+                        isFavoritesEmpty ? Theme.of(context).disabledColor : Theme.of(context).primaryIconTheme.color),
               ),
             ],
           );

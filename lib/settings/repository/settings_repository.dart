@@ -1,0 +1,3 @@
+class SettingsRepository {
+  bool? isDarkTheme;
+}

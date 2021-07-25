@@ -53,11 +53,11 @@ class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMix
                   ),
                 ),
               ),
-              const Positioned(
+              Positioned(
                 top: 100,
                 child: CustomPaint(
-                  size: Size(300, 400),
-                  painter: TransmitterTower(),
+                  size: const Size(300, 400),
+                  painter: TransmitterTower(color: Theme.of(context).primaryIconTheme.color!),
                 ),
               ),
             ],

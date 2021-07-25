@@ -27,18 +27,18 @@ class FileShareSection extends ShareSection {
           if (isPortrait) const Divider() else const SizedBox(height: 24),
           RadioListTile<bool>(
             dense: true,
-            title: RichText(
-              textScaleFactor: MediaQuery.of(context).textScaleFactor,
-              text: TextSpan(
+            title: Text.rich(
+              TextSpan(
                 text: 'A4',
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 children: <TextSpan>[
                   TextSpan(
                     text: ' ${AppLocalizations.of(context).a4DimensionsTitle}',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   )
                 ],
               ),
+              textScaleFactor: MediaQuery.of(context).textScaleFactor,
             ),
             subtitle: Text(AppLocalizations.of(context).a4DimensionsSubtitle),
             value: false,
@@ -51,18 +51,18 @@ class FileShareSection extends ShareSection {
           ),
           RadioListTile<bool>(
             dense: true,
-            title: RichText(
-              textScaleFactor: MediaQuery.of(context).textScaleFactor,
-              text: TextSpan(
+            title: Text.rich(
+              TextSpan(
                 text: AppLocalizations.of(context).letterLabel,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 children: [
                   TextSpan(
                     text: ' ${AppLocalizations.of(context).letterDimensionsTitle}',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400, color: Colors.black),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
                   )
                 ],
               ),
+              textScaleFactor: MediaQuery.of(context).textScaleFactor,
             ),
             subtitle: Text(AppLocalizations.of(context).letterDimensionsSubtitle),
             value: true,

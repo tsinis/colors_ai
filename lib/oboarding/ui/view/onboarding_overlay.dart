@@ -88,7 +88,7 @@ class OnboardingOverlay extends StatelessWidget {
                     height: size.maxHeight / length,
                     child: Center(
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Theme.of(context).focusColor),
+                        style: ElevatedButton.styleFrom(primary: Theme.of(context).indicatorColor),
                         onPressed: () => BlocProvider.of<OnboardingBloc>(context).add(const OnboardingFinished()),
                         child: Text(AppLocalizations.of(context).onboardingDoneButtonLabel.toUpperCase(),
                             key: TestKeys.onboardingFinish, style: const TextStyle(color: Colors.white)),

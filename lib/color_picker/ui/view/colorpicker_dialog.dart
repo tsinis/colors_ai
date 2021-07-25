@@ -70,8 +70,8 @@ class Colorpicker extends StatelessWidget {
                     }
                   : null,
               onPressed: () {
-                BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
                 BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
+                BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
                 BlocProvider.of<LockedBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
               },
               child: Align(

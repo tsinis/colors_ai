@@ -12,7 +12,7 @@ class AboutButton extends StatelessWidget {
   const AboutButton();
 
   TextStyle _linkStyle(BuildContext context) =>
-      Theme.of(context).textTheme.bodyText2!.copyWith(color: Theme.of(context).focusColor);
+      Theme.of(context).textTheme.bodyText2!.copyWith(color: Theme.of(context).indicatorColor);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<AboutBloc, AboutState>(
@@ -32,50 +32,54 @@ class AboutButton extends StatelessWidget {
                       applicationIcon: const AppIcon(),
                       children: <Widget>[
                         const SizedBox(height: 20),
-                        RichText(
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                          text: TextSpan(
-                            style: Theme.of(context).textTheme.bodyText2,
-                            children: [
-                              TextSpan(text: AppLocalizations.of(context).aboutGenerator),
-                              TextSpan(
-                                  style: _linkStyle(context),
-                                  text: ' Colormind API',
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap =
-                                        () => BlocProvider.of<AboutBloc>(context).add(const AboutApiProviderTaped())),
-                              TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
-                              TextSpan(
-                                  style: _linkStyle(context),
-                                  text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap =
-                                        () => BlocProvider.of<AboutBloc>(context).add(const AboutSourceCodeTaped())),
-                              const TextSpan(text: '.'),
-                              TextSpan(
-                                text:
-                                    '\n\n${AppLocalizations.of(context).aboutAttribution.toUpperCase()}:\n\n${AppLocalizations.of(context).aboutSounds}',
-                              ),
-                              TextSpan(
-                                  style: _linkStyle(context),
-                                  text: ' "Material Product Sounds"',
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap =
-                                        () => BlocProvider.of<AboutBloc>(context).add(const AboutSoundAssetsTaped())),
-                              TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
-                              TextSpan(
-                                  style: _linkStyle(context),
-                                  text: ' Google',
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutGoogleTaped())),
-                              TextSpan(text: ' ${AppLocalizations.of(context).aboutSoundsLicense}'),
-                              TextSpan(
-                                  style: _linkStyle(context),
-                                  text: ' CC BY 4.0',
-                                  recognizer: TapGestureRecognizer()
-                                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutLicenseTaped())),
-                              const TextSpan(text: '.'),
-                            ],
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 320),
+                          child: Text.rich(
+                            TextSpan(
+                              style: Theme.of(context).textTheme.bodyText2,
+                              children: [
+                                TextSpan(text: AppLocalizations.of(context).aboutGenerator),
+                                TextSpan(
+                                    style: _linkStyle(context),
+                                    text: ' Colormind API',
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap =
+                                          () => BlocProvider.of<AboutBloc>(context).add(const AboutApiProviderTaped())),
+                                TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
+                                TextSpan(
+                                    style: _linkStyle(context),
+                                    text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap =
+                                          () => BlocProvider.of<AboutBloc>(context).add(const AboutSourceCodeTaped())),
+                                const TextSpan(text: '.'),
+                                TextSpan(
+                                  text:
+                                      '\n\n${AppLocalizations.of(context).aboutAttribution.toUpperCase()}:\n\n${AppLocalizations.of(context).aboutSounds}',
+                                ),
+                                TextSpan(
+                                    style: _linkStyle(context),
+                                    text: ' "Material Product Sounds"',
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap =
+                                          () => BlocProvider.of<AboutBloc>(context).add(const AboutSoundAssetsTaped())),
+                                TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
+                                TextSpan(
+                                    style: _linkStyle(context),
+                                    text: ' Google',
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap =
+                                          () => BlocProvider.of<AboutBloc>(context).add(const AboutGoogleTaped())),
+                                TextSpan(text: ' ${AppLocalizations.of(context).aboutSoundsLicense}'),
+                                TextSpan(
+                                    style: _linkStyle(context),
+                                    text: ' CC BY 4.0',
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap =
+                                          () => BlocProvider.of<AboutBloc>(context).add(const AboutLicenseTaped())),
+                                const TextSpan(text: '.'),
+                              ],
+                            ),
                           ),
                         ),
                       ],

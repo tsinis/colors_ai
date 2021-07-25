@@ -49,7 +49,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                         child: Text(
                           AppLocalizations.of(context).removeFavoritesTipLandscape,
                           textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300),
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                         ),
                       ),
                     ),

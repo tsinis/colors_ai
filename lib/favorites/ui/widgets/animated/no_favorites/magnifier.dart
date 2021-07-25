@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 
 class Magnifier extends CustomPainter {
-  const Magnifier();
+  const Magnifier({required this.backgroundColor, required this.outlineColor, required this.holdersColor});
+
+  final Color backgroundColor, outlineColor, holdersColor;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Paint holderColor = Paint()
-      ..color = Colors.grey[800]!
+      ..color = holdersColor
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 12;
 
     final Paint background = Paint()
-      ..color = Colors.white24
+      ..color = backgroundColor
       ..style = PaintingStyle.fill;
 
     final Paint outline = Paint()
-      ..color = Colors.grey[700]!
+      ..color = outlineColor
       ..style = PaintingStyle.stroke
       ..strokeWidth = 6;
 

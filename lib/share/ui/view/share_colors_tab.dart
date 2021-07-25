@@ -80,8 +80,7 @@ class ShareColors extends StatelessWidget {
                                         )
                                       : const SizedBox.shrink(),
                                 ),
-                                SizedBox(
-                                    height: size.maxHeight / 6, child: const VerticalDivider(color: Colors.black12)),
+                                SizedBox(height: size.maxHeight / 6, child: const VerticalDivider()),
                                 UrlShareSection(
                                   palette,
                                   width: size.maxWidth,

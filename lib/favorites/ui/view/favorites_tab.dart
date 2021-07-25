@@ -26,20 +26,19 @@ class FavoritesTab extends StatelessWidget {
                           child: FractionallySizedBox(widthFactor: 0.6, heightFactor: 0.7, child: NoFavorites())),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
-                        child: RichText(
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                          textAlign: TextAlign.center,
-                          text: TextSpan(
+                        child: Text.rich(
+                          TextSpan(
                             text: AppLocalizations.of(context).noFavoritesTitle.toUpperCase(),
-                            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
+                            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                             children: [
                               TextSpan(
                                 text: '\n${AppLocalizations.of(context).noFavoritesDescription}',
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.normal, color: Colors.black, height: 3),
+                                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.normal, height: 3),
                               )
                             ],
                           ),
+                          textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       Padding(
@@ -55,15 +54,13 @@ class FavoritesTab extends StatelessWidget {
                     ],
                   ),
                 )
-              : OrientationBuilder(
-                  builder: (_, Orientation orientation) => AnimatedSwitcher(
-                    switchInCurve: Curves.decelerate,
-                    switchOutCurve: Curves.decelerate,
-                    duration: const Duration(milliseconds: 400),
-                    child: orientation == Orientation.portrait
-                        ? const FavoritesListSwipeable()
-                        : const FavoritesListAdaptive(),
-                  ),
+              : AnimatedSwitcher(
+                  switchInCurve: Curves.decelerate,
+                  switchOutCurve: Curves.decelerate,
+                  duration: const Duration(milliseconds: 400),
+                  child: MediaQuery.of(context).orientation == Orientation.portrait
+                      ? const FavoritesListSwipeable()
+                      : const FavoritesListAdaptive(),
                 ),
         ),
       );

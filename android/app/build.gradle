@@ -43,6 +43,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
+        multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         versionName flutterVersionName
         ndk {
@@ -72,5 +73,6 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile 'com.android.support:appcompat-v7:23.2.0'
-    implementation("com.android.support:appcompat-v7:23.2.0")
+    implementation('com.android.support:appcompat-v7:23.2.0')
+    implementation("androidx.multidex:multidex:2.0.1")
 }

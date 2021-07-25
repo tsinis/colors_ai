@@ -38,7 +38,7 @@ class UrlShareSection extends ShareSection {
                   filled: true,
                   fillColor: Theme.of(context).splashColor,
                   labelText: AppLocalizations.of(context).shareLinksLabel,
-                  helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400, color: Colors.black54),
+                  helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                   helperMaxLines: 1,
                   helperText: (selectedProviderIndex == firstProvider)
                       ? AppLocalizations.of(context).googleArtsExport
@@ -55,15 +55,15 @@ class UrlShareSection extends ShareSection {
                 providersList.length,
                 (int index) => DropdownMenuItem<int>(
                   value: index,
-                  child: RichText(
-                      overflow: TextOverflow.ellipsis,
-                      textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                      text: TextSpan(
-                          style: const TextStyle(color: Colors.black),
-                          text: providersList[index].name,
-                          children: (providersList[index].formats != null)
-                              ? const [TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
-                              : null)),
+                  child: Text.rich(
+                    TextSpan(
+                        text: providersList[index].name,
+                        children: (providersList[index].formats != null)
+                            ? const [TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
+                            : null),
+                    overflow: TextOverflow.ellipsis,
+                    textScaleFactor: MediaQuery.of(context).textScaleFactor, //TODO Check if it's neccessary.
+                  ),
                 ),
                 growable: false,
               ),

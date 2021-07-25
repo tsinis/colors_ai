@@ -29,28 +29,23 @@ class ColorsGenerator extends StatelessWidget {
               const Flexible(child: FractionallySizedBox(widthFactor: 0.8, heightFactor: 0.8, child: NoNetwork())),
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: RichText(
-                  textScaleFactor: MediaQuery.of(context).textScaleFactor,
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
+                child: Text.rich(
+                  TextSpan(
                     text: AppLocalizations.of(context).noConnectionTitle.toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     children: <TextSpan>[
                       TextSpan(
                         text: '\n${AppLocalizations.of(context).noConnectionDescription}',
                         style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.normal,
-                          color: Colors.black,
                           height: 3,
                         ),
                       )
                     ],
                   ),
+                  textScaleFactor: MediaQuery.of(context).textScaleFactor,
+                  textAlign: TextAlign.center,
                 ),
               ),
               Padding(

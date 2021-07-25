@@ -17,6 +17,7 @@ import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../navigation/ui/constants.dart';
 import '../../../navigation/ui/widgets/navigation_bar.dart';
 import '../../../navigation/ui/widgets/navigation_rail.dart';
+import '../../../settings/ui/view/settings_dialog.dart';
 import '../../../share/blocs/share/share_hydrated_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../repository/colors_repository.dart';
@@ -64,7 +65,8 @@ class _NavigationScreenState extends State<MainScreen> {
                   BlocProvider(
                     create: (_) =>
                         AboutBloc()..add(AboutStarted(currentLocale: AppLocalizations.of(context).localeName)),
-                    child: const AboutButton(),
+                    // child: const AboutButton(), //TODO
+                    child: const SettingsButton(),
                   )
                 ],
               ),

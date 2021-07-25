@@ -40,19 +40,6 @@ class _NavRailState extends State<NavRail> {
             final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
             final List<String> tabLabels = tabNames(AppLocalizations.of(context));
             return NavigationRail(
-              backgroundColor: Theme.of(context).primaryColor,
-              unselectedLabelTextStyle: TextStyle(
-                color: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-              ),
-              unselectedIconTheme: IconThemeData(
-                color: Theme.of(context).bottomNavigationBarTheme.unselectedItemColor,
-              ),
-              selectedLabelTextStyle: TextStyle(
-                color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-              ),
-              selectedIconTheme: IconThemeData(
-                color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
-              ),
               selectedIndex: widget.navState.tabIndex,
               onDestinationSelected: (int newTabIndex) {
                 if (!(isFavoritesEmpty && newTabIndex == _favoritesTabIndex)) {
@@ -80,7 +67,7 @@ class _NavRailState extends State<NavRail> {
                   icon: Icon(
                     Icons.bookmarks_outlined,
                     color: isFavoritesEmpty
-                        ? Theme.of(context).bottomNavigationBarTheme.unselectedItemColor
+                        ? Theme.of(context).disabledColor
                         : Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
                   ),
                 ),

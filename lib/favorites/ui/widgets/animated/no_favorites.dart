@@ -51,7 +51,13 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
                 child: RotationTransition(
                   alignment: const Alignment(-0.6, 0.3),
                   turns: reverseAnimation,
-                  child: const CustomPaint(size: Size(240, 240), painter: Magnifier()),
+                  child: CustomPaint(
+                    size: const Size(240, 240),
+                    painter: Magnifier(
+                        backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
+                        holdersColor: Colors.grey[800]!,
+                        outlineColor: Theme.of(context).textTheme.headline2!.color!),
+                  ),
                 ),
               ),
             ],
