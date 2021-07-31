@@ -7,17 +7,9 @@ abstract class AboutEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class AboutClosed extends AboutEvent {
-  const AboutClosed();
-}
-
 class AboutStarted extends AboutEvent {
   const AboutStarted({required this.currentLocale});
   final String currentLocale;
-}
-
-class AboutOpened extends AboutEvent {
-  const AboutOpened();
 }
 
 class AboutApiProviderTaped extends AboutEvent {

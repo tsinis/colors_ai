@@ -18,9 +18,9 @@ void main() => DataStorage.init().whenComplete(() {
       runApp(
         MultiBlocProvider(
           providers: [
-            BlocProvider<FavoritesBloc>(create: (_) => FavoritesBloc()..add(const FavoritesLoadStarted())),
-            BlocProvider<SettingsBloc>(create: (_) => SettingsBloc()..add(const SettingsStarted())),
-            BlocProvider<OnboardingBloc>(create: (_) => OnboardingBloc()..add(const OnboardingLoadDataStarted()))
+            BlocProvider<FavoritesBloc>(lazy: false, create: (_) => FavoritesBloc()..add(const FavoritesStarted())),
+            BlocProvider<SettingsBloc>(lazy: false, create: (_) => SettingsBloc()..add(const SettingsStarted())),
+            BlocProvider<OnboardingBloc>(lazy: false, create: (_) => OnboardingBloc()..add(const OnboardingStarted())),
           ],
           child: const App(),
         ),

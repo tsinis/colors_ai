@@ -15,7 +15,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
 
   @override
   Stream<OnboardingState> mapEventToState(OnboardingEvent event) async* {
-    if (event is OnboardingLoadDataStarted) {
+    if (event is OnboardingStarted) {
       yield const OnboardingLoadInProgress();
       final bool isFirstRun = await _onboardingRepository.loadOnboardData;
       try {

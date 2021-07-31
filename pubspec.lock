@@ -250,7 +250,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "7.1.0"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -399,7 +399,7 @@ packages:
       name: just_audio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.3"
+    version: "0.9.4"
   just_audio_platform_interface:
     dependency: transitive
     description:
@@ -413,7 +413,7 @@ packages:
       name: just_audio_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0"
+    version: "0.4.1"
   logging:
     dependency: transitive
     description:

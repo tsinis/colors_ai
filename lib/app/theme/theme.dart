@@ -51,7 +51,7 @@ class AppTheme {
           scaffoldBackgroundColor: Colors.grey[700],
           checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.grey)),
           focusColor: Colors.grey,
-          indicatorColor: Colors.teal,
+          indicatorColor: Colors.teal[200],
           disabledColor: Colors.grey[600],
           primaryIconTheme: IconThemeData(color: Colors.grey[350]),
           radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.grey[400]!)),

@@ -19,6 +19,6 @@ class FavoritesOneRemoved extends FavoritesEvent {
   final int colorToRemoveIndex;
 }
 
-class FavoritesLoadStarted extends FavoritesEvent {
-  const FavoritesLoadStarted();
+class FavoritesStarted extends FavoritesEvent {
+  const FavoritesStarted();
 }

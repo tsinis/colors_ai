@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../about/blocs/about_dialog/about_bloc.dart';
-import '../../../about/ui/view/about_dialog.dart';
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../color_generator/blocs/colors_locked/locked_bloc.dart';
 import '../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
@@ -17,11 +16,11 @@ import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../navigation/ui/constants.dart';
 import '../../../navigation/ui/widgets/navigation_bar.dart';
 import '../../../navigation/ui/widgets/navigation_rail.dart';
-import '../../../settings/ui/view/settings_dialog.dart';
 import '../../../share/blocs/share/share_hydrated_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../repository/colors_repository.dart';
 import '../constants.dart';
+import '../widgets/overflow_menu.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen();
@@ -62,11 +61,11 @@ class _NavigationScreenState extends State<MainScreen> {
                 title: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
                 actions: [
                   appBarActions[navState.tabIndex],
-                  BlocProvider(
+                  BlocProvider<AboutBloc>(
+                    lazy: false,
                     create: (_) =>
                         AboutBloc()..add(AboutStarted(currentLocale: AppLocalizations.of(context).localeName)),
-                    // child: const AboutButton(), //TODO
-                    child: const SettingsButton(),
+                    child: const OverflowMenu(),
                   )
                 ],
               ),
@@ -77,6 +76,7 @@ class _NavigationScreenState extends State<MainScreen> {
                     create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
                   ),
                   BlocProvider<ShareBloc>(
+                    lazy: false,
                     create: (_) => ShareBloc()..add(const ShareStarted()),
                   ),
                 ],

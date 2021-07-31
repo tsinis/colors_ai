@@ -15,7 +15,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
 
   @override
   Stream<FavoritesState> mapEventToState(FavoritesEvent event) async* {
-    if (event is FavoritesLoadStarted) {
+    if (event is FavoritesStarted) {
       yield const FavoritesLoadInProgress();
       final bool isDataLoaded = await _favorites.loadStoredFavorites;
       if (isDataLoaded) {
