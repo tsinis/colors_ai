@@ -31,14 +31,13 @@ class ShareRepository with FileCreator, DeviceCapabilities {
   static const Clipboards _clipboard = Clipboards();
   static const String _subject = 'Colors AI';
 
-  bool? _isLetter;
-  int? _providerIndex;
+  int? _formatIndex, _providerIndex;
 
-  bool? get isLetter => _isLetter;
+  int? get formatIndex => _formatIndex;
 
-  set isLetter(bool? isLetter) {
-    if (isLetter != null && isLetter != _isLetter) {
-      _isLetter = isLetter;
+  set formatIndex(int? newFormatIndex) {
+    if (newFormatIndex != null && newFormatIndex != _formatIndex) {
+      _formatIndex = newFormatIndex;
     }
   }
 

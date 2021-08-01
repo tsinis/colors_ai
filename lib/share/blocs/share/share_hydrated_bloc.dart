@@ -20,7 +20,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     if (event is ShareStarted) {
       await _share.init();
     } else if (event is ShareFormatSelected) {
-      _share.isLetter = event.isLetter;
+      _share.formatIndex = event.formatIndex;
     } else if (event is SharePdfShared) {
       try {
         await _share.asPdf(event.palette);
@@ -47,7 +47,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     try {
       yield ShareSelectedInitial(
         providerIndex: _share.providerIndex,
-        isLetter: _share.isLetter,
+        formatIndex: _share.formatIndex,
         canSharePdf: _share.canSharePdf,
         canSharePng: _share.canSharePng,
       );
@@ -61,20 +61,19 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
-    final int? savedProvider = json['index'] as int?;
-    final bool? savedFormat = json['isLetter'] as bool?;
+    final int? savedProvider = json['url'] as int?, savedFormat = json['format'] as int?;
     if (savedProvider != null) {
       _share.providerIndex = savedProvider;
     }
     if (savedFormat != null) {
-      _share.isLetter = savedFormat;
+      _share.formatIndex = savedFormat;
     }
   }
 
   @override
   Map<String, dynamic>? toJson(ShareState state) {
     if (state is ShareSelectedInitial) {
-      return <String, dynamic>{'index': state.selectedProvider, 'isLetter': state.isLetter};
+      return <String, dynamic>{'url': state.selectedProvider, 'format': state.selectedFormat};
     }
   }
 }

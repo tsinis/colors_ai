@@ -19,7 +19,7 @@ class AppTheme {
       scaffoldBackgroundColor: Colors.grey[350], //AAA compliant.
       primaryIconTheme: IconThemeData(color: Colors.grey[850]),
       dialogBackgroundColor: Colors.grey[350],
-      splashColor: Colors.grey[350],
+      splashColor: Colors.grey[300],
       focusColor: Colors.white,
       indicatorColor: Colors.teal,
       dividerColor: Colors.grey[600],

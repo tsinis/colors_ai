@@ -2,20 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../common/blocs/snackbars/snackbars_bloc.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../blocs/share/share_hydrated_bloc.dart';
+import '../../../models/file_format_enum.dart';
 import 'share_section_interface.dart';
 
 class FileShareSection extends ShareSection {
   const FileShareSection(
     ColorPalette palette, {
     required double width,
+    required this.firstFormat,
+    required this.selectedFormatIndex,
+    required this.canSharePdf,
     required this.canSharePng,
-    this.isLetter,
+    this.additionalInfo,
   }) : super(maxWidth: width, palette: palette);
 
-  final bool? isLetter;
-  final bool canSharePng;
+  final int selectedFormatIndex, firstFormat;
+  final bool canSharePdf, canSharePng;
+  final String? additionalInfo;
+
+  FileFormat get file => FileFormat.values.elementAt(selectedFormatIndex);
 
   @override
   Widget build(BuildContext context) {
@@ -24,54 +32,35 @@ class FileShareSection extends ShareSection {
       constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
       child: Column(
         children: [
-          if (isPortrait) const Divider() else const SizedBox(height: 24),
-          RadioListTile<bool>(
-            dense: true,
-            title: Text.rich(
-              TextSpan(
-                text: 'A4',
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: ' ${AppLocalizations.of(context).a4DimensionsTitle}',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                  )
-                ],
+          Padding(
+            padding: const EdgeInsets.only(left: 24, right: 24, bottom: 8, top: 24),
+            child: DropdownButtonFormField<int>(
+              isExpanded: !isPortrait,
+              isDense: isPortrait,
+              dropdownColor: Theme.of(context).dialogBackgroundColor,
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Theme.of(context).splashColor,
+                  labelText: 'Share file as:', //TODO L10N
+                  helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                  helperMaxLines: 1,
+                  helperText:
+                      (additionalInfo != null) ? '* ${AppLocalizations.of(context).exportTo} $additionalInfo' : null),
+              value: selectedFormatIndex,
+              onChanged: (newFormatIndex) {
+                if (newFormatIndex != null) {
+                  BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(formatIndex: newFormatIndex));
+                }
+              },
+              items: List.generate(
+                FileFormat.values.length,
+                (int index) => DropdownMenuItem<int>(
+                  value: index,
+                  child: Text(FileFormat.values.elementAt(index).name),
+                ),
+                growable: false,
               ),
-              textScaleFactor: MediaQuery.of(context).textScaleFactor,
             ),
-            subtitle: Text(AppLocalizations.of(context).a4DimensionsSubtitle),
-            value: false,
-            groupValue: isLetter ?? false,
-            onChanged: (isLetterSelected) {
-              if (isLetterSelected != null) {
-                BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(isLetter: isLetterSelected));
-              }
-            },
-          ),
-          RadioListTile<bool>(
-            dense: true,
-            title: Text.rich(
-              TextSpan(
-                text: AppLocalizations.of(context).letterLabel,
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                children: [
-                  TextSpan(
-                    text: ' ${AppLocalizations.of(context).letterDimensionsTitle}',
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-                  )
-                ],
-              ),
-              textScaleFactor: MediaQuery.of(context).textScaleFactor,
-            ),
-            subtitle: Text(AppLocalizations.of(context).letterDimensionsSubtitle),
-            value: true,
-            groupValue: isLetter ?? false,
-            onChanged: (isLetterSelected) {
-              if (isLetterSelected != null) {
-                BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(isLetter: isLetterSelected));
-              }
-            },
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -82,18 +71,21 @@ class FileShareSection extends ShareSection {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
-                    icon: const Icon(Icons.image_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).sharePngButtonLabel.toUpperCase()),
-                    onPressed:
-                        canSharePng ? () => BlocProvider.of<ShareBloc>(context).add(ShareImageShared(palette)) : null,
+                    icon: const Icon(Icons.content_copy_outlined, size: 20),
+                    label: Text('Copy ${file.format}'.toUpperCase()), //TODO L10N
+                    onPressed: () {
+                      BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
+                      BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
+                    },
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElevatedButton.icon(
-                    icon: const Icon(Icons.picture_as_pdf_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).sharePdfButtonLabel.toUpperCase()),
-                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(SharePdfShared(palette)),
+                    icon: const Icon(Icons.link, size: 20),
+                    label: Text('Share ${file.format}'.toUpperCase()), //TODO L10N
+                    autofocus: true,
+                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),
                   ),
                 ),
               ],

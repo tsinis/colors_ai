@@ -37,6 +37,6 @@ class ShareImageShared extends ShareEvent {
 }
 
 class ShareFormatSelected extends ShareEvent {
-  const ShareFormatSelected({required this.isLetter});
-  final bool isLetter;
+  const ShareFormatSelected({required this.formatIndex});
+  final int formatIndex;
 }

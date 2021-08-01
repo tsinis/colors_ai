@@ -12,7 +12,9 @@ class AppIcon extends StatelessWidget {
           child: SizedBox(
             width: 102.4,
             height: 102.4,
-            child: ClipRRect(
+            child: Material(
+              elevation: 4,
+              clipBehavior: Clip.antiAlias,
               borderRadius: BorderRadius.circular(16),
               child: ColoredBox(
                 color: const Color(0xff424242),

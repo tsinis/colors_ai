@@ -19,6 +19,7 @@ class ShareColors extends StatelessWidget {
         builder: (_, state) {
           if (state is! ShareFailure) {
             final int selectedProviderIndex = state.selectedProvider ?? _firstProvider;
+            final int selectedFormatIndex = state.selectedFormat ?? _firstProvider;
             final ColorPalette palette = context.read<ColorsRepository>().toPalette();
             final String? exportFormats = state.providersList[selectedProviderIndex].formats;
             final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
@@ -42,8 +43,10 @@ class ShareColors extends StatelessWidget {
                               ? FileShareSection(
                                   palette,
                                   width: size.maxWidth,
-                                  isLetter: state.isLetter,
-                                  canSharePng: state.canSharePdf,
+                                  canSharePng: state.canSharePng,
+                                  canSharePdf: state.canSharePdf,
+                                  firstFormat: _firstProvider,
+                                  selectedFormatIndex: selectedFormatIndex,
                                 )
                               : const SizedBox.shrink(),
                         ),
@@ -75,8 +78,10 @@ class ShareColors extends StatelessWidget {
                                       ? FileShareSection(
                                           palette,
                                           width: size.maxWidth,
-                                          isLetter: state.isLetter,
-                                          canSharePng: state.canSharePdf,
+                                          canSharePng: state.canSharePng,
+                                          canSharePdf: state.canSharePdf,
+                                          firstFormat: _firstProvider,
+                                          selectedFormatIndex: selectedFormatIndex,
                                         )
                                       : const SizedBox.shrink(),
                                 ),

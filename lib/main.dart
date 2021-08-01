@@ -10,8 +10,6 @@ import 'settings/blocs/settings_hydrated_bloc.dart';
 
 //TODO! Add Roboto to file exports after License Change to OFL.
 //TODO: Handle Failure States in Bloc.
-//TODO!: Add overflow menu.
-//TODO!: Fix dropdown color in light theme.
 
 void main() => DataStorage.init().whenComplete(() {
       SystemUI.init();

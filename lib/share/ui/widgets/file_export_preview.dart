@@ -38,7 +38,7 @@ class _FileExportPreviewState extends State<FileExportPreview> {
                   duration: duration,
                   curve: curve,
                   child: AspectRatio(
-                    aspectRatio: (state.isLetter == true) ? 110 / 85 : 297 / 210,
+                    aspectRatio: (state.selectedFormat == 1 || state.selectedFormat == 3) ? 110 / 85 : 297 / 210,
                     child: FractionallySizedBox(
                       widthFactor: 0.9,
                       heightFactor: 0.9,

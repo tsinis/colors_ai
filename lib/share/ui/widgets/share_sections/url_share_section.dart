@@ -34,6 +34,7 @@ class UrlShareSection extends ShareSection {
             child: DropdownButtonFormField<int>(
               isExpanded: !isPortrait,
               isDense: isPortrait,
+              dropdownColor: Theme.of(context).dialogBackgroundColor,
               decoration: InputDecoration(
                   filled: true,
                   fillColor: Theme.of(context).splashColor,
