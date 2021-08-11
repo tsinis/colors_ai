@@ -9,6 +9,7 @@ class SettingsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, state) => SimpleDialog(
+          title: const Text('Settings'),
           children: <Widget>[
             RadioListTile<bool?>(
               dense: true,

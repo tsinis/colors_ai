@@ -7,14 +7,14 @@ packages:
       name: _fe_analyzer_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "20.0.0"
+    version: "22.0.0"
   analyzer:
     dependency: transitive
     description:
       name: analyzer
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.0"
+    version: "1.7.1"
   animations:
     dependency: "direct main"
     description:
@@ -77,7 +77,7 @@ packages:
       name: build
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   build_config:
     dependency: transitive
     description:
@@ -105,14 +105,14 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.6"
+    version: "2.1.1"
   build_runner_core:
     dependency: transitive
     description:
       name: build_runner_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "7.1.0"
   built_collection:
     dependency: transitive
     description:
@@ -399,7 +399,7 @@ packages:
       name: just_audio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.4"
+    version: "0.9.5"
   just_audio_platform_interface:
     dependency: transitive
     description:
@@ -609,7 +609,7 @@ packages:
       name: printing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.4.3"
+    version: "5.5.0"
   process:
     dependency: transitive
     description:
@@ -934,8 +934,8 @@ packages:
     dependency: "direct main"
     description:
       path: "plugins/window_size"
-      ref: a8ca32b01bafa91624a1fc8e2cdd0c2312d40a84
-      resolved-ref: a8ca32b01bafa91624a1fc8e2cdd0c2312d40a84
+      ref: "3da6d7b8011be38412c815c6a1832377b7d47a78"
+      resolved-ref: "3da6d7b8011be38412c815c6a1832377b7d47a78"
       url: "git://github.com/google/flutter-desktop-embedding.git"
     source: git
     version: "0.1.0"

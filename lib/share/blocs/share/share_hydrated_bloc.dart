@@ -21,17 +21,18 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
       await _share.init();
     } else if (event is ShareFormatSelected) {
       _share.formatIndex = event.formatIndex;
-    } else if (event is SharePdfShared) {
+    } else if (event is ShareFileShared) {
       try {
-        await _share.asPdf(event.palette);
+        await _share.asFile(event.palette);
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         yield const ShareFailure();
         await _shareFailed();
       }
-    } else if (event is ShareImageShared) {
+    } else if (event is ShareFileCopied) {
       try {
-        await _share.asPng(event.palette);
+        //TODO
+
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         yield const ShareFailure();

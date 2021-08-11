@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:window_size/window_size.dart';
 
+import '../../../core/ui/constants.dart';
+
 class SystemUI {
   const SystemUI();
   static const Brightness _uiBrightness = Brightness.dark;
@@ -12,7 +14,7 @@ class SystemUI {
 
   static void init() {
     if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
-      setWindowTitle('Colors AI');
+      setWindowTitle(appName);
       setWindowMinSize(const Size(338, 554));
     }
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(

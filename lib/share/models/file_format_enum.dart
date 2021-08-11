@@ -4,13 +4,13 @@ extension NameExtension on FileFormat {
   String get name {
     switch (this) {
       case FileFormat.pdfA4:
-        return 'PDF A4';
+        return 'PDF (A4)';
       case FileFormat.pdfLetter:
-        return 'PDF Letter';
+        return 'PDF (Letter)';
       case FileFormat.pngA4:
-        return 'PNG A4';
+        return 'PNG (A4)';
       case FileFormat.pngLetter:
-        return 'PNG Letter';
+        return 'PNG (Letter)';
       default:
         return 'Unknown';
     }

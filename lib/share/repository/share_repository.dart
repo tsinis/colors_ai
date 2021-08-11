@@ -7,8 +7,10 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../core/models/color_palette/color_palette.dart';
 import '../../core/services/clipboard.dart';
+import '../../core/ui/constants.dart';
 import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
+import '../models/file_format_enum.dart';
 import '../services/url_providers/url_providers.dart';
 import 'conditional_import/share_io_png.dart' if (dart.library.js) 'conditional_import/share_web_png.dart';
 
@@ -29,7 +31,6 @@ class ShareRepository with FileCreator, DeviceCapabilities {
   ];
 
   static const Clipboards _clipboard = Clipboards();
-  static const String _subject = 'Colors AI';
 
   int? _formatIndex, _providerIndex;
 
@@ -53,24 +54,30 @@ class ShareRepository with FileCreator, DeviceCapabilities {
 
   void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
 
-  Future<void> asPdf(ColorPalette pallete) async {
+  Future<void> asFile(ColorPalette palette) async {
+    final FileFormat format = FileFormat.values.elementAt(_formatIndex ?? 0);
     try {
-      await _shareFile(await generateFile(pallete));
+      switch (format) {
+        case FileFormat.pdfA4:
+          await _shareFile(await generateFile(palette));
+          break;
+        case FileFormat.pdfLetter:
+          await _shareFile(await generateFile(palette, isMetric: false));
+          break;
+        case FileFormat.pngA4:
+          await Printing.raster(await generateFile(palette))
+              .forEach((page) async => _shareFile(await page.toPng(), isPdf: false));
+          break;
+        case FileFormat.pngLetter:
+          await Printing.raster(await generateFile(palette, isMetric: false))
+              .forEach((page) async => _shareFile(await page.toPng(), isPdf: false));
+          break;
+        default:
+      }
       // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       rethrow;
     }
-  }
-
-  Future<void> asPng(ColorPalette pallete) async {
-    await Printing.raster(await generateFile(pallete)).forEach((page) async {
-      try {
-        await _shareFile(await page.toPng(), isPdf: false);
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
-        rethrow;
-      }
-    });
   }
 
   Future<bool> _shareFile(Uint8List bytes, {bool isPdf = true}) async {
@@ -86,7 +93,7 @@ class ShareRepository with FileCreator, DeviceCapabilities {
     final String filePath = '$storagePath/$fileName';
     final File file = File(filePath)..writeAsBytesSync(bytes.toList());
     if (file.existsSync()) {
-      await Share.shareFiles([filePath], subject: _subject);
+      await Share.shareFiles([filePath], subject: appName);
       return true;
     } else {
       return false;
@@ -96,6 +103,6 @@ class ShareRepository with FileCreator, DeviceCapabilities {
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider provider = providers[providerIndex ?? 0];
     final String url = provider.url(palette);
-    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: _subject); //TODO Fix on web.
+    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: appName); //TODO Fix on web.
   }
 }

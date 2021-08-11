@@ -25,6 +25,8 @@ class FileShareSection extends ShareSection {
 
   FileFormat get file => FileFormat.values.elementAt(selectedFormatIndex);
 
+  bool get cannotCopy => selectedFormatIndex <= 3;
+
   @override
   Widget build(BuildContext context) {
     final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
@@ -73,10 +75,12 @@ class FileShareSection extends ShareSection {
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
                     label: Text('Copy ${file.format}'.toUpperCase()), //TODO L10N
-                    onPressed: () {
-                      BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
-                      BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
-                    },
+                    onPressed: cannotCopy
+                        ? null
+                        : () {
+                            BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
+                            BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
+                          },
                   ),
                 ),
                 Padding(
@@ -85,7 +89,7 @@ class FileShareSection extends ShareSection {
                     icon: const Icon(Icons.link, size: 20),
                     label: Text('Share ${file.format}'.toUpperCase()), //TODO L10N
                     autofocus: true,
-                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),
+                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
                   ),
                 ),
               ],

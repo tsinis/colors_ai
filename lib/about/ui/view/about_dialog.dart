@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/ui/constants.dart';
 import '../../blocs/about_dialog/about_bloc.dart';
 import '../widgets/app_icon.dart';
 
@@ -16,7 +17,7 @@ class AboutAppDialog extends StatelessWidget {
     final TextStyle _linkStyle =
         Theme.of(context).textTheme.bodyText2!.copyWith(color: Theme.of(context).indicatorColor);
     return AboutDialog(
-      applicationName: 'Colors AI',
+      applicationName: appName,
       applicationVersion: version,
       applicationLegalese: '2021 © Roman Cinis',
       applicationIcon: const AppIcon(),

@@ -26,13 +26,13 @@ class ShareUrlCopied extends ShareEvent {
   final ColorPalette palette;
 }
 
-class SharePdfShared extends ShareEvent {
-  const SharePdfShared(this.palette);
+class ShareFileShared extends ShareEvent {
+  const ShareFileShared(this.palette);
   final ColorPalette palette;
 }
 
-class ShareImageShared extends ShareEvent {
-  const ShareImageShared(this.palette);
+class ShareFileCopied extends ShareEvent {
+  const ShareFileCopied(this.palette);
   final ColorPalette palette;
 }
 

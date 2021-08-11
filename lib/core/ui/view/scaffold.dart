@@ -36,6 +36,11 @@ class _NavigationScreenState extends State<MainScreen> {
   void initState() {
     soundBloc.add(const SoundStarted());
     super.initState();
+    // AppLocalizations are not avalible before initState method complete.
+    Future.delayed(
+        Duration.zero,
+        () => BlocProvider.of<AboutBloc>(context)
+            .add(AboutStarted(currentLocale: AppLocalizations.of(context).localeName)));
   }
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
@@ -59,15 +64,7 @@ class _NavigationScreenState extends State<MainScreen> {
               floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
               appBar: AppBar(
                 title: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
-                actions: [
-                  appBarActions[navState.tabIndex],
-                  BlocProvider<AboutBloc>(
-                    lazy: false,
-                    create: (_) =>
-                        AboutBloc()..add(AboutStarted(currentLocale: AppLocalizations.of(context).localeName)),
-                    child: const OverflowMenu(),
-                  )
-                ],
+                actions: [appBarActions[navState.tabIndex], const OverflowMenu()],
               ),
               body: MultiBlocProvider(
                 providers: [
@@ -75,10 +72,7 @@ class _NavigationScreenState extends State<MainScreen> {
                   BlocProvider<SnackbarBloc>(
                     create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
                   ),
-                  BlocProvider<ShareBloc>(
-                    lazy: false,
-                    create: (_) => ShareBloc()..add(const ShareStarted()),
-                  ),
+                  BlocProvider<ShareBloc>(lazy: false, create: (_) => ShareBloc()..add(const ShareStarted())),
                 ],
                 child: BlocListener<SnackbarBloc, SnackbarState>(
                   listener: (context, snackbarState) {
