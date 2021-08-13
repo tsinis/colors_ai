@@ -79,12 +79,15 @@ class _NavigationScreenState extends State<MainScreen> {
                     if (snackbarState is! SnackbarsInitial) {
                       BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                       late String message;
-                      final bool isUrlCopied = snackbarState is UrlCopySuccess;
-                      final bool isShareFailed = snackbarState is ShareAttemptFailure;
+                      final bool isUrlCopied = snackbarState is UrlCopySuccess,
+                          isFileCopied = snackbarState is FileCopySuccess,
+                          isShareFailed = snackbarState is ShareAttemptFailure;
                       if (isUrlCopied) {
                         message = AppLocalizations.of(context).urlCopiedMessage;
                       } else if (snackbarState is ColorCopySuccess) {
                         message = AppLocalizations.of(context).colorCopiedMessage(snackbarState.clipboard);
+                      } else if (snackbarState is FileCopySuccess) {
+                        message = '${snackbarState.format} content copied!'; //TODO L10N
                       } else if (snackbarState is ServerStatusCheckSuccess) {
                         message = AppLocalizations.of(context).serverMaintanceMessage;
                       } else if (isShareFailed) {
@@ -94,7 +97,7 @@ class _NavigationScreenState extends State<MainScreen> {
                         SnackBar(
                           duration: const Duration(seconds: 2),
                           content: Text(message),
-                          behavior: (isUrlCopied || isShareFailed)
+                          behavior: (isUrlCopied || isShareFailed || isFileCopied)
                               ? isPortrait
                                   ? SnackBarBehavior.fixed
                                   : SnackBarBehavior.floating

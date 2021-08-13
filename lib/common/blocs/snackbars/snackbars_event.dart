@@ -15,6 +15,11 @@ class UrlCopiedSuccess extends SnackbarEvent {
   const UrlCopiedSuccess();
 }
 
+class FileCopiedSuccess extends SnackbarEvent {
+  const FileCopiedSuccess(this.format);
+  final String format;
+}
+
 class UrlOpenedSuccess extends SnackbarEvent {
   const UrlOpenedSuccess();
 }

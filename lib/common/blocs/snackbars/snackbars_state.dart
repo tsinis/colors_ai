@@ -17,6 +17,11 @@ class UrlCopySuccess extends SnackbarState {
   final String url;
 }
 
+class FileCopySuccess extends SnackbarState {
+  const FileCopySuccess(this.format) : super(format);
+  final String format;
+}
+
 class ColorCopySuccess extends SnackbarState {
   const ColorCopySuccess(this.hex) : super(hex);
   final String hex;

@@ -2,6 +2,7 @@ name: colors_ai
 description: Color scheme generator that uses deep learning from Colormind API.
 repository: https://github.com/tsinis/colors_ai
 issue_tracker: https://github.com/tsinis/colors_ai/issues
+maintainer: Roman Cinis
 
 publish_to: 'none'
 

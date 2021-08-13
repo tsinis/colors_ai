@@ -18,38 +18,50 @@ class _FileExportPreviewState extends State<FileExportPreview> {
   static const Duration duration = Duration(milliseconds: 600);
   static const Curve curve = Curves.easeInOutCubicEmphasized;
 
+  double aspectRatio(int? selectedFormat) {
+    if (selectedFormat == 1 || selectedFormat == 3) {
+      return 110 / 85;
+    } else if (selectedFormat == 4) {
+      return 5 / 1;
+    } else {
+      return 297 / 210;
+    }
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
-      builder: (_, state) => MouseRegion(
-            onEnter: (_) => setState(() => isHovering = true),
-            onExit: (_) => setState(() => isHovering = false),
-            child: GestureDetector(
-              onTap: () => setState(() => isHovering = !isHovering),
-              child: AnimatedPhysicalModel(
-                duration: const Duration(seconds: 1),
-                curve: Curves.decelerate,
-                color: isHovering ? Colors.white : Colors.grey[200]!,
-                borderRadius: BorderRadius.circular(isHovering ? 2 : 8),
-                clipBehavior: Clip.hardEdge,
-                elevation: isHovering ? 10 : 2,
-                shadowColor: Colors.black26,
-                shape: BoxShape.rectangle,
-                child: AnimatedSize(
-                  duration: duration,
-                  curve: curve,
-                  child: AspectRatio(
-                    aspectRatio: (state.selectedFormat == 1 || state.selectedFormat == 3) ? 110 / 85 : 297 / 210,
-                    child: FractionallySizedBox(
-                      widthFactor: 0.9,
-                      heightFactor: 0.9,
-                      child: AnimatedSize(
-                        duration: duration,
-                        curve: curve,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(
-                            widget._palette.colors.length,
-                            (colorsIndex) => Flexible(
+        builder: (_, state) => MouseRegion(
+          onEnter: (_) => setState(() => isHovering = true),
+          onExit: (_) => setState(() => isHovering = false),
+          child: GestureDetector(
+            onTap: () => setState(() => isHovering = !isHovering),
+            child: AnimatedPhysicalModel(
+              duration: const Duration(seconds: 1),
+              curve: Curves.decelerate,
+              color: isHovering ? Colors.white : Colors.grey[200]!,
+              borderRadius: BorderRadius.circular(isHovering ? 2 : 8),
+              clipBehavior: Clip.hardEdge,
+              elevation: isHovering ? 10 : 2,
+              shadowColor: Colors.black26,
+              shape: BoxShape.rectangle,
+              child: AnimatedSize(
+                duration: duration,
+                curve: curve,
+                child: AspectRatio(
+                  aspectRatio: aspectRatio(state.selectedFormat),
+                  child: FractionallySizedBox(
+                    widthFactor: 0.9,
+                    heightFactor: 0.9,
+                    child: AnimatedSize(
+                      duration: duration,
+                      curve: curve,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: List.generate(
+                          widget._palette.colors.length,
+                          (colorsIndex) {
+                            final bool isPrintable = state.selectedFormat != 4;
+                            return Flexible(
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -59,7 +71,7 @@ class _FileExportPreviewState extends State<FileExportPreview> {
                                       duration: duration,
                                       curve: curve,
                                       child: Padding(
-                                        padding: const EdgeInsets.all(2),
+                                        padding: EdgeInsets.all(isPrintable ? 2 : 0),
                                         child: AnimatedContainer(
                                             duration: duration,
                                             curve: curve,
@@ -67,25 +79,27 @@ class _FileExportPreviewState extends State<FileExportPreview> {
                                       ),
                                     ),
                                   ),
-                                  const Expanded(child: SizedBox()),
-                                  Flexible(
-                                    flex: 2,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(4),
-                                      child: ListView.separated(
-                                        itemCount: FileLayout.colorSpaces.length,
-                                        separatorBuilder: (_, __) => AnimatedContainer(
-                                            duration: duration, curve: curve, height: 2, color: Colors.transparent),
-                                        itemBuilder: (_, __) => AnimatedContainer(
-                                            duration: duration, curve: curve, height: 6, color: Colors.black12),
+                                  if (isPrintable) ...[
+                                    const Expanded(child: SizedBox()),
+                                    Flexible(
+                                      flex: 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4),
+                                        child: ListView.separated(
+                                          itemCount: FileLayout.colorSpaces.length,
+                                          separatorBuilder: (_, __) => AnimatedContainer(
+                                              duration: duration, curve: curve, height: 2, color: Colors.transparent),
+                                          itemBuilder: (_, __) => AnimatedContainer(
+                                              duration: duration, curve: curve, height: 6, color: Colors.black12),
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ],
                               ),
-                            ),
-                            growable: false,
-                          ),
+                            );
+                          },
+                          growable: false,
                         ),
                       ),
                     ),
@@ -93,5 +107,7 @@ class _FileExportPreviewState extends State<FileExportPreview> {
                 ),
               ),
             ),
-          ));
+          ),
+        ),
+      );
 }

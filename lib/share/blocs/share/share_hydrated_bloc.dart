@@ -31,8 +31,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
       }
     } else if (event is ShareFileCopied) {
       try {
-        //TODO
-
+        await _share.copyFile(event.palette);
         // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         yield const ShareFailure();

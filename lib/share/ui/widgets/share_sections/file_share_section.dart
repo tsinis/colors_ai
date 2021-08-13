@@ -78,8 +78,8 @@ class FileShareSection extends ShareSection {
                     onPressed: cannotCopy
                         ? null
                         : () {
-                            BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
-                            BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
+                            BlocProvider.of<ShareBloc>(context).add(ShareFileCopied(palette));
+                            BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(file.format));
                           },
                   ),
                 ),

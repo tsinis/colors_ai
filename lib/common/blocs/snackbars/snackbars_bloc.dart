@@ -26,6 +26,11 @@ class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
       if (url != null && url.isNotEmpty) {
         yield UrlCopySuccess(url);
       }
+    } else if (event is FileCopiedSuccess) {
+      final String? file = await _clipboard.data;
+      if (file != null && file.isNotEmpty) {
+        yield FileCopySuccess(event.format);
+      }
     } else if (event is UrlOpenedSuccess) {
       final String? url = await _clipboard.data;
       if (url != null && url.isNotEmpty) {

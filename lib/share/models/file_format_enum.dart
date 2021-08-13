@@ -1,4 +1,4 @@
-enum FileFormat { pdfA4, pdfLetter, pngA4, pngLetter }
+enum FileFormat { pdfA4, pdfLetter, pngA4, pngLetter, svg }
 
 extension NameExtension on FileFormat {
   String get name {
@@ -11,6 +11,8 @@ extension NameExtension on FileFormat {
         return 'PNG (A4)';
       case FileFormat.pngLetter:
         return 'PNG (Letter)';
+      case FileFormat.svg:
+        return 'SVG';
       default:
         return 'Unknown';
     }

@@ -10,11 +10,12 @@ import '../../core/services/clipboard.dart';
 import '../../core/ui/constants.dart';
 import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
+import '../mixins/text_based_file_creator.dart';
 import '../models/file_format_enum.dart';
 import '../services/url_providers/url_providers.dart';
 import 'conditional_import/share_io_png.dart' if (dart.library.js) 'conditional_import/share_web_png.dart';
 
-class ShareRepository with FileCreator, DeviceCapabilities {
+class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities {
   static const List<ColorsUrlProvider> providers = [
     ArtsGoogle(),
     CohesiveColors(),
@@ -42,6 +43,12 @@ class ShareRepository with FileCreator, DeviceCapabilities {
     }
   }
 
+  FileFormat get _selectedFile => FileFormat.values.elementAt(_formatIndex ?? 0);
+
+  String get _fileExtension => _selectedFile.format.toLowerCase();
+  String get _fileName => 'colors_ai.$_fileExtension';
+  String get _filePath => '$storagePath/$_fileName';
+
   int? get providerIndex => _providerIndex;
 
   set providerIndex(int? newProviderIndex) {
@@ -55,22 +62,23 @@ class ShareRepository with FileCreator, DeviceCapabilities {
   void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
 
   Future<void> asFile(ColorPalette palette) async {
-    final FileFormat format = FileFormat.values.elementAt(_formatIndex ?? 0);
     try {
-      switch (format) {
+      switch (_selectedFile) {
         case FileFormat.pdfA4:
-          await _shareFile(await generateFile(palette));
+          await _shareBytes(await generateFile(palette));
           break;
         case FileFormat.pdfLetter:
-          await _shareFile(await generateFile(palette, isMetric: false));
+          await _shareBytes(await generateFile(palette, isMetric: false));
           break;
         case FileFormat.pngA4:
-          await Printing.raster(await generateFile(palette))
-              .forEach((page) async => _shareFile(await page.toPng(), isPdf: false));
+          await Printing.raster(await generateFile(palette)).forEach((page) async => _shareBytes(await page.toPng()));
           break;
         case FileFormat.pngLetter:
           await Printing.raster(await generateFile(palette, isMetric: false))
-              .forEach((page) async => _shareFile(await page.toPng(), isPdf: false));
+              .forEach((page) async => _shareBytes(await page.toPng()));
+          break;
+        case FileFormat.svg:
+          await _shareTextData(toSvg(palette));
           break;
         default:
       }
@@ -80,20 +88,40 @@ class ShareRepository with FileCreator, DeviceCapabilities {
     }
   }
 
-  Future<bool> _shareFile(Uint8List bytes, {bool isPdf = true}) async {
-    final String fileExtension = isPdf ? 'pdf' : 'png';
-    final String fileName = 'colors_ai.$fileExtension';
+  Future<void> copyFile(ColorPalette palette) async {
+    try {
+      switch (_selectedFile) {
+        case FileFormat.svg:
+          await _clipboard.copyTextData(toSvg(palette));
+          break;
+        default:
+      }
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  Future<bool> _shareBytes(Uint8List bytes) async {
     if (kIsWeb) {
-      if (isPdf) {
+      if (_fileExtension == 'pdf') {
         return Printing.sharePdf(bytes: bytes);
-      } else {
-        return shareWebPng(bytes, filename: fileName);
+      } else if (_fileExtension == 'png') {
+        return shareWebPng(bytes, filename: _fileName);
       }
     }
-    final String filePath = '$storagePath/$fileName';
-    final File file = File(filePath)..writeAsBytesSync(bytes.toList());
+    final File file = File(_filePath)..writeAsBytesSync(bytes.toList());
+    return _shareFile(file);
+  }
+
+  Future<bool> _shareTextData(String data) async {
+    final File file = File(_filePath)..writeAsStringSync(data);
+    return _shareFile(file);
+  }
+
+  Future<bool> _shareFile(File file) async {
     if (file.existsSync()) {
-      await Share.shareFiles([filePath], subject: appName);
+      await Share.shareFiles([_filePath], subject: appName);
       return true;
     } else {
       return false;

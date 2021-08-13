@@ -6,7 +6,9 @@ import '../extensions/color.dart';
 
 class Clipboards {
   const Clipboards();
-  Future<void> copyUrl(String url) async => Clipboard.setData(ClipboardData(text: url));
+  Future<void> copyTextData(String text) async => Clipboard.setData(ClipboardData(text: text));
+
+  Future<void> copyUrl(String url) async => copyTextData(url);
 
   Future<void> copyColor(Color color) async => Clipboard.setData(ClipboardData(text: color.toHex()));
 
