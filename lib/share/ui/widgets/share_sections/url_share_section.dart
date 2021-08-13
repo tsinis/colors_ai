@@ -63,7 +63,6 @@ class UrlShareSection extends ShareSection {
                             ? const [TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
                             : null),
                     overflow: TextOverflow.ellipsis,
-                    textScaleFactor: MediaQuery.of(context).textScaleFactor, //TODO Check if it's neccessary.
                   ),
                 ),
                 growable: false,

@@ -43,7 +43,7 @@ class FileShareSection extends ShareSection {
               decoration: InputDecoration(
                   filled: true,
                   fillColor: Theme.of(context).splashColor,
-                  labelText: 'Share file as:', //TODO L10N
+                  labelText: AppLocalizations.of(context).shareFile,
                   helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                   helperMaxLines: 1,
                   helperText:
@@ -74,7 +74,7 @@ class FileShareSection extends ShareSection {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
-                    label: Text('Copy ${file.format}'.toUpperCase()), //TODO L10N
+                    label: Text(AppLocalizations.of(context).copyAsFormat(file.format).toUpperCase()),
                     onPressed: cannotCopy
                         ? null
                         : () {
@@ -87,7 +87,7 @@ class FileShareSection extends ShareSection {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
-                    label: Text('Share ${file.format}'.toUpperCase()), //TODO L10N
+                    label: Text(AppLocalizations.of(context).shareAsFormat(file.format).toUpperCase()),
                     autofocus: true,
                     onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
                   ),

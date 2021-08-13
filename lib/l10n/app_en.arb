@@ -235,5 +235,71 @@
     "onboardingSaveTipLandscape": "Press the button at the top left of the screen to save colors",
     "@onboardingSaveTipLandscape": {
         "description": "Message under the last color tile, on the main screen."
+    },
+    "shareFile": "Share file as:",
+    "@shareFile": {
+        "description": "Label of file share drop-down menu."
+    },
+    "copyAsFormat": "Copy {fileFormat}",
+    "@copyAsFormat": {
+        "description": "Label of copy file button on Share Tab.",
+        "placeholders": {
+            "fileFormat": {}
+        }
+    },
+    "shareAsFormat": "Share {fileFormat}",
+    "@shareAsFormat": {
+        "description": "Label of share file button on Share Tab.",
+        "placeholders": {
+            "fileFormat": {}
+        }
+    },
+    "settings": "Settings",
+    "@settings": {
+        "description": "Label of Settings Menu."
+    },
+    "help": "Help",
+    "@help": {
+        "description": "Label of Help Menu in Overdlow menu."
+    },
+    "colorsForUiTitle": "Colors for UI",
+    "@colorsForUiTitle": {
+        "description": "Label of switch tile in settings menu."
+    },
+    "colorsForUiSubtitle": "Improve color generation for UI design",
+    "@colorsForUiSubtitle": {
+        "description": "Description of switch tile in settings menu."
+    },
+    "appearance": "Appearance:",
+    "@appearance": {
+        "description": "Title below theme radio buttons."
+    },
+    "lightThemeTitle": "Light",
+    "@lightThemeTitle": {
+        "description": "Title of light theme radio button."
+    },
+    "lightThemeSubtitle": "Neutral grey, non-contrast UI for light designs",
+    "@lightThemeSubtitle": {
+        "description": "Subtitle of light theme radio button."
+    },
+    "darkThemeTitle": "Dark",
+    "@darkThemeTitle": {
+        "description": "Title of dark theme radio button."
+    },
+    "darkThemeSubtitle": "Pitch grey UI, perfect for dark themed designs",
+    "@darkThemeSubtitle": {
+        "description": "Subtitle of dark theme radio button."
+    },
+    "systemThemeTitle": "System",
+    "@systemThemeTitle": {
+        "description": "Title of system theme radio button."
+    },
+    "systemThemeSubtitle": "Use device theme brightness",
+    "@systemThemeSubtitle": {
+        "description": "Subtitle of system theme radio button."
+    },
+    "resetButtonLabel": "Reset",
+    "@resetButtonLabel": {
+        "description": "Label of the right button on the settings dialog."
     }
 }

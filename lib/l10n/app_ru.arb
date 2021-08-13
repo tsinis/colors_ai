@@ -70,5 +70,30 @@
     "selectToRemoveFavoritesTooltip": "Выберите эту палитру для удаления",
     "onboardingGenerateTipLandscape": "Нажмите пробел на клавиатуре для генерации новых цветов",
     "onboardingSelectTipLandscape": "Нажмите на любую область (вне зоны блокировки), чтобы выбрать цвет",
-    "onboardingSaveTipLandscape": "Нажмите кнопку в левом верхнем углу экрана, чтобы сохранить цвета"
+    "onboardingSaveTipLandscape": "Нажмите кнопку в левом верхнем углу экрана, чтобы сохранить цвета",
+    "shareFile": "Поделиться файлом как:",
+    "copyAsFormat": "Копировать {fileFormat}",
+    "@copyAsFormat": {
+        "placeholders": {
+            "fileFormat": {}
+        }
+    },
+    "shareAsFormat": "Поделиться {fileFormat}",
+    "@shareAsFormat": {
+        "placeholders": {
+            "fileFormat": {}
+        }
+    },
+    "settings": "Настройки",
+    "help": "Помощь",
+    "colorsForUiTitle": "Цвета для интерфейса",
+    "colorsForUiSubtitle": "Улучшение генерации цветов для UI дизайна",
+    "appearance": "Внешний вид",
+    "lightThemeTitle": "Светылый",
+    "lightThemeSubtitle": "Нейтрально-серый, неконтрастный интерфейс",
+    "darkThemeTitle": "Тё‎мный",
+    "darkThemeSubtitle": "Насыщенно-серый пользовательский интерфейс",
+    "systemThemeTitle": "Системный",
+    "systemThemeSubtitle": "Использует яркость темы устройства",
+    "resetButtonLabel": "Сброс"
 }

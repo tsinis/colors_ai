@@ -1,6 +1,5 @@
 name: colors_ai
 description: Color scheme generator that uses deep learning from Colormind API.
-author: Roman Cinis
 repository: https://github.com/tsinis/colors_ai
 issue_tracker: https://github.com/tsinis/colors_ai/issues
 
@@ -9,8 +8,7 @@ publish_to: 'none'
 version: 1.1.0+3
 
 environment:
-  sdk: ">=2.14.0-129.0.dev <3.0.0" # with NavigationBar from Material You
-  # git clone -b feature-navigationBar https://github.com/johnsonmh/flutter.git
+  sdk: ">=2.14.0-129.0.dev <3.0.0"
   flutter: ">=2.3.0-13.0.pre.63 <3.0.0"
 
 dependencies:
@@ -19,7 +17,7 @@ dependencies:
   equatable: ^2.0.3 # From Flutter Community
   flutter:  # From Google
     sdk: flutter
-  flutter_bloc: ^7.1.0 # Flutter Favorite
+  flutter_bloc: 7.0.0 # Flutter Favorite
   flutter_colorpicker: ^0.5.0 # Contributor
   flutter_localizations: # From Google
      sdk: flutter

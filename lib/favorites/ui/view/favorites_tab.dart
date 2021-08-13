@@ -37,7 +37,6 @@ class FavoritesTab extends StatelessWidget {
                               )
                             ],
                           ),
-                          textScaleFactor: MediaQuery.of(context).textScaleFactor,
                           textAlign: TextAlign.center,
                         ),
                       ),

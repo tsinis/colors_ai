@@ -22,7 +22,6 @@ class AppTheme {
       splashColor: Colors.grey[300],
       focusColor: Colors.white,
       indicatorColor: Colors.teal,
-      dividerColor: Colors.grey[600],
       dialogTheme: DialogTheme(backgroundColor: Colors.grey[100]),
       appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: _grey800)),
       radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.black)),

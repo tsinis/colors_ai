@@ -14,7 +14,7 @@ import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
 import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../navigation/ui/constants.dart';
-import '../../../navigation/ui/widgets/navigation_bar.dart';
+import '../../../navigation/ui/widgets/bottom_navigation.dart';
 import '../../../navigation/ui/widgets/navigation_rail.dart';
 import '../../../share/blocs/share/share_hydrated_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';

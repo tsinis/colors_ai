@@ -44,7 +44,6 @@ class ColorsGenerator extends StatelessWidget {
                       )
                     ],
                   ),
-                  textScaleFactor: MediaQuery.of(context).textScaleFactor, //TODO Check if it's neccessary.
                   textAlign: TextAlign.center,
                 ),
               ),

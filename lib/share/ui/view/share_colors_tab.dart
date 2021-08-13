@@ -12,14 +12,14 @@ import '../widgets/share_sections/url_share_section.dart';
 class ShareColors extends StatelessWidget {
   const ShareColors();
 
-  static const int _firstProvider = 0;
+  static const int _first = 0;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, state) {
           if (state is! ShareFailure) {
-            final int selectedProviderIndex = state.selectedProvider ?? _firstProvider;
-            final int selectedFormatIndex = state.selectedFormat ?? _firstProvider;
+            final int selectedProviderIndex = state.selectedProvider ?? _first;
+            final int selectedFormatIndex = state.selectedFormat ?? _first;
             final ColorPalette palette = context.read<ColorsRepository>().toPalette();
             final String? exportFormats = state.providersList[selectedProviderIndex].formats;
             final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
@@ -31,7 +31,7 @@ class ShareColors extends StatelessWidget {
                           palette,
                           width: size.maxWidth,
                           selectedProviderIndex: selectedProviderIndex,
-                          firstProvider: _firstProvider,
+                          firstProvider: _first,
                           exportFormats: exportFormats,
                           providersList: state.providersList,
                         ),
@@ -45,7 +45,7 @@ class ShareColors extends StatelessWidget {
                                   width: size.maxWidth,
                                   canSharePng: state.canSharePng,
                                   canSharePdf: state.canSharePdf,
-                                  firstFormat: _firstProvider,
+                                  firstFormat: _first,
                                   selectedFormatIndex: selectedFormatIndex,
                                 )
                               : const SizedBox.shrink(),
@@ -80,17 +80,17 @@ class ShareColors extends StatelessWidget {
                                           width: size.maxWidth,
                                           canSharePng: state.canSharePng,
                                           canSharePdf: state.canSharePdf,
-                                          firstFormat: _firstProvider,
+                                          firstFormat: _first,
                                           selectedFormatIndex: selectedFormatIndex,
                                         )
                                       : const SizedBox.shrink(),
                                 ),
-                                SizedBox(height: size.maxHeight / 6, child: const VerticalDivider()),
+                                SizedBox(height: size.maxHeight / 6, child: const VerticalDivider(color: Colors.grey)),
                                 UrlShareSection(
                                   palette,
                                   width: size.maxWidth,
                                   selectedProviderIndex: selectedProviderIndex,
-                                  firstProvider: _firstProvider,
+                                  firstProvider: _first,
                                   exportFormats: exportFormats,
                                   providersList: state.providersList,
                                 ),
