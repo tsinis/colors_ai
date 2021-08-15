@@ -27,7 +27,7 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
       }
       yield ColorsChangeSuccess(_colorsRepository.colors.toPalette());
     } else if (event is ColorsGenerated) {
-      final bool isGenerated = await _colorsRepository.getNewColors;
+      final bool isGenerated = await _colorsRepository.getNewColors(forUI: event.generateColorsForUi);
       if (isGenerated) {
         try {
           yield ColorsLoadSuccess(_colorsRepository.colors.toPalette());

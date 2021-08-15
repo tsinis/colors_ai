@@ -301,5 +301,12 @@
     "resetButtonLabel": "Reset",
     "@resetButtonLabel": {
         "description": "Label of the right button on the settings dialog."
+    },
+    "formatCopied": "{fileFormat} content copied!",
+    "@formatCopied": {
+        "description": "Snackbar message after success file content copy.",
+        "placeholders": {
+            "fileFormat": {}
+        }
     }
 }

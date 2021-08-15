@@ -21,9 +21,16 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
       _settings.isDarkTheme = true;
     } else if (event is SettingsSystemThemeSelected) {
       _settings.isDarkTheme = null;
+    } else if (event is SettingsColorsForUiSelected) {
+      _settings.colorsForUi = true;
+    } else if (event is SettingsRegularColorsSelected) {
+      _settings.colorsForUi = false;
     }
     try {
-      yield SettingsChangedInitial(isDarkTheme: _settings.isDarkTheme);
+      yield SettingsChangedInitial(
+        isDarkTheme: _settings.isDarkTheme,
+        colorsForUi: _settings.colorsForUi,
+      );
     } on Exception catch (_) {
       yield const SettingsFailure();
     }
@@ -32,13 +39,16 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   @override
   SettingsState? fromJson(Map<String, dynamic> json) {
     final bool? savedTheme = json['isDark'] as bool?;
-    _settings.isDarkTheme = savedTheme;
+    final bool forUI = json['forUI'] as bool? ?? false;
+    _settings
+      ..isDarkTheme = savedTheme
+      ..colorsForUi = forUI;
   }
 
   @override
   Map<String, dynamic>? toJson(SettingsState state) {
     if (state is SettingsChangedInitial) {
-      return <String, dynamic>{'isDark': state.isDarkTheme};
+      return <String, dynamic>{'isDark': state.isDarkTheme, 'forUI': state.colorsForUi};
     }
   }
 }

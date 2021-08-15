@@ -16,6 +16,7 @@ import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../navigation/ui/constants.dart';
 import '../../../navigation/ui/widgets/bottom_navigation.dart';
 import '../../../navigation/ui/widgets/navigation_rail.dart';
+import '../../../settings/blocs/settings_hydrated_bloc.dart';
 import '../../../share/blocs/share/share_hydrated_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../repository/colors_repository.dart';
@@ -57,7 +58,8 @@ class _NavigationScreenState extends State<MainScreen> {
         ],
         child: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (_, navState) {
-            if (navState.tabIndex != const NavigationGenerateTabInitial().tabIndex) {
+            final bool isGenTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
+            if (!isGenTab) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
             return Scaffold(
@@ -86,8 +88,8 @@ class _NavigationScreenState extends State<MainScreen> {
                         message = AppLocalizations.of(context).urlCopiedMessage;
                       } else if (snackbarState is ColorCopySuccess) {
                         message = AppLocalizations.of(context).colorCopiedMessage(snackbarState.clipboard);
-                      } else if (snackbarState is FileCopySuccess) {
-                        message = '${snackbarState.format} content copied!'; //TODO L10N
+                      } else if (isFileCopied) {
+                        message = AppLocalizations.of(context).formatCopied(snackbarState.format);
                       } else if (snackbarState is ServerStatusCheckSuccess) {
                         message = AppLocalizations.of(context).serverMaintanceMessage;
                       } else if (isShareFailed) {
@@ -120,21 +122,28 @@ class _NavigationScreenState extends State<MainScreen> {
                         if (!isPortrait) const VerticalDivider(width: 1),
                         Expanded(
                           child: Builder(
-                            builder: (BuildContext newContext) => RawKeyboardListener(
-                                focusNode: FocusNode(),
-                                includeSemantics: false,
-                                autofocus: navState.tabIndex == 1,
-                                onKey: (RawKeyEvent event) {
-                                  if (event.isKeyPressed(LogicalKeyboardKey.space) &&
-                                      navState.tabIndex == const NavigationGenerateTabInitial().tabIndex) {
-                                    if (kIsWeb) {
-                                      BlocProvider.of<SoundBloc>(newContext).add(const SoundRefreshed());
+                            builder: (BuildContext newContext) => Shortcuts(
+                              shortcuts: <ShortcutActivator, Intent>{
+                                ...WidgetsApp.defaultShortcuts,
+                                const SingleActivator(spacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
+                              },
+                              child: RawKeyboardListener(
+                                  focusNode: FocusNode(),
+                                  includeSemantics: false,
+                                  autofocus: navState.tabIndex == 1,
+                                  onKey: (RawKeyEvent event) {
+                                    if (event.isKeyPressed(spacebar) && isGenTab) {
+                                      if (kIsWeb) {
+                                        BlocProvider.of<SoundBloc>(newContext).add(const SoundRefreshed());
+                                      }
+                                      BlocProvider.of<ColorsBloc>(newContext).add(ColorsGenerated(
+                                        generateColorsForUi:
+                                            BlocProvider.of<SettingsBloc>(newContext).state.colorsForUi,
+                                      ));
                                     }
-                                    BlocProvider.of<ColorsBloc>(newContext).add(const ColorsGenerated());
-                                    // BlocProvider.of<FabBloc>(newContext).add(const FabShowed());
-                                  }
-                                },
-                                child: navTabs.elementAt(navState.tabIndex)),
+                                  },
+                                  child: navTabs.elementAt(navState.tabIndex)),
+                            ),
                           ),
                         )
                       ],

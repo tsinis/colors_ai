@@ -95,5 +95,11 @@
     "darkThemeSubtitle": "Насыщенно-серый пользовательский интерфейс",
     "systemThemeTitle": "Системный",
     "systemThemeSubtitle": "Использует яркость темы устройства",
-    "resetButtonLabel": "Сброс"
+    "resetButtonLabel": "Сброс",
+    "formatCopied": "Содержимое {fileFormat} файла скопировано!",
+    "@formatCopied": {
+        "placeholders": {
+            "fileFormat": {}
+        }
+    }
 }

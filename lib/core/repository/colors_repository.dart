@@ -46,12 +46,13 @@ class ColorsRepository {
 
   void fromFavorites(ColorPalette palette) => _colorsAI.fromPalette(palette);
 
-  Future<bool> get getNewColors async {
+  Future<bool> getNewColors({required bool forUI}) async {
     if (_locked.list.contains(false)) {
       try {
         final newColors = await _apiServices.getNewColors(
           _colorsAI,
           lockedColors: _locked.list,
+          forUI: forUI,
         );
         final filteredColors = _filterLockedColors(newColors);
         _colorsAI.addAll(filteredColors);

@@ -29,7 +29,7 @@ class API {
   Future<ColorsAI> getNewColors(
     ColorsAI existingColors, {
     required List<bool> lockedColors,
-    bool forUI = true,
+    bool forUI = false,
   }) async {
     final List<bool> invertedLocks = lockedColors.map((isLocked) => !isLocked).toList();
     final http.Response response =

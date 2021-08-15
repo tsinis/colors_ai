@@ -1,22 +1,24 @@
 part of 'settings_hydrated_bloc.dart';
 
 abstract class SettingsState extends Equatable {
-  const SettingsState({this.isDarkTheme});
+  const SettingsState({required this.colorsForUi, this.isDarkTheme});
 
   final bool? isDarkTheme;
+  final bool colorsForUi;
 
   @override
-  List<bool?> get props => [isDarkTheme];
+  List<bool?> get props => [isDarkTheme, colorsForUi];
 }
 
 class SettingsInitial extends SettingsState {
-  const SettingsInitial();
+  const SettingsInitial() : super(colorsForUi: true);
 }
 
 class SettingsFailure extends SettingsState {
-  const SettingsFailure();
+  const SettingsFailure() : super(colorsForUi: true);
 }
 
 class SettingsChangedInitial extends SettingsState {
-  const SettingsChangedInitial({bool? isDarkTheme}) : super(isDarkTheme: isDarkTheme);
+  const SettingsChangedInitial({required bool colorsForUi, bool? isDarkTheme})
+      : super(isDarkTheme: isDarkTheme, colorsForUi: colorsForUi);
 }

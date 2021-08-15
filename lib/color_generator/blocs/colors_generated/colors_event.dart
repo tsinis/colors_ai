@@ -8,7 +8,8 @@ abstract class ColorsEvent extends Equatable {
 }
 
 class ColorsGenerated extends ColorsEvent {
-  const ColorsGenerated();
+  const ColorsGenerated({required this.generateColorsForUi});
+  final bool generateColorsForUi;
 }
 
 class ColorsStarted extends ColorsEvent {

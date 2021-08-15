@@ -19,6 +19,14 @@ class SettingsSystemThemeSelected extends SettingsEvent {
   const SettingsSystemThemeSelected();
 }
 
+class SettingsColorsForUiSelected extends SettingsEvent {
+  const SettingsColorsForUiSelected();
+}
+
+class SettingsRegularColorsSelected extends SettingsEvent {
+  const SettingsRegularColorsSelected();
+}
+
 class SettingsStarted extends SettingsEvent {
   const SettingsStarted();
 }

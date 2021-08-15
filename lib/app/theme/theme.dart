@@ -20,15 +20,18 @@ class AppTheme {
       primaryIconTheme: IconThemeData(color: Colors.grey[850]),
       dialogBackgroundColor: Colors.grey[350],
       splashColor: Colors.grey[300],
-      focusColor: Colors.white,
+      focusColor: Colors.grey[200],
       indicatorColor: Colors.teal,
       dialogTheme: DialogTheme(backgroundColor: Colors.grey[100]),
-      appBarTheme: const AppBarTheme(iconTheme: IconThemeData(color: _grey800)),
       radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.black)),
       textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: Colors.grey[850])),
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[200])),
-      floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: Colors.grey[200], foregroundColor: Colors.grey[850]),
+      appBarTheme: AppBarTheme(
+        iconTheme: const IconThemeData(color: _grey800),
+        backgroundColor: Colors.grey[400],
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.grey[100], foregroundColor: Colors.grey[850], focusElevation: 10),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           primary: Colors.grey[850],
