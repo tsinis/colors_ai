@@ -91,7 +91,6 @@ class UrlShareSection extends ShareSection {
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
                     label: Text(AppLocalizations.of(context).shareUrlButtonLabel.toUpperCase()),
-                    autofocus: true,
                     onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),
                   ),
                 ),

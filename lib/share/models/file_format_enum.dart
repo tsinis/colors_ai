@@ -14,11 +14,11 @@ extension NameExtension on FileFormat {
       case FileFormat.svg:
         return 'SVG';
       default:
-        return 'Unknown';
+        return 'JSON';
     }
   }
 
-  String get format => name.substring(0, 3);
+  String get format => (name.length <= 3) ? name : name.substring(0, 4).trim();
 
   bool get isLetter => this == FileFormat.pdfLetter || this == FileFormat.pngLetter;
   bool get isA4 => this == FileFormat.pdfA4 || this == FileFormat.pngA4;

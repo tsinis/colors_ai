@@ -45,7 +45,6 @@ class FavoritesTab extends StatelessWidget {
                         child: ElevatedButton.icon(
                           icon: const Icon(Icons.add, size: 20),
                           label: Text(AppLocalizations.of(context).addFavoritesButtonLabel.toUpperCase()),
-                          autofocus: true,
                           onPressed: () => BlocProvider.of<FavoritesBloc>(context)
                               .add(FavoritesAdded(favorite: context.read<ColorsRepository>().toPalette())),
                         ),

@@ -52,7 +52,6 @@ class ColorsGenerator extends StatelessWidget {
                 child: ElevatedButton.icon(
                   icon: const Icon(Icons.refresh_outlined, size: 20),
                   label: Text(AppLocalizations.of(context).returnButtonLabel.toUpperCase()),
-                  autofocus: true,
                   onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsStarted()),
                 ),
               ),

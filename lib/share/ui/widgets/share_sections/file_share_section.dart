@@ -27,6 +27,19 @@ class FileShareSection extends ShareSection {
 
   bool get cannotCopy => selectedFormatIndex <= 3;
 
+  String? helperText(AppLocalizations l10n) {
+    switch (file) {
+      case FileFormat.pdfA4:
+      case FileFormat.pngA4:
+        return l10n.a4DimensionsSubtitle;
+      case FileFormat.pngLetter:
+      case FileFormat.pdfLetter:
+        return l10n.letterDimensionsSubtitle;
+      case FileFormat.svg:
+        return 'Scalable Vector Graphics';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
@@ -46,8 +59,7 @@ class FileShareSection extends ShareSection {
                   labelText: AppLocalizations.of(context).shareFile,
                   helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                   helperMaxLines: 1,
-                  helperText:
-                      (additionalInfo != null) ? '* ${AppLocalizations.of(context).exportTo} $additionalInfo' : null),
+                  helperText: helperText(AppLocalizations.of(context))),
               value: selectedFormatIndex,
               onChanged: (newFormatIndex) {
                 if (newFormatIndex != null) {
@@ -88,7 +100,6 @@ class FileShareSection extends ShareSection {
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
                     label: Text(AppLocalizations.of(context).shareAsFormat(file.format).toUpperCase()),
-                    autofocus: true,
                     onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
                   ),
                 ),

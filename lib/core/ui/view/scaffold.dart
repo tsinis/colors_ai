@@ -57,101 +57,100 @@ class _NavigationScreenState extends State<MainScreen> {
           ),
         ],
         child: BlocBuilder<NavigationBloc, NavigationState>(
-          builder: (_, navState) {
+          builder: (navContext, navState) {
             final bool isGenTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
             if (!isGenTab) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
-            return Scaffold(
-              floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
-              appBar: AppBar(
-                title: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
-                actions: [appBarActions[navState.tabIndex], const OverflowMenu()],
-              ),
-              body: MultiBlocProvider(
-                providers: [
-                  BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
-                  BlocProvider<SnackbarBloc>(
-                    create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
-                  ),
-                  BlocProvider<ShareBloc>(lazy: false, create: (_) => ShareBloc()..add(const ShareStarted())),
-                ],
-                child: BlocListener<SnackbarBloc, SnackbarState>(
-                  listener: (context, snackbarState) {
-                    if (snackbarState is! SnackbarsInitial) {
-                      BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
-                      late String message;
-                      final bool isUrlCopied = snackbarState is UrlCopySuccess,
-                          isFileCopied = snackbarState is FileCopySuccess,
-                          isShareFailed = snackbarState is ShareAttemptFailure;
-                      if (isUrlCopied) {
-                        message = AppLocalizations.of(context).urlCopiedMessage;
-                      } else if (snackbarState is ColorCopySuccess) {
-                        message = AppLocalizations.of(context).colorCopiedMessage(snackbarState.clipboard);
-                      } else if (isFileCopied) {
-                        message = AppLocalizations.of(context).formatCopied(snackbarState.format);
-                      } else if (snackbarState is ServerStatusCheckSuccess) {
-                        message = AppLocalizations.of(context).serverMaintanceMessage;
-                      } else if (isShareFailed) {
-                        message = AppLocalizations.of(context).shareFailedMessage;
-                      }
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          duration: const Duration(seconds: 2),
-                          content: Text(message),
-                          behavior: (isUrlCopied || isShareFailed || isFileCopied)
-                              ? isPortrait
-                                  ? SnackBarBehavior.fixed
-                                  : SnackBarBehavior.floating
-                              : SnackBarBehavior.floating,
-                          action: isUrlCopied
-                              ? SnackBarAction(
-                                  textColor: Theme.of(context).scaffoldBackgroundColor,
-                                  label: AppLocalizations.of(context).urlOpenButtonLabel.toUpperCase(),
-                                  onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(const UrlOpenedSuccess()))
-                              : null,
-                        ),
-                      );
+            return Shortcuts(
+              shortcuts: <ShortcutActivator, Intent>{
+                ...WidgetsApp.defaultShortcuts,
+                const SingleActivator(spacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
+              },
+              child: RawKeyboardListener(
+                focusNode: FocusNode(),
+                includeSemantics: false,
+                autofocus: true,
+                onKey: (RawKeyEvent event) {
+                  if (event.isKeyPressed(spacebar) && isGenTab) {
+                    if (kIsWeb) {
+                      BlocProvider.of<SoundBloc>(navContext).add(const SoundRefreshed());
                     }
-                  },
-                  child: SafeArea(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (!isPortrait) NavRail(navState),
-                        if (!isPortrait) const VerticalDivider(width: 1),
-                        Expanded(
-                          child: Builder(
-                            builder: (BuildContext newContext) => Shortcuts(
-                              shortcuts: <ShortcutActivator, Intent>{
-                                ...WidgetsApp.defaultShortcuts,
-                                const SingleActivator(spacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
-                              },
-                              child: RawKeyboardListener(
-                                  focusNode: FocusNode(),
-                                  includeSemantics: false,
-                                  autofocus: navState.tabIndex == 1,
-                                  onKey: (RawKeyEvent event) {
-                                    if (event.isKeyPressed(spacebar) && isGenTab) {
-                                      if (kIsWeb) {
-                                        BlocProvider.of<SoundBloc>(newContext).add(const SoundRefreshed());
-                                      }
-                                      BlocProvider.of<ColorsBloc>(newContext).add(ColorsGenerated(
-                                        generateColorsForUi:
-                                            BlocProvider.of<SettingsBloc>(newContext).state.colorsForUi,
-                                      ));
-                                    }
-                                  },
-                                  child: navTabs.elementAt(navState.tabIndex)),
+                    BlocProvider.of<ColorsBloc>(navContext).add(ColorsGenerated(
+                      generateColorsForUi: BlocProvider.of<SettingsBloc>(navContext).state.colorsForUi,
+                    ));
+                  }
+                },
+                child: Scaffold(
+                  floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
+                  appBar: AppBar(
+                    title: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
+                    actions: [appBarActions[navState.tabIndex], const OverflowMenu()],
+                  ),
+                  body: MultiBlocProvider(
+                    providers: [
+                      BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
+                      BlocProvider<SnackbarBloc>(
+                        create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
+                      ),
+                      BlocProvider<ShareBloc>(lazy: false, create: (_) => ShareBloc()..add(const ShareStarted())),
+                    ],
+                    child: BlocListener<SnackbarBloc, SnackbarState>(
+                      listener: (context, snackbarState) {
+                        if (snackbarState is! SnackbarsInitial) {
+                          BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
+                          late String message;
+                          final bool isUrlCopied = snackbarState is UrlCopySuccess,
+                              isFileCopied = snackbarState is FileCopySuccess,
+                              isShareFailed = snackbarState is ShareAttemptFailure;
+                          if (isUrlCopied) {
+                            message = AppLocalizations.of(context).urlCopiedMessage;
+                          } else if (snackbarState is ColorCopySuccess) {
+                            message = AppLocalizations.of(context).colorCopiedMessage(snackbarState.clipboard);
+                          } else if (isFileCopied) {
+                            message = AppLocalizations.of(context).formatCopied(snackbarState.format);
+                          } else if (snackbarState is ServerStatusCheckSuccess) {
+                            message = AppLocalizations.of(context).serverMaintanceMessage;
+                          } else if (isShareFailed) {
+                            message = AppLocalizations.of(context).shareFailedMessage;
+                          }
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              duration: const Duration(seconds: 2),
+                              content: Text(message),
+                              behavior: (isUrlCopied || isShareFailed || isFileCopied)
+                                  ? isPortrait
+                                      ? SnackBarBehavior.fixed
+                                      : SnackBarBehavior.floating
+                                  : SnackBarBehavior.floating,
+                              action: isUrlCopied
+                                  ? SnackBarAction(
+                                      textColor: Theme.of(context).scaffoldBackgroundColor,
+                                      label: AppLocalizations.of(context).urlOpenButtonLabel.toUpperCase(),
+                                      onPressed: () =>
+                                          BlocProvider.of<SnackbarBloc>(context).add(const UrlOpenedSuccess()))
+                                  : null,
                             ),
-                          ),
-                        )
-                      ],
+                          );
+                        }
+                      },
+                      child: SafeArea(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (!isPortrait) NavRail(navState),
+                            if (!isPortrait) const VerticalDivider(width: 1),
+                            Expanded(
+                              child: navTabs.elementAt(navState.tabIndex),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
+                  bottomNavigationBar: isPortrait ? BottomNavBar(navState) : null,
                 ),
               ),
-              bottomNavigationBar: isPortrait ? BottomNavBar(navState) : null,
             );
           },
         ),
