@@ -23,12 +23,13 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     ColorDesigner(),
     Colordot(),
     Coolors(),
+    DesignAI(),
     MakeTintsAndShades(),
     MuzliColors(),
     Palettable(),
     PalleteNinja(),
     Poolors(),
-    SessionsCollege()
+    SessionsCollege(),
   ];
 
   static const Clipboards _clipboard = Clipboards();
@@ -80,6 +81,12 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
         case FileFormat.svg:
           await _shareTextData(toSvg(palette));
           break;
+        case FileFormat.json:
+          await _shareTextData(toJson(palette));
+          break;
+        case FileFormat.scss:
+          await _shareTextData(toScss(palette));
+          break;
         default:
       }
       // ignore: avoid_catches_without_on_clauses
@@ -93,6 +100,12 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
       switch (_selectedFile) {
         case FileFormat.svg:
           await _clipboard.copyTextData(toSvg(palette));
+          break;
+        case FileFormat.json:
+          await _clipboard.copyTextData(toJson(palette));
+          break;
+        case FileFormat.scss:
+          await _clipboard.copyTextData(toScss(palette));
           break;
         default:
       }

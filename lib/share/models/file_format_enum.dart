@@ -1,4 +1,4 @@
-enum FileFormat { pdfA4, pdfLetter, pngA4, pngLetter, svg }
+enum FileFormat { pdfA4, pdfLetter, pngA4, pngLetter, svg, json, scss }
 
 extension NameExtension on FileFormat {
   String get name {
@@ -13,6 +13,8 @@ extension NameExtension on FileFormat {
         return 'PNG (Letter)';
       case FileFormat.svg:
         return 'SVG';
+      case FileFormat.scss:
+        return 'SCSS';
       default:
         return 'JSON';
     }
@@ -22,4 +24,16 @@ extension NameExtension on FileFormat {
 
   bool get isLetter => this == FileFormat.pdfLetter || this == FileFormat.pngLetter;
   bool get isA4 => this == FileFormat.pdfA4 || this == FileFormat.pngA4;
+}
+
+extension FileFormatExtension on int? {
+  FileFormat get selectedFile {
+    if (this == null) {
+      return FileFormat.json;
+    } else if (this! > 0 && this! <= FileFormat.values.length) {
+      return FileFormat.values.elementAt(this!);
+    } else {
+      return FileFormat.json;
+    }
+  }
 }

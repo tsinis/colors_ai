@@ -5,25 +5,49 @@ mixin TextBasedFileCreator {
   String toSvg(ColorPalette palette) {
     final int width = palette.colors.length * 100;
     final String start = '''
-    <svg xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" viewBox="0 0 $width 100">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 $width 100">
       <defs>
         <clipPath id="a">
           <rect width="$width" height="100"/>
         </clipPath>
       </defs>
-      <g clip-path="url(#a)">
-      ''',
+      <g clip-path="url(#a)">''',
         end = '''
 
       </g>
     </svg>''';
-    final StringBuffer sb = StringBuffer()..write(start);
-    for (var i = 0; i < palette.colors.length; i++) {
+    final StringBuffer sb = StringBuffer(start);
+    for (int i = 0; i < palette.colors.length; i++) {
       final String color = palette.colors.elementAt(i).toHex();
       final int x = i * 100;
-      sb.write('<rect width="100" height="100" x="$x" fill="#$color"/>');
+      sb.write('\n        <rect width="100" height="100" x="$x" fill="#$color"/>');
     }
     sb.write(end);
+    return sb.toString();
+  }
+
+  String toJson(ColorPalette palette) {
+    const String start = '{', end = '\n}';
+    final StringBuffer sb = StringBuffer(start);
+    for (int i = 0; i < palette.colors.length; i++) {
+      final String color = palette.colors.elementAt(i).toHex();
+      sb.write('\n  "${i + 1}": "#$color"');
+      if (i != palette.colors.length - 1) {
+        sb.write(',');
+      }
+    }
+    sb.write(end);
+    return sb.toString();
+  }
+
+  String toScss(ColorPalette palette) {
+    final StringBuffer sb = StringBuffer();
+    for (int i = 0; i < palette.colors.length; i++) {
+      final String color = palette.colors.elementAt(i).toHex().toLowerCase();
+      final newLine = (i == 0) ? '' : '\n';
+      // ignore: prefer_interpolation_to_compose_strings
+      sb.write(newLine + r'$color-' '${i + 1}: #${color}ff;');
+    }
     return sb.toString();
   }
 }

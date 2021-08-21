@@ -24,7 +24,7 @@ class BottomNavBar extends StatelessWidget {
             backgroundColor: Theme.of(context).primaryColor,
             labelBehavior: NavigationBarDestinationLabelBehavior.alwaysHide,
             selectedIndex: navState.tabIndex,
-            onTap: (int newTabIndex) {
+            onDestinationSelected: (int newTabIndex) {
               if (!(isFavoritesEmpty && newTabIndex == _favoritesTabIndex)) {
                 BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
               }
@@ -32,18 +32,18 @@ class BottomNavBar extends StatelessWidget {
             destinations: [
               NavigationBarDestination(
                   label: tabLabels[_shareTabIndex],
-                  icon: const Icon(Icons.share),
-                  unselectedIcon: Icon(Icons.share_outlined, color: Theme.of(context).primaryIconTheme.color)),
+                  selectedIcon: const Icon(Icons.share),
+                  icon: Icon(Icons.share_outlined, color: Theme.of(context).primaryIconTheme.color)),
               NavigationBarDestination(
                   label: tabLabels[_colorsGenTabIndex],
-                  unselectedIcon: Icon(Icons.palette_outlined, color: Theme.of(context).primaryIconTheme.color),
-                  icon: const Icon(Icons.palette)),
+                  icon: Icon(Icons.palette_outlined, color: Theme.of(context).primaryIconTheme.color),
+                  selectedIcon: const Icon(Icons.palette)),
               NavigationBarDestination(
                 label: isFavoritesEmpty
                     ? AppLocalizations.of(context).noFavoritesTabLabel
                     : AppLocalizations.of(context).favoritesTabLabel,
-                icon: const Icon(Icons.bookmarks),
-                unselectedIcon: Icon(Icons.bookmarks_outlined,
+                selectedIcon: const Icon(Icons.bookmarks),
+                icon: Icon(Icons.bookmarks_outlined,
                     color:
                         isFavoritesEmpty ? Theme.of(context).disabledColor : Theme.of(context).primaryIconTheme.color),
               ),

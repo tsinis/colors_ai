@@ -4,6 +4,7 @@ import '../../../core/extensions/color.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 
 part 'providers/art_google.dart';
+part 'providers/design_ai.dart';
 part 'providers/colordesigner.dart';
 part 'providers/colordot.dart';
 part 'providers/coolors.dart';
@@ -30,11 +31,13 @@ abstract class ColorsUrlProvider {
   String get _fullUrl => 'https://$baseUrl';
 
   String url(ColorPalette palette) {
-    final StringBuffer sb = StringBuffer()..write(_fullUrl);
+    final StringBuffer sb = StringBuffer(_fullUrl);
     for (final Color color in palette.colors) {
-      sb..write(color.toHex().toLowerCase())..write(separateSymbol);
+      sb
+        ..write(color.toHex().toLowerCase())
+        ..write(separateSymbol);
     }
-    return _removeLastChar(sb);
+    return _removeLastChar(sb.toString());
   }
 
   String get name {
@@ -44,10 +47,12 @@ abstract class ColorsUrlProvider {
       final StringBuffer sb = StringBuffer();
       final String className = runtimeType.toString();
       final RegExp pascalCaseWords = RegExp('(?:[A-Z]+|^)[a-z]*');
-      pascalCaseWords.allMatches(className).forEach((w) => sb..write(w[0])..write(' '));
-      return _removeLastChar(sb);
+      pascalCaseWords.allMatches(className).forEach((w) => sb
+        ..write(w[0])
+        ..write(' '));
+      return _removeLastChar(sb.toString());
     }
   }
 
-  String _removeLastChar(StringBuffer sb) => sb.toString().substring(0, sb.length - 1);
+  String _removeLastChar(String name) => name.substring(0, name.length - separateSymbol.length);
 }

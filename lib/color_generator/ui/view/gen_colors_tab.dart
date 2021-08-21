@@ -16,7 +16,7 @@ class ColorsGenerator extends StatelessWidget {
           BlocProvider.of<FabBloc>(context).add(const FabHided());
           return const Center(child: CircularProgressIndicator());
         }
-        if (state is ColorsLoadSuccess || state is ColorsChangeSuccess) {
+        if (state is! ColorsFailure) {
           state as ColorsChangeSuccess;
           BlocProvider.of<FabBloc>(context).add(const FabShowed());
           return ColorsList(state.palette);

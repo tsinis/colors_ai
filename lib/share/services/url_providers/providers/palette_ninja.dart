@@ -5,11 +5,14 @@ class PalleteNinja extends ColorsUrlProvider {
 
   @override
   String url(ColorPalette palette) {
-    final StringBuffer sb = StringBuffer()..write(_fullUrl);
+    final StringBuffer sb = StringBuffer(_fullUrl);
     for (final Color color in palette.colors) {
-      sb..write('#')..write(color.toHex().toLowerCase())..write(separateSymbol);
+      sb
+        ..write('#')
+        ..write(color.toHex().toLowerCase())
+        ..write(separateSymbol);
     }
-    return _removeLastChar(sb);
+    return _removeLastChar(sb.toString());
   }
   // https://palette.ninja/#f67509-#f6d409-#dc1408-#430602-#f61609
 }

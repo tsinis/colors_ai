@@ -23,7 +23,7 @@ class FileShareSection extends ShareSection {
   final bool canSharePdf, canSharePng;
   final String? additionalInfo;
 
-  FileFormat get file => FileFormat.values.elementAt(selectedFormatIndex);
+  FileFormat get file => selectedFormatIndex.selectedFile;
 
   bool get cannotCopy => selectedFormatIndex <= 3;
 
@@ -37,6 +37,10 @@ class FileShareSection extends ShareSection {
         return l10n.letterDimensionsSubtitle;
       case FileFormat.svg:
         return 'Scalable Vector Graphics';
+      case FileFormat.json:
+        return 'JavaScript Object Notation';
+      case FileFormat.scss:
+        return 'Sassy Cascading Style Sheets';
     }
   }
 

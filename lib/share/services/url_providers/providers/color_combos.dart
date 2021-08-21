@@ -6,9 +6,12 @@ class ColorCombos extends ColorsUrlProvider {
   @override
   String url(ColorPalette palette) {
     int index = 0;
-    final StringBuffer sb = StringBuffer()..write(_fullUrl);
+    final StringBuffer sb = StringBuffer(_fullUrl);
     for (final Color color in palette.colors) {
-      sb..write('color$index=')..write(color.toHex().toLowerCase())..write(separateSymbol);
+      sb
+        ..write('color$index=')
+        ..write(color.toHex().toLowerCase())
+        ..write(separateSymbol);
       index++;
     }
     return sb.toString().substring(0, sb.length - 1);

@@ -25,8 +25,8 @@ import 'package:flutter/widgets.dart';
 ///         label: 'Commute',
 ///       ),
 ///       NavigationBarDestination(
-///         icon: Icon(Icons.bookmark),
-///         unselectedIcon: Icons.bookmark_border,
+///         selectedIcon: Icon(Icons.bookmark),
+///         icon: Icon(Icons.bookmark_border),
 ///         label: 'Saved',
 ///       ),
 ///     ],
@@ -40,7 +40,7 @@ class NavigationBar extends StatelessWidget {
     Key? key,
     this.animationDuration = const Duration(milliseconds: 500),
     this.selectedIndex = 0,
-    this.onTap,
+    this.onDestinationSelected,
     this.elevation = 8,
     this.backgroundColor,
     this.height,
@@ -71,10 +71,10 @@ class NavigationBar extends StatelessWidget {
   /// [NavigationBarDestinationInfo] inherited widget.
   final List<Widget> destinations;
 
-  /// Called when one of the [destinations] is tapped.
+  /// Called when one of the [destinations] is selected.
   ///
   /// This callback usually updates the int passed to [selectedIndex].
-  final ValueChanged<int>? onTap;
+  final ValueChanged<int>? onDestinationSelected;
 
   /// The z-coordinate of this [NavigationBar].
   final double elevation;
@@ -104,7 +104,7 @@ class NavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final double effectiveHeight = labelBehavior == NavigationBarDestinationLabelBehavior.alwaysHide ? 56 : 74;
+    final double effectiveHeight = height ?? 80;
     return Material(
       elevation: elevation,
       color: backgroundColor ?? ElevationOverlay.colorWithOverlay(colorScheme.surface, colorScheme.onSurface, 3),
@@ -123,7 +123,7 @@ class NavigationBar extends StatelessWidget {
                       totalNumberOfDestinations: destinations.length,
                       selectedAnimation: animation,
                       labelBehavior: labelBehavior,
-                      onTap: onTap != null ? () => onTap!(i) : () {},
+                      onTap: onDestinationSelected != null ? () => onDestinationSelected!(i) : () {},
                       child: destinations[i],
                     ),
                   ),
@@ -163,7 +163,7 @@ enum NavigationBarDestinationLabelBehavior {
 /// The destination this widget creates will look something like this:
 /// =======
 /// |
-/// |  ☆  <-- [icon] (or [unselectedIcon])
+/// |  ☆  <-- [icon] (or [selectedIcon])
 /// | text <-- [label]
 /// |
 /// =======
@@ -178,8 +178,9 @@ class NavigationBarDestination extends StatelessWidget {
   const NavigationBarDestination({
     required this.icon,
     required this.label,
-    this.unselectedIcon,
     Key? key,
+    this.selectedIcon,
+    this.tooltip,
   }) : super(key: key);
 
   /// The [Widget] (usually an [Icon]) that displays when this
@@ -189,14 +190,22 @@ class NavigationBarDestination extends StatelessWidget {
   /// The optional [Widget] (usually an [Icon]) that displays when this
   /// [NavigationBarDestination] is unselected.
   ///
-  /// If [unselectedIcon] is non-null, the destination will fade from
-  /// [unselectedIcon] to [icon] when this destination goes from unselected to
+  /// If [selectedIcon] is non-null, the destination will fade from
+  /// [selectedIcon] to [icon] when this destination goes from unselected to
   /// selected.
-  final Widget? unselectedIcon;
+  final Widget? selectedIcon;
 
   /// The text label that appears below the icon of this
   /// [NavigationBarDestination].
   final String label;
+
+  /// The text to display in the tooltip for this [NavigationBarDestination], when
+  /// the user long presses the destination.
+  ///
+  /// If [tooltip] is an empty string, no tooltip will be used.
+  ///
+  /// Defaults to null, in which case the [label] text will be used.
+  final String? tooltip;
 
   @override
   Widget build(BuildContext context) {
@@ -206,16 +215,17 @@ class NavigationBarDestination extends StatelessWidget {
 
     return NavigationBarDestinationBuilder(
       label: label,
+      tooltip: tooltip,
       buildIcon: (BuildContext context) {
         final Widget selectedIconWidget = IconTheme.merge(
-          child: icon,
+          child: selectedIcon ?? icon,
           data: IconThemeData(
             size: 24,
             color: colorScheme.onSurface,
           ),
         );
         final Widget unselectedIconWidget = IconTheme.merge(
-          child: unselectedIcon ?? icon,
+          child: icon,
           data: IconThemeData(
             size: 24,
             color: colorScheme.onSurface,
@@ -270,6 +280,7 @@ class NavigationBarDestinationBuilder extends StatelessWidget {
     required this.buildIcon,
     required this.buildLabel,
     required this.label,
+    this.tooltip,
     Key? key,
   }) : super(key: key);
 
@@ -301,12 +312,20 @@ class NavigationBarDestinationBuilder extends StatelessWidget {
   /// semantics so that screen readers and tooltips can read the proper label.
   final String label;
 
+  /// The text to display in the tooltip for this [NavigationBarDestination], when
+  /// the user long presses the destination.
+  ///
+  /// If [tooltip] is an empty string, no tooltip will be used.
+  ///
+  /// Defaults to null, in which case the [label] text will be used.
+  final String? tooltip;
+
   @override
   Widget build(BuildContext context) {
     final NavigationBarDestinationInfo info = NavigationBarDestinationInfo.of(context);
     return NavigationBarDestinationSemantics(
       child: NavigationBarDestinationTooltip(
-        message: label,
+        message: tooltip ?? label,
         child: InkWell(
           onTap: info.onTap,
           child: Row(
@@ -397,8 +416,7 @@ class NavigationBarDestinationLayout extends StatelessWidget {
 class DestinationLayoutAnimationBuilder extends StatelessWidget {
   /// Builds a child with the appropriate animation [Curve] based on the
   /// [NavigationBarDestinationInfo.labelBehavior].
-  // ignore: always_put_required_named_parameters_first
-  const DestinationLayoutAnimationBuilder({Key? key, required this.builder}) : super(key: key);
+  const DestinationLayoutAnimationBuilder({required this.builder, Key? key}) : super(key: key);
 
   /// Builds the child of this widget.
   ///
@@ -438,7 +456,10 @@ class DestinationLayoutAnimationBuilder extends StatelessWidget {
 class NavigationBarDestinationSemantics extends StatelessWidget {
   /// Adds the the appropriate semantics for navigation bar destinations to the
   /// [child].
-  const NavigationBarDestinationSemantics({required this.child, Key? key}) : super(key: key);
+  const NavigationBarDestinationSemantics({
+    required this.child,
+    Key? key,
+  }) : super(key: key);
 
   /// The widget that should receive the destination semantics.
   final Widget child;
@@ -485,19 +506,26 @@ class NavigationBarDestinationTooltip extends StatelessWidget {
   }) : super(key: key);
 
   /// The text that is rendered in the tooltip when it appears.
-  final String message;
+  ///
+  /// If [message] is null, no tooltip will be used.
+  final String? message;
 
   /// The widget that, when pressed, will show a tooltip.
   final Widget child;
 
   @override
-  Widget build(BuildContext context) => Tooltip(
-        message: message,
-        verticalOffset: 42,
-        excludeFromSemantics: true,
-        preferBelow: false,
-        child: child,
-      );
+  Widget build(BuildContext context) {
+    if (message == null) {
+      return child;
+    }
+    return Tooltip(
+      message: message!,
+      verticalOffset: 42,
+      excludeFromSemantics: true,
+      preferBelow: false,
+      child: child,
+    );
+  }
 }
 
 /// Indicator from the Material 3 Navigation Bar component.
@@ -512,8 +540,8 @@ class NavigationBarIndicator extends StatelessWidget {
   /// navigation bar destination.
   const NavigationBarIndicator({
     required this.animation,
-    this.color,
     Key? key,
+    this.color,
   }) : super(key: key);
 
   /// Determines the scale of the indicator.
@@ -539,10 +567,7 @@ class NavigationBarIndicator extends StatelessWidget {
         // 100% along a curve.
         final double scale = animation.isDismissed
             ? 0.0
-            : Tween<double>(
-                begin: .4,
-                end: 1,
-              ).transform(
+            : Tween<double>(begin: .4, end: 1).transform(
                 CurveTween(
                   curve: Curves.easeInOutCubicEmphasized,
                 ).transform(animation.value),
@@ -671,7 +696,10 @@ class NavigationBarDestinationInfo extends InheritedWidget {
 class NavigationBarBottomPadding extends StatelessWidget {
   /// Adds padding below [child] if used on a device with a safe area on the
   /// bottom of the screen.
-  const NavigationBarBottomPadding({required this.child, Key? key}) : super(key: key);
+  const NavigationBarBottomPadding({
+    required this.child,
+    Key? key,
+  }) : super(key: key);
 
   /// The child widget that should extend to the bottom of the screen.
   final Widget child;
@@ -788,9 +816,9 @@ class ClampTextScaleFactor extends StatelessWidget {
   /// surrounding [child].
   const ClampTextScaleFactor({
     required this.child,
+    Key? key,
     this.lowerLimit = 0,
     this.upperLimit = double.infinity,
-    Key? key,
   }) : super(key: key);
 
   /// The minimum amount that the text scale factor should be for the [child]
@@ -896,9 +924,9 @@ class SelectableAnimatedBuilder extends StatefulWidget {
   const SelectableAnimatedBuilder({
     required this.isSelected,
     required this.builder,
+    Key? key,
     this.duration = const Duration(milliseconds: 200),
     this.alwaysDoFullAnimation = false,
-    Key? key,
   }) : super(key: key);
 
   /// When true, the widget will animate an animation controller from 0 to 1.

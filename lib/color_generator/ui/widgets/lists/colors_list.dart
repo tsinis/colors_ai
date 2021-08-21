@@ -88,7 +88,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
               isPortrait ? Size(size.maxWidth / 3, tileHeight) : Size(size.maxWidth / length, size.maxHeight / 3);
           return BlocListener<ColorsBloc, ColorsState>(
             listener: (_, colorsState) {
-              if (colorsState is ColorsLoadSuccess) {
+              if (colorsState is ColorsLoadStarted) {
                 controller.reverse();
               }
             },
