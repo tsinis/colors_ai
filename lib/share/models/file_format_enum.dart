@@ -4,7 +4,7 @@ extension NameExtension on FileFormat {
   String get name {
     switch (this) {
       case FileFormat.pdfA4:
-        return 'PDF (A4)';
+        return 'PDF (A4)'; //TODO Fix preview
       case FileFormat.pdfLetter:
         return 'PDF (Letter)';
       case FileFormat.pngA4:

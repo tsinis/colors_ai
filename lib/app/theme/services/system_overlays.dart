@@ -21,7 +21,7 @@ class SystemUI {
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: _uiColor,
         systemNavigationBarDividerColor: _uiColor,
-        systemNavigationBarIconBrightness: _uiBrightness,
+        systemNavigationBarIconBrightness: _uiBrightness, //TODO Move to scaffold.
         statusBarIconBrightness: _uiBrightness));
   }
 }
