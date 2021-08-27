@@ -18,7 +18,7 @@ dependencies:
   equatable: ^2.0.3 # From Flutter Community
   flutter:  # From Google
     sdk: flutter
-  flutter_bloc: 7.0.0 # Flutter Favorite
+  flutter_bloc: ^7.2.0 # Flutter Favorite
   flutter_colorpicker: ^0.5.0 # Contributor
   flutter_localizations: # From Google
      sdk: flutter
@@ -28,7 +28,7 @@ dependencies:
   json_annotation: ^4.0.0-nullsafety.0 # From Google
   just_audio: ^0.9.7 # Flutter Favorite
   mdi: ^5.0.0-nullsafety.0
-  package_info_plus: ^1.0.5 # From Flutter Community (former Google)
+  package_info_plus: ^1.0.6 # From Flutter Community (former Google)
   path_provider: ^2.0.2 # From Google
   printing: ^5.5.0
   share_plus: ^2.1.4 # From Flutter Community (former Google)

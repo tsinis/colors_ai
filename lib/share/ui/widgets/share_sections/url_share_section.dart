@@ -30,7 +30,7 @@ class UrlShareSection extends ShareSection {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 24, right: 24, bottom: 8, top: 24),
+            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 16),
             child: DropdownButtonFormField<int>(
               isExpanded: !isPortrait,
               isDense: isPortrait,
@@ -70,7 +70,7 @@ class UrlShareSection extends ShareSection {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: ButtonBar(
               mainAxisSize: MainAxisSize.max,
               alignment: MainAxisAlignment.spaceEvenly,

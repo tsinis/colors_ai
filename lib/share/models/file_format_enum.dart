@@ -4,7 +4,7 @@ extension NameExtension on FileFormat {
   String get name {
     switch (this) {
       case FileFormat.pdfA4:
-        return 'PDF (A4)'; //TODO Fix preview
+        return 'PDF (A4)';
       case FileFormat.pdfLetter:
         return 'PDF (Letter)';
       case FileFormat.pngA4:
@@ -29,8 +29,8 @@ extension NameExtension on FileFormat {
 extension FileFormatExtension on int? {
   FileFormat get selectedFile {
     if (this == null) {
-      return FileFormat.json;
-    } else if (this! > 0 && this! <= FileFormat.values.length) {
+      return FileFormat.pdfA4;
+    } else if (this! >= 0 && this! <= FileFormat.values.length) {
       return FileFormat.values.elementAt(this!);
     } else {
       return FileFormat.json;

@@ -21,7 +21,7 @@ class OnboardingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color gradientColor = Theme.of(context).splashColor;
+    final Color gradientColor = Theme.of(context).primaryColor;
     return Expanded(
       child: DecoratedBox(
         decoration: BoxDecoration(
