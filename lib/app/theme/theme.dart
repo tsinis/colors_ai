@@ -62,7 +62,7 @@ class AppTheme {
           floatingActionButtonTheme: FloatingActionButtonThemeData(
               backgroundColor: Colors.grey[600]!, foregroundColor: Colors.white, disabledElevation: 0),
           navigationRailTheme: NavigationRailThemeData(
-              backgroundColor: const Color(0xFF555555),
+              backgroundColor: const Color(0xFF585858),
               selectedIconTheme: IconThemeData(color: Colors.grey[200]!),
               unselectedIconTheme: IconThemeData(color: Colors.grey[350]!),
               selectedLabelTextStyle: TextStyle(color: Colors.grey[200]!),
