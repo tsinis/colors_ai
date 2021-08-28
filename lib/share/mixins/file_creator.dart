@@ -2,6 +2,7 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart' show fontFromAssetBundle;
 
 import '../../core/models/color_palette/color_palette.dart';
 import '../services/export/file_export.dart';
@@ -13,11 +14,11 @@ mixin FileCreator {
 
   Future<Uint8List> generateFile(ColorPalette colors, {bool isMetric = true}) async {
     final PdfPageFormat format = isMetric ? _a4 : _letter;
-
-    final document = Document()
+    final TtfFont font = await fontFromAssetBundle('google_fonts/Roboto-Regular.ttf');
+    final document = Document(version: PdfVersion.pdf_1_5)
       ..addPage(Page(
           pageTheme: PageTheme(pageFormat: format, orientation: PageOrientation.landscape),
-          build: (_) => FileLayout(colors, format)));
+          build: (_) => FileLayout(colors, format, font)));
 
     return document.save();
   }

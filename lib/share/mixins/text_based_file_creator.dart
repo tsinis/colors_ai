@@ -31,7 +31,7 @@ mixin TextBasedFileCreator {
     final StringBuffer sb = StringBuffer(start);
     for (int i = 0; i < palette.colors.length; i++) {
       final String color = palette.colors.elementAt(i).toHex();
-      sb.write('\n  "${i + 1}": "#$color"');
+      sb.write('\n  "color-${i + 1}": "#$color"');
       if (i != palette.colors.length - 1) {
         sb.write(',');
       }

@@ -33,9 +33,7 @@ abstract class ColorsUrlProvider {
   String url(ColorPalette palette) {
     final StringBuffer sb = StringBuffer(_fullUrl);
     for (final Color color in palette.colors) {
-      sb
-        ..write(color.toHex().toLowerCase())
-        ..write(separateSymbol);
+      sb.write(color.toHex().toLowerCase() + separateSymbol);
     }
     return _removeLastChar(sb.toString());
   }
@@ -47,9 +45,7 @@ abstract class ColorsUrlProvider {
       final StringBuffer sb = StringBuffer();
       final String className = runtimeType.toString();
       final RegExp pascalCaseWords = RegExp('(?:[A-Z]+|^)[a-z]*');
-      pascalCaseWords.allMatches(className).forEach((w) => sb
-        ..write(w[0])
-        ..write(' '));
+      pascalCaseWords.allMatches(className).forEach((w) => sb..write('${w[0]} '));
       return _removeLastChar(sb.toString());
     }
   }

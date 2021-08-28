@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../common/blocs/snackbars/snackbars_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
@@ -51,7 +52,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
   }
 
   Text codeText({required bool isJson}) => Text(isJson ? toJson(widget._palette) : toScss(widget._palette),
-      key: ValueKey<bool>(isJson), style: const TextStyle(fontWeight: FontWeight.w200));
+      key: ValueKey<bool>(isJson), style: GoogleFonts.robotoMono());
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(

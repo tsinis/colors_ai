@@ -18,10 +18,11 @@ dependencies:
   equatable: ^2.0.3 # From Flutter Community
   flutter:  # From Google
     sdk: flutter
-  flutter_bloc: ^7.2.0 # Flutter Favorite
+  flutter_bloc: 7.0.0 # Flutter Favorite
   flutter_colorpicker: ^0.5.0 # Contributor
   flutter_localizations: # From Google
      sdk: flutter
+  google_fonts: ^2.1.0 # From Google
   http: ^0.13.0-nullsafety.0 # From Google
   hydrated_bloc: ^7.0.1
   intl: ^0.17.0 # From Google
@@ -58,3 +59,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/sounds/
+    - google_fonts/

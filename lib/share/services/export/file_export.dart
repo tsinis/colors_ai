@@ -6,9 +6,10 @@ import '../../../core/extensions/color.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 
 class FileLayout extends StatelessWidget {
-  FileLayout(this._palette, this._format);
+  FileLayout(this._palette, this._format, this._font);
   final PdfPageFormat _format;
   final ColorPalette _palette;
+  final TtfFont _font;
 
   static const Set<String> colorSpaces = {'HEX', 'RGB', 'CMYK', 'HSB', 'HSL', 'LAB', 'XYZ'};
 
@@ -62,11 +63,23 @@ class FileLayout extends StatelessWidget {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(colorSpace,
-                                style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600)),
+                            Text(
+                              colorSpace,
+                              style: TextStyle(
+                                font: _font,
+                                fontSize: 11,
+                                color: isEven ? PdfColors.grey800 : PdfColors.grey600,
+                              ),
+                            ),
                             Spacer(),
-                            Text(_colorValue(colorSpace, hex),
-                                style: TextStyle(fontSize: 11, color: isEven ? PdfColors.grey800 : PdfColors.grey600))
+                            Text(
+                              _colorValue(colorSpace, hex),
+                              style: TextStyle(
+                                font: _font,
+                                fontSize: 11,
+                                color: isEven ? PdfColors.grey800 : PdfColors.grey600,
+                              ),
+                            ),
                           ],
                         );
                       },

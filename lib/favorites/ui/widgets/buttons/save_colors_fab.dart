@@ -72,8 +72,9 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                     isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
                     return BlocBuilder<ColorsBloc, ColorsState>(
                       builder: (_, colorState) {
-                        // ignore: always_put_control_body_on_new_line
-                        if (alwaysShow) isFailed = colorState is ColorsFailure;
+                        if (alwaysShow) {
+                          isFailed = colorState is ColorsFailure;
+                        }
                         return AnimatedSize(
                           duration: const Duration(milliseconds: 400),
                           child: FloatingActionButton.extended(

@@ -9,9 +9,6 @@ import 'favorites/blocs/list_favorites/favorites_bloc.dart';
 import 'oboarding/blocs/onboarding/onboarding_bloc.dart';
 import 'settings/blocs/settings_hydrated_bloc.dart';
 
-//TODO! Add Roboto to file exports after License Change to OFL.
-//TODO: Handle Failure States in Bloc.
-
 void main() => DataStorage.init().whenComplete(() {
       SystemUI.init();
       runApp(

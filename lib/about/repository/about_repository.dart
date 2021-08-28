@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart' show LicenseRegistry, LicenseEntryWithLineBreaks;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../core/services/url_launcher.dart';
@@ -15,6 +17,10 @@ class AboutRepository {
   Future<void> init(String? currentLocale) async {
     await PackageInfo.fromPlatform().then((info) => _version = info.version);
     locale = currentLocale ?? 'en';
+    LicenseRegistry.addLicense(() async* {
+      final license = await rootBundle.loadString('google_fonts/LICENSE.txt');
+      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+    });
   }
 
   void openSourceCode() => _urlLauncher.openURL(_sourceCode);

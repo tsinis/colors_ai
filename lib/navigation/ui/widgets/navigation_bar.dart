@@ -970,10 +970,9 @@ class SelectableAnimatedBuilderState extends State<SelectableAnimatedBuilder> wi
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
-    _controller.duration = widget.duration;
-    // ignore: cascade_invocations
-    _controller.value = widget.isSelected ? 1 : 0;
+    _controller = AnimationController(vsync: this)
+      ..duration = widget.duration
+      ..value = widget.isSelected ? 1 : 0;
   }
 
   @override
