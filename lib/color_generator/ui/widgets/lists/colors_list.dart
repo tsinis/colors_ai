@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../color_picker/ui/view/colorpicker_dialog.dart';
+import '../../../../color_picker/ui/view/colorpicker.dart';
 import '../../../../core/extensions/color.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../core/ui/widgets/lists/default_grey_colors_list.dart';
@@ -94,7 +94,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
             },
             child: Stack(
               children: [
-                if (!kIsWeb && Platform.isIOS)
+                if (!kIsWeb && Platform.isIOS) //TODO Change color in dark theme.
                   FadeTransition(
                     opacity: animation,
                     child: Align(

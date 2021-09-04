@@ -21,7 +21,7 @@ dependencies:
   flutter_bloc: 7.0.0 # Flutter Favorite
   flutter_colorpicker: # Contributor
     git:
-      url: git://github.com/tsinis/flutter_colorpicker.git
+      url: git://github.com/mchome/flutter_colorpicker.git
   flutter_localizations: # From Google
      sdk: flutter
   google_fonts: ^2.1.0 # From Google

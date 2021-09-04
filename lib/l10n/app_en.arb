@@ -308,5 +308,13 @@
         "placeholders": {
             "fileFormat": {}
         }
+    },
+    "invalidHexErrorLabel": "Invalid Hex code pasted",
+    "@invalidHexErrorLabel": {
+        "description": "Error message below text field in color-picker dialog."
+    },
+    "hexHintTextLabel": "Hex color code",
+    "@hexHintTextLabel": {
+        "description": "Hint text on the text field in color-picker dialog."
     }
 }

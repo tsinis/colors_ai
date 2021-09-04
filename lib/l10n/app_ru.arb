@@ -101,5 +101,7 @@
         "placeholders": {
             "fileFormat": {}
         }
-    }
+    },
+    "invalidHexErrorLabel": "Вставлен неверный HEX код",
+    "hexHintTextLabel": "HEX код цвета"
 }

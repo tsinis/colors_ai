@@ -256,8 +256,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "01a63b586a6cb2e852e15b1c4a9be82bee32969b"
-      url: "git://github.com/tsinis/flutter_colorpicker.git"
+      resolved-ref: a819eeba680325eee20d75f9406a4f44e3c273fb
+      url: "git://github.com/mchome/flutter_colorpicker.git"
     source: git
     version: "0.6.0"
   flutter_driver:
