@@ -60,7 +60,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                     actions: <TextButton>[
                       TextButton(
                         onPressed: () => Navigator.pop(dialogContext, false),
-                        child: Text(AppLocalizations.of(context).cancelButtonLabel.toUpperCase()),
+                        child: Text(MaterialLocalizations.of(context).cancelButtonLabel.toUpperCase()),
                       ),
                       TextButton(
                           onPressed: () => Navigator.pop(dialogContext, true),

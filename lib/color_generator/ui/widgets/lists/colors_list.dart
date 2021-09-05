@@ -94,7 +94,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
             },
             child: Stack(
               children: [
-                if (!kIsWeb && Platform.isIOS) //TODO Change color in dark theme.
+                if (!kIsWeb && Platform.isIOS)
                   FadeTransition(
                     opacity: animation,
                     child: Align(
@@ -102,8 +102,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                       child: Padding(
                           padding: EdgeInsets.only(bottom: tileHeight / 3),
                           child: Text(AppLocalizations.of(context).pullToRefreshTip,
-                              style:
-                                  const TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.w300))),
+                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300))),
                     ),
                   ),
                 FadeTransition(opacity: reverseAnimation, child: DefaultGreyList(length: length)),

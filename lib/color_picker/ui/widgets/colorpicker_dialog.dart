@@ -68,24 +68,21 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   }
 
   double get keyboardHeight => MediaQuery.of(context).viewInsets.bottom;
-  double get pickerAreaHeightPercent {
-    final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
-    debugPrint('HEIGHT AVAILABLE: $heightAvailable'); //TODO Check and remove.
-    if (isMobile && heightAvailable < 400) {
-      return keyboardIsVisible ? 0 : 1;
-    } else {
-      return 1;
-    }
-  }
+  double get pickerAreaHeightPercent => hidePickerArea ? (keyboardIsVisible ? 0 : 1) : 1;
 
   bool get keyboardIsVisible => keyboardHeight != 0;
   bool get isMobile => (kIsWeb && (Platform.isAndroid || Platform.isIOS)) || Platform.isAndroid || Platform.isIOS;
+  bool get hidePickerArea {
+    final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
+    debugPrint('HEIGHT AVAILABLE: $heightAvailable'); //TODO Check and remove.
+    return isMobile && heightAvailable < 480;
+  }
 
   @override
   Widget build(BuildContext context) => SimpleDialog(
         contentPadding: const EdgeInsets.all(0),
         children: [
-          if (keyboardIsVisible) const SizedBox(height: 12),
+          if (hidePickerArea) const SizedBox(height: 12),
           ColorPicker(
             pickerAreaHeightPercent: pickerAreaHeightPercent,
             colorPickerWidth: 280, //beacuse stepWidth = 56 * 5.
@@ -106,6 +103,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
               autocorrect: false,
               enableSuggestions: false,
               enableIMEPersonalizedLearning: false,
+              onTap: setColorFromHex,
               textAlignVertical: TextAlignVertical.center,
               scrollPadding: const EdgeInsets.only(bottom: 20),
               inputFormatters: [HexFormatter()],

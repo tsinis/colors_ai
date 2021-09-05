@@ -59,10 +59,6 @@
     "@removeAllTitle": {
         "description": "Title of pop-up dialog, when removing all stored favorite palettes."
     },
-    "cancelButtonLabel": "Cancel",
-    "@cancelButtonLabel": {
-        "description": "Label of the cancel text-button in \"Remove all favorite palettes\" dialog."
-    },
     "removeButtonLabel": "Remove",
     "@removeButtonLabel": {
         "description": "Label of the remove text-button in \"Remove all favorite palettes\" dialog."
@@ -228,7 +224,7 @@
     "@onboardingGenerateTipLandscape": {
         "description": "Message under the fourth color tile, on the main screen, in landscape mode."
     },
-    "onboardingSelectTipLandscape": "Press anywhare (outside the lock zone) to select a color",
+    "onboardingSelectTipLandscape": "Press anywhere (outside the lock zone) to select a color",
     "@onboardingSelectTipLandscape": {
         "description": "Label on the second color tile, during onboarding in landscape mode."
     },

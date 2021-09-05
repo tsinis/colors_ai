@@ -51,13 +51,15 @@ class SettingsDialog extends StatelessWidget {
                 groupValue: state.isDarkTheme,
                 onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsDarkThemeSelected()),
               ),
-              RadioListTile<bool?>(
-                dense: true,
-                title: Text(AppLocalizations.of(context).systemThemeTitle),
-                subtitle: Text(AppLocalizations.of(context).systemThemeSubtitle),
-                value: null,
-                groupValue: state.isDarkTheme,
-                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected()),
+              Flexible(
+                child: RadioListTile<bool?>(
+                  dense: true,
+                  title: Text(AppLocalizations.of(context).systemThemeTitle),
+                  subtitle: Text(AppLocalizations.of(context).systemThemeSubtitle),
+                  value: null,
+                  groupValue: state.isDarkTheme,
+                  onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected()),
+                ),
               ),
             ],
           ),

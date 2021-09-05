@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 
 import '../../../core/services/clipboard.dart';
 import '../../../core/services/url_launcher.dart';
+import '../../helpers/server_maintenance_check.dart';
 
 part 'snackbars_event.dart';
 part 'snackbars_state.dart';
@@ -37,7 +38,7 @@ class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
         await const UrlLauncher().openURL(url);
       }
     } else if (event is ServerStatusCheckedSuccess) {
-      if (DateTime.now().toUtc().hour == 7) {
+      if (serverMaintenanceNow) {
         yield const ServerStatusCheckSuccess();
       }
     } else if (event is ShareFail) {
