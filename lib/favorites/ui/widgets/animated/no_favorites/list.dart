@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class EmptyList extends CustomPainter {
-  const EmptyList();
+  const EmptyList({required this.outlineColor});
+
+  final Color outlineColor;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Paint outlineColor = Paint()
-      ..color = Colors.grey[600]!
+      ..color = this.outlineColor.withOpacity(0.3)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 3;
 

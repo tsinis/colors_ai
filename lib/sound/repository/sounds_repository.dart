@@ -25,7 +25,7 @@ class SoundsRepository with Vibrations {
     }
   }
 
-  void playLock() => _playSound(lock);
+  void playLock() => _playSound(lock, volume: 0.8);
   void playRefresh() => _playSound(refresh);
   void playCopy() => _playSound(notificationHigh, volume: 0.1);
   void playFavoritesAdded() => _playSound(notificationSimple, volume: 0.1);

@@ -15,7 +15,7 @@ mixin FavoritesStorage {
   Future<void> addToStorage(ColorPalette palette) => _storageBox.add(palette);
 
   Future<void> updateStorage(Set<int> indexes) async {
-    final Set<int> palettesToRemove = Set<int>.from(indexes);
+    final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
     final List<ColorPalette> storedList = List<ColorPalette>.from(_storageBox.values);
     await clearStorage();
     if (palettesToRemove.length == _storageBox.keys.length || palettesToRemove.isEmpty) {
@@ -32,7 +32,9 @@ mixin FavoritesStorage {
 
   Future<Iterable<ColorPalette>> get storedFavorites async {
     try {
-      Hive..registerAdapter(ColorPaletteAdapter())..registerAdapter(ColorAdapter());
+      Hive
+        ..registerAdapter(ColorPaletteAdapter())
+        ..registerAdapter(ColorAdapter());
       _storageBox = await _openBoxStorage;
       return _storageBox.values;
     } on Exception catch (e) {

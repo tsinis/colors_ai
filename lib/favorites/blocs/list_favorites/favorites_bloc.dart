@@ -52,7 +52,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       try {
         if (_favorites.palettes.isNotEmpty) {
           yield FavoritesLoadSuccess(_favorites.palettes);
-          _favorites.updateStorage({event.colorToRemoveIndex});
+          await _favorites.updateStorage({event.colorToRemoveIndex});
         } else {
           yield const FavoritesEmptyInitial();
           await _favorites.clearStorage();

@@ -45,7 +45,10 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
           child: Stack(
             alignment: Alignment.center,
             children: [
-              const CustomPaint(size: Size(320, 320), painter: EmptyList()),
+              CustomPaint(
+                size: const Size(320, 320),
+                painter: EmptyList(outlineColor: Theme.of(context).textTheme.headline2!.color!),
+              ),
               ScaleTransition(
                 scale: animation,
                 child: RotationTransition(

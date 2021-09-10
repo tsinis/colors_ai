@@ -67,7 +67,7 @@ class ColorsRepository {
   }
 
   List<IntRGBColor> _filterLockedColors(ColorsAI newColors) {
-    final List<IntRGBColor> newColorsList = List<IntRGBColor>.from(newColors.list, growable: false);
+    final List<IntRGBColor> newColorsList = List<IntRGBColor>.unmodifiable(newColors.list);
     final Map<int, bool> _lockedMap = _locked.list.asMap();
     final List<IntRGBColor> filteredColors = [];
     _lockedMap.forEach((index, isLocked) =>

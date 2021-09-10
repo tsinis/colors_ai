@@ -10,16 +10,10 @@ import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favs_bloc.dart';
 
-class FavoritesListSwipeable extends StatefulWidget {
+class FavoritesListSwipeable extends StatelessWidget {
   const FavoritesListSwipeable();
 
-  @override
-  _FavoritesListState createState() => _FavoritesListState();
-}
-
-class _FavoritesListState extends State<FavoritesListSwipeable> {
-  static const double padding = 20, tipHeight = 42;
-  bool isDissmised = true;
+  static const double _padding = 20, _tipHeight = 42;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -31,15 +25,15 @@ class _FavoritesListState extends State<FavoritesListSwipeable> {
                 builder: (_, size) {
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
                   final double cardHeight =
-                      (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
+                      (size.maxWidth - (_padding * 2) - (colorsCount * (_padding / 2))) / colorsCount;
                   final double maxHeighForTip =
-                      size.maxHeight - padding - (tipHeight * MediaQuery.of(context).textScaleFactor);
-                  final bool canShowTip = favorites.length * (cardHeight + (padding * 2.5)) <= maxHeighForTip;
+                      size.maxHeight - _padding - (_tipHeight * MediaQuery.of(context).textScaleFactor);
+                  final bool canShowTip = favorites.length * (cardHeight + (_padding * 2.5)) <= maxHeighForTip;
                   return Stack(
                     alignment: AlignmentDirectional.topCenter,
                     children: [
                       Positioned(
-                        bottom: padding,
+                        bottom: _padding,
                         child: AnimatedOpacity(
                           duration: const Duration(milliseconds: 800),
                           opacity: canShowTip ? 1 : 0,
@@ -55,26 +49,22 @@ class _FavoritesListState extends State<FavoritesListSwipeable> {
                         itemBuilder: (_, paletteIndex) => Dismissible(
                           key: UniqueKey(),
                           onResize: () {
-                            if (isDissmised) {
-                              BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
-                              BlocProvider.of<FavoritesBloc>(context)
-                                  .add(FavoritesOneRemoved(colorToRemoveIndex: paletteIndex));
-                              isDissmised = false;
-                            }
+                            BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
+                            BlocProvider.of<FavoritesBloc>(context)
+                                .add(FavoritesOneRemoved(colorToRemoveIndex: paletteIndex));
                           },
-                          onDismissed: (_) => setState(() => isDissmised = true),
                           secondaryBackground: const RemoveBackground(secondary: true),
                           background: const RemoveBackground(),
                           child: Semantics(
                             label: AppLocalizations.of(context).favoritePaletteSematic(paletteIndex),
                             child: ListTile(
-                              onLongPress: () => setState(() => BlocProvider.of<RemoveFavoritesBloc>(context)
-                                  .add(RemoveFavoritesSelected(paletteIndex))),
+                              onLongPress: () => BlocProvider.of<RemoveFavoritesBloc>(context)
+                                  .add(RemoveFavoritesSelected(paletteIndex)),
                               enableFeedback: true,
-                              minVerticalPadding: padding,
+                              minVerticalPadding: _padding,
                               selectedTileColor: Theme.of(context).errorColor.withOpacity(0.2),
                               selected: removeState.selections.contains(paletteIndex),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: padding),
+                              contentPadding: const EdgeInsets.symmetric(horizontal: _padding),
                               onTap: () {
                                 BlocProvider.of<LockedBloc>(context).add(const LockAllUnlocked());
                                 BlocProvider.of<ColorsBloc>(context)
@@ -108,6 +98,7 @@ class _FavoritesListState extends State<FavoritesListSwipeable> {
                                       ),
                                     );
                                   },
+                                  growable: false,
                                 ),
                               ),
                             ),

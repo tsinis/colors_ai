@@ -65,11 +65,14 @@ All animations here are made with pure Flutter. The application's UI is designed
 ## To-Do Section
 
 * [ ] Write more tests.
-* [ ] Separate data layer more.
+* [x] Separate data layer more.
 * [x] Create more interfaces for Data and Repository layers.
 * [ ] Add dependencies list in README.
 * [x] Add exports to PDF and PNG.
-* [ ] L10N.
+* [x] L10N.
+* [ ] Add Feedback.
+* [ ] Map BLoC events to state via Freezed.
+* [ ] Provide support for Favorites backup (online?).
 
 ## Licenses
 
