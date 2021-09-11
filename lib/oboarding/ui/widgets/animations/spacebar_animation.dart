@@ -23,7 +23,11 @@ class _SpaceBarAnimationState extends State<SpaceBarAnimation> {
     Future.delayed(duration, animate);
   }
 
-  void animate() => setState(() => isPressed = !isPressed);
+  void animate() {
+    if (mounted) {
+      setState(() => isPressed = !isPressed);
+    }
+  }
 
   @override
   Widget build(BuildContext context) => FractionallySizedBox(

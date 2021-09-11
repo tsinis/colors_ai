@@ -67,6 +67,7 @@ class AppIcon extends StatelessWidget {
       );
 }
 
+// ignore: prefer-single-widget-per-file
 class Rectangle extends StatelessWidget {
   const Rectangle(this.color, {this.shadowOffset = const Offset(-1, 1), this.darkShadow = true});
 

@@ -8,7 +8,7 @@
 PRODUCT_NAME = colors_ai
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = is.tsin.colorsai.colorsAi
+PRODUCT_BUNDLE_IDENTIFIER = is.tsin.colorsAi
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 is.tsin.colorsai. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2021 Roman Cinis. All rights reserved.
