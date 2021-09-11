@@ -33,6 +33,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
       case FileFormat.scss:
       case FileFormat.json:
         return 1;
+      // ignore: no_default_cases
       default:
         return colors.length.toDouble();
     }
@@ -45,20 +46,26 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
       return isHovering ? Colors.white : Colors.grey[200]!;
     } else {
       final bool isDark = Theme.of(context).brightness == Brightness.dark;
+
       return isHovering
           ? (isDark ? Colors.grey[800]! : Colors.grey[100]!)
           : (isDark ? Colors.grey[900]! : Colors.grey[300]!);
     }
   }
 
-  Text codeText({required bool isJson}) => Text(isJson ? toJson(widget._palette) : toScss(widget._palette),
-      key: ValueKey<bool>(isJson), style: GoogleFonts.robotoMono());
+  Text codeText({required bool isJson}) => Text(
+        isJson ? toJson(widget._palette) : toScss(widget._palette),
+        key: ValueKey<bool>(isJson),
+        style: GoogleFonts.robotoMono(),
+      );
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, state) {
           final FileFormat file = state.selectedFormat.selectedFile;
-          final bool isPrintable = (state.selectedFormat ?? 0) < 4, isJson = file == FileFormat.json;
+          final bool isPrintable = (state.selectedFormat ?? 0) < 4;
+          final bool isJson = file == FileFormat.json;
+
           return GestureDetector(
             onTap: () {
               setState(() => isHovering = !isHovering);
@@ -128,9 +135,10 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                             child: Padding(
                                               padding: EdgeInsets.all(isPrintable ? 2 : 0),
                                               child: AnimatedContainer(
-                                                  duration: duration,
-                                                  curve: curve,
-                                                  color: colors.elementAt(colorsIndex)),
+                                                duration: duration,
+                                                curve: curve,
+                                                color: colors.elementAt(colorsIndex),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -143,12 +151,17 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                               child: ListView.separated(
                                                 itemCount: FileLayout.colorSpaces.length,
                                                 separatorBuilder: (_, __) => AnimatedContainer(
-                                                    duration: duration,
-                                                    curve: curve,
-                                                    height: 2,
-                                                    color: Colors.transparent),
+                                                  duration: duration,
+                                                  curve: curve,
+                                                  height: 2,
+                                                  color: Colors.transparent,
+                                                ),
                                                 itemBuilder: (_, __) => AnimatedContainer(
-                                                    duration: duration, curve: curve, height: 6, color: Colors.black12),
+                                                  duration: duration,
+                                                  curve: curve,
+                                                  height: 6,
+                                                  color: Colors.black12,
+                                                ),
                                               ),
                                             ),
                                           ),

@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:platform_info/platform_info.dart';
 
 import '../../../core/services/clipboard.dart';
 import '../../helpers/hex_formatter.dart';
@@ -71,16 +70,17 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   double get pickerAreaHeightPercent => hidePickerArea ? (keyboardIsVisible ? 0 : 1) : 1;
 
   bool get keyboardIsVisible => keyboardHeight != 0;
-  bool get isMobile => (kIsWeb && (Platform.isAndroid || Platform.isIOS)) || Platform.isAndroid || Platform.isIOS;
+  bool get isMobile => platform.isMobile;
   bool get hidePickerArea {
     final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
     debugPrint('HEIGHT AVAILABLE: $heightAvailable'); //TODO Check and remove.
+
     return isMobile && heightAvailable < 480;
   }
 
   @override
   Widget build(BuildContext context) => SimpleDialog(
-        contentPadding: const EdgeInsets.all(0),
+        contentPadding: EdgeInsets.zero,
         children: [
           if (hidePickerArea) const SizedBox(height: 12),
           ColorPicker(

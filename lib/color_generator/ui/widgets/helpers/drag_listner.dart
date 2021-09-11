@@ -10,7 +10,8 @@ class ReorderableDragListener extends StatelessWidget {
     this.enabled = true,
   });
 
-  final VoidCallback onDragStarted, onDragEnded;
+  final VoidCallback onDragStarted;
+  final VoidCallback onDragEnded;
   final Widget child;
   final int index;
   final bool enabled;
@@ -29,7 +30,8 @@ class ReorderableDragListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Listener(
-      onPointerUp: (_) => onDragEnded(),
-      onPointerDown: enabled ? (PointerDownEvent event) => _startDragging(context, event) : null,
-      child: child);
+        onPointerUp: (_) => onDragEnded(),
+        onPointerDown: enabled ? (PointerDownEvent event) => _startDragging(context, event) : null,
+        child: child,
+      );
 }

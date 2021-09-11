@@ -9,16 +9,20 @@ import '../services/export/file_export.dart';
 
 mixin FileCreator {
   static const PdfPageFormat _a4 =
-          PdfPageFormat(29.7 * PdfPageFormat.cm, 21 * PdfPageFormat.cm, marginAll: PdfPageFormat.cm),
-      _letter = PdfPageFormat(11 * PdfPageFormat.inch, 8.5 * PdfPageFormat.inch, marginAll: 0.5 * PdfPageFormat.inch);
+      PdfPageFormat(PdfPageFormat.cm * 29.7, PdfPageFormat.cm * 21, marginAll: PdfPageFormat.cm);
+  static const PdfPageFormat _letter =
+      PdfPageFormat(PdfPageFormat.inch * 11, PdfPageFormat.inch * 8.5, marginAll: PdfPageFormat.inch * 0.5);
 
   Future<Uint8List> generateFile(ColorPalette colors, {bool isMetric = true}) async {
     final PdfPageFormat format = isMetric ? _a4 : _letter;
     final TtfFont font = await fontFromAssetBundle('google_fonts/Roboto-Regular.ttf');
     final document = Document(version: PdfVersion.pdf_1_5)
-      ..addPage(Page(
+      ..addPage(
+        Page(
           pageTheme: PageTheme(pageFormat: format, orientation: PageOrientation.landscape),
-          build: (_) => FileLayout(colors, format, font)));
+          build: (_) => FileLayout(colors, format, font),
+        ),
+      );
 
     return document.save();
   }

@@ -15,14 +15,16 @@ class LockColorButton extends StatelessWidget {
         builder: (_, state) {
           if (state is LockSuccess) {
             final bool isLocked = state.isLocked(index);
+
             return IconButton(
-                constraints: BoxConstraints(minWidth: buttonSize.width, minHeight: buttonSize.height),
-                color: color.withOpacity(isLocked ? 0.87 : 0.6),
-                onPressed: () {
-                  BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
-                  BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
-                },
-                icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined));
+              constraints: BoxConstraints(minWidth: buttonSize.width, minHeight: buttonSize.height),
+              color: color.withOpacity(isLocked ? 0.87 : 0.6),
+              onPressed: () {
+                BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
+                BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
+              },
+              icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined),
+            );
           } else {
             return const SizedBox.shrink();
           }

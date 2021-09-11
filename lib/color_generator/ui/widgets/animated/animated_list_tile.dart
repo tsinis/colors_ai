@@ -10,7 +10,8 @@ class AnimatedListItem extends StatefulWidget {
   }) : super(key: key);
 
   final Widget child;
-  final int index, length;
+  final int index;
+  final int length;
   final BoxConstraints size;
 
   @override
@@ -41,13 +42,13 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
         height: isPortrait
             ? isAnimationDone
                 ? tileHeight
-                : widget.index + 1 * tileHeight * widget.length
+                : (widget.index + 1) * tileHeight * widget.length
             : widget.size.maxHeight,
         width: isPortrait
             ? widget.size.maxWidth
             : isAnimationDone
                 ? tileWeight
-                : widget.index + 1 * tileWeight * widget.length,
+                : (widget.index + 1) * tileWeight * widget.length,
         duration: duration,
         child: AnimatedOpacity(
           duration: duration,

@@ -105,6 +105,7 @@ class NavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final double effectiveHeight = height ?? 80;
+
     return Material(
       elevation: elevation,
       color: backgroundColor ?? ElevationOverlay.colorWithOverlay(colorScheme.surface, colorScheme.onSurface, 3),
@@ -323,6 +324,7 @@ class NavigationBarDestinationBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final NavigationBarDestinationInfo info = NavigationBarDestinationInfo.of(context);
+
     return NavigationBarDestinationSemantics(
       child: NavigationBarDestinationTooltip(
         message: tooltip ?? label,
@@ -470,6 +472,7 @@ class NavigationBarDestinationSemantics extends StatelessWidget {
     final NavigationBarDestinationInfo destinationInfo = NavigationBarDestinationInfo.of(context);
     // The AnimationStatusBuilder will make sure that the semantics update to
     // "selected" when the animation status changes.
+
     return StatusTransitionWidgetBuilder(
       animation: destinationInfo.selectedAnimation,
       builder: (BuildContext context, Widget? child) => Semantics(
@@ -518,6 +521,7 @@ class NavigationBarDestinationTooltip extends StatelessWidget {
     if (message == null) {
       return child;
     }
+
     return Tooltip(
       message: message!,
       verticalOffset: 42,
@@ -567,7 +571,7 @@ class NavigationBarIndicator extends StatelessWidget {
         // 100% along a curve.
         final double scale = animation.isDismissed
             ? 0.0
-            : Tween<double>(begin: .4, end: 1).transform(
+            : Tween<double>(begin: 0.4, end: 1).transform(
                 CurveTween(
                   curve: Curves.easeInOutCubicEmphasized,
                 ).transform(animation.value),
@@ -595,7 +599,7 @@ class NavigationBarIndicator extends StatelessWidget {
               height: 32,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: color ?? colorScheme.secondary.withOpacity(.24),
+                color: color ?? colorScheme.secondary.withOpacity(0.24),
               ),
             ),
           ),
@@ -677,6 +681,7 @@ class NavigationBarDestinationInfo extends InheritedWidget {
       'Navigation bar destinations need a NavigationBarDestinationInfo parent, '
       'usually provided by NavigationBar.',
     );
+
     return result!;
   }
 
@@ -842,6 +847,7 @@ class ClampTextScaleFactor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MediaQueryData mediaQuery = MediaQuery.of(context);
+
     return MediaQuery(
       data: mediaQuery.copyWith(
         textScaleFactor: mediaQuery.textScaleFactor.clamp(

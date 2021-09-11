@@ -46,63 +46,74 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
         builder: (BuildContext dialogContext, RemoveFavoritesState state) {
           final bool haveSelection = state.selections.isNotEmpty;
           if (state is RemoveFavoritesOpenDialogInitial) {
-            SchedulerBinding.instance?.addPostFrameCallback((_) async => showModal<bool>(
-                  context: dialogContext,
-                  configuration: const FadeScaleTransitionConfiguration(
-                    transitionDuration: Duration(milliseconds: 400),
-                    reverseTransitionDuration: Duration(milliseconds: 200),
-                  ),
-                  // https://material.io/components/dialogs#alert-dialog
-                  builder: (_) => AlertDialog(
-                    content: Text(haveSelection
+            SchedulerBinding.instance?.addPostFrameCallback(
+              (_) async => showModal<bool>(
+                context: dialogContext,
+                configuration: const FadeScaleTransitionConfiguration(
+                  transitionDuration: Duration(milliseconds: 400),
+                  reverseTransitionDuration: Duration(milliseconds: 200),
+                ),
+                // https://material.io/components/dialogs#alert-dialog
+                builder: (_) => AlertDialog(
+                  content: Text(
+                    haveSelection
                         ? '${AppLocalizations.of(context).removeSomeTitle(state.selections.length)}?'
-                        : '${AppLocalizations.of(context).removeAllTitle}?'),
-                    actions: <TextButton>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(dialogContext, false),
-                        child: Text(MaterialLocalizations.of(context).cancelButtonLabel.toUpperCase()),
-                      ),
-                      TextButton(
-                          onPressed: () => Navigator.pop(dialogContext, true),
-                          child: Text(AppLocalizations.of(context).removeButtonLabel.toUpperCase(),
-                              style: TextStyle(color: Theme.of(context).errorColor)))
-                    ],
+                        : '${AppLocalizations.of(context).removeAllTitle}?',
                   ),
-                ).then(
-                  (toRemove) {
-                    if (toRemove == true) {
-                      BlocProvider.of<FavoritesBloc>(context).add(FavoritesSeveralRemoved(state.selections));
-                      BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
-                    }
-                  },
-                ));
+                  actions: <TextButton>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(dialogContext, false),
+                      child: Text(MaterialLocalizations.of(context).cancelButtonLabel.toUpperCase()),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(dialogContext, true),
+                      child: Text(
+                        AppLocalizations.of(context).removeButtonLabel.toUpperCase(),
+                        style: TextStyle(color: Theme.of(context).errorColor),
+                      ),
+                    ),
+                  ],
+                ),
+              ).then(
+                (toRemove) {
+                  if (toRemove ?? false) {
+                    BlocProvider.of<FavoritesBloc>(context).add(FavoritesSeveralRemoved(state.selections));
+                    BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
+                  }
+                },
+              ),
+            );
             BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(const RemoveFavoritesHided());
           }
 
           return BlocBuilder<FavoritesBloc, FavoritesState>(
-              builder: (_, favState) => IconButton(
-                  tooltip: haveSelection
-                      ? AppLocalizations.of(context).removeSomeTitle(state.selections.length)
-                      : AppLocalizations.of(context).removeAllTitle,
-                  icon: Stack(
-                    children: [
-                      if (haveSelection)
-                        FadeTransition(
-                          opacity: animation,
-                          child: Icon(
-                            Mdi.bookmarkRemoveOutline,
-                            size: 25,
-                            color: Theme.of(context).errorColor,
-                          ),
-                        )
-                      else
-                        const Icon(Mdi.bookmarkRemoveOutline, size: 25),
-                      const Icon(Mdi.bookmarkOutline, size: 25),
-                    ],
-                  ),
-                  onPressed: (favState is FavoritesLoadSuccess)
-                      ? () => BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(const RemoveFavoritesShowed())
-                      : null));
+            builder: (_, favState) => IconButton(
+              tooltip: haveSelection
+                  ? AppLocalizations.of(context).removeSomeTitle(state.selections.length)
+                  : AppLocalizations.of(context).removeAllTitle,
+              icon: Stack(
+                children: [
+                  if (haveSelection)
+                    FadeTransition(
+                      opacity: animation,
+                      child: Icon(
+                        Mdi.bookmarkRemoveOutline,
+                        size: 25,
+                        color: Theme.of(context).errorColor,
+                      ),
+                    )
+                  else
+                    const Icon(Mdi.bookmarkRemoveOutline, size: 25),
+                  const Icon(Mdi.bookmarkOutline, size: 25),
+                ],
+              ),
+              onPressed: favState is FavoritesLoadSuccess
+                  ? () => BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(
+                        const RemoveFavoritesShowed(),
+                      )
+                  : null,
+            ),
+          );
         },
       );
 }

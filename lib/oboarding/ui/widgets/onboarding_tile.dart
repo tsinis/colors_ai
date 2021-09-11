@@ -13,15 +13,18 @@ class OnboardingTile extends StatelessWidget {
     this.additionalText,
   });
 
-  final double begin, end;
+  final double begin;
+  final double end;
   final String text;
   final String? additionalText;
-  final bool isPortrait, oppositeSide;
+  final bool isPortrait;
+  final bool oppositeSide;
   final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
     final Color gradientColor = Theme.of(context).primaryColor;
+
     return Expanded(
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -39,58 +42,59 @@ class OnboardingTile extends StatelessWidget {
               widthFactor: isPortrait ? 0.88 : 1,
               heightFactor: isPortrait ? 1 : 0.88,
               child: OrientationSwitcher(
-                  isPortrait: !isPortrait,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      child: SizedBox(
-                        width: isPortrait ? size.maxWidth / 3 : null,
-                        height: isPortrait ? null : size.maxHeight / 3,
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: oppositeSide
-                                ? (additionalText != null)
-                                    ? Text(
-                                        additionalText!,
-                                        textAlign: !isPortrait ? TextAlign.center : TextAlign.left,
-                                        style: const TextStyle(fontWeight: FontWeight.bold),
-                                      )
-                                    : Icon(icon)
-                                : Text(
-                                    text,
-                                    textAlign: !isPortrait
-                                        ? TextAlign.center
-                                        : oppositeSide
-                                            ? TextAlign.right
-                                            : TextAlign.left,
-                                  ),
-                          ),
+                isPortrait: !isPortrait,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Flexible(
+                    child: SizedBox(
+                      width: isPortrait ? size.maxWidth / 3 : null,
+                      height: isPortrait ? null : size.maxHeight / 3,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: oppositeSide
+                              ? (additionalText != null)
+                                  ? Text(
+                                      additionalText!,
+                                      textAlign: !isPortrait ? TextAlign.center : TextAlign.left,
+                                      style: const TextStyle(fontWeight: FontWeight.bold),
+                                    )
+                                  : Icon(icon)
+                              : Text(
+                                  text,
+                                  textAlign: !isPortrait
+                                      ? TextAlign.center
+                                      : oppositeSide
+                                          ? TextAlign.right
+                                          : TextAlign.left,
+                                ),
                         ),
                       ),
                     ),
-                    Flexible(
-                      child: SizedBox(
-                        width: isPortrait ? size.maxWidth / 3 : null,
-                        height: isPortrait ? null : size.maxHeight / 3,
-                        child: Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8),
-                            child: oppositeSide
-                                ? Text(
-                                    text,
-                                    textAlign: !isPortrait
-                                        ? TextAlign.center
-                                        : oppositeSide
-                                            ? TextAlign.right
-                                            : TextAlign.left,
-                                  )
-                                : Icon(icon),
-                          ),
+                  ),
+                  Flexible(
+                    child: SizedBox(
+                      width: isPortrait ? size.maxWidth / 3 : null,
+                      height: isPortrait ? null : size.maxHeight / 3,
+                      child: Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: oppositeSide
+                              ? Text(
+                                  text,
+                                  textAlign: !isPortrait
+                                      ? TextAlign.center
+                                      : oppositeSide
+                                          ? TextAlign.right
+                                          : TextAlign.left,
+                                )
+                              : Icon(icon),
                         ),
                       ),
                     ),
-                  ]),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

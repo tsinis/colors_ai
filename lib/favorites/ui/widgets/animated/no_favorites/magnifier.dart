@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 class Magnifier extends CustomPainter {
   const Magnifier({required this.backgroundColor, required this.outlineColor, required this.holdersColor});
 
-  final Color backgroundColor, outlineColor, holdersColor;
+  final Color backgroundColor;
+  final Color outlineColor;
+  final Color holdersColor;
 
   @override
   void paint(Canvas canvas, Size size) {

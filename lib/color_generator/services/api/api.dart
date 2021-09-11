@@ -10,8 +10,11 @@ import 'utils.dart';
 class API {
   const API();
 
-  Future<http.Response> _colorsFromAPI(List<IntRGBColor> existingColors,
-      {required List<bool> lockedColors, required bool isUiModel}) async {
+  Future<http.Response> _colorsFromAPI(
+    List<IntRGBColor> existingColors, {
+    required List<bool> lockedColors,
+    required bool isUiModel,
+  }) async {
     final IntRGBColor body;
     if (lockedColors.contains(true)) {
       final String input = startCurlyBracket +
@@ -23,6 +26,7 @@ class API {
     } else {
       body = utf8.encode(isUiModel ? uiModel : defaultModel);
     }
+
     return http.post(Uri.parse(host), headers: headers, body: body).timeout(const Duration(seconds: 8));
   }
 
@@ -38,6 +42,7 @@ class API {
       throw Exception('Network error, status Code: ${response.statusCode}');
     } else {
       final responseMap = jsonDecode(response.body) as Map<String, dynamic>;
+
       return ColorsAI.fromJson(responseMap);
     }
   }

@@ -13,7 +13,8 @@ import '../../../blocs/remove_favorites/remove_favs_bloc.dart';
 class FavoritesListSwipeable extends StatelessWidget {
   const FavoritesListSwipeable();
 
-  static const double _padding = 20, _tipHeight = 42;
+  static const double _padding = 20;
+  static const double _tipHeight = 42;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -21,6 +22,7 @@ class FavoritesListSwipeable extends StatelessWidget {
           builder: (_, state) {
             if (state is FavoritesLoadSuccess) {
               final List<ColorPalette> favorites = state.palettes;
+
               return LayoutBuilder(
                 builder: (_, size) {
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
@@ -29,6 +31,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                   final double maxHeighForTip =
                       size.maxHeight - _padding - (_tipHeight * MediaQuery.of(context).textScaleFactor);
                   final bool canShowTip = favorites.length * (cardHeight + (_padding * 2.5)) <= maxHeighForTip;
+
                   return Stack(
                     alignment: AlignmentDirectional.topCenter,
                     children: [
@@ -78,6 +81,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                                     final Color color = favorites.elementAt(paletteIndex).colors[colorIndex];
                                     final Color textColor =
                                         favorites.elementAt(paletteIndex).colors[colorIndex].contrastColor();
+
                                     return Expanded(
                                       child: AspectRatio(
                                         aspectRatio: 1,
@@ -89,10 +93,12 @@ class FavoritesListSwipeable extends StatelessWidget {
                                           margin: EdgeInsets.zero,
                                           color: color,
                                           child: Center(
-                                            child: Text(color.toHex(),
-                                                maxLines: 2,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(color: textColor, fontSize: 11)),
+                                            child: Text(
+                                              color.toHex(),
+                                              maxLines: 2,
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(color: textColor, fontSize: 11),
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -117,6 +123,7 @@ class FavoritesListSwipeable extends StatelessWidget {
       );
 }
 
+// ignore: prefer-single-widget-per-file
 class RemoveBackground extends StatelessWidget {
   const RemoveBackground({this.secondary = false});
   final bool secondary;

@@ -7,8 +7,8 @@ class HexFormatter extends TextInputFormatter {
     final String hex = formatInput(newValue.text);
     final TextSelection selection = TextSelection(baseOffset: hex.length, extentOffset: hex.length);
     final TextEditingValue validatedValue = TextEditingValue(text: hex, selection: selection);
-    return FilteringTextInputFormatter.allow(RegExp(kValidHexPattern))
-        .formatEditUpdate(oldValue, validatedValue);
+
+    return FilteringTextInputFormatter.allow(RegExp(kValidHexPattern)).formatEditUpdate(oldValue, validatedValue);
   }
 
   static String formatInput(String input) => input.replaceFirst('#', '').toUpperCase();

@@ -35,7 +35,8 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
   late Completer<void> refreshCompleter;
   late CancelableOperation cancelableOperation;
   late final AnimationController controller;
-  late final Animation<double> animation, reverseAnimation;
+  late final Animation<double> animation;
+  late final Animation<double> reverseAnimation;
 
   List<Color> get palette => widget.palette.colors;
 
@@ -86,6 +87,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
           final double tileHeight = size.maxHeight / length;
           final Size third =
               isPortrait ? Size(size.maxWidth / 3, tileHeight) : Size(size.maxWidth / length, size.maxHeight / 3);
+
           return BlocListener<ColorsBloc, ColorsState>(
             listener: (_, colorsState) {
               if (colorsState is ColorsLoadStarted) {
@@ -100,9 +102,12 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
-                          padding: EdgeInsets.only(bottom: tileHeight / 3),
-                          child: Text(AppLocalizations.of(context).pullToRefreshTip,
-                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300))),
+                        padding: EdgeInsets.only(bottom: tileHeight / 3),
+                        child: Text(
+                          AppLocalizations.of(context).pullToRefreshTip,
+                          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
+                        ),
+                      ),
                     ),
                   ),
                 FadeTransition(opacity: reverseAnimation, child: DefaultGreyList(length: length)),
@@ -116,10 +121,13 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     displacement: tileHeight,
                     onRefresh: () {
                       BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
-                      BlocProvider.of<ColorsBloc>(context).add(ColorsGenerated(
-                        generateColorsForUi: BlocProvider.of<SettingsBloc>(context).state.colorsForUi,
-                      ));
+                      BlocProvider.of<ColorsBloc>(context).add(
+                        ColorsGenerated(
+                          generateColorsForUi: BlocProvider.of<SettingsBloc>(context).state.colorsForUi,
+                        ),
+                      );
                       BlocProvider.of<FabBloc>(context).add(const FabShowed());
+
                       return refreshCompleter.future;
                     },
                     child: FadeTransition(
@@ -131,49 +139,55 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                         physics: const AlwaysScrollableScrollPhysics(),
                         onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
                             .add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
-                        children: List.generate(length, (int index) {
-                          final Color color = palette[index], contrastColor = color.contrastColor();
-                          return AnimatedListItem(
-                            index: index,
-                            size: size,
-                            key: ValueKey<int>(index),
-                            length: length,
-                            child: ReorderableDragListener(
+                        children: List.generate(
+                          length,
+                          (int index) {
+                            final Color color = palette.elementAt(index);
+                            final Color contrastColor = color.contrastColor();
+
+                            return AnimatedListItem(
                               index: index,
-                              onDragStarted: setOperation,
-                              onDragEnded: cancelOperation,
-                              child: InkWell(
-                                onDoubleTap: () {
-                                  BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
-                                  BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
-                                },
-                                child: Container(
-                                  width: size.maxWidth,
-                                  height: tileHeight,
-                                  color: color,
-                                  child: Stack(
-                                    alignment: Alignment.centerLeft,
-                                    children: [
-                                      Colorpicker(
-                                        index,
-                                        color: color,
-                                        isPortrait: isPortrait,
-                                        textColor: contrastColor,
-                                        buttonSize: isPortrait
-                                            ? third
-                                            : Size(
-                                                size.maxWidth / length,
-                                                size.maxHeight,
-                                              ),
-                                      ),
-                                      Center(child: LockColorButton(index, color: contrastColor, buttonSize: third)),
-                                    ],
+                              size: size,
+                              key: ValueKey<int>(index),
+                              length: length,
+                              child: ReorderableDragListener(
+                                index: index,
+                                onDragStarted: setOperation,
+                                onDragEnded: cancelOperation,
+                                child: InkWell(
+                                  onDoubleTap: () {
+                                    BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
+                                    BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
+                                  },
+                                  child: Container(
+                                    width: size.maxWidth,
+                                    height: tileHeight,
+                                    color: color,
+                                    child: Stack(
+                                      alignment: Alignment.centerLeft,
+                                      children: [
+                                        Colorpicker(
+                                          index,
+                                          color: color,
+                                          isPortrait: isPortrait,
+                                          textColor: contrastColor,
+                                          buttonSize: isPortrait
+                                              ? third
+                                              : Size(
+                                                  size.maxWidth / length,
+                                                  size.maxHeight,
+                                                ),
+                                        ),
+                                        Center(child: LockColorButton(index, color: contrastColor, buttonSize: third)),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        }, growable: false),
+                            );
+                          },
+                          growable: false,
+                        ),
                       ),
                     ),
                   ),

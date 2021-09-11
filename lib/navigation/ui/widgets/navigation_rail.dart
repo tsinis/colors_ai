@@ -39,6 +39,7 @@ class _NavRailState extends State<NavRail> {
           builder: (_, saveState) {
             final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
             final List<String> tabLabels = tabNames(AppLocalizations.of(context));
+
             return NavigationRail(
               selectedIndex: widget.navState.tabIndex,
               onDestinationSelected: (int newTabIndex) {
@@ -50,13 +51,15 @@ class _NavRailState extends State<NavRail> {
               leading: SaveColorsFAB(isExtended: isExtended),
               destinations: [
                 NavigationRailDestination(
-                    label: Text(tabLabels[_shareTabIndex]),
-                    selectedIcon: const Icon(Icons.share),
-                    icon: const Icon(Icons.share_outlined)),
+                  label: Text(tabLabels[_shareTabIndex]),
+                  selectedIcon: const Icon(Icons.share),
+                  icon: const Icon(Icons.share_outlined),
+                ),
                 NavigationRailDestination(
-                    label: Text(tabLabels[_colorsGenTabIndex]),
-                    icon: const Icon(Icons.palette_outlined),
-                    selectedIcon: const Icon(Icons.palette)),
+                  label: Text(tabLabels[_colorsGenTabIndex]),
+                  icon: const Icon(Icons.palette_outlined),
+                  selectedIcon: const Icon(Icons.palette),
+                ),
                 NavigationRailDestination(
                   label: Text(
                     isFavoritesEmpty

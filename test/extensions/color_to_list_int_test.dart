@@ -5,5 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../lib/core/extensions/color.dart';
 import '../../lib/core/extensions/constants.dart';
 
-void main() => test('Color to list int extension test',
-    () async => expect(const IterableEquality<int>().equals(darkColor.toListInt(), [0, 0, 0]), true));
+void main() => test(
+      'Color to list int extension test',
+      () async => expect(const IterableEquality<int>().equals(darkColor.toListInt(), [0, 0, 0]), true),
+    );

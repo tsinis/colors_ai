@@ -14,6 +14,7 @@ class ColorCombos extends ColorsUrlProvider {
         ..write(separateSymbol);
       index++;
     }
+
     return sb.toString().substring(0, sb.length - 1);
   }
   // https://www.colorcombos.com/combotester.html?color0=005B9A&color1=0191C8&color2=74C2E1&color3=7c1313&color4=8C8984

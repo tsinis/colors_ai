@@ -1,10 +1,12 @@
 import 'dart:ui' show Color;
+
 import 'package:hive/hive.dart';
 
 class ColorAdapter extends TypeAdapter<Color> {
   @override
   Color read(BinaryReader reader) {
     final colorValue = reader.readInt();
+
     return Color(colorValue);
   }
 

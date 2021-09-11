@@ -56,9 +56,11 @@ class ColorsRepository {
         );
         final filteredColors = _filterLockedColors(newColors);
         _colorsAI.addAll(filteredColors);
+
         return true;
       } on Exception catch (e) {
         debugPrint(e.toString());
+
         return false;
       }
     } else {
@@ -70,8 +72,11 @@ class ColorsRepository {
     final List<IntRGBColor> newColorsList = List<IntRGBColor>.unmodifiable(newColors.list);
     final Map<int, bool> _lockedMap = _locked.list.asMap();
     final List<IntRGBColor> filteredColors = [];
-    _lockedMap.forEach((index, isLocked) =>
-        filteredColors.add(isLocked ? _colorsAI.list.elementAt(index) : newColorsList.elementAt(index)));
+    _lockedMap.forEach(
+      (index, isLocked) =>
+          filteredColors.add(isLocked ? _colorsAI.list.elementAt(index) : newColorsList.elementAt(index)),
+    );
+
     return filteredColors;
   }
 }

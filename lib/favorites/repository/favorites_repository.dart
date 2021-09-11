@@ -29,6 +29,7 @@ class FavoritesRepository with FavoritesStorage {
     _palettes
       ..clear()
       ..addAll(await storedFavorites);
+
     return _palettes.isNotEmpty;
   }
 }

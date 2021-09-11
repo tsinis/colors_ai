@@ -36,9 +36,11 @@ mixin FavoritesStorage {
         ..registerAdapter(ColorPaletteAdapter())
         ..registerAdapter(ColorAdapter());
       _storageBox = await _openBoxStorage;
+
       return _storageBox.values;
     } on Exception catch (e) {
       debugPrint('Exception during favorites box opening: $e');
+
       return [];
     }
   }

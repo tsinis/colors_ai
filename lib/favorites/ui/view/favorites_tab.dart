@@ -23,7 +23,12 @@ class FavoritesTab extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const Flexible(
-                          child: FractionallySizedBox(widthFactor: 0.6, heightFactor: 0.7, child: NoFavorites())),
+                        child: FractionallySizedBox(
+                          widthFactor: 0.6,
+                          heightFactor: 0.7,
+                          child: NoFavorites(),
+                        ),
+                      ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
                         child: Text.rich(
@@ -34,7 +39,7 @@ class FavoritesTab extends StatelessWidget {
                               TextSpan(
                                 text: '\n${AppLocalizations.of(context).noFavoritesDescription}',
                                 style: const TextStyle(fontSize: 15, fontWeight: FontWeight.normal, height: 3),
-                              )
+                              ),
                             ],
                           ),
                           textAlign: TextAlign.center,

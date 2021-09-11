@@ -22,10 +22,11 @@ void main() => testWidgets('Onboarding should dissapear after tap on "GOT IT" bu
             textDirection: TextDirection.ltr,
             child: FittedBox(
               child: LayoutBuilder(
-                  builder: (_, size) => OnboardingOverlay(
-                        size: size,
-                        length: defaultColors.length,
-                      )),
+                builder: (_, size) => OnboardingOverlay(
+                  size: size,
+                  length: defaultColors.length,
+                ),
+              ),
             ),
           ),
         ),

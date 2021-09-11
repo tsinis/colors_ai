@@ -21,6 +21,7 @@ class App extends StatelessWidget {
           if (settingsState is! SettingsChangedInitial) {
             return const SizedBox.shrink();
           }
+
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -41,10 +42,11 @@ class App extends StatelessWidget {
                       children: [
                         const SplashScreen(),
                         AnimatedOpacity(
-                            curve: Curves.easeInOutCubicEmphasized,
-                            duration: const Duration(seconds: 1),
-                            opacity: state is OnboardingLoadInProgress || state is OnboardingInitial ? 0 : 1,
-                            child: const MainScreen()),
+                          curve: Curves.easeInOutCubicEmphasized,
+                          duration: const Duration(seconds: 1),
+                          opacity: state is OnboardingLoadInProgress || state is OnboardingInitial ? 0 : 1,
+                          child: const MainScreen(),
+                        ),
                       ],
                     ),
                   ),

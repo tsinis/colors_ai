@@ -11,8 +11,8 @@ mixin TextBasedFileCreator {
           <rect width="$width" height="100"/>
         </clipPath>
       </defs>
-      <g clip-path="url(#a)">''',
-        end = '''
+      <g clip-path="url(#a)">''';
+    const String end = '''
 
       </g>
     </svg>''';
@@ -23,11 +23,13 @@ mixin TextBasedFileCreator {
       sb.write('\n        <rect width="100" height="100" x="$x" fill="#$color"/>');
     }
     sb.write(end);
+
     return sb.toString();
   }
 
   String toJson(ColorPalette palette) {
-    const String start = '{', end = '\n}';
+    const String start = '{';
+    const String end = '\n}';
     final StringBuffer sb = StringBuffer(start);
     for (int i = 0; i < palette.colors.length; i++) {
       final String color = palette.colors.elementAt(i).toHex();
@@ -37,6 +39,7 @@ mixin TextBasedFileCreator {
       }
     }
     sb.write(end);
+
     return sb.toString();
   }
 
@@ -48,6 +51,7 @@ mixin TextBasedFileCreator {
       // ignore: prefer_interpolation_to_compose_strings
       sb.write(newLine + r'$color-' '${i + 1}: #${color}ff;');
     }
+
     return sb.toString();
   }
 }

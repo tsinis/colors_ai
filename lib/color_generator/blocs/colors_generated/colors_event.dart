@@ -30,5 +30,6 @@ class ColorsChanged extends ColorsEvent {
 
 class ColorsReordered extends ColorsEvent {
   const ColorsReordered({required this.oldIndex, required this.newIndex});
-  final int oldIndex, newIndex;
+  final int oldIndex;
+  final int newIndex;
 }

@@ -12,7 +12,8 @@ class NoFavorites extends StatefulWidget {
 
 class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStateMixin {
   late final AnimationController controller;
-  late final Animation<double> animation, reverseAnimation;
+  late final Animation<double> animation;
+  late final Animation<double> reverseAnimation;
 
   @override
   void dispose() {
@@ -57,9 +58,10 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
                   child: CustomPaint(
                     size: const Size(240, 240),
                     painter: Magnifier(
-                        backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
-                        holdersColor: Colors.grey[800]!,
-                        outlineColor: Theme.of(context).textTheme.headline2!.color!),
+                      backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
+                      holdersColor: Colors.grey[800]!,
+                      outlineColor: Theme.of(context).textTheme.headline2!.color!,
+                    ),
                   ),
                 ),
               ),

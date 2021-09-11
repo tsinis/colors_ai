@@ -48,6 +48,7 @@ class FileLayout extends StatelessWidget {
           _palette.colors.length,
           (colorsIndex) {
             final String hex = _palette.colors.elementAt(colorsIndex).toHex();
+
             return Column(
               children: [
                 Container(width: _width, height: _height * (3 / 4), color: PdfColor.fromHex(hex)),
@@ -60,6 +61,7 @@ class FileLayout extends StatelessWidget {
                       (spacesIndex) {
                         final bool isEven = spacesIndex.isEven;
                         final String colorSpace = colorSpaces.elementAt(spacesIndex);
+
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -86,7 +88,7 @@ class FileLayout extends StatelessWidget {
                       growable: false,
                     ),
                   ),
-                )
+                ),
               ],
             );
           },

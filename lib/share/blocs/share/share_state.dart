@@ -2,7 +2,8 @@ part of 'share_hydrated_bloc.dart';
 
 abstract class ShareState extends Equatable {
   const ShareState({this.selectedProvider, this.selectedFormat});
-  final int? selectedProvider, selectedFormat;
+  final int? selectedProvider;
+  final int? selectedFormat;
 
   List<ColorsUrlProvider> get providersList => ShareRepository.providers;
 
@@ -25,5 +26,6 @@ class ShareSelectedInitial extends ShareState {
     int? providerIndex,
     int? formatIndex,
   }) : super(selectedProvider: providerIndex, selectedFormat: formatIndex);
-  final bool canSharePdf, canSharePng;
+  final bool canSharePdf;
+  final bool canSharePng;
 }

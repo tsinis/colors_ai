@@ -11,9 +11,10 @@ class AboutAppDialog extends StatelessWidget {
   const AboutAppDialog();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final TextStyle? linkStyle =
         Theme.of(context).textTheme.bodyText2?.copyWith(color: Theme.of(context).indicatorColor);
+
     return AboutDialog(
       applicationName: appName,
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
@@ -29,38 +30,53 @@ class AboutAppDialog extends StatelessWidget {
               children: [
                 TextSpan(text: AppLocalizations.of(context).aboutGenerator),
                 TextSpan(
-                    style: linkStyle,
-                    text: ' Colormind API',
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutApiProviderTaped())),
+                  style: linkStyle,
+                  text: ' Colormind API',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
+                          const AboutApiProviderTaped(),
+                        ),
+                ),
                 TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
                 TextSpan(
-                    style: linkStyle,
-                    text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutSourceCodeTaped())),
+                  style: linkStyle,
+                  text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
+                          const AboutSourceCodeTaped(),
+                        ),
+                ),
                 const TextSpan(text: '.'),
                 TextSpan(
                   text:
                       '\n\n${AppLocalizations.of(context).aboutAttribution.toUpperCase()}:\n\n${AppLocalizations.of(context).aboutSounds}',
                 ),
                 TextSpan(
-                    style: linkStyle,
-                    text: ' "Material Product Sounds"',
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutSoundAssetsTaped())),
+                  style: linkStyle,
+                  text: ' "Material Product Sounds"',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
+                          const AboutSoundAssetsTaped(),
+                        ),
+                ),
                 TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
                 TextSpan(
-                    style: linkStyle,
-                    text: ' Google',
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutGoogleTaped())),
+                  style: linkStyle,
+                  text: ' Google',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
+                          const AboutGoogleTaped(),
+                        ),
+                ),
                 TextSpan(text: ' ${AppLocalizations.of(context).aboutSoundsLicense}'),
                 TextSpan(
-                    style: linkStyle,
-                    text: ' CC BY 4.0',
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => BlocProvider.of<AboutBloc>(context).add(const AboutLicenseTaped())),
+                  style: linkStyle,
+                  text: ' CC BY 4.0',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
+                          const AboutLicenseTaped(),
+                        ),
+                ),
                 const TextSpan(text: '.'),
               ],
             ),

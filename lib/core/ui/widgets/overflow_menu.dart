@@ -10,23 +10,26 @@ class OverflowMenu extends StatelessWidget {
   const OverflowMenu();
 
   void showDialog(BuildContext context, Widget dialog) {
-    SchedulerBinding.instance?.addPostFrameCallback((_) async => showModal<void>(
-          context: context,
-          configuration: const FadeScaleTransitionConfiguration(
-            transitionDuration: Duration(milliseconds: 400),
-            reverseTransitionDuration: Duration(milliseconds: 200),
-          ),
-          useRootNavigator: true,
-          builder: (_) => dialog,
-        ));
+    SchedulerBinding.instance?.addPostFrameCallback(
+      (_) async => showModal<void>(
+        context: context,
+        configuration: const FadeScaleTransitionConfiguration(
+          transitionDuration: Duration(milliseconds: 400),
+          reverseTransitionDuration: Duration(milliseconds: 200),
+        ),
+        useRootNavigator: true,
+        builder: (_) => dialog,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) => PopupMenuButton<void>(
         itemBuilder: (_) => [
           PopupMenuItem(
-              onTap: () => showDialog(context, const SettingsDialog()),
-              child: Text(AppLocalizations.of(context).settings)),
+            onTap: () => showDialog(context, const SettingsDialog()),
+            child: Text(AppLocalizations.of(context).settings),
+          ),
           PopupMenuItem(
             onTap: () => showDialog(context, const AboutAppDialog()),
             child: Text(AppLocalizations.of(context).help),

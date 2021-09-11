@@ -23,7 +23,8 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
   late final Animation<double> fabAnimation;
   late final AnimationController controller;
 
-  bool isGenerateTab = true, isFailed = false;
+  bool isGenerateTab = true;
+  bool isFailed = false;
 
   @override
   void dispose() {
@@ -65,32 +66,36 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
             } else if (state is FabShowInitial && !alwaysShow) {
               controller.forward();
             }
+
             return Padding(
-                padding: isExtended ? const EdgeInsets.fromLTRB(16, 8, 16, 0) : const EdgeInsets.only(top: 8),
-                child: BlocBuilder<NavigationBloc, NavigationState>(
-                  builder: (_, navState) {
-                    isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
-                    return BlocBuilder<ColorsBloc, ColorsState>(
-                      builder: (_, colorState) {
-                        if (alwaysShow) {
-                          isFailed = colorState is ColorsFailure;
-                        }
-                        return AnimatedSize(
-                          duration: const Duration(milliseconds: 400),
-                          child: FloatingActionButton.extended(
-                            disabledElevation: 2,
-                            backgroundColor: isDisabled ? Theme.of(context).scaffoldBackgroundColor : null,
-                            isExtended: isExtended,
-                            onPressed: isDisabled ? null : onFabPressed,
-                            label: Text(AppLocalizations.of(context).addToFavorites),
-                            icon: icon,
-                            tooltip: tooltip,
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ));
+              padding: isExtended ? const EdgeInsets.fromLTRB(16, 8, 16, 0) : const EdgeInsets.only(top: 8),
+              child: BlocBuilder<NavigationBloc, NavigationState>(
+                builder: (_, navState) {
+                  isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
+
+                  return BlocBuilder<ColorsBloc, ColorsState>(
+                    builder: (_, colorState) {
+                      if (alwaysShow) {
+                        isFailed = colorState is ColorsFailure;
+                      }
+
+                      return AnimatedSize(
+                        duration: const Duration(milliseconds: 400),
+                        child: FloatingActionButton.extended(
+                          disabledElevation: 2,
+                          backgroundColor: isDisabled ? Theme.of(context).scaffoldBackgroundColor : null,
+                          isExtended: isExtended,
+                          onPressed: isDisabled ? null : onFabPressed,
+                          label: Text(AppLocalizations.of(context).addToFavorites),
+                          icon: icon,
+                          tooltip: tooltip,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            );
           },
         ),
       );

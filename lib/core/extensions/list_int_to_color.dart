@@ -7,4 +7,6 @@ extension ColorExtension on IntRGBColor {
       (length == 3) ? Color.fromRGBO(this[_red], this[_green], this[_blue], 1) : const Color.fromRGBO(128, 128, 128, 1);
 }
 
-const int _red = 0, _green = 1, _blue = 2;
+const int _red = 0;
+const int _green = 1;
+const int _blue = 2;

@@ -15,8 +15,13 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
   static const Curve curve = Curves.easeInOutQuart;
 
   late final Animation<Color?> color;
-  late final Animation<double> opacity, height, fade;
-  late final AnimationController opacityController, heightController, colorController, fadeController;
+  late final Animation<double> opacity;
+  late final Animation<double> height;
+  late final Animation<double> fade;
+  late final AnimationController opacityController;
+  late final AnimationController heightController;
+  late final AnimationController colorController;
+  late final AnimationController fadeController;
 
   @override
   void initState() {
@@ -43,13 +48,16 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
             width: 100,
             height: height.value,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [color.value!, widget.color.withOpacity(opacity.value)],
-                ),
-                border: Border.all(color: Colors.grey[400]!.withOpacity(opacity.value), width: 4),
-                borderRadius: const BorderRadius.all(Radius.circular(100))),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [color.value!, widget.color.withOpacity(opacity.value)],
+              ),
+              border: Border.all(color: Colors.grey[400]!.withOpacity(opacity.value), width: 4),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(100),
+              ),
+            ),
             child: FadeTransition(
               opacity: fade,
               child: Align(

@@ -39,9 +39,11 @@ class _NavigationScreenState extends State<MainScreen> {
     super.initState();
     // AppLocalizations are not avalible before initState method complete.
     Future.delayed(
-        Duration.zero,
-        () => BlocProvider.of<AboutBloc>(context)
-            .add(AboutStarted(currentLocale: AppLocalizations.of(context).localeName)));
+      Duration.zero,
+      () => BlocProvider.of<AboutBloc>(context).add(
+        AboutStarted(currentLocale: AppLocalizations.of(context).localeName),
+      ),
+    );
   }
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
@@ -54,7 +56,11 @@ class _NavigationScreenState extends State<MainScreen> {
         providers: [
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockedBloc>(
-              create: (_) => LockedBloc(context.read<ColorsRepository>())..add(const LockStarted())),
+            create: (_) => LockedBloc(context.read<ColorsRepository>())
+              ..add(
+                const LockStarted(),
+              ),
+          ),
           BlocProvider<ColorsBloc>(
             create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted()),
           ),
@@ -65,6 +71,7 @@ class _NavigationScreenState extends State<MainScreen> {
             if (!isGenTab) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
+
             return Shortcuts(
               shortcuts: <ShortcutActivator, Intent>{
                 ...WidgetsApp.defaultShortcuts,
@@ -79,14 +86,17 @@ class _NavigationScreenState extends State<MainScreen> {
                     if (kIsWeb) {
                       BlocProvider.of<SoundBloc>(navContext).add(const SoundRefreshed());
                     }
-                    BlocProvider.of<ColorsBloc>(navContext).add(ColorsGenerated(
-                      generateColorsForUi: BlocProvider.of<SettingsBloc>(navContext).state.colorsForUi,
-                    ));
+                    BlocProvider.of<ColorsBloc>(navContext).add(
+                      ColorsGenerated(
+                        generateColorsForUi: BlocProvider.of<SettingsBloc>(navContext).state.colorsForUi,
+                      ),
+                    );
                   }
                 },
                 child: AnnotatedRegion<SystemUiOverlayStyle>(
                   value: overlayStyle.copyWith(
-                      systemNavigationBarColor: Theme.of(context).navigationRailTheme.backgroundColor),
+                    systemNavigationBarColor: Theme.of(context).navigationRailTheme.backgroundColor,
+                  ),
                   child: Scaffold(
                     floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
                     appBar: AppBar(
@@ -107,9 +117,9 @@ class _NavigationScreenState extends State<MainScreen> {
                           if (snackbarState is! SnackbarsInitial) {
                             BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                             late String message;
-                            final bool isUrlCopied = snackbarState is UrlCopySuccess,
-                                isFileCopied = snackbarState is FileCopySuccess,
-                                isShareFailed = snackbarState is ShareAttemptFailure;
+                            final bool isUrlCopied = snackbarState is UrlCopySuccess;
+                            final bool isFileCopied = snackbarState is FileCopySuccess;
+                            final bool isShareFailed = snackbarState is ShareAttemptFailure;
                             if (isUrlCopied) {
                               message = AppLocalizations.of(context).urlCopiedMessage;
                             } else if (snackbarState is ColorCopySuccess) {
@@ -134,8 +144,10 @@ class _NavigationScreenState extends State<MainScreen> {
                                     ? SnackBarAction(
                                         textColor: Theme.of(context).scaffoldBackgroundColor,
                                         label: AppLocalizations.of(context).urlOpenButtonLabel.toUpperCase(),
-                                        onPressed: () =>
-                                            BlocProvider.of<SnackbarBloc>(context).add(const UrlOpenedSuccess()))
+                                        onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(
+                                          const UrlOpenedSuccess(),
+                                        ),
+                                      )
                                     : null,
                               ),
                             );
@@ -149,7 +161,7 @@ class _NavigationScreenState extends State<MainScreen> {
                               if (!isPortrait) const VerticalDivider(width: 1),
                               Expanded(
                                 child: navTabs.elementAt(navState.tabIndex),
-                              )
+                              ),
                             ],
                           ),
                         ),

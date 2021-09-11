@@ -61,7 +61,8 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
-    final int? savedProvider = json['url'] as int?, savedFormat = json['format'] as int?;
+    final int? savedProvider = json['url'] as int?;
+    final int? savedFormat = json['format'] as int?;
     if (savedProvider != null) {
       _share.providerIndex = savedProvider;
     }

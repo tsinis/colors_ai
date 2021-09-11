@@ -12,6 +12,7 @@ class PalleteNinja extends ColorsUrlProvider {
         ..write(color.toHex().toLowerCase())
         ..write(separateSymbol);
     }
+
     return _removeLastChar(sb.toString());
   }
   // https://palette.ninja/#f67509-#f6d409-#dc1408-#430602-#f61609

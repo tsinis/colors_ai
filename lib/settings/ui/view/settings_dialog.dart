@@ -17,18 +17,23 @@ class SettingsDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               SwitchListTile(
-                  dense: true,
-                  title: Text(AppLocalizations.of(context).colorsForUiTitle),
-                  subtitle: Text(AppLocalizations.of(context).colorsForUiSubtitle),
-                  activeColor: Theme.of(context).indicatorColor,
-                  value: state.colorsForUi,
-                  onChanged: (isForUi) {
-                    if (isForUi) {
-                      BlocProvider.of<SettingsBloc>(context).add(const SettingsColorsForUiSelected());
-                    } else {
-                      BlocProvider.of<SettingsBloc>(context).add(const SettingsRegularColorsSelected());
-                    }
-                  }),
+                dense: true,
+                title: Text(AppLocalizations.of(context).colorsForUiTitle),
+                subtitle: Text(AppLocalizations.of(context).colorsForUiSubtitle),
+                activeColor: Theme.of(context).indicatorColor,
+                value: state.colorsForUi,
+                onChanged: (isForUi) {
+                  if (isForUi) {
+                    BlocProvider.of<SettingsBloc>(context).add(
+                      const SettingsColorsForUiSelected(),
+                    );
+                  } else {
+                    BlocProvider.of<SettingsBloc>(context).add(
+                      const SettingsRegularColorsSelected(),
+                    );
+                  }
+                },
+              ),
               const Divider(height: 1),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 8, top: 12),
@@ -65,11 +70,14 @@ class SettingsDialog extends StatelessWidget {
           ),
           actions: [
             TextButton(
-                onPressed: () {
-                  BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected());
-                  BlocProvider.of<SettingsBloc>(context).add(const SettingsRegularColorsSelected());
-                },
-                child: Text(AppLocalizations.of(context).resetButtonLabel.toUpperCase())),
+              onPressed: () {
+                BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected());
+                BlocProvider.of<SettingsBloc>(context).add(const SettingsRegularColorsSelected());
+              },
+              child: Text(
+                AppLocalizations.of(context).resetButtonLabel.toUpperCase(),
+              ),
+            ),
             TextButton(
               onPressed: () => Navigator.pop(context),
               child: Text(MaterialLocalizations.of(context).closeButtonLabel),

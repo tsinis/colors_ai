@@ -4,7 +4,8 @@ import '../../interfaces/manipulate_lock.dart';
 class LockedColors implements ManipulateListInterface, LockInterface {
   LockedColors({this.list = const []});
 
-  static const bool _locked = true, _unlocked = false;
+  static const bool _locked = true;
+  static const bool _unlocked = false;
 
   @override
   final List<bool> list;

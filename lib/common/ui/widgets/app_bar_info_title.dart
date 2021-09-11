@@ -21,6 +21,7 @@ class AppBarInfoTitle extends StatelessWidget {
           } else {
             appBarInfo = null;
           }
+
           return Text(
             appBarInfo ?? tabLabels.elementAt(selectedTabIndex),
             style: const TextStyle(fontWeight: FontWeight.w400),

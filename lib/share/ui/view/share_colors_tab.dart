@@ -25,6 +25,7 @@ class ShareColors extends StatelessWidget {
           final ColorPalette palette = context.read<ColorsRepository>().toPalette();
           final String? exportFormats = state.providersList[selectedProviderIndex].formats;
           final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
           return LayoutBuilder(
             builder: (_, size) => isPortrait
                 ? ListView(
@@ -59,7 +60,7 @@ class ShareColors extends StatelessWidget {
                           child: FileExportPreview(palette),
                         ),
                       ),
-                      const SizedBox(height: 16)
+                      const SizedBox(height: 16),
                     ],
                   )
                 : SingleChildScrollView(

@@ -1,5 +1,4 @@
 import '../../../core/models/typedef_aliases/int_rgb_color.dart';
-
 import 'constants.dart';
 
 String colorsToInput(List<IntRGBColor> colorslist, {required List<bool> lockedColors}) {
@@ -17,5 +16,6 @@ String colorsToInput(List<IntRGBColor> colorslist, {required List<bool> lockedCo
   }
 
   sb.write(endSquareBracket + comma);
+
   return sb.toString().replaceAll(' ', '');
 }

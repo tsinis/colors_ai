@@ -20,6 +20,7 @@ class BottomNavBar extends StatelessWidget {
         builder: (_, saveState) {
           final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
           final List<String> tabLabels = tabNames(AppLocalizations.of(context));
+
           return NavigationBar(
             backgroundColor: Theme.of(context).primaryColor,
             labelBehavior: NavigationBarDestinationLabelBehavior.alwaysHide,
@@ -31,21 +32,24 @@ class BottomNavBar extends StatelessWidget {
             },
             destinations: [
               NavigationBarDestination(
-                  label: tabLabels[_shareTabIndex],
-                  selectedIcon: const Icon(Icons.share),
-                  icon: Icon(Icons.share_outlined, color: Theme.of(context).primaryIconTheme.color)),
+                label: tabLabels[_shareTabIndex],
+                selectedIcon: const Icon(Icons.share),
+                icon: Icon(Icons.share_outlined, color: Theme.of(context).primaryIconTheme.color),
+              ),
               NavigationBarDestination(
-                  label: tabLabels[_colorsGenTabIndex],
-                  icon: Icon(Icons.palette_outlined, color: Theme.of(context).primaryIconTheme.color),
-                  selectedIcon: const Icon(Icons.palette)),
+                label: tabLabels[_colorsGenTabIndex],
+                icon: Icon(Icons.palette_outlined, color: Theme.of(context).primaryIconTheme.color),
+                selectedIcon: const Icon(Icons.palette),
+              ),
               NavigationBarDestination(
                 label: isFavoritesEmpty
                     ? AppLocalizations.of(context).noFavoritesTabLabel
                     : AppLocalizations.of(context).favoritesTabLabel,
                 selectedIcon: const Icon(Icons.bookmarks),
-                icon: Icon(Icons.bookmarks_outlined,
-                    color:
-                        isFavoritesEmpty ? Theme.of(context).disabledColor : Theme.of(context).primaryIconTheme.color),
+                icon: Icon(
+                  Icons.bookmarks_outlined,
+                  color: isFavoritesEmpty ? Theme.of(context).disabledColor : Theme.of(context).primaryIconTheme.color,
+                ),
               ),
             ],
           );

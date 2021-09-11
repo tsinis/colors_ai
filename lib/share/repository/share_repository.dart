@@ -34,7 +34,8 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
 
   static const Clipboards _clipboard = Clipboards();
 
-  int? _formatIndex, _providerIndex;
+  int? _formatIndex;
+  int? _providerIndex;
 
   int? get formatIndex => _formatIndex;
 
@@ -87,7 +88,6 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
         case FileFormat.scss:
           await _shareTextData(toScss(palette));
           break;
-        default:
       }
       // ignore: avoid_catches_without_on_clauses
     } catch (_) {
@@ -107,7 +107,11 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
         case FileFormat.scss:
           await _clipboard.copyTextData(toScss(palette));
           break;
-        default:
+        case FileFormat.pdfA4:
+        case FileFormat.pdfLetter:
+        case FileFormat.pngA4:
+        case FileFormat.pngLetter:
+          break;
       }
       // ignore: avoid_catches_without_on_clauses
     } catch (_) {
@@ -124,17 +128,20 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
       }
     }
     final File file = File(_filePath)..writeAsBytesSync(bytes.toList());
+
     return _shareFile(file);
   }
 
   Future<bool> _shareTextData(String data) async {
     final File file = File(_filePath)..writeAsStringSync(data);
+
     return _shareFile(file);
   }
 
   Future<bool> _shareFile(File file) async {
     if (file.existsSync()) {
       await Share.shareFiles([_filePath], subject: appName);
+
       return true;
     } else {
       return false;

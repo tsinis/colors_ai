@@ -13,12 +13,14 @@ class DefaultGreyList extends StatelessWidget {
         builder: (_, Orientation orientation) => OrientationSwitcher(
           isPortrait: orientation == Orientation.portrait,
           children: List.generate(
-              length ?? defaultColors.length,
-              (int i) => Flexible(
-                      child: Container(
-                    color: defaultColors[i],
-                  )),
-              growable: false),
+            length ?? defaultColors.length,
+            (int i) => Flexible(
+              child: Container(
+                color: defaultColors[i],
+              ),
+            ),
+            growable: false,
+          ),
         ),
       );
 }

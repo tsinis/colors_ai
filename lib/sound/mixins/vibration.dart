@@ -1,14 +1,12 @@
-import 'dart:io' show Platform;
-
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:platform_info/platform_info.dart';
 import 'package:vibration/vibration.dart';
 
 mixin Vibrations {
   late final bool customVibrationsAvailible;
   Future<void> init() async {
-    if (!kIsWeb && (Platform.isAndroid || Platform.isIOS)) {
+    if (platform.isMobile) {
       customVibrationsAvailible =
-          (await Vibration.hasVibrator() == true) && (await Vibration.hasCustomVibrationsSupport() == true);
+          (await Vibration.hasVibrator() ?? false) && (await Vibration.hasCustomVibrationsSupport() ?? false);
     } else {
       customVibrationsAvailible = false;
     }

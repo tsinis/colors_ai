@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
 import 'dart:js' as js;
-
 import 'dart:typed_data';
 
 Future<bool> shareWebPng(Uint8List bytes, {String? filename}) async {
@@ -18,5 +17,6 @@ Future<bool> shareWebPng(Uint8List bytes, {String? filename}) async {
   link
     ..click()
     ..remove();
+
   return true;
 }

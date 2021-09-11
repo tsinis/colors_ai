@@ -20,6 +20,7 @@ void main() => testWidgets('Splash should dissapear after onboard data load', (t
             home: BlocBuilder<OnboardingBloc, OnboardingState>(
               builder: (_, state) {
                 loadingOnboardData = state is OnboardingLoadInProgress;
+
                 return AnimatedOpacity(
                   duration: animationDuration,
                   opacity: loadingOnboardData ? 0.5 : 1,

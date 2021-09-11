@@ -18,13 +18,15 @@ class UrlShareSection extends ShareSection {
     required this.exportFormats,
   }) : super(maxWidth: width, palette: palette);
 
-  final int selectedProviderIndex, firstProvider;
+  final int selectedProviderIndex;
+  final int firstProvider;
   final String? exportFormats;
   final List<ColorsUrlProvider> providersList;
 
   @override
   Widget build(BuildContext context) {
     final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
       child: Column(
@@ -36,16 +38,17 @@ class UrlShareSection extends ShareSection {
               isDense: isPortrait,
               dropdownColor: Theme.of(context).dialogBackgroundColor,
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Theme.of(context).splashColor,
-                  labelText: AppLocalizations.of(context).shareLinksLabel,
-                  helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                  helperMaxLines: 1,
-                  helperText: (selectedProviderIndex == firstProvider)
-                      ? AppLocalizations.of(context).googleArtsExport
-                      : (exportFormats != null)
-                          ? '* ${AppLocalizations.of(context).exportTo} $exportFormats'
-                          : null),
+                filled: true,
+                fillColor: Theme.of(context).splashColor,
+                labelText: AppLocalizations.of(context).shareLinksLabel,
+                helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                helperMaxLines: 1,
+                helperText: (selectedProviderIndex == firstProvider)
+                    ? AppLocalizations.of(context).googleArtsExport
+                    : (exportFormats != null)
+                        ? '* ${AppLocalizations.of(context).exportTo} $exportFormats'
+                        : null,
+              ),
               value: selectedProviderIndex,
               onChanged: (newProviderIndex) {
                 if (newProviderIndex != null) {
@@ -58,10 +61,11 @@ class UrlShareSection extends ShareSection {
                   value: index,
                   child: Text.rich(
                     TextSpan(
-                        text: providersList[index].name,
-                        children: (providersList[index].formats != null)
-                            ? const [TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
-                            : null),
+                      text: providersList[index].name,
+                      children: (providersList[index].formats != null)
+                          ? const [TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
+                          : null,
+                    ),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),

@@ -19,8 +19,10 @@ class FileShareSection extends ShareSection {
     this.additionalInfo,
   }) : super(maxWidth: width, palette: palette);
 
-  final int selectedFormatIndex, firstFormat;
-  final bool canSharePdf, canSharePng;
+  final int selectedFormatIndex;
+  final int firstFormat;
+  final bool canSharePdf;
+  final bool canSharePng;
   final String? additionalInfo;
 
   FileFormat get file => selectedFormatIndex.selectedFile;
@@ -47,6 +49,7 @@ class FileShareSection extends ShareSection {
   @override
   Widget build(BuildContext context) {
     final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
       child: Column(
@@ -58,12 +61,15 @@ class FileShareSection extends ShareSection {
               isDense: isPortrait,
               dropdownColor: Theme.of(context).dialogBackgroundColor,
               decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Theme.of(context).splashColor,
-                  labelText: AppLocalizations.of(context).shareFile,
-                  helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-                  helperMaxLines: 1,
-                  helperText: helperText(AppLocalizations.of(context))),
+                filled: true,
+                fillColor: Theme.of(context).splashColor,
+                labelText: AppLocalizations.of(context).shareFile,
+                helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                helperMaxLines: 1,
+                helperText: helperText(
+                  AppLocalizations.of(context),
+                ),
+              ),
               value: selectedFormatIndex,
               onChanged: (newFormatIndex) {
                 if (newFormatIndex != null) {
