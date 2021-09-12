@@ -63,3 +63,14 @@ flutter:
   assets:
     - assets/sounds/
     - google_fonts/
+
+msix_config:
+  display_name: Colors AI
+  publisher_display_name: Roman Cinis
+  publisher: CN=3F745294-7EE6-4235-B7C5-8E22B9089351
+  identity_name: 53621RomanCinis.ColorsAI
+  msix_version: 1.0.0.0
+  languages: en-us, sk-sk, ru-ru, cs-cz
+  architecture: x64
+  store: true
+  capabilities: "internetClient"
