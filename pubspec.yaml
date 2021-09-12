@@ -27,7 +27,7 @@ dependencies:
   hydrated_bloc: ^7.0.1
   intl: ^0.17.0 # From Google
   json_annotation: ^4.0.0-nullsafety.0 # From Google
-  just_audio: ^0.9.10 # Flutter Favorite
+  just_audio: ^0.9.11 # Flutter Favorite
   mdi: ^5.0.0-nullsafety.0
   package_info_plus: ^1.0.6 # From Flutter Community (former Google)
   path_provider: ^2.0.3 # From Google

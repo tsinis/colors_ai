@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:platform_info/platform_info.dart';
 
 import '../../../about/blocs/about_dialog/about_bloc.dart';
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
@@ -101,8 +102,12 @@ class _NavigationScreenState extends State<MainScreen> {
                     floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
                     appBar: AppBar(
                       systemOverlayStyle: overlayStyle.copyWith(statusBarColor: Colors.transparent),
-                      title: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
                       actions: [appBarActions[navState.tabIndex], const OverflowMenu()],
+                      toolbarHeight: kToolbarHeight + (platform.isMacOS ? 12 : 0),
+                      title: Padding(
+                        padding: EdgeInsets.only(top: platform.isMacOS ? 16 : 0),
+                        child: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
+                      ),
                     ),
                     body: MultiBlocProvider(
                       providers: [
