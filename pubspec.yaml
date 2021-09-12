@@ -29,6 +29,7 @@ dependencies:
   json_annotation: ^4.0.0-nullsafety.0 # From Google
   just_audio: ^0.9.11 # Flutter Favorite
   mdi: ^5.0.0-nullsafety.0
+  msix: ^2.1.3
   package_info_plus: ^1.0.6 # From Flutter Community (former Google)
   path_provider: ^2.0.3 # From Google
   platform_info: ^3.1.0 # Contributor

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "is.tsin" "\0"
-            VALUE "FileDescription", "A new Flutter project." "\0"
+            VALUE "FileDescription", "Color scheme generator that uses deep learning from Colormind API." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "colors_ai" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 is.tsin. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 Roman Cinis. All rights reserved." "\0"
             VALUE "OriginalFilename", "colors_ai.exe" "\0"
-            VALUE "ProductName", "colors_ai" "\0"
+            VALUE "ProductName", "Colors AI" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

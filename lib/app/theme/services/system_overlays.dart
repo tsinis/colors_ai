@@ -12,7 +12,7 @@ class SystemUI {
   static void init() {
     if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
       setWindowTitle(appName);
-      setWindowMinSize(const Size(344, 554));
+      setWindowMinSize(Size(344, 554 + (Platform.isWindows ? 146 : 0)));
     }
   }
 }
