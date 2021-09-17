@@ -19,24 +19,39 @@ class SaveColorsFAB extends StatefulWidget {
   _SaveColorsFABState createState() => _SaveColorsFABState();
 }
 
-class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProviderStateMixin {
+class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateMixin {
+  static const Duration animationDuration = Duration(milliseconds: 400);
+
+  late final AnimationController fadeController;
+  late final AnimationController colorController;
   late final Animation<double> fabAnimation;
-  late final AnimationController controller;
+  late final Animation<Color?> colorAnimation;
 
   bool isGenerateTab = true;
   bool isFailed = false;
 
   @override
   void dispose() {
-    controller.dispose();
+    fadeController.dispose();
+    colorController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 300))..forward();
-    fabAnimation = CurvedAnimation(parent: controller, curve: Curves.easeIn);
+    fadeController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300))..forward();
+    colorController = AnimationController(vsync: this, duration: animationDuration);
+    fabAnimation = CurvedAnimation(parent: fadeController, curve: Curves.easeIn);
+    colorAnimation = ColorTween(
+      end: Colors.teal[200],
+    ).animate(
+      CurvedAnimation(
+        parent: colorController,
+        curve: Curves.elasticOut,
+        reverseCurve: Curves.easeOutBack,
+      ),
+    );
   }
 
   bool get alwaysShow => widget.isExtended != null;
@@ -47,13 +62,12 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
     BlocProvider.of<SoundBloc>(context).add(const SoundFavoritesAdded());
     BlocProvider.of<FavoritesBloc>(context).add(FavoritesAdded(favorite: context.read<ColorsRepository>().toPalette()));
     if (!alwaysShow) {
-      controller.reverse();
+      fadeController.reverse();
     }
+    colorController.forward().whenComplete(colorController.reverse);
   }
 
   String get tooltip => AppLocalizations.of(context).savePaletteToFavorites;
-
-  static const Icon icon = Icon(Icons.bookmark_add_outlined);
 
   @override
   Widget build(BuildContext context) => FadeScaleTransition(
@@ -62,9 +76,9 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
           builder: (_, state) {
             // https://material.io/design/environment/elevation.html#elevation-in-material-design
             if (state is FabHideInitial && !alwaysShow) {
-              controller.reverse();
+              fadeController.reverse();
             } else if (state is FabShowInitial && !alwaysShow) {
-              controller.forward();
+              fadeController.forward();
             }
 
             return Padding(
@@ -80,15 +94,19 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with SingleTickerProvider
                       }
 
                       return AnimatedSize(
-                        duration: const Duration(milliseconds: 400),
-                        child: FloatingActionButton.extended(
-                          disabledElevation: 2,
-                          backgroundColor: isDisabled ? Theme.of(context).scaffoldBackgroundColor : null,
-                          isExtended: isExtended,
-                          onPressed: isDisabled ? null : onFabPressed,
-                          label: Text(AppLocalizations.of(context).addToFavorites),
-                          icon: icon,
-                          tooltip: tooltip,
+                        duration: animationDuration,
+                        child: AnimatedBuilder(
+                          animation: colorAnimation,
+                          builder: (_, __) => FloatingActionButton.extended(
+                            disabledElevation: 2,
+                            isExtended: isExtended,
+                            onPressed: isDisabled ? null : onFabPressed,
+                            label: Text(AppLocalizations.of(context).addToFavorites),
+                            icon: const Icon(Icons.bookmark_add_outlined),
+                            tooltip: tooltip,
+                            backgroundColor:
+                                isDisabled ? Theme.of(context).scaffoldBackgroundColor : colorAnimation.value,
+                          ),
                         ),
                       );
                     },

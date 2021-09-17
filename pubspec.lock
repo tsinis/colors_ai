@@ -224,7 +224,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.0-dev.1"
+    version: "4.3.1"
   dart_style:
     dependency: transitive
     description:
@@ -448,7 +448,7 @@ packages:
       name: json_serializable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0"
+    version: "5.0.1"
   just_audio:
     dependency: "direct main"
     description:
@@ -602,7 +602,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.0.4"
   path_provider_linux:
     dependency: transitive
     description:
@@ -686,7 +686,7 @@ packages:
       name: printing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.5.0"
+    version: "5.6.0"
   process:
     dependency: transitive
     description:
@@ -978,7 +978,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.2.0"
+    version: "7.1.1"
   watcher:
     dependency: transitive
     description:

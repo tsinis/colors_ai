@@ -151,6 +151,6 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider provider = providers[providerIndex ?? 0];
     final String url = provider.url(palette);
-    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: appName); //TODO Fix on web.
+    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: appName);
   }
 }

@@ -26,7 +26,7 @@ You can watch a **preview video of it (with main functionality highlight) here:*
 
 ## Description
 
-Colors AI is a gesture-first color scheme generator that uses **deep learning from Colormind API**. Application is made with Flutter and available for Android™ devices.
+Colors AI is a multiplatform color scheme generator that uses **deep learning from Colormind API**. Application is made with Flutter and available for Android™ devices.
 
 ## Technical Data
 
@@ -43,15 +43,9 @@ The application uses a **feature-driven** directory structure. This project stru
 
 Application is **partially covered with Unit, Widget, and Integration tests**. More to come in the future.
 
-### Packages
-
-All Dart code is linted with [Pedantic](https://pub.dev/packages/pedantic). [Hive](https://pub.dev/packages/hive) with custom Color TypeAdapters is used here for local data storage. [HTTP](https://pub.dev/packages/http) package is used for network requests to Colormind API.
-
-**Application is fully sound null-safe**.
-
 ### How to run it
 
-Flutter version **2.3.0** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
+Flutter version **2.6.0** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```bash
 flutter run
@@ -59,14 +53,13 @@ flutter run
 
 ## UI/UX Design
 
-All animations here are made with pure Flutter. The application's UI is designed with "gesture-first" UX and strictly following [Material Design Guidelines](https://material.io/design). Neutral grey color UI is used here to not disrupt user's color perception with highly contrasting light or dark themes.
+All animations here are made with pure Flutter. The application's UI is designed with "gesture-first" UX on mobile platforms and strictly following [Material Design Guidelines](https://material.io/design). Neutral grey color UI is used here to not disrupt user's color perception with highly contrasting light or dark themes.
 
 ## To-Do Section
 
 * [ ] Write more tests.
 * [x] Separate data layer more.
 * [x] Create more interfaces for Data and Repository layers.
-* [ ] Add dependencies list in README.
 * [x] Add exports to PDF and PNG.
 * [x] L10N.
 * [ ] Add Feedback.
