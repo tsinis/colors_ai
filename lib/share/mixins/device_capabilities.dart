@@ -1,5 +1,3 @@
-import 'dart:io' show Platform;
-
 import 'package:flutter/foundation.dart';
 import 'package:printing/printing.dart';
 
@@ -14,7 +12,7 @@ mixin DeviceCapabilities {
   Future<void> init() async {
     storagePath = kIsWeb ? '' : (await DataStorage.directory).path;
     final PrintingInfo info = await Printing.info();
-    canSharePdf = !(!kIsWeb && (Platform.isLinux || Platform.isWindows)) && info.canShare;
-    canSharePng = !(!kIsWeb && (Platform.isLinux || Platform.isWindows)) && info.canRaster;
+    canSharePdf = info.canShare;
+    canSharePng = info.canRaster;
   }
 }

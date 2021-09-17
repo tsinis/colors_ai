@@ -45,6 +45,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
+  // Create File Format list for specific OS.
   FileFormat get _selectedFile => FileFormat.values.elementAt(_formatIndex ?? 0);
 
   String get _fileExtension => _selectedFile.format.toLowerCase();
