@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Colors AI
+Comment=AI driven color scheme generator.
+Icon=${SNAP}/meta/gui/colors-ai-icon.svg
+Exec=colors-ai %U
+Terminal=false
+Type=Application
+Categories=Utility;ArtAndDesign;
+Keywords=Colors;
+StartupNotify=false
