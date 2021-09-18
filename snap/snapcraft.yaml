@@ -21,4 +21,8 @@ parts:
   colors-ai:
     source: .
     plugin: flutter
-    flutter-target: lib/main.dart # The main entry-point file of the application
+    flutter-target: lib/main.dart
+    override-build: |
+      flutter pub get
+      flutter gen-l10n
+      snapcraftctl build
