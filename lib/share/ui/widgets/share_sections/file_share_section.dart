@@ -1,3 +1,6 @@
+import 'dart:io' show Platform;
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -45,6 +48,8 @@ class FileShareSection extends ShareSection {
         return 'Sassy Cascading Style Sheets';
     }
   }
+
+  bool get isNotSupportedByOS => !kIsWeb && (Platform.isWindows || Platform.isLinux);
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +115,9 @@ class FileShareSection extends ShareSection {
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
                     label: Text(AppLocalizations.of(context).shareAsFormat(file.format).toUpperCase()),
-                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
+                    onPressed: isNotSupportedByOS
+                        ? null
+                        : () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
                   ),
                 ),
               ],
