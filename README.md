@@ -1,6 +1,15 @@
 [![Google Play Store](https://img.shields.io/endpoint?color=green&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![colors-ai](https://snapcraft.io/colors-ai/badge.svg)](https://snapcraft.io/colors-ai)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+[![Colors AI](https://i.vimeocdn.com/video/1049456981_3840x2160.jpg)](https://vimeo.com/tsinis/colors-ai)
+
+[<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="190" alt="Get it on Google Play">](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/colors-ai)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" width="155" alt="Get it from Microsoft">](https://www.microsoft.com/store/apps/9NJVF29FV74V)
+
+Or download signed binaries for those and other platforms (such as **macOS** or **iOS**) in the [Releases](https://github.com/tsinis/colors_ai/releases) section of this GitHub repository.
 
 # Colors AI 🤖
 
@@ -17,16 +26,10 @@
 * [To-Do Section](#To-Do-Section)
 * [Licenses](#Licenses)
 * [Attributions](#Attributions)
-* [Releases](#Releases)
-
-[![Colors AI](https://i.vimeocdn.com/video/1049456981_3840x2160.jpg)](https://vimeo.com/tsinis/colors-ai)
-You can watch a **preview video of it (with main functionality highlight) here:**
-
-[Vimeo](https://vimeo.com/tsinis/colors-ai) or [YouTube](https://youtu.be/LU8RPnkDuq8)
 
 ## Description
 
-Colors AI is a multiplatform color scheme generator that uses **deep learning from Colormind API**. Application is made with Flutter and available for Android™ devices.
+Colors AI is a multiplatform color scheme generator that uses **deep learning from Colormind API**. Application is made with Flutter and available for Android, Windows, Linux, macOS and iOS platforms.
 
 ## Technical Data
 
@@ -68,7 +71,7 @@ All animations here are made with pure Flutter. The application's UI is designed
 
 ## Licenses
 
-This project is released under the terms of the [MIT license](./LICENSE). All assets (as sounds) are CC licensed and are free for personal use. You can find **LICENSE** files in their folders.
+This project is released under the terms of the [MIT license](./LICENSE). All assets (as sounds, fonts) licensed and are free for personal use. You can find **LICENSE** files in their folders.
 
 ## Attributions
 
@@ -83,10 +86,5 @@ Assets Used:
 * ui_lock.wav
 * ui_refresh-feed.wav
 
-## Releases
 
-You can find signed binaries for the Android platform in the [Releases](https://github.com/tsinis/colors_ai/releases) section of this GitHub repository. Or just:
-
-[![Colors AI](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
-
-Android, Google Play and the Google Play logo are trademarks of Google LLC.
+> Android, Google Play and the Google Play logo are trademarks of Google LLC.
