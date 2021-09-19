@@ -4,7 +4,7 @@ summary: Colors AI
 description: A color scheme generator that uses deep learning from Colormind.
 contact: colors.ai.app@gmail.com
 issues: https://github.com/tsinis/colors_ai/issues
-source-code: https://github.com/tsinis/colors_ai
+source-code: https://github.com/tsinis/colors_ai.git
 website: https://github.com/tsinis/colors_ai
 license: MIT
 confinement: strict
