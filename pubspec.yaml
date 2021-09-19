@@ -62,7 +62,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/sounds/
-    - google_fonts/
+    - assets/google_fonts/
 
 msix_config:
   display_name: Colors AI

@@ -10,6 +10,7 @@ class SettingsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, state) => AlertDialog(
+          scrollable: true,
           contentPadding: const EdgeInsets.only(bottom: 16, top: 16),
           title: Text(AppLocalizations.of(context).settings),
           content: Column(

@@ -73,7 +73,6 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   bool get isMobile => platform.isMobile;
   bool get hidePickerArea {
     final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
-    debugPrint('HEIGHT AVAILABLE: $heightAvailable'); //TODO Check and remove.
 
     return isMobile && heightAvailable < 480;
   }

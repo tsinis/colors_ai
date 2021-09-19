@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../core/repository/colors_repository.dart';
+import '../core/ui/constants.dart';
 import '../core/ui/view/scaffold.dart';
 import '../core/ui/view/splash_screen.dart';
 import '../favorites/blocs/add_favorites/fab_bloc.dart';
@@ -23,6 +24,7 @@ class App extends StatelessWidget {
           }
 
           return MaterialApp(
+            title: appName,
             debugShowCheckedModeBanner: false,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,

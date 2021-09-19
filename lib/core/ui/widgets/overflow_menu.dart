@@ -25,6 +25,7 @@ class OverflowMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PopupMenuButton<void>(
+        icon: const Icon(Icons.more_vert),
         itemBuilder: (_) => [
           PopupMenuItem(
             onTap: () => showDialog(context, const SettingsDialog()),

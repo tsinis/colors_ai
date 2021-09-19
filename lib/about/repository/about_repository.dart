@@ -14,10 +14,11 @@ class AboutRepository {
   static const String _materialSounds = 'https://material.io/design/sound/sound-resources.html';
 
   Future<void> init(String? currentLocale) async {
-    await PackageInfo.fromPlatform().then((PackageInfo info) => _version = info.version);
+    final PackageInfo info = await PackageInfo.fromPlatform();
+    _version = info.version;
     locale = currentLocale ?? 'en';
     LicenseRegistry.addLicense(() async* {
-      final license = await rootBundle.loadString('google_fonts/LICENSE.txt');
+      final license = await rootBundle.loadString('assets/google_fonts/LICENSE.txt');
       yield LicenseEntryWithLineBreaks(['google_fonts'], license);
     });
   }
@@ -26,7 +27,7 @@ class AboutRepository {
   void openAboutApi() => _urlLauncher.openURL(_aboutColormind);
   void openAboutSounds() => _urlLauncher.openURL(_materialSounds);
   void openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + locale);
-  void openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + locale);
+  void openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + (locale != 'sk' ? locale : 'en'));
 
   late final String _version;
 

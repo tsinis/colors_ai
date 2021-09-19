@@ -4,7 +4,7 @@ Roman Cinis built the Colors AI app as an Free and Open Source app. This SERVICE
 
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 
-This application does not collect or transmit any user’s personal information, with the exception of technical information included in HTTP requests (such as your IP address). No personal information is used, stored, secured or disclosed by services this application works with. If you would like to report any violations of this policy, please contact us using the contact form.
+This application does not collect or transmit any user’s personal information, with the exception of technical information included in HTTP requests (such as your IP address). No personal information is used, stored, secured or disclosed by services this application works with. If you would like to report any violations of this policy, please contact contact me at colors.ai.app@gmail.com.
 
 The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Colors AI unless otherwise defined in this Privacy Policy.
 
