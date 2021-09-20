@@ -3,7 +3,7 @@
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Colors AI](https://i.vimeocdn.com/video/1049456981_3840x2160.jpg)](https://vimeo.com/tsinis/colors-ai)
+[![Colors AI](https://i.vimeocdn.com/video/1049456981-b3f2133bc275235f854e021459179310ece0265a7fcb8669bbf0ef6542ae9247-d_1920x1080)](https://vimeo.com/tsinis/colors-ai)
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="190" alt="Get it on Google Play">](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/colors-ai)
