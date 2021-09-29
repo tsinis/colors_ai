@@ -57,7 +57,7 @@
             "paletteIndex": {}
         }
     },
-    "removeSomeTitle": "{count, plural, one{Удалить {count} палитру} two{Удалить {count} палитры} few{Удалить {count} палитры} many{Удалить {count} палитр} other{Удалить {count} палитры}}",
+    "removeSomeTitle": "{count, plural, =1{Удалить палитру} one{Удалить {count} палитру} two{Удалить {count} палитры} few{Удалить {count} палитры} many{Удалить {count} палитр} other{Удалить {count} палитры}}",
     "@removeSomeTitle": {
         "placeholders": {
             "count": {}

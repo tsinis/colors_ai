@@ -17,6 +17,10 @@ class FavoritesTab extends StatelessWidget {
           duration: const Duration(milliseconds: 600),
           switchInCurve: Curves.easeInQuart,
           switchOutCurve: Curves.easeOutQuart,
+          layoutBuilder: (currentChild, previousChildren) => Stack(
+            alignment: AlignmentDirectional.bottomCenter,
+            children: [...previousChildren, if (currentChild != null) currentChild],
+          ),
           child: (state is FavoritesEmptyInitial)
               ? Center(
                   child: Column(

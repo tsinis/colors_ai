@@ -197,7 +197,7 @@
             "paletteIndex": {}
         }
     },
-    "removeSomeTitle": "{count, plural, one{Remove {count} palette} other{Remove {count} palettes}}",
+    "removeSomeTitle": "{count, plural, =1{Remove palette} one{Remove {count} palette}  other{Remove {count} palettes}}",
     "@removeSomeTitle": {
         "description": "Title of pop-up dialog and app bar, when removing some stored favorite palettes.",
         "placeholders": {

@@ -57,7 +57,7 @@
             "paletteIndex": {}
         }
     },
-    "removeSomeTitle": "{count, plural, one{Odobrať {count} paletu} other{Odobrať {count} palety}}",
+    "removeSomeTitle": "{count, plural, =1{Odobrať paletu} one{Odobrať {count} paletu} few{Odobrať {count} palety} other{Odobrať {count} palet}}",
     "@removeSomeTitle": {
         "placeholders": {
             "count": {}

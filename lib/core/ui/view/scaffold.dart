@@ -33,6 +33,7 @@ class MainScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<MainScreen> {
   final SoundBloc soundBloc = SoundBloc();
+  bool showGenFab = false;
 
   @override
   void initState() {
@@ -49,8 +50,10 @@ class _NavigationScreenState extends State<MainScreen> {
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
 
-  SystemUiOverlayStyle get overlayStyle =>
-      Theme.of(context).brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark;
+  SystemUiOverlayStyle get overlayStyle => Theme.of(context).brightness == Brightness.dark
+      ? SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Theme.of(context).cardColor)
+      : SystemUiOverlayStyle.dark
+          .copyWith(systemNavigationBarColor: Theme.of(context).navigationRailTheme.backgroundColor);
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
@@ -83,6 +86,9 @@ class _NavigationScreenState extends State<MainScreen> {
                 includeSemantics: false,
                 autofocus: true,
                 onKey: (RawKeyEvent event) {
+                  if (event.isKeyPressed(LogicalKeyboardKey.tab) && !showGenFab) {
+                    setState(() => showGenFab = true);
+                  }
                   if (event.isKeyPressed(spacebar) && isGenTab) {
                     if (kIsWeb) {
                       BlocProvider.of<SoundBloc>(navContext).add(const SoundRefreshed());
@@ -95,9 +101,7 @@ class _NavigationScreenState extends State<MainScreen> {
                   }
                 },
                 child: AnnotatedRegion<SystemUiOverlayStyle>(
-                  value: overlayStyle.copyWith(
-                    systemNavigationBarColor: Theme.of(context).navigationRailTheme.backgroundColor,
-                  ),
+                  value: overlayStyle,
                   child: Scaffold(
                     floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
                     appBar: AppBar(
@@ -162,7 +166,7 @@ class _NavigationScreenState extends State<MainScreen> {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              if (!isPortrait) NavRail(navState),
+                              if (!isPortrait) NavRail(navState, toShowGenFab: showGenFab),
                               if (!isPortrait) const VerticalDivider(width: 1),
                               Expanded(
                                 child: navTabs.elementAt(navState.tabIndex),
