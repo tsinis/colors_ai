@@ -21,6 +21,7 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
   * [Directory Structure](#Directory-Structure)
   * [Tests](#Tests)
   * [Packages](#Packages)
+* [Accessibility](#Accessibility)
 * [How to run it](#How-to-run-it)
 * [UI/UX Design](#UI/UX-Design)
 * [To-Do Section](#To-Do-Section)
@@ -46,11 +47,17 @@ The application uses a **feature-driven** directory structure. This project stru
 
 Application is **partially covered with Unit, Widget, and Integration tests**. More to come in the future.
 
+### Accessibility
+
+The app was originally designed to be accessible by **WCAG 2.1 AA standards at minimum, and AAA in particular**, although it was not intended to be used by the blind or by people with severe visual disabilities. All **texts have a contrast ratio at least of 4.5, images 3.0, touch target sizes of at least 48dp**. The application was audited physically on a first-generation iPhone SE (smallest iPhone at this moment) with maximum font size, thickness, contrast, and component magnification. The **audit was also performed on the macOS** version of the app, using the same Accessibility Inspector as on the iOS. The **report from the official Accessibility Scanner for Android** (with a tested device with screen size 640x320px and maximum UI and font scale) can be found at [resources/accessibility](./resources/accessibility/) folder. As you may see it will only complain about the small tap size of text links in the *About* app section and overall screen semantics (which is a [framework bug](https://github.com/flutter/flutter/issues/39531)). Also, the application is **translated into 4 languages and have a haptic feedback (vibration) on mobile devices**. The UI was also built to be **controllable via keyboard/input device/remote control/gamepad**, [here you will find a remote control showcase video](https://drive.google.com/file/d/15Ppuk3ELnP6MhUP6smwmrOS-LdbF0ji0/view?usp=sharing).
+However, in the future, I'm planning to improve the control via the input device.
+
 ### How to run it
 
 Flutter version **2.6.0-12.0.pre.94** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```bash
+flutter gen-l10n
 flutter run
 ```
 
