@@ -152,7 +152,7 @@ class _NavigationScreenState extends State<MainScreen> {
                                 action: isUrlCopied
                                     ? SnackBarAction(
                                         textColor: Theme.of(context).scaffoldBackgroundColor,
-                                        label: AppLocalizations.of(context).urlOpenButtonLabel.toUpperCase(),
+                                        label: AppLocalizations.of(context).urlOpenButtonLabel,
                                         onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(
                                           const UrlOpenedSuccess(),
                                         ),
@@ -167,7 +167,6 @@ class _NavigationScreenState extends State<MainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (!isPortrait) NavRail(navState, toShowGenFab: showGenFab),
-                              if (!isPortrait) const VerticalDivider(width: 1),
                               Expanded(
                                 child: navTabs.elementAt(navState.tabIndex),
                               ),

@@ -1,7 +1,9 @@
 import 'dart:io' show File;
 import 'dart:typed_data' show Uint8List;
 
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
+import 'package:platform_info/platform_info.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -24,6 +26,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     Colordot(),
     Coolors(),
     DesignAI(),
+    DopelyColors(),
     MakeTintsAndShades(),
     MuzliColors(),
     Palettable(),
@@ -139,9 +142,22 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     return _shareFile(file);
   }
 
+  Future<void> _saveFile(File file) async {
+    final String? path = await getSavePath();
+    if (path == null) {
+      return;
+    }
+    final XFile textFile = XFile(file.path, name: _fileName);
+    await textFile.saveTo(path);
+  }
+
   Future<bool> _shareFile(File file) async {
     if (file.existsSync()) {
-      await Share.shareFiles([_filePath], subject: appName);
+      if (!kIsWeb && (platform.isWindows || platform.isLinux)) {
+        await _saveFile(file);
+      } else {
+        await Share.shareFiles([_filePath], subject: appName);
+      }
 
       return true;
     } else {

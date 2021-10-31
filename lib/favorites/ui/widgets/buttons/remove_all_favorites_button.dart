@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mdi/mdi.dart';
 
+import '../../../../core/extensions/string.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favs_bloc.dart';
 
@@ -55,6 +56,8 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                 ),
                 // https://material.io/components/dialogs#alert-dialog
                 builder: (_) => AlertDialog(
+                  actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
                   content: Text(
                     haveSelection
                         ? '${AppLocalizations.of(context).removeSomeTitle(state.selections.length)}?'
@@ -63,12 +66,12 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                   actions: <TextButton>[
                     TextButton(
                       onPressed: () => Navigator.pop(dialogContext, false),
-                      child: Text(MaterialLocalizations.of(context).cancelButtonLabel.toUpperCase()),
+                      child: Text(MaterialLocalizations.of(context).cancelButtonLabel.toBeginningOfSentenceCase()),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(dialogContext, true),
                       child: Text(
-                        AppLocalizations.of(context).removeButtonLabel.toUpperCase(),
+                        AppLocalizations.of(context).removeButtonLabel,
                         style: TextStyle(color: Theme.of(context).errorColor),
                       ),
                     ),

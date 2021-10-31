@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/extensions/string.dart';
 import '../../blocs/settings_hydrated_bloc.dart';
 
 class SettingsDialog extends StatelessWidget {
@@ -10,6 +11,8 @@ class SettingsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, state) => AlertDialog(
+          actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
           scrollable: true,
           contentPadding: const EdgeInsets.only(bottom: 16, top: 16),
           title: Text(AppLocalizations.of(context).settings),
@@ -35,6 +38,7 @@ class SettingsDialog extends StatelessWidget {
                   }
                 },
               ),
+              const SizedBox(height: 8),
               const Divider(height: 1),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 8, top: 12),
@@ -76,12 +80,12 @@ class SettingsDialog extends StatelessWidget {
                 BlocProvider.of<SettingsBloc>(context).add(const SettingsRegularColorsSelected());
               },
               child: Text(
-                AppLocalizations.of(context).resetButtonLabel.toUpperCase(),
+                AppLocalizations.of(context).resetButtonLabel,
               ),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(MaterialLocalizations.of(context).closeButtonLabel),
+              child: Text(MaterialLocalizations.of(context).closeButtonLabel.toBeginningOfSentenceCase()),
             ),
           ],
         ),

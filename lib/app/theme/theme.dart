@@ -12,6 +12,11 @@ class AppTheme {
     return isDarkTheme ? _darkTheme : _lightTheme;
   }
 
+  static const _visualDensity = VisualDensity.standard;
+  static const _material3FabSize = BoxConstraints.tightForFinite(height: 56);
+  static const _material3FabBorder = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
+  static const _material3ButtonShape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)));
+
   final ThemeData _lightTheme = ThemeData(
     primarySwatch: Colors.grey,
     primaryColor: Colors.grey[400],
@@ -26,12 +31,23 @@ class AppTheme {
     dialogTheme: DialogTheme(backgroundColor: Colors.grey[100]),
     radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.black)),
     textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: Colors.grey[850])),
-    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[200])),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        primary: Colors.grey[200],
+        shape: _material3ButtonShape,
+        visualDensity: _visualDensity,
+      ),
+    ),
     appBarTheme: AppBarTheme(
+      elevation: 2,
+      shadowColor: Colors.black45,
       iconTheme: const IconThemeData(color: _grey800),
       backgroundColor: Colors.grey[400],
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
+      extendedPadding: const EdgeInsets.symmetric(horizontal: 16),
+      extendedSizeConstraints: _material3FabSize,
+      shape: _material3FabBorder,
       backgroundColor: Colors.grey[100],
       foregroundColor: Colors.grey[850],
       focusElevation: 10,
@@ -39,7 +55,9 @@ class AppTheme {
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         primary: Colors.grey[850],
+        visualDensity: _visualDensity,
         backgroundColor: Colors.transparent,
+        shape: _material3ButtonShape,
         side: const BorderSide(color: _grey800),
       ),
     ),
@@ -64,10 +82,20 @@ class AppTheme {
     indicatorColor: Colors.teal[200],
     disabledColor: Colors.grey[600],
     primaryIconTheme: IconThemeData(color: Colors.grey[350]),
-    radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.grey[400]!)),
+    appBarTheme: const AppBarTheme(shadowColor: Colors.black54, elevation: 2),
+    radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color?>(Colors.grey[400])),
     textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: Colors.grey[350])),
-    elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(primary: Colors.grey[350])),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        shape: _material3ButtonShape,
+        primary: Colors.grey[350],
+        visualDensity: _visualDensity,
+      ),
+    ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
+      extendedPadding: const EdgeInsets.symmetric(horizontal: 16),
+      extendedSizeConstraints: _material3FabSize,
+      shape: _material3FabBorder,
       backgroundColor: Colors.grey[600],
       foregroundColor: Colors.white,
       disabledElevation: 0,
@@ -81,8 +109,10 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
+        visualDensity: _visualDensity,
         primary: Colors.grey[300],
         backgroundColor: Colors.transparent,
+        shape: _material3ButtonShape,
         side: BorderSide(color: Colors.grey[400]!),
       ),
     ),

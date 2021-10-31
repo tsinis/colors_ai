@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
@@ -7,12 +6,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:platform_info/platform_info.dart';
 
 import '../../../../color_picker/ui/view/colorpicker.dart';
 import '../../../../core/extensions/color.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../core/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../../favorites/blocs/add_favorites/fab_bloc.dart';
+import '../../../../oboarding/blocs/onboarding/onboarding_bloc.dart';
 import '../../../../oboarding/ui/view/onboarding_overlay.dart';
 import '../../../../settings/blocs/settings_hydrated_bloc.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
@@ -36,6 +37,8 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
   late final AnimationController controller;
   late final Animation<double> animation;
   late final Animation<double> reverseAnimation;
+
+  int? hoverIndex;
 
   List<Color> get palette => widget.palette.colors;
 
@@ -79,13 +82,15 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
 
+  void changeHoverIndex([int? index]) => setState(() => hoverIndex = index);
+
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (_, size) {
           final int length = palette.length;
           final double tileHeight = size.maxHeight / length;
           final Size third =
-              isPortrait ? Size(size.maxWidth / 3, tileHeight) : Size(size.maxWidth / length, size.maxHeight / 3);
+              isPortrait ? Size.fromWidth(size.maxWidth / 3) : Size(size.maxWidth / length, size.maxHeight / 3);
 
           return BlocListener<ColorsBloc, ColorsState>(
             listener: (_, colorsState) {
@@ -95,7 +100,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
             },
             child: Stack(
               children: [
-                if (!kIsWeb && Platform.isIOS)
+                if (!kIsWeb && platform.isIOS)
                   FadeTransition(
                     opacity: animation,
                     child: Align(
@@ -131,62 +136,74 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     },
                     child: FadeTransition(
                       opacity: animation,
-                      child: ReorderableListView(
-                        scrollDirection: isPortrait ? Axis.vertical : Axis.horizontal,
-                        buildDefaultDragHandles: false,
-                        dragStartBehavior: DragStartBehavior.down,
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
-                            .add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
-                        children: List.generate(
-                          length,
-                          (int index) {
-                            final Color color = palette.elementAt(index);
-                            final Color contrastColor = color.contrastColor();
+                      child: BlocBuilder<OnboardingBloc, OnboardingState>(
+                        builder: (_, onboardingState) {
+                          final isHoveringAvailable = onboardingState is OnboardingDoneSuccess && !platform.isMobile;
 
-                            return AnimatedListItem(
-                              index: index,
-                              size: size,
-                              key: ValueKey<int>(index),
-                              length: length,
-                              child: ReorderableDragListener(
-                                index: index,
-                                onDragStarted: setOperation,
-                                onDragEnded: cancelOperation,
-                                child: InkWell(
-                                  onDoubleTap: () {
-                                    BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
-                                    BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
-                                  },
-                                  child: Container(
-                                    width: size.maxWidth,
-                                    height: tileHeight,
-                                    color: color,
-                                    child: Stack(
-                                      alignment: Alignment.centerLeft,
-                                      children: [
-                                        Colorpicker(
-                                          index,
-                                          color: color,
-                                          isPortrait: isPortrait,
-                                          textColor: contrastColor,
-                                          buttonSize: isPortrait
-                                              ? third
-                                              : Size(
-                                                  size.maxWidth / length,
-                                                  size.maxHeight,
-                                                ),
+                          return ReorderableListView.builder(
+                            itemCount: length,
+                            scrollDirection: isPortrait ? Axis.vertical : Axis.horizontal,
+                            buildDefaultDragHandles: false,
+                            dragStartBehavior: DragStartBehavior.down,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            onReorder: (int oldIndex, int newIndex) => BlocProvider.of<ColorsBloc>(context)
+                                .add(ColorsReordered(oldIndex: oldIndex, newIndex: newIndex)),
+                            itemBuilder: (_, int index) {
+                              final Color color = palette.elementAt(index);
+                              final Color contrastColor = color.contrastColor();
+
+                              return MouseRegion(
+                                key: ValueKey<int>(index),
+                                onHover: (_) => changeHoverIndex(index),
+                                onExit: (_) => changeHoverIndex(),
+                                child: AnimatedListItem(
+                                  index: index,
+                                  size: size,
+                                  length: length,
+                                  hoverIndex: isHoveringAvailable ? hoverIndex : null,
+                                  child: ReorderableDragListener(
+                                    index: index,
+                                    onDragStarted: setOperation,
+                                    onDragEnded: cancelOperation,
+                                    child: InkWell(
+                                      onDoubleTap: () {
+                                        BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
+                                        BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
+                                      },
+                                      child: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: color,
+                                              blurStyle: BlurStyle.solid,
+                                              spreadRadius: 1,
+                                              offset: const Offset(0, -1),
+                                            ),
+                                          ],
                                         ),
-                                        Center(child: LockColorButton(index, color: contrastColor, buttonSize: third)),
-                                      ],
+                                        child: Stack(
+                                          alignment: Alignment.centerLeft,
+                                          children: [
+                                            Colorpicker(
+                                              index,
+                                              color: color,
+                                              isPortrait: isPortrait,
+                                              textColor: contrastColor,
+                                              buttonSize: isPortrait ? third : Size.fromHeight(size.maxHeight),
+                                            ),
+                                            Center(
+                                              child: LockColorButton(index, color: contrastColor, buttonSize: third),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                          growable: false,
-                        ),
+                              );
+                            },
+                          );
+                        },
                       ),
                     ),
                   ),

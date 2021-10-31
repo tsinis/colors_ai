@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../../core/extensions/string.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../blocs/share/share_hydrated_bloc.dart';
 import '../../../models/file_format_enum.dart';
@@ -49,7 +50,13 @@ class FileShareSection extends ShareSection {
     }
   }
 
-  bool get isNotSupportedByOS => !kIsWeb && (Platform.isWindows || Platform.isLinux);
+  String _shareOrSaveButtonLabel(BuildContext context) {
+    if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
+      return '${MaterialLocalizations.of(context).saveButtonLabel.toBeginningOfSentenceCase()} ${file.format}';
+    } else {
+      return AppLocalizations.of(context).shareAsFormat(file.format);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +108,7 @@ class FileShareSection extends ShareSection {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).copyAsFormat(file.format).toUpperCase()),
+                    label: Text(AppLocalizations.of(context).copyAsFormat(file.format)),
                     onPressed: cannotCopy
                         ? null
                         : () {
@@ -114,10 +121,8 @@ class FileShareSection extends ShareSection {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
-                    label: Text(AppLocalizations.of(context).shareAsFormat(file.format).toUpperCase()),
-                    onPressed: isNotSupportedByOS
-                        ? null
-                        : () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
+                    label: Text(_shareOrSaveButtonLabel(context)),
+                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
                   ),
                 ),
               ],

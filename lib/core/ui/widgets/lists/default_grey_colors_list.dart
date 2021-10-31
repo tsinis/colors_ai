@@ -15,8 +15,18 @@ class DefaultGreyList extends StatelessWidget {
           children: List.generate(
             length ?? defaultColors.length,
             (int i) => Flexible(
-              child: Container(
-                color: defaultColors[i],
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: defaultColors[i],
+                  boxShadow: [
+                    BoxShadow(
+                      color: defaultColors[i],
+                      blurStyle: BlurStyle.solid,
+                      spreadRadius: 1,
+                      offset: const Offset(0, -1),
+                    ),
+                  ],
+                ),
               ),
             ),
             growable: false,

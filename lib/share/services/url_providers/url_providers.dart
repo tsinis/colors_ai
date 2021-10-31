@@ -10,6 +10,7 @@ part 'providers/colordesigner.dart';
 part 'providers/colordot.dart';
 part 'providers/coolors.dart';
 part 'providers/design_ai.dart';
+part 'providers/dopely_colors.dart';
 part 'providers/make_tints_and_shades.dart';
 part 'providers/muzli_colors.dart';
 part 'providers/palettable.dart';

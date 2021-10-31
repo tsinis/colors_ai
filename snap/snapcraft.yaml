@@ -1,8 +1,9 @@
 name: colors-ai
-version: 1.4.0
+version: 1.5.0
 summary: Colors AI
 description: A color scheme generator that uses deep learning from Colormind.
 confinement: strict
+license: MIT
 base: core18
 grade: stable
 architectures:
@@ -11,7 +12,7 @@ architectures:
 apps:
   colors-ai:
     command: colors_ai
-    extensions: [flutter-master]
+    extensions: [flutter-beta]
     plugs:
       - network
       - home

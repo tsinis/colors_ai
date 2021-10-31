@@ -6,12 +6,14 @@ class AnimatedListItem extends StatefulWidget {
     required this.child,
     required this.length,
     required this.size,
-    required Key key,
+    this.hoverIndex,
+    Key? key,
   }) : super(key: key);
 
   final Widget child;
   final int index;
   final int length;
+  final int? hoverIndex;
   final BoxConstraints size;
 
   @override
@@ -20,6 +22,7 @@ class AnimatedListItem extends StatefulWidget {
 
 class _AnimatedListItemState extends State<AnimatedListItem> {
   static const Duration duration = Duration(milliseconds: 300);
+  static const double hoverPadding = 48;
   bool isAnimationDone = false;
 
   @override
@@ -36,18 +39,28 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
   double get tileHeight => widget.size.maxHeight / widget.length;
   double get tileWeight => widget.size.maxWidth / widget.length;
 
+  double get additionaHoverPadding {
+    if (widget.hoverIndex == null) {
+      return 0;
+    } else if (widget.index == widget.hoverIndex) {
+      return hoverPadding;
+    }
+
+    return -(hoverPadding / widget.length);
+  }
+
   @override
   Widget build(BuildContext context) => AnimatedContainer(
-        curve: Curves.decelerate,
+        curve: Curves.easeInOutCubicEmphasized,
         height: isPortrait
             ? isAnimationDone
-                ? tileHeight
+                ? tileHeight + additionaHoverPadding
                 : (widget.index + 1) * tileHeight * widget.length
             : widget.size.maxHeight,
         width: isPortrait
             ? widget.size.maxWidth
             : isAnimationDone
-                ? tileWeight
+                ? tileWeight + additionaHoverPadding
                 : (widget.index + 1) * tileWeight * widget.length,
         duration: duration,
         child: AnimatedOpacity(

@@ -6,6 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../core/ui/constants.dart';
 import '../../blocs/about_dialog/about_bloc.dart';
 import '../widgets/app_icon.dart';
+import '../widgets/material3_dialog.dart';
 
 class AboutAppDialog extends StatelessWidget {
   const AboutAppDialog();
@@ -15,7 +16,7 @@ class AboutAppDialog extends StatelessWidget {
     final TextStyle? linkStyle =
         Theme.of(context).textTheme.bodyText2?.copyWith(color: Theme.of(context).indicatorColor);
 
-    return AboutDialog(
+    return AboutDialogM3(
       applicationName: appName,
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
       applicationLegalese: '2021 © Roman Cinis',

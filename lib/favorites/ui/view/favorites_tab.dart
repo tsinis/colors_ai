@@ -37,7 +37,7 @@ class FavoritesTab extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 20),
                         child: Text.rich(
                           TextSpan(
-                            text: AppLocalizations.of(context).noFavoritesTitle.toUpperCase(),
+                            text: AppLocalizations.of(context).noFavoritesTitle,
                             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                             children: [
                               TextSpan(
@@ -53,7 +53,7 @@ class FavoritesTab extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 56, bottom: 24),
                         child: ElevatedButton.icon(
                           icon: const Icon(Icons.add, size: 20),
-                          label: Text(AppLocalizations.of(context).addFavoritesButtonLabel.toUpperCase()),
+                          label: Text(AppLocalizations.of(context).addFavoritesButtonLabel),
                           onPressed: () => BlocProvider.of<FavoritesBloc>(context)
                               .add(FavoritesAdded(favorite: context.read<ColorsRepository>().toPalette())),
                         ),

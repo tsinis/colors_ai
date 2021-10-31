@@ -35,7 +35,7 @@ class ColorsGenerator extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 20),
                   child: Text.rich(
                     TextSpan(
-                      text: AppLocalizations.of(context).noConnectionTitle.toUpperCase(),
+                      text: AppLocalizations.of(context).noConnectionTitle,
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       children: <TextSpan>[
                         TextSpan(
@@ -55,7 +55,7 @@ class ColorsGenerator extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 56, bottom: 24),
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.refresh_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).returnButtonLabel.toUpperCase()),
+                    label: Text(AppLocalizations.of(context).returnButtonLabel),
                     onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsStarted()),
                   ),
                 ),

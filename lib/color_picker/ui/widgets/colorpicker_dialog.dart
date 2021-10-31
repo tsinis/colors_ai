@@ -78,6 +78,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
 
   @override
   Widget build(BuildContext context) => SimpleDialog(
+        // shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
         contentPadding: EdgeInsets.zero,
         children: [
           if (hidePickerArea) const SizedBox(height: 12),
@@ -102,6 +103,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
               enableSuggestions: false,
               enableIMEPersonalizedLearning: false,
               onTap: setColorFromHex,
+              onFieldSubmitted: (_) => Navigator.of(context).pop(),
               textAlignVertical: TextAlignVertical.center,
               scrollPadding: const EdgeInsets.only(bottom: 20),
               inputFormatters: [HexFormatter()],

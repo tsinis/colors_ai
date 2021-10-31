@@ -57,6 +57,13 @@ dart_code_metrics:
   metrics-exclude:
     - test/**
   rules:
+    - avoid-nested-conditional-expressions:
+      acceptable-level: 2
+    - prefer-correct-type-name
+    - prefer-last
+    - refer-correct-identifier-length
+    - prefer-first
+    - prefer-const-border-radius
     - avoid-unused-parameters
     - binary-expression-operand-order
     - double-literal-format

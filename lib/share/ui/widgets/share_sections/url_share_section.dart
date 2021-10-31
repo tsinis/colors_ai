@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:platform_info/platform_info.dart';
 
 import '../../../../common/blocs/snackbars/snackbars_bloc.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
@@ -22,6 +24,8 @@ class UrlShareSection extends ShareSection {
   final int firstProvider;
   final String? exportFormats;
   final List<ColorsUrlProvider> providersList;
+
+  bool get _isNotSupportedByOS => kIsWeb || platform.isWindows || platform.isLinux;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,7 @@ class UrlShareSection extends ShareSection {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).copyUrlButtonLabel.toUpperCase()),
+                    label: Text(AppLocalizations.of(context).copyUrlButtonLabel),
                     onPressed: () {
                       BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
                       BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
@@ -94,8 +98,10 @@ class UrlShareSection extends ShareSection {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
-                    label: Text(AppLocalizations.of(context).shareUrlButtonLabel.toUpperCase()),
-                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),
+                    label: Text(AppLocalizations.of(context).shareUrlButtonLabel),
+                    onPressed: _isNotSupportedByOS
+                        ? null
+                        : () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),
                   ),
                 ),
               ],
