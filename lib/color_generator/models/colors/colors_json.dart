@@ -9,7 +9,6 @@ import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/models/typedef_aliases/int_rgb_color.dart';
 import '../../interfaces/color_palette.dart';
 import '../../interfaces/manipulate_list.dart';
-import 'constants.dart';
 
 /// This allows the `ColorsAI` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
@@ -22,13 +21,33 @@ part 'colors_json.g.dart';
 class ColorsAI implements ManipulateListInterface, ColorPaletteInterface {
   ColorsAI({this.list = const []});
 
+  /// A necessary factory constructor for creating a new ColorsAI instance
+  /// from a map. Pass the map to the generated `_$ColorsAIFromJson()` constructor.
+  /// The constructor is named after the source class, in this case, ColorsAI.
+  factory ColorsAI.fromJson(Map<String, dynamic> json) => _$ColorsAIFromJson(json);
+
   /// An annotation used to specify how a field is serialized.
   @override
-  @JsonKey(name: key, required: true)
+  @JsonKey(name: 'result', required: true)
   final List<IntRGBColor> list;
 
   @override
-  void change(int colorIndex, [Color? newColor]) => list[colorIndex] = newColor!.toListInt();
+  void add(covariant IntRGBColor color) => list.add(color);
+
+  @override
+  void addAll(covariant List<IntRGBColor> newColors) => list
+    ..clear()
+    ..addAll(newColors);
+
+  void change(int colorIndex, Color newColor) => list[colorIndex] = newColor.toListInt();
+
+  @override
+  void fromPalette(ColorPalette palette) {
+    list.clear();
+    for (final Color color in palette.colors) {
+      list.add(color.toListInt());
+    }
+  }
 
   @override
   void swap({required int oldIndex, required int newIndex}) {
@@ -45,26 +64,5 @@ class ColorsAI implements ManipulateListInterface, ColorPaletteInterface {
   }
 
   @override
-  void add(covariant IntRGBColor color) => list.add(color);
-
-  @override
-  void addAll(covariant List<IntRGBColor> newColors) => list
-    ..clear()
-    ..addAll(newColors);
-
-  @override
-  void fromPalette(ColorPalette palette) {
-    list.clear();
-    for (final Color color in palette.colors) {
-      list.add(color.toListInt());
-    }
-  }
-
-  @override
-  ColorPalette toPalette() => list.map((intColor) => intColor.toColor()).toList().toPalette();
-
-  /// A necessary factory constructor for creating a new ColorsAI instance
-  /// from a map. Pass the map to the generated `_$ColorsAIFromJson()` constructor.
-  /// The constructor is named after the source class, in this case, ColorsAI.
-  factory ColorsAI.fromJson(Map<String, dynamic> json) => _$ColorsAIFromJson(json);
+  ColorPalette toPalette() => list.map((intColor) => intColor.toColor()).toList(growable: false).toPalette();
 }

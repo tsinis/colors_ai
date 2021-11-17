@@ -5,18 +5,33 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../core/services/url_launcher.dart';
 
 class AboutRepository {
-  late final String locale;
-  static const UrlLauncher _urlLauncher = UrlLauncher();
-  static const String _aboutGoogle = 'https://about.google/intl/';
-  static const String _aboutColormind = 'http://colormind.io/api-access';
-  static const String _sourceCode = 'https://github.com/tsinis/colors_ai';
-  static const String _soundsLicense = 'https://creativecommons.org/licenses/by/4.0/legalcode.';
-  static const String _materialSounds = 'https://material.io/design/sound/sound-resources.html';
+  AboutRepository({
+    UrlLauncher urlLauncher = const UrlLauncher(),
+    String aboutColormind = 'http://colormind.io/api-access',
+    String aboutGoogle = 'https://about.google/intl/',
+    String materialSounds = 'https://material.io/design/sound/sound-resources.html',
+    String soundsLicense = 'https://creativecommons.org/licenses/by/4.0/legalcode.',
+    String sourceCode = 'https://github.com/tsinis/colors_ai',
+  })  : _urlLauncher = urlLauncher,
+        _aboutColormind = aboutColormind,
+        _aboutGoogle = aboutGoogle,
+        _materialSounds = materialSounds,
+        _soundsLicense = soundsLicense,
+        _sourceCode = sourceCode;
+
+  final String _aboutColormind;
+  final String _aboutGoogle;
+  final String _materialSounds;
+  final String _soundsLicense;
+  final String _sourceCode;
+  final UrlLauncher _urlLauncher;
+  late final String _locale;
+  late final String _version;
 
   Future<void> init(String? currentLocale) async {
     final PackageInfo info = await PackageInfo.fromPlatform();
     _version = info.version;
-    locale = currentLocale ?? 'en';
+    _locale = currentLocale ?? 'en';
     LicenseRegistry.addLicense(() async* {
       final license = await rootBundle.loadString('assets/google_fonts/LICENSE.txt');
       yield LicenseEntryWithLineBreaks(['google_fonts'], license);
@@ -24,12 +39,14 @@ class AboutRepository {
   }
 
   void openSourceCode() => _urlLauncher.openURL(_sourceCode);
-  void openAboutApi() => _urlLauncher.openURL(_aboutColormind);
-  void openAboutSounds() => _urlLauncher.openURL(_materialSounds);
-  void openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + locale);
-  void openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + (locale != 'sk' ? locale : 'en'));
 
-  late final String _version;
+  void openAboutApi() => _urlLauncher.openURL(_aboutColormind);
+
+  void openAboutSounds() => _urlLauncher.openURL(_materialSounds);
+
+  void openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + _locale);
+
+  void openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + (_locale != 'sk' ? _locale : 'en'));
 
   String get version => _version;
 }

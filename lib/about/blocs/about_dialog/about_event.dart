@@ -9,6 +9,7 @@ abstract class AboutEvent extends Equatable {
 
 class AboutStarted extends AboutEvent {
   const AboutStarted({required this.currentLocale});
+
   final String currentLocale;
 }
 

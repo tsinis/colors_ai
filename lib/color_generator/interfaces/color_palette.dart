@@ -4,5 +4,6 @@ abstract class ColorPaletteInterface {
   const ColorPaletteInterface();
 
   ColorPalette toPalette();
+
   void fromPalette(ColorPalette palette);
 }

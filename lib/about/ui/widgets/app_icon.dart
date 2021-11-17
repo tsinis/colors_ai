@@ -72,8 +72,8 @@ class Rectangle extends StatelessWidget {
   const Rectangle(this.color, {this.shadowOffset = const Offset(-1, 1), this.darkShadow = true});
 
   final Color color;
-  final Offset shadowOffset;
   final bool darkShadow;
+  final Offset shadowOffset;
 
   @override
   Widget build(BuildContext context) => Container(

@@ -9,6 +9,7 @@ abstract class ColorsEvent extends Equatable {
 
 class ColorsGenerated extends ColorsEvent {
   const ColorsGenerated({required this.generateColorsForUi});
+
   final bool generateColorsForUi;
 }
 
@@ -24,12 +25,14 @@ class ColorsRestored extends ColorsEvent {
 
 class ColorsChanged extends ColorsEvent {
   const ColorsChanged(this.newColor, this.colorIndex);
-  final Color? newColor;
+
   final int colorIndex;
+  final Color? newColor;
 }
 
 class ColorsReordered extends ColorsEvent {
   const ColorsReordered({required this.oldIndex, required this.newIndex});
-  final int oldIndex;
+
   final int newIndex;
+  final int oldIndex;
 }

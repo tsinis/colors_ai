@@ -13,14 +13,14 @@ class DefaultGreyList extends StatelessWidget {
         builder: (_, Orientation orientation) => OrientationSwitcher(
           isPortrait: orientation == Orientation.portrait,
           children: List.generate(
-            length ?? defaultColors.length,
+            length ?? kDefaultColors.length,
             (int i) => Flexible(
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: defaultColors[i],
+                  color: kDefaultColors[i],
                   boxShadow: [
                     BoxShadow(
-                      color: defaultColors[i],
+                      color: kDefaultColors[i],
                       blurStyle: BlurStyle.solid,
                       spreadRadius: 1,
                       offset: const Offset(0, -1),

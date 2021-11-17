@@ -5,20 +5,20 @@ import 'package:flutter/foundation.dart' show debugPrint;
 import '../../color_generator/models/colors/colors_json.dart';
 import '../../color_generator/models/colors/constants.dart';
 import '../../color_generator/models/locks/locked_colors.dart';
-import '../../color_generator/services/api/api.dart';
+import '../../color_generator/services/api/colormind/colormind_api.dart';
 import '../extensions/color.dart';
 import '../models/color_palette/color_palette.dart';
 import '../models/typedef_aliases/int_rgb_color.dart';
 
 class ColorsRepository {
   ColorsRepository() {
-    for (final Color color in defaultColors) {
+    for (final Color color in kDefaultColors) {
       _colorsAI.add(color.toListInt());
       _locked.add();
     }
   }
 
-  static const API _apiServices = API();
+  static const ColormindAPI _apiServices = ColormindAPI();
 
   final ColorsAI _colorsAI = ColorsAI(list: []);
   final LockedColors _locked = LockedColors(list: []);
@@ -36,7 +36,7 @@ class ColorsRepository {
     // https://github.com/flutter/flutter/issues/24786 newIndex may be wrong :(
     // ignore: parameter_assignments, always_put_control_body_on_new_line
     if (oldIndex < newIndex) newIndex -= 1;
-    final int colorsAvailble = defaultColors.length - 1;
+    final int colorsAvailble = kDefaultColors.length - 1;
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
     _colorsAI.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
     _locked.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
@@ -49,7 +49,7 @@ class ColorsRepository {
   Future<bool> getNewColors({required bool forUI}) async {
     if (_locked.list.contains(false)) {
       try {
-        final newColors = await _apiServices.getNewColors(
+        final newColors = await _apiServices.fetchNewColors(
           _colorsAI,
           lockedColors: _locked.list,
           forUI: forUI,

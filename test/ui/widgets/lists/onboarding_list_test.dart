@@ -24,7 +24,7 @@ void main() => testWidgets('Onboarding should dissapear after tap on "GOT IT" bu
               child: LayoutBuilder(
                 builder: (_, size) => OnboardingOverlay(
                   size: size,
-                  length: defaultColors.length,
+                  length: kDefaultColors.length,
                 ),
               ),
             ),

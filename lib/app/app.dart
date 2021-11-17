@@ -24,8 +24,7 @@ class App extends StatelessWidget {
           }
 
           return MaterialApp(
-            title: appName,
-            debugShowCheckedModeBanner: false,
+            title: kAppName,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme(isDark: settingsState.isDarkTheme).theme,

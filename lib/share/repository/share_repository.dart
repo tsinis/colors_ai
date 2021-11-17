@@ -131,7 +131,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
         return shareWebPng(bytes, filename: _fileName);
       }
     }
-    final File file = File(_filePath)..writeAsBytesSync(bytes.toList());
+    final File file = File(_filePath)..writeAsBytesSync(bytes.toList(growable: false));
 
     return _shareFile(file);
   }
@@ -156,7 +156,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
       if (!kIsWeb && (platform.isWindows || platform.isLinux)) {
         await _saveFile(file);
       } else {
-        await Share.shareFiles([_filePath], subject: appName);
+        await Share.shareFiles([_filePath], subject: kAppName);
       }
 
       return true;
@@ -168,6 +168,6 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider provider = providers[providerIndex ?? 0];
     final String url = provider.url(palette);
-    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: appName);
+    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: kAppName);
   }
 }

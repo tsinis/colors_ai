@@ -9,11 +9,13 @@ abstract class LockState extends Equatable {
 
 class LockSuccess extends LockState {
   const LockSuccess({this.lockedColors});
+
   final List<bool>? lockedColors;
-  bool isLocked(int index) => lockedColors?[index] ?? false;
 
   @override
   List<Object> get props => [isLocked];
+
+  bool isLocked(int index) => lockedColors?[index] ?? false;
 }
 
 class LockFailure extends LockState {

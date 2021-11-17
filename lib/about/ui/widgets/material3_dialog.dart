@@ -7,18 +7,18 @@ class AboutDialogM3 extends StatelessWidget {
     required this.applicationName,
     required this.applicationVersion,
     required this.applicationIcon,
+    this.textVerticalSeparation = 18,
     this.applicationLegalese,
     this.children,
     Key? key,
   }) : super(key: key);
 
-  static const double _textVerticalSeparation = 18;
-
-  final String applicationName;
-  final String applicationVersion;
   final Widget applicationIcon;
   final String? applicationLegalese;
+  final String applicationName;
+  final String applicationVersion;
   final List<Widget>? children;
+  final double textVerticalSeparation;
 
   @override
   Widget build(BuildContext context) => AlertDialog(
@@ -37,7 +37,7 @@ class AboutDialogM3 extends StatelessWidget {
                       children: <Widget>[
                         Text(applicationName, style: Theme.of(context).textTheme.headline5),
                         Text(applicationVersion, style: Theme.of(context).textTheme.bodyText2),
-                        const SizedBox(height: _textVerticalSeparation),
+                        SizedBox(height: textVerticalSeparation),
                         Text(applicationLegalese ?? '', style: Theme.of(context).textTheme.caption),
                       ],
                     ),

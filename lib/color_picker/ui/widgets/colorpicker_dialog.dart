@@ -88,7 +88,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
             displayThumbColor: true,
             portraitOnly: true,
             enableAlpha: false,
-            showLabel: false,
+            labelTypes: const [],
             pickerColor: selectedColor,
             hexInputController: hexController,
             onColorChanged: widget.onColorChanged,

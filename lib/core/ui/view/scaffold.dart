@@ -79,7 +79,7 @@ class _NavigationScreenState extends State<MainScreen> {
             return Shortcuts(
               shortcuts: <ShortcutActivator, Intent>{
                 ...WidgetsApp.defaultShortcuts,
-                const SingleActivator(spacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
+                const SingleActivator(kSpacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
               },
               child: RawKeyboardListener(
                 focusNode: FocusNode(),
@@ -89,7 +89,7 @@ class _NavigationScreenState extends State<MainScreen> {
                   if (event.isKeyPressed(LogicalKeyboardKey.tab) && !showGenFab) {
                     setState(() => showGenFab = true);
                   }
-                  if (event.isKeyPressed(spacebar) && isGenTab) {
+                  if (event.isKeyPressed(kSpacebar) && isGenTab) {
                     if (kIsWeb) {
                       BlocProvider.of<SoundBloc>(navContext).add(const SoundRefreshed());
                     }
@@ -106,7 +106,7 @@ class _NavigationScreenState extends State<MainScreen> {
                     floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
                     appBar: AppBar(
                       systemOverlayStyle: overlayStyle.copyWith(statusBarColor: Colors.transparent),
-                      actions: [appBarActions[navState.tabIndex], const OverflowMenu()],
+                      actions: [kAppBarActions[navState.tabIndex], const OverflowMenu()],
                       toolbarHeight: kToolbarHeight + (platform.isMacOS ? 12 : 0),
                       title: Padding(
                         padding: EdgeInsets.only(top: platform.isMacOS ? 16 : 0),

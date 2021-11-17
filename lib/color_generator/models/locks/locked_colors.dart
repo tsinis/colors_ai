@@ -32,8 +32,7 @@ class LockedColors implements ManipulateListInterface, LockInterface {
     ..removeAt(colorIndex)
     ..insert(colorIndex, _locked);
 
-  @override
-  void change(int colorIndex, [_]) {
+  void change(int colorIndex) {
     final bool invertedLock = !list[colorIndex];
     list
       ..removeAt(colorIndex)

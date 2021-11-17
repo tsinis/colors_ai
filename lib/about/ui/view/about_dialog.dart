@@ -17,7 +17,7 @@ class AboutAppDialog extends StatelessWidget {
         Theme.of(context).textTheme.bodyText2?.copyWith(color: Theme.of(context).indicatorColor);
 
     return AboutDialogM3(
-      applicationName: appName,
+      applicationName: kAppName,
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
       applicationLegalese: '2021 © Roman Cinis',
       applicationIcon: const AppIcon(),
