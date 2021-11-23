@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 
 class TransmitterTower extends CustomPainter {
-  const TransmitterTower({required this.color});
+  const TransmitterTower({required this.color, this.style = PaintingStyle.stroke, this.strokeWidth = 4});
 
   final Color color;
+  final double strokeWidth;
+  final PaintingStyle style;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
       ..color = color.withOpacity(0.6)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 4;
+      ..strokeWidth = strokeWidth
+      ..style = style;
 
     final Paint almostTransparent = Paint()
+      ..strokeWidth = strokeWidth * 1.25
       ..color = Colors.black12
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 5;
+      ..style = style;
 
     final Paint paintThirdfTransparent = Paint()
       ..color = color.withOpacity(0.3)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 4;
+      ..strokeWidth = strokeWidth
+      ..style = style;
 
     final Paint redPaint = Paint()
+      ..strokeWidth = strokeWidth * 1.25
       ..color = Colors.red[900]!
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 3;
+      ..style = style;
 
     final Path path_1 = Path()
       ..moveTo(size.width * 0.5, size.height * 0.15)

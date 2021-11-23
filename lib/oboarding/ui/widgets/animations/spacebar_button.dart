@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SpaceBarButton extends CustomPainter {
-  const SpaceBarButton({this.color = Colors.black});
+  const SpaceBarButton({this.color = Colors.black, this.style = PaintingStyle.stroke, this.strokeWidth = 2});
 
   final Color color;
+  final double strokeWidth;
+  final PaintingStyle style;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Paint stroke = Paint()
       ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+      ..style = style
+      ..strokeWidth = strokeWidth;
 
     final Path path = Path()
       ..moveTo(size.width * 0.81162, size.height * 0.377)

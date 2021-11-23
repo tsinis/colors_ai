@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
-import '../models/colors/colors_json.dart';
+import '../models/colors/colors_ai.dart';
 
 abstract class API {
   const API(

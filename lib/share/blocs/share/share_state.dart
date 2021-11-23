@@ -1,4 +1,4 @@
-part of 'share_hydrated_bloc.dart';
+part of 'share_bloc.dart';
 
 abstract class ShareState extends Equatable {
   const ShareState({this.selectedProvider, this.selectedFormat});

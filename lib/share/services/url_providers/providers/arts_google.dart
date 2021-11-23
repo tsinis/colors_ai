@@ -1,4 +1,4 @@
-part of '../url_providers.dart';
+part of '../colors_url_provider.dart';
 
 class ArtsGoogle extends ColorsUrlProvider {
   const ArtsGoogle()

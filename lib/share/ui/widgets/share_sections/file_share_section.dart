@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/string.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
-import '../../../blocs/share/share_hydrated_bloc.dart';
+import '../../../blocs/share/share_bloc.dart';
 import '../../../models/file_format_enum.dart';
 import 'share_section_interface.dart';
 
-class FileShareSection extends ShareSection {
+class FileShareSection extends ShareSectionInterface {
   const FileShareSection(
     ColorPalette palette, {
     required double width,

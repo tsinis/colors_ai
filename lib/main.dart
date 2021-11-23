@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'about/blocs/about_dialog/about_bloc.dart';
 import 'about/repository/about_repository.dart';
 import 'app/app.dart';
-import 'app/theme/services/system_overlays.dart';
+import 'app/theme/services/system_ui.dart';
 import 'core/services/data_storage.dart';
 import 'favorites/blocs/list_favorites/favorites_bloc.dart';
 import 'oboarding/blocs/onboarding/onboarding_bloc.dart';
-import 'settings/blocs/settings_hydrated_bloc.dart';
+import 'settings/blocs/settings_bloc.dart';
 
 void main() => DataStorage.init().whenComplete(() {
       SystemUI.init();

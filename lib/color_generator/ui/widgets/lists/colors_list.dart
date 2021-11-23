@@ -15,30 +15,61 @@ import '../../../../core/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../../../oboarding/blocs/onboarding/onboarding_bloc.dart';
 import '../../../../oboarding/ui/view/onboarding_overlay.dart';
-import '../../../../settings/blocs/settings_hydrated_bloc.dart';
+import '../../../../settings/blocs/settings_bloc.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../../blocs/colors_generated/colors_bloc.dart';
-import '../../../blocs/colors_locked/locked_bloc.dart';
+import '../../../blocs/colors_locked/lock_bloc.dart';
 import '../animated/animated_list_tile.dart';
 import '../buttons/lock_color_button.dart';
-import '../helpers/drag_listner.dart';
+import '../helpers/reorderable_drag_listener.dart';
 
 class ColorsList extends StatefulWidget {
-  const ColorsList(this.palette);
+  const ColorsList(
+    this.palette, {
+    this.lowerBound = 0.2,
+    this.curve = Curves.easeInCubic,
+    this.reverseCurve = Curves.easeInExpo,
+    this.duration = const Duration(milliseconds: 600),
+  });
+
+  final Curve curve;
+  final Duration? duration;
+  final double lowerBound;
   final ColorPalette palette;
+  final Curve? reverseCurve;
 
   @override
   _ColorsListState createState() => _ColorsListState();
 }
 
 class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateMixin {
-  late Completer<void> refreshCompleter;
+  late final Animation<double> animation;
   late CancelableOperation cancelableOperation;
   late final AnimationController controller;
-  late final Animation<double> animation;
+  int? hoverIndex;
+  late Completer<void> refreshCompleter;
   late final Animation<double> reverseAnimation;
 
-  int? hoverIndex;
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    refreshCompleter = Completer<void>();
+    controller = AnimationController(duration: widget.duration, lowerBound: widget.lowerBound, vsync: this)
+      ..addStatusListener((animationStatus) {
+        if (animationStatus == AnimationStatus.dismissed) {
+          controller.forward();
+        }
+      });
+    animation = CurvedAnimation(parent: controller, curve: widget.curve, reverseCurve: widget.reverseCurve);
+    reverseAnimation = ReverseAnimation(animation);
+    controller.forward();
+  }
 
   List<Color> get palette => widget.palette.colors;
 
@@ -57,27 +88,6 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
         toHideFab = false;
       },
     );
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    refreshCompleter = Completer<void>();
-    controller = AnimationController(duration: const Duration(milliseconds: 600), lowerBound: 0.2, vsync: this)
-      ..addStatusListener((animationStatus) {
-        if (animationStatus == AnimationStatus.dismissed) {
-          controller.forward();
-        }
-      });
-    animation = CurvedAnimation(parent: controller, curve: Curves.easeInCubic, reverseCurve: Curves.easeInExpo);
-    reverseAnimation = ReverseAnimation(animation);
-    controller.forward();
   }
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
@@ -114,7 +124,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                       ),
                     ),
                   ),
-                FadeTransition(opacity: reverseAnimation, child: DefaultGreyList(length: length)),
+                FadeTransition(opacity: reverseAnimation, child: DefaultGreyColorsList(length: length)),
                 BlocConsumer<ColorsBloc, ColorsState>(
                   listener: (_, __) {
                     refreshCompleter.complete();
@@ -156,7 +166,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                                 key: ValueKey<int>(index),
                                 onHover: (_) => changeHoverIndex(index),
                                 onExit: (_) => changeHoverIndex(),
-                                child: AnimatedListItem(
+                                child: AnimatedListTile(
                                   index: index,
                                   size: size,
                                   length: length,
@@ -168,7 +178,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                                     child: InkWell(
                                       onDoubleTap: () {
                                         BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
-                                        BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
+                                        BlocProvider.of<LockBloc>(context).add(LockChanged(index));
                                       },
                                       child: DecoratedBox(
                                         decoration: BoxDecoration(

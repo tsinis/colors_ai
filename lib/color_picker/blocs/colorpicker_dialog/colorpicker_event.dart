@@ -17,5 +17,6 @@ class ColorPickerHided extends ColorPickerEvent {
 
 class ColorPickerCopied extends ColorPickerEvent {
   const ColorPickerCopied(this.color);
+
   final Color color;
 }

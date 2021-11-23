@@ -1,4 +1,4 @@
-part of '../url_providers.dart';
+part of '../colors_url_provider.dart';
 
 class CohesiveColors extends ColorsUrlProvider {
   const CohesiveColors() : super(baseUrl: 'javier.xyz/cohesive-colors/?src=', separateSymbol: ',');

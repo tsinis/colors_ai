@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show SchedulerBinding;
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../../about/ui/view/about_dialog.dart';
+import '../../../about/ui/view/about_app_dialog.dart';
+import '../../../app/theme/constants.dart';
 import '../../../settings/ui/view/settings_dialog.dart';
 
 class OverflowMenu extends StatelessWidget {
@@ -14,8 +15,8 @@ class OverflowMenu extends StatelessWidget {
       (_) async => showModal<void>(
         context: context,
         configuration: const FadeScaleTransitionConfiguration(
-          transitionDuration: Duration(milliseconds: 400),
-          reverseTransitionDuration: Duration(milliseconds: 200),
+          transitionDuration: kDefaultTransitionDuration,
+          reverseTransitionDuration: kDefaultReverseTransitionDuration,
         ),
         useRootNavigator: true,
         builder: (_) => dialog,

@@ -1,4 +1,4 @@
-part of '../url_providers.dart';
+part of '../colors_url_provider.dart';
 
 class ColorCombos extends ColorsUrlProvider {
   const ColorCombos() : super(baseUrl: 'www.colorcombos.com/combotester.html?', separateSymbol: '&', formats: 'PNG +');

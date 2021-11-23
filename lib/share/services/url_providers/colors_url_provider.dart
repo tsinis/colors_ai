@@ -3,7 +3,7 @@ import 'dart:ui' show Color;
 import '../../../core/extensions/color.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 
-part 'providers/art_google.dart';
+part 'providers/arts_google.dart';
 part 'providers/cohesive_colors.dart';
 part 'providers/color_combos.dart';
 part 'providers/colordesigner.dart';

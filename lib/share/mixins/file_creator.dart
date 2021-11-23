@@ -5,7 +5,7 @@ import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart' show fontFromAssetBundle;
 
 import '../../core/models/color_palette/color_palette.dart';
-import '../services/export/file_export.dart';
+import '../services/export/file_layout.dart';
 
 mixin FileCreator {
   static const PdfPageFormat _a4 =

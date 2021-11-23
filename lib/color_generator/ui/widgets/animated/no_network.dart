@@ -5,7 +5,9 @@ import 'no_network/illustrations/transmitter_tower.dart';
 import 'no_network/pulse_animation.dart';
 
 class NoNetwork extends StatefulWidget {
-  const NoNetwork();
+  const NoNetwork({this.repeatPeriod = const Duration(seconds: 4)});
+
+  final Duration repeatPeriod;
 
   @override
   _NoNetworkState createState() => _NoNetworkState();
@@ -24,13 +26,13 @@ class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMix
   void initState() {
     super.initState();
     controller = AnimationController(vsync: this);
-    _startAnimation();
+    startAnimation();
   }
 
-  void _startAnimation() => controller
+  void startAnimation() => controller
     ..stop()
     ..reset()
-    ..repeat(period: const Duration(seconds: 4));
+    ..repeat(period: widget.repeatPeriod);
 
   @override
   Widget build(BuildContext context) => FittedBox(

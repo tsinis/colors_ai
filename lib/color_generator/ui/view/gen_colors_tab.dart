@@ -7,8 +7,8 @@ import '../../blocs/colors_generated/colors_bloc.dart';
 import '../widgets/animated/no_network.dart';
 import '../widgets/lists/colors_list.dart';
 
-class ColorsGenerator extends StatelessWidget {
-  const ColorsGenerator();
+class GenColorsTab extends StatelessWidget {
+  const GenColorsTab();
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(

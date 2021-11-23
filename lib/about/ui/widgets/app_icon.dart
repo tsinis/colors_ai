@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AppIcon extends StatelessWidget {
-  const AppIcon();
+  const AppIcon({
+    this.borderRadius = const BorderRadius.all(Radius.circular(16)),
+    this.clipBehavior = Clip.antiAlias,
+    this.elevation = 4,
+  });
+
+  final BorderRadiusGeometry? borderRadius;
+  final Clip clipBehavior;
+  final double elevation;
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -13,9 +21,9 @@ class AppIcon extends StatelessWidget {
             width: 102.4,
             height: 102.4,
             child: Material(
-              elevation: 4,
-              clipBehavior: Clip.antiAlias,
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              elevation: elevation,
+              clipBehavior: clipBehavior,
+              borderRadius: borderRadius,
               child: ColoredBox(
                 color: const Color(0xff424242),
                 child: Transform.translate(
@@ -69,10 +77,20 @@ class AppIcon extends StatelessWidget {
 
 // ignore: prefer-single-widget-per-file
 class Rectangle extends StatelessWidget {
-  const Rectangle(this.color, {this.shadowOffset = const Offset(-1, 1), this.darkShadow = true});
+  const Rectangle(
+    this.color, {
+    this.lightShadowColor = const Color(0x36000000),
+    this.shadowOffset = const Offset(-1, 1),
+    this.darkShadowColor = Colors.black38,
+    this.darkShadow = true,
+    this.blurRadius = 2,
+  });
 
+  final double blurRadius;
   final Color color;
   final bool darkShadow;
+  final Color darkShadowColor;
+  final Color lightShadowColor;
   final Offset shadowOffset;
 
   @override
@@ -83,9 +101,9 @@ class Rectangle extends StatelessWidget {
           color: color,
           boxShadow: [
             BoxShadow(
-              color: darkShadow ? Colors.black38 : const Color(0x36000000),
+              color: darkShadow ? darkShadowColor : lightShadowColor,
               offset: shadowOffset,
-              blurRadius: 2,
+              blurRadius: blurRadius,
             ),
           ],
         ),

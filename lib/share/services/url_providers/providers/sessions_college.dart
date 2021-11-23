@@ -1,4 +1,4 @@
-part of '../url_providers.dart';
+part of '../colors_url_provider.dart';
 
 class SessionsCollege extends ColorsUrlProvider {
   const SessionsCollege() : super(baseUrl: 'www.sessions.edu/color-calculator-results/?colors=', separateSymbol: ',');

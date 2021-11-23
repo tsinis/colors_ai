@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/theme/constants.dart';
 import '../../../core/extensions/string.dart';
 
 class AboutDialogM3 extends StatelessWidget {
@@ -7,23 +8,29 @@ class AboutDialogM3 extends StatelessWidget {
     required this.applicationName,
     required this.applicationVersion,
     required this.applicationIcon,
+    this.contentPadding = const EdgeInsets.symmetric(horizontal: 24),
+    this.actionsPadding = const EdgeInsets.only(bottom: 8, right: 8),
     this.textVerticalSeparation = 18,
+    this.shape = kDefaultShape,
     this.applicationLegalese,
     this.children,
     Key? key,
   }) : super(key: key);
 
+  final EdgeInsetsGeometry actionsPadding;
   final Widget applicationIcon;
   final String? applicationLegalese;
   final String applicationName;
   final String applicationVersion;
   final List<Widget>? children;
+  final EdgeInsetsGeometry contentPadding;
+  final ShapeBorder? shape;
   final double textVerticalSeparation;
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-        actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
+        actionsPadding: actionsPadding,
+        shape: shape,
         content: ListBody(
           children: <Widget>[
             Row(
@@ -32,7 +39,7 @@ class AboutDialogM3 extends StatelessWidget {
                 IconTheme(data: Theme.of(context).iconTheme, child: applicationIcon),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: contentPadding,
                     child: ListBody(
                       children: <Widget>[
                         Text(applicationName, style: Theme.of(context).textTheme.headline5),

@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SideButtons extends CustomPainter {
-  const SideButtons({this.color = Colors.grey});
+  const SideButtons({this.color = Colors.grey, this.style = PaintingStyle.stroke, this.strokeWidth = 1.6});
 
   final Color color;
+  final PaintingStyle style;
+  final double strokeWidth;
 
   @override
   void paint(Canvas canvas, Size size) {
     final Paint stroke = Paint()
+      ..strokeWidth = strokeWidth
       ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.6;
+      ..style = style;
 
     final Path path = Path()
       ..moveTo(size.width * 1.5864, size.height * 0.3793)

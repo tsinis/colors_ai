@@ -1,4 +1,4 @@
-part of 'remove_favs_bloc.dart';
+part of 'remove_favorites_bloc.dart';
 
 abstract class RemoveFavoritesState extends Equatable {
   const RemoveFavoritesState(this.selections);

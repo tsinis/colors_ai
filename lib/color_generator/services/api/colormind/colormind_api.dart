@@ -5,7 +5,7 @@ import 'package:http/http.dart' show Response;
 
 import '../../../../core/models/typedef_aliases/int_rgb_color.dart';
 import '../../../interfaces/api.dart';
-import '../../../models/colors/colors_json.dart';
+import '../../../models/colors/colors_ai.dart';
 import 'constants.dart';
 
 class ColormindAPI extends API {

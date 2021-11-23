@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../app/theme/constants.dart';
 import '../../../color_generator/ui/widgets/buttons/generate_colors_fab.dart';
 import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
@@ -9,9 +10,11 @@ import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
 import '../../blocs/navigation/navigation_bloc.dart';
 
 class NavRail extends StatefulWidget {
-  const NavRail(this.navState, {required this.toShowGenFab});
+  const NavRail(this.navState, {required this.toShowGenFab, this.duration = kDefaultTransitionDuration});
+
   final NavigationState navState;
   final bool toShowGenFab;
+  final Duration duration;
 
   @override
   State<NavRail> createState() => _NavRailState();
@@ -27,7 +30,9 @@ class _NavRailState extends State<NavRail> {
   }
 
   int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
+
   int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
+
   int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
 
   @override
@@ -58,7 +63,7 @@ class _NavRailState extends State<NavRail> {
                     firstChild: const SizedBox.shrink(),
                     secondChild: GenerateColorsFAB(isExtended: isExtended),
                     crossFadeState: widget.toShowGenFab ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-                    duration: const Duration(milliseconds: 400),
+                    duration: widget.duration,
                   ),
                 ],
               ),

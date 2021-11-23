@@ -3,18 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
-import '../../../../color_generator/blocs/colors_locked/locked_bloc.dart';
+import '../../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../../core/extensions/color.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
-import '../../../blocs/remove_favorites/remove_favs_bloc.dart';
+import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
+import 'remove_background.dart';
 
 class FavoritesListSwipeable extends StatelessWidget {
-  const FavoritesListSwipeable();
+  const FavoritesListSwipeable({
+    this.padding = 20,
+    this.tipHeight = 42,
+    this.duration = const Duration(milliseconds: 800),
+  });
 
-  static const double _padding = 20;
-  static const double _tipHeight = 42;
+  final Duration duration;
+  final double padding;
+  final double tipHeight;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -27,18 +33,18 @@ class FavoritesListSwipeable extends StatelessWidget {
                 builder: (_, size) {
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
                   final double cardHeight =
-                      (size.maxWidth - (_padding * 2) - (colorsCount * (_padding / 2))) / colorsCount;
+                      (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
                   final double maxHeighForTip =
-                      size.maxHeight - _padding - (_tipHeight * MediaQuery.of(context).textScaleFactor);
-                  final bool canShowTip = favorites.length * (cardHeight + (_padding * 2.5)) <= maxHeighForTip;
+                      size.maxHeight - padding - (tipHeight * MediaQuery.of(context).textScaleFactor);
+                  final bool canShowTip = favorites.length * (cardHeight + (padding * 2.5)) <= maxHeighForTip;
 
                   return Stack(
                     alignment: AlignmentDirectional.topCenter,
                     children: [
                       Positioned(
-                        bottom: _padding,
+                        bottom: padding,
                         child: AnimatedOpacity(
-                          duration: const Duration(milliseconds: 800),
+                          duration: duration,
                           opacity: canShowTip ? 1 : 0,
                           child: Text(
                             AppLocalizations.of(context).removeFavoritesTip,
@@ -56,20 +62,20 @@ class FavoritesListSwipeable extends StatelessWidget {
                             BlocProvider.of<FavoritesBloc>(context)
                                 .add(FavoritesOneRemoved(colorToRemoveIndex: paletteIndex));
                           },
-                          secondaryBackground: const RemoveBackground(secondary: true),
-                          background: const RemoveBackground(),
+                          secondaryBackground: const RemoveBackground.secondary(),
+                          background: const RemoveBackground.primary(),
                           child: Semantics(
                             label: AppLocalizations.of(context).favoritePaletteSematic(paletteIndex),
                             child: ListTile(
                               onLongPress: () => BlocProvider.of<RemoveFavoritesBloc>(context)
                                   .add(RemoveFavoritesSelected(paletteIndex)),
                               enableFeedback: true,
-                              minVerticalPadding: _padding,
+                              minVerticalPadding: padding,
                               selectedTileColor: Theme.of(context).errorColor.withOpacity(0.2),
                               selected: removeState.selections.contains(paletteIndex),
-                              contentPadding: const EdgeInsets.symmetric(horizontal: _padding),
+                              contentPadding: EdgeInsets.symmetric(horizontal: padding),
                               onTap: () {
-                                BlocProvider.of<LockedBloc>(context).add(const LockAllUnlocked());
+                                BlocProvider.of<LockBloc>(context).add(const LockAllUnlocked());
                                 BlocProvider.of<ColorsBloc>(context)
                                     .add(ColorsRestored(palette: favorites.elementAt(paletteIndex)));
                                 BlocProvider.of<NavigationBloc>(context).add(const NavigationGeneratorTabStarted());
@@ -119,24 +125,6 @@ class FavoritesListSwipeable extends StatelessWidget {
               return const SizedBox.shrink();
             }
           },
-        ),
-      );
-}
-
-// ignore: prefer-single-widget-per-file
-class RemoveBackground extends StatelessWidget {
-  const RemoveBackground({this.secondary = false});
-  final bool secondary;
-
-  @override
-  Widget build(BuildContext context) => ColoredBox(
-        color: Theme.of(context).errorColor,
-        child: Align(
-          alignment: secondary ? Alignment.centerRight : Alignment.centerLeft,
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 40),
-            child: Icon(Icons.delete_forever, color: Colors.white70),
-          ),
         ),
       );
 }

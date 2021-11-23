@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../core/services/clipboard.dart';
+import '../../../core/services/clipboards.dart';
 import '../../../core/services/url_launcher.dart';
 import '../../helpers/server_maintenance_check.dart';
 
-part 'snackbars_event.dart';
-part 'snackbars_state.dart';
+part 'snackbar_event.dart';
+part 'snackbar_state.dart';
 
 class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
   SnackbarBloc() : super(const SnackbarsInitial());

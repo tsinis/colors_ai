@@ -13,13 +13,13 @@ class OnboardingTile extends StatelessWidget {
     this.additionalText,
   });
 
+  final String? additionalText;
   final double begin;
   final double end;
-  final String text;
-  final String? additionalText;
+  final IconData? icon;
   final bool isPortrait;
   final bool oppositeSide;
-  final IconData? icon;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

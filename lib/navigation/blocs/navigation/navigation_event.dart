@@ -13,6 +13,7 @@ class NavigationShareTabStarted extends NavigationEvent {
 
 class NavigationTabChanged extends NavigationEvent {
   const NavigationTabChanged(this.newTabIndex);
+
   final int newTabIndex;
 }
 

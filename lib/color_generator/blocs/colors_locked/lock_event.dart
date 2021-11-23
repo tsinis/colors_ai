@@ -1,4 +1,4 @@
-part of 'locked_bloc.dart';
+part of 'lock_bloc.dart';
 
 abstract class LockEvent extends Equatable {
   const LockEvent();

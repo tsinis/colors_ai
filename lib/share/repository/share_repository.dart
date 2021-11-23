@@ -8,13 +8,13 @@ import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../core/models/color_palette/color_palette.dart';
-import '../../core/services/clipboard.dart';
+import '../../core/services/clipboards.dart';
 import '../../core/ui/constants.dart';
 import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
 import '../mixins/text_based_file_creator.dart';
 import '../models/file_format_enum.dart';
-import '../services/url_providers/url_providers.dart';
+import '../services/url_providers/colors_url_provider.dart';
 import 'conditional_import/share_io_png.dart' if (dart.library.js) 'conditional_import/share_web_png.dart';
 
 class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities {
@@ -30,7 +30,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     MakeTintsAndShades(),
     MuzliColors(),
     Palettable(),
-    PalleteNinja(),
+    PaletteNinja(),
     Poolors(),
     SessionsCollege(),
   ];

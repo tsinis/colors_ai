@@ -5,9 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mdi/mdi.dart';
 
+import '../../../../app/theme/constants.dart';
 import '../../../../core/extensions/string.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
-import '../../../blocs/remove_favorites/remove_favs_bloc.dart';
+import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 
 class RemoveAllFavoritesButton extends StatefulWidget {
   const RemoveAllFavoritesButton();
@@ -23,7 +24,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    animationController = AnimationController(vsync: this, duration: kDefaultLongTransitionDuration);
     // ignore: prefer_int_literals
     animation = Tween(begin: 0.4, end: 1.0).animate(animationController)
       ..addStatusListener((status) {
@@ -51,13 +52,13 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
               (_) async => showModal<bool>(
                 context: dialogContext,
                 configuration: const FadeScaleTransitionConfiguration(
-                  transitionDuration: Duration(milliseconds: 400),
-                  reverseTransitionDuration: Duration(milliseconds: 200),
+                  transitionDuration: kDefaultTransitionDuration,
+                  reverseTransitionDuration: kDefaultReverseTransitionDuration,
                 ),
                 // https://material.io/components/dialogs#alert-dialog
                 builder: (_) => AlertDialog(
                   actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
+                  shape: kDefaultShape,
                   content: Text(
                     haveSelection
                         ? '${AppLocalizations.of(context).removeSomeTitle(state.selections.length)}?'

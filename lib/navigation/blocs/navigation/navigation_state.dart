@@ -5,10 +5,10 @@ abstract class NavigationState extends Equatable {
 
   final int _tabIndex;
 
-  int get tabIndex => _tabIndex;
-
   @override
   List<Object> get props => [_tabIndex];
+
+  int get tabIndex => _tabIndex;
 }
 
 class NavigationFailure extends NavigationState {

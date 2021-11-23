@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
-import '../../../../color_generator/blocs/colors_locked/locked_bloc.dart';
+import '../../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
-import '../../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/color.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
-import '../../../blocs/remove_favorites/remove_favs_bloc.dart';
+import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 
 class FavoritesListAdaptive extends StatefulWidget {
   const FavoritesListAdaptive();
@@ -22,11 +23,13 @@ class FavoritesListAdaptive extends StatefulWidget {
 class _FavoritesListState extends State<FavoritesListAdaptive> {
   double? hoveringColor;
   int? hoveringPalette;
-  static const Duration hoverDuration = Duration(milliseconds: 400);
-  static const Curve hoverCurve = Curves.easeInOutCubicEmphasized;
+  static const Duration hoverDuration = kDefaultTransitionDuration;
+  static const Curve hoverCurve = kDefaultTransitionCurve;
   static const double size = 88;
   static const double padding = 20;
   static const double cardHeight = size + (padding * 2);
+
+  Color get removeColor => Theme.of(context).errorColor;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -69,7 +72,6 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                 (paletteIndex) {
                                   final bool isHoveringPalette = hoveringPalette == paletteIndex;
                                   final bool isSelectedToRemove = removeState.selections.contains(paletteIndex);
-                                  final Color removeColor = Theme.of(context).errorColor;
 
                                   return Padding(
                                     padding: const EdgeInsets.all(padding),
@@ -132,7 +134,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                           ),
                                           GestureDetector(
                                             onTap: () {
-                                              BlocProvider.of<LockedBloc>(context).add(const LockAllUnlocked());
+                                              BlocProvider.of<LockBloc>(context).add(const LockAllUnlocked());
                                               BlocProvider.of<ColorsBloc>(context)
                                                   .add(ColorsRestored(palette: favorites.elementAt(paletteIndex)));
                                               BlocProvider.of<NavigationBloc>(context)

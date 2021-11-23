@@ -1,4 +1,4 @@
-part of 'snackbars_bloc.dart';
+part of 'snackbar_bloc.dart';
 
 abstract class SnackbarEvent extends Equatable {
   const SnackbarEvent();
@@ -17,6 +17,7 @@ class UrlCopiedSuccess extends SnackbarEvent {
 
 class FileCopiedSuccess extends SnackbarEvent {
   const FileCopiedSuccess(this.format);
+
   final String format;
 }
 

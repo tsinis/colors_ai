@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/theme/constants.dart';
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
-import '../../../color_generator/blocs/colors_locked/locked_bloc.dart';
-import '../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../color_generator/blocs/colors_locked/lock_bloc.dart';
+import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/extensions/color.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
@@ -21,11 +22,11 @@ class Colorpicker extends StatelessWidget {
     required this.isPortrait,
   });
 
-  final Color color;
-  final Color textColor;
-  final int index;
   final Size buttonSize;
+  final Color color;
+  final int index;
   final bool isPortrait;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) => BlocProvider<ColorPickerBLoc>(
@@ -45,8 +46,8 @@ class Colorpicker extends StatelessWidget {
                   ),
                   configuration: const FadeScaleTransitionConfiguration(
                     barrierColor: Colors.transparent,
-                    transitionDuration: Duration(milliseconds: 400),
-                    reverseTransitionDuration: Duration(milliseconds: 200),
+                    transitionDuration: kDefaultTransitionDuration,
+                    reverseTransitionDuration: kDefaultReverseTransitionDuration,
                   ),
                 ),
               );
@@ -68,7 +69,7 @@ class Colorpicker extends StatelessWidget {
               onPressed: () {
                 BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
                 BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
-                BlocProvider.of<LockedBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
+                BlocProvider.of<LockBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
               },
               child: Align(
                 alignment: isPortrait ? Alignment.centerLeft : Alignment.topCenter,

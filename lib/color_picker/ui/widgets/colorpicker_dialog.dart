@@ -3,12 +3,17 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
-import '../../../core/services/clipboard.dart';
+import '../../../core/services/clipboards.dart';
 import '../../helpers/hex_formatter.dart';
 
 class ColorpickerDialog extends StatefulWidget {
-  const ColorpickerDialog(this.color, {required this.onColorChanged});
+  const ColorpickerDialog(
+    this.color, {
+    required this.onColorChanged,
+    this.clipboard = const Clipboards(),
+  });
 
+  final Clipboards clipboard;
   final Color color;
   final ValueSetter<Color> onColorChanged;
 
@@ -17,16 +22,9 @@ class ColorpickerDialog extends StatefulWidget {
 }
 
 class _ColorpickerDialogState extends State<ColorpickerDialog> {
-  static const Clipboards clipboard = Clipboards();
-  final TextEditingController hexController = TextEditingController();
   bool hasError = false;
+  final TextEditingController hexController = TextEditingController();
   late Color selectedColor;
-
-  @override
-  void initState() {
-    selectedColor = widget.color;
-    super.initState();
-  }
 
   @override
   void dispose() {
@@ -34,8 +32,15 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
     super.dispose();
   }
 
+  @override
+  void initState() {
+    selectedColor = widget.color;
+    super.initState();
+  }
+
   Future<void> validateAndPaste() async {
-    final String? pastedText = HexFormatter.formatCompleteInput(await clipboard.data);
+    final String? clipboardData = await widget.clipboard.data;
+    final String? pastedText = HexFormatter.formatCompleteInput(clipboardData);
     if (pastedText != null) {
       hexController.text = pastedText;
       hideErrorMessage();
@@ -66,10 +71,13 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   }
 
   double get keyboardHeight => MediaQuery.of(context).viewInsets.bottom;
+
   double get pickerAreaHeightPercent => hidePickerArea ? (keyboardIsVisible ? 0 : 1) : 1;
 
   bool get keyboardIsVisible => keyboardHeight != 0;
+
   bool get isMobile => platform.isMobile;
+
   bool get hidePickerArea {
     final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
 
@@ -78,7 +86,6 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
 
   @override
   Widget build(BuildContext context) => SimpleDialog(
-        // shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
         contentPadding: EdgeInsets.zero,
         children: [
           if (hidePickerArea) const SizedBox(height: 12),
@@ -113,7 +120,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
                 hintText: AppLocalizations.of(context).hexHintTextLabel,
                 suffixIcon: IconButton(
                   tooltip: MaterialLocalizations.of(context).pasteButtonLabel,
-                  onPressed: () async => validateAndPaste(),
+                  onPressed: validateAndPaste,
                   icon: Icon(
                     Icons.content_paste_outlined,
                     color: Theme.of(context).textTheme.bodyText1?.color,

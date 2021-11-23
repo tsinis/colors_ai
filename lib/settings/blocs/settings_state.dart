@@ -1,4 +1,4 @@
-part of 'settings_hydrated_bloc.dart';
+part of 'settings_bloc.dart';
 
 abstract class SettingsState extends Equatable {
   const SettingsState({required this.colorsForUi, this.isDarkTheme});

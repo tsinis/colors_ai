@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
-import '../../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
-import '../../../blocs/share/share_hydrated_bloc.dart';
-import '../../../services/url_providers/url_providers.dart';
+import '../../../blocs/share/share_bloc.dart';
+import '../../../services/url_providers/colors_url_provider.dart';
 import 'share_section_interface.dart';
 
-class UrlShareSection extends ShareSection {
+class UrlShareSection extends ShareSectionInterface {
   const UrlShareSection(
     ColorPalette palette, {
     required double width,

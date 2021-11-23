@@ -7,13 +7,13 @@ import '../../../core/extensions/list_color_to_palette.dart';
 import '../../../core/extensions/list_int_to_color.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/models/typedef_aliases/int_rgb_color.dart';
-import '../../interfaces/color_palette.dart';
-import '../../interfaces/manipulate_list.dart';
+import '../../interfaces/color_palette_interface.dart';
+import '../../interfaces/manipulate_list_interface.dart';
 
 /// This allows the `ColorsAI` class to access private members in
 /// the generated file. The value for this is *.g.dart, where
 /// the star denotes the source file name.
-part 'colors_json.g.dart';
+part 'colors_ai.g.dart';
 
 /// An annotation for the code generator to know that this class needs the
 /// JSON serialization logic to be generated.

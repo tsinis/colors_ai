@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 class DataStorage {
   const DataStorage();
+
   static Future<Directory> get directory async => getApplicationDocumentsDirectory();
 
   static Future<void> init() async {

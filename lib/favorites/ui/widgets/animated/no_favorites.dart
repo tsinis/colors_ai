@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'no_favorites/list.dart';
+import 'no_favorites/empty_list.dart';
 import 'no_favorites/magnifier.dart';
 
 class NoFavorites extends StatefulWidget {

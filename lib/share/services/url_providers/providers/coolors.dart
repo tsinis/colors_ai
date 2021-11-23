@@ -1,4 +1,4 @@
-part of '../url_providers.dart';
+part of '../colors_url_provider.dart';
 
 class Coolors extends ColorsUrlProvider {
   const Coolors() : super(baseUrl: 'coolors.co/', formats: 'ASE, CSS, PDF, PNG, SVG +');

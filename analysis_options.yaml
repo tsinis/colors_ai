@@ -59,6 +59,10 @@ dart_code_metrics:
   rules:
     - avoid-nested-conditional-expressions:
       acceptable-level: 2
+    - avoid-throw-in-catch-block
+    - avoid-unnecessary-type-assertions
+    - prefer-match-file-name
+    - avoid-missing-enum-constant-in-map
     - prefer-correct-type-name
     - prefer-last
     - refer-correct-identifier-length
@@ -280,3 +284,11 @@ linter:
     do_not_use_environment: true
     no_default_cases: true
     use_is_even_rather_than_modulo: true
+
+    # Linter 1.15.0
+    use_decorated_box: true
+    no_leading_underscores_for_library_prefixes: true
+    no_leading_underscores_for_local_identifiers: true
+    secure_pubspec_urls: true
+    sized_box_shrink_expand: true
+    avoid_final_parameters: true

@@ -7,18 +7,18 @@ import 'package:platform_info/platform_info.dart';
 
 import '../../../about/blocs/about_dialog/about_bloc.dart';
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
-import '../../../color_generator/blocs/colors_locked/locked_bloc.dart';
+import '../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
-import '../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../common/ui/widgets/app_bar_info_title.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
 import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../navigation/ui/constants.dart';
-import '../../../navigation/ui/widgets/bottom_navigation.dart';
-import '../../../navigation/ui/widgets/navigation_rail.dart';
-import '../../../settings/blocs/settings_hydrated_bloc.dart';
-import '../../../share/blocs/share/share_hydrated_bloc.dart';
+import '../../../navigation/ui/widgets/bottom_nav_bar.dart';
+import '../../../navigation/ui/widgets/nav_rail.dart';
+import '../../../settings/blocs/settings_bloc.dart';
+import '../../../share/blocs/share/share_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../repository/colors_repository.dart';
 import '../constants.dart';
@@ -32,8 +32,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _NavigationScreenState extends State<MainScreen> {
-  final SoundBloc soundBloc = SoundBloc();
   bool showGenFab = false;
+  final SoundBloc soundBloc = SoundBloc();
 
   @override
   void initState() {
@@ -59,11 +59,8 @@ class _NavigationScreenState extends State<MainScreen> {
   Widget build(BuildContext context) => MultiBlocProvider(
         providers: [
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
-          BlocProvider<LockedBloc>(
-            create: (_) => LockedBloc(context.read<ColorsRepository>())
-              ..add(
-                const LockStarted(),
-              ),
+          BlocProvider<LockBloc>(
+            create: (_) => LockBloc(context.read<ColorsRepository>())..add(const LockStarted()),
           ),
           BlocProvider<ColorsBloc>(
             create: (_) => ColorsBloc(context.read<ColorsRepository>())..add(const ColorsStarted()),
@@ -116,10 +113,10 @@ class _NavigationScreenState extends State<MainScreen> {
                     body: MultiBlocProvider(
                       providers: [
                         BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
+                        BlocProvider<ShareBloc>(lazy: false, create: (_) => ShareBloc()..add(const ShareStarted())),
                         BlocProvider<SnackbarBloc>(
                           create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
                         ),
-                        BlocProvider<ShareBloc>(lazy: false, create: (_) => ShareBloc()..add(const ShareStarted())),
                       ],
                       child: BlocListener<SnackbarBloc, SnackbarState>(
                         listener: (context, snackbarState) {
@@ -167,9 +164,7 @@ class _NavigationScreenState extends State<MainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (!isPortrait) NavRail(navState, toShowGenFab: showGenFab),
-                              Expanded(
-                                child: navTabs.elementAt(navState.tabIndex),
-                              ),
+                              Expanded(child: navTabs.elementAt(navState.tabIndex)),
                             ],
                           ),
                         ),

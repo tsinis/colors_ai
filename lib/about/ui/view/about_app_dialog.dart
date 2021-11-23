@@ -5,26 +5,40 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/ui/constants.dart';
 import '../../blocs/about_dialog/about_bloc.dart';
+import '../widgets/about_dialog_m3.dart';
 import '../widgets/app_icon.dart';
-import '../widgets/material3_dialog.dart';
 
 class AboutAppDialog extends StatelessWidget {
-  const AboutAppDialog();
+  const AboutAppDialog({
+    this.applicationLegalese = '2021 © Roman Cinis',
+    this.applicationIcon = const AppIcon(),
+    this.topPadding = 20,
+    this.linkTextStyle,
+    this.width = 320,
+  });
+
+  final Widget applicationIcon;
+  final String? applicationLegalese;
+  final TextStyle? linkTextStyle;
+  final double? topPadding;
+  final double width;
 
   @override
   Widget build(final BuildContext context) {
-    final TextStyle? linkStyle =
-        Theme.of(context).textTheme.bodyText2?.copyWith(color: Theme.of(context).indicatorColor);
+    final TextStyle? linkStyle = linkTextStyle ??
+        Theme.of(context).textTheme.bodyText2?.copyWith(
+              color: Theme.of(context).indicatorColor,
+            );
 
     return AboutDialogM3(
-      applicationName: kAppName,
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
-      applicationLegalese: '2021 © Roman Cinis',
-      applicationIcon: const AppIcon(),
+      applicationLegalese: applicationLegalese,
+      applicationIcon: applicationIcon,
+      applicationName: kAppName,
       children: <Widget>[
-        const SizedBox(height: 20),
+        SizedBox(height: topPadding),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 320),
+          constraints: BoxConstraints(maxWidth: width),
           child: Text.rich(
             TextSpan(
               style: Theme.of(context).textTheme.bodyText2,

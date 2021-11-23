@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../app/theme/constants.dart';
 import '../../../core/extensions/string.dart';
-import '../../blocs/settings_hydrated_bloc.dart';
+import '../../blocs/settings_bloc.dart';
 
 class SettingsDialog extends StatelessWidget {
   const SettingsDialog();
@@ -12,7 +13,7 @@ class SettingsDialog extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, state) => AlertDialog(
           actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
+          shape: kDefaultShape,
           scrollable: true,
           contentPadding: const EdgeInsets.only(bottom: 16, top: 16),
           title: Text(AppLocalizations.of(context).settings),

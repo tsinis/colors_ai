@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../app/theme/constants.dart';
+import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/repository/colors_repository.dart';
-import '../../blocs/share/share_hydrated_bloc.dart';
+import '../../blocs/share/share_bloc.dart';
 import '../widgets/file_export_preview.dart';
 import '../widgets/share_sections/file_share_section.dart';
 import '../widgets/share_sections/url_share_section.dart';
 
-class ShareColors extends StatelessWidget {
-  const ShareColors();
+class ShareColorsTab extends StatelessWidget {
+  const ShareColorsTab();
 
   static const int _first = 0;
 
@@ -39,8 +40,8 @@ class ShareColors extends StatelessWidget {
                         providersList: state.providersList,
                       ),
                       AnimatedOpacity(
-                        curve: Curves.easeInOutCubicEmphasized,
-                        duration: const Duration(seconds: 1),
+                        curve: kDefaultTransitionCurve,
+                        duration: kDefaultLongTransitionDuration,
                         opacity: state is ShareSelectedInitial ? 1 : 0,
                         child: (state is ShareSelectedInitial && state.canSharePdf)
                             ? FileShareSection(
@@ -74,8 +75,8 @@ class ShareColors extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               AnimatedOpacity(
-                                curve: Curves.easeInOutCubicEmphasized,
-                                duration: const Duration(seconds: 1),
+                                curve: kDefaultTransitionCurve,
+                                duration: kDefaultLongTransitionDuration,
                                 opacity: state is ShareSelectedInitial ? 1 : 0,
                                 child: (state is ShareSelectedInitial && state.canSharePdf)
                                     ? FileShareSection(

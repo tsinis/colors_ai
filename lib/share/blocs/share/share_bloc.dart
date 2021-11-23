@@ -5,7 +5,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../repository/share_repository.dart';
-import '../../services/url_providers/url_providers.dart';
+import '../../services/url_providers/colors_url_provider.dart';
 
 part 'share_event.dart';
 part 'share_state.dart';

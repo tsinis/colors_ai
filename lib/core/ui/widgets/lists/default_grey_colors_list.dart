@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../color_generator/models/colors/constants.dart';
 import '../../../../common/ui/widgets/helpers/orientation_switcher.dart';
 
-class DefaultGreyList extends StatelessWidget {
-  const DefaultGreyList({this.length});
+class DefaultGreyColorsList extends StatelessWidget {
+  const DefaultGreyColorsList({this.length});
 
   final int? length;
 
@@ -22,8 +22,8 @@ class DefaultGreyList extends StatelessWidget {
                     BoxShadow(
                       color: kDefaultColors[i],
                       blurStyle: BlurStyle.solid,
-                      spreadRadius: 1,
                       offset: const Offset(0, -1),
+                      spreadRadius: 1,
                     ),
                   ],
                 ),

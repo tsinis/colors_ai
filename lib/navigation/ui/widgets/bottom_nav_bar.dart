@@ -7,11 +7,15 @@ import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
 import '../../blocs/navigation/navigation_bloc.dart';
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar(this.navState);
+  const BottomNavBar(this.navState, {this.labelBehavior = NavigationDestinationLabelBehavior.alwaysHide});
+
+  final NavigationDestinationLabelBehavior labelBehavior;
   final NavigationState navState;
 
   int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
+
   int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
+
   int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
 
   @override
@@ -22,7 +26,7 @@ class BottomNavBar extends StatelessWidget {
 
           return NavigationBar(
             backgroundColor: Theme.of(context).primaryColor,
-            labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+            labelBehavior: labelBehavior,
             selectedIndex: navState.tabIndex,
             onDestinationSelected: (int newTabIndex) {
               if (!(isFavoritesEmpty && newTabIndex == _favoritesTabIndex)) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
-import '../../../blocs/colors_locked/locked_bloc.dart';
+import '../../../blocs/colors_locked/lock_bloc.dart';
 
 class LockColorButton extends StatelessWidget {
   const LockColorButton(this.index, {required this.color, this.buttonSize = const Size(24, 24)});
@@ -11,7 +11,7 @@ class LockColorButton extends StatelessWidget {
   final Size buttonSize;
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<LockedBloc, LockState>(
+  Widget build(BuildContext context) => BlocBuilder<LockBloc, LockState>(
         builder: (_, state) {
           if (state is LockSuccess) {
             final bool isLocked = state.isLocked(index);
@@ -21,7 +21,7 @@ class LockColorButton extends StatelessWidget {
               color: color.withOpacity(isLocked ? 0.87 : 0.6),
               onPressed: () {
                 BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
-                BlocProvider.of<LockedBloc>(context).add(LockChanged(index));
+                BlocProvider.of<LockBloc>(context).add(LockChanged(index));
               },
               icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined),
             );

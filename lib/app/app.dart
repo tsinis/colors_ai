@@ -4,14 +4,15 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../core/repository/colors_repository.dart';
 import '../core/ui/constants.dart';
-import '../core/ui/view/scaffold.dart';
+import '../core/ui/view/main_screen.dart';
 import '../core/ui/view/splash_screen.dart';
 import '../favorites/blocs/add_favorites/fab_bloc.dart';
-import '../favorites/blocs/remove_favorites/remove_favs_bloc.dart';
+import '../favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
 import '../navigation/blocs/navigation/navigation_bloc.dart';
 import '../oboarding/blocs/onboarding/onboarding_bloc.dart';
-import '../settings/blocs/settings_hydrated_bloc.dart';
-import 'theme/theme.dart';
+import '../settings/blocs/settings_bloc.dart';
+import 'theme/app_theme.dart';
+import 'theme/constants.dart';
 
 class App extends StatelessWidget {
   const App();
@@ -43,8 +44,8 @@ class App extends StatelessWidget {
                       children: [
                         const SplashScreen(),
                         AnimatedOpacity(
-                          curve: Curves.easeInOutCubicEmphasized,
-                          duration: const Duration(seconds: 1),
+                          curve: kDefaultTransitionCurve,
+                          duration: kDefaultLongTransitionDuration,
                           opacity: state is OnboardingLoadInProgress || state is OnboardingInitial ? 0 : 1,
                           child: const MainScreen(),
                         ),

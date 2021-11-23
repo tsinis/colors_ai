@@ -9,15 +9,15 @@ part 'onboarding_event.dart';
 part 'onboarding_state.dart';
 
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
-  OnboardingBloc() : super(const OnboardingInitial());
+  OnboardingBloc({this.onboardingRepository = const OnboardingRepository()}) : super(const OnboardingInitial());
 
-  static const OnboardingRepository _onboardingRepository = OnboardingRepository();
+  final OnboardingRepository onboardingRepository;
 
   @override
   Stream<OnboardingState> mapEventToState(OnboardingEvent event) async* {
     if (event is OnboardingStarted) {
       yield const OnboardingLoadInProgress();
-      final bool isFirstRun = await _onboardingRepository.loadOnboardData;
+      final bool isFirstRun = await onboardingRepository.loadOnboardData;
       try {
         yield isFirstRun ? const OnboardingNotFinished() : const OnboardingDoneSuccess();
       } on Exception catch (_) {
@@ -25,7 +25,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
       }
     } else if (event is OnboardingFinished) {
       yield const OnboardingDoneSuccess();
-      await _onboardingRepository.onboardingDone();
+      await onboardingRepository.onboardingDone();
     }
   }
 }

@@ -2,7 +2,7 @@ import 'dart:ui' show Color;
 
 import 'package:flutter/foundation.dart' show debugPrint;
 
-import '../../color_generator/models/colors/colors_json.dart';
+import '../../color_generator/models/colors/colors_ai.dart';
 import '../../color_generator/models/colors/constants.dart';
 import '../../color_generator/models/locks/locked_colors.dart';
 import '../../color_generator/services/api/colormind/colormind_api.dart';

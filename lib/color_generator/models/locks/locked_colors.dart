@@ -1,5 +1,5 @@
-import '../../interfaces/manipulate_list.dart';
-import '../../interfaces/manipulate_lock.dart';
+import '../../interfaces/lock_interface.dart';
+import '../../interfaces/manipulate_list_interface.dart';
 
 class LockedColors implements ManipulateListInterface, LockInterface {
   LockedColors({this.list = const []});

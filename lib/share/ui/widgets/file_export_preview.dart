@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../common/blocs/snackbars/snackbars_bloc.dart';
+import '../../../app/theme/constants.dart';
+import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
-import '../../blocs/share/share_hydrated_bloc.dart';
+import '../../blocs/share/share_bloc.dart';
 import '../../mixins/text_based_file_creator.dart';
 import '../../models/file_format_enum.dart';
-import '../../services/export/file_export.dart';
+import '../../services/export/file_layout.dart';
 
 class FileExportPreview extends StatefulWidget {
   const FileExportPreview(this._palette);
@@ -20,7 +21,7 @@ class FileExportPreview extends StatefulWidget {
 class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFileCreator {
   bool isHovering = false;
   static const Duration duration = Duration(milliseconds: 600);
-  static const Curve curve = Curves.easeInOutCubicEmphasized;
+  static const Curve curve = kDefaultTransitionCurve;
 
   double aspectRatio(FileFormat selectedFormat) {
     switch (selectedFormat) {
@@ -79,7 +80,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
               onExit: (_) => setState(() => isHovering = false),
               cursor: isPrintable ? MouseCursor.defer : SystemMouseCursors.click,
               child: AnimatedPhysicalModel(
-                duration: const Duration(seconds: 1),
+                duration: kDefaultLongTransitionDuration,
                 curve: Curves.decelerate,
                 color: fileBackgroundColor(isPrintable: isPrintable),
                 borderRadius: BorderRadius.circular(isHovering ? 2 : 8),
@@ -105,7 +106,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                 child: FittedBox(
                                   child: Center(
                                     child: AnimatedSwitcher(
-                                      duration: const Duration(milliseconds: 200),
+                                      duration: kDefaultReverseTransitionDuration,
                                       switchInCurve: curve,
                                       switchOutCurve: curve,
                                       transitionBuilder: (Widget child, Animation<double> animation) => SizeTransition(

@@ -1,57 +1,70 @@
 import 'package:flutter/material.dart';
 
-class AnimatedListItem extends StatefulWidget {
-  const AnimatedListItem({
+import '../../../../app/theme/constants.dart';
+
+class AnimatedListTile extends StatefulWidget {
+  const AnimatedListTile({
     required this.index,
     required this.child,
     required this.length,
     required this.size,
+    this.duration = kDefaultShortTransitionDuration,
+    this.curve = kDefaultTransitionCurve,
+    this.hoverPadding = 48,
     this.hoverIndex,
     Key? key,
   }) : super(key: key);
 
   final Widget child;
+  final Curve curve;
+  final Duration duration;
+  final int? hoverIndex;
+  final double hoverPadding;
   final int index;
   final int length;
-  final int? hoverIndex;
   final BoxConstraints size;
 
   @override
   _AnimatedListItemState createState() => _AnimatedListItemState();
 }
 
-class _AnimatedListItemState extends State<AnimatedListItem> {
-  static const Duration duration = Duration(milliseconds: 300);
-  static const double hoverPadding = 48;
+class _AnimatedListItemState extends State<AnimatedListTile> {
   bool isAnimationDone = false;
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: widget.index * (duration.inMilliseconds / widget.length).round()), () {
-      if (mounted) {
-        setState(() => isAnimationDone = true);
-      }
-    });
+    Future.delayed(
+      Duration(
+        milliseconds: widget.index * (widget.duration.inMilliseconds / widget.length).round(),
+      ),
+      () {
+        if (mounted) {
+          setState(() => isAnimationDone = true);
+        }
+      },
+    );
   }
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+
   double get tileHeight => widget.size.maxHeight / widget.length;
+
   double get tileWeight => widget.size.maxWidth / widget.length;
 
   double get additionaHoverPadding {
     if (widget.hoverIndex == null) {
       return 0;
     } else if (widget.index == widget.hoverIndex) {
-      return hoverPadding;
+      return widget.hoverPadding;
     }
 
-    return -(hoverPadding / widget.length);
+    return -(widget.hoverPadding / widget.length);
   }
 
   @override
   Widget build(BuildContext context) => AnimatedContainer(
-        curve: Curves.easeInOutCubicEmphasized,
+        curve: widget.curve,
         height: isPortrait
             ? isAnimationDone
                 ? tileHeight + additionaHoverPadding
@@ -62,9 +75,9 @@ class _AnimatedListItemState extends State<AnimatedListItem> {
             : isAnimationDone
                 ? tileWeight + additionaHoverPadding
                 : (widget.index + 1) * tileWeight * widget.length,
-        duration: duration,
+        duration: widget.duration,
         child: AnimatedOpacity(
-          duration: duration,
+          duration: widget.duration,
           opacity: isAnimationDone ? 1 : 0,
           child: widget.child,
         ),

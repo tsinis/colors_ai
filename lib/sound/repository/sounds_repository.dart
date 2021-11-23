@@ -5,7 +5,7 @@ import 'package:just_audio/just_audio.dart';
 
 import '../mixins/vibration.dart';
 import '../models/sounds/constants.dart';
-import '../models/sounds/sounds_audio.dart';
+import '../models/sounds/sounds_source.dart';
 
 class SoundsRepository with Vibrations {
   static const SoundsSource _sounds = SoundsSource();

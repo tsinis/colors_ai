@@ -1,4 +1,4 @@
-part of '../url_providers.dart';
+part of '../colors_url_provider.dart';
 
 class DesignAI extends ColorsUrlProvider {
   const DesignAI() : super(baseUrl: 'designs.ai/colors/color-wheel?colors=%23', separateSymbol: ',%23');

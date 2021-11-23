@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../repository/remove_favorites_repository.dart';
 
-part 'remove_favs_event.dart';
-part 'remove_favs_state.dart';
+part 'remove_favorites_event.dart';
+part 'remove_favorites_state.dart';
 
 class RemoveFavoritesBloc extends Bloc<RemoveFavoritesEvent, RemoveFavoritesState> {
   RemoveFavoritesBloc() : super(const RemoveFavoritesSelectionChanged({}));

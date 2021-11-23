@@ -1,4 +1,4 @@
-part of '../url_providers.dart';
+part of '../colors_url_provider.dart';
 
 class Colordot extends ColorsUrlProvider {
   const Colordot() : super(baseUrl: 'color.hailpixel.com/#', separateSymbol: ',');

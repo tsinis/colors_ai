@@ -1,7 +1,8 @@
-part of 'snackbars_bloc.dart';
+part of 'snackbar_bloc.dart';
 
 abstract class SnackbarState extends Equatable {
   const SnackbarState(this.clipboard);
+
   final String clipboard;
 
   @override
@@ -14,16 +15,19 @@ class SnackbarsInitial extends SnackbarState {
 
 class UrlCopySuccess extends SnackbarState {
   const UrlCopySuccess(this.url) : super(url);
+
   final String url;
 }
 
 class FileCopySuccess extends SnackbarState {
   const FileCopySuccess(this.format) : super(format);
+
   final String format;
 }
 
 class ColorCopySuccess extends SnackbarState {
   const ColorCopySuccess(this.hex) : super(hex);
+
   final String hex;
 }
 

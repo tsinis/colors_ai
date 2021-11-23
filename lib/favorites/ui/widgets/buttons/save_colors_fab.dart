@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../../core/repository/colors_repository.dart';
 import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
@@ -20,7 +21,7 @@ class SaveColorsFAB extends StatefulWidget {
 }
 
 class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateMixin {
-  static const Duration animationDuration = Duration(milliseconds: 400);
+  static const Duration animationDuration = kDefaultTransitionDuration;
 
   late final AnimationController fadeController;
   late final AnimationController colorController;
@@ -40,7 +41,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
   @override
   void initState() {
     super.initState();
-    fadeController = AnimationController(vsync: this, duration: const Duration(milliseconds: 300))..forward();
+    fadeController = AnimationController(vsync: this, duration: kDefaultShortTransitionDuration)..forward();
     colorController = AnimationController(vsync: this, duration: animationDuration);
     fabAnimation = CurvedAnimation(parent: fadeController, curve: Curves.easeIn);
     colorAnimation = ColorTween(

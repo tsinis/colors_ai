@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../app/theme/constants.dart';
 import '../../../core/repository/colors_repository.dart';
 import '../../blocs/list_favorites/favorites_bloc.dart';
 import '../widgets/animated/no_favorites.dart';
@@ -64,7 +65,7 @@ class FavoritesTab extends StatelessWidget {
               : AnimatedSwitcher(
                   switchInCurve: Curves.decelerate,
                   switchOutCurve: Curves.decelerate,
-                  duration: const Duration(milliseconds: 400),
+                  duration: kDefaultTransitionDuration,
                   child: MediaQuery.of(context).orientation == Orientation.portrait
                       ? const FavoritesListSwipeable()
                       : const FavoritesListAdaptive(),
