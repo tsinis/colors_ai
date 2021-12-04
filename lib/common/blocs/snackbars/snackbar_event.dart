@@ -1,10 +1,10 @@
 part of 'snackbar_bloc.dart';
 
 abstract class SnackbarEvent extends Equatable {
-  const SnackbarEvent();
-
   @override
   List<Object> get props => [];
+
+  const SnackbarEvent();
 }
 
 class ShareFail extends SnackbarEvent {
@@ -16,9 +16,9 @@ class UrlCopiedSuccess extends SnackbarEvent {
 }
 
 class FileCopiedSuccess extends SnackbarEvent {
-  const FileCopiedSuccess(this.format);
-
   final String format;
+
+  const FileCopiedSuccess(this.format);
 }
 
 class UrlOpenedSuccess extends SnackbarEvent {

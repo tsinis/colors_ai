@@ -9,9 +9,9 @@ part 'about_event.dart';
 part 'about_state.dart';
 
 class AboutBloc extends Bloc<AboutEvent, AboutState> {
-  AboutBloc(this._aboutRepository) : super(const AboutInitial(appVersion: ''));
-
   final AboutRepository _aboutRepository;
+
+  AboutBloc(this._aboutRepository) : super(const AboutInitial(appVersion: ''));
 
   @override
   Stream<AboutState> mapEventToState(AboutEvent event) async* {

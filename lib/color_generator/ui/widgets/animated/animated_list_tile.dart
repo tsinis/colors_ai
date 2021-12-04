@@ -3,6 +3,15 @@ import 'package:flutter/material.dart';
 import '../../../../app/theme/constants.dart';
 
 class AnimatedListTile extends StatefulWidget {
+  final Widget child;
+  final Curve curve;
+  final Duration duration;
+  final int? hoverIndex;
+  final double hoverPadding;
+  final int index;
+  final int length;
+  final BoxConstraints size;
+
   const AnimatedListTile({
     required this.index,
     required this.child,
@@ -15,36 +24,12 @@ class AnimatedListTile extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final Widget child;
-  final Curve curve;
-  final Duration duration;
-  final int? hoverIndex;
-  final double hoverPadding;
-  final int index;
-  final int length;
-  final BoxConstraints size;
-
   @override
   _AnimatedListItemState createState() => _AnimatedListItemState();
 }
 
 class _AnimatedListItemState extends State<AnimatedListTile> {
   bool isAnimationDone = false;
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(
-      Duration(
-        milliseconds: widget.index * (widget.duration.inMilliseconds / widget.length).round(),
-      ),
-      () {
-        if (mounted) {
-          setState(() => isAnimationDone = true);
-        }
-      },
-    );
-  }
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
 
@@ -60,6 +45,21 @@ class _AnimatedListItemState extends State<AnimatedListTile> {
     }
 
     return -(widget.hoverPadding / widget.length);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+      Duration(
+        milliseconds: widget.index * (widget.duration.inMilliseconds / widget.length).round(),
+      ),
+      () {
+        if (mounted) {
+          setState(() => isAnimationDone = true);
+        }
+      },
+    );
   }
 
   @override

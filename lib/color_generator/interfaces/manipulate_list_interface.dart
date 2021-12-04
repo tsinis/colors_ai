@@ -1,7 +1,7 @@
 abstract class ManipulateListInterface {
-  const ManipulateListInterface(this.list);
-
   final List list;
+
+  const ManipulateListInterface(this.list);
 
   void swap({required int oldIndex, required int newIndex});
 

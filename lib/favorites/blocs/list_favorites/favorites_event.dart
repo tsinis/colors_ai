@@ -5,18 +5,21 @@ abstract class FavoritesEvent {
 }
 
 class FavoritesAdded extends FavoritesEvent {
-  const FavoritesAdded({required this.favorite});
   final ColorPalette favorite;
+
+  const FavoritesAdded({required this.favorite});
 }
 
 class FavoritesSeveralRemoved extends FavoritesEvent {
-  const FavoritesSeveralRemoved(this.palettesIndex);
   final Set<int> palettesIndex;
+
+  const FavoritesSeveralRemoved(this.palettesIndex);
 }
 
 class FavoritesOneRemoved extends FavoritesEvent {
-  const FavoritesOneRemoved({required this.colorToRemoveIndex});
   final int colorToRemoveIndex;
+
+  const FavoritesOneRemoved({required this.colorToRemoveIndex});
 }
 
 class FavoritesStarted extends FavoritesEvent {

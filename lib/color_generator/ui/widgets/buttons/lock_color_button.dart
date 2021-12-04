@@ -5,10 +5,11 @@ import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../../blocs/colors_locked/lock_bloc.dart';
 
 class LockColorButton extends StatelessWidget {
-  const LockColorButton(this.index, {required this.color, this.buttonSize = const Size(24, 24)});
-  final int index;
-  final Color color;
   final Size buttonSize;
+  final Color color;
+  final int index;
+
+  const LockColorButton(this.index, {required this.color, this.buttonSize = const Size(24, 24)});
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LockBloc, LockState>(

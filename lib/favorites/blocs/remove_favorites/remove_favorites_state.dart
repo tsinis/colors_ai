@@ -1,12 +1,12 @@
 part of 'remove_favorites_bloc.dart';
 
 abstract class RemoveFavoritesState extends Equatable {
-  const RemoveFavoritesState(this.selections);
-
   final Set<int> selections;
 
   @override
   List<Object> get props => [selections];
+
+  const RemoveFavoritesState(this.selections);
 }
 
 class RemoveFavoritesOpenDialogInitial extends RemoveFavoritesState {

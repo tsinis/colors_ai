@@ -7,6 +7,8 @@ part 'navigation_event.dart';
 part 'navigation_state.dart';
 
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
+  final List<NavigationState> stateList;
+
   NavigationBloc({
     this.stateList = const <NavigationState>[
       NavigationShareTabInitial(),
@@ -14,8 +16,6 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       NavigationFavoritesTabInitial(),
     ],
   }) : super(const NavigationGenerateTabInitial());
-
-  final List<NavigationState> stateList;
 
   @override
   Stream<NavigationState> mapEventToState(NavigationEvent event) async* {

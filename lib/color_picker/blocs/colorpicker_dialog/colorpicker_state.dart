@@ -1,10 +1,10 @@
 part of 'colorpicker_bloc.dart';
 
 abstract class ColorPickerState extends Equatable {
-  const ColorPickerState();
-
   @override
   List<Object> get props => [];
+
+  const ColorPickerState();
 }
 
 class ColorPickerCloseInitial extends ColorPickerState {

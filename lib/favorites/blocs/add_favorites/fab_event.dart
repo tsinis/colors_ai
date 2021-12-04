@@ -1,10 +1,10 @@
 part of 'fab_bloc.dart';
 
 abstract class FabEvent extends Equatable {
-  const FabEvent();
-
   @override
   List<Object> get props => [];
+
+  const FabEvent();
 }
 
 class FabStarted extends FabEvent {

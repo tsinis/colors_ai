@@ -1,10 +1,10 @@
 part of 'sound_bloc.dart';
 
 abstract class SoundEvent extends Equatable {
-  const SoundEvent();
-
   @override
   List<Object> get props => [];
+
+  const SoundEvent();
 }
 
 class SoundStarted extends SoundEvent {

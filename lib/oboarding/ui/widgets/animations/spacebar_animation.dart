@@ -4,6 +4,16 @@ import 'side_buttons.dart';
 import 'spacebar_button.dart';
 
 class SpaceBarAnimation extends StatefulWidget {
+  final Color color;
+  final Curve curve;
+  final Duration duration;
+  final List<double> gradientStops;
+  final Size relativeSize;
+  final Color transparentColor;
+  final double widthFactor;
+
+  List<Color> get fadeColorsGradient => [transparentColor, color, color, transparentColor];
+
   const SpaceBarAnimation(
     this.color, {
     this.duration = const Duration(milliseconds: 800),
@@ -15,18 +25,8 @@ class SpaceBarAnimation extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  final Color color;
-  final Curve curve;
-  final Duration duration;
-  final List<double> gradientStops;
-  final Size relativeSize;
-  final Color transparentColor;
-  final double widthFactor;
-
   @override
   State<SpaceBarAnimation> createState() => _SpaceBarAnimationState();
-
-  List<Color> get fadeColorsGradient => [transparentColor, color, color, transparentColor];
 }
 
 class _SpaceBarAnimationState extends State<SpaceBarAnimation> {

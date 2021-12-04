@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../../color_generator/blocs/colors_locked/lock_bloc.dart';
-import '../../../../core/extensions/color.dart';
+import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
@@ -12,15 +12,15 @@ import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 import 'remove_background.dart';
 
 class FavoritesListSwipeable extends StatelessWidget {
+  final Duration duration;
+  final double padding;
+  final double tipHeight;
+
   const FavoritesListSwipeable({
     this.padding = 20,
     this.tipHeight = 42,
     this.duration = const Duration(milliseconds: 800),
   });
-
-  final Duration duration;
-  final double padding;
-  final double tipHeight;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(

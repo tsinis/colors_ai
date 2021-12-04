@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DecorativeSymbols extends CustomPainter {
-  const DecorativeSymbols({this.color = Colors.white30, this.style = PaintingStyle.stroke, this.strokeWidth = 2});
-
   final Color color;
   final double strokeWidth;
   final PaintingStyle style;
+
+  const DecorativeSymbols({this.color = Colors.white30, this.style = PaintingStyle.stroke, this.strokeWidth = 2});
 
   @override
   void paint(Canvas canvas, Size size) {

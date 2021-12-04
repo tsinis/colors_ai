@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mdi/mdi.dart';
 
 import '../../../../app/theme/constants.dart';
-import '../../../../core/extensions/string.dart';
+import '../../../../core/extensions/string_extension.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 

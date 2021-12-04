@@ -17,9 +17,9 @@ class ColorsLoadInProgress extends ColorsState {
 }
 
 class ColorsChangeSuccess extends ColorsState {
-  const ColorsChangeSuccess(this.palette);
-
   final ColorPalette palette;
+
+  const ColorsChangeSuccess(this.palette);
 }
 
 class ColorsLoadSuccess extends ColorsChangeSuccess {

@@ -4,6 +4,9 @@ import 'package:hive/hive.dart';
 
 class ColorAdapter extends TypeAdapter<Color> {
   @override
+  int get typeId => 200;
+
+  @override
   Color read(BinaryReader reader) {
     final colorValue = reader.readInt();
 
@@ -14,7 +17,4 @@ class ColorAdapter extends TypeAdapter<Color> {
   void write(BinaryWriter writer, Color obj) {
     writer.writeInt(obj.value);
   }
-
-  @override
-  int get typeId => 200;
 }

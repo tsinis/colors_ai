@@ -11,9 +11,9 @@ import '../widgets/share_sections/file_share_section.dart';
 import '../widgets/share_sections/url_share_section.dart';
 
 class ShareColorsTab extends StatelessWidget {
-  const ShareColorsTab();
-
   static const int _first = 0;
+
+  const ShareColorsTab();
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(

@@ -7,12 +7,20 @@ import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../blocs/share/share_bloc.dart';
 import '../../mixins/text_based_file_creator.dart';
-import '../../models/file_format_enum.dart';
+import '../../models/file_format.dart';
 import '../../services/export/file_layout.dart';
 
 class FileExportPreview extends StatefulWidget {
-  const FileExportPreview(this._palette);
+  final Curve curve;
+  final Duration duration;
+
   final ColorPalette _palette;
+
+  const FileExportPreview(
+    this._palette, {
+    this.duration = const Duration(milliseconds: 600),
+    this.curve = kDefaultTransitionCurve,
+  });
 
   @override
   State<FileExportPreview> createState() => _FileExportPreviewState();
@@ -20,8 +28,8 @@ class FileExportPreview extends StatefulWidget {
 
 class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFileCreator {
   bool isHovering = false;
-  static const Duration duration = Duration(milliseconds: 600);
-  static const Curve curve = kDefaultTransitionCurve;
+
+  List<Color> get colors => widget._palette.colors;
 
   double aspectRatio(FileFormat selectedFormat) {
     switch (selectedFormat) {
@@ -34,13 +42,10 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
       case FileFormat.scss:
       case FileFormat.json:
         return 1;
-      // ignore: no_default_cases
-      default:
+      case FileFormat.svg:
         return colors.length.toDouble();
     }
   }
-
-  List<Color> get colors => widget._palette.colors;
 
   Color fileBackgroundColor({required bool isPrintable}) {
     if (isPrintable) {
@@ -89,16 +94,16 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                 shadowColor: Colors.black26,
                 shape: BoxShape.rectangle,
                 child: AnimatedSize(
-                  duration: duration,
-                  curve: curve,
+                  duration: widget.duration,
+                  curve: widget.curve,
                   child: AspectRatio(
                     aspectRatio: aspectRatio(file),
                     child: FractionallySizedBox(
                       widthFactor: 0.9,
                       heightFactor: 0.9,
                       child: AnimatedSize(
-                        duration: duration,
-                        curve: curve,
+                        duration: widget.duration,
+                        curve: widget.curve,
                         child: (file == FileFormat.scss || file == FileFormat.json)
                             ? FractionallySizedBox(
                                 widthFactor: 0.6,
@@ -107,8 +112,8 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                   child: Center(
                                     child: AnimatedSwitcher(
                                       duration: kDefaultReverseTransitionDuration,
-                                      switchInCurve: curve,
-                                      switchOutCurve: curve,
+                                      switchInCurve: widget.curve,
+                                      switchOutCurve: widget.curve,
                                       transitionBuilder: (Widget child, Animation<double> animation) => SizeTransition(
                                         sizeFactor: animation,
                                         axis: Axis.horizontal,
@@ -131,13 +136,13 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                         Expanded(
                                           flex: 12,
                                           child: AnimatedSize(
-                                            duration: duration,
-                                            curve: curve,
+                                            duration: widget.duration,
+                                            curve: widget.curve,
                                             child: Padding(
                                               padding: EdgeInsets.all(isPrintable ? 2 : 0),
                                               child: AnimatedContainer(
-                                                duration: duration,
-                                                curve: curve,
+                                                duration: widget.duration,
+                                                curve: widget.curve,
                                                 color: colors.elementAt(colorsIndex),
                                               ),
                                             ),
@@ -152,14 +157,14 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                               child: ListView.separated(
                                                 itemCount: FileLayout.colorSpaces.length,
                                                 separatorBuilder: (_, __) => AnimatedContainer(
-                                                  duration: duration,
-                                                  curve: curve,
+                                                  duration: widget.duration,
+                                                  curve: widget.curve,
                                                   height: 2,
                                                   color: Colors.transparent,
                                                 ),
                                                 itemBuilder: (_, __) => AnimatedContainer(
-                                                  duration: duration,
-                                                  curve: curve,
+                                                  duration: widget.duration,
+                                                  curve: widget.curve,
                                                   height: 6,
                                                   color: Colors.black12,
                                                 ),

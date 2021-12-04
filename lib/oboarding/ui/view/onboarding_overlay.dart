@@ -11,10 +11,10 @@ import '../widgets/animations/spacebar_animation.dart';
 import '../widgets/onboarding_tile.dart';
 
 class OnboardingOverlay extends StatelessWidget {
-  const OnboardingOverlay({required this.size, required this.length});
-
   final int length;
   final BoxConstraints size;
+
+  const OnboardingOverlay({required this.size, required this.length});
 
   @override
   Widget build(BuildContext context) {

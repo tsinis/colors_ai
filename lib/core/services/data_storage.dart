@@ -7,9 +7,9 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 class DataStorage {
-  const DataStorage();
-
   static Future<Directory> get directory async => getApplicationDocumentsDirectory();
+
+  const DataStorage();
 
   static Future<void> init() async {
     if (kIsWeb) {

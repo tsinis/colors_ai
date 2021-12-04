@@ -1,7 +1,7 @@
 part of '../colors_url_provider.dart';
 
 class PaletteNinja extends ColorsUrlProvider {
-  const PaletteNinja() : super(baseUrl: 'palette.ninja/', separateSymbol: '-', formats: 'Chrome Extension');
+  const PaletteNinja() : super(baseUrl: 'palette.ninja/', formats: 'Chrome Extension');
 
   @override
   String url(ColorPalette palette) {

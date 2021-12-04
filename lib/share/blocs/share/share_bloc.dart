@@ -11,9 +11,21 @@ part 'share_event.dart';
 part 'share_state.dart';
 
 class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
+  final ShareRepository _share = ShareRepository();
+
   ShareBloc() : super(const ShareEmptyInitial());
 
-  final ShareRepository _share = ShareRepository();
+  @override
+  ShareState? fromJson(Map<String, dynamic> json) {
+    final int? savedProvider = json['url'] as int?;
+    final int? savedFormat = json['format'] as int?;
+    if (savedProvider != null) {
+      _share.providerIndex = savedProvider;
+    }
+    if (savedFormat != null) {
+      _share.formatIndex = savedFormat;
+    }
+  }
 
   @override
   Stream<ShareState> mapEventToState(ShareEvent event) async* {
@@ -57,24 +69,12 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     }
   }
 
-  Future<void> _shareFailed() async => Future.delayed(Duration.zero);
-
-  @override
-  ShareState? fromJson(Map<String, dynamic> json) {
-    final int? savedProvider = json['url'] as int?;
-    final int? savedFormat = json['format'] as int?;
-    if (savedProvider != null) {
-      _share.providerIndex = savedProvider;
-    }
-    if (savedFormat != null) {
-      _share.formatIndex = savedFormat;
-    }
-  }
-
   @override
   Map<String, dynamic>? toJson(ShareState state) {
     if (state is ShareSelectedInitial) {
       return <String, dynamic>{'url': state.selectedProvider, 'format': state.selectedFormat};
     }
   }
+
+  Future<void> _shareFailed() async => Future.delayed(Duration.zero);
 }

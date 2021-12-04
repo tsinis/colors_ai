@@ -9,7 +9,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
 import '../../../../color_picker/ui/view/colorpicker.dart';
-import '../../../../core/extensions/color.dart';
+import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../core/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../../favorites/blocs/add_favorites/fab_bloc.dart';
@@ -24,6 +24,12 @@ import '../buttons/lock_color_button.dart';
 import '../helpers/reorderable_drag_listener.dart';
 
 class ColorsList extends StatefulWidget {
+  final Curve curve;
+  final Duration? duration;
+  final double lowerBound;
+  final ColorPalette palette;
+  final Curve? reverseCurve;
+
   const ColorsList(
     this.palette, {
     this.lowerBound = 0.2,
@@ -31,12 +37,6 @@ class ColorsList extends StatefulWidget {
     this.reverseCurve = Curves.easeInExpo,
     this.duration = const Duration(milliseconds: 600),
   });
-
-  final Curve curve;
-  final Duration? duration;
-  final double lowerBound;
-  final ColorPalette palette;
-  final Curve? reverseCurve;
 
   @override
   _ColorsListState createState() => _ColorsListState();
@@ -49,6 +49,10 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
   int? hoverIndex;
   late Completer<void> refreshCompleter;
   late final Animation<double> reverseAnimation;
+
+  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+
+  List<Color> get palette => widget.palette.colors;
 
   @override
   void dispose() {
@@ -71,9 +75,9 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     controller.forward();
   }
 
-  List<Color> get palette => widget.palette.colors;
-
   void cancelOperation() => cancelableOperation.cancel();
+
+  void changeHoverIndex([int? index]) => setState(() => hoverIndex = index);
 
   void setOperation() {
     bool toHideFab = true;
@@ -89,10 +93,6 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
       },
     );
   }
-
-  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
-
-  void changeHoverIndex([int? index]) => setState(() => hoverIndex = index);
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(

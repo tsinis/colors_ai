@@ -2,16 +2,26 @@ import '../../interfaces/lock_interface.dart';
 import '../../interfaces/manipulate_list_interface.dart';
 
 class LockedColors implements ManipulateListInterface, LockInterface {
-  LockedColors({this.list = const []});
+  @override
+  final List<bool> list;
 
   static const bool _locked = true;
   static const bool _unlocked = false;
 
-  @override
-  final List<bool> list;
+  LockedColors({this.list = const []});
 
   @override
-  void unlockAll() => list.replaceRange(0, list.length, List.filled(list.length, _unlocked, growable: false));
+  void add([covariant bool? isLocked]) => list.add(isLocked ?? _unlocked);
+
+  @override
+  void addAll(covariant List<bool> newLocks) => list
+    ..clear()
+    ..addAll(newLocks);
+
+  @override
+  void lock(int colorIndex) => list
+    ..removeAt(colorIndex)
+    ..insert(colorIndex, _locked);
 
   @override
   void swap({required int oldIndex, required int newIndex}) {
@@ -28,9 +38,7 @@ class LockedColors implements ManipulateListInterface, LockInterface {
   }
 
   @override
-  void lock(int colorIndex) => list
-    ..removeAt(colorIndex)
-    ..insert(colorIndex, _locked);
+  void unlockAll() => list.replaceRange(0, list.length, List.filled(list.length, _unlocked, growable: false));
 
   void change(int colorIndex) {
     final bool invertedLock = !list[colorIndex];
@@ -38,12 +46,4 @@ class LockedColors implements ManipulateListInterface, LockInterface {
       ..removeAt(colorIndex)
       ..insert(colorIndex, invertedLock);
   }
-
-  @override
-  void add([covariant bool? isLocked]) => list.add(isLocked ?? _unlocked);
-
-  @override
-  void addAll(covariant List<bool> newLocks) => list
-    ..clear()
-    ..addAll(newLocks);
 }

@@ -5,6 +5,17 @@ import 'package:package_info_plus/package_info_plus.dart';
 import '../../core/services/url_launcher.dart';
 
 class AboutRepository {
+  final String _aboutColormind;
+  final String _aboutGoogle;
+  late final String _locale;
+  final String _materialSounds;
+  final String _soundsLicense;
+  final String _sourceCode;
+  final UrlLauncher _urlLauncher;
+  late final String _version;
+
+  String get version => _version;
+
   AboutRepository({
     UrlLauncher urlLauncher = const UrlLauncher(),
     String aboutColormind = 'http://colormind.io/api-access',
@@ -18,15 +29,6 @@ class AboutRepository {
         _materialSounds = materialSounds,
         _soundsLicense = soundsLicense,
         _sourceCode = sourceCode;
-
-  final String _aboutColormind;
-  final String _aboutGoogle;
-  final String _materialSounds;
-  final String _soundsLicense;
-  final String _sourceCode;
-  final UrlLauncher _urlLauncher;
-  late final String _locale;
-  late final String _version;
 
   Future<void> init(String? currentLocale) async {
     final PackageInfo info = await PackageInfo.fromPlatform();
@@ -47,6 +49,4 @@ class AboutRepository {
   void openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + _locale);
 
   void openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + (_locale != 'sk' ? _locale : 'en'));
-
-  String get version => _version;
 }

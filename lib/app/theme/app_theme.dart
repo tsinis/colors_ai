@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show SchedulerBinding;
 
 class AppTheme {
-  AppTheme({this.isDark});
-
   final bool? isDark;
 
   static const Color _grey800 = Color(0xFF424242); // Constant value of Colors.grey[800].
   static const RoundedRectangleBorder _material3ButtonShape =
       RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)));
+
   static const RoundedRectangleBorder _material3FabBorder =
       RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
+
   static const BoxConstraints _material3FabSize = BoxConstraints.tightForFinite(height: 56);
   static const VisualDensity _visualDensity = VisualDensity.standard;
 
@@ -120,4 +120,6 @@ class AppTheme {
 
     return isDarkTheme ? _darkTheme : _lightTheme;
   }
+
+  AppTheme({this.isDark});
 }

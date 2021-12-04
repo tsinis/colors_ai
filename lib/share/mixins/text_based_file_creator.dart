@@ -1,4 +1,4 @@
-import '../../core/extensions/color.dart';
+import '../../core/extensions/color_extensions.dart';
 import '../../core/models/color_palette/color_palette.dart';
 
 mixin TextBasedFileCreator {

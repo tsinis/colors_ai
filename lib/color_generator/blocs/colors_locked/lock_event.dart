@@ -1,10 +1,10 @@
 part of 'lock_bloc.dart';
 
 abstract class LockEvent extends Equatable {
-  const LockEvent();
-
   @override
   List<Object> get props => [];
+
+  const LockEvent();
 }
 
 class LockStarted extends LockEvent {
@@ -16,8 +16,8 @@ class LockAllUnlocked extends LockEvent {
 }
 
 class LockChanged extends LockEvent {
-  const LockChanged(this.index, {this.onlyLock = false});
-
   final int index;
   final bool onlyLock;
+
+  const LockChanged(this.index, {this.onlyLock = false});
 }

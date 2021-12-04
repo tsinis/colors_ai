@@ -3,18 +3,18 @@ import 'dart:math' show sqrt;
 import 'package:flutter/material.dart';
 
 class PulseAnimation extends CustomPainter {
+  final Color color;
+  final int radiusMultiplier;
+  final int waves;
+
+  final Animation<double> _animation;
+
   PulseAnimation(
     this._animation, {
     this.color = const Color(0xFF8D8D8D),
     this.radiusMultiplier = 12,
     this.waves = 3,
   }) : super(repaint: _animation);
-
-  final Color color;
-  final int radiusMultiplier;
-  final int waves;
-
-  final Animation<double> _animation;
 
   @override
   void paint(Canvas canvas, Size size) {

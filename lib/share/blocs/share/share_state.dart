@@ -1,14 +1,15 @@
 part of 'share_bloc.dart';
 
 abstract class ShareState extends Equatable {
-  const ShareState({this.selectedProvider, this.selectedFormat});
-  final int? selectedProvider;
   final int? selectedFormat;
-
-  List<ColorsUrlProvider> get providersList => ShareRepository.providers;
+  final int? selectedProvider;
 
   @override
   List get props => <dynamic>[selectedProvider, selectedFormat];
+
+  List<ColorsUrlProvider> get providersList => ShareRepository.providers;
+
+  const ShareState({this.selectedProvider, this.selectedFormat});
 }
 
 class ShareFailure extends ShareState {
@@ -20,12 +21,13 @@ class ShareEmptyInitial extends ShareState {
 }
 
 class ShareSelectedInitial extends ShareState {
+  final bool canSharePdf;
+  final bool canSharePng;
+
   const ShareSelectedInitial({
     required this.canSharePdf,
     required this.canSharePng,
     int? providerIndex,
     int? formatIndex,
   }) : super(selectedProvider: providerIndex, selectedFormat: formatIndex);
-  final bool canSharePdf;
-  final bool canSharePng;
 }

@@ -12,9 +12,9 @@ import '../../../blocs/add_favorites/fab_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 
 class SaveColorsFAB extends StatefulWidget {
-  const SaveColorsFAB({this.isExtended});
-
   final bool? isExtended;
+
+  const SaveColorsFAB({this.isExtended});
 
   @override
   _SaveColorsFABState createState() => _SaveColorsFABState();
@@ -23,13 +23,17 @@ class SaveColorsFAB extends StatefulWidget {
 class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateMixin {
   static const Duration animationDuration = kDefaultTransitionDuration;
 
-  late final AnimationController fadeController;
+  late final Animation<Color?> colorAnimation;
   late final AnimationController colorController;
   late final Animation<double> fabAnimation;
-  late final Animation<Color?> colorAnimation;
-
-  bool isGenerateTab = true;
+  late final AnimationController fadeController;
   bool isFailed = false;
+  bool isGenerateTab = true;
+
+  bool get alwaysShow => widget.isExtended != null;
+  bool get isDisabled => isFailed || !isGenerateTab;
+  bool get isExtended => widget.isExtended ?? false;
+  String get tooltip => AppLocalizations.of(context).savePaletteToFavorites;
 
   @override
   void dispose() {
@@ -55,10 +59,6 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
     );
   }
 
-  bool get alwaysShow => widget.isExtended != null;
-  bool get isExtended => widget.isExtended ?? false;
-  bool get isDisabled => isFailed || !isGenerateTab;
-
   void onFabPressed() {
     BlocProvider.of<SoundBloc>(context).add(const SoundFavoritesAdded());
     BlocProvider.of<FavoritesBloc>(context).add(FavoritesAdded(favorite: context.read<ColorsRepository>().toPalette()));
@@ -67,8 +67,6 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
     }
     colorController.forward().whenComplete(colorController.reverse);
   }
-
-  String get tooltip => AppLocalizations.of(context).savePaletteToFavorites;
 
   @override
   Widget build(BuildContext context) => FadeScaleTransition(

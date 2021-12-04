@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RemoveBackground extends StatelessWidget {
+  final bool _secondary;
+
   const RemoveBackground.primary() : _secondary = false;
 
   const RemoveBackground.secondary() : _secondary = true;
-
-  final bool _secondary;
 
   @override
   Widget build(BuildContext context) => ColoredBox(

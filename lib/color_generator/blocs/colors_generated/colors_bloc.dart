@@ -12,9 +12,9 @@ part 'colors_event.dart';
 part 'colors_state.dart';
 
 class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
-  ColorsBloc(this._colorsRepository) : super(const ColorsInitial());
-
   final ColorsRepository _colorsRepository;
+
+  ColorsBloc(this._colorsRepository) : super(const ColorsInitial());
 
   @override
   Stream<ColorsState> mapEventToState(ColorsEvent event) async* {

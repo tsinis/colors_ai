@@ -1,10 +1,10 @@
 part of 'colorpicker_bloc.dart';
 
 abstract class ColorPickerEvent extends Equatable {
-  const ColorPickerEvent();
-
   @override
   List<Object> get props => [];
+
+  const ColorPickerEvent();
 }
 
 class ColorPickerShowed extends ColorPickerEvent {
@@ -16,7 +16,7 @@ class ColorPickerHided extends ColorPickerEvent {
 }
 
 class ColorPickerCopied extends ColorPickerEvent {
-  const ColorPickerCopied(this.color);
-
   final Color color;
+
+  const ColorPickerCopied(this.color);
 }

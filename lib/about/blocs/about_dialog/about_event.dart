@@ -1,16 +1,16 @@
 part of 'about_bloc.dart';
 
 abstract class AboutEvent extends Equatable {
-  const AboutEvent();
-
   @override
   List<Object> get props => [];
+
+  const AboutEvent();
 }
 
 class AboutStarted extends AboutEvent {
-  const AboutStarted({required this.currentLocale});
-
   final String currentLocale;
+
+  const AboutStarted({required this.currentLocale});
 }
 
 class AboutApiProviderTaped extends AboutEvent {

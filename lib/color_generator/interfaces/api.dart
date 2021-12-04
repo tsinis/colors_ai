@@ -4,16 +4,16 @@ import 'package:http/http.dart';
 import '../models/colors/colors_ai.dart';
 
 abstract class API {
+  final Map<String, String> _headers;
+  final String _host;
+  final Duration _timeout;
+
   const API(
     this._host, {
     Duration timeout = const Duration(seconds: 8),
     Map<String, String> headers = const {'Content-Type': 'application/json'},
   })  : _headers = headers,
         _timeout = timeout;
-
-  final Map<String, String> _headers;
-  final String _host;
-  final Duration _timeout;
 
   @required
   Future<ColorsAI> fetchNewColors(ColorsAI existingColors, {List<bool> lockedColors = const [], bool forUI = false});

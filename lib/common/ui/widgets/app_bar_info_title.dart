@@ -7,9 +7,9 @@ import '../../../favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
 import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 
 class AppBarInfoTitle extends StatelessWidget {
-  const AppBarInfoTitle({required this.selectedTabIndex});
-
   final int selectedTabIndex;
+
+  const AppBarInfoTitle({required this.selectedTabIndex});
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(

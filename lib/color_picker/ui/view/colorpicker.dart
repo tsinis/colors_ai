@@ -7,13 +7,19 @@ import '../../../app/theme/constants.dart';
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
-import '../../../core/extensions/color.dart';
+import '../../../core/extensions/color_extensions.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../blocs/colorpicker_dialog/colorpicker_bloc.dart';
 import '../widgets/colorpicker_dialog.dart';
 
 class Colorpicker extends StatelessWidget {
+  final Size buttonSize;
+  final Color color;
+  final int index;
+  final bool isPortrait;
+  final Color textColor;
+
   const Colorpicker(
     this.index, {
     required this.color,
@@ -21,12 +27,6 @@ class Colorpicker extends StatelessWidget {
     required this.buttonSize,
     required this.isPortrait,
   });
-
-  final Size buttonSize;
-  final Color color;
-  final int index;
-  final bool isPortrait;
-  final Color textColor;
 
   @override
   Widget build(BuildContext context) => BlocProvider<ColorPickerBLoc>(

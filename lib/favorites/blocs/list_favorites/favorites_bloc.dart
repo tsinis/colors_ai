@@ -9,9 +9,9 @@ part 'favorites_event.dart';
 part 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
-  FavoritesBloc() : super(const FavoritesEmptyInitial());
-
   final FavoritesRepository _favorites = FavoritesRepository(List<ColorPalette>.empty(growable: true));
+
+  FavoritesBloc() : super(const FavoritesEmptyInitial());
 
   @override
   Stream<FavoritesState> mapEventToState(FavoritesEvent event) async* {

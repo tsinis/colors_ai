@@ -1,13 +1,13 @@
 part of 'settings_bloc.dart';
 
 abstract class SettingsState extends Equatable {
-  const SettingsState({required this.colorsForUi, this.isDarkTheme});
-
-  final bool? isDarkTheme;
   final bool colorsForUi;
+  final bool? isDarkTheme;
 
   @override
   List<bool?> get props => [isDarkTheme, colorsForUi];
+
+  const SettingsState({required this.colorsForUi, this.isDarkTheme});
 }
 
 class SettingsInitial extends SettingsState {

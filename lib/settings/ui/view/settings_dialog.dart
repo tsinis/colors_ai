@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/theme/constants.dart';
-import '../../../core/extensions/string.dart';
+import '../../../core/extensions/string_extension.dart';
 import '../../blocs/settings_bloc.dart';
 
 class SettingsDialog extends StatelessWidget {

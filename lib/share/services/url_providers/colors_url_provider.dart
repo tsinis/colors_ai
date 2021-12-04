@@ -1,6 +1,6 @@
 import 'dart:ui' show Color;
 
-import '../../../core/extensions/color.dart';
+import '../../../core/extensions/color_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 
 part 'providers/arts_google.dart';
@@ -19,28 +19,10 @@ part 'providers/poolors.dart';
 part 'providers/sessions_college.dart';
 
 abstract class ColorsUrlProvider {
-  const ColorsUrlProvider({
-    required this.baseUrl,
-    this.providerName,
-    this.formats,
-    this.separateSymbol = '-',
-  });
-
-  final String? providerName;
-  final String? formats;
   final String baseUrl;
+  final String? formats;
+  final String? providerName;
   final String separateSymbol;
-
-  String get _fullUrl => 'https://$baseUrl';
-
-  String url(ColorPalette palette) {
-    final StringBuffer sb = StringBuffer(_fullUrl);
-    for (final Color color in palette.colors) {
-      sb.write(color.toHex().toLowerCase() + separateSymbol);
-    }
-
-    return _removeLastChar(sb.toString());
-  }
 
   String get name {
     if (providerName != null) {
@@ -53,6 +35,24 @@ abstract class ColorsUrlProvider {
 
       return _removeLastChar(sb.toString());
     }
+  }
+
+  String get _fullUrl => 'https://$baseUrl';
+
+  const ColorsUrlProvider({
+    required this.baseUrl,
+    this.providerName,
+    this.formats,
+    this.separateSymbol = '-',
+  });
+
+  String url(ColorPalette palette) {
+    final StringBuffer sb = StringBuffer(_fullUrl);
+    for (final Color color in palette.colors) {
+      sb.write(color.toHex().toLowerCase() + separateSymbol);
+    }
+
+    return _removeLastChar(sb.toString());
   }
 
   String _removeLastChar(String name) => name.substring(0, name.length - separateSymbol.length);

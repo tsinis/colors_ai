@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TransmitterTower extends CustomPainter {
-  const TransmitterTower({required this.color, this.style = PaintingStyle.stroke, this.strokeWidth = 4});
-
   final Color color;
   final double strokeWidth;
   final PaintingStyle style;
+
+  const TransmitterTower({required this.color, this.style = PaintingStyle.stroke, this.strokeWidth = 4});
 
   @override
   void paint(Canvas canvas, Size size) {

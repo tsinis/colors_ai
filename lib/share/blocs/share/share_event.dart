@@ -1,15 +1,16 @@
 part of 'share_bloc.dart';
 
 abstract class ShareEvent extends Equatable {
-  const ShareEvent();
-
   @override
   List<Object> get props => [];
+
+  const ShareEvent();
 }
 
 class ShareUrlProviderSelected extends ShareEvent {
-  const ShareUrlProviderSelected({required this.providerIndex});
   final int providerIndex;
+
+  const ShareUrlProviderSelected({required this.providerIndex});
 }
 
 class ShareStarted extends ShareEvent {
@@ -17,26 +18,31 @@ class ShareStarted extends ShareEvent {
 }
 
 class ShareUrlShared extends ShareEvent {
-  const ShareUrlShared(this.palette);
   final ColorPalette palette;
+
+  const ShareUrlShared(this.palette);
 }
 
 class ShareUrlCopied extends ShareEvent {
-  const ShareUrlCopied(this.palette);
   final ColorPalette palette;
+
+  const ShareUrlCopied(this.palette);
 }
 
 class ShareFileShared extends ShareEvent {
-  const ShareFileShared(this.palette);
   final ColorPalette palette;
+
+  const ShareFileShared(this.palette);
 }
 
 class ShareFileCopied extends ShareEvent {
-  const ShareFileCopied(this.palette);
   final ColorPalette palette;
+
+  const ShareFileCopied(this.palette);
 }
 
 class ShareFormatSelected extends ShareEvent {
-  const ShareFormatSelected({required this.formatIndex});
   final int formatIndex;
+
+  const ShareFormatSelected({required this.formatIndex});
 }

@@ -6,9 +6,9 @@ import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../../blocs/colors_locked/lock_bloc.dart';
 
 class UnlockAllButton extends StatelessWidget {
-  const UnlockAllButton({this.icon = const Icon(Icons.lock_open_outlined)});
-
   final Icon icon;
+
+  const UnlockAllButton({this.icon = const Icon(Icons.lock_open_outlined)});
 
   @override
   Widget build(BuildContext context) => IconButton(

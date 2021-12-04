@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AppIcon extends StatelessWidget {
+  final BorderRadiusGeometry? borderRadius;
+  final Clip clipBehavior;
+  final double elevation;
+
   const AppIcon({
     this.borderRadius = const BorderRadius.all(Radius.circular(16)),
     this.clipBehavior = Clip.antiAlias,
     this.elevation = 4,
   });
-
-  final BorderRadiusGeometry? borderRadius;
-  final Clip clipBehavior;
-  final double elevation;
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -77,6 +77,13 @@ class AppIcon extends StatelessWidget {
 
 // ignore: prefer-single-widget-per-file
 class Rectangle extends StatelessWidget {
+  final double blurRadius;
+  final Color color;
+  final bool darkShadow;
+  final Color darkShadowColor;
+  final Color lightShadowColor;
+  final Offset shadowOffset;
+
   const Rectangle(
     this.color, {
     this.lightShadowColor = const Color(0x36000000),
@@ -85,13 +92,6 @@ class Rectangle extends StatelessWidget {
     this.darkShadow = true,
     this.blurRadius = 2,
   });
-
-  final double blurRadius;
-  final Color color;
-  final bool darkShadow;
-  final Color darkShadowColor;
-  final Color lightShadowColor;
-  final Offset shadowOffset;
 
   @override
   Widget build(BuildContext context) => Container(

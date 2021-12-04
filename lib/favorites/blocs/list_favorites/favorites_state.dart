@@ -1,9 +1,10 @@
 part of 'favorites_bloc.dart';
 
 abstract class FavoritesState extends Equatable {
-  const FavoritesState();
   @override
   List<Object> get props => [];
+
+  const FavoritesState();
 }
 
 class FavoritesEmptyInitial extends FavoritesState {
@@ -19,6 +20,7 @@ class FavoritesLoadInProgress extends FavoritesState {
 }
 
 class FavoritesLoadSuccess extends FavoritesState {
-  const FavoritesLoadSuccess(this.palettes);
   final List<ColorPalette> palettes;
+
+  const FavoritesLoadSuccess(this.palettes);
 }

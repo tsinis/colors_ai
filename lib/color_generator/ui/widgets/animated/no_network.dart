@@ -5,9 +5,9 @@ import 'no_network/illustrations/transmitter_tower.dart';
 import 'no_network/pulse_animation.dart';
 
 class NoNetwork extends StatefulWidget {
-  const NoNetwork({this.repeatPeriod = const Duration(seconds: 4)});
-
   final Duration repeatPeriod;
+
+  const NoNetwork({this.repeatPeriod = const Duration(seconds: 4)});
 
   @override
   _NoNetworkState createState() => _NoNetworkState();

@@ -13,7 +13,7 @@ import '../../core/ui/constants.dart';
 import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
 import '../mixins/text_based_file_creator.dart';
-import '../models/file_format_enum.dart';
+import '../models/file_format.dart';
 import '../services/url_providers/colors_url_provider.dart';
 import 'conditional_import/share_io_png.dart' if (dart.library.js) 'conditional_import/share_web_png.dart';
 
@@ -41,6 +41,13 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   int? _providerIndex;
 
   int? get formatIndex => _formatIndex;
+  int? get providerIndex => _providerIndex;
+
+  String get _fileExtension => _selectedFile.format.toLowerCase();
+  String get _fileName => 'colors_ai.$_fileExtension';
+  String get _filePath => '$storagePath/$_fileName';
+  // Create File Format list for specific OS.
+  FileFormat get _selectedFile => FileFormat.values.elementAt(_formatIndex ?? 0);
 
   set formatIndex(int? newFormatIndex) {
     if (newFormatIndex != null && newFormatIndex != _formatIndex) {
@@ -48,24 +55,11 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  // Create File Format list for specific OS.
-  FileFormat get _selectedFile => FileFormat.values.elementAt(_formatIndex ?? 0);
-
-  String get _fileExtension => _selectedFile.format.toLowerCase();
-  String get _fileName => 'colors_ai.$_fileExtension';
-  String get _filePath => '$storagePath/$_fileName';
-
-  int? get providerIndex => _providerIndex;
-
   set providerIndex(int? newProviderIndex) {
     if (newProviderIndex != null && newProviderIndex != _providerIndex) {
       _providerIndex = newProviderIndex;
     }
   }
-
-  void asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
-
-  void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
 
   Future<void> asFile(ColorPalette palette) async {
     try {
@@ -99,6 +93,8 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
+  void asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
+
   Future<void> copyFile(ColorPalette palette) async {
     try {
       switch (_selectedFile) {
@@ -123,6 +119,23 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
+  void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
+
+  Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
+    final ColorsUrlProvider provider = providers[providerIndex ?? 0];
+    final String url = provider.url(palette);
+    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: kAppName);
+  }
+
+  Future<void> _saveFile(File file) async {
+    final String? path = await getSavePath();
+    if (path == null) {
+      return;
+    }
+    final XFile textFile = XFile(file.path, name: _fileName);
+    await textFile.saveTo(path);
+  }
+
   Future<bool> _shareBytes(Uint8List bytes) async {
     if (kIsWeb) {
       if (_fileExtension == 'pdf') {
@@ -134,21 +147,6 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     final File file = File(_filePath)..writeAsBytesSync(bytes.toList(growable: false));
 
     return _shareFile(file);
-  }
-
-  Future<bool> _shareTextData(String data) async {
-    final File file = File(_filePath)..writeAsStringSync(data);
-
-    return _shareFile(file);
-  }
-
-  Future<void> _saveFile(File file) async {
-    final String? path = await getSavePath();
-    if (path == null) {
-      return;
-    }
-    final XFile textFile = XFile(file.path, name: _fileName);
-    await textFile.saveTo(path);
   }
 
   Future<bool> _shareFile(File file) async {
@@ -165,9 +163,9 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
-    final ColorsUrlProvider provider = providers[providerIndex ?? 0];
-    final String url = provider.url(palette);
-    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: kAppName);
+  Future<bool> _shareTextData(String data) async {
+    final File file = File(_filePath)..writeAsStringSync(data);
+
+    return _shareFile(file);
   }
 }

@@ -10,9 +10,9 @@ part 'sound_event.dart';
 part 'sound_state.dart';
 
 class SoundBloc extends Bloc<SoundEvent, SoundState> {
-  SoundBloc() : super(const SoundInitial());
+  final SoundsRepository _soundRepository;
 
-  final SoundsRepository _soundRepository = SoundsRepository();
+  SoundBloc(this._soundRepository) : super(const SoundInitial());
 
   @override
   Stream<SoundState> mapEventToState(SoundEvent event) async* {

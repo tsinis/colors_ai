@@ -15,8 +15,7 @@ extension NameExtension on FileFormat {
         return 'SVG';
       case FileFormat.scss:
         return 'SCSS';
-      // ignore: no_default_cases
-      default:
+      case FileFormat.json:
         return 'JSON';
     }
   }

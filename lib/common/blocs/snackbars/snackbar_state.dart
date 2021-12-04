@@ -1,12 +1,12 @@
 part of 'snackbar_bloc.dart';
 
 abstract class SnackbarState extends Equatable {
-  const SnackbarState(this.clipboard);
-
   final String clipboard;
 
   @override
   List<Object> get props => [clipboard];
+
+  const SnackbarState(this.clipboard);
 }
 
 class SnackbarsInitial extends SnackbarState {
@@ -14,21 +14,21 @@ class SnackbarsInitial extends SnackbarState {
 }
 
 class UrlCopySuccess extends SnackbarState {
-  const UrlCopySuccess(this.url) : super(url);
-
   final String url;
+
+  const UrlCopySuccess(this.url) : super(url);
 }
 
 class FileCopySuccess extends SnackbarState {
-  const FileCopySuccess(this.format) : super(format);
-
   final String format;
+
+  const FileCopySuccess(this.format) : super(format);
 }
 
 class ColorCopySuccess extends SnackbarState {
-  const ColorCopySuccess(this.hex) : super(hex);
-
   final String hex;
+
+  const ColorCopySuccess(this.hex) : super(hex);
 }
 
 class ServerStatusCheckSuccess extends SnackbarState {

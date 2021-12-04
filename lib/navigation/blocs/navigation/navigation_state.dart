@@ -1,14 +1,14 @@
 part of 'navigation_bloc.dart';
 
 abstract class NavigationState extends Equatable {
-  const NavigationState(this._tabIndex);
-
   final int _tabIndex;
 
   @override
   List<Object> get props => [_tabIndex];
 
   int get tabIndex => _tabIndex;
+
+  const NavigationState(this._tabIndex);
 }
 
 class NavigationFailure extends NavigationState {

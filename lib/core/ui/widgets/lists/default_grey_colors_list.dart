@@ -4,9 +4,9 @@ import '../../../../color_generator/models/colors/constants.dart';
 import '../../../../common/ui/widgets/helpers/orientation_switcher.dart';
 
 class DefaultGreyColorsList extends StatelessWidget {
-  const DefaultGreyColorsList({this.length});
-
   final int? length;
+
+  const DefaultGreyColorsList({this.length});
 
   @override
   Widget build(BuildContext context) => OrientationBuilder(

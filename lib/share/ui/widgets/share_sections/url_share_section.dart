@@ -11,6 +11,13 @@ import '../../../services/url_providers/colors_url_provider.dart';
 import 'share_section_interface.dart';
 
 class UrlShareSection extends ShareSectionInterface {
+  final String? exportFormats;
+  final int firstProvider;
+  final List<ColorsUrlProvider> providersList;
+  final int selectedProviderIndex;
+
+  bool get _isNotSupportedByOS => kIsWeb || platform.isWindows || platform.isLinux;
+
   const UrlShareSection(
     ColorPalette palette, {
     required double width,
@@ -19,13 +26,6 @@ class UrlShareSection extends ShareSectionInterface {
     required this.selectedProviderIndex,
     required this.exportFormats,
   }) : super(maxWidth: width, palette: palette);
-
-  final int selectedProviderIndex;
-  final int firstProvider;
-  final String? exportFormats;
-  final List<ColorsUrlProvider> providersList;
-
-  bool get _isNotSupportedByOS => kIsWeb || platform.isWindows || platform.isLinux;
 
   @override
   Widget build(BuildContext context) {

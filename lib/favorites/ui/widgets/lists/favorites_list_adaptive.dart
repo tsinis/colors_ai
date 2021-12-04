@@ -7,7 +7,7 @@ import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
-import '../../../../core/extensions/color.dart';
+import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';

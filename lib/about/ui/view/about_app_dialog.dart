@@ -9,6 +9,12 @@ import '../widgets/about_dialog_m3.dart';
 import '../widgets/app_icon.dart';
 
 class AboutAppDialog extends StatelessWidget {
+  final Widget applicationIcon;
+  final String? applicationLegalese;
+  final TextStyle? linkTextStyle;
+  final double? topPadding;
+  final double width;
+
   const AboutAppDialog({
     this.applicationLegalese = '2021 © Roman Cinis',
     this.applicationIcon = const AppIcon(),
@@ -16,12 +22,6 @@ class AboutAppDialog extends StatelessWidget {
     this.linkTextStyle,
     this.width = 320,
   });
-
-  final Widget applicationIcon;
-  final String? applicationLegalese;
-  final TextStyle? linkTextStyle;
-  final double? topPadding;
-  final double width;
 
   @override
   Widget build(final BuildContext context) {

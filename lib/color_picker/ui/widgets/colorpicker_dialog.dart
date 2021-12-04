@@ -7,15 +7,15 @@ import '../../../core/services/clipboards.dart';
 import '../../helpers/hex_formatter.dart';
 
 class ColorpickerDialog extends StatefulWidget {
+  final Clipboards clipboard;
+  final Color color;
+  final ValueSetter<Color> onColorChanged;
+
   const ColorpickerDialog(
     this.color, {
     required this.onColorChanged,
     this.clipboard = const Clipboards(),
   });
-
-  final Clipboards clipboard;
-  final Color color;
-  final ValueSetter<Color> onColorChanged;
 
   @override
   _ColorpickerDialogState createState() => _ColorpickerDialogState();
@@ -26,16 +26,29 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   final TextEditingController hexController = TextEditingController();
   late Color selectedColor;
 
-  @override
-  void dispose() {
-    hexController.dispose();
-    super.dispose();
+  bool get hidePickerArea {
+    final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
+
+    return isMobile && heightAvailable < 480;
   }
 
-  @override
-  void initState() {
-    selectedColor = widget.color;
-    super.initState();
+  bool get isMobile => platform.isMobile;
+  double get keyboardHeight => MediaQuery.of(context).viewInsets.bottom;
+  bool get keyboardIsVisible => keyboardHeight != 0;
+  double get pickerAreaHeightPercent => hidePickerArea ? (keyboardIsVisible ? 0 : 1) : 1;
+
+  void hideErrorMessage() {
+    if (hasError) {
+      setState(() => hasError = false);
+    }
+  }
+
+  void setColorFromHex() {
+    final Color? color = colorFromHex(hexController.text);
+    if (color != null) {
+      widget.onColorChanged(color);
+      selectedColor = color;
+    }
   }
 
   Future<void> validateAndPaste() async {
@@ -56,32 +69,16 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
     }
   }
 
-  void setColorFromHex() {
-    final Color? color = colorFromHex(hexController.text);
-    if (color != null) {
-      widget.onColorChanged(color);
-      selectedColor = color;
-    }
+  @override
+  void dispose() {
+    hexController.dispose();
+    super.dispose();
   }
 
-  void hideErrorMessage() {
-    if (hasError) {
-      setState(() => hasError = false);
-    }
-  }
-
-  double get keyboardHeight => MediaQuery.of(context).viewInsets.bottom;
-
-  double get pickerAreaHeightPercent => hidePickerArea ? (keyboardIsVisible ? 0 : 1) : 1;
-
-  bool get keyboardIsVisible => keyboardHeight != 0;
-
-  bool get isMobile => platform.isMobile;
-
-  bool get hidePickerArea {
-    final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
-
-    return isMobile && heightAvailable < 480;
+  @override
+  void initState() {
+    selectedColor = widget.color;
+    super.initState();
   }
 
   @override

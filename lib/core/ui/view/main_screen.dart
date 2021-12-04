@@ -20,6 +20,7 @@ import '../../../navigation/ui/widgets/nav_rail.dart';
 import '../../../settings/blocs/settings_bloc.dart';
 import '../../../share/blocs/share/share_bloc.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
+import '../../../sound/repository/sounds_repository.dart';
 import '../../repository/colors_repository.dart';
 import '../constants.dart';
 import '../widgets/overflow_menu.dart';
@@ -33,7 +34,13 @@ class MainScreen extends StatefulWidget {
 
 class _NavigationScreenState extends State<MainScreen> {
   bool showGenFab = false;
-  final SoundBloc soundBloc = SoundBloc();
+  final SoundBloc soundBloc = SoundBloc(SoundsRepository());
+
+  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+  SystemUiOverlayStyle get overlayStyle => Theme.of(context).brightness == Brightness.dark
+      ? SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Theme.of(context).cardColor)
+      : SystemUiOverlayStyle.dark
+          .copyWith(systemNavigationBarColor: Theme.of(context).navigationRailTheme.backgroundColor);
 
   @override
   void initState() {
@@ -47,13 +54,6 @@ class _NavigationScreenState extends State<MainScreen> {
       ),
     );
   }
-
-  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
-
-  SystemUiOverlayStyle get overlayStyle => Theme.of(context).brightness == Brightness.dark
-      ? SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Theme.of(context).cardColor)
-      : SystemUiOverlayStyle.dark
-          .copyWith(systemNavigationBarColor: Theme.of(context).navigationRailTheme.backgroundColor);
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(

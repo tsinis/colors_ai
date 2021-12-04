@@ -10,6 +10,14 @@ import '../../../../settings/blocs/settings_bloc.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 
 class GenerateColorsFAB extends StatefulWidget {
+  final Duration animationDuration;
+  final Curve curve;
+  final double? disabledElevation;
+  final Color? focusColor;
+  final Icon icon;
+  final bool? isExtended;
+  final double padding;
+
   const GenerateColorsFAB({
     this.animationDuration = kDefaultTransitionDuration,
     this.icon = const Icon(Icons.refresh),
@@ -19,14 +27,6 @@ class GenerateColorsFAB extends StatefulWidget {
     this.focusColor,
     this.isExtended,
   });
-
-  final Duration animationDuration;
-  final Curve curve;
-  final double? disabledElevation;
-  final Color? focusColor;
-  final Icon icon;
-  final bool? isExtended;
-  final double padding;
 
   @override
   _GenerateColorsFABState createState() => _GenerateColorsFABState();
@@ -38,6 +38,14 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
   bool isFailed = false;
   bool isGenerateTab = true;
   late bool isShowing;
+
+  bool get alwaysShow => widget.isExtended != null;
+
+  bool get isExtended => widget.isExtended ?? false;
+
+  bool get isDisabled => isFailed || !isGenerateTab;
+
+  String get tooltip => AppLocalizations.of(context).generateTabLabel;
 
   @override
   void dispose() {
@@ -52,12 +60,6 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
     fabAnimation = CurvedAnimation(parent: fadeController, curve: widget.curve);
   }
 
-  bool get alwaysShow => widget.isExtended != null;
-
-  bool get isExtended => widget.isExtended ?? false;
-
-  bool get isDisabled => isFailed || !isGenerateTab;
-
   void onFabPressed() {
     BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
     BlocProvider.of<ColorsBloc>(context).add(
@@ -66,8 +68,6 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
       ),
     );
   }
-
-  String get tooltip => AppLocalizations.of(context).generateTabLabel;
 
   @override
   Widget build(BuildContext context) => FadeScaleTransition(

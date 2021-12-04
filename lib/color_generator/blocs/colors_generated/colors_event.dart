@@ -1,16 +1,16 @@
 part of 'colors_bloc.dart';
 
 abstract class ColorsEvent extends Equatable {
-  const ColorsEvent();
-
   @override
   List<Object> get props => [];
+
+  const ColorsEvent();
 }
 
 class ColorsGenerated extends ColorsEvent {
-  const ColorsGenerated({required this.generateColorsForUi});
-
   final bool generateColorsForUi;
+
+  const ColorsGenerated({required this.generateColorsForUi});
 }
 
 class ColorsStarted extends ColorsEvent {
@@ -18,21 +18,21 @@ class ColorsStarted extends ColorsEvent {
 }
 
 class ColorsRestored extends ColorsEvent {
-  const ColorsRestored({required this.palette});
-
   final ColorPalette palette;
+
+  const ColorsRestored({required this.palette});
 }
 
 class ColorsChanged extends ColorsEvent {
-  const ColorsChanged(this.newColor, this.colorIndex);
-
   final int colorIndex;
   final Color? newColor;
+
+  const ColorsChanged(this.newColor, this.colorIndex);
 }
 
 class ColorsReordered extends ColorsEvent {
-  const ColorsReordered({required this.oldIndex, required this.newIndex});
-
   final int newIndex;
   final int oldIndex;
+
+  const ColorsReordered({required this.oldIndex, required this.newIndex});
 }

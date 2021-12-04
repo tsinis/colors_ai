@@ -1,12 +1,12 @@
 part of 'about_bloc.dart';
 
 abstract class AboutState extends Equatable {
-  const AboutState({required this.appVersion});
-
   final String appVersion;
 
   @override
   List<Object> get props => [];
+
+  const AboutState({required this.appVersion});
 }
 
 class AboutInitial extends AboutState {

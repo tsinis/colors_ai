@@ -6,13 +6,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
-import '../../../../core/extensions/string.dart';
+import '../../../../core/extensions/string_extension.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../blocs/share/share_bloc.dart';
-import '../../../models/file_format_enum.dart';
+import '../../../models/file_format.dart';
 import 'share_section_interface.dart';
 
 class FileShareSection extends ShareSectionInterface {
+  final String? additionalInfo;
+  final bool canSharePdf;
+  final bool canSharePng;
+  final int firstFormat;
+  final int selectedFormatIndex;
+
+  bool get cannotCopy => selectedFormatIndex <= 3;
+  FileFormat get file => selectedFormatIndex.selectedFile;
+
   const FileShareSection(
     ColorPalette palette, {
     required double width,
@@ -22,16 +31,6 @@ class FileShareSection extends ShareSectionInterface {
     required this.canSharePng,
     this.additionalInfo,
   }) : super(maxWidth: width, palette: palette);
-
-  final int selectedFormatIndex;
-  final int firstFormat;
-  final bool canSharePdf;
-  final bool canSharePng;
-  final String? additionalInfo;
-
-  FileFormat get file => selectedFormatIndex.selectedFile;
-
-  bool get cannotCopy => selectedFormatIndex <= 3;
 
   String? helperText(AppLocalizations l10n) {
     switch (file) {
@@ -47,14 +46,6 @@ class FileShareSection extends ShareSectionInterface {
         return 'JavaScript Object Notation';
       case FileFormat.scss:
         return 'Sassy Cascading Style Sheets';
-    }
-  }
-
-  String _shareOrSaveButtonLabel(BuildContext context) {
-    if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
-      return '${MaterialLocalizations.of(context).saveButtonLabel.toBeginningOfSentenceCase()} ${file.format}';
-    } else {
-      return AppLocalizations.of(context).shareAsFormat(file.format);
     }
   }
 
@@ -131,5 +122,13 @@ class FileShareSection extends ShareSectionInterface {
         ],
       ),
     );
+  }
+
+  String _shareOrSaveButtonLabel(BuildContext context) {
+    if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
+      return '${MaterialLocalizations.of(context).saveButtonLabel.toBeginningOfSentenceCase()} ${file.format}';
+    } else {
+      return AppLocalizations.of(context).shareAsFormat(file.format);
+    }
   }
 }

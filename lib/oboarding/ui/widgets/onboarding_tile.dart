@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../common/ui/widgets/helpers/orientation_switcher.dart';
 
 class OnboardingTile extends StatelessWidget {
+  final String? additionalText;
+  final double begin;
+  final double end;
+  final IconData? icon;
+  final bool isPortrait;
+  final bool oppositeSide;
+  final String text;
+
   const OnboardingTile(
     this.text, {
     required this.isPortrait,
@@ -12,14 +20,6 @@ class OnboardingTile extends StatelessWidget {
     this.icon,
     this.additionalText,
   });
-
-  final String? additionalText;
-  final double begin;
-  final double end;
-  final IconData? icon;
-  final bool isPortrait;
-  final bool oppositeSide;
-  final String text;
 
   @override
   Widget build(BuildContext context) {

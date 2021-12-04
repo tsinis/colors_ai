@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/constants.dart';
-import '../../../core/extensions/string.dart';
+import '../../../core/extensions/string_extension.dart';
 
 class AboutDialogM3 extends StatelessWidget {
+  final EdgeInsetsGeometry actionsPadding;
+  final Widget applicationIcon;
+  final String? applicationLegalese;
+  final String applicationName;
+  final String applicationVersion;
+  final List<Widget>? children;
+  final EdgeInsetsGeometry contentPadding;
+  final ShapeBorder? shape;
+  final double textVerticalSeparation;
+
   const AboutDialogM3({
     required this.applicationName,
     required this.applicationVersion,
@@ -16,16 +26,6 @@ class AboutDialogM3 extends StatelessWidget {
     this.children,
     Key? key,
   }) : super(key: key);
-
-  final EdgeInsetsGeometry actionsPadding;
-  final Widget applicationIcon;
-  final String? applicationLegalese;
-  final String applicationName;
-  final String applicationVersion;
-  final List<Widget>? children;
-  final EdgeInsetsGeometry contentPadding;
-  final ShapeBorder? shape;
-  final double textVerticalSeparation;
 
   @override
   Widget build(BuildContext context) => AlertDialog(

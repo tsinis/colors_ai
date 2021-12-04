@@ -28,26 +28,6 @@ class ColormindAPI extends API {
     }
   }
 
-  Future<Response> _colorsFromAPI(
-    List<IntRGBColor> existingColors, {
-    required List<bool> lockedColors,
-    required bool isUiModel,
-  }) async {
-    final IntRGBColor body;
-    if (lockedColors.contains(true)) {
-      final String input = kStartCurlyBracket +
-          kInputName +
-          colorsToInput(existingColors, lockedColors: lockedColors) +
-          (isUiModel ? kUiModelBody : kDefaultModelBody) +
-          kEndCurlyBracket;
-      body = utf8.encode(input);
-    } else {
-      body = utf8.encode(isUiModel ? kUiModel : kDefaultModel);
-    }
-
-    return sendPostRequest(body);
-  }
-
   @visibleForTesting
   String colorsToInput(List<IntRGBColor> colorslist, {required List<bool> lockedColors}) {
     final StringBuffer sb = StringBuffer(kStartSquareBracket);
@@ -66,5 +46,25 @@ class ColormindAPI extends API {
     sb.write(kEndSquareBracket + kComma);
 
     return sb.toString().replaceAll(' ', '');
+  }
+
+  Future<Response> _colorsFromAPI(
+    List<IntRGBColor> existingColors, {
+    required List<bool> lockedColors,
+    required bool isUiModel,
+  }) async {
+    final IntRGBColor body;
+    if (lockedColors.contains(true)) {
+      final String input = kStartCurlyBracket +
+          kInputName +
+          colorsToInput(existingColors, lockedColors: lockedColors) +
+          (isUiModel ? kUiModelBody : kDefaultModelBody) +
+          kEndCurlyBracket;
+      body = utf8.encode(input);
+    } else {
+      body = utf8.encode(isUiModel ? kUiModel : kDefaultModel);
+    }
+
+    return sendPostRequest(body);
   }
 }

@@ -1,10 +1,10 @@
 part of 'remove_favorites_bloc.dart';
 
 abstract class RemoveFavoritesEvent extends Equatable {
-  const RemoveFavoritesEvent();
-
   @override
   List<Object> get props => [];
+
+  const RemoveFavoritesEvent();
 }
 
 class RemoveFavoritesShowed extends RemoveFavoritesEvent {
@@ -16,8 +16,9 @@ class RemoveFavoritesHided extends RemoveFavoritesEvent {
 }
 
 class RemoveFavoritesSelected extends RemoveFavoritesEvent {
-  const RemoveFavoritesSelected(this.paletteIndex);
   final int paletteIndex;
+
+  const RemoveFavoritesSelected(this.paletteIndex);
 }
 
 class RemoveFavoritesRemoved extends RemoveFavoritesEvent {

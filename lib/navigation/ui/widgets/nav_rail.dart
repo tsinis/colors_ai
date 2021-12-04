@@ -10,11 +10,11 @@ import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
 import '../../blocs/navigation/navigation_bloc.dart';
 
 class NavRail extends StatefulWidget {
-  const NavRail(this.navState, {required this.toShowGenFab, this.duration = kDefaultTransitionDuration});
-
+  final Duration duration;
   final NavigationState navState;
   final bool toShowGenFab;
-  final Duration duration;
+
+  const NavRail(this.navState, {required this.toShowGenFab, this.duration = kDefaultTransitionDuration});
 
   @override
   State<NavRail> createState() => _NavRailState();
@@ -23,17 +23,15 @@ class NavRail extends StatefulWidget {
 class _NavRailState extends State<NavRail> {
   late bool isExtended;
 
+  int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
+  int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
+  int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
+
   @override
   void didChangeDependencies() {
     isExtended = MediaQuery.of(context).size.width >= 1366;
     super.didChangeDependencies();
   }
-
-  int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
-
-  int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
-
-  int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
 
   @override
   Widget build(BuildContext context) => GestureDetector(

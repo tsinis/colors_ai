@@ -7,9 +7,9 @@ part 'lock_event.dart';
 part 'lock_state.dart';
 
 class LockBloc extends Bloc<LockEvent, LockState> {
-  LockBloc(this._colorsRepository) : super(const LockSuccess());
-
   final ColorsRepository _colorsRepository;
+
+  LockBloc(this._colorsRepository) : super(const LockSuccess());
 
   @override
   Stream<LockState> mapEventToState(LockEvent event) async* {

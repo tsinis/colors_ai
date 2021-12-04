@@ -2,7 +2,7 @@ import 'dart:ui' show Color;
 
 import '../models/typedef_aliases/int_rgb_color.dart';
 
-extension ColorExtension on IntRGBColor {
+extension IntColorExtensions on IntRGBColor {
   Color toColor() => (length == 3)
       ? Color.fromRGBO(this[_red], this[_green], this[_blue], _opacity)
       : const Color.fromRGBO(

@@ -4,15 +4,15 @@ import 'package:simple_animations/simple_animations.dart';
 import '../../../../app/theme/constants.dart';
 
 class PullToRefreshAnimation extends StatefulWidget {
+  final Color color;
+  final Curve curve;
+  final Duration duration;
+
   const PullToRefreshAnimation({
     this.color = Colors.black,
     this.curve = Curves.easeInOutQuart,
     this.duration = kDefaultLongTransitionDuration,
   });
-
-  final Color color;
-  final Curve curve;
-  final Duration duration;
 
   @override
   _PullToRefreshAnimationState createState() => _PullToRefreshAnimationState();

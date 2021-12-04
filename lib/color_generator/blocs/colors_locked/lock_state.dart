@@ -1,19 +1,19 @@
 part of 'lock_bloc.dart';
 
 abstract class LockState extends Equatable {
-  const LockState();
-
   @override
   List<Object> get props => [];
+
+  const LockState();
 }
 
 class LockSuccess extends LockState {
-  const LockSuccess({this.lockedColors});
-
   final List<bool>? lockedColors;
 
   @override
   List<Object> get props => [isLocked];
+
+  const LockSuccess({this.lockedColors});
 
   bool isLocked(int index) => lockedColors?[index] ?? false;
 }
