@@ -9,14 +9,19 @@ part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
-  final SettingsRepository _settings = SettingsRepository();
+  final String _colormindForUiKey;
+  final SettingsRepository _settings;
+  final String _themeKey;
 
-  SettingsBloc() : super(const SettingsInitial());
+  SettingsBloc(this._settings, {String themeKey = 'isDark', String colormindForUiKey = 'forUI'})
+      : _themeKey = themeKey,
+        _colormindForUiKey = colormindForUiKey,
+        super(const SettingsInitial());
 
   @override
   SettingsState? fromJson(Map<String, dynamic> json) {
-    final bool? savedTheme = json['isDark'] as bool?;
-    final bool forUI = json['forUI'] as bool? ?? false;
+    final bool? savedTheme = json[_themeKey] as bool?;
+    final bool forUI = json[_colormindForUiKey] as bool? ?? false;
     _settings
       ..isDarkTheme = savedTheme
       ..colorsForUi = forUI;
@@ -48,7 +53,7 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   @override
   Map<String, dynamic>? toJson(SettingsState state) {
     if (state is SettingsChangedInitial) {
-      return <String, dynamic>{'isDark': state.isDarkTheme, 'forUI': state.colorsForUi};
+      return <String, dynamic>{_themeKey: state.isDarkTheme, _colormindForUiKey: state.colorsForUi};
     }
   }
 }

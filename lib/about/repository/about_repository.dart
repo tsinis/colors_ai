@@ -17,12 +17,12 @@ class AboutRepository {
   String get version => _version;
 
   AboutRepository({
-    UrlLauncher urlLauncher = const UrlLauncher(),
     String aboutColormind = 'http://colormind.io/api-access',
     String aboutGoogle = 'https://about.google/intl/',
     String materialSounds = 'https://material.io/design/sound/sound-resources.html',
     String soundsLicense = 'https://creativecommons.org/licenses/by/4.0/legalcode.',
     String sourceCode = 'https://github.com/tsinis/colors_ai',
+    UrlLauncher urlLauncher = const UrlLauncher(),
   })  : _urlLauncher = urlLauncher,
         _aboutColormind = aboutColormind,
         _aboutGoogle = aboutGoogle,

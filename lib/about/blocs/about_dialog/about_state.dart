@@ -4,7 +4,7 @@ abstract class AboutState extends Equatable {
   final String appVersion;
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [appVersion];
 
   const AboutState({required this.appVersion});
 }

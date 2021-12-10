@@ -10,6 +10,9 @@ abstract class AboutEvent extends Equatable {
 class AboutStarted extends AboutEvent {
   final String currentLocale;
 
+  @override
+  List<Object> get props => [currentLocale];
+
   const AboutStarted({required this.currentLocale});
 }
 

@@ -18,5 +18,8 @@ class ColorPickerHided extends ColorPickerEvent {
 class ColorPickerCopied extends ColorPickerEvent {
   final Color color;
 
+  @override
+  List<Object> get props => [color];
+
   const ColorPickerCopied(this.color);
 }

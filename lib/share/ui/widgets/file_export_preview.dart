@@ -127,7 +127,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                               )
                             : Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: List.generate(
+                                children: List<Widget>.generate(
                                   colors.length,
                                   (colorsIndex) => Flexible(
                                     child: Column(

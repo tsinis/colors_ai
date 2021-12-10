@@ -11,14 +11,19 @@ part 'share_event.dart';
 part 'share_state.dart';
 
 class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
-  final ShareRepository _share = ShareRepository();
+  final ShareRepository _share;
+  final String _urlProviderKey;
+  final String _formatKey;
 
-  ShareBloc() : super(const ShareEmptyInitial());
+  ShareBloc(this._share, {String urlProviderKey = 'url', String formatKey = 'format'})
+      : _formatKey = formatKey,
+        _urlProviderKey = urlProviderKey,
+        super(const ShareEmptyInitial());
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
-    final int? savedProvider = json['url'] as int?;
-    final int? savedFormat = json['format'] as int?;
+    final int? savedProvider = json[_urlProviderKey] as int?;
+    final int? savedFormat = json[_formatKey] as int?;
     if (savedProvider != null) {
       _share.providerIndex = savedProvider;
     }
@@ -72,7 +77,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   @override
   Map<String, dynamic>? toJson(ShareState state) {
     if (state is ShareSelectedInitial) {
-      return <String, dynamic>{'url': state.selectedProvider, 'format': state.selectedFormat};
+      return <String, dynamic>{_urlProviderKey: state.selectedProvider, _formatKey: state.selectedFormat};
     }
   }
 

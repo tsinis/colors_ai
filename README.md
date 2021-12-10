@@ -53,7 +53,7 @@ However, in the future, I'm planning to improve the control via the input device
 
 ## How to run it
 
-Flutter version **2.6.0-12.0.pre.94** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
+Flutter version **2.8.0** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```bash
 flutter pub get

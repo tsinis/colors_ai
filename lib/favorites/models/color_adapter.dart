@@ -7,14 +7,8 @@ class ColorAdapter extends TypeAdapter<Color> {
   int get typeId => 200;
 
   @override
-  Color read(BinaryReader reader) {
-    final colorValue = reader.readInt();
-
-    return Color(colorValue);
-  }
+  Color read(BinaryReader reader) => Color(reader.readInt());
 
   @override
-  void write(BinaryWriter writer, Color obj) {
-    writer.writeInt(obj.value);
-  }
+  void write(BinaryWriter writer, Color obj) => writer.writeInt(obj.value);
 }

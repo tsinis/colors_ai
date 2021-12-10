@@ -1,13 +1,15 @@
-abstract class ManipulateListInterface {
-  final List list;
+abstract class ManipulateListInterface<T> {
+  final List<T> _list;
 
-  const ManipulateListInterface(this.list);
+  const ManipulateListInterface(this._list);
+
+  List<T> get list => _list;
 
   void swap({required int oldIndex, required int newIndex});
 
-  void add(Object? value) => list.add(value);
+  void add(T value) => _list.add(value);
 
-  void addAll(List newList) => list
+  void addAll(List<T> newList) => _list
     ..clear()
     ..addAll(newList);
 }

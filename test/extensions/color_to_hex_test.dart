@@ -5,6 +5,6 @@ import '../../lib/core/extensions/color_extensions.dart';
 import '../../lib/core/extensions/constants.dart';
 
 void main() => group('Color extensions tests:', () {
-      test('converting Color to hex String', () async => expect(darkColor.toHex(), '000000'));
-      test('check color lightness', () async => expect(darkColor.contrastColor(), lightColor));
+      test('converting Color to hex String', () async => expect(kDarkColor.toHex(), '000000'));
+      test('check color lightness', () async => expect(kDarkColor.contrastColor(), kLightColor));
     });

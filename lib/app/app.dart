@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../color_generator/models/colors/colors_providers/colormind/colormind_colors.dart';
+import '../color_generator/models/locks/locked_colors.dart';
 import '../core/repository/colors_repository.dart';
 import '../core/ui/constants.dart';
 import '../core/ui/view/main_screen.dart';
 import '../core/ui/view/splash_screen.dart';
 import '../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
+import '../favorites/repository/remove_favorites_repository.dart';
 import '../navigation/blocs/navigation/navigation_bloc.dart';
 import '../oboarding/blocs/onboarding/onboarding_bloc.dart';
 import '../settings/blocs/settings_bloc.dart';
@@ -33,10 +36,20 @@ class App extends StatelessWidget {
               providers: [
                 BlocProvider<FabBloc>(create: (_) => FabBloc()),
                 BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
-                BlocProvider<RemoveFavoritesBloc>(create: (_) => RemoveFavoritesBloc()),
+                BlocProvider<RemoveFavoritesBloc>(
+                  create: (_) => RemoveFavoritesBloc(
+                    RemoveFavoritesRepository(Set.of({})),
+                  ),
+                ),
               ],
               child: RepositoryProvider<ColorsRepository>(
-                create: (_) => ColorsRepository(),
+                create: (_) {
+                  final ColorsRepository colorsRepository = ColorsRepository(
+                    colorsFromAPI: ColormindColors(list: List.of([])),
+                    lockedColors: LockedColors(list: List.of([])),
+                  )..init();
+                  return colorsRepository;
+                },
                 child: BlocBuilder<OnboardingBloc, OnboardingState>(
                   builder: (_, state) => ColoredBox(
                     color: Theme.of(context).primaryColor,

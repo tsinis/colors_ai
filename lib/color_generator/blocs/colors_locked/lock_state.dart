@@ -1,9 +1,6 @@
 part of 'lock_bloc.dart';
 
 abstract class LockState extends Equatable {
-  @override
-  List<Object> get props => [];
-
   const LockState();
 }
 
@@ -19,5 +16,8 @@ class LockSuccess extends LockState {
 }
 
 class LockFailure extends LockState {
+  @override
+  List<Object> get props => [];
+
   const LockFailure();
 }

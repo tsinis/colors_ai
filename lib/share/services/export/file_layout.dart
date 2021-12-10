@@ -21,7 +21,7 @@ class FileLayout extends StatelessWidget {
   @override
   Widget build(Context context) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: List.generate(
+        children: List<Widget>.generate(
           _palette.colors.length,
           (colorsIndex) {
             final String hex = _palette.colors.elementAt(colorsIndex).toHex();
@@ -33,7 +33,7 @@ class FileLayout extends StatelessWidget {
                 SizedBox(
                   width: _width * 0.9,
                   child: Column(
-                    children: List.generate(
+                    children: List<Widget>.generate(
                       colorSpaces.length,
                       (spacesIndex) {
                         final bool isEven = spacesIndex.isEven;

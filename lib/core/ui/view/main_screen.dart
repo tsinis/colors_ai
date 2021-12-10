@@ -19,6 +19,7 @@ import '../../../navigation/ui/widgets/bottom_nav_bar.dart';
 import '../../../navigation/ui/widgets/nav_rail.dart';
 import '../../../settings/blocs/settings_bloc.dart';
 import '../../../share/blocs/share/share_bloc.dart';
+import '../../../share/repository/share_repository.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../../sound/repository/sounds_repository.dart';
 import '../../repository/colors_repository.dart';
@@ -113,7 +114,10 @@ class _NavigationScreenState extends State<MainScreen> {
                     body: MultiBlocProvider(
                       providers: [
                         BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
-                        BlocProvider<ShareBloc>(lazy: false, create: (_) => ShareBloc()..add(const ShareStarted())),
+                        BlocProvider<ShareBloc>(
+                          lazy: false,
+                          create: (_) => ShareBloc(ShareRepository())..add(const ShareStarted()),
+                        ),
                         BlocProvider<SnackbarBloc>(
                           create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
                         ),

@@ -7,9 +7,9 @@ part 'remove_favorites_event.dart';
 part 'remove_favorites_state.dart';
 
 class RemoveFavoritesBloc extends Bloc<RemoveFavoritesEvent, RemoveFavoritesState> {
-  final RemoveFavoritesRepository _removedFavs = RemoveFavoritesRepository(Set<int>.of({}));
+  final RemoveFavoritesRepository _removedFavs;
 
-  RemoveFavoritesBloc() : super(const RemoveFavoritesSelectionChanged({}));
+  RemoveFavoritesBloc(this._removedFavs) : super(const RemoveFavoritesSelectionChanged({}));
 
   @override
   Stream<RemoveFavoritesState> mapEventToState(RemoveFavoritesEvent event) async* {

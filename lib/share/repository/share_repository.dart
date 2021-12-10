@@ -35,91 +35,23 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     SessionsCollege(),
   ];
 
-  static const Clipboards _clipboard = Clipboards();
-
+  final Clipboards _clipboard;
+  final String _nameOfFile;
   int? _formatIndex;
   int? _providerIndex;
 
-  int? get formatIndex => _formatIndex;
-  int? get providerIndex => _providerIndex;
+  ShareRepository({Clipboards clipboard = const Clipboards(), String nameOfFile = 'colors_ai'})
+      : _clipboard = clipboard,
+        _nameOfFile = nameOfFile;
 
   String get _fileExtension => _selectedFile.format.toLowerCase();
-  String get _fileName => 'colors_ai.$_fileExtension';
+  String get _fileName => '$_nameOfFile.$_fileExtension';
   String get _filePath => '$storagePath/$_fileName';
   // Create File Format list for specific OS.
   FileFormat get _selectedFile => FileFormat.values.elementAt(_formatIndex ?? 0);
 
-  set formatIndex(int? newFormatIndex) {
-    if (newFormatIndex != null && newFormatIndex != _formatIndex) {
-      _formatIndex = newFormatIndex;
-    }
-  }
-
-  set providerIndex(int? newProviderIndex) {
-    if (newProviderIndex != null && newProviderIndex != _providerIndex) {
-      _providerIndex = newProviderIndex;
-    }
-  }
-
-  Future<void> asFile(ColorPalette palette) async {
-    try {
-      switch (_selectedFile) {
-        case FileFormat.pdfA4:
-          await _shareBytes(await generateFile(palette));
-          break;
-        case FileFormat.pdfLetter:
-          await _shareBytes(await generateFile(palette, isMetric: false));
-          break;
-        case FileFormat.pngA4:
-          await Printing.raster(await generateFile(palette)).forEach((page) async => _shareBytes(await page.toPng()));
-          break;
-        case FileFormat.pngLetter:
-          await Printing.raster(await generateFile(palette, isMetric: false))
-              .forEach((page) async => _shareBytes(await page.toPng()));
-          break;
-        case FileFormat.svg:
-          await _shareTextData(toSvg(palette));
-          break;
-        case FileFormat.json:
-          await _shareTextData(toJson(palette));
-          break;
-        case FileFormat.scss:
-          await _shareTextData(toScss(palette));
-          break;
-      }
-      // ignore: avoid_catches_without_on_clauses
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  void asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
-
-  Future<void> copyFile(ColorPalette palette) async {
-    try {
-      switch (_selectedFile) {
-        case FileFormat.svg:
-          await _clipboard.copyTextData(toSvg(palette));
-          break;
-        case FileFormat.json:
-          await _clipboard.copyTextData(toJson(palette));
-          break;
-        case FileFormat.scss:
-          await _clipboard.copyTextData(toScss(palette));
-          break;
-        case FileFormat.pdfA4:
-        case FileFormat.pdfLetter:
-        case FileFormat.pngA4:
-        case FileFormat.pngLetter:
-          break;
-      }
-      // ignore: avoid_catches_without_on_clauses
-    } catch (_) {
-      rethrow;
-    }
-  }
-
-  void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
+  int? get formatIndex => _formatIndex;
+  int? get providerIndex => _providerIndex;
 
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider provider = providers[providerIndex ?? 0];
@@ -167,5 +99,79 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     final File file = File(_filePath)..writeAsStringSync(data);
 
     return _shareFile(file);
+  }
+
+  Future<void> asFile(ColorPalette palette) async {
+    try {
+      switch (_selectedFile) {
+        case FileFormat.pdfA4:
+          await _shareBytes(await generateFile(palette));
+          break;
+        case FileFormat.pdfLetter:
+          await _shareBytes(await generateFile(palette, isMetric: false));
+          break;
+        case FileFormat.pngA4:
+          await Printing.raster(await generateFile(palette)).forEach(
+            (PdfRaster page) async => _shareBytes(await page.toPng()),
+          );
+          break;
+        case FileFormat.pngLetter:
+          await Printing.raster(await generateFile(palette, isMetric: false))
+              .forEach((PdfRaster page) async => _shareBytes(await page.toPng()));
+          break;
+        case FileFormat.svg:
+          await _shareTextData(toSvg(palette));
+          break;
+        case FileFormat.json:
+          await _shareTextData(toJson(palette));
+          break;
+        case FileFormat.scss:
+          await _shareTextData(toScss(palette));
+          break;
+      }
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  void asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
+
+  Future<void> copyFile(ColorPalette palette) async {
+    try {
+      switch (_selectedFile) {
+        case FileFormat.svg:
+          await _clipboard.copyTextData(toSvg(palette));
+          break;
+        case FileFormat.json:
+          await _clipboard.copyTextData(toJson(palette));
+          break;
+        case FileFormat.scss:
+          await _clipboard.copyTextData(toScss(palette));
+          break;
+        case FileFormat.pdfA4:
+        case FileFormat.pdfLetter:
+        case FileFormat.pngA4:
+        case FileFormat.pngLetter:
+          break;
+      }
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
+      rethrow;
+    }
+  }
+
+  void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
+
+  set formatIndex(int? newFormatIndex) {
+    if (newFormatIndex != null && newFormatIndex != _formatIndex) {
+      _formatIndex = newFormatIndex;
+    }
+  }
+
+  set providerIndex(int? newProviderIndex) {
+    if (newProviderIndex != null && newProviderIndex != _providerIndex) {
+      _providerIndex = newProviderIndex;
+    }
   }
 }

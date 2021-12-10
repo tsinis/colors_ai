@@ -1,20 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'colors_ai.dart';
+part of 'colormind_colors.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ColorsAI _$ColorsAIFromJson(Map<String, dynamic> json) {
+ColormindColors _$ColormindColorsFromJson(Map<String, dynamic> json) {
   $checkKeys(
     json,
     requiredKeys: const ['result'],
   );
-  return ColorsAI(
-    list: (json['result'] as List<dynamic>?)
-            ?.map((e) => (e as List<dynamic>).map((e) => e as int).toList())
-            .toList() ??
-        const [],
+  return ColormindColors(
+    list: json['result'] == null
+        ? const []
+        : const ColormindColorsConverter().fromJson(json['result'] as List),
   );
 }

@@ -22,5 +22,8 @@ class FavoritesLoadInProgress extends FavoritesState {
 class FavoritesLoadSuccess extends FavoritesState {
   final List<ColorPalette> palettes;
 
+  @override
+  List<Object> get props => [palettes.length];
+
   const FavoritesLoadSuccess(this.palettes);
 }

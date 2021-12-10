@@ -20,18 +20,18 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
   Stream<ColorsState> mapEventToState(ColorsEvent event) async* {
     if (event is ColorsStarted) {
       yield const ColorsLoadInProgress();
-      yield ColorsLoadSuccess(_colorsRepository.colors.toPalette());
+      yield ColorsLoadSuccess(_colorsRepository.palette);
     } else if (event is ColorsChanged) {
       if (event.newColor != null) {
         _colorsRepository.changeColor(event.newColor!, event.colorIndex);
       }
-      yield ColorsChangeSuccess(_colorsRepository.colors.toPalette());
+      yield ColorsChangeSuccess(_colorsRepository.palette);
     } else if (event is ColorsGenerated) {
-      yield ColorsLoadStarted(_colorsRepository.colors.toPalette());
+      yield ColorsLoadStarted(_colorsRepository.palette);
       final bool isGenerated = await _colorsRepository.getNewColors(forUI: event.generateColorsForUi);
       if (isGenerated) {
         try {
-          yield ColorsLoadSuccess(_colorsRepository.colors.toPalette());
+          yield ColorsLoadSuccess(_colorsRepository.palette);
         } catch (_) {
           yield const ColorsFailure();
         }
@@ -41,14 +41,14 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
     } else if (event is ColorsReordered) {
       try {
         _colorsRepository.swapColors(oldIndex: event.oldIndex, newIndex: event.newIndex);
-        yield ColorsChangeSuccess(_colorsRepository.colors.toPalette());
+        yield ColorsChangeSuccess(_colorsRepository.palette);
       } catch (_) {
         yield const ColorsFailure();
       }
     } else if (event is ColorsRestored) {
       try {
         _colorsRepository.fromFavorites(event.palette);
-        yield ColorsLoadSuccess(_colorsRepository.colors.toPalette());
+        yield ColorsLoadSuccess(_colorsRepository.palette);
       } catch (_) {
         yield const ColorsFailure();
       }

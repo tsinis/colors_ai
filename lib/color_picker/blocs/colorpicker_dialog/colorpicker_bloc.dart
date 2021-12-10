@@ -9,14 +9,16 @@ part 'colorpicker_event.dart';
 part 'colorpicker_state.dart';
 
 class ColorPickerBLoc extends Bloc<ColorPickerEvent, ColorPickerState> {
-  final Clipboards clipboard;
+  final Clipboards _clipboard;
 
-  ColorPickerBLoc({this.clipboard = const Clipboards()}) : super(const ColorPickerCloseInitial());
+  ColorPickerBLoc({Clipboards clipboard = const Clipboards()})
+      : _clipboard = clipboard,
+        super(const ColorPickerCloseInitial());
 
   @override
   Stream<ColorPickerState> mapEventToState(ColorPickerEvent event) async* {
     if (event is ColorPickerCopied) {
-      await clipboard.copyColor(event.color);
+      await _clipboard.copyColor(event.color);
       yield const ColorPickerCloseInitial();
     } else if (event is ColorPickerShowed) {
       yield const ColorPickerOpenInitial();

@@ -7,15 +7,16 @@ part 'navigation_event.dart';
 part 'navigation_state.dart';
 
 class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
-  final List<NavigationState> stateList;
+  final List<NavigationState> _stateList;
 
   NavigationBloc({
-    this.stateList = const <NavigationState>[
+    List<NavigationState> stateList = const <NavigationState>[
       NavigationShareTabInitial(),
       NavigationGenerateTabInitial(),
       NavigationFavoritesTabInitial(),
     ],
-  }) : super(const NavigationGenerateTabInitial());
+  })  : _stateList = stateList,
+        super(const NavigationGenerateTabInitial());
 
   @override
   Stream<NavigationState> mapEventToState(NavigationEvent event) async* {
@@ -27,7 +28,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
       }
     } else if (event is NavigationTabChanged) {
       try {
-        yield stateList[event.newTabIndex];
+        yield _stateList[event.newTabIndex];
       } on Exception catch (_) {
         yield const NavigationFailure();
       }

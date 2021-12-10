@@ -18,6 +18,9 @@ class UrlCopiedSuccess extends SnackbarEvent {
 class FileCopiedSuccess extends SnackbarEvent {
   final String format;
 
+  @override
+  List<Object> get props => [format];
+
   const FileCopiedSuccess(this.format);
 }
 

@@ -23,6 +23,7 @@ class SoundsRepository with Vibrations {
   void playRefresh() => _playSound(Sound.refresh, volume: 0.6);
 
   Future<void> _playSound(Sound sound, {double volume = 0.1}) async {
+    //TODO? Maybe provide to stream.
     if (kIsWeb || Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
       try {
         await _player.setVolume(volume);

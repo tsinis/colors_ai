@@ -1,35 +1,49 @@
-import '../../core/models/color_palette/color_palette.dart';
-import '../mixins/favorites_storage.dart';
+import 'dart:ui';
 
-class FavoritesRepository with FavoritesStorage {
+import '../../core/models/color_palette/color_palette.dart';
+import '../interfaces/favorites_storage.dart';
+import '../services/storage_providers.dart/hive_storage.dart';
+
+class FavoritesRepository {
   final List<ColorPalette> _palettes;
+  final FavoritesStorage _storage;
 
   Future<bool> get loadStoredFavorites async {
+    final Iterable<ColorPalette> stored = await _storage.storedFavorites;
     _palettes
       ..clear()
-      ..addAll(await storedFavorites);
+      ..addAll(stored);
 
-    return _palettes.isNotEmpty;
+    return stored.isNotEmpty;
   }
 
   List<ColorPalette> get palettes => _palettes;
 
-  const FavoritesRepository(this._palettes);
+  FavoritesStorage get storage => _storage;
 
-  void add(ColorPalette palette) => _palettes.add(palette);
+  const FavoritesRepository(List<ColorPalette> palettes, {FavoritesStorage storage = const HiveStorage()})
+      : _palettes = palettes,
+        _storage = storage;
+
+  void add(List<Color> colors) => _palettes.add(ColorPalette(colors: List<Color>.unmodifiable(colors)));
 
   void remove(Set<int> indexes) {
-    final Set<int> palettesToRemove = Set<int>.from(indexes);
-    if (palettesToRemove.length == _palettes.length || palettesToRemove.isEmpty) {
-      _palettes.clear();
-    } else if (palettesToRemove.length == 1) {
-      _palettes.removeAt(palettesToRemove.first);
-    } else {
-      final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(_palettes.asMap())
-        ..removeWhere((index, _) => palettesToRemove.contains(index));
-      _palettes
-        ..clear()
-        ..addAll(indexMap.values);
+    final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
+    switch (palettesToRemove.length) {
+      case 0:
+        return;
+      case 1:
+        final List<ColorPalette> newPalettes = List<ColorPalette>.from(_palettes)..removeAt(palettesToRemove.first);
+        _palettes
+          ..clear()
+          ..addAll(newPalettes);
+        return;
+      default:
+        final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(_palettes.asMap())
+          ..removeWhere((index, _) => palettesToRemove.contains(index));
+        _palettes
+          ..clear()
+          ..addAll(indexMap.values);
     }
   }
 }

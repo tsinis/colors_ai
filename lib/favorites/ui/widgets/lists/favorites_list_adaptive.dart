@@ -67,7 +67,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                           child: Align(
                             alignment: Alignment.topCenter,
                             child: Wrap(
-                              children: List.generate(
+                              children: List<Widget>.generate(
                                 favorites.length,
                                 (paletteIndex) {
                                   final bool isHoveringPalette = hoveringPalette == paletteIndex;

@@ -1,4 +1,6 @@
 // ignore_for_file: avoid_catches_without_on_clauses, unawaited_futures
+import 'dart:ui' show Color;
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,9 +11,9 @@ part 'favorites_event.dart';
 part 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
-  final FavoritesRepository _favorites = FavoritesRepository(List<ColorPalette>.empty(growable: true));
+  final FavoritesRepository _favorites;
 
-  FavoritesBloc() : super(const FavoritesEmptyInitial());
+  FavoritesBloc(this._favorites) : super(const FavoritesEmptyInitial());
 
   @override
   Stream<FavoritesState> mapEventToState(FavoritesEvent event) async* {
@@ -32,14 +34,14 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
         }
       }
     } else if (event is FavoritesAdded) {
-      if (event.favorite.colors.isNotEmpty) {
+      if (event.favorite.isNotEmpty) {
         _favorites.add(event.favorite);
         try {
           yield FavoritesLoadSuccess(_favorites.palettes);
         } catch (_) {
           yield const FavoritesFailure();
         }
-        _favorites.addToStorage(event.favorite);
+        await _favorites.storage.add(event.favorite);
       } else {
         try {
           yield const FavoritesEmptyInitial();
@@ -52,10 +54,10 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       try {
         if (_favorites.palettes.isNotEmpty) {
           yield FavoritesLoadSuccess(_favorites.palettes);
-          await _favorites.updateStorage({event.colorToRemoveIndex});
+          await _favorites.storage.update({event.colorToRemoveIndex});
         } else {
           yield const FavoritesEmptyInitial();
-          await _favorites.clearStorage();
+          await _favorites.storage.clear();
         }
       } catch (_) {
         yield const FavoritesFailure();
@@ -71,7 +73,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       } catch (_) {
         yield const FavoritesFailure();
       }
-      _favorites.updateStorage(event.palettesIndex);
+      _favorites.storage.update(event.palettesIndex);
     }
   }
 }

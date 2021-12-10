@@ -12,7 +12,7 @@ class DefaultGreyColorsList extends StatelessWidget {
   Widget build(BuildContext context) => OrientationBuilder(
         builder: (_, Orientation orientation) => OrientationSwitcher(
           isPortrait: orientation == Orientation.portrait,
-          children: List.generate(
+          children: List<Widget>.generate(
             length ?? kDefaultColors.length,
             (int i) => Flexible(
               child: DecoratedBox(

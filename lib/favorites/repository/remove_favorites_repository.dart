@@ -5,7 +5,7 @@ class RemoveFavoritesRepository {
 
   const RemoveFavoritesRepository(this._selections);
 
-  void changeSelection(int i) => (_isSelected(i)) ? _selections.remove(i) : _selections.add(i);
+  void changeSelection(int i) => _isSelected(i) ? _selections.remove(i) : _selections.add(i);
 
   void clearSelections() => _selections.clear();
 

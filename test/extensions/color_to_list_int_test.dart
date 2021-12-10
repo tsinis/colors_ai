@@ -7,5 +7,5 @@ import '../../lib/core/extensions/constants.dart';
 
 void main() => test(
       'Color to list int extension test',
-      () async => expect(const IterableEquality<int>().equals(darkColor.toListInt(), [0, 0, 0]), true),
+      () async => expect(const IterableEquality<int>().equals(kDarkColor.toListInt(), [0, 0, 0]), true),
     );

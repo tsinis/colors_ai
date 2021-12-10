@@ -11,9 +11,11 @@ part 'snackbar_event.dart';
 part 'snackbar_state.dart';
 
 class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
-  static const Clipboards _clipboard = Clipboards();
+  final Clipboards _clipboard;
 
-  SnackbarBloc() : super(const SnackbarsInitial());
+  SnackbarBloc({Clipboards clipboard = const Clipboards()})
+      : _clipboard = clipboard,
+        super(const SnackbarsInitial());
 
   @override
   Stream<SnackbarState> mapEventToState(SnackbarEvent event) async* {

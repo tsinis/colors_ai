@@ -6,9 +6,13 @@ import '../models/typedef_aliases/int_rgb_color.dart';
 import 'constants.dart';
 
 extension ColorExtensions on Color {
-  IntRGBColor toListInt() => [red, green, blue];
+  IntRGBColor toListInt() {
+    final List<int> rgb = [red, green, blue];
+
+    return List<int>.unmodifiable(rgb);
+  }
 
   String toHex() => colorToHex(this, enableAlpha: false);
 
-  Color contrastColor() => useWhiteForeground(this) ? lightColor : darkColor;
+  Color contrastColor() => useWhiteForeground(this) ? kLightColor : kDarkColor;
 }

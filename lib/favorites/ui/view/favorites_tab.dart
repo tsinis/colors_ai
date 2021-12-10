@@ -56,7 +56,7 @@ class FavoritesTab extends StatelessWidget {
                           icon: const Icon(Icons.add, size: 20),
                           label: Text(AppLocalizations.of(context).addFavoritesButtonLabel),
                           onPressed: () => BlocProvider.of<FavoritesBloc>(context)
-                              .add(FavoritesAdded(favorite: context.read<ColorsRepository>().toPalette())),
+                              .add(FavoritesAdded(favorite: context.read<ColorsRepository>().palette.colors)),
                         ),
                       ),
                     ],

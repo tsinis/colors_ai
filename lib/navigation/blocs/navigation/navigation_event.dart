@@ -14,6 +14,9 @@ class NavigationShareTabStarted extends NavigationEvent {
 class NavigationTabChanged extends NavigationEvent {
   final int newTabIndex;
 
+  @override
+  List<Object> get props => [newTabIndex];
+
   const NavigationTabChanged(this.newTabIndex);
 }
 

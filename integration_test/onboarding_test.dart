@@ -10,7 +10,7 @@ void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('Onboarding should dissapear after tap on "GOT IT" button', (tester) async {
-    app.main();
+    await app.main();
     debugPrint('App is started');
     try {
       await tester.pumpAndSettle(

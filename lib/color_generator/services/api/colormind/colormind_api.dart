@@ -1,42 +1,38 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' show Response;
 
+import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../core/models/typedef_aliases/int_rgb_color.dart';
 import '../../../interfaces/api.dart';
-import '../../../models/colors/colors_ai.dart';
+import '../../../models/colors/colors_providers/colormind/colormind_colors.dart';
 import 'constants.dart';
 
-class ColormindAPI extends API {
-  const ColormindAPI() : super('http://colormind.io/api/');
+class ColormindAPI extends API<IntRGBColor> {
+  const ColormindAPI() : super('http://colormind.io/api/', const ColormindColors());
 
   @override
-  Future<ColorsAI> fetchNewColors(
-    ColorsAI existingColors, {
+  Future<ColorPalette> fetchNewColors(
+    ColorPalette palette, {
     List<bool> lockedColors = const [],
     bool forUI = false,
   }) async {
     final List<bool> invertedLocks = lockedColors.map((isLocked) => !isLocked).toList(growable: false);
-    final Response response = await _colorsFromAPI(existingColors.list, isUiModel: forUI, lockedColors: invertedLocks);
-    if (response.statusCode < 200 || response.statusCode > 299) {
-      throw Exception('Network error, status Code: ${response.statusCode}');
-    } else {
-      final responseMap = jsonDecode(response.body) as Map<String, dynamic>;
 
-      return ColorsAI.fromJson(responseMap);
-    }
+    return _colorsFromAPI(palette.colors, isUiModel: forUI, lockedColors: invertedLocks);
   }
 
   @visibleForTesting
-  String colorsToInput(List<IntRGBColor> colorslist, {required List<bool> lockedColors}) {
+  String colorsToInput(List<Color> colorslist, {required List<bool> lockedColors}) {
     final StringBuffer sb = StringBuffer(kStartSquareBracket);
-    for (final IntRGBColor color in colorslist) {
+    for (final Color color in colorslist) {
       final int colorIndex = colorslist.indexOf(color);
       if (lockedColors[colorIndex]) {
         sb.write(kUnlockedColor);
       } else {
-        sb.write(color);
+        sb.write(color.toListInt());
       }
       if (colorIndex != colorslist.length - 1) {
         sb.write(kComma);
@@ -48,18 +44,20 @@ class ColormindAPI extends API {
     return sb.toString().replaceAll(' ', '');
   }
 
-  Future<Response> _colorsFromAPI(
-    List<IntRGBColor> existingColors, {
+  Future<ColorPalette> _colorsFromAPI(
+    List<Color> existingColors, {
     required List<bool> lockedColors,
     required bool isUiModel,
   }) async {
     final IntRGBColor body;
+
     if (lockedColors.contains(true)) {
       final String input = kStartCurlyBracket +
           kInputName +
           colorsToInput(existingColors, lockedColors: lockedColors) +
           (isUiModel ? kUiModelBody : kDefaultModelBody) +
           kEndCurlyBracket;
+
       body = utf8.encode(input);
     } else {
       body = utf8.encode(isUiModel ? kUiModel : kDefaultModel);

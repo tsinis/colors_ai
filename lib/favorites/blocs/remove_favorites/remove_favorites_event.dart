@@ -18,6 +18,9 @@ class RemoveFavoritesHided extends RemoveFavoritesEvent {
 class RemoveFavoritesSelected extends RemoveFavoritesEvent {
   final int paletteIndex;
 
+  @override
+  List<Object> get props => [paletteIndex];
+
   const RemoveFavoritesSelected(this.paletteIndex);
 }
 
