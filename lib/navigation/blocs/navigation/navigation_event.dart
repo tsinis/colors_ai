@@ -2,7 +2,7 @@ part of 'navigation_bloc.dart';
 
 abstract class NavigationEvent extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 
   const NavigationEvent();
 }
@@ -15,7 +15,7 @@ class NavigationTabChanged extends NavigationEvent {
   final int newTabIndex;
 
   @override
-  List<Object> get props => [newTabIndex];
+  List<Object> get props => <int>[newTabIndex];
 
   const NavigationTabChanged(this.newTabIndex);
 }

@@ -5,11 +5,12 @@ import 'package:json_annotation/json_annotation.dart';
 import '../../../../../core/extensions/color_extensions.dart';
 import '../../../../../core/models/typedef_aliases/int_rgb_color.dart';
 
-class ColormindColorsConverter implements JsonConverter<List<Color>, List> {
+class ColormindColorsConverter implements JsonConverter<List<Color>, List<dynamic>> {
   const ColormindColorsConverter();
 
   @override
-  List<Color> fromJson(List rgbs) => rgbs.map<Color>((dynamic rgb) {
+  // ignore: avoid_annotating_with_dynamic
+  List<Color> fromJson(List<dynamic> rgbs) => rgbs.map<Color>((dynamic rgb) {
         if (rgb is! List) {
           throw Exception('Colors from Colormind API are not in List');
         }
@@ -22,5 +23,5 @@ class ColormindColorsConverter implements JsonConverter<List<Color>, List> {
       }).toList(growable: false);
 
   @override
-  List<IntRGBColor> toJson(List<Color> colors) => colors.map<IntRGBColor>((color) => color.toListInt()).toList();
+  List<IntRGBColor> toJson(List<Color> colors) => colors.map<IntRGBColor>((Color color) => color.toListInt()).toList();
 }

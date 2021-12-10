@@ -1,9 +1,9 @@
 abstract class ManipulateListInterface<T> {
   final List<T> _list;
 
-  const ManipulateListInterface(this._list);
-
   List<T> get list => _list;
+
+  const ManipulateListInterface(this._list);
 
   void swap({required int oldIndex, required int newIndex});
 

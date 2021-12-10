@@ -14,7 +14,12 @@ class NavRail extends StatefulWidget {
   final NavigationState navState;
   final bool toShowGenFab;
 
-  const NavRail(this.navState, {required this.toShowGenFab, this.duration = kDefaultTransitionDuration});
+  const NavRail(
+    this.navState, {
+    required this.toShowGenFab,
+    this.duration = kDefaultTransitionDuration,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<NavRail> createState() => _NavRailState();
@@ -41,7 +46,7 @@ class _NavRailState extends State<NavRail> {
           }
         },
         child: BlocBuilder<FavoritesBloc, FavoritesState>(
-          builder: (_, saveState) {
+          builder: (_, FavoritesState saveState) {
             final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
             final List<String> tabLabels = tabNames(AppLocalizations.of(context));
 
@@ -55,7 +60,7 @@ class _NavRailState extends State<NavRail> {
               extended: isExtended,
               leading: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
+                children: <Widget>[
                   SaveColorsFAB(isExtended: isExtended),
                   AnimatedCrossFade(
                     firstChild: const SizedBox.shrink(),
@@ -65,7 +70,7 @@ class _NavRailState extends State<NavRail> {
                   ),
                 ],
               ),
-              destinations: [
+              destinations: <NavigationRailDestination>[
                 NavigationRailDestination(
                   label: Text(tabLabels[_shareTabIndex]),
                   selectedIcon: const Icon(Icons.share),

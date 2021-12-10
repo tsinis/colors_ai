@@ -11,7 +11,7 @@ import '../extensions/color_palette_extension.dart';
 import '../models/color_palette/color_palette.dart';
 
 class ColorsRepository {
-  final API apiService;
+  final API<Object> apiService;
   final ColorsFromAPI _apiColors;
   final LockedColors _locked;
 
@@ -41,12 +41,12 @@ class ColorsRepository {
   Future<bool> getNewColors({required bool forUI}) async {
     if (_locked.list.contains(false)) {
       try {
-        final newColors = await apiService.fetchNewColors(
+        final ColorPalette newColors = await apiService.fetchNewColors(
           _apiColors.toPalette(),
           lockedColors: _locked.list,
           forUI: forUI,
         );
-        final filteredColors = _filterLockedColors(newColors);
+        final List<Color> filteredColors = _filterLockedColors(newColors);
         _apiColors.addAll(filteredColors);
 
         return true;
@@ -78,10 +78,12 @@ class ColorsRepository {
 
   List<Color> _filterLockedColors(ColorPalette newColors) {
     final List<Color> newColorsList = List<Color>.unmodifiable(newColors.colors);
+
     return List<Color>.generate(
       _locked.list.length,
       (int index) {
         final bool isLocked = _locked.list.elementAt(index);
+
         return isLocked ? _apiColors.list.elementAt(index) : newColorsList.elementAt(index);
       },
       growable: false,

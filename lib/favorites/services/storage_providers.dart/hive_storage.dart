@@ -20,7 +20,7 @@ class HiveStorage implements FavoritesStorage {
     } on Exception catch (e) {
       debugPrint('Exception during favorites box opening: $e');
 
-      return [];
+      return <ColorPalette>[];
     }
   }
 
@@ -51,7 +51,7 @@ class HiveStorage implements FavoritesStorage {
         return;
       default:
         final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(storedList.asMap())
-          ..removeWhere((index, _) => palettesToRemove.contains(index));
+          ..removeWhere((int index, _) => palettesToRemove.contains(index));
         await _storageBox.addAll(indexMap.values);
     }
   }

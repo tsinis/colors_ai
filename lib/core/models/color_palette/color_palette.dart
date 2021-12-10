@@ -11,7 +11,7 @@ class ColorPalette extends Equatable {
   final List<Color> colors;
 
   @override
-  List<Object?> get props => [colors];
+  List<Object?> get props => <Object?>[colors];
 
-  const ColorPalette({this.colors = const []});
+  const ColorPalette({this.colors = const <Color>[]});
 }

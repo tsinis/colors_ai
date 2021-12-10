@@ -9,11 +9,14 @@ import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 class AppBarInfoTitle extends StatelessWidget {
   final int selectedTabIndex;
 
-  const AppBarInfoTitle({required this.selectedTabIndex});
+  const AppBarInfoTitle({
+    required this.selectedTabIndex,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
-        builder: (_, favState) {
+        builder: (_, RemoveFavoritesState favState) {
           final List<String> tabLabels = tabNames(AppLocalizations.of(context));
           late String? appBarInfo;
           if (selectedTabIndex == const NavigationFavoritesTabInitial().tabIndex && favState.selections.isNotEmpty) {

@@ -7,18 +7,18 @@ import '../../../lib/core/services/data_storage.dart';
 import '../../../lib/core/ui/view/splash_screen.dart';
 import '../../../lib/oboarding/blocs/onboarding/onboarding_bloc.dart';
 
-void main() => testWidgets('Splash should dissapear after onboard data load', (tester) async {
+void main() => testWidgets('Splash should dissapear after onboard data load', (WidgetTester tester) async {
       await DataStorage.init();
-      final splash = find.byKey(const ValueKey<bool>(true));
+      final Finder splash = find.byKey(const ValueKey<bool>(true));
       const Duration animationDuration = Duration(seconds: 2);
       late bool loadingOnboardData;
 
       await tester.pumpWidget(
-        BlocProvider(
+        BlocProvider<OnboardingBloc>(
           create: (_) => OnboardingBloc(),
           child: MaterialApp(
             home: BlocBuilder<OnboardingBloc, OnboardingState>(
-              builder: (_, state) {
+              builder: (_, OnboardingState state) {
                 loadingOnboardData = state is OnboardingLoadInProgress;
 
                 return AnimatedOpacity(

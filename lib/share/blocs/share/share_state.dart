@@ -5,7 +5,7 @@ abstract class ShareState extends Equatable {
   final int? selectedProvider;
 
   @override
-  List get props => <dynamic>[selectedProvider, selectedFormat];
+  List<int?> get props => <int?>[selectedProvider, selectedFormat];
 
   List<ColorsUrlProvider> get providersList => ShareRepository.providers;
 

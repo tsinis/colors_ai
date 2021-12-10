@@ -6,14 +6,14 @@ abstract class LockEvent extends Equatable {
 
 class LockStarted extends LockEvent {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 
   const LockStarted();
 }
 
 class LockAllUnlocked extends LockEvent {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 
   const LockAllUnlocked();
 }
@@ -23,7 +23,7 @@ class LockChanged extends LockEvent {
   final bool onlyLock;
 
   @override
-  List<Object> get props => [index, onlyLock];
+  List<Object> get props => <Object>[index, onlyLock];
 
   const LockChanged(this.index, {this.onlyLock = false});
 }

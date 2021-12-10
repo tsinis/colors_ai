@@ -20,17 +20,18 @@ class FavoritesListSwipeable extends StatelessWidget {
     this.padding = 20,
     this.tipHeight = 42,
     this.duration = const Duration(milliseconds: 800),
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
-        builder: (_, removeState) => BlocBuilder<FavoritesBloc, FavoritesState>(
-          builder: (_, state) {
+        builder: (_, RemoveFavoritesState removeState) => BlocBuilder<FavoritesBloc, FavoritesState>(
+          builder: (_, FavoritesState state) {
             if (state is FavoritesLoadSuccess) {
               final List<ColorPalette> favorites = state.palettes;
 
               return LayoutBuilder(
-                builder: (_, size) {
+                builder: (_, BoxConstraints size) {
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
                   final double cardHeight =
                       (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
@@ -40,7 +41,7 @@ class FavoritesListSwipeable extends StatelessWidget {
 
                   return Stack(
                     alignment: AlignmentDirectional.topCenter,
-                    children: [
+                    children: <Widget>[
                       Positioned(
                         bottom: padding,
                         child: AnimatedOpacity(
@@ -55,7 +56,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                       ),
                       ListView.builder(
                         itemCount: favorites.length,
-                        itemBuilder: (_, paletteIndex) => Dismissible(
+                        itemBuilder: (_, int paletteIndex) => Dismissible(
                           key: UniqueKey(),
                           onResize: () {
                             BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());

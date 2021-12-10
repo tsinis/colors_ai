@@ -8,11 +8,11 @@ import '../widgets/animated/no_network.dart';
 import '../widgets/lists/colors_list.dart';
 
 class GenColorsTab extends StatelessWidget {
-  const GenColorsTab();
+  const GenColorsTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ColorsBloc, ColorsState>(
-        builder: (_, state) {
+        builder: (_, ColorsState state) {
           if (state is ColorsLoadInProgress || state is ColorsInitial) {
             BlocProvider.of<FabBloc>(context).add(const FabHided());
 
@@ -29,7 +29,7 @@ class GenColorsTab extends StatelessWidget {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
+              children: <Widget>[
                 const Flexible(child: FractionallySizedBox(widthFactor: 0.8, heightFactor: 0.8, child: NoNetwork())),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),

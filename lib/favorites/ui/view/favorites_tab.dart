@@ -10,23 +10,23 @@ import '../widgets/lists/favorites_list_adaptive.dart';
 import '../widgets/lists/favorites_list_swipeable.dart';
 
 class FavoritesTab extends StatelessWidget {
-  const FavoritesTab();
+  const FavoritesTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
-        builder: (_, state) => AnimatedSwitcher(
+        builder: (_, FavoritesState state) => AnimatedSwitcher(
           duration: const Duration(milliseconds: 600),
           switchInCurve: Curves.easeInQuart,
           switchOutCurve: Curves.easeOutQuart,
-          layoutBuilder: (currentChild, previousChildren) => Stack(
+          layoutBuilder: (Widget? currentChild, List<Widget> previousChildren) => Stack(
             alignment: AlignmentDirectional.bottomCenter,
-            children: [...previousChildren, if (currentChild != null) currentChild],
+            children: <Widget>[...previousChildren, if (currentChild != null) currentChild],
           ),
           child: (state is FavoritesEmptyInitial)
               ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+                    children: <Widget>[
                       const Flexible(
                         child: FractionallySizedBox(
                           widthFactor: 0.6,
@@ -40,7 +40,7 @@ class FavoritesTab extends StatelessWidget {
                           TextSpan(
                             text: AppLocalizations.of(context).noFavoritesTitle,
                             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                            children: [
+                            children: <TextSpan>[
                               TextSpan(
                                 text: '\n${AppLocalizations.of(context).noFavoritesDescription}',
                                 style: const TextStyle(fontSize: 15, fontWeight: FontWeight.normal, height: 3),

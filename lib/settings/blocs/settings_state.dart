@@ -5,7 +5,7 @@ abstract class SettingsState extends Equatable {
   final bool? isDarkTheme;
 
   @override
-  List<bool?> get props => [isDarkTheme, colorsForUi];
+  List<bool?> get props => <bool?>[isDarkTheme, colorsForUi];
 
   const SettingsState({required this.colorsForUi, this.isDarkTheme});
 }

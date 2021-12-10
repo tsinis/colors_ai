@@ -26,20 +26,21 @@ class Colorpicker extends StatelessWidget {
     required this.textColor,
     required this.buttonSize,
     required this.isPortrait,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocProvider<ColorPickerBLoc>(
         create: (_) => ColorPickerBLoc(),
         child: BlocBuilder<ColorPickerBLoc, ColorPickerState>(
-          builder: (dialogContext, state) {
+          builder: (BuildContext dialogContext, ColorPickerState state) {
             if (state is ColorPickerOpenInitial) {
               SchedulerBinding.instance?.addPostFrameCallback(
                 (_) async => showModal<void>(
                   context: dialogContext,
                   builder: (_) => ColorpickerDialog(
                     color,
-                    onColorChanged: (newColor) {
+                    onColorChanged: (Color newColor) {
                       BlocProvider.of<FabBloc>(context).add(const FabShowed());
                       BlocProvider.of<ColorsBloc>(context).add(ColorsChanged(newColor, index));
                     },

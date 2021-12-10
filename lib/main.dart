@@ -5,6 +5,7 @@ import 'about/blocs/about_dialog/about_bloc.dart';
 import 'about/repository/about_repository.dart';
 import 'app/app.dart';
 import 'app/theme/services/system_ui.dart';
+import 'core/models/color_palette/color_palette.dart';
 import 'core/services/data_storage.dart';
 import 'favorites/blocs/list_favorites/favorites_bloc.dart';
 import 'favorites/repository/favorites_repository.dart';
@@ -17,7 +18,7 @@ Future<void> main() async {
   SystemUI.init();
   runApp(
     MultiBlocProvider(
-      providers: [
+      providers: <BlocProvider<dynamic>>[
         BlocProvider<OnboardingBloc>(lazy: false, create: (_) => OnboardingBloc()..add(const OnboardingStarted())),
         BlocProvider<AboutBloc>(lazy: false, create: (_) => AboutBloc(AboutRepository())),
         BlocProvider<SettingsBloc>(
@@ -25,7 +26,8 @@ Future<void> main() async {
           create: (_) => SettingsBloc(SettingsRepository())..add(const SettingsStarted()),
         ),
         BlocProvider<FavoritesBloc>(
-          create: (_) => FavoritesBloc(FavoritesRepository(List.of([])))..add(const FavoritesStarted()),
+          create: (_) => FavoritesBloc(FavoritesRepository(List<ColorPalette>.of(<ColorPalette>[])))
+            ..add(const FavoritesStarted()),
           lazy: false,
         ),
       ],

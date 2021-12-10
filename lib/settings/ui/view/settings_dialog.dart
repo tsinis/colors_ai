@@ -7,11 +7,11 @@ import '../../../core/extensions/string_extension.dart';
 import '../../blocs/settings_bloc.dart';
 
 class SettingsDialog extends StatelessWidget {
-  const SettingsDialog();
+  const SettingsDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (_, state) => AlertDialog(
+        builder: (_, SettingsState state) => AlertDialog(
           actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
           shape: kDefaultShape,
           scrollable: true,
@@ -27,7 +27,7 @@ class SettingsDialog extends StatelessWidget {
                 subtitle: Text(AppLocalizations.of(context).colorsForUiSubtitle),
                 activeColor: Theme.of(context).indicatorColor,
                 value: state.colorsForUi,
-                onChanged: (isForUi) {
+                onChanged: (bool isForUi) {
                   if (isForUi) {
                     BlocProvider.of<SettingsBloc>(context).add(
                       const SettingsColorsForUiSelected(),
@@ -74,7 +74,7 @@ class SettingsDialog extends StatelessWidget {
               ),
             ],
           ),
-          actions: [
+          actions: <TextButton>[
             TextButton(
               onPressed: () {
                 BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected());

@@ -8,7 +8,7 @@ class LockSuccess extends LockState {
   final List<bool>? lockedColors;
 
   @override
-  List<Object> get props => [isLocked];
+  List<Object> get props => <Object>[isLocked];
 
   const LockSuccess({this.lockedColors});
 
@@ -17,7 +17,7 @@ class LockSuccess extends LockState {
 
 class LockFailure extends LockState {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 
   const LockFailure();
 }

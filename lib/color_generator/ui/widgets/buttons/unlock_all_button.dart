@@ -8,7 +8,10 @@ import '../../../blocs/colors_locked/lock_bloc.dart';
 class UnlockAllButton extends StatelessWidget {
   final Icon icon;
 
-  const UnlockAllButton({this.icon = const Icon(Icons.lock_open_outlined)});
+  const UnlockAllButton({
+    this.icon = const Icon(Icons.lock_open_outlined),
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => IconButton(

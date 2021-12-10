@@ -35,8 +35,8 @@ class AboutRepository {
     _version = info.version;
     _locale = currentLocale ?? 'en';
     LicenseRegistry.addLicense(() async* {
-      final license = await rootBundle.loadString('assets/google_fonts/LICENSE.txt');
-      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+      final String license = await rootBundle.loadString('assets/google_fonts/LICENSE.txt');
+      yield LicenseEntryWithLineBreaks(<String>['google_fonts'], license);
     });
   }
 

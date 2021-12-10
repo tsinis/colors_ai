@@ -12,13 +12,14 @@ class PullToRefreshAnimation extends StatefulWidget {
     this.color = Colors.black,
     this.curve = Curves.easeInOutQuart,
     this.duration = kDefaultLongTransitionDuration,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _PullToRefreshAnimationState createState() => _PullToRefreshAnimationState();
 }
 
-class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with AnimationMixin {
+class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with AnimationMixin<PullToRefreshAnimation> {
   late final Animation<Color?> color;
   late final AnimationController colorController;
   late final Animation<double> fade;
@@ -56,7 +57,7 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [color.value!, widget.color.withOpacity(opacity.value)],
+                colors: <Color>[color.value!, widget.color.withOpacity(opacity.value)],
               ),
               border: Border.all(color: Colors.grey[400]!.withOpacity(opacity.value), width: 4),
               borderRadius: const BorderRadius.all(Radius.circular(100)),

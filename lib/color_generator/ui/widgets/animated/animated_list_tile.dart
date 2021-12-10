@@ -50,7 +50,7 @@ class _AnimatedListItemState extends State<AnimatedListTile> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
+    Future<void>.delayed(
       Duration(
         milliseconds: widget.index * (widget.duration.inMilliseconds / widget.length).round(),
       ),

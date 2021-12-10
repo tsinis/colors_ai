@@ -16,10 +16,10 @@ class ColormindAPI extends API<IntRGBColor> {
   @override
   Future<ColorPalette> fetchNewColors(
     ColorPalette palette, {
-    List<bool> lockedColors = const [],
+    List<bool> lockedColors = const <bool>[],
     bool forUI = false,
   }) async {
-    final List<bool> invertedLocks = lockedColors.map((isLocked) => !isLocked).toList(growable: false);
+    final List<bool> invertedLocks = lockedColors.map((bool isLocked) => !isLocked).toList(growable: false);
 
     return _colorsFromAPI(palette.colors, isUiModel: forUI, lockedColors: invertedLocks);
   }

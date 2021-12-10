@@ -4,7 +4,7 @@ import 'no_favorites/empty_list.dart';
 import 'no_favorites/magnifier.dart';
 
 class NoFavorites extends StatefulWidget {
-  const NoFavorites();
+  const NoFavorites({Key? key}) : super(key: key);
 
   @override
   _NoFavoritesState createState() => _NoFavoritesState();
@@ -26,7 +26,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
     super.initState();
     controller =
         AnimationController(vsync: this, duration: const Duration(seconds: 10), lowerBound: 0.62, upperBound: 0.9)
-          ..addStatusListener((status) {
+          ..addStatusListener((AnimationStatus status) {
             if (status == AnimationStatus.completed) {
               controller.reverse();
             } else if (status == AnimationStatus.dismissed) {
@@ -45,7 +45,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
           width: 320,
           child: Stack(
             alignment: Alignment.center,
-            children: [
+            children: <Widget>[
               CustomPaint(
                 size: const Size(320, 320),
                 painter: EmptyList(outlineColor: Theme.of(context).textTheme.headline2!.color!),

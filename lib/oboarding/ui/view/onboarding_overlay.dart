@@ -14,23 +14,27 @@ class OnboardingOverlay extends StatelessWidget {
   final int length;
   final BoxConstraints size;
 
-  const OnboardingOverlay({required this.size, required this.length});
+  const OnboardingOverlay({
+    required this.size,
+    required this.length,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
     return BlocBuilder<OnboardingBloc, OnboardingState>(
-      builder: (_, state) => (state is OnboardingDoneSuccess)
+      builder: (_, OnboardingState state) => (state is OnboardingDoneSuccess)
           ? const SizedBox.shrink(key: TestKeys.disappearedOnboard)
           : Stack(
-              children: [
+              children: <Widget>[
                 IgnorePointer(
                   child: ColoredBox(
                     color: Colors.grey.withOpacity(0.1),
                     child: OrientationSwitcher(
                       isPortrait: isPortrait,
-                      children: [
+                      children: <Widget>[
                         OnboardingTile(
                           AppLocalizations.of(context).onboardingLockTip,
                           isPortrait: isPortrait,

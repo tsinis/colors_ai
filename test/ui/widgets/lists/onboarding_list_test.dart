@@ -9,20 +9,20 @@ import '../../../../lib/oboarding/blocs/onboarding/onboarding_bloc.dart';
 import '../../../../lib/oboarding/ui/view/onboarding_overlay.dart';
 import '../../../../lib/testing/test_keys.dart';
 
-void main() => testWidgets('Onboarding should dissapear after tap on "GOT IT" button', (tester) async {
+void main() => testWidgets('Onboarding should dissapear after tap on "GOT IT" button', (WidgetTester tester) async {
       await DataStorage.init();
 
-      final button = find.byKey(TestKeys.onboardingFinish);
-      final dissapear = find.byKey(TestKeys.disappearedOnboard);
+      final Finder button = find.byKey(TestKeys.onboardingFinish);
+      final Finder dissapear = find.byKey(TestKeys.disappearedOnboard);
 
       await tester.pumpWidget(
-        BlocProvider(
+        BlocProvider<OnboardingBloc>(
           create: (_) => OnboardingBloc(),
           child: Directionality(
             textDirection: TextDirection.ltr,
             child: FittedBox(
               child: LayoutBuilder(
-                builder: (_, size) => OnboardingOverlay(
+                builder: (_, BoxConstraints size) => OnboardingOverlay(
                   size: size,
                   length: kDefaultColors.length,
                 ),

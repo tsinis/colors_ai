@@ -20,7 +20,8 @@ class FileExportPreview extends StatefulWidget {
     this._palette, {
     this.duration = const Duration(milliseconds: 600),
     this.curve = kDefaultTransitionCurve,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<FileExportPreview> createState() => _FileExportPreviewState();
@@ -67,7 +68,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
-        builder: (_, state) {
+        builder: (_, ShareState state) {
           final FileFormat file = state.selectedFormat.selectedFile;
           final bool isPrintable = (state.selectedFormat ?? 0) < 4;
           final bool isJson = file == FileFormat.json;
@@ -129,10 +130,10 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: List<Widget>.generate(
                                   colors.length,
-                                  (colorsIndex) => Flexible(
+                                  (int colorsIndex) => Flexible(
                                     child: Column(
                                       mainAxisSize: MainAxisSize.min,
-                                      children: [
+                                      children: <Widget>[
                                         Expanded(
                                           flex: 12,
                                           child: AnimatedSize(
@@ -148,7 +149,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                             ),
                                           ),
                                         ),
-                                        if (isPrintable) ...[
+                                        if (isPrintable) ...<Widget>[
                                           const Expanded(child: SizedBox()),
                                           Flexible(
                                             flex: 2,

@@ -2,7 +2,7 @@ part of 'snackbar_bloc.dart';
 
 abstract class SnackbarEvent extends Equatable {
   @override
-  List<Object> get props => [];
+  List<Object> get props => <Object>[];
 
   const SnackbarEvent();
 }
@@ -19,7 +19,7 @@ class FileCopiedSuccess extends SnackbarEvent {
   final String format;
 
   @override
-  List<Object> get props => [format];
+  List<Object> get props => <String>[format];
 
   const FileCopiedSuccess(this.format);
 }

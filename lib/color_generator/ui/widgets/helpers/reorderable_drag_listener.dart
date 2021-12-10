@@ -14,7 +14,8 @@ class ReorderableDragListener extends StatelessWidget {
     required this.child,
     required this.index,
     this.enabled = true,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @protected
   MultiDragGestureRecognizer createRecognizer() => DelayedMultiDragGestureRecognizer(debugOwner: this);

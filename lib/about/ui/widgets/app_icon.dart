@@ -9,7 +9,8 @@ class AppIcon extends StatelessWidget {
     this.borderRadius = const BorderRadius.all(Radius.circular(16)),
     this.clipBehavior = Clip.antiAlias,
     this.elevation = 4,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -91,7 +92,8 @@ class Rectangle extends StatelessWidget {
     this.darkShadowColor = Colors.black38,
     this.darkShadow = true,
     this.blurRadius = 2,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
@@ -99,7 +101,7 @@ class Rectangle extends StatelessWidget {
         height: 240,
         decoration: BoxDecoration(
           color: color,
-          boxShadow: [
+          boxShadow: <BoxShadow>[
             BoxShadow(
               color: darkShadow ? darkShadowColor : lightShadowColor,
               offset: shadowOffset,

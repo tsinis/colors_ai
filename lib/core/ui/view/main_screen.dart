@@ -27,7 +27,7 @@ import '../constants.dart';
 import '../widgets/overflow_menu.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen();
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
@@ -48,7 +48,7 @@ class _NavigationScreenState extends State<MainScreen> {
     soundBloc.add(const SoundStarted());
     super.initState();
     // AppLocalizations are not avalible before initState method complete.
-    Future.delayed(
+    Future<void>.delayed(
       Duration.zero,
       () => BlocProvider.of<AboutBloc>(context).add(
         AboutStarted(currentLocale: AppLocalizations.of(context).localeName),
@@ -58,7 +58,7 @@ class _NavigationScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
-        providers: [
+        providers: <BlocProvider<dynamic>>[
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockBloc>(
             create: (_) => LockBloc(context.read<ColorsRepository>())..add(const LockStarted()),
@@ -68,7 +68,7 @@ class _NavigationScreenState extends State<MainScreen> {
           ),
         ],
         child: BlocBuilder<NavigationBloc, NavigationState>(
-          builder: (navContext, navState) {
+          builder: (BuildContext navContext, NavigationState navState) {
             final bool isGenTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
             if (!isGenTab) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
@@ -104,7 +104,7 @@ class _NavigationScreenState extends State<MainScreen> {
                     floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
                     appBar: AppBar(
                       systemOverlayStyle: overlayStyle.copyWith(statusBarColor: Colors.transparent),
-                      actions: [kAppBarActions[navState.tabIndex], const OverflowMenu()],
+                      actions: <Widget>[kAppBarActions[navState.tabIndex], const OverflowMenu()],
                       toolbarHeight: kToolbarHeight + (platform.isMacOS ? 12 : 0),
                       title: Padding(
                         padding: EdgeInsets.only(top: platform.isMacOS ? 16 : 0),
@@ -112,7 +112,7 @@ class _NavigationScreenState extends State<MainScreen> {
                       ),
                     ),
                     body: MultiBlocProvider(
-                      providers: [
+                      providers: <BlocProvider<dynamic>>[
                         BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
                         BlocProvider<ShareBloc>(
                           lazy: false,
@@ -123,7 +123,7 @@ class _NavigationScreenState extends State<MainScreen> {
                         ),
                       ],
                       child: BlocListener<SnackbarBloc, SnackbarState>(
-                        listener: (context, snackbarState) {
+                        listener: (BuildContext context, SnackbarState snackbarState) {
                           if (snackbarState is! SnackbarsInitial) {
                             BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
                             late String message;
@@ -166,7 +166,7 @@ class _NavigationScreenState extends State<MainScreen> {
                         child: SafeArea(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
+                            children: <Widget>[
                               if (!isPortrait) NavRail(navState, toShowGenFab: showGenFab),
                               Expanded(child: navTabs.elementAt(navState.tabIndex)),
                             ],

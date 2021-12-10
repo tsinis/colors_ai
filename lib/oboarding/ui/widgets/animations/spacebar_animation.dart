@@ -12,13 +12,13 @@ class SpaceBarAnimation extends StatefulWidget {
   final Color transparentColor;
   final double widthFactor;
 
-  List<Color> get fadeColorsGradient => [transparentColor, color, color, transparentColor];
+  List<Color> get fadeColorsGradient => <Color>[transparentColor, color, color, transparentColor];
 
   const SpaceBarAnimation(
     this.color, {
     this.duration = const Duration(milliseconds: 800),
     this.transparentColor = const Color(0x00FFFFFF),
-    this.gradientStops = const [0, 0.18, 0.82, 1],
+    this.gradientStops = const <double>[0, 0.18, 0.82, 1],
     this.relativeSize = const Size(500, 100),
     this.curve = Curves.elasticOut,
     this.widthFactor = 0.66,
@@ -35,7 +35,7 @@ class _SpaceBarAnimationState extends State<SpaceBarAnimation> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(widget.duration, animate);
+    Future<void>.delayed(widget.duration, animate);
   }
 
   void animate() {
@@ -57,7 +57,7 @@ class _SpaceBarAnimationState extends State<SpaceBarAnimation> {
                 colors: widget.fadeColorsGradient,
               ).createShader(bounds),
               child: Stack(
-                children: [
+                children: <Widget>[
                   Positioned(
                     left: 12,
                     child: CustomPaint(

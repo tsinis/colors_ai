@@ -36,7 +36,8 @@ class ColorsList extends StatefulWidget {
     this.curve = Curves.easeInCubic,
     this.reverseCurve = Curves.easeInExpo,
     this.duration = const Duration(milliseconds: 600),
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ColorsListState createState() => _ColorsListState();
@@ -44,7 +45,7 @@ class ColorsList extends StatefulWidget {
 
 class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateMixin {
   late final Animation<double> animation;
-  late CancelableOperation cancelableOperation;
+  late CancelableOperation<void> cancelableOperation;
   late final AnimationController controller;
   int? hoverIndex;
   late Completer<void> refreshCompleter;
@@ -65,7 +66,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     super.initState();
     refreshCompleter = Completer<void>();
     controller = AnimationController(duration: widget.duration, lowerBound: widget.lowerBound, vsync: this)
-      ..addStatusListener((animationStatus) {
+      ..addStatusListener((AnimationStatus animationStatus) {
         if (animationStatus == AnimationStatus.dismissed) {
           controller.forward();
         }
@@ -82,7 +83,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
   void setOperation() {
     bool toHideFab = true;
     cancelableOperation = CancelableOperation<void>.fromFuture(
-      Future.delayed(kLongPressTimeout, () {
+      Future<void>.delayed(kLongPressTimeout, () {
         if (toHideFab) {
           BlocProvider.of<FabBloc>(context).add(const FabHided());
         }
@@ -96,20 +97,20 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-        builder: (_, size) {
+        builder: (_, BoxConstraints size) {
           final int length = palette.length;
           final double tileHeight = size.maxHeight / length;
           final Size third =
               isPortrait ? Size.fromWidth(size.maxWidth / 3) : Size(size.maxWidth / length, size.maxHeight / 3);
 
           return BlocListener<ColorsBloc, ColorsState>(
-            listener: (_, colorsState) {
+            listener: (_, ColorsState colorsState) {
               if (colorsState is ColorsLoadStarted) {
                 controller.reverse();
               }
             },
             child: Stack(
-              children: [
+              children: <Widget>[
                 if (!kIsWeb && platform.isIOS)
                   FadeTransition(
                     opacity: animation,
@@ -128,7 +129,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                 BlocConsumer<ColorsBloc, ColorsState>(
                   listener: (_, __) {
                     refreshCompleter.complete();
-                    refreshCompleter = Completer();
+                    refreshCompleter = Completer<void>();
                   },
                   builder: (_, __) => RefreshIndicator(
                     triggerMode: RefreshIndicatorTriggerMode.anywhere,
@@ -147,8 +148,9 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     child: FadeTransition(
                       opacity: animation,
                       child: BlocBuilder<OnboardingBloc, OnboardingState>(
-                        builder: (_, onboardingState) {
-                          final isHoveringAvailable = onboardingState is OnboardingDoneSuccess && !platform.isMobile;
+                        builder: (_, OnboardingState onboardingState) {
+                          final bool isHoveringAvailable =
+                              onboardingState is OnboardingDoneSuccess && !platform.isMobile;
 
                           return ReorderableListView.builder(
                             itemCount: length,
@@ -182,7 +184,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                                       },
                                       child: DecoratedBox(
                                         decoration: BoxDecoration(
-                                          boxShadow: [
+                                          boxShadow: <BoxShadow>[
                                             BoxShadow(
                                               color: color,
                                               blurStyle: BlurStyle.solid,
@@ -193,7 +195,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                                         ),
                                         child: Stack(
                                           alignment: Alignment.centerLeft,
-                                          children: [
+                                          children: <Widget>[
                                             Colorpicker(
                                               index,
                                               color: color,

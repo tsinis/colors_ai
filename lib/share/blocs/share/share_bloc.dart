@@ -81,5 +81,5 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     }
   }
 
-  Future<void> _shareFailed() async => Future.delayed(Duration.zero);
+  Future<void> _shareFailed() async => Future<void>.delayed(Duration.zero);
 }

@@ -4,7 +4,7 @@ abstract class RemoveFavoritesState extends Equatable {
   final Set<int> selections;
 
   @override
-  List<Object> get props => [selections];
+  List<Object> get props => <Object>[selections];
 
   const RemoveFavoritesState(this.selections);
 }
@@ -14,7 +14,7 @@ class RemoveFavoritesOpenDialogInitial extends RemoveFavoritesState {
 }
 
 class RemoveFavoritesFailure extends RemoveFavoritesState {
-  const RemoveFavoritesFailure() : super(const {});
+  const RemoveFavoritesFailure() : super(const <int>{});
 }
 
 class RemoveFavoritesSelectionSelected extends RemoveFavoritesState {

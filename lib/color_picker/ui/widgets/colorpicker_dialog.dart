@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show TextInputFormatter;
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
@@ -15,7 +16,8 @@ class ColorpickerDialog extends StatefulWidget {
     this.color, {
     required this.onColorChanged,
     this.clipboard = const Clipboards(),
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _ColorpickerDialogState createState() => _ColorpickerDialogState();
@@ -60,7 +62,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
     } else {
       setColorFromHex();
       setState(() => hasError = true);
-      Future.delayed(const Duration(seconds: 4), () {
+      Future<void>.delayed(const Duration(seconds: 4), () {
         if (mounted) {
           setColorFromHex();
           hideErrorMessage();
@@ -84,7 +86,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   @override
   Widget build(BuildContext context) => SimpleDialog(
         contentPadding: EdgeInsets.zero,
-        children: [
+        children: <Widget>[
           if (hidePickerArea) const SizedBox(height: 12),
           ColorPicker(
             pickerAreaHeightPercent: pickerAreaHeightPercent,
@@ -92,7 +94,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
             displayThumbColor: true,
             portraitOnly: true,
             enableAlpha: false,
-            labelTypes: const [],
+            labelTypes: const <ColorLabelType>[],
             pickerColor: selectedColor,
             hexInputController: hexController,
             onColorChanged: widget.onColorChanged,
@@ -110,7 +112,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
               onFieldSubmitted: (_) => Navigator.of(context).pop(),
               textAlignVertical: TextAlignVertical.center,
               scrollPadding: const EdgeInsets.only(bottom: 20),
-              inputFormatters: [HexFormatter()],
+              inputFormatters: <TextInputFormatter>[HexFormatter()],
               decoration: InputDecoration(
                 errorText: hasError ? AppLocalizations.of(context).invalidHexErrorLabel : null,
                 prefixIcon: const Icon(Icons.tag),

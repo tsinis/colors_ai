@@ -40,7 +40,7 @@ class FavoritesRepository {
         return;
       default:
         final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(_palettes.asMap())
-          ..removeWhere((index, _) => palettesToRemove.contains(index));
+          ..removeWhere((int index, _) => palettesToRemove.contains(index));
         _palettes
           ..clear()
           ..addAll(indexMap.values);

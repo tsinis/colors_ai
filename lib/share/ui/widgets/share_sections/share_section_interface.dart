@@ -6,5 +6,9 @@ abstract class ShareSectionInterface extends StatelessWidget {
   final double maxWidth;
   final ColorPalette palette;
   // TODO: Update it.
-  const ShareSectionInterface({required this.palette, required this.maxWidth});
+  const ShareSectionInterface({
+    required this.palette,
+    required this.maxWidth,
+    Key? key,
+  }) : super(key: key);
 }

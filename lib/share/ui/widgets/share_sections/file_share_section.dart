@@ -30,7 +30,8 @@ class FileShareSection extends ShareSectionInterface {
     required this.canSharePdf,
     required this.canSharePng,
     this.additionalInfo,
-  }) : super(maxWidth: width, palette: palette);
+    Key? key,
+  }) : super(key: key, maxWidth: width, palette: palette);
 
   String? helperText(AppLocalizations l10n) {
     switch (file) {
@@ -56,7 +57,7 @@ class FileShareSection extends ShareSectionInterface {
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
       child: Column(
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 16),
             child: DropdownButtonFormField<int>(
@@ -74,12 +75,12 @@ class FileShareSection extends ShareSectionInterface {
                 ),
               ),
               value: selectedFormatIndex,
-              onChanged: (newFormatIndex) {
+              onChanged: (int? newFormatIndex) {
                 if (newFormatIndex != null) {
                   BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(formatIndex: newFormatIndex));
                 }
               },
-              items: List.generate(
+              items: List<DropdownMenuItem<int>>.generate(
                 FileFormat.values.length,
                 (int index) => DropdownMenuItem<int>(
                   value: index,

@@ -19,7 +19,8 @@ class OnboardingTile extends StatelessWidget {
     this.oppositeSide = false,
     this.icon,
     this.additionalText,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +32,11 @@ class OnboardingTile extends StatelessWidget {
           gradient: LinearGradient(
             begin: isPortrait ? Alignment(begin, 0) : Alignment(0, begin),
             end: isPortrait ? Alignment(end, 0) : Alignment(0, end),
-            colors: [gradientColor.withOpacity(0), gradientColor],
+            colors: <Color>[gradientColor.withOpacity(0), gradientColor],
           ),
         ),
         child: LayoutBuilder(
-          builder: (_, size) => SizedBox(
+          builder: (_, BoxConstraints size) => SizedBox(
             width: isPortrait ? size.maxWidth : null,
             height: isPortrait ? null : size.maxHeight,
             child: FractionallySizedBox(
@@ -44,7 +45,7 @@ class OnboardingTile extends StatelessWidget {
               child: OrientationSwitcher(
                 isPortrait: !isPortrait,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: <Widget>[
                   Flexible(
                     child: SizedBox(
                       width: isPortrait ? size.maxWidth / 3 : null,

@@ -31,7 +31,7 @@ abstract class ColorsUrlProvider {
       final StringBuffer sb = StringBuffer();
       final String className = runtimeType.toString();
       final RegExp pascalCaseWords = RegExp('(?:[A-Z]+|^)[a-z]*');
-      pascalCaseWords.allMatches(className).forEach((w) => sb..write('${w[0]} '));
+      pascalCaseWords.allMatches(className).forEach((RegExpMatch w) => sb..write('${w[0]} '));
 
       return _removeLastChar(sb.toString());
     }

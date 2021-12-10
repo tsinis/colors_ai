@@ -9,11 +9,16 @@ class LockColorButton extends StatelessWidget {
   final Color color;
   final int index;
 
-  const LockColorButton(this.index, {required this.color, this.buttonSize = const Size(24, 24)});
+  const LockColorButton(
+    this.index, {
+    required this.color,
+    this.buttonSize = const Size(24, 24),
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LockBloc, LockState>(
-        builder: (_, state) {
+        builder: (_, LockState state) {
           if (state is LockSuccess) {
             final bool isLocked = state.isLocked(index);
 

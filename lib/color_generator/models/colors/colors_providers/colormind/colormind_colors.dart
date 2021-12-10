@@ -24,7 +24,7 @@ class ColormindColors implements ColorsFromAPI {
   final List<Color> list;
 
   /// An annotation used to specify how a field is serialized.
-  const ColormindColors({this.list = const []});
+  const ColormindColors({this.list = const <Color>[]});
 
   /// A necessary factory constructor for creating a new ColormindColors instance
   /// from a map. Pass the map to the generated `_$ColorsAIFromJson()` constructor.

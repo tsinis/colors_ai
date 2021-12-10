@@ -7,7 +7,7 @@ import 'constants.dart';
 
 extension ColorExtensions on Color {
   IntRGBColor toListInt() {
-    final List<int> rgb = [red, green, blue];
+    final List<int> rgb = <int>[red, green, blue];
 
     return List<int>.unmodifiable(rgb);
   }

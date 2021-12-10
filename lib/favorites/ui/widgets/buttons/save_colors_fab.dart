@@ -14,7 +14,7 @@ import '../../../blocs/list_favorites/favorites_bloc.dart';
 class SaveColorsFAB extends StatefulWidget {
   final bool? isExtended;
 
-  const SaveColorsFAB({this.isExtended});
+  const SaveColorsFAB({this.isExtended, Key? key}) : super(key: key);
 
   @override
   _SaveColorsFABState createState() => _SaveColorsFABState();
@@ -73,7 +73,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
   Widget build(BuildContext context) => FadeScaleTransition(
         animation: fabAnimation,
         child: BlocBuilder<FabBloc, FabState>(
-          builder: (_, state) {
+          builder: (_, FabState state) {
             // https://material.io/design/environment/elevation.html#elevation-in-material-design
             if (state is FabHideInitial && !alwaysShow) {
               fadeController.reverse();
@@ -84,11 +84,11 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
             return Padding(
               padding: isExtended ? const EdgeInsets.fromLTRB(16, 8, 16, 0) : const EdgeInsets.only(top: 8),
               child: BlocBuilder<NavigationBloc, NavigationState>(
-                builder: (_, navState) {
+                builder: (_, NavigationState navState) {
                   isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
 
                   return BlocBuilder<ColorsBloc, ColorsState>(
-                    builder: (_, colorState) {
+                    builder: (_, ColorsState colorState) {
                       if (alwaysShow) {
                         isFailed = colorState is ColorsFailure;
                       }

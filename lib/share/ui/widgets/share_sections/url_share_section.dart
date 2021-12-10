@@ -25,7 +25,8 @@ class UrlShareSection extends ShareSectionInterface {
     required this.firstProvider,
     required this.selectedProviderIndex,
     required this.exportFormats,
-  }) : super(maxWidth: width, palette: palette);
+    Key? key,
+  }) : super(maxWidth: width, palette: palette, key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class UrlShareSection extends ShareSectionInterface {
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
       child: Column(
-        children: [
+        children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 16),
             child: DropdownButtonFormField<int>(
@@ -54,12 +55,12 @@ class UrlShareSection extends ShareSectionInterface {
                         : null,
               ),
               value: selectedProviderIndex,
-              onChanged: (newProviderIndex) {
+              onChanged: (int? newProviderIndex) {
                 if (newProviderIndex != null) {
                   BlocProvider.of<ShareBloc>(context).add(ShareUrlProviderSelected(providerIndex: newProviderIndex));
                 }
               },
-              items: List.generate(
+              items: List<DropdownMenuItem<int>>.generate(
                 providersList.length,
                 (int index) => DropdownMenuItem<int>(
                   value: index,
@@ -67,7 +68,7 @@ class UrlShareSection extends ShareSectionInterface {
                     TextSpan(
                       text: providersList[index].name,
                       children: (providersList[index].formats != null)
-                          ? const [TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
+                          ? const <TextSpan>[TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
                           : null,
                     ),
                     overflow: TextOverflow.ellipsis,

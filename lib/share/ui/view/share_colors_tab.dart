@@ -13,11 +13,11 @@ import '../widgets/share_sections/url_share_section.dart';
 class ShareColorsTab extends StatelessWidget {
   static const int _first = 0;
 
-  const ShareColorsTab();
+  const ShareColorsTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
-        builder: (_, state) {
+        builder: (_, ShareState state) {
           if (state is ShareFailure) {
             BlocProvider.of<SnackbarBloc>(context).add(const ShareFail());
           }
@@ -28,9 +28,9 @@ class ShareColorsTab extends StatelessWidget {
           final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
           return LayoutBuilder(
-            builder: (_, size) => isPortrait
+            builder: (_, BoxConstraints size) => isPortrait
                 ? ListView(
-                    children: [
+                    children: <Widget>[
                       UrlShareSection(
                         palette,
                         width: size.maxWidth,
@@ -69,11 +69,11 @@ class ShareColorsTab extends StatelessWidget {
                       height: size.maxHeight,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: <Widget>[
                           const SizedBox(height: 24),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
+                            children: <Widget>[
                               AnimatedOpacity(
                                 curve: kDefaultTransitionCurve,
                                 duration: kDefaultLongTransitionDuration,

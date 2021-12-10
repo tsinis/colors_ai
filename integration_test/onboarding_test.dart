@@ -9,7 +9,7 @@ import '../lib/testing/test_keys.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Onboarding should dissapear after tap on "GOT IT" button', (tester) async {
+  testWidgets('Onboarding should dissapear after tap on "GOT IT" button', (WidgetTester tester) async {
     await app.main();
     debugPrint('App is started');
     try {
@@ -25,9 +25,9 @@ void main() {
       );
     }
     debugPrint('App is pumped');
-    final button = find.byKey(TestKeys.onboardingFinish);
+    final Finder button = find.byKey(TestKeys.onboardingFinish);
     debugPrint('Described BUTTON: $button');
-    final dissapear = find.byKey(TestKeys.disappearedOnboard);
+    final Finder dissapear = find.byKey(TestKeys.disappearedOnboard);
     debugPrint('Described DISSAPEAR: $dissapear');
     await tester.ensureVisible(button);
     debugPrint('Ensured button is visible');

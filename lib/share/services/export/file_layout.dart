@@ -6,7 +6,7 @@ import '../../../core/extensions/color_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 
 class FileLayout extends StatelessWidget {
-  static const Set<String> colorSpaces = {'HEX', 'RGB', 'CMYK', 'HSB', 'HSL', 'LAB', 'XYZ'};
+  static const Set<String> colorSpaces = <String>{'HEX', 'RGB', 'CMYK', 'HSB', 'HSL', 'LAB', 'XYZ'};
 
   final TtfFont _font;
   final PdfPageFormat _format;
@@ -23,11 +23,11 @@ class FileLayout extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List<Widget>.generate(
           _palette.colors.length,
-          (colorsIndex) {
+          (int colorsIndex) {
             final String hex = _palette.colors.elementAt(colorsIndex).toHex();
 
             return Column(
-              children: [
+              children: <Widget>[
                 Container(width: _width, height: _height * (3 / 4), color: PdfColor.fromHex(hex)),
                 Spacer(),
                 SizedBox(
@@ -35,13 +35,13 @@ class FileLayout extends StatelessWidget {
                   child: Column(
                     children: List<Widget>.generate(
                       colorSpaces.length,
-                      (spacesIndex) {
+                      (int spacesIndex) {
                         final bool isEven = spacesIndex.isEven;
                         final String colorSpace = colorSpaces.elementAt(spacesIndex);
 
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
+                          children: <Widget>[
                             Text(
                               colorSpace,
                               style: TextStyle(

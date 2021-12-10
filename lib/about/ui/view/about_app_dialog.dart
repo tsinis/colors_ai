@@ -21,7 +21,8 @@ class AboutAppDialog extends StatelessWidget {
     this.topPadding = 20,
     this.linkTextStyle,
     this.width = 320,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(final BuildContext context) {
@@ -42,7 +43,7 @@ class AboutAppDialog extends StatelessWidget {
           child: Text.rich(
             TextSpan(
               style: Theme.of(context).textTheme.bodyText2,
-              children: [
+              children: <TextSpan>[
                 TextSpan(text: AppLocalizations.of(context).aboutGenerator),
                 TextSpan(
                   style: linkStyle,

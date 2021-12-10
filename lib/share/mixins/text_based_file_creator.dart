@@ -47,7 +47,7 @@ mixin TextBasedFileCreator {
     final StringBuffer sb = StringBuffer();
     for (int i = 0; i < palette.colors.length; i++) {
       final String color = palette.colors.elementAt(i).toHex().toLowerCase();
-      final newLine = (i == 0) ? '' : '\n';
+      final String newLine = (i == 0) ? '' : '\n';
       // ignore: prefer_interpolation_to_compose_strings
       sb.write(newLine + r'$color-' '${i + 1}: #${color}ff;');
     }

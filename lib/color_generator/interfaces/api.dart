@@ -14,14 +14,14 @@ abstract class API<T> {
     this._host,
     this._colorsFromApi, {
     Duration timeout = const Duration(seconds: 8),
-    Map<String, String> headers = const {'Content-Type': 'application/json'},
+    Map<String, String> headers = const <String, String>{'Content-Type': 'application/json'},
   })  : _headers = headers,
         _timeout = timeout;
 
   @required
   Future<ColorPalette> fetchNewColors(
     ColorPalette palette, {
-    List<bool> lockedColors = const [],
+    List<bool> lockedColors = const <bool>[],
     bool forUI = false,
   });
 

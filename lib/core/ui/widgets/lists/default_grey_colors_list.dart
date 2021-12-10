@@ -6,7 +6,7 @@ import '../../../../common/ui/widgets/helpers/orientation_switcher.dart';
 class DefaultGreyColorsList extends StatelessWidget {
   final int? length;
 
-  const DefaultGreyColorsList({this.length});
+  const DefaultGreyColorsList({this.length, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => OrientationBuilder(
@@ -18,7 +18,7 @@ class DefaultGreyColorsList extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   color: kDefaultColors[i],
-                  boxShadow: [
+                  boxShadow: <BoxShadow>[
                     BoxShadow(
                       color: kDefaultColors[i],
                       blurStyle: BlurStyle.solid,

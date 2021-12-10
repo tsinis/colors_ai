@@ -14,11 +14,15 @@ class BottomNavBar extends StatelessWidget {
   int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
   int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
 
-  const BottomNavBar(this.navState, {this.labelBehavior = NavigationDestinationLabelBehavior.alwaysHide});
+  const BottomNavBar(
+    this.navState, {
+    this.labelBehavior = NavigationDestinationLabelBehavior.alwaysHide,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
-        builder: (_, saveState) {
+        builder: (_, FavoritesState saveState) {
           final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
           final List<String> tabLabels = tabNames(AppLocalizations.of(context));
 
@@ -31,7 +35,7 @@ class BottomNavBar extends StatelessWidget {
                 BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
               }
             },
-            destinations: [
+            destinations: <NavigationDestination>[
               NavigationDestination(
                 label: tabLabels[_shareTabIndex],
                 selectedIcon: const Icon(Icons.share),

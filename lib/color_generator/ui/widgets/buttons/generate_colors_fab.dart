@@ -26,7 +26,8 @@ class GenerateColorsFAB extends StatefulWidget {
     this.padding = 16,
     this.focusColor,
     this.isExtended,
-  });
+    Key? key,
+  }) : super(key: key);
 
   @override
   _GenerateColorsFABState createState() => _GenerateColorsFABState();
@@ -75,11 +76,11 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
         child: Padding(
           padding: isExtended ? EdgeInsets.all(widget.padding) : EdgeInsets.symmetric(vertical: widget.padding),
           child: BlocBuilder<NavigationBloc, NavigationState>(
-            builder: (_, navState) {
+            builder: (_, NavigationState navState) {
               isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
 
               return BlocBuilder<ColorsBloc, ColorsState>(
-                builder: (_, colorState) {
+                builder: (_, ColorsState colorState) {
                   if (alwaysShow) {
                     isFailed = colorState is ColorsFailure;
                   }

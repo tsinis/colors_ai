@@ -5,5 +5,5 @@ import '../../lib/core/extensions/constants.dart';
 import '../../lib/core/extensions/int_color_extensions.dart';
 
 void main() => group('IntRGBColor extensions tests:', () {
-      test('converting IntRGBColor to Color', () async => expect([0, 0, 0].toColor(), kDarkColor.withOpacity(1)));
+      test('converting IntRGBColor to Color', () async => expect(<int>[0, 0, 0].toColor(), kDarkColor.withOpacity(1)));
     });

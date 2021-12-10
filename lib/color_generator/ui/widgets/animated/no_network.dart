@@ -7,7 +7,10 @@ import 'no_network/pulse_animation.dart';
 class NoNetwork extends StatefulWidget {
   final Duration repeatPeriod;
 
-  const NoNetwork({this.repeatPeriod = const Duration(seconds: 4)});
+  const NoNetwork({
+    this.repeatPeriod = const Duration(seconds: 4),
+    Key? key,
+  }) : super(key: key);
 
   @override
   _NoNetworkState createState() => _NoNetworkState();
@@ -43,12 +46,12 @@ class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMix
           child: Stack(
             alignment: Alignment.topCenter,
             fit: StackFit.expand,
-            children: [
+            children: <Widget>[
               SizedBox(width: 320, child: CustomPaint(painter: PulseAnimation(controller))),
               Positioned(
                 top: 0,
                 child: FadeTransition(
-                  opacity: controller.drive(Tween(begin: 1, end: 0.2)),
+                  opacity: controller.drive(Tween<double>(begin: 1, end: 0.2)),
                   child: const CustomPaint(
                     size: Size(250, 250),
                     painter: DecorativeSymbols(),

@@ -11,7 +11,7 @@ import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 
 class RemoveAllFavoritesButton extends StatefulWidget {
-  const RemoveAllFavoritesButton();
+  const RemoveAllFavoritesButton({Key? key}) : super(key: key);
 
   @override
   State<RemoveAllFavoritesButton> createState() => _RemoveAllFavoritesButtonState();
@@ -26,8 +26,8 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
     super.initState();
     animationController = AnimationController(vsync: this, duration: kDefaultLongTransitionDuration);
     // ignore: prefer_int_literals
-    animation = Tween(begin: 0.4, end: 1.0).animate(animationController)
-      ..addStatusListener((status) {
+    animation = Tween<double>(begin: 0.4, end: 1).animate(animationController)
+      ..addStatusListener((AnimationStatus status) {
         if (status == AnimationStatus.completed) {
           animationController.reverse();
         } else if (status == AnimationStatus.dismissed) {
@@ -79,7 +79,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                   ],
                 ),
               ).then(
-                (toRemove) {
+                (bool? toRemove) {
                   if (toRemove ?? false) {
                     BlocProvider.of<FavoritesBloc>(context).add(FavoritesSeveralRemoved(state.selections));
                     BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
@@ -91,12 +91,12 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
           }
 
           return BlocBuilder<FavoritesBloc, FavoritesState>(
-            builder: (_, favState) => IconButton(
+            builder: (_, FavoritesState favState) => IconButton(
               tooltip: haveSelection
                   ? AppLocalizations.of(context).removeSomeTitle(state.selections.length)
                   : AppLocalizations.of(context).removeAllTitle,
               icon: Stack(
-                children: [
+                children: <Widget>[
                   if (haveSelection)
                     FadeTransition(
                       opacity: animation,

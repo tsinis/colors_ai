@@ -9,7 +9,7 @@ class LockedColors implements ManipulateListInterface<IsLocked>, LockInterface {
   static const IsLocked _locked = true;
   static const IsLocked _unlocked = false;
 
-  const LockedColors({this.list = const []});
+  const LockedColors({this.list = const <IsLocked>[]});
 
   @override
   void add([IsLocked isLocked = _unlocked]) => list.add(isLocked);

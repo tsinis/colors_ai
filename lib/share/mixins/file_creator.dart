@@ -16,7 +16,7 @@ mixin FileCreator {
   Future<Uint8List> generateFile(ColorPalette colors, {bool isMetric = true}) async {
     final PdfPageFormat format = isMetric ? _a4 : _letter;
     final TtfFont font = await fontFromAssetBundle('assets/google_fonts/Roboto-Regular.ttf');
-    final document = Document(version: PdfVersion.pdf_1_5)
+    final Document document = Document(version: PdfVersion.pdf_1_5)
       ..addPage(
         Page(
           pageTheme: PageTheme(pageFormat: format, orientation: PageOrientation.landscape),

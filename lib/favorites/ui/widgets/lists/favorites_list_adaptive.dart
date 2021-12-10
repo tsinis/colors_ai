@@ -14,7 +14,7 @@ import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 
 class FavoritesListAdaptive extends StatefulWidget {
-  const FavoritesListAdaptive();
+  const FavoritesListAdaptive({Key? key}) : super(key: key);
 
   @override
   _FavoritesListState createState() => _FavoritesListState();
@@ -33,12 +33,12 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
-        builder: (_, removeState) => BlocBuilder<FavoritesBloc, FavoritesState>(
-          builder: (_, state) {
+        builder: (_, RemoveFavoritesState removeState) => BlocBuilder<FavoritesBloc, FavoritesState>(
+          builder: (_, FavoritesState state) {
             // ignore: prefer-conditional-expressions
             if (state is FavoritesLoadSuccess) {
               return LayoutBuilder(
-                builder: (_, windowSize) {
+                builder: (_, BoxConstraints windowSize) {
                   final List<ColorPalette> favorites = state.palettes;
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
                   final double maxHeighForTip = padding + (40 * MediaQuery.of(context).textScaleFactor);
@@ -47,7 +47,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                   return Stack(
                     fit: StackFit.expand,
                     alignment: AlignmentDirectional.topCenter,
-                    children: [
+                    children: <Widget>[
                       Positioned(
                         bottom: padding,
                         child: AnimatedOpacity(
@@ -69,7 +69,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                             child: Wrap(
                               children: List<Widget>.generate(
                                 favorites.length,
-                                (paletteIndex) {
+                                (int paletteIndex) {
                                   final bool isHoveringPalette = hoveringPalette == paletteIndex;
                                   final bool isSelectedToRemove = removeState.selections.contains(paletteIndex);
 
@@ -79,7 +79,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                       onEnter: (_) => setState(() => hoveringPalette = paletteIndex),
                                       onExit: (_) => setState(() => hoveringPalette = null),
                                       child: Stack(
-                                        children: [
+                                        children: <Widget>[
                                           AnimatedPositioned(
                                             right: isHoveringPalette ? 0 : size / 2,
                                             duration: hoverDuration,
@@ -94,7 +94,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                   : Colors.transparent,
                                               child: Column(
                                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                children: [
+                                                children: <Widget>[
                                                   Tooltip(
                                                     preferBelow: false,
                                                     message: AppLocalizations.of(context).removeFavoritesTooltip,
@@ -121,7 +121,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                         AppLocalizations.of(context).selectToRemoveFavoritesTooltip,
                                                     child: Checkbox(
                                                       value: isSelectedToRemove,
-                                                      onChanged: (i) => setState(
+                                                      onChanged: (bool? i) => setState(
                                                         () => BlocProvider.of<RemoveFavoritesBloc>(context).add(
                                                           RemoveFavoritesSelected(paletteIndex),
                                                         ),

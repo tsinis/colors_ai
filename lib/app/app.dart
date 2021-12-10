@@ -18,11 +18,11 @@ import 'theme/app_theme.dart';
 import 'theme/constants.dart';
 
 class App extends StatelessWidget {
-  const App();
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (_, settingsState) {
+        builder: (_, SettingsState settingsState) {
           if (settingsState is! SettingsChangedInitial) {
             return const SizedBox.shrink();
           }
@@ -33,28 +33,29 @@ class App extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme(isDark: settingsState.isDarkTheme).theme,
             home: MultiBlocProvider(
-              providers: [
+              providers: <BlocProvider<dynamic>>[
                 BlocProvider<FabBloc>(create: (_) => FabBloc()),
                 BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
                 BlocProvider<RemoveFavoritesBloc>(
                   create: (_) => RemoveFavoritesBloc(
-                    RemoveFavoritesRepository(Set.of({})),
+                    RemoveFavoritesRepository(Set<int>.of(<int>{})),
                   ),
                 ),
               ],
               child: RepositoryProvider<ColorsRepository>(
                 create: (_) {
                   final ColorsRepository colorsRepository = ColorsRepository(
-                    colorsFromAPI: ColormindColors(list: List.of([])),
-                    lockedColors: LockedColors(list: List.of([])),
+                    colorsFromAPI: ColormindColors(list: List<Color>.of(<Color>[])),
+                    lockedColors: LockedColors(list: List<bool>.of(<bool>[])),
                   )..init();
+
                   return colorsRepository;
                 },
                 child: BlocBuilder<OnboardingBloc, OnboardingState>(
-                  builder: (_, state) => ColoredBox(
+                  builder: (_, OnboardingState state) => ColoredBox(
                     color: Theme.of(context).primaryColor,
                     child: Stack(
-                      children: [
+                      children: <Widget>[
                         const SplashScreen(),
                         AnimatedOpacity(
                           curve: kDefaultTransitionCurve,
