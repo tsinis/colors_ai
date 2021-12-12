@@ -1,0 +1,13 @@
+{
+  "editor.formatOnSave": true,
+  "dart.lineLength": 120,
+  "[dart]": {
+    "editor.rulers": [
+      120
+    ],
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+  }
+}

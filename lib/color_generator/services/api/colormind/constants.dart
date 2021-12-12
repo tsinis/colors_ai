@@ -1,0 +1,11 @@
+const String kComma = ',';
+const String kEndSquareBracket = ']';
+const String kStartSquareBracket = '[';
+const String kEndCurlyBracket = '}';
+const String kStartCurlyBracket = '{';
+const String kDefaultModelBody = '"model":"default"';
+const String kUiModelBody = '"model":"ui"';
+const String kUiModel = kStartCurlyBracket + kUiModelBody + kEndCurlyBracket;
+const String kDefaultModel = kStartCurlyBracket + kDefaultModelBody + kEndCurlyBracket;
+const String kInputName = '"input":';
+const String kUnlockedColor = '"N"';

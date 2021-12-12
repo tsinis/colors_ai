@@ -1,0 +1,106 @@
+{
+    "aboutGenerator": "Generátor farebných schém, ktorý využíva hlbokého učenie od",
+    "aboutSourceCode": "Zdrojový kód tejto aplikácie je dostupný v",
+    "aboutSourceRepository": "tomto repozitári GitHub",
+    "aboutAttribution": "Uvádzanie pôvodu",
+    "aboutSounds": "Zvuky UI použité v tejto aplikácii:",
+    "aboutByGoogle": "od",
+    "aboutSoundsLicense": "sú licencovaní ako",
+    "aboutThisAppTooltip": "O tejto aplikácii",
+    "noConnectionTitle": "Ale nie!",
+    "noConnectionDescription": "Nedá sa pripojiť k serveru AI.",
+    "returnButtonLabel": "Vrátiť sa",
+    "noFavoritesTitle": "Och!",
+    "noFavoritesDescription": "Zoznam obľúbených paliet je teraz prázdny.",
+    "addFavoritesButtonLabel": "Pridajte",
+    "removeAllTitle": "Odstrániť všetky obľúbené palety",
+    "removeButtonLabel": "Odstrániť",
+    "urlCopiedMessage": "Odkaz skopírovaný!",
+    "urlOpenButtonLabel": "Otvoriť",
+    "colorCopiedMessage": "Farba {colorHexValue} skopírovaná!",
+    "@colorCopiedMessage": {
+        "placeholders": {
+            "colorHexValue": {}
+        }
+    },
+    "serverMaintanceMessage": "Server je aktualizovaný o polnoci PDT, takže môže byť chvíľku nedostupný",
+    "shareFailedMessage": "Zdieľanie zlyhalo, skúste iný typ.",
+    "removeFavoritesTip": "Kliknutím farby obnovíte.\nPřejetím farby odstránite",
+    "pullToRefreshTip": "Ťaháte dole pre generovanie",
+    "onboardingLockTip": "Dvojitým kliknutím kdekoľvek zamknete farbu",
+    "onboardingSelectTip": "Kliknite na ľavú časť pre výber farby",
+    "onboardingMoveTip": "Pozície farieb sú dôležité\npodržte a ťahajte pre preusporiadanie",
+    "onboardingGenerateTip": "Ťaháte dole pre generovanie nových farieb",
+    "onboardingSaveTip": "Kliknutím na tlačidlo nižšie uložte farby",
+    "onboardingDoneButtonLabel": "Chápem",
+    "shareTabLabel": "Zdieľať paletu",
+    "generateTabLabel": "Generovať paletu",
+    "noFavoritesTabLabel": "Žiadne obľúbené palety",
+    "favoritesTabLabel": "Obľúbené palety",
+    "shareLinksLabel": "Zdieľať odkaz cez:",
+    "googleArtsExport": "Umenie, ktoré ladia s vašimi farbami",
+    "exportTo": "Export do:",
+    "copyUrlButtonLabel": "Kopírovať URL",
+    "shareUrlButtonLabel": "Zdieľať URL",
+    "a4DimensionsTitle": "210 x 297 milimetrov",
+    "a4DimensionsSubtitle": "Medzinárodná norma ISO 216",
+    "letterLabel": "Letter",
+    "letterDimensionsTitle": "8,5 x 11 palcov",
+    "letterDimensionsSubtitle": "Severoamerický štandard ANSI",
+    "sharePngButtonLabel": "Zdieľať PNG",
+    "sharePdfButtonLabel": "Zdieľať PDF",
+    "unlockAllColors": "Odomknúť všetky farby",
+    "savePaletteToFavorites": "Uložiť paletu do obľúbených",
+    "favoritePaletteSematic": "Číslo obľúbené palety: {paletteIndex}",
+    "@favoritePaletteSematic": {
+        "placeholders": {
+            "paletteIndex": {}
+        }
+    },
+    "removeSomeTitle": "{count, plural, =1{Odobrať paletu} one{Odobrať {count} paletu} few{Odobrať {count} palety} other{Odobrať {count} palet}}",
+    "@removeSomeTitle": {
+        "placeholders": {
+            "count": {}
+        }
+    },
+    "addToFavorites": "Pridať k obľúbeným",
+    "removeFavoritesTipLandscape": "Stlačením palety obnovíte farby.\nStisknutím textového štítku skopírujete hodnotu HEX",
+    "removeFavoritesTooltip": "Odstrániť túto paletu",
+    "selectToRemoveFavoritesTooltip": "Vyberte túto paletu na odstránenie",
+    "onboardingGenerateTipLandscape": "Stlačením medzerníka na klávesnici vytvoríte nové farby",
+    "onboardingSelectTipLandscape": "Pre výber farby kliknite kamkoľvek (mimo blokovací zónu)",
+    "onboardingSaveTipLandscape": "Pre uloženie farieb stlačte tlačidlo v ľavom hornom rohu obrazovky",
+    "shareFile": "Zdieľať súbor ako:",
+    "copyAsFormat": "Kopírovať {fileFormat}",
+    "@copyAsFormat": {
+        "placeholders": {
+            "fileFormat": {}
+        }
+    },
+    "shareAsFormat": "Zdieľať {fileFormat}",
+    "@shareAsFormat": {
+        "placeholders": {
+            "fileFormat": {}
+        }
+    },
+    "settings": "Nastavenia",
+    "help": "Pomoc",
+    "colorsForUiTitle": "Farby pre UI",
+    "colorsForUiSubtitle": "Vylepšite generovanie farieb pre UI design",
+    "appearance": "Vzhľad:",
+    "lightThemeTitle": "Svetlý",
+    "lightThemeSubtitle": "Neutrálne šedá, nekontrastné UI pre svetlé návrhy",
+    "darkThemeTitle": "Tmavý",
+    "darkThemeSubtitle": "Sýto šedé UI, perfektné pre tmavé návrhy",
+    "systemThemeTitle": "Systémové",
+    "systemThemeSubtitle": "Použiť jas motívu zariadenia",
+    "resetButtonLabel": "Resetovať",
+    "formatCopied": "Obsah {fileFormat} skopírovaný!",
+    "@formatCopied": {
+        "placeholders": {
+            "fileFormat": {}
+        }
+    },
+    "invalidHexErrorLabel": "Vložený neplatný HEX kód",
+    "hexHintTextLabel": "HEX kód farby"
+}
