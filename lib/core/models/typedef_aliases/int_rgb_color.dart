@@ -1,1 +1,0 @@
-typedef IntRGBColor = List<int>;
