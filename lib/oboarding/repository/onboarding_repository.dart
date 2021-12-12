@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
+import '../services/storage_providers/onboarding_hive_storage.dart';
+
 class OnboardingRepository {
-  final String _boxName;
-  final String _isFirstRunKey;
+  final OnboardingHiveStorage _storage;
 
   Future<bool> get loadOnboardData async {
-    final Box<bool> onboardBox = await _openBox();
+    final Box<bool> onboardBox = await _storage.openBox;
     try {
-      final bool? isFirstRun = onboardBox.get(_isFirstRunKey, defaultValue: true);
+      final bool? isFirstRun = onboardBox.get(_storage.isFirstRunKey, defaultValue: true);
 
       return !(isFirstRun == false);
     } on Exception catch (e) {
@@ -20,15 +21,11 @@ class OnboardingRepository {
     }
   }
 
-  const OnboardingRepository({String isFirstRunKey = 'firstRun', String boxName = 'onboard'})
-      : _isFirstRunKey = isFirstRunKey,
-        _boxName = boxName;
+  const OnboardingRepository(OnboardingHiveStorage storage) : _storage = storage;
 
   Future<void> onboardingDone() async {
-    final Box<bool> onboard = await _openBox();
-    await onboard.put(_isFirstRunKey, false);
-    await onboard.close();
+    final Box<bool> storageBox = await _storage.openBox;
+    await storageBox.put(_storage.isFirstRunKey, false);
+    await storageBox.close();
   }
-
-  Future<Box<bool>> _openBox() async => Hive.openBox<bool>(_boxName);
 }

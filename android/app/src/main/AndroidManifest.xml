@@ -3,7 +3,9 @@
    <application
         android:label="Colors AI"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:allowBackup="false"
+        android:fullBackupContent="@xml/backup_rules">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

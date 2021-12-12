@@ -7,6 +7,7 @@ import '../../favorites/ui/widgets/buttons/remove_all_favorites_button.dart';
 
 const List<Widget> kAppBarActions = <Widget>[SizedBox.shrink(), UnlockAllButton(), RemoveAllFavoritesButton()];
 const String kAppName = 'Colors AI';
+const String kNameForFileSystem = 'colors_ai';
 const LogicalKeyboardKey kSpacebar = LogicalKeyboardKey.space;
 
 List<String> tabNames(AppLocalizations l10n) =>

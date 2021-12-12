@@ -10,7 +10,7 @@ mixin DeviceCapabilities {
   late final String storagePath;
 
   Future<void> init() async {
-    storagePath = kIsWeb ? '' : (await DataStorage.directory).path;
+    storagePath = kIsWeb ? '' : await DataStorage.path;
     final PrintingInfo info = await Printing.info();
     canSharePdf = info.canShare;
     canSharePng = info.canRaster;

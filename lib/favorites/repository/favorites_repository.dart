@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import '../../core/models/color_palette/color_palette.dart';
 import '../interfaces/favorites_storage.dart';
-import '../services/storage_providers.dart/hive_storage.dart';
 
 class FavoritesRepository {
   final List<ColorPalette> _palettes;
@@ -21,7 +20,7 @@ class FavoritesRepository {
 
   FavoritesStorage get storage => _storage;
 
-  const FavoritesRepository(List<ColorPalette> palettes, {FavoritesStorage storage = const HiveStorage()})
+  const FavoritesRepository(List<ColorPalette> palettes, FavoritesStorage storage)
       : _palettes = palettes,
         _storage = storage;
 
@@ -29,21 +28,19 @@ class FavoritesRepository {
 
   void remove(Set<int> indexes) {
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
+    final List<ColorPalette> storedPalettes = List<ColorPalette>.from(_palettes);
+    _palettes.clear();
     switch (palettesToRemove.length) {
       case 0:
         return;
       case 1:
-        final List<ColorPalette> newPalettes = List<ColorPalette>.from(_palettes)..removeAt(palettesToRemove.first);
-        _palettes
-          ..clear()
-          ..addAll(newPalettes);
+        storedPalettes.removeAt(palettesToRemove.first);
+        _palettes.addAll(storedPalettes);
         return;
       default:
-        final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(_palettes.asMap())
+        final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(storedPalettes.asMap())
           ..removeWhere((int index, _) => palettesToRemove.contains(index));
-        _palettes
-          ..clear()
-          ..addAll(indexMap.values);
+        _palettes.addAll(indexMap.values);
     }
   }
 }

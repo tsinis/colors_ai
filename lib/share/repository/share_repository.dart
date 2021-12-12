@@ -36,9 +36,9 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   ];
 
   final Clipboards _clipboard;
-  int? _formatIndex;
+  int? _formatIndex; //TODO as String?
   final String _nameOfFile;
-  int? _providerIndex;
+  int? _providerIndex; // TODO as String?
 
   int? get formatIndex => _formatIndex;
   int? get providerIndex => _providerIndex;
@@ -61,7 +61,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  ShareRepository({Clipboards clipboard = const Clipboards(), String nameOfFile = 'colors_ai'})
+  ShareRepository({Clipboards clipboard = const Clipboards(), String nameOfFile = kNameForFileSystem})
       : _clipboard = clipboard,
         _nameOfFile = nameOfFile;
 

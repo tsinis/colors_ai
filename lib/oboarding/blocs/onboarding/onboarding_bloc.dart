@@ -11,7 +11,7 @@ part 'onboarding_state.dart';
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final OnboardingRepository _onboardingRepository;
 
-  OnboardingBloc({OnboardingRepository onboardingRepository = const OnboardingRepository()})
+  OnboardingBloc(OnboardingRepository onboardingRepository)
       : _onboardingRepository = onboardingRepository,
         super(const OnboardingInitial());
 
