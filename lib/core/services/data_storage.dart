@@ -46,7 +46,7 @@ class DataStorage {
 
   const DataStorage({FlutterSecureStorage keyStorage = const FlutterSecureStorage(), String secureKey = secureKey})
       : _keyStorage = keyStorage,
-        _secureKey = secureKey;
+        _secureKey = secureKey; //TODO: Provide key from outside (ENV or something like that), for CD/CI builds.
 
   Future<HiveCipher?> init() async {
     final HydratedCipher? encryptionCipher = await _encryptionCipher;

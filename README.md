@@ -77,6 +77,8 @@ All animations here are made with pure Flutter. The application's UI is designed
 * [ ] Add Feedback.
 * [ ] Provide support for Favorites backup (online?).
 
+> You can also find a few more specific TODOs in source code files.
+
 ## Licenses
 
 This project is released under the terms of the [MIT license](./LICENSE). All assets (as sounds, fonts) licensed and are free for personal use. You can find **LICENSE** files in their folders.

@@ -111,3 +111,4 @@ unlinked_spec.ds
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 fvm
 api_tests/
+lib/core/services/data_storage.key.dart
