@@ -17,8 +17,7 @@ class SoundBloc extends Bloc<SoundEvent, SoundState> {
   @override
   Stream<SoundState> mapEventToState(SoundEvent event) async* {
     if (event is SoundStarted) {
-      // ignore: unawaited_futures
-      _soundRepository.init();
+      unawaited(_soundRepository.init());
       // On web it's not allowed to play sounds without user interaction first.
       if (!kIsWeb) {
         _soundRepository.playFavoritesAdded();

@@ -35,7 +35,6 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
         builder: (_, RemoveFavoritesState removeState) => BlocBuilder<FavoritesBloc, FavoritesState>(
           builder: (_, FavoritesState state) {
-            // ignore: prefer-conditional-expressions
             if (state is FavoritesLoadSuccess) {
               return LayoutBuilder(
                 builder: (_, BoxConstraints windowSize) {
