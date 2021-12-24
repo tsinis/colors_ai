@@ -1,0 +1,1 @@
+enum SelectedAPI { huemint, colormind }

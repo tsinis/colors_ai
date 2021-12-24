@@ -20,9 +20,9 @@ abstract class API<T extends Object> {
   const API(
     this._host,
     this._apiColors, {
-    this.unlockedColorChar = 'N',
-    this.generateModelKey = 'model',
-    this.paletteInputKey = 'input',
+    required this.unlockedColorChar,
+    required this.generateModelKey,
+    required this.paletteInputKey,
     Duration timeout = const Duration(seconds: 8),
     Map<String, String> headers = const <String, String>{'Content-Type': 'application/json'},
   })  : _headers = headers,
@@ -32,11 +32,7 @@ abstract class API<T extends Object> {
   T apiColorTransformer(Color color);
 
   @required
-  Future<ColorPalette> fetchNewColors(
-    ColorPalette palette, {
-    List<bool> lockedColors = const <bool>[],
-    bool forUI = false,
-  });
+  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors);
 
   @protected
   MapEntry<String, List<Object>> colorsToInput(ColorPalette palette, List<bool> lockedColors) {

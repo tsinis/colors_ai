@@ -9,21 +9,25 @@ import '../../../models/colors/colors_providers/colormind/colormind_colors.dart'
 class ColormindAPI extends API<IntRGBColor> {
   final String defaultModelValue;
   final String uiModelValue;
+  final bool forUI;
 
   const ColormindAPI({
+    required this.forUI,
     this.uiModelValue = 'ui',
     this.defaultModelValue = 'default',
-  }) : super('http://colormind.io/api/', const ColormindColors());
+  }) : super(
+          'http://colormind.io/api/',
+          const ColormindColors(),
+          unlockedColorChar: 'N',
+          generateModelKey: 'model',
+          paletteInputKey: 'input',
+        );
 
   @override
   IntRGBColor apiColorTransformer(Color color) => color.toListInt();
 
   @override
-  Future<ColorPalette> fetchNewColors(
-    ColorPalette palette, {
-    List<bool> lockedColors = const <bool>[],
-    bool forUI = false,
-  }) async {
+  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) async {
     final List<bool> invertedLocks = lockedColors.map((bool isLocked) => !isLocked).toList(growable: false);
 
     final Map<String, Object> requestBody = <String, Object>{};
