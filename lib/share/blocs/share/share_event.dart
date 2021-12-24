@@ -5,17 +5,17 @@ abstract class ShareEvent extends Equatable {
 }
 
 class ShareUrlProviderSelected extends ShareEvent {
-  final int providerIndex;
+  final ColorsUrlProvider? urlProvider;
 
   @override
-  List<Object> get props => <int>[providerIndex];
+  List<ColorsUrlProvider?> get props => <ColorsUrlProvider?>[urlProvider];
 
-  const ShareUrlProviderSelected({required this.providerIndex});
+  const ShareUrlProviderSelected({required this.urlProvider});
 }
 
 class ShareStarted extends ShareEvent {
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object?>[];
 
   const ShareStarted();
 }
@@ -24,7 +24,7 @@ class ShareUrlShared extends ShareEvent {
   final ColorPalette palette;
 
   @override
-  List<Object> get props => <ColorPalette>[palette];
+  List<ColorPalette> get props => <ColorPalette>[palette];
 
   const ShareUrlShared(this.palette);
 }
@@ -33,7 +33,7 @@ class ShareUrlCopied extends ShareEvent {
   final ColorPalette palette;
 
   @override
-  List<Object> get props => <ColorPalette>[palette];
+  List<ColorPalette> get props => <ColorPalette>[palette];
 
   const ShareUrlCopied(this.palette);
 }
@@ -42,7 +42,7 @@ class ShareFileShared extends ShareEvent {
   final ColorPalette palette;
 
   @override
-  List<Object> get props => <ColorPalette>[palette];
+  List<ColorPalette> get props => <ColorPalette>[palette];
 
   const ShareFileShared(this.palette);
 }
@@ -51,16 +51,16 @@ class ShareFileCopied extends ShareEvent {
   final ColorPalette palette;
 
   @override
-  List<Object> get props => <ColorPalette>[palette];
+  List<ColorPalette> get props => <ColorPalette>[palette];
 
   const ShareFileCopied(this.palette);
 }
 
 class ShareFormatSelected extends ShareEvent {
-  final int formatIndex;
+  final FileFormat? format;
 
   @override
-  List<Object> get props => <int>[formatIndex];
+  List<FileFormat?> get props => <FileFormat?>[format];
 
-  const ShareFormatSelected({required this.formatIndex});
+  const ShareFormatSelected({required this.format});
 }

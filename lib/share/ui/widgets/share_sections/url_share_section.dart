@@ -12,9 +12,8 @@ import 'share_section_interface.dart';
 
 class UrlShareSection extends ShareSectionInterface {
   final String? exportFormats;
-  final int firstProvider;
   final List<ColorsUrlProvider> providersList;
-  final int selectedProviderIndex;
+  final ColorsUrlProvider selectedUrlProvider;
 
   bool get _isNotSupportedByOS => kIsWeb || platform.isWindows || platform.isLinux;
 
@@ -22,8 +21,7 @@ class UrlShareSection extends ShareSectionInterface {
     ColorPalette palette, {
     required double width,
     required this.providersList,
-    required this.firstProvider,
-    required this.selectedProviderIndex,
+    required this.selectedUrlProvider,
     required this.exportFormats,
     Key? key,
   }) : super(maxWidth: width, palette: palette, key: key);
@@ -38,7 +36,7 @@ class UrlShareSection extends ShareSectionInterface {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 16),
-            child: DropdownButtonFormField<int>(
+            child: DropdownButtonFormField<ColorsUrlProvider>(
               isExpanded: !isPortrait,
               isDense: isPortrait,
               dropdownColor: Theme.of(context).dialogBackgroundColor,
@@ -48,26 +46,23 @@ class UrlShareSection extends ShareSectionInterface {
                 labelText: AppLocalizations.of(context).shareLinksLabel,
                 helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                 helperMaxLines: 1,
-                helperText: (selectedProviderIndex == firstProvider)
+                helperText: (selectedUrlProvider == const ArtsGoogle())
                     ? AppLocalizations.of(context).googleArtsExport
                     : (exportFormats != null)
                         ? '* ${AppLocalizations.of(context).exportTo} $exportFormats'
                         : null,
               ),
-              value: selectedProviderIndex,
-              onChanged: (int? newProviderIndex) {
-                if (newProviderIndex != null) {
-                  BlocProvider.of<ShareBloc>(context).add(ShareUrlProviderSelected(providerIndex: newProviderIndex));
-                }
-              },
-              items: List<DropdownMenuItem<int>>.generate(
+              value: selectedUrlProvider,
+              onChanged: (ColorsUrlProvider? newProvider) =>
+                  BlocProvider.of<ShareBloc>(context).add(ShareUrlProviderSelected(urlProvider: newProvider)),
+              items: List<DropdownMenuItem<ColorsUrlProvider>>.generate(
                 providersList.length,
-                (int index) => DropdownMenuItem<int>(
-                  value: index,
+                (int index) => DropdownMenuItem<ColorsUrlProvider>(
+                  value: providersList.elementAt(index),
                   child: Text.rich(
                     TextSpan(
-                      text: providersList[index].name,
-                      children: (providersList[index].formats != null)
+                      text: providersList.elementAt(index).name,
+                      children: (providersList.elementAt(index).formats != null)
                           ? const <TextSpan>[TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
                           : null,
                     ),

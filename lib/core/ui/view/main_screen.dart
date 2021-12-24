@@ -17,7 +17,6 @@ import '../../../navigation/blocs/navigation/navigation_bloc.dart';
 import '../../../navigation/ui/constants.dart';
 import '../../../navigation/ui/widgets/bottom_nav_bar.dart';
 import '../../../navigation/ui/widgets/nav_rail.dart';
-import '../../../settings/blocs/settings_bloc.dart';
 import '../../../share/blocs/share/share_bloc.dart';
 import '../../../share/repository/share_repository.dart';
 import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
@@ -91,11 +90,7 @@ class _NavigationScreenState extends State<MainScreen> {
                     if (kIsWeb) {
                       BlocProvider.of<SoundBloc>(navContext).add(const SoundRefreshed());
                     }
-                    BlocProvider.of<ColorsBloc>(navContext).add(
-                      ColorsGenerated(
-                        generateColorsForUi: BlocProvider.of<SettingsBloc>(navContext).state.colorsForUi,
-                      ),
-                    );
+                    BlocProvider.of<ColorsBloc>(navContext).add(const ColorsGenerated());
                   }
                 },
                 child: AnnotatedRegion<SystemUiOverlayStyle>(

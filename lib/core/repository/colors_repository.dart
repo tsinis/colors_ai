@@ -2,52 +2,45 @@ import 'dart:ui' show Color;
 
 import 'package:flutter/foundation.dart' show debugPrint;
 
-import '../../color_generator/interfaces/api.dart';
-import '../../color_generator/interfaces/colors_from_api.dart';
 import '../../color_generator/models/colors/constants.dart';
 import '../../color_generator/models/locks/locked_colors.dart';
-import '../../color_generator/services/api/colormind/colormind_api.dart';
-import '../extensions/color_palette_extension.dart';
 import '../models/color_palette/color_palette.dart';
 
 class ColorsRepository {
-  final API<Object> apiService;
-  final ColorsFromAPI _apiColors;
+  final ColorPalette _colorPalette;
   final LockedColors _locked;
+  final Future<ColorPalette> Function(ColorPalette palette, List<bool> lockedColors) _getNewColors;
 
-  ColorPalette get palette => _apiColors.list.toPalette();
+  ColorPalette get palette => _colorPalette;
   List<bool> get lockedColors => _locked.list;
 
   ColorsRepository({
-    required ColorsFromAPI colorsFromAPI,
+    required ColorPalette colorPalette,
     required LockedColors lockedColors,
-    this.apiService = const ColormindAPI(),
-  })  : _apiColors = colorsFromAPI,
+    required Future<ColorPalette> Function(ColorPalette palette, List<bool> lockedColors) getNewColors,
+  })  : _colorPalette = colorPalette,
+        _getNewColors = getNewColors,
         _locked = lockedColors;
 
   void init() {
     for (final Color color in kDefaultColors) {
-      _apiColors.add(color);
-      _locked.add();
+      _colorPalette.add(color);
+      _locked.add(false);
     }
   }
 
-  void changeColor(Color newColor, int colorIndex) => _apiColors.change(colorIndex, newColor);
+  void changeColor(Color newColor, int colorIndex) => _colorPalette.change(colorIndex, newColor);
 
-  void changeLock(int colorIndex) => _locked.change(colorIndex);
+  void changeLock(int colorIndex) => _locked.change(colorIndex, true);
 
-  void fromFavorites(ColorPalette palette) => _apiColors.fromPalette(palette);
+  void fromFavorites(ColorPalette palette) => _colorPalette.addAll(palette.colors);
 
-  Future<bool> getNewColors({required bool forUI}) async {
+  Future<bool> getNewColors() async {
     if (_locked.list.contains(false)) {
       try {
-        final ColorPalette newColors = await apiService.fetchNewColors(
-          _apiColors.toPalette(),
-          lockedColors: _locked.list,
-          forUI: forUI,
-        );
+        final ColorPalette newColors = await _getNewColors(_colorPalette, _locked.list);
         final List<Color> filteredColors = _filterLockedColors(newColors);
-        _apiColors.addAll(filteredColors);
+        _colorPalette.addAll(filteredColors);
 
         return true;
       } on Exception catch (e) {
@@ -68,11 +61,9 @@ class ColorsRepository {
     if (oldIndex < newIndex) newIndex -= 1;
     final int colorsAvailble = kDefaultColors.length - 1;
     final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
-    _apiColors.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
+    _colorPalette.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
     _locked.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
   }
-
-  ColorPalette toPalette() => _apiColors.toPalette();
 
   void unlockAll() => _locked.unlockAll();
 
@@ -84,7 +75,7 @@ class ColorsRepository {
       (int index) {
         final bool isLocked = _locked.list.elementAt(index);
 
-        return isLocked ? _apiColors.list.elementAt(index) : newColorsList.elementAt(index);
+        return isLocked ? _colorPalette.list.elementAt(index) : newColorsList.elementAt(index);
       },
       growable: false,
     );

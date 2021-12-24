@@ -13,57 +13,45 @@ import '../../core/ui/constants.dart';
 import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
 import '../mixins/text_based_file_creator.dart';
+import '../mixins/url_providers_list.dart';
 import '../models/file_format.dart';
 import '../services/url_providers/colors_url_provider.dart';
 import 'conditional_import/share_io_png.dart' if (dart.library.js) 'conditional_import/share_web_png.dart';
 
-class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities {
-  static const List<ColorsUrlProvider> providers = <ColorsUrlProvider>[
-    ArtsGoogle(),
-    CohesiveColors(),
-    ColorCombos(),
-    ColorDesigner(),
-    Colordot(),
-    Coolors(),
-    DesignAI(),
-    DopelyColors(),
-    MakeTintsAndShades(),
-    MuzliColors(),
-    Palettable(),
-    PaletteNinja(),
-    Poolors(),
-    SessionsCollege(),
-  ];
-
+class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities, UrlProvidersList {
   final Clipboards _clipboard;
-  int? _formatIndex; //TODO as String?
+  FileFormat? _selectedFormat;
   final String _nameOfFile;
-  int? _providerIndex; // TODO as String?
+  ColorsUrlProvider? _selectedUrlProvider;
 
-  int? get formatIndex => _formatIndex;
-  int? get providerIndex => _providerIndex;
+  FileFormat? get selectedFormat => _selectedFormat;
+  ColorsUrlProvider? get selectedUrlProvider => _selectedUrlProvider;
 
   String get _fileExtension => _selectedFile.format.toLowerCase();
   String get _fileName => '$_nameOfFile.$_fileExtension';
   String get _filePath => '$storagePath/$_fileName';
-  // Create File Format list for specific OS.
-  FileFormat get _selectedFile => FileFormat.values.elementAt(_formatIndex ?? 0);
 
-  set formatIndex(int? newFormatIndex) {
-    if (newFormatIndex != null && newFormatIndex != _formatIndex) {
-      _formatIndex = newFormatIndex;
+  FileFormat get _selectedFile => _selectedFormat ?? FileFormat.values.first;
+
+  set selectedFormat(FileFormat? newFormat) {
+    if (newFormat != null && _selectedFormat != newFormat) {
+      _selectedFormat = newFormat;
     }
   }
 
-  set providerIndex(int? newProviderIndex) {
-    if (newProviderIndex != null && newProviderIndex != _providerIndex) {
-      _providerIndex = newProviderIndex;
+  set selectedUrlProvider(ColorsUrlProvider? newProvider) {
+    if (newProvider != null && _selectedUrlProvider != newProvider) {
+      _selectedUrlProvider = newProvider;
     }
   }
 
   ShareRepository({Clipboards clipboard = const Clipboards(), String nameOfFile = kNameForFileSystem})
       : _clipboard = clipboard,
         _nameOfFile = nameOfFile;
+
+  void restoreFormatFromJson(String format) => selectedFormat = FileFormat.values.byName(format);
+
+  void restoreUrlProviderFromJson(String provider) => selectedUrlProvider = urlProviderByKeyName(provider);
 
   Future<void> asFile(ColorPalette palette) async {
     try {
@@ -128,8 +116,8 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
 
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
-    final ColorsUrlProvider provider = providers[providerIndex ?? 0];
-    final String url = provider.url(palette);
+    final ColorsUrlProvider urlProvider = _selectedUrlProvider ?? UrlProvidersList.providers.first;
+    final String url = urlProvider.url(palette);
     copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: kAppName);
   }
 

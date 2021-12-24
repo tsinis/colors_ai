@@ -4,6 +4,8 @@ import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../../../core/models/color_palette/color_palette.dart';
+import '../../mixins/url_providers_list.dart';
+import '../../models/file_format.dart';
 import '../../repository/share_repository.dart';
 import '../../services/url_providers/colors_url_provider.dart';
 
@@ -22,13 +24,13 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
-    final int? savedProvider = json[_urlProviderKey] as int?;
-    final int? savedFormat = json[_formatKey] as int?;
+    final String? savedProvider = json[_urlProviderKey] as String?;
+    final String? savedFormat = json[_formatKey] as String?;
     if (savedProvider != null) {
-      _share.providerIndex = savedProvider;
+      _share.restoreUrlProviderFromJson(savedProvider);
     }
     if (savedFormat != null) {
-      _share.formatIndex = savedFormat;
+      _share.restoreFormatFromJson(savedFormat);
     }
   }
 
@@ -37,7 +39,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     if (event is ShareStarted) {
       await _share.init();
     } else if (event is ShareFormatSelected) {
-      _share.formatIndex = event.formatIndex;
+      _share.selectedFormat = event.format;
     } else if (event is ShareFileShared) {
       try {
         await _share.asFile(event.palette);
@@ -59,12 +61,12 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     } else if (event is ShareUrlCopied) {
       _share.copyUrl(event.palette);
     } else if (event is ShareUrlProviderSelected) {
-      _share.providerIndex = event.providerIndex;
+      _share.selectedUrlProvider = event.urlProvider;
     }
     try {
       yield ShareSelectedInitial(
-        providerIndex: _share.providerIndex,
-        formatIndex: _share.formatIndex,
+        urlProvider: _share.selectedUrlProvider,
+        fileFormat: _share.selectedFormat,
         canSharePdf: _share.canSharePdf,
         canSharePng: _share.canSharePng,
       );
@@ -77,7 +79,10 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   @override
   Map<String, dynamic>? toJson(ShareState state) {
     if (state is ShareSelectedInitial) {
-      return <String, dynamic>{_urlProviderKey: state.selectedProvider, _formatKey: state.selectedFormat};
+      return <String, String?>{
+        _urlProviderKey: state.selectedProvider?.keyName,
+        _formatKey: state.selectedFormat?.name,
+      };
     }
   }
 

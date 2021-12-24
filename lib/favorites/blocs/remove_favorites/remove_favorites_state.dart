@@ -10,7 +10,7 @@ abstract class RemoveFavoritesState extends Equatable {
 }
 
 class RemoveFavoritesOpenDialogInitial extends RemoveFavoritesState {
-  const RemoveFavoritesOpenDialogInitial(Set<int> _selections) : super(_selections);
+  const RemoveFavoritesOpenDialogInitial(Set<int> selections) : super(selections);
 }
 
 class RemoveFavoritesFailure extends RemoveFavoritesState {
@@ -18,9 +18,9 @@ class RemoveFavoritesFailure extends RemoveFavoritesState {
 }
 
 class RemoveFavoritesSelectionSelected extends RemoveFavoritesState {
-  const RemoveFavoritesSelectionSelected(Set<int> _selections) : super(_selections);
+  const RemoveFavoritesSelectionSelected(Set<int> selections) : super(selections);
 }
 
 class RemoveFavoritesSelectionChanged extends RemoveFavoritesState {
-  const RemoveFavoritesSelectionChanged(Set<int> _selections) : super(_selections);
+  const RemoveFavoritesSelectionChanged(Set<int> selections) : super(selections);
 }

@@ -1,13 +1,13 @@
 part of 'share_bloc.dart';
 
 abstract class ShareState extends Equatable {
-  final int? selectedFormat;
-  final int? selectedProvider;
+  final FileFormat? selectedFormat;
+  final ColorsUrlProvider? selectedProvider;
 
   @override
-  List<int?> get props => <int?>[selectedProvider, selectedFormat];
+  List<Object?> get props => <Object?>[selectedProvider, selectedFormat];
 
-  List<ColorsUrlProvider> get providersList => ShareRepository.providers;
+  List<ColorsUrlProvider> get providersList => UrlProvidersList.providers;
 
   const ShareState({this.selectedProvider, this.selectedFormat});
 }
@@ -27,7 +27,7 @@ class ShareSelectedInitial extends ShareState {
   const ShareSelectedInitial({
     required this.canSharePdf,
     required this.canSharePng,
-    int? providerIndex,
-    int? formatIndex,
-  }) : super(selectedProvider: providerIndex, selectedFormat: formatIndex);
+    ColorsUrlProvider? urlProvider,
+    FileFormat? fileFormat,
+  }) : super(selectedProvider: urlProvider, selectedFormat: fileFormat);
 }

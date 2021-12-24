@@ -1,15 +1,19 @@
 import 'dart:ui' show Color;
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' show Response;
 
+import '../../core/extensions/color_palette_extension.dart';
 import '../../core/models/color_palette/color_palette.dart';
-import 'color_palette_interface.dart';
-import 'manipulate_list_interface.dart';
 
-abstract class ColorsFromAPI implements ManipulateListInterface<Color>, ColorPaletteInterface {
-  const ColorsFromAPI();
+abstract class ColorsFromAPI {
+  final List<Color> _colors;
 
-  void change(int colorIndex, Color newColor);
+  @protected
+  ColorPalette get asPalette => _colors.toPalette();
 
+  const ColorsFromAPI(this._colors);
+
+  @required
   ColorPalette fromResponse(Response response);
 }

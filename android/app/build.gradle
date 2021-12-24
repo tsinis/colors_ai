@@ -32,7 +32,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -41,7 +41,7 @@ android {
     defaultConfig {
         applicationId "is.tsin.colors_ai.colors_ai"
         minSdkVersion 18
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
@@ -72,7 +72,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    implementation('com.android.support:appcompat-v7:23.2.0')
-    implementation("androidx.multidex:multidex:2.0.1")
+    implementation 'com.android.support:appcompat-v7:23.2.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

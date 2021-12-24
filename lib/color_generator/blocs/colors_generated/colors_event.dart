@@ -5,12 +5,10 @@ abstract class ColorsEvent extends Equatable {
 }
 
 class ColorsGenerated extends ColorsEvent {
-  final bool generateColorsForUi;
-
   @override
-  List<Object> get props => <bool>[generateColorsForUi];
+  List<Object?> get props => <Object?>[];
 
-  const ColorsGenerated({required this.generateColorsForUi});
+  const ColorsGenerated();
 }
 
 class ColorsStarted extends ColorsEvent {

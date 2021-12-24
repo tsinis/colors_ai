@@ -16,39 +16,19 @@ class FileShareSection extends ShareSectionInterface {
   final String? additionalInfo;
   final bool canSharePdf;
   final bool canSharePng;
-  final int firstFormat;
-  final int selectedFormatIndex;
+  final FileFormat selectedFormat;
 
-  bool get cannotCopy => selectedFormatIndex <= 3;
-  FileFormat get file => selectedFormatIndex.selectedFile;
+  bool get _cannotCopy => selectedFormat.isPrintable;
 
   const FileShareSection(
     ColorPalette palette, {
     required double width,
-    required this.firstFormat,
-    required this.selectedFormatIndex,
+    required this.selectedFormat,
     required this.canSharePdf,
     required this.canSharePng,
     this.additionalInfo,
     Key? key,
   }) : super(key: key, maxWidth: width, palette: palette);
-
-  String? helperText(AppLocalizations l10n) {
-    switch (file) {
-      case FileFormat.pdfA4:
-      case FileFormat.pngA4:
-        return l10n.a4DimensionsSubtitle;
-      case FileFormat.pngLetter:
-      case FileFormat.pdfLetter:
-        return l10n.letterDimensionsSubtitle;
-      case FileFormat.svg:
-        return 'Scalable Vector Graphics';
-      case FileFormat.json:
-        return 'JavaScript Object Notation';
-      case FileFormat.scss:
-        return 'Sassy Cascading Style Sheets';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +40,7 @@ class FileShareSection extends ShareSectionInterface {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.only(left: 16, right: 16, bottom: 8, top: 16),
-            child: DropdownButtonFormField<int>(
+            child: DropdownButtonFormField<FileFormat>(
               isExpanded: !isPortrait,
               isDense: isPortrait,
               dropdownColor: Theme.of(context).dialogBackgroundColor,
@@ -70,21 +50,16 @@ class FileShareSection extends ShareSectionInterface {
                 labelText: AppLocalizations.of(context).shareFile,
                 helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                 helperMaxLines: 1,
-                helperText: helperText(
-                  AppLocalizations.of(context),
-                ),
+                helperText: _helperText(AppLocalizations.of(context)),
               ),
-              value: selectedFormatIndex,
-              onChanged: (int? newFormatIndex) {
-                if (newFormatIndex != null) {
-                  BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(formatIndex: newFormatIndex));
-                }
-              },
-              items: List<DropdownMenuItem<int>>.generate(
+              value: selectedFormat,
+              onChanged: (FileFormat? newFormat) =>
+                  BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(format: newFormat)),
+              items: List<DropdownMenuItem<FileFormat>>.generate(
                 FileFormat.values.length,
-                (int index) => DropdownMenuItem<int>(
-                  value: index,
-                  child: Text(FileFormat.values.elementAt(index).name),
+                (int index) => DropdownMenuItem<FileFormat>(
+                  value: FileFormat.values.elementAt(index),
+                  child: Text(FileFormat.values.elementAt(index).title),
                 ),
                 growable: false,
               ),
@@ -100,12 +75,12 @@ class FileShareSection extends ShareSectionInterface {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).copyAsFormat(file.format)),
-                    onPressed: cannotCopy
+                    label: Text(AppLocalizations.of(context).copyAsFormat(selectedFormat.format)),
+                    onPressed: _cannotCopy
                         ? null
                         : () {
                             BlocProvider.of<ShareBloc>(context).add(ShareFileCopied(palette));
-                            BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(file.format));
+                            BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(selectedFormat.format));
                           },
                   ),
                 ),
@@ -125,11 +100,28 @@ class FileShareSection extends ShareSectionInterface {
     );
   }
 
+  String? _helperText(AppLocalizations l10n) {
+    switch (selectedFormat) {
+      case FileFormat.pdfA4:
+      case FileFormat.pngA4:
+        return l10n.a4DimensionsSubtitle;
+      case FileFormat.pngLetter:
+      case FileFormat.pdfLetter:
+        return l10n.letterDimensionsSubtitle;
+      case FileFormat.svg:
+        return 'Scalable Vector Graphics';
+      case FileFormat.json:
+        return 'JavaScript Object Notation';
+      case FileFormat.scss:
+        return 'Sassy Cascading Style Sheets';
+    }
+  }
+
   String _shareOrSaveButtonLabel(BuildContext context) {
     if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
-      return '${MaterialLocalizations.of(context).saveButtonLabel.toBeginningOfSentenceCase()} ${file.format}';
+      return '${MaterialLocalizations.of(context).saveButtonLabel.toBeginningOfSentenceCase()} ${selectedFormat.format}';
     } else {
-      return AppLocalizations.of(context).shareAsFormat(file.format);
+      return AppLocalizations.of(context).shareAsFormat(selectedFormat.format);
     }
   }
 }

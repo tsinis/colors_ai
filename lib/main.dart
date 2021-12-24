@@ -15,10 +15,11 @@ import 'oboarding/blocs/onboarding/onboarding_bloc.dart';
 import 'oboarding/repository/onboarding_repository.dart';
 import 'oboarding/services/storage_providers/onboarding_hive_storage.dart';
 import 'settings/blocs/settings_bloc.dart';
-import 'settings/repository/settings_repository.dart';
+import 'settings/dao/generator_dao.dart';
 
 Future<void> main() async {
   final HiveCipher? encryption = await const DataStorage().init();
+  final GeneratorDAO generatorDao = GeneratorDAO();
   SystemUI.init();
   runApp(
     MultiBlocProvider(
@@ -26,7 +27,7 @@ Future<void> main() async {
         BlocProvider<AboutBloc>(lazy: false, create: (_) => AboutBloc(AboutRepository())),
         BlocProvider<SettingsBloc>(
           lazy: false,
-          create: (_) => SettingsBloc(SettingsRepository())..add(const SettingsStarted()),
+          create: (_) => SettingsBloc(generatorDao)..add(const SettingsStarted()),
         ),
         BlocProvider<OnboardingBloc>(
           lazy: false,
@@ -44,7 +45,7 @@ Future<void> main() async {
           lazy: false,
         ),
       ],
-      child: const App(),
+      child: App(generator: generatorDao),
     ),
   );
 }

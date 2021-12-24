@@ -15,7 +15,6 @@ import '../../../../core/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../../../oboarding/blocs/onboarding/onboarding_bloc.dart';
 import '../../../../oboarding/ui/view/onboarding_overlay.dart';
-import '../../../../settings/blocs/settings_bloc.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 import '../../../blocs/colors_generated/colors_bloc.dart';
 import '../../../blocs/colors_locked/lock_bloc.dart';
@@ -136,11 +135,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     displacement: tileHeight,
                     onRefresh: () {
                       BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
-                      BlocProvider.of<ColorsBloc>(context).add(
-                        ColorsGenerated(
-                          generateColorsForUi: BlocProvider.of<SettingsBloc>(context).state.colorsForUi,
-                        ),
-                      );
+                      BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
                       BlocProvider.of<FabBloc>(context).add(const FabShowed());
 
                       return refreshCompleter.future;

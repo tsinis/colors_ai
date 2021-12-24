@@ -6,13 +6,13 @@ import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/repository/colors_repository.dart';
 import '../../blocs/share/share_bloc.dart';
+import '../../models/file_format.dart';
+import '../../services/url_providers/colors_url_provider.dart';
 import '../widgets/file_export_preview.dart';
 import '../widgets/share_sections/file_share_section.dart';
 import '../widgets/share_sections/url_share_section.dart';
 
 class ShareColorsTab extends StatelessWidget {
-  static const int _first = 0;
-
   const ShareColorsTab({Key? key}) : super(key: key);
 
   @override
@@ -21,10 +21,10 @@ class ShareColorsTab extends StatelessWidget {
           if (state is ShareFailure) {
             BlocProvider.of<SnackbarBloc>(context).add(const ShareFail());
           }
-          final int selectedProviderIndex = state.selectedProvider ?? _first;
-          final int selectedFormatIndex = state.selectedFormat ?? _first;
-          final ColorPalette palette = context.read<ColorsRepository>().toPalette();
-          final String? exportFormats = state.providersList[selectedProviderIndex].formats;
+          final ColorsUrlProvider selectedProvider = state.selectedProvider ?? state.providersList.first;
+          final FileFormat selectedFormat = state.selectedFormat ?? FileFormat.values.first;
+          final ColorPalette palette = context.read<ColorsRepository>().palette;
+          final String? exportFormats = selectedProvider.formats;
           final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
 
           return LayoutBuilder(
@@ -34,8 +34,7 @@ class ShareColorsTab extends StatelessWidget {
                       UrlShareSection(
                         palette,
                         width: size.maxWidth,
-                        selectedProviderIndex: selectedProviderIndex,
-                        firstProvider: _first,
+                        selectedUrlProvider: selectedProvider,
                         exportFormats: exportFormats,
                         providersList: state.providersList,
                       ),
@@ -49,8 +48,7 @@ class ShareColorsTab extends StatelessWidget {
                                 width: size.maxWidth,
                                 canSharePng: state.canSharePng,
                                 canSharePdf: state.canSharePdf,
-                                firstFormat: _first,
-                                selectedFormatIndex: selectedFormatIndex,
+                                selectedFormat: selectedFormat,
                               )
                             : const SizedBox.shrink(),
                       ),
@@ -84,8 +82,7 @@ class ShareColorsTab extends StatelessWidget {
                                         width: size.maxWidth,
                                         canSharePng: state.canSharePng,
                                         canSharePdf: state.canSharePdf,
-                                        firstFormat: _first,
-                                        selectedFormatIndex: selectedFormatIndex,
+                                        selectedFormat: selectedFormat,
                                       )
                                     : const SizedBox.shrink(),
                               ),
@@ -93,8 +90,7 @@ class ShareColorsTab extends StatelessWidget {
                               UrlShareSection(
                                 palette,
                                 width: size.maxWidth,
-                                selectedProviderIndex: selectedProviderIndex,
-                                firstProvider: _first,
+                                selectedUrlProvider: selectedProvider,
                                 exportFormats: exportFormats,
                                 providersList: state.providersList,
                               ),

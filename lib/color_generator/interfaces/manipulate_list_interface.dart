@@ -1,15 +1,33 @@
-abstract class ManipulateListInterface<T> {
+import 'package:equatable/equatable.dart';
+
+abstract class ManipulateListInterface<T> extends Equatable {
   final List<T> _list;
 
   List<T> get list => _list;
 
-  const ManipulateListInterface(this._list);
+  @override
+  List<T> get props => _list;
 
-  void swap({required int oldIndex, required int newIndex});
+  const ManipulateListInterface(this._list);
 
   void add(T value) => _list.add(value);
 
   void addAll(List<T> newList) => _list
     ..clear()
     ..addAll(newList);
+
+  void change(int index, T newValue) => list[index] = newValue;
+
+  void swap({required int oldIndex, required int newIndex}) {
+    final T swapedValue = list[oldIndex];
+    if (newIndex >= list.length) {
+      list
+        ..removeAt(oldIndex)
+        ..add(swapedValue);
+    } else {
+      list
+        ..removeAt(oldIndex)
+        ..insert(newIndex, swapedValue);
+    }
+  }
 }

@@ -3,17 +3,17 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import '../repository/settings_repository.dart';
+import '../dao/generator_dao.dart';
 
 part 'settings_event.dart';
 part 'settings_state.dart';
 
 class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   final String _colormindForUiKey;
-  final SettingsRepository _settings;
+  final GeneratorDAO _generatorSettings;
   final String _themeKey;
 
-  SettingsBloc(this._settings, {String themeKey = 'isDark', String colormindForUiKey = 'forUI'})
+  SettingsBloc(this._generatorSettings, {String themeKey = 'isDark', String colormindForUiKey = 'forUI'})
       : _themeKey = themeKey,
         _colormindForUiKey = colormindForUiKey,
         super(const SettingsInitial());
@@ -22,7 +22,7 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   SettingsState? fromJson(Map<String, dynamic> json) {
     final bool? savedTheme = json[_themeKey] as bool?;
     final bool forUI = json[_colormindForUiKey] as bool? ?? false;
-    _settings
+    _generatorSettings
       ..isDarkTheme = savedTheme
       ..colorsForUi = forUI;
   }
@@ -30,20 +30,20 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   @override
   Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
     if (event is SettingsLightThemeSelected) {
-      _settings.isDarkTheme = false;
+      _generatorSettings.isDarkTheme = false;
     } else if (event is SettingsDarkThemeSelected) {
-      _settings.isDarkTheme = true;
+      _generatorSettings.isDarkTheme = true;
     } else if (event is SettingsSystemThemeSelected) {
-      _settings.isDarkTheme = null;
+      _generatorSettings.isDarkTheme = null;
     } else if (event is SettingsColorsForUiSelected) {
-      _settings.colorsForUi = true;
+      _generatorSettings.colorsForUi = true;
     } else if (event is SettingsRegularColorsSelected) {
-      _settings.colorsForUi = false;
+      _generatorSettings.colorsForUi = false;
     }
     try {
       yield SettingsChangedInitial(
-        isDarkTheme: _settings.isDarkTheme,
-        colorsForUi: _settings.colorsForUi,
+        isDarkTheme: _generatorSettings.isDarkTheme,
+        colorsForUi: _generatorSettings.colorsForUi,
       );
     } on Exception catch (_) {
       yield const SettingsFailure();

@@ -1,5 +1,7 @@
 import 'dart:ui' show Color;
 
+import 'package:equatable/equatable.dart';
+
 import '../../../core/extensions/color_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 
@@ -18,7 +20,7 @@ part 'providers/palette_ninja.dart';
 part 'providers/poolors.dart';
 part 'providers/sessions_college.dart';
 
-abstract class ColorsUrlProvider {
+abstract class ColorsUrlProvider with EquatableMixin {
   final String baseUrl;
   final String? formats;
   final String? providerName;
@@ -29,13 +31,17 @@ abstract class ColorsUrlProvider {
       return providerName!;
     } else {
       final StringBuffer sb = StringBuffer();
-      final String className = runtimeType.toString();
       final RegExp pascalCaseWords = RegExp('(?:[A-Z]+|^)[a-z]*');
-      pascalCaseWords.allMatches(className).forEach((RegExpMatch w) => sb..write('${w[0]} '));
+      pascalCaseWords.allMatches(keyName).forEach((RegExpMatch w) => sb..write('${w[0]} '));
 
       return _removeLastChar(sb.toString());
     }
   }
+
+  String get keyName => runtimeType.toString();
+
+  @override
+  List<String> get props => <String>[keyName];
 
   String get _fullUrl => 'https://$baseUrl';
 

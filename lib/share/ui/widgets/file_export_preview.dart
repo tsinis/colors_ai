@@ -69,14 +69,12 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, ShareState state) {
-          final FileFormat file = state.selectedFormat.selectedFile;
-          final bool isPrintable = (state.selectedFormat ?? 0) < 4;
-          final bool isJson = file == FileFormat.json;
+          final FileFormat file = state.selectedFormat ?? FileFormat.values.first;
 
           return GestureDetector(
             onTap: () {
               setState(() => isHovering = !isHovering);
-              if (!isPrintable) {
+              if (!file.isPrintable) {
                 BlocProvider.of<ShareBloc>(context).add(ShareFileCopied(widget._palette));
                 BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(file.format));
               }
@@ -84,11 +82,11 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
             child: MouseRegion(
               onEnter: (_) => setState(() => isHovering = true),
               onExit: (_) => setState(() => isHovering = false),
-              cursor: isPrintable ? MouseCursor.defer : SystemMouseCursors.click,
+              cursor: file.isPrintable ? MouseCursor.defer : SystemMouseCursors.click,
               child: AnimatedPhysicalModel(
                 duration: kDefaultLongTransitionDuration,
                 curve: Curves.decelerate,
-                color: fileBackgroundColor(isPrintable: isPrintable),
+                color: fileBackgroundColor(isPrintable: file.isPrintable),
                 borderRadius: BorderRadius.circular(isHovering ? 2 : 8),
                 clipBehavior: Clip.hardEdge,
                 elevation: isHovering ? 10 : 2,
@@ -121,7 +119,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                         axisAlignment: -1,
                                         child: child,
                                       ),
-                                      child: codeText(isJson: isJson),
+                                      child: codeText(isJson: file == FileFormat.json),
                                     ),
                                   ),
                                 ),
@@ -140,7 +138,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                             duration: widget.duration,
                                             curve: widget.curve,
                                             child: Padding(
-                                              padding: EdgeInsets.all(isPrintable ? 2 : 0),
+                                              padding: EdgeInsets.all(file.isPrintable ? 2 : 0),
                                               child: AnimatedContainer(
                                                 duration: widget.duration,
                                                 curve: widget.curve,
@@ -149,7 +147,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                             ),
                                           ),
                                         ),
-                                        if (isPrintable) ...<Widget>[
+                                        if (file.isPrintable) ...<Widget>[
                                           const Expanded(child: SizedBox()),
                                           Flexible(
                                             flex: 2,

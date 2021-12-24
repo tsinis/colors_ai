@@ -6,7 +6,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
-import '../../../../settings/blocs/settings_bloc.dart';
 import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
 
 class GenerateColorsFAB extends StatefulWidget {
@@ -63,11 +62,7 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
 
   void onFabPressed() {
     BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
-    BlocProvider.of<ColorsBloc>(context).add(
-      ColorsGenerated(
-        generateColorsForUi: BlocProvider.of<SettingsBloc>(context).state.colorsForUi,
-      ),
-    );
+    BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
   }
 
   @override

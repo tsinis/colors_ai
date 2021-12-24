@@ -22,6 +22,12 @@ parts:
     source: .
     plugin: flutter
     flutter-target: lib/main.dart
+    build-packages:
+      - libsecret-1-dev
+      - libjsoncpp-dev
+    stage-packages:
+      - libsecret-1-dev
+      - libjsoncpp1-dev
     override-build: |
       flutter pub get
       flutter gen-l10n

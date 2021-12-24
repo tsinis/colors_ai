@@ -25,7 +25,7 @@ class AboutAppDialog extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final TextStyle? linkStyle = linkTextStyle ??
         Theme.of(context).textTheme.bodyText2?.copyWith(
               color: Theme.of(context).indicatorColor,
