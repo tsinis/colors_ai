@@ -5,6 +5,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../app/theme/constants.dart';
 import '../../../core/extensions/string_extension.dart';
 import '../../blocs/settings_bloc.dart';
+import '../../mixins/huemint_settings.dart';
+import '../../models/selected_api.dart';
+import '../widgets/gradient_slider_shape.dart';
 
 class SettingsDialog extends StatelessWidget {
   const SettingsDialog({Key? key}) : super(key: key);
@@ -21,23 +24,99 @@ class SettingsDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              SwitchListTile(
-                dense: true,
-                title: Text(AppLocalizations.of(context).colorsForUiTitle),
-                subtitle: Text(AppLocalizations.of(context).colorsForUiSubtitle),
-                activeColor: Theme.of(context).indicatorColor,
-                value: state.colorsForUi,
-                onChanged: (bool isForUi) {
-                  if (isForUi) {
-                    BlocProvider.of<SettingsBloc>(context).add(
-                      const SettingsColorsForUiSelected(),
-                    );
-                  } else {
-                    BlocProvider.of<SettingsBloc>(context).add(
-                      const SettingsRegularColorsSelected(),
-                    );
-                  }
-                },
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: DropdownButtonFormField<SelectedAPI>(
+                  isExpanded: true,
+                  dropdownColor: Theme.of(context).dialogBackgroundColor,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Theme.of(context).splashColor,
+                    labelText: AppLocalizations.of(context).shareFile, //TODO Change.
+                    helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                    helperMaxLines: 1,
+                    helperText: 'Helper text', //TODO Change.
+                  ),
+                  value: state.selectedAPI,
+                  onChanged: (SelectedAPI? api) => BlocProvider.of<SettingsBloc>(context).add(SettingsApiSelected(api)),
+                  items: List<DropdownMenuItem<SelectedAPI>>.generate(
+                    SelectedAPI.values.length,
+                    (int index) => DropdownMenuItem<SelectedAPI>(
+                      value: SelectedAPI.values.elementAt(index),
+                      child: Text(SelectedAPI.values.elementAt(index).name.toBeginningOfSentenceCase()),
+                    ),
+                    growable: false,
+                  ),
+                ),
+              ),
+              AnimatedCrossFade(
+                crossFadeState:
+                    (state.selectedAPI == SelectedAPI.colormind) ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                duration: kDefaultShortTransitionDuration,
+                firstCurve: kDefaultTransitionCurve,
+                secondCurve: kDefaultTransitionCurve,
+                firstChild: Padding(
+                  padding: const EdgeInsets.only(left: 4),
+                  child: SwitchListTile(
+                    dense: true,
+                    title: Text(AppLocalizations.of(context).colorsForUiTitle),
+                    subtitle: Text(AppLocalizations.of(context).colorsForUiSubtitle),
+                    activeColor: Theme.of(context).indicatorColor,
+                    value: state.colormindForUI,
+                    onChanged: (bool isForUi) {
+                      if (isForUi) {
+                        BlocProvider.of<SettingsBloc>(context).add(
+                          const SettingsColorsForUiSelected(),
+                        );
+                      } else {
+                        BlocProvider.of<SettingsBloc>(context).add(
+                          const SettingsRegularColorsSelected(),
+                        );
+                      }
+                    },
+                  ),
+                ),
+                secondChild: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <ListTile>[
+                      ListTile(
+                        dense: true,
+                        title: const Text('Adjacency'), //TODO Change.
+                        subtitle: SliderTheme(
+                          data: SliderThemeData(
+                            valueIndicatorColor: Theme.of(context).primaryColor,
+                            valueIndicatorTextStyle: TextStyle(color: Theme.of(context).primaryColorLight),
+                          ),
+                          child: Slider(
+                            value: state.huemintAdjacency.toDouble(),
+                            label: state.huemintAdjacency.toString(),
+                            divisions: HuemintSettings.adjacencyMax,
+                            onChanged: (double adjacency) =>
+                                BlocProvider.of<SettingsBloc>(context).add(SettingsAdjacencyChanged(adjacency.toInt())),
+                            max: HuemintSettings.adjacencyMax.toDouble(),
+                          ),
+                        ),
+                      ),
+                      ListTile(
+                        dense: true,
+                        title: const Text('Temperature'), //TODO Change.
+                        subtitle: SliderTheme(
+                          data: const SliderThemeData(trackShape: GradientSliderShape()),
+                          child: Slider(
+                            value: state.huemintTemperature,
+                            label: state.huemintTemperature.toString(),
+                            onChanged: (double temperature) =>
+                                BlocProvider.of<SettingsBloc>(context).add(SettingsTemperatureChanged(temperature)),
+                            max: HuemintSettings.temperatureMax,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(height: 8),
               const Divider(height: 1),
@@ -79,9 +158,15 @@ class SettingsDialog extends StatelessWidget {
               onPressed: () {
                 BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected());
                 BlocProvider.of<SettingsBloc>(context).add(const SettingsRegularColorsSelected());
+                BlocProvider.of<SettingsBloc>(context).add(const SettingsApiSelected(SelectedAPI.huemint));
+                BlocProvider.of<SettingsBloc>(context)
+                    .add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2));
+                BlocProvider.of<SettingsBloc>(context)
+                    .add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
               },
               child: Text(
                 AppLocalizations.of(context).resetButtonLabel,
+                style: TextStyle(color: Theme.of(context).errorColor),
               ),
             ),
             TextButton(

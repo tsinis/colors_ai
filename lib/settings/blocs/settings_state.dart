@@ -1,24 +1,59 @@
 part of 'settings_bloc.dart';
 
 abstract class SettingsState extends Equatable {
-  final bool colorsForUi;
+  final bool colormindForUI;
+
   final bool? isDarkTheme;
 
-  @override
-  List<bool?> get props => <bool?>[isDarkTheme, colorsForUi];
+  final int huemintAdjacency;
+  final double huemintTemperature;
 
-  const SettingsState({required this.colorsForUi, this.isDarkTheme});
+  final SelectedAPI selectedAPI;
+
+  @override
+  List<Object?> get props => <Object?>[isDarkTheme, colormindForUI, huemintAdjacency, huemintTemperature, selectedAPI];
+
+  const SettingsState({
+    required this.selectedAPI,
+    required this.colormindForUI,
+    required this.huemintAdjacency,
+    required this.huemintTemperature,
+    this.isDarkTheme,
+  });
 }
 
 class SettingsInitial extends SettingsState {
-  const SettingsInitial() : super(colorsForUi: true);
+  const SettingsInitial()
+      : super(
+          colormindForUI: true,
+          huemintTemperature: 0,
+          huemintAdjacency: 0,
+          selectedAPI: SelectedAPI.huemint,
+        );
 }
 
 class SettingsFailure extends SettingsState {
-  const SettingsFailure() : super(colorsForUi: true);
+  const SettingsFailure()
+      : super(
+          colormindForUI: true,
+          huemintTemperature: 0,
+          huemintAdjacency: 0,
+          selectedAPI: SelectedAPI.huemint,
+        );
 }
 
 class SettingsChangedInitial extends SettingsState {
-  const SettingsChangedInitial({required bool colorsForUi, bool? isDarkTheme})
-      : super(isDarkTheme: isDarkTheme, colorsForUi: colorsForUi);
+  const SettingsChangedInitial({
+    required SelectedAPI selectedAPI,
+    required bool colormindForUI,
+    required int huemintAdjacency,
+    required double huemintTemperature,
+    bool? isDarkTheme,
+  }) : super(
+          isDarkTheme: isDarkTheme,
+          colormindForUI: colormindForUI,
+          huemintAdjacency: huemintAdjacency,
+          huemintTemperature: huemintTemperature,
+          selectedAPI: selectedAPI,
+        );
 }

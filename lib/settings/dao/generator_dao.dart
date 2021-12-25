@@ -4,10 +4,11 @@ import '../../color_generator/interfaces/api.dart';
 import '../../color_generator/services/api/colormind/colormind_api.dart';
 import '../../color_generator/services/api/huemint/huemint_api.dart';
 import '../../core/models/color_palette/color_palette.dart';
+import '../mixins/colormind_settings.dart';
+import '../mixins/huemint_settings.dart';
 import '../models/selected_api.dart';
 
-class GeneratorDAO {
-  bool colorsForUi;
+class GeneratorDAO with ColormindSettings, HuemintSettings {
   bool? isDarkTheme;
   SelectedAPI api;
 
@@ -15,13 +16,13 @@ class GeneratorDAO {
   API<Object> get selectedApi {
     switch (api) {
       case SelectedAPI.huemint:
-        return const HuemintAPI(adjacency: 36, temperature: 1.2);
+        return HuemintAPI(adjacency: huemintAdjacency, temperature: huemintTemperature);
       case SelectedAPI.colormind:
-        return ColormindAPI(forUI: colorsForUi);
+        return ColormindAPI(forUI: colormindForUI);
     }
   }
 
-  GeneratorDAO({this.colorsForUi = false, this.isDarkTheme, this.api = SelectedAPI.colormind});
+  GeneratorDAO({this.isDarkTheme, this.api = SelectedAPI.colormind});
 
   Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) async =>
       selectedApi.fetchNewColors(palette, lockedColors);
