@@ -47,10 +47,19 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(text: AppLocalizations.of(context).aboutGenerator),
                 TextSpan(
                   style: linkStyle,
-                  text: ' Colormind API',
+                  text: ' Colormind.io',
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
-                          const AboutApiProviderTaped(),
+                          const AboutColormindApiTaped(),
+                        ),
+                ),
+                TextSpan(text: ' ${AppLocalizations.of(context).and} '),
+                TextSpan(
+                  style: linkStyle,
+                  text: 'Huemint.com',
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
+                          const AboutHuemintApiTaped(),
                         ),
                 ),
                 TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),

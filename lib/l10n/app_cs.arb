@@ -102,5 +102,11 @@
         }
     },
     "invalidHexErrorLabel": "Vložen neplatný HEX kód",
-    "hexHintTextLabel": "HEX kód barvy"
+    "hexHintTextLabel": "HEX kód barvy",
+    "and": "a",
+    "selectAiProvider": "Vyberte poskytovatele barev AI:",
+    "colormindApiDescription": "Starší, má problémy s konektivitou",
+    "huemintApiDescription": "Zbrusu nový, méně známý/populární",
+    "adjacency": "Přilehlost (kontrast mezi barvami)",
+    "temperature": "Kreativita (teplota vzorkování)"
 }

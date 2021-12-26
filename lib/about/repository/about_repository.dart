@@ -7,6 +7,7 @@ import '../../core/services/url_launcher.dart';
 class AboutRepository {
   final String _aboutColormind;
   final String _aboutGoogle;
+  final String _aboutHuemint;
   late final String _locale;
   final String _materialSounds;
   final String _soundsLicense;
@@ -19,6 +20,7 @@ class AboutRepository {
   AboutRepository({
     String aboutColormind = 'http://colormind.io/api-access',
     String aboutGoogle = 'https://about.google/intl/',
+    String aboutHuemint = 'https://huemint.com/about',
     String materialSounds = 'https://material.io/design/sound/sound-resources.html',
     String soundsLicense = 'https://creativecommons.org/licenses/by/4.0/legalcode.',
     String sourceCode = 'https://github.com/tsinis/colors_ai',
@@ -26,6 +28,7 @@ class AboutRepository {
   })  : _urlLauncher = urlLauncher,
         _aboutColormind = aboutColormind,
         _aboutGoogle = aboutGoogle,
+        _aboutHuemint = aboutHuemint,
         _materialSounds = materialSounds,
         _soundsLicense = soundsLicense,
         _sourceCode = sourceCode;
@@ -41,12 +44,9 @@ class AboutRepository {
   }
 
   void openSourceCode() => _urlLauncher.openURL(_sourceCode);
-
-  void openAboutApi() => _urlLauncher.openURL(_aboutColormind);
-
+  void openAboutColormind() => _urlLauncher.openURL(_aboutColormind);
+  void openAboutHuemint() => _urlLauncher.openURL(_aboutHuemint);
   void openAboutSounds() => _urlLauncher.openURL(_materialSounds);
-
   void openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + _locale);
-
   void openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + (_locale != 'sk' ? _locale : 'en'));
 }

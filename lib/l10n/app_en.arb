@@ -312,5 +312,29 @@
     "hexHintTextLabel": "Hex color code",
     "@hexHintTextLabel": {
         "description": "Hint text on the text field in color-picker dialog."
+    },
+    "and": "and",
+    "@and": {
+        "description": "Used in in about dialog."
+    },
+    "selectAiProvider": "Select AI colors provider:",
+    "@selectAiProvider": {
+        "description": "Label text in drowpdown menu, in settings dialog."
+    },
+    "colormindApiDescription": "Older, heavily used, has network issues",
+    "@colormindApiDescription": {
+        "description": "Helper text below drowpdown menu, for Colormind API, in settings dialog."
+    },
+    "huemintApiDescription": "Brand new, less known so less popular",
+    "@huemintApiDescription": {
+        "description": "Helper text below drowpdown menu, for Huemint API, in settings dialog."
+    },
+    "adjacency": "Adjacency (contrast between colors)",
+    "@adjacency": {
+        "description": "Huemint's top slider title, in settings dialog."
+    },
+    "temperature": "Creativity (sampling temperature)",
+    "@temperature": {
+        "description": "Huemint's bottom slider title, in settings dialog."
     }
 }

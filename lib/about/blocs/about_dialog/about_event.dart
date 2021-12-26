@@ -16,8 +16,12 @@ class AboutStarted extends AboutEvent {
   const AboutStarted({required this.currentLocale});
 }
 
-class AboutApiProviderTaped extends AboutEvent {
-  const AboutApiProviderTaped();
+class AboutColormindApiTaped extends AboutEvent {
+  const AboutColormindApiTaped();
+}
+
+class AboutHuemintApiTaped extends AboutEvent {
+  const AboutHuemintApiTaped();
 }
 
 class AboutSourceCodeTaped extends AboutEvent {

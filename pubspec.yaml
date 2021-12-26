@@ -1,6 +1,6 @@
 version: 1.5.0+8
 name: colors_ai
-description: Color scheme generator that uses deep learning from Colormind API.
+description: Color scheme generator that uses deep learning from public providers.
 repository: https://github.com/tsinis/colors_ai
 issue_tracker: https://github.com/tsinis/colors_ai/issues
 maintainer: Roman Cinis

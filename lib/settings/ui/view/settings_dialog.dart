@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../app/theme/constants.dart';
 import '../../../core/extensions/string_extension.dart';
 import '../../blocs/settings_bloc.dart';
+import '../../extensions/string_selected_api_extension.dart';
 import '../../mixins/huemint_settings.dart';
 import '../../models/selected_api.dart';
 import '../widgets/gradient_slider_shape.dart';
@@ -25,17 +26,17 @@ class SettingsDialog extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: DropdownButtonFormField<SelectedAPI>(
                   isExpanded: true,
                   dropdownColor: Theme.of(context).dialogBackgroundColor,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Theme.of(context).splashColor,
-                    labelText: AppLocalizations.of(context).shareFile, //TODO Change.
+                    labelText: AppLocalizations.of(context).selectAiProvider,
                     helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
                     helperMaxLines: 1,
-                    helperText: 'Helper text', //TODO Change.
+                    helperText: state.selectedAPI.helperText(AppLocalizations.of(context)),
                   ),
                   value: state.selectedAPI,
                   onChanged: (SelectedAPI? api) => BlocProvider.of<SettingsBloc>(context).add(SettingsApiSelected(api)),
@@ -84,7 +85,7 @@ class SettingsDialog extends StatelessWidget {
                     children: <ListTile>[
                       ListTile(
                         dense: true,
-                        title: const Text('Adjacency'), //TODO Change.
+                        title: Text(AppLocalizations.of(context).adjacency),
                         subtitle: SliderTheme(
                           data: SliderThemeData(
                             valueIndicatorColor: Theme.of(context).primaryColor,
@@ -102,7 +103,7 @@ class SettingsDialog extends StatelessWidget {
                       ),
                       ListTile(
                         dense: true,
-                        title: const Text('Temperature'), //TODO Change.
+                        title: Text(AppLocalizations.of(context).temperature),
                         subtitle: SliderTheme(
                           data: const SliderThemeData(trackShape: GradientSliderShape()),
                           child: Slider(

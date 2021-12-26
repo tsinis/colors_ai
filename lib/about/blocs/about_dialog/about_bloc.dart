@@ -17,8 +17,10 @@ class AboutBloc extends Bloc<AboutEvent, AboutState> {
   Stream<AboutState> mapEventToState(AboutEvent event) async* {
     if (event is AboutStarted) {
       await _aboutRepository.init(event.currentLocale);
-    } else if (event is AboutApiProviderTaped) {
-      _aboutRepository.openAboutApi();
+    } else if (event is AboutColormindApiTaped) {
+      _aboutRepository.openAboutColormind();
+    } else if (event is AboutHuemintApiTaped) {
+      _aboutRepository.openAboutHuemint();
     } else if (event is AboutSourceCodeTaped) {
       _aboutRepository.openSourceCode();
     } else if (event is AboutSoundAssetsTaped) {

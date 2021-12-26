@@ -29,7 +29,7 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
 
 ## Description
 
-Colors AI is a cross-platform color scheme generator that uses **deep learning from Colormind API**. Application is made with *Flutter&trade; SDK* and available for all mainstream operating systems, mobile included.
+Colors AI is a cross-platform color scheme generator that uses **deep learning from from public API providers**. Application is made with *Flutter&trade; SDK* and available for all mainstream operating systems, mobile included.
 
 ## Technical Data
 

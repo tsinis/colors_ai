@@ -10,6 +10,7 @@ mixin UrlProvidersList {
     Coolors(),
     DesignAI(),
     DopelyColors(),
+    Huemint(),
     MakeTintsAndShades(),
     MuzliColors(),
     Palettable(),

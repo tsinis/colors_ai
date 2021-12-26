@@ -10,9 +10,9 @@ class GradientSliderShape extends SliderTrackShape with BaseSliderTrackShape {
     this.darkenInactive = true,
     this.gradient = const LinearGradient(
       colors: <Color>[
-        Colors.red,
-        Colors.grey,
         Colors.blue,
+        Colors.grey,
+        Colors.red,
       ],
     ),
   });

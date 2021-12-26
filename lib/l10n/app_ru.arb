@@ -90,7 +90,7 @@
     "appearance": "Внешний вид",
     "lightThemeTitle": "Светлый",
     "lightThemeSubtitle": "Нейтрально-серый, неконтрастный интерфейс",
-    "darkThemeTitle": "Тё‎мный",
+    "darkThemeTitle": "Тёмный",
     "darkThemeSubtitle": "Насыщенно-серый пользовательский интерфейс",
     "systemThemeTitle": "Системный",
     "systemThemeSubtitle": "Использует яркость темы устройства",
@@ -102,5 +102,11 @@
         }
     },
     "invalidHexErrorLabel": "Вставлен неверный HEX код",
-    "hexHintTextLabel": "HEX код цвета"
+    "hexHintTextLabel": "HEX код цвета",
+    "and": "и",
+    "selectAiProvider": "Выберите поставщика цветов AI:",
+    "colormindApiDescription": "Старый, имеет проблемы с соединением",
+    "huemintApiDescription": "Новый, менее известный/популярный",
+    "adjacency": " Смежность (контраст между цветами)",
+    "temperature": "Креативность (температура выборки)"
 }
