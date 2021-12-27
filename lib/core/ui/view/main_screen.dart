@@ -35,6 +35,7 @@ class MainScreen extends StatefulWidget {
 class _NavigationScreenState extends State<MainScreen> {
   bool showGenFab = false;
   final SoundBloc soundBloc = SoundBloc(SoundsRepository());
+  final FocusNode keyboardListenerNode = FocusNode(debugLabel: 'keyboard');
 
   bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
   SystemUiOverlayStyle get overlayStyle => Theme.of(context).brightness == Brightness.dark
@@ -57,7 +58,7 @@ class _NavigationScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
-        providers: <BlocProvider<dynamic>>[
+        providers: <BlocProvider<BlocBase<Object>>>[
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockBloc>(
             create: (_) => LockBloc(context.read<ColorsRepository>())..add(const LockStarted()),
@@ -78,15 +79,15 @@ class _NavigationScreenState extends State<MainScreen> {
                 ...WidgetsApp.defaultShortcuts,
                 const SingleActivator(kSpacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
               },
-              child: RawKeyboardListener(
-                focusNode: FocusNode(),
+              child: KeyboardListener(
+                focusNode: keyboardListenerNode,
                 includeSemantics: false,
                 autofocus: true,
-                onKey: (RawKeyEvent event) {
-                  if (event.isKeyPressed(LogicalKeyboardKey.tab) && !showGenFab) {
+                onKeyEvent: (KeyEvent event) {
+                  if (event.logicalKey == LogicalKeyboardKey.tab && !showGenFab) {
                     setState(() => showGenFab = true);
                   }
-                  if (event.isKeyPressed(kSpacebar) && isGenTab) {
+                  if (event.logicalKey == kSpacebar && isGenTab) {
                     if (kIsWeb) {
                       BlocProvider.of<SoundBloc>(navContext).add(const SoundRefreshed());
                     }
@@ -107,7 +108,7 @@ class _NavigationScreenState extends State<MainScreen> {
                       ),
                     ),
                     body: MultiBlocProvider(
-                      providers: <BlocProvider<dynamic>>[
+                      providers: <BlocProvider<BlocBase<Object>>>[
                         BlocProvider<ColorPickerBLoc>(create: (_) => ColorPickerBLoc()),
                         BlocProvider<ShareBloc>(
                           lazy: false,

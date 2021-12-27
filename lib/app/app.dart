@@ -38,7 +38,7 @@ class App extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme(isDark: settingsState.isDarkTheme).theme,
             home: MultiBlocProvider(
-              providers: <BlocProvider<dynamic>>[
+              providers: <BlocProvider<BlocBase<Object>>>[
                 BlocProvider<FabBloc>(create: (_) => FabBloc()),
                 BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
                 BlocProvider<RemoveFavoritesBloc>(

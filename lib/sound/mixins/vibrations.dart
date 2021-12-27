@@ -3,7 +3,8 @@ import 'package:vibration/vibration.dart';
 
 mixin Vibrations {
   late final bool customVibrationsAvailible;
-  Future<void> init() async {
+
+  Future<void> initVibrations() async {
     if (platform.isMobile) {
       customVibrationsAvailible =
           (await Vibration.hasVibrator() ?? false) && (await Vibration.hasCustomVibrationsSupport() ?? false);

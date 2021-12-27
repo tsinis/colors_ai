@@ -23,7 +23,7 @@ Future<void> main() async {
   SystemUI.init();
   runApp(
     MultiBlocProvider(
-      providers: <BlocProvider<dynamic>>[
+      providers: <BlocProvider<BlocBase<Object>>>[
         BlocProvider<AboutBloc>(lazy: false, create: (_) => AboutBloc(AboutRepository())),
         BlocProvider<SettingsBloc>(
           lazy: false,

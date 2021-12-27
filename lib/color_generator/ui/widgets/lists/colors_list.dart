@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
+import '../../../../app/theme/constants.dart';
 import '../../../../color_picker/ui/view/colorpicker.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
@@ -32,9 +33,9 @@ class ColorsList extends StatefulWidget {
   const ColorsList(
     this.palette, {
     this.lowerBound = 0.2,
-    this.curve = Curves.easeInCubic,
+    this.curve = Curves.easeInCirc,
     this.reverseCurve = Curves.easeInExpo,
-    this.duration = const Duration(milliseconds: 600),
+    this.duration = kDefaultLongTransitionDuration,
     Key? key,
   }) : super(key: key);
 
