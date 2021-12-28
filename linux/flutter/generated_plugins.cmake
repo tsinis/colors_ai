@@ -3,7 +3,9 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  dart_vlc
   file_selector_linux
+  flutter_secure_storage_linux
   printing
   url_launcher_linux
   window_size
