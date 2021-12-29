@@ -23,7 +23,6 @@ parts:
     plugin: flutter
     flutter-target: lib/main.dart
     build-packages:
-      - cmake
       - libjsoncpp-dev
       - libsecret-1-dev
       - libvlc-dev

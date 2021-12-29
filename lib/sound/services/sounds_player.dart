@@ -15,7 +15,7 @@ class SoundsPlayer {
     if (_isWindowsOrLinux) {
       DartVLC.initialize();
       _vlcPlayer = Player(id: vlcPlayerId, commandlineArguments: vlcCommandlineArgs);
-      _vlcPlayer?.playbackStream.listen((PlaybackState playback) => _onPlayStateChange(playback.isCompleted));
+      _vlcPlayer?.playbackStream.listen((PlaybackState playback) => _onPlayStateChange(!playback.isCompleted));
     } else {
       _vlcPlayer = null;
       _justAudioPlayer.processingStateStream.listen(

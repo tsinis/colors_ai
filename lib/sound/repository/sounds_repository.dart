@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../mixins/vibrations.dart';
 import '../models/sounds/sound.dart';
 import '../models/sounds/sounds_source.dart';
-import '../models/sounds_player.dart';
+import '../services/sounds_player.dart';
 
 class SoundsRepository with Vibrations {
   final SoundsSource sounds;

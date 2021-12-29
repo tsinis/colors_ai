@@ -54,7 +54,7 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 Flutter version **2.8** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
-```bash
+```shell
 flutter pub get
 flutter gen-l10n
 flutter run
@@ -65,7 +65,11 @@ flutter run
 You should run the mobile and Windows versions of the app without any additional steps.
 
 * For macOS builds you may need to install [CMake](https://cmake.org/download) first and add your macOS device to your developer's account (not necessary for direct XCode builds).
-* For Linux builds you will need to install those packages first (via sudo apt-get install): `libvlc-dev, vlc, libsecret-1-dev, libjsoncpp-dev`. If you want to run app from this binary, you will also need `libsecret-1-0` and `libjsoncpp1`. Please do not use a Snap version of Flutter, since it have a locked CMake version at this moment.
+* For Linux builds you will need to install those packages first (via sudo apt-get install): `libvlc-dev, vlc, libsecret-1-dev, libjsoncpp-dev`. If you want to run app from this binary, you will also need `libsecret-1-0` and `libjsoncpp1`. Please do not use a Snap version of Flutter, since it have a locked CMake version at this moment. So basically you can just run:
+
+```shell
+sudo apt-get install libvlc-dev vlc libsecret-1-dev libjsoncpp-dev libsecret-1-0 libjsoncpp1
+```
 
 ## Design
 
