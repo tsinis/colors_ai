@@ -12,7 +12,7 @@ architectures:
 apps:
   colors-ai:
     command: colors_ai
-    extensions: [flutter-beta]
+    extensions: [flutter-stable]
     plugs:
       - network
       - home
