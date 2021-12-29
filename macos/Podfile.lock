@@ -1,6 +1,9 @@
 PODS:
   - audio_session (0.0.1):
     - FlutterMacOS
+  - dart_vlc (0.0.1):
+    - FlutterMacOS
+    - VLCKit (~> 3.3)
   - flutter_secure_storage_macos (3.3.1):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
@@ -16,11 +19,13 @@ PODS:
     - FlutterMacOS
   - url_launcher_macos (0.0.1):
     - FlutterMacOS
+  - VLCKit (3.3.17)
   - window_size (0.0.2):
     - FlutterMacOS
 
 DEPENDENCIES:
   - audio_session (from `Flutter/ephemeral/.symlinks/plugins/audio_session/macos`)
+  - dart_vlc (from `Flutter/ephemeral/.symlinks/plugins/dart_vlc/macos`)
   - flutter_secure_storage_macos (from `Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - just_audio (from `Flutter/ephemeral/.symlinks/plugins/just_audio/macos`)
@@ -31,9 +36,15 @@ DEPENDENCIES:
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
   - window_size (from `Flutter/ephemeral/.symlinks/plugins/window_size/macos`)
 
+SPEC REPOS:
+  trunk:
+    - VLCKit
+
 EXTERNAL SOURCES:
   audio_session:
     :path: Flutter/ephemeral/.symlinks/plugins/audio_session/macos
+  dart_vlc:
+    :path: Flutter/ephemeral/.symlinks/plugins/dart_vlc/macos
   flutter_secure_storage_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos
   FlutterMacOS:
@@ -55,6 +66,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   audio_session: dea1f41890dbf1718f04a56f1d6150fd50039b72
+  dart_vlc: de4ba59a6ded5a914a14fb026f7bcbe74c471dee
   flutter_secure_storage_macos: 6ceee8fbc7f484553ad17f79361b556259df89aa
   FlutterMacOS: 57701585bf7de1b3fc2bb61f6378d73bbdea8424
   just_audio: 9b67ca7b97c61cfc9784ea23cd8cc55eb226d489
@@ -63,6 +75,7 @@ SPEC CHECKSUMS:
   printing: e4b7e232ff3d5d50a70b20d959aa71035a5c31f9
   share_plus_macos: 853ee48e7dce06b633998ca0735d482dd671ade4
   url_launcher_macos: 45af3d61de06997666568a7149c1be98b41c95d4
+  VLCKit: 21651e881f19774ecf9a86ca2c2010859fe68a08
   window_size: 339dafa0b27a95a62a843042038fa6c3c48de195
 
 PODFILE CHECKSUM: 290b89638b803a41d96e2a2c02a9e1e635956f78

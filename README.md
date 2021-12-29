@@ -3,7 +3,7 @@
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[![Video](./resources/images/video_preview.jpg)](https://www.youtube.com/watch?v=0ouuFWZtw64)
+[![Video](./resources/images/video_preview.jpg)](https://vimeo.com/tsinis/colors-ai)
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="190" alt="Get it on Google Play">](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/colors-ai)
@@ -22,7 +22,7 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
   * [Tests](#Tests)
 * [Accessibility](#Accessibility)
 * [How to run it](#How-to-run-it)
-* [UI/UX Design](#UI/UX-Design)
+* [Design](#Design)
 * [To-Do Section](#To-Do-Section)
 * [Licenses](#Licenses)
 * [Attributions](#Attributions)
@@ -48,8 +48,7 @@ Application is **partially covered with Unit, Widget, and Integration tests**. M
 
 ## Accessibility
 
-The app was originally designed to be accessible by **WCAG 2.1 AA standards at minimum, and AAA in particular**, although it was not intended to be used by the blind or by people with severe visual disabilities. All **texts have a contrast ratio at least of 4.5, images 3.0, touch target sizes of at least 48dp**. The application was audited physically on a first-generation iPhone SE (smallest iPhone at this moment) with maximum font size, thickness, contrast, and component magnification. The **audit was also performed on the macOS** version of the app, using the same Accessibility Inspector as on the iOS. The **report from the official Accessibility Scanner for Android** (with a tested device with screen size 640x320px and maximum UI and font scale) can be found at [resources/accessibility](./resources/accessibility/) folder. As you may see it will only complain about the small tap size of text links in the *About* app section and overall screen semantics (which is a [framework bug](https://github.com/flutter/flutter/issues/39531)). Also, the application is **translated into 4 languages, have a haptic feedback (vibration) on mobile devices and sound feedback on all platforms** (expect PCs at this moment of time). The UI was also built to be **controllable via keyboard/input device/remote control/gamepad**, [here you will find a remote control showcase video](https://drive.google.com/file/d/15Ppuk3ELnP6MhUP6smwmrOS-LdbF0ji0/view?usp=sharing).
-However, in the future, I'm planning to improve the control via the input device.
+The app was originally designed to be accessible by **WCAG 2.1 AA standards at minimum, and AAA in particular**, although it was not intended to be used by the blind or by people with severe visual disabilities. All **texts have a contrast ratio at least of 4.5, images 3.0, touch target sizes of at least 48dp**. The application was audited physically on a first-generation iPhone SE (smallest iPhone at this moment) with maximum font size, thickness, contrast, and component magnification. The **audit was also performed on the macOS** version of the app, using the same Accessibility Inspector as on the iOS. The **report from the official Accessibility Scanner for Android** (with a tested device with screen size 640x320px and maximum UI and font scale) can be found at [resources/accessibility](./resources/accessibility/) folder. As you may see it will only complain about the small tap size of text links in the *About* app section and overall screen semantics (which is a [framework bug](https://github.com/flutter/flutter/issues/39531)). Also, the application is **translated into 4 languages, have a haptic feedback (vibration) on mobile devices and sound feedback on all platforms**. The UI was also built to be **controllable via keyboard/input device/remote control/gamepad**, however, in the future, I'm planning to improve the control via the input devices.
 
 ## How to run it
 
@@ -61,7 +60,14 @@ flutter gen-l10n
 flutter run
 ```
 
-## UI/UX Design
+### Platform Specific Setup
+
+You should run the mobile and Windows versions of the app without any additional steps.
+
+* For macOS builds you may need to install [CMake](https://cmake.org/download) first and add your macOS device to your developer's account (not necessary for direct XCode builds).
+* For Linux builds you will need to install those packages first (via sudo apt-get install): `libvlc-dev, vlc, libsecret-1-dev, libjsoncpp-dev`. If you want to run app from this binary, you will also need `libsecret-1-0` and `libjsoncpp1`. Please do not use a Snap version of Flutter, since it have a locked CMake version at this moment.
+
+## Design
 
 All animations here are made with pure Flutter. The application's UI is designed with "gesture-first" UX on mobile platforms and strictly following [Material Design 3 (Material You) Guidelines](https://m3.material.io). Neutral grey color UI is used here to not disrupt user's color perception with highly contrasting light or dark themes.
 
@@ -75,7 +81,7 @@ All animations here are made with pure Flutter. The application's UI is designed
 * [x] L10N.
 * [ ] Add more keyboard shortcuts.
 * [ ] Add Feedback.
-* [ ] Provide support for Favorites backup (online?).
+* [ ] Provide support for Favorites export/backup.
 
 > You can also find a few more specific TODOs in source code files.
 
