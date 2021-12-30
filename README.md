@@ -31,6 +31,18 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
 
 Colors AI is a cross-platform color scheme generator that uses **deep learning from from public API providers**. Application is made with *Flutter&trade; SDK* and available for all mainstream operating systems, mobile included.
 
+Features:
+
+* Choose from open APIs, with the ability to set up custom settings
+* URL providers to other static color generators
+* Export section with many export formats to save or clipboard copy
+* Dark and light theme
+* Data encryption
+* Localized to several languages
+* Material Design 3
+* Accessibility
+* And much more
+
 ## Technical Data
 
 ### Architecture
