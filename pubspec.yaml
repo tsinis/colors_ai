@@ -26,7 +26,7 @@ dependencies:
   flutter_localizations: # From Google
      sdk: flutter
   flutter_secure_storage: ^5.0.2
-  google_fonts: ^2.1.1 # From Google
+  google_fonts: ^2.2.0 # From Google
   http: ^0.13.0-nullsafety.0 # From Google
   hydrated_bloc: 7.0.1
   intl: ^0.17.0 # From Google
