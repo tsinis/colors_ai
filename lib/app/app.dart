@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../about/blocs/about_dialog/about_bloc.dart';
 import '../color_generator/models/locks/locked_colors.dart';
 import '../core/models/color_palette/color_palette.dart';
 import '../core/repository/colors_repository.dart';
@@ -33,10 +34,16 @@ class App extends StatelessWidget {
           }
 
           return MaterialApp(
-            title: kAppName,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme(isDark: settingsState.isDarkTheme).theme,
+            onGenerateTitle: (BuildContext context) {
+              BlocProvider.of<AboutBloc>(context).add(
+                AboutStarted(currentLocale: Localizations.localeOf(context).languageCode),
+              );
+
+              return kAppName;
+            },
             home: MultiBlocProvider(
               providers: <BlocProvider<BlocBase<Object>>>[
                 BlocProvider<FabBloc>(create: (_) => FabBloc()),

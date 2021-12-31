@@ -11,9 +11,7 @@ part 'onboarding_state.dart';
 class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
   final OnboardingRepository _onboardingRepository;
 
-  OnboardingBloc(OnboardingRepository onboardingRepository)
-      : _onboardingRepository = onboardingRepository,
-        super(const OnboardingInitial());
+  OnboardingBloc(this._onboardingRepository) : super(const OnboardingInitial());
 
   @override
   Stream<OnboardingState> mapEventToState(OnboardingEvent event) async* {

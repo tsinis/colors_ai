@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
-import '../../../about/blocs/about_dialog/about_bloc.dart';
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
@@ -47,13 +46,6 @@ class _NavigationScreenState extends State<MainScreen> {
   void initState() {
     soundBloc.add(const SoundStarted());
     super.initState();
-    // AppLocalizations are not avalible before initState method complete.
-    Future<void>.delayed(
-      Duration.zero,
-      () => BlocProvider.of<AboutBloc>(context).add(
-        AboutStarted(currentLocale: AppLocalizations.of(context).localeName),
-      ),
-    );
   }
 
   @override

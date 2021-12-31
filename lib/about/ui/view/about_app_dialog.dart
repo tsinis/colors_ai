@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +11,13 @@ import '../widgets/app_icon.dart';
 
 class AboutAppDialog extends StatelessWidget {
   final Widget applicationIcon;
-  final String? applicationLegalese;
+  final String applicationLegalese;
   final TextStyle? linkTextStyle;
   final double? topPadding;
   final double width;
 
   const AboutAppDialog({
-    this.applicationLegalese = '2021 © Roman Cinis',
+    this.applicationLegalese = ' © Roman Cinis',
     this.applicationIcon = const AppIcon(),
     this.topPadding = 20,
     this.linkTextStyle,
@@ -33,7 +34,7 @@ class AboutAppDialog extends StatelessWidget {
 
     return AboutDialogM3(
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
-      applicationLegalese: applicationLegalese,
+      applicationLegalese: clock.now().year.toString() + applicationLegalese,
       applicationIcon: applicationIcon,
       applicationName: kAppName,
       children: <Widget>[

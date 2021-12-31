@@ -107,6 +107,13 @@ unlinked_spec.ds
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
+# Coverage
+coverage/
+coverage_badge.svg
+.test_coverage.dart
+*.lcov
+nohup.out
+
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 fvm

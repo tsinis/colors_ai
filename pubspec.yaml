@@ -48,11 +48,13 @@ dependencies:
       ref: 03d957e8b5c99fc83cd4a781031b154ab3de8753
 
 dev_dependencies:
+  bloc_test: 8.5.0
   build_runner: ^2.1.7 # From Google
   dart_code_metrics: ^4.8.1 # Flutter Favorite
   flutter_lints: ^1.0.4  # From Google
   flutter_test: # From Google
     sdk: flutter
+  golden_toolkit: ^0.12.0
   hive_generator: ^1.1.1
   integration_test: # From Google
     sdk: flutter
