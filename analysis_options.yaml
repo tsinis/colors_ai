@@ -91,7 +91,7 @@ linter:
   rules:
     # Disabled
     always_use_package_imports: false # against prefer_relative_imports
-    avoid_as: false # depricated
+    avoid_as: false # deprecated
     avoid_types_on_closure_parameters: false # against always_specify_types
     depend_on_referenced_packages: false # false positive on l10n
     diagnostic_describe_all_properties: false
@@ -105,7 +105,6 @@ linter:
     sort_constructors_first: false # against member-ordering-extended
     sort_unnamed_constructors_first: false # against member-ordering-extended
     unnecessary_final: false # against prefer_final_locals
-    use_late_for_private_fields_and_variables: false # experimental
 
     # Enabled
     always_put_control_body_on_new_line: true
@@ -302,3 +301,4 @@ linter:
     sized_box_shrink_expand: true
     unnecessary_late: true
     use_decorated_box: true
+    use_late_for_private_fields_and_variables: true

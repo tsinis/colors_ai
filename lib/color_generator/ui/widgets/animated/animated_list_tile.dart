@@ -19,7 +19,7 @@ class AnimatedListTile extends StatefulWidget {
     required this.size,
     this.duration = kDefaultShortTransitionDuration,
     this.curve = kDefaultTransitionCurve,
-    this.hoverPadding = 48,
+    this.hoverPadding = 32,
     this.hoverIndex,
     Key? key,
   }) : super(key: key);
@@ -37,7 +37,7 @@ class _AnimatedListItemState extends State<AnimatedListTile> {
 
   double get tileWeight => widget.size.maxWidth / widget.length;
 
-  double get additionaHoverPadding {
+  double get additionalHoverPadding {
     if (widget.hoverIndex == null) {
       return 0;
     } else if (widget.index == widget.hoverIndex) {
@@ -62,13 +62,13 @@ class _AnimatedListItemState extends State<AnimatedListTile> {
         curve: widget.curve,
         height: isPortrait
             ? isAnimationDone
-                ? tileHeight + additionaHoverPadding
+                ? tileHeight + additionalHoverPadding
                 : (widget.index + 1) * tileHeight * widget.length
             : widget.size.maxHeight,
         width: isPortrait
             ? widget.size.maxWidth
             : isAnimationDone
-                ? tileWeight + additionaHoverPadding
+                ? tileWeight + additionalHoverPadding
                 : (widget.index + 1) * tileWeight * widget.length,
         duration: widget.duration,
         child: AnimatedOpacity(

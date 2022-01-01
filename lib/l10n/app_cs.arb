@@ -23,7 +23,7 @@
             "colorHexValue": {}
         }
     },
-    "serverMaintanceMessage": "Server je aktualizován o půlnoci PDT, takže může být chvílku nedostupný",
+    "serverMaintenanceMessage": "Server je aktualizován o půlnoci PDT, takže může být chvílku nedostupný",
     "shareFailedMessage": "Sdílení se nezdařilo, zkuste jiný typ.",
     "removeFavoritesTip": "Klepnutím barvy obnovíte.\nPřejetím barvy odstraníte",
     "pullToRefreshTip": "Táhnete dolů pro generování",

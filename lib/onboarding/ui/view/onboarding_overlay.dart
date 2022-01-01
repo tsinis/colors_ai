@@ -5,7 +5,7 @@ import 'package:platform_info/platform_info.dart';
 
 import '../../../common/ui/widgets/helpers/orientation_switcher.dart';
 import '../../../testing/test_keys.dart';
-import '../../blocs/onboarding/onboarding_bloc.dart';
+import '../../blocs/onboarding_bloc.dart';
 import '../widgets/animations/pull_to_refresh_animation.dart';
 import '../widgets/animations/spacebar_animation.dart';
 import '../widgets/onboarding_tile.dart';

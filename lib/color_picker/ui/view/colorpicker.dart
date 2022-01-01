@@ -9,8 +9,8 @@ import '../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/extensions/color_extensions.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
-import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
-import '../../blocs/colorpicker_dialog/colorpicker_bloc.dart';
+import '../../../sound/blocs/sound_bloc.dart';
+import '../../blocs/colorpicker_bloc.dart';
 import '../widgets/colorpicker_dialog.dart';
 
 class Colorpicker extends StatelessWidget {

@@ -56,11 +56,13 @@ class ColorsRepository {
   void lock(int colorIndex) => _locked.lock(colorIndex);
 
   void swapColors({required int oldIndex, required int newIndex}) {
-    // https://github.com/flutter/flutter/issues/24786 newIndex may be wrong :(
-    // ignore: parameter_assignments, always_put_control_body_on_new_line
-    if (oldIndex < newIndex) newIndex -= 1;
-    final int colorsAvailble = kDefaultColors.length - 1;
-    final int newIndexUngrowed = (newIndex > colorsAvailble) ? colorsAvailble : newIndex;
+    // ! https://github.com/flutter/flutter/issues/24786 newIndex may be wrong :(
+    if (oldIndex < newIndex) {
+      // ignore: parameter_assignments
+      newIndex -= 1;
+    }
+    final int colorsAvailable = kDefaultColors.length - 1;
+    final int newIndexUngrowed = (newIndex > colorsAvailable) ? colorsAvailable : newIndex;
     _colorPalette.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
     _locked.swap(oldIndex: oldIndex, newIndex: newIndexUngrowed);
   }

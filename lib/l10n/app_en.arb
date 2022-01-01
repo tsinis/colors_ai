@@ -78,8 +78,8 @@
             "colorHexValue": {}
         }
     },
-    "serverMaintanceMessage": "The server is updated at midnight PDT, so it may be unavailable for 30 sec.",
-    "@serverMaintanceMessage": {
+    "serverMaintenanceMessage": "The server is updated at midnight PDT, so it may be unavailable for 30 sec.",
+    "@serverMaintenanceMessage": {
         "description": "Label of snack bar message, after server maintenance detected."
     },
     "shareFailedMessage": "Failed to share, try another type.",
@@ -154,7 +154,7 @@
     "@shareUrlButtonLabel": {
         "description": "Label on the top right button on share tab."
     },
-    "a4DimensionsTitle": "210 by 297 millimetres",
+    "a4DimensionsTitle": "210 by 297 millimeters",
     "@a4DimensionsTitle": {
         "description": "Title of the top radio button list tile, on share tab."
     },
@@ -184,7 +184,7 @@
     },
     "unlockAllColors": "Unlock all colors",
     "@unlockAllColors": {
-        "description": "Label on top right lock icon, at the main screen."
+        "description": "Label on the top right lock icon, at the main screen."
     },
     "savePaletteToFavorites": "Save this palette to favorites",
     "@savePaletteToFavorites": {
@@ -256,15 +256,15 @@
     },
     "help": "Help",
     "@help": {
-        "description": "Label of Help Menu in Overdlow menu."
+        "description": "Label of Help Menu in Overflow menu."
     },
     "colorsForUiTitle": "Colors for UI",
     "@colorsForUiTitle": {
-        "description": "Label of switch tile in settings menu."
+        "description": "Label of switch tile in the settings menu."
     },
     "colorsForUiSubtitle": "Improve color generation for UI design",
     "@colorsForUiSubtitle": {
-        "description": "Description of switch tile in settings menu."
+        "description": "Description of switch tile in the settings menu."
     },
     "appearance": "Appearance:",
     "@appearance": {
@@ -272,19 +272,19 @@
     },
     "lightThemeTitle": "Light",
     "@lightThemeTitle": {
-        "description": "Title of light theme radio button."
+        "description": "Title of the light theme radio button."
     },
     "lightThemeSubtitle": "Neutral grey, non-contrast UI for light designs",
     "@lightThemeSubtitle": {
-        "description": "Subtitle of light theme radio button."
+        "description": "Subtitle of the light theme radio button."
     },
     "darkThemeTitle": "Dark",
     "@darkThemeTitle": {
-        "description": "Title of dark theme radio button."
+        "description": "Title of the dark theme radio button."
     },
     "darkThemeSubtitle": "Pitch grey UI, perfect for dark themed designs",
     "@darkThemeSubtitle": {
-        "description": "Subtitle of dark theme radio button."
+        "description": "Subtitle of the dark theme radio button."
     },
     "systemThemeTitle": "System",
     "@systemThemeTitle": {
@@ -307,11 +307,11 @@
     },
     "invalidHexErrorLabel": "Invalid Hex code pasted",
     "@invalidHexErrorLabel": {
-        "description": "Error message below text field in color-picker dialog."
+        "description": "Error message below text field in the color-picker dialog."
     },
     "hexHintTextLabel": "Hex color code",
     "@hexHintTextLabel": {
-        "description": "Hint text on the text field in color-picker dialog."
+        "description": "Hint text on the text field in the color-picker dialog."
     },
     "and": "and",
     "@and": {
@@ -319,22 +319,22 @@
     },
     "selectAiProvider": "Select AI colors provider:",
     "@selectAiProvider": {
-        "description": "Label text in drowpdown menu, in settings dialog."
+        "description": "Label text in the drop-down menu, in the settings dialog."
     },
     "colormindApiDescription": "Older, heavily used, has network issues",
     "@colormindApiDescription": {
-        "description": "Helper text below drowpdown menu, for Colormind API, in settings dialog."
+        "description": "Helper text below drop-down menu, for Colormind API, in the settings dialog."
     },
     "huemintApiDescription": "Brand new, less known so less popular",
     "@huemintApiDescription": {
-        "description": "Helper text below drowpdown menu, for Huemint API, in settings dialog."
+        "description": "Helper text below drop-down menu, for Huemint API, in the settings dialog."
     },
     "adjacency": "Adjacency (contrast between colors)",
     "@adjacency": {
-        "description": "Huemint's top slider title, in settings dialog."
+        "description": "Huemint's top slider title, in the settings dialog."
     },
     "temperature": "Creativity (sampling temperature)",
     "@temperature": {
-        "description": "Huemint's bottom slider title, in settings dialog."
+        "description": "Huemint's bottom slider title, in the settings dialog."
     }
 }

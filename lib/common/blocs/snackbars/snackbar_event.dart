@@ -19,7 +19,7 @@ class FileCopiedSuccess extends SnackbarEvent {
   final String format;
 
   @override
-  List<Object> get props => <String>[format];
+  List<String> get props => <String>[format];
 
   const FileCopiedSuccess(this.format);
 }

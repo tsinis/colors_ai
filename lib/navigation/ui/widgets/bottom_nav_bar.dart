@@ -4,15 +4,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
-import '../../blocs/navigation/navigation_bloc.dart';
+import '../../blocs/navigation_bloc.dart';
+import '../../mixins/nav_tab_indexer.dart';
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatelessWidget with NavTabIndexer {
   final NavigationDestinationLabelBehavior labelBehavior;
   final NavigationState navState;
-
-  int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
-  int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
-  int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
 
   const BottomNavBar(
     this.navState, {
@@ -31,18 +28,18 @@ class BottomNavBar extends StatelessWidget {
             labelBehavior: labelBehavior,
             selectedIndex: navState.tabIndex,
             onDestinationSelected: (int newTabIndex) {
-              if (!(isFavoritesEmpty && newTabIndex == _favoritesTabIndex)) {
+              if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
                 BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
               }
             },
             destinations: <NavigationDestination>[
               NavigationDestination(
-                label: tabLabels[_shareTabIndex],
+                label: tabLabels[shareTabIndex],
                 selectedIcon: const Icon(Icons.share),
                 icon: Icon(Icons.share_outlined, color: Theme.of(context).primaryIconTheme.color),
               ),
               NavigationDestination(
-                label: tabLabels[_colorsGenTabIndex],
+                label: tabLabels[colorsGenTabIndex],
                 icon: Icon(Icons.palette_outlined, color: Theme.of(context).primaryIconTheme.color),
                 selectedIcon: const Icon(Icons.palette),
               ),

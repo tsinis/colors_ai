@@ -4,7 +4,7 @@ abstract class SnackbarState extends Equatable {
   final String clipboard;
 
   @override
-  List<Object> get props => <String>[clipboard];
+  List<String> get props => <String>[clipboard];
 
   const SnackbarState(this.clipboard);
 }

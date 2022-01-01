@@ -8,7 +8,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/string_extension.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
-import '../../../blocs/share/share_bloc.dart';
+import '../../../blocs/share_bloc.dart';
 import '../../../models/file_format.dart';
 import 'share_section_interface.dart';
 
@@ -48,7 +48,7 @@ class FileShareSection extends ShareSectionInterface {
                 filled: true,
                 fillColor: Theme.of(context).splashColor,
                 labelText: AppLocalizations.of(context).shareFile,
-                helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                helperStyle: const TextStyle(fontSize: 12),
                 helperMaxLines: 1,
                 helperText: _helperText(AppLocalizations.of(context)),
               ),

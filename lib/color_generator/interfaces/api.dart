@@ -55,7 +55,7 @@ abstract class API<T extends Object> {
       throw Exception('Cannot parse host!');
     }
     final String payload = jsonEncode(body);
-    debugPrint('REQUEST PAYLOAD $payload');
+    debugPrint('REQUEST PAYLOAD: $payload');
     final Response response = await post(uri, headers: _headers, body: payload).timeout(_timeout);
 
     if (response.statusCode < 200 || response.statusCode > 299) {

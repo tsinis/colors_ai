@@ -6,11 +6,7 @@ import '../models/typedef_aliases/int_rgb_color.dart';
 import 'constants.dart';
 
 extension ColorExtensions on Color {
-  IntRGBColor toListInt() {
-    final List<int> rgb = <int>[red, green, blue];
-
-    return List<int>.unmodifiable(rgb);
-  }
+  IntRGBColor toListInt() => List<int>.unmodifiable(<int>[red, green, blue]);
 
   String toHex() => colorToHex(this, enableAlpha: false);
 

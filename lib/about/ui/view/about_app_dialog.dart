@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/ui/constants.dart';
-import '../../blocs/about_dialog/about_bloc.dart';
+import '../../blocs/about_bloc.dart';
 import '../widgets/about_dialog_m3.dart';
 import '../widgets/app_icon.dart';
 
@@ -27,10 +27,8 @@ class AboutAppDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? linkStyle = linkTextStyle ??
-        Theme.of(context).textTheme.bodyText2?.copyWith(
-              color: Theme.of(context).indicatorColor,
-            );
+    final TextStyle? linkStyle =
+        linkTextStyle ?? Theme.of(context).textTheme.bodyText2?.copyWith(color: Theme.of(context).indicatorColor);
 
     return AboutDialogM3(
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
@@ -49,28 +47,19 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(
                   style: linkStyle,
                   text: ' Colormind.io',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
-                          const AboutColormindApiTaped(),
-                        ),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutColormindApiTaped()),
                 ),
                 TextSpan(text: ' ${AppLocalizations.of(context).and} '),
                 TextSpan(
                   style: linkStyle,
                   text: 'Huemint.com',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
-                          const AboutHuemintApiTaped(),
-                        ),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutHuemintApiTaped()),
                 ),
                 TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
-                          const AboutSourceCodeTaped(),
-                        ),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSourceCodeTaped()),
                 ),
                 const TextSpan(text: '.'),
                 TextSpan(
@@ -80,28 +69,19 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(
                   style: linkStyle,
                   text: ' "Material Product Sounds"',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
-                          const AboutSoundAssetsTaped(),
-                        ),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSoundAssetsTaped()),
                 ),
                 TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' Google',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
-                          const AboutGoogleTaped(),
-                        ),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutGoogleTaped()),
                 ),
                 TextSpan(text: ' ${AppLocalizations.of(context).aboutSoundsLicense}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' CC BY 4.0',
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () => BlocProvider.of<AboutBloc>(context).add(
-                          const AboutLicenseTaped(),
-                        ),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutLicenseTaped()),
                 ),
                 const TextSpan(text: '.'),
               ],
@@ -111,4 +91,6 @@ class AboutAppDialog extends StatelessWidget {
       ],
     );
   }
+
+  void _onLinkTap(BuildContext context, AboutEvent event) => BlocProvider.of<AboutBloc>(context).add(event);
 }

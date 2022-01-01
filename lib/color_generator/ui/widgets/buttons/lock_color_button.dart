@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
+import '../../../../sound/blocs/sound_bloc.dart';
 import '../../../blocs/colors_locked/lock_bloc.dart';
 
 class LockColorButton extends StatelessWidget {

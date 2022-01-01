@@ -15,7 +15,7 @@ class NavigationTabChanged extends NavigationEvent {
   final int newTabIndex;
 
   @override
-  List<Object> get props => <int>[newTabIndex];
+  List<int> get props => <int>[newTabIndex];
 
   const NavigationTabChanged(this.newTabIndex);
 }

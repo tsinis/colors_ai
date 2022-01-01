@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
-import '../../repository/sounds_repository.dart';
+import '../repository/sounds_repository.dart';
 
 part 'sound_event.dart';
 part 'sound_state.dart';

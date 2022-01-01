@@ -7,7 +7,8 @@ import '../../../color_generator/ui/widgets/buttons/generate_colors_fab.dart';
 import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
-import '../../blocs/navigation/navigation_bloc.dart';
+import '../../blocs/navigation_bloc.dart';
+import '../../mixins/nav_tab_indexer.dart';
 
 class NavRail extends StatefulWidget {
   final Duration duration;
@@ -25,12 +26,8 @@ class NavRail extends StatefulWidget {
   State<NavRail> createState() => _NavRailState();
 }
 
-class _NavRailState extends State<NavRail> {
+class _NavRailState extends State<NavRail> with NavTabIndexer {
   late bool isExtended;
-
-  int get _colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
-  int get _favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
-  int get _shareTabIndex => const NavigationShareTabInitial().tabIndex;
 
   @override
   void didChangeDependencies() {
@@ -53,7 +50,7 @@ class _NavRailState extends State<NavRail> {
             return NavigationRail(
               selectedIndex: widget.navState.tabIndex,
               onDestinationSelected: (int newTabIndex) {
-                if (!(isFavoritesEmpty && newTabIndex == _favoritesTabIndex)) {
+                if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
                   BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
                 }
               },
@@ -72,12 +69,12 @@ class _NavRailState extends State<NavRail> {
               ),
               destinations: <NavigationRailDestination>[
                 NavigationRailDestination(
-                  label: Text(tabLabels[_shareTabIndex]),
+                  label: Text(tabLabels[shareTabIndex]),
                   selectedIcon: const Icon(Icons.share),
                   icon: const Icon(Icons.share_outlined),
                 ),
                 NavigationRailDestination(
-                  label: Text(tabLabels[_colorsGenTabIndex]),
+                  label: Text(tabLabels[colorsGenTabIndex]),
                   icon: const Icon(Icons.palette_outlined),
                   selectedIcon: const Icon(Icons.palette),
                 ),

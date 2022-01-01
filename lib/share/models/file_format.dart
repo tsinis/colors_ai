@@ -25,15 +25,3 @@ extension NameExtension on FileFormat {
 
   bool get isPrintable => isA4 || isLetter;
 }
-
-extension FileFormatExtension on int? {
-  FileFormat get selectedFile {
-    if (this == null) {
-      return FileFormat.pdfA4;
-    } else if (this! >= 0 && this! <= FileFormat.values.length) {
-      return FileFormat.values.elementAt(this!);
-    } else {
-      return FileFormat.json;
-    }
-  }
-}

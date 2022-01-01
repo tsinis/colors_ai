@@ -1,6 +1,6 @@
 import 'package:colors_ai/core/services/data_storage.dart';
-import 'package:colors_ai/oboarding/repository/onboarding_repository.dart';
-import 'package:colors_ai/oboarding/services/storage_providers/onboarding_hive_storage.dart';
+import 'package:colors_ai/onboarding/repository/onboarding_repository.dart';
+import 'package:colors_ai/onboarding/services/storage_providers/onboarding_hive_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() => group('Onboarding storage:', () {

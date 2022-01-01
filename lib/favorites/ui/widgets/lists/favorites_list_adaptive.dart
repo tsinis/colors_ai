@@ -5,16 +5,27 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../../color_generator/blocs/colors_locked/lock_bloc.dart';
-import '../../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
+import '../../../../color_picker/blocs/colorpicker_bloc.dart';
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/color_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
-import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
+import '../../../../navigation/blocs/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 
 class FavoritesListAdaptive extends StatefulWidget {
-  const FavoritesListAdaptive({Key? key}) : super(key: key);
+  final Curve hoverCurve;
+  final Duration hoverDuration;
+  final double padding;
+  final double size;
+
+  const FavoritesListAdaptive({
+    this.hoverDuration = kDefaultTransitionDuration,
+    this.hoverCurve = kDefaultTransitionCurve,
+    this.size = 88,
+    this.padding = 20,
+    Key? key,
+  }) : super(key: key);
 
   @override
   _FavoritesListState createState() => _FavoritesListState();
@@ -23,12 +34,8 @@ class FavoritesListAdaptive extends StatefulWidget {
 class _FavoritesListState extends State<FavoritesListAdaptive> {
   double? hoveringColor;
   int? hoveringPalette;
-  static const Duration hoverDuration = kDefaultTransitionDuration;
-  static const Curve hoverCurve = kDefaultTransitionCurve;
-  static const double size = 88;
-  static const double padding = 20;
-  static const double cardHeight = size + (padding * 2);
 
+  double get cardHeight => widget.size + (widget.padding * 2);
   Color get removeColor => Theme.of(context).errorColor;
 
   @override
@@ -40,7 +47,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                 builder: (_, BoxConstraints windowSize) {
                   final List<ColorPalette> favorites = state.palettes;
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
-                  final double maxHeighForTip = padding + (40 * MediaQuery.of(context).textScaleFactor);
+                  final double maxHeighForTip = widget.padding + (40 * MediaQuery.of(context).textScaleFactor);
                   final bool canShowTip = favorites.length * cardHeight <= windowSize.maxHeight - maxHeighForTip;
 
                   return Stack(
@@ -48,7 +55,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                     alignment: AlignmentDirectional.topCenter,
                     children: <Widget>[
                       Positioned(
-                        bottom: padding,
+                        bottom: widget.padding,
                         child: AnimatedOpacity(
                           duration: const Duration(milliseconds: 800),
                           opacity: canShowTip ? 1 : 0,
@@ -60,7 +67,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                         ),
                       ),
                       SingleChildScrollView(
-                        padding: const EdgeInsets.all(padding),
+                        padding: EdgeInsets.all(widget.padding),
                         child: SizedBox(
                           width: windowSize.maxWidth,
                           child: Align(
@@ -73,18 +80,18 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                   final bool isSelectedToRemove = removeState.selections.contains(paletteIndex);
 
                                   return Padding(
-                                    padding: const EdgeInsets.all(padding),
+                                    padding: EdgeInsets.all(widget.padding),
                                     child: MouseRegion(
                                       onEnter: (_) => setState(() => hoveringPalette = paletteIndex),
                                       onExit: (_) => setState(() => hoveringPalette = null),
                                       child: Stack(
                                         children: <Widget>[
                                           AnimatedPositioned(
-                                            right: isHoveringPalette ? 0 : size / 2,
-                                            duration: hoverDuration,
-                                            curve: hoverCurve,
-                                            width: size / 2,
-                                            height: size,
+                                            right: isHoveringPalette ? 0 : widget.size / 2,
+                                            duration: widget.hoverDuration,
+                                            curve: widget.hoverCurve,
+                                            width: widget.size / 2,
+                                            height: widget.size,
                                             child: ColoredBox(
                                               color: isHoveringPalette || isSelectedToRemove
                                                   ? isSelectedToRemove
@@ -98,7 +105,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                     preferBelow: false,
                                                     message: AppLocalizations.of(context).removeFavoritesTooltip,
                                                     child: IconButton(
-                                                      splashRadius: size / 4,
+                                                      splashRadius: widget.size / 4,
                                                       onPressed: () {
                                                         BlocProvider.of<RemoveFavoritesBloc>(context)
                                                             .add(const RemoveFavoritesRemoved());
@@ -169,15 +176,15 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                             ? removeColor
                                                             : Theme.of(context).shadowColor,
                                                         color: color,
-                                                        duration: hoverDuration,
-                                                        curve: hoverCurve,
+                                                        duration: widget.hoverDuration,
+                                                        curve: widget.hoverCurve,
                                                         child: SizedBox(
-                                                          height: size,
-                                                          width: size,
+                                                          height: widget.size,
+                                                          width: widget.size,
                                                           child: Center(
                                                             child: AnimatedOpacity(
-                                                              duration: hoverDuration,
-                                                              curve: hoverCurve,
+                                                              duration: widget.hoverDuration,
+                                                              curve: widget.hoverCurve,
                                                               opacity: isHoveringColor || isSelectedToRemove ? 1 : 0,
                                                               child: TextButton(
                                                                 onPressed: () {
@@ -199,7 +206,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                       ),
                                                     );
                                                   },
-                                                )..add(const SizedBox(width: size / 2)),
+                                                )..add(SizedBox(width: widget.size / 2)),
                                               ),
                                             ),
                                           ),

@@ -19,7 +19,7 @@ class TransmitterTower extends CustomPainter {
       ..color = Colors.black12
       ..style = style;
 
-    final Paint paintThirdfTransparent = Paint()
+    final Paint paintThirdTransparent = Paint()
       ..color = color.withOpacity(0.3)
       ..strokeWidth = strokeWidth
       ..style = style;
@@ -65,10 +65,10 @@ class TransmitterTower extends CustomPainter {
 
     canvas
       ..drawPath(path_1, paint)
-      ..drawPath(path_2, paintThirdfTransparent)
+      ..drawPath(path_2, paintThirdTransparent)
       ..drawPath(path_3, almostTransparent)
       ..drawCircle(Offset(size.width * 0.5, size.height * 0.125), 10, redPaint)
-      ..drawCircle(Offset(size.width * 0.5, size.height * 0.125), 25, paintThirdfTransparent);
+      ..drawCircle(Offset(size.width * 0.5, size.height * 0.125), 25, paintThirdTransparent);
   }
 
   @override

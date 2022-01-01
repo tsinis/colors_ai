@@ -1,7 +1,7 @@
 class RemoveFavoritesRepository {
   final Set<int> _selections;
 
-  Set<int> get selectons => _selections;
+  Set<int> get selections => _selections;
 
   const RemoveFavoritesRepository(this._selections);
 

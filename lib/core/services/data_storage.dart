@@ -10,7 +10,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../favorites/services/storage_providers/favorites_hive_storage.dart';
-import '../../oboarding/services/storage_providers/onboarding_hive_storage.dart';
+import '../../onboarding/services/storage_providers/onboarding_hive_storage.dart';
 import '../models/color_palette/color_palette.dart';
 import '../ui/constants.dart';
 

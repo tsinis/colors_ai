@@ -2,20 +2,20 @@ import 'package:platform_info/platform_info.dart';
 import 'package:vibration/vibration.dart';
 
 mixin Vibrations {
-  late final bool customVibrationsAvailible;
+  late final bool _customVibrationsAvailable;
 
   Future<void> initVibrations() async {
     if (platform.isMobile) {
-      customVibrationsAvailible =
+      _customVibrationsAvailable =
           (await Vibration.hasVibrator() ?? false) && (await Vibration.hasCustomVibrationsSupport() ?? false);
     } else {
-      customVibrationsAvailible = false;
+      _customVibrationsAvailable = false;
     }
   }
 
-  void vibrate() {
-    if (customVibrationsAvailible) {
-      Vibration.vibrate(duration: 150);
+  void vibrate({int durationInMs = 150}) {
+    if (_customVibrationsAvailable) {
+      Vibration.vibrate(duration: durationInMs);
     }
   }
 }

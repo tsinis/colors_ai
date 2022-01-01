@@ -9,5 +9,48 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
     },
-  }
+  },
+  "cSpell.words": [
+    "autocorrect",
+    "autofocus",
+    "Bezier",
+    "bools",
+    "Cinis",
+    "CMYK",
+    "Colordot",
+    "Colormind",
+    "colorpicker",
+    "Commandline",
+    "Coolors",
+    "cyclomatic",
+    "Dopely",
+    "Favs",
+    "Huemint",
+    "interps",
+    "ints",
+    "LTRB",
+    "mockito",
+    "msix",
+    "Muzli",
+    "nullsafety",
+    "Palettable",
+    "Poolors",
+    "pubspec",
+    "reorderable",
+    "RGBO",
+    "roboto",
+    "setstate",
+    "Snackbars",
+    "Spacebar",
+    "swipeable",
+    "todos",
+    "unawaited",
+    "Ungrowed",
+    "vsync"
+  ],
+  "cSpell.ignorePaths": [
+    ".git", // Ignore the .git directory
+    "README.md", // Ignore README
+    "**/l10n/*.arb" // Ignore all .arb files in l10n
+  ]
 }

@@ -6,7 +6,7 @@ import 'package:platform_info/platform_info.dart';
 
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
-import '../../../blocs/share/share_bloc.dart';
+import '../../../blocs/share_bloc.dart';
 import '../../../services/url_providers/colors_url_provider.dart';
 import 'share_section_interface.dart';
 
@@ -44,7 +44,7 @@ class UrlShareSection extends ShareSectionInterface {
                 filled: true,
                 fillColor: Theme.of(context).splashColor,
                 labelText: AppLocalizations.of(context).shareLinksLabel,
-                helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                helperStyle: const TextStyle(fontSize: 12),
                 helperMaxLines: 1,
                 helperText: (selectedUrlProvider == const ArtsGoogle())
                     ? AppLocalizations.of(context).googleArtsExport

@@ -29,10 +29,7 @@ class ReorderableDragListener extends StatelessWidget {
 
   void _startDragging(BuildContext context, PointerDownEvent event) {
     onDragStarted();
-    SliverReorderableList.maybeOf(context)?.startItemDragReorder(
-      recognizer: createRecognizer(),
-      index: index,
-      event: event,
-    );
+    SliverReorderableList.maybeOf(context)
+        ?.startItemDragReorder(recognizer: createRecognizer(), index: index, event: event);
   }
 }

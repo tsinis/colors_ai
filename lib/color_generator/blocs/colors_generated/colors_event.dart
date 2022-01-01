@@ -22,7 +22,7 @@ class ColorsRestored extends ColorsEvent {
   final ColorPalette palette;
 
   @override
-  List<Object> get props => <ColorPalette>[palette];
+  List<ColorPalette> get props => <ColorPalette>[palette];
 
   const ColorsRestored({required this.palette});
 }
@@ -42,7 +42,7 @@ class ColorsReordered extends ColorsEvent {
   final int oldIndex;
 
   @override
-  List<Object> get props => <int>[oldIndex, newIndex];
+  List<int> get props => <int>[oldIndex, newIndex];
 
   const ColorsReordered({required this.oldIndex, required this.newIndex});
 }

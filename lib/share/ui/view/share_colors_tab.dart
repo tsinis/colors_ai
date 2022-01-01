@@ -5,7 +5,7 @@ import '../../../app/theme/constants.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/repository/colors_repository.dart';
-import '../../blocs/share/share_bloc.dart';
+import '../../blocs/share_bloc.dart';
 import '../../models/file_format.dart';
 import '../../services/url_providers/colors_url_provider.dart';
 import '../widgets/file_export_preview.dart';

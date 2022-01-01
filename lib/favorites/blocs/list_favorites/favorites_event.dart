@@ -26,7 +26,7 @@ class FavoritesOneRemoved extends FavoritesEvent {
   final int colorToRemoveIndex;
 
   @override
-  List<Object?> get props => <int>[colorToRemoveIndex];
+  List<int> get props => <int>[colorToRemoveIndex];
 
   const FavoritesOneRemoved({required this.colorToRemoveIndex});
 }

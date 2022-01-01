@@ -4,7 +4,7 @@ abstract class NavigationState extends Equatable {
   final int _tabIndex;
 
   @override
-  List<Object> get props => <int>[_tabIndex];
+  List<int> get props => <int>[_tabIndex];
 
   int get tabIndex => _tabIndex;
 

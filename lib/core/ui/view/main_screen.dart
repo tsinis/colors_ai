@@ -7,25 +7,30 @@ import 'package:platform_info/platform_info.dart';
 
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../color_generator/blocs/colors_locked/lock_bloc.dart';
-import '../../../color_picker/blocs/colorpicker_dialog/colorpicker_bloc.dart';
+import '../../../color_generator/ui/view/gen_colors_tab.dart';
+import '../../../color_picker/blocs/colorpicker_bloc.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../common/ui/widgets/app_bar_info_title.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
+import '../../../favorites/ui/view/favorites_tab.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
-import '../../../navigation/blocs/navigation/navigation_bloc.dart';
-import '../../../navigation/ui/constants.dart';
+import '../../../navigation/blocs/navigation_bloc.dart';
 import '../../../navigation/ui/widgets/bottom_nav_bar.dart';
 import '../../../navigation/ui/widgets/nav_rail.dart';
-import '../../../share/blocs/share/share_bloc.dart';
+import '../../../share/blocs/share_bloc.dart';
 import '../../../share/repository/share_repository.dart';
-import '../../../sound/blocs/sounds_vibration/sound_bloc.dart';
+import '../../../share/ui/view/share_colors_tab.dart';
+import '../../../sound/blocs/sound_bloc.dart';
 import '../../../sound/repository/sounds_repository.dart';
 import '../../repository/colors_repository.dart';
 import '../constants.dart';
 import '../widgets/overflow_menu.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({this.navTabs = const <Widget>[ShareColorsTab(), GenColorsTab(), FavoritesTab()], Key? key})
+      : super(key: key);
+
+  final List<Widget> navTabs;
 
   @override
   _NavigationScreenState createState() => _NavigationScreenState();
@@ -125,7 +130,7 @@ class _NavigationScreenState extends State<MainScreen> {
                             } else if (isFileCopied) {
                               message = AppLocalizations.of(context).formatCopied(snackbarState.format);
                             } else if (snackbarState is ServerStatusCheckSuccess) {
-                              message = AppLocalizations.of(context).serverMaintanceMessage;
+                              message = AppLocalizations.of(context).serverMaintenanceMessage;
                             } else if (isShareFailed) {
                               message = AppLocalizations.of(context).shareFailedMessage;
                             }
@@ -156,7 +161,7 @@ class _NavigationScreenState extends State<MainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               if (!isPortrait) NavRail(navState, toShowGenFab: showGenFab),
-                              Expanded(child: navTabs.elementAt(navState.tabIndex)),
+                              Expanded(child: widget.navTabs.elementAt(navState.tabIndex)),
                             ],
                           ),
                         ),

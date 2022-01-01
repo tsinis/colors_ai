@@ -5,10 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../app/theme/constants.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
-import '../../blocs/share/share_bloc.dart';
+import '../../blocs/share_bloc.dart';
 import '../../mixins/text_based_file_creator.dart';
+import '../../models/color_space.dart';
 import '../../models/file_format.dart';
-import '../../services/export/file_layout.dart';
 
 class FileExportPreview extends StatefulWidget {
   final Curve curve;
@@ -154,7 +154,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                             child: Padding(
                                               padding: const EdgeInsets.all(4),
                                               child: ListView.separated(
-                                                itemCount: FileLayout.colorSpaces.length,
+                                                itemCount: ColorSpace.values.length,
                                                 separatorBuilder: (_, __) => AnimatedContainer(
                                                   duration: widget.duration,
                                                   curve: widget.curve,

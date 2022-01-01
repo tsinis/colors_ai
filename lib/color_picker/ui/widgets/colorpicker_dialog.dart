@@ -90,7 +90,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
           if (hidePickerArea) const SizedBox(height: 12),
           ColorPicker(
             pickerAreaHeightPercent: pickerAreaHeightPercent,
-            colorPickerWidth: 280, //beacuse stepWidth = 56 * 5.
+            colorPickerWidth: 280, //because stepWidth = 56 * 5.
             displayThumbColor: true,
             portraitOnly: true,
             enableAlpha: false,

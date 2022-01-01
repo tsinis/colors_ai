@@ -4,10 +4,9 @@ import 'package:pdf/widgets.dart';
 
 import '../../../core/extensions/color_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
+import '../../models/color_space.dart';
 
 class FileLayout extends StatelessWidget {
-  static const Set<String> colorSpaces = <String>{'HEX', 'RGB', 'CMYK', 'HSB', 'HSL', 'LAB', 'XYZ'};
-
   final TtfFont _font;
   final PdfPageFormat _format;
   final ColorPalette _palette;
@@ -34,16 +33,16 @@ class FileLayout extends StatelessWidget {
                   width: _width * 0.9,
                   child: Column(
                     children: List<Widget>.generate(
-                      colorSpaces.length,
+                      ColorSpace.values.length,
                       (int spacesIndex) {
                         final bool isEven = spacesIndex.isEven;
-                        final String colorSpace = colorSpaces.elementAt(spacesIndex);
+                        final ColorSpace colorSpace = ColorSpace.values.elementAt(spacesIndex);
 
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Text(
-                              colorSpace,
+                              colorSpace.name.toUpperCase(),
                               style: TextStyle(
                                 font: _font,
                                 fontSize: 11,
@@ -73,26 +72,26 @@ class FileLayout extends StatelessWidget {
         ),
       );
 
-  String _colorValue(String space, String hex) {
+  String _colorValue(ColorSpace space, String hex) {
     switch (space) {
-      case 'RGB':
+      case ColorSpace.rgb:
         return hexToRgb(hex).toString();
-      case 'CMYK':
+      case ColorSpace.cmyk:
         final CMYK cmyk = hexToCmyk(hex);
         return '${cmyk.c}, ${cmyk.m}, ${cmyk.y}, ${cmyk.k}';
-      case 'HSB':
+      case ColorSpace.hsb:
         final HSB hsb = hexToHsb(hex);
         return '${hsb.h}, ${hsb.s}, ${hsb.b}';
-      case 'HSL':
+      case ColorSpace.hsl:
         final HSL hsl = hexToHsl(hex);
         return '${hsl.h}, ${hsl.s}, ${hsl.l}';
-      case 'LAB':
+      case ColorSpace.lab:
         final LAB lab = hexToLab(hex);
         return '${lab.l}, ${lab.a}, ${lab.b}';
-      case 'XYZ':
+      case ColorSpace.xyz:
         final XYZ xyz = hexToXyz(hex);
         return '${xyz.x.toStringAsFixed(2)}, ${xyz.y.toStringAsFixed(2)}, ${xyz.z.toStringAsFixed(2)}';
-      default:
+      case ColorSpace.hex:
         return hex;
     }
   }

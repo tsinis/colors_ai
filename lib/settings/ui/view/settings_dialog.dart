@@ -34,7 +34,7 @@ class SettingsDialog extends StatelessWidget {
                     filled: true,
                     fillColor: Theme.of(context).splashColor,
                     labelText: AppLocalizations.of(context).selectAiProvider,
-                    helperStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                    helperStyle: const TextStyle(fontSize: 12),
                     helperMaxLines: 1,
                     helperText: state.selectedAPI.helperText(AppLocalizations.of(context)),
                   ),
@@ -123,7 +123,7 @@ class SettingsDialog extends StatelessWidget {
               const Divider(height: 1),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 8, top: 12),
-                child: Text(AppLocalizations.of(context).appearance, style: const TextStyle(fontSize: 14)),
+                child: Text(AppLocalizations.of(context).appearance),
               ),
               RadioListTile<bool?>(
                 dense: true,
@@ -156,15 +156,12 @@ class SettingsDialog extends StatelessWidget {
           ),
           actions: <TextButton>[
             TextButton(
-              onPressed: () {
-                BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected());
-                BlocProvider.of<SettingsBloc>(context).add(const SettingsRegularColorsSelected());
-                BlocProvider.of<SettingsBloc>(context).add(const SettingsApiSelected(SelectedAPI.huemint));
-                BlocProvider.of<SettingsBloc>(context)
-                    .add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2));
-                BlocProvider.of<SettingsBloc>(context)
-                    .add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
-              },
+              onPressed: () => BlocProvider.of<SettingsBloc>(context)
+                ..add(const SettingsSystemThemeSelected())
+                ..add(const SettingsRegularColorsSelected())
+                ..add(const SettingsApiSelected(SelectedAPI.colormind))
+                ..add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2))
+                ..add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2)),
               child: Text(
                 AppLocalizations.of(context).resetButtonLabel,
                 style: TextStyle(color: Theme.of(context).errorColor),

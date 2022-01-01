@@ -1,6 +1,6 @@
-import 'package:colors_ai/oboarding/blocs/onboarding/onboarding_bloc.dart';
-import 'package:colors_ai/oboarding/repository/onboarding_repository.dart';
-import 'package:colors_ai/oboarding/services/storage_providers/onboarding_hive_storage.dart';
+import 'package:colors_ai/onboarding/blocs/onboarding_bloc.dart';
+import 'package:colors_ai/onboarding/repository/onboarding_repository.dart';
+import 'package:colors_ai/onboarding/services/storage_providers/onboarding_hive_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,7 +9,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../lib/core/services/data_storage.dart';
 import '../../../lib/core/ui/view/splash_screen.dart';
 
-void main() => testWidgets('Splash should dissapear after onboard data load', (WidgetTester tester) async {
+void main() => testWidgets('Splash should disappear after onboard data load', (WidgetTester tester) async {
       await const DataStorage().init();
       final Finder splash = find.byKey(const ValueKey<bool>(true));
       const Duration animationDuration = Duration(seconds: 2);

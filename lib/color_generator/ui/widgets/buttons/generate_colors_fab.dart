@@ -5,8 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
-import '../../../../navigation/blocs/navigation/navigation_bloc.dart';
-import '../../../../sound/blocs/sounds_vibration/sound_bloc.dart';
+import '../../../../navigation/blocs/navigation_bloc.dart';
+import '../../../../sound/blocs/sound_bloc.dart';
 
 class GenerateColorsFAB extends StatefulWidget {
   final Duration animationDuration;
@@ -40,11 +40,8 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
   late bool isShowing;
 
   bool get alwaysShow => widget.isExtended != null;
-
   bool get isExtended => widget.isExtended ?? false;
-
   bool get isDisabled => isFailed || !isGenerateTab;
-
   String get tooltip => AppLocalizations.of(context).generateTabLabel;
 
   @override
