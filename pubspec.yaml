@@ -60,7 +60,7 @@ dev_dependencies:
     sdk: flutter
   json_serializable: ^6.1.3 # From Google
   mockito: ^5.0.0-nullsafety.5 # From Google
-  msix: ^2.8.0 # Recommended by Google
+  msix: ^2.7.3 # Recommended by Google
 
 flutter:
   generate: true
