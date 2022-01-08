@@ -7,18 +7,18 @@ import 'package:flutter/foundation.dart';
 import '../repository/sounds_repository.dart';
 
 part 'sound_event.dart';
-part 'sound_state.dart';
 
-class SoundBloc extends Bloc<SoundEvent, SoundState> {
+class SoundBloc extends Bloc<SoundEvent, void> {
   final SoundsRepository _soundRepository;
 
-  SoundBloc(this._soundRepository) : super(const SoundInitial());
+  SoundBloc(this._soundRepository) : super(null);
 
   @override
-  Stream<SoundState> mapEventToState(SoundEvent event) async* {
+  Stream<void> mapEventToState(SoundEvent event) async* {
     if (event is SoundStarted) {
       await _soundRepository.init();
-      // On web it's not allowed to play sounds without user interaction first.
+
+      /// On web it's not allowed to play sounds without user interaction first.
       if (!kIsWeb) {
         _soundRepository.playFavoritesAdded();
       }

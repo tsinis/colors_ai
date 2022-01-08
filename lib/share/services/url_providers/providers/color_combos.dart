@@ -11,7 +11,7 @@ class ColorCombos extends ColorsUrlProvider {
       sb
         ..write('color$index=')
         ..write(color.toHex().toLowerCase())
-        ..write(separateSymbol);
+        ..write(_separateSymbol);
       index++;
     }
 

@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show LicenseRegistry, LicenseEntryWithLineBreaks;
+import 'package:flutter/foundation.dart' show LicenseEntryWithLineBreaks, LicenseRegistry, visibleForTesting;
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -18,6 +18,9 @@ class AboutRepository {
   late String _version;
 
   String get version => _version;
+
+  @visibleForTesting
+  String get supportedUrlLocale => _unsupportedUrlLocales.contains(_locale) ? _defaultLanguageCode : _locale;
 
   AboutRepository({
     String aboutColormind = 'http://colormind.io/api-access',
@@ -49,18 +52,15 @@ class AboutRepository {
     });
   }
 
-  void openAboutColormind() => _urlLauncher.openURL(_aboutColormind);
+  Future<bool> openAboutColormind() => _urlLauncher.openURL(_aboutColormind);
 
-  void openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + _locale);
+  Future<bool> openAboutGoogle() => _urlLauncher.openURL(_aboutGoogle + _locale);
 
-  void openAboutHuemint() => _urlLauncher.openURL(_aboutHuemint);
+  Future<bool> openAboutHuemint() => _urlLauncher.openURL(_aboutHuemint);
 
-  void openAboutLicenses() {
-    final String locale = _unsupportedUrlLocales.contains(_locale) ? _defaultLanguageCode : _locale;
-    _urlLauncher.openURL(_soundsLicense + locale);
-  }
+  Future<bool> openAboutLicenses() => _urlLauncher.openURL(_soundsLicense + supportedUrlLocale);
 
-  void openAboutSounds() => _urlLauncher.openURL(_materialSounds);
+  Future<bool> openAboutSounds() => _urlLauncher.openURL(_materialSounds);
 
-  void openSourceCode() => _urlLauncher.openURL(_sourceCode);
+  Future<bool> openSourceCode() => _urlLauncher.openURL(_sourceCode);
 }

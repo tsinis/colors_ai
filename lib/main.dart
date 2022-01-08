@@ -20,7 +20,7 @@ import 'settings/dao/generator_dao.dart';
 Future<void> main() async {
   final HiveCipher? encryption = await const DataStorage().init();
   final GeneratorDAO generatorDao = GeneratorDAO();
-  SystemUI.init();
+  const SystemUI().init();
   runApp(
     MultiBlocProvider(
       providers: <BlocProvider<BlocBase<Object>>>[

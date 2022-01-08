@@ -38,3 +38,7 @@ class ServerStatusCheckSuccess extends SnackbarState {
 class ShareAttemptFailure extends SnackbarState {
   const ShareAttemptFailure() : super('');
 }
+
+class ClipboardCopyFailure extends SnackbarState {
+  const ClipboardCopyFailure() : super(''); //TODO Provide on UI.
+}

@@ -1,14 +1,14 @@
 part of 'navigation_bloc.dart';
 
 abstract class NavigationEvent extends Equatable {
-  @override
-  List<Object> get props => <Object>[];
-
   const NavigationEvent();
 }
 
-class NavigationShareTabStarted extends NavigationEvent {
-  const NavigationShareTabStarted();
+class NavigationGeneratorTabStarted extends NavigationEvent {
+  @override
+  List<int> get props => <int>[const NavigationGenerateTabInitial().tabIndex];
+
+  const NavigationGeneratorTabStarted();
 }
 
 class NavigationTabChanged extends NavigationEvent {
@@ -18,12 +18,4 @@ class NavigationTabChanged extends NavigationEvent {
   List<int> get props => <int>[newTabIndex];
 
   const NavigationTabChanged(this.newTabIndex);
-}
-
-class NavigationGeneratorTabStarted extends NavigationEvent {
-  const NavigationGeneratorTabStarted();
-}
-
-class NavigationSaverTabStarted extends NavigationEvent {
-  const NavigationSaverTabStarted();
 }

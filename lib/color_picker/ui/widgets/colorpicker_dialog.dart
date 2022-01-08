@@ -4,18 +4,18 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
-import '../../../core/services/clipboards.dart';
+import '../../../core/services/clipboard.dart';
 import '../../helpers/hex_formatter.dart';
 
 class ColorpickerDialog extends StatefulWidget {
-  final Clipboards clipboard;
+  final ClipBoard clipboard;
   final Color color;
   final ValueSetter<Color> onColorChanged;
 
   const ColorpickerDialog(
     this.color, {
     required this.onColorChanged,
-    this.clipboard = const Clipboards(),
+    this.clipboard = const ClipBoard(),
     Key? key,
   }) : super(key: key);
 

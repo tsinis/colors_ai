@@ -10,7 +10,7 @@ class GeneratorDAO with ColormindSettings, HuemintSettings {
   bool? isDarkTheme;
   SelectedAPI api;
 
-  API<Object> get _selectedApi {
+  API<Object> get _selectedAPI {
     switch (api) {
       case SelectedAPI.huemint:
         return HuemintAPI(adjacency: huemintAdjacency, temperature: huemintTemperature);
@@ -21,6 +21,10 @@ class GeneratorDAO with ColormindSettings, HuemintSettings {
 
   GeneratorDAO({this.isDarkTheme, this.api = SelectedAPI.colormind});
 
-  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) async =>
-      _selectedApi.fetchNewColors(palette, lockedColors);
+  Future<ColorPalette> fetchNewColors(
+    ColorPalette palette,
+    List<bool> lockedColors, {
+    API<Object>? specificAPI,
+  }) async =>
+      (specificAPI ?? _selectedAPI).fetchNewColors(palette, lockedColors);
 }

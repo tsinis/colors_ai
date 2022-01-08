@@ -56,7 +56,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-Application is **partially covered with Unit, Widget, and Integration tests**. More to come in the future.
+Application is **covered by hundreds of tests**, you can find here: Unit (mainly), Widget, Golden and Integration tests.
 
 ## Accessibility
 

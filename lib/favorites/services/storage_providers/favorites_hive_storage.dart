@@ -26,8 +26,11 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
 
   Box<ColorPalette> get _storageBox => Hive.box(boxName);
 
-  const FavoritesHiveStorage({HiveCipher? encryption, String boxName = 'favorite'})
-      : super(encryption, boxName: boxName);
+  const FavoritesHiveStorage({
+    HiveCipher? encryption,
+    String boxName = 'favorite',
+    Box<ColorPalette>? openedBox,
+  }) : super(encryption, boxName: boxName, openedBox: openedBox);
 
   @override
   Future<void> clear() => _storageBox.clear();
@@ -55,7 +58,11 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
   }
 
   @override
-  Future<void> doMigration(covariant Iterable<ColorPalette> oldData) async {
+  Future<void> doMigration(covariant Iterable<ColorPalette>? oldData) async {
+    if (oldData == null) {
+      return;
+    }
+
     _registerAdapters();
     final Box<ColorPalette> storageBox = await openBox;
     await storageBox.addAll(oldData);

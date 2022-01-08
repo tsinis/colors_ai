@@ -30,9 +30,9 @@ class Colorpicker extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => BlocProvider<ColorPickerBLoc>(
-        create: (_) => ColorPickerBLoc(),
-        child: BlocBuilder<ColorPickerBLoc, ColorPickerState>(
+  Widget build(BuildContext context) => BlocProvider<ColorPickerBloc>(
+        create: (_) => ColorPickerBloc(),
+        child: BlocBuilder<ColorPickerBloc, ColorPickerState>(
           builder: (BuildContext dialogContext, ColorPickerState state) {
             if (state is ColorPickerOpenInitial) {
               SchedulerBinding.instance?.addPostFrameCallback(
@@ -52,7 +52,7 @@ class Colorpicker extends StatelessWidget {
                   ),
                 ),
               );
-              BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerHided());
+              BlocProvider.of<ColorPickerBloc>(dialogContext).add(const ColorPickerHided());
             }
 
             return TextButton(
@@ -63,12 +63,12 @@ class Colorpicker extends StatelessWidget {
               ),
               onLongPress: isPortrait
                   ? () {
-                      BlocProvider.of<ColorPickerBLoc>(context).add(ColorPickerCopied(color));
+                      BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerCopied(color));
                       BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
                     }
                   : null,
               onPressed: () {
-                BlocProvider.of<ColorPickerBLoc>(dialogContext).add(const ColorPickerShowed());
+                BlocProvider.of<ColorPickerBloc>(dialogContext).add(const ColorPickerShowed());
                 BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
                 BlocProvider.of<LockBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
               },
@@ -82,7 +82,7 @@ class Colorpicker extends StatelessWidget {
                       onTap: isPortrait
                           ? null
                           : () {
-                              BlocProvider.of<ColorPickerBLoc>(context).add(ColorPickerCopied(color));
+                              BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerCopied(color));
                               BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
                             },
                       child: Text(

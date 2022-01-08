@@ -16,7 +16,11 @@ abstract class ManipulateListInterface<T> extends Equatable {
     ..clear()
     ..addAll(newList);
 
-  void change(int index, T newValue) => list[index] = newValue;
+  void change(int index, T newValue) {
+    if (index < list.length) {
+      list[index] = newValue;
+    }
+  }
 
   void swap({required int oldIndex, required int newIndex}) {
     final T swappedValue = list[oldIndex];

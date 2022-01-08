@@ -47,13 +47,13 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(
                   style: linkStyle,
                   text: ' Colormind.io',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutColormindApiTaped()),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutColormindTaped()),
                 ),
                 TextSpan(text: ' ${AppLocalizations.of(context).and} '),
                 TextSpan(
                   style: linkStyle,
                   text: 'Huemint.com',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutHuemintApiTaped()),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutHuemintTaped()),
                 ),
                 TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
                 TextSpan(
@@ -69,7 +69,7 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(
                   style: linkStyle,
                   text: ' "Material Product Sounds"',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSoundAssetsTaped()),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSoundsTaped()),
                 ),
                 TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
                 TextSpan(
@@ -81,7 +81,7 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(
                   style: linkStyle,
                   text: ' CC BY 4.0',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutLicenseTaped()),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutLicensesTaped()),
                 ),
                 const TextSpan(text: '.'),
               ],

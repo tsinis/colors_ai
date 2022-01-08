@@ -29,8 +29,10 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
     } else if (event is NavigationTabChanged) {
       try {
         yield _stateList[event.newTabIndex];
-      } on Exception catch (_) {
+        // ignore: avoid_catching_errors
+      } on RangeError catch (_) {
         yield const NavigationFailure();
+        yield const NavigationGenerateTabInitial();
       }
     }
   }

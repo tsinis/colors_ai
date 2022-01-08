@@ -22,7 +22,7 @@ class DataStorage {
   final FlutterSecureStorage _keyStorage;
   final String _secureKey;
 
-  static Future<String> get path async => _appPathFromDocsDir(await getApplicationDocumentsDirectory()).path;
+  Future<String> get path async => _appPathFromDocsDir(await getApplicationDocumentsDirectory()).path;
 
   Future<HydratedCipher?> get _encryptionCipher async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -106,7 +106,7 @@ class DataStorage {
     final File oldFavoritesHive = oldFile(favsStorage.boxName);
 
     if (oldOnboardingHive.existsSync() || oldFavoritesHive.existsSync() || oldSettingsHive.existsSync()) {
-      final bool oldOnboardingData = await onboardStorage.loadOnboardData;
+      final bool oldOnboardingData = await onboardStorage.loadValue;
       final Iterable<ColorPalette> oldFavoritesData = await favsStorage.storedFavorites;
 
       final File oldSettingsLock = oldFile(settingsBoxName, isLock: true);

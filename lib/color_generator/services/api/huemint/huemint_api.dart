@@ -2,6 +2,7 @@ import 'dart:math' show pow;
 import 'dart:ui';
 
 import 'package:flutter_colorpicker/flutter_colorpicker.dart' show colorToHex;
+import 'package:http/http.dart' show Client;
 
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../interfaces/api.dart';
@@ -24,12 +25,14 @@ class HuemintAPI extends API<String> {
     this.numColorsKey = 'num_colors',
     this.temperatureKey = 'temperature',
     this.generateModelValue = 'transformer',
+    Client? httpClient,
   }) : super(
           'https://api.huemint.com/color',
           const HuemintColors(),
           unlockedColorChar: '-',
           generateModelKey: 'mode',
           paletteInputKey: 'palette',
+          httpClient: httpClient,
         );
 
   @override
@@ -41,12 +44,11 @@ class HuemintAPI extends API<String> {
     final List<int> matrix = List<int>.filled(pow(numColorsValue, 2).toInt(), adjacency);
 
     final Map<String, Object> requestBody = <String, Object>{
-      generateModelKey: generateModelValue,
       numColorsKey: numColorsValue,
       temperatureKey: temperature,
       adjacencyKey: matrix,
       'num_results': 5, // Using only first one.
-    };
+    }..addEntries(<MapEntry<String, String>>[modelToInput(generateModelValue)]);
 
     final List<bool> invertedLocks = lockedColors.map((bool isLocked) => !isLocked).toList(growable: false);
     final MapEntry<String, List<Object>> colorsEntry = colorsToInput(palette, invertedLocks);

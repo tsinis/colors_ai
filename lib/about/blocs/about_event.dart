@@ -16,26 +16,26 @@ class AboutStarted extends AboutEvent {
   const AboutStarted({required this.currentLocale});
 }
 
-class AboutColormindApiTaped extends AboutEvent {
-  const AboutColormindApiTaped();
+class AboutColormindTaped extends AboutEvent {
+  const AboutColormindTaped();
 }
 
-class AboutHuemintApiTaped extends AboutEvent {
-  const AboutHuemintApiTaped();
+class AboutHuemintTaped extends AboutEvent {
+  const AboutHuemintTaped();
 }
 
 class AboutSourceCodeTaped extends AboutEvent {
   const AboutSourceCodeTaped();
 }
 
-class AboutSoundAssetsTaped extends AboutEvent {
-  const AboutSoundAssetsTaped();
+class AboutSoundsTaped extends AboutEvent {
+  const AboutSoundsTaped();
 }
 
 class AboutGoogleTaped extends AboutEvent {
   const AboutGoogleTaped();
 }
 
-class AboutLicenseTaped extends AboutEvent {
-  const AboutLicenseTaped();
+class AboutLicensesTaped extends AboutEvent {
+  const AboutLicensesTaped();
 }

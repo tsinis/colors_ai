@@ -1,3 +1,5 @@
+// ignore_for_file: unawaited_futures
+
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -15,21 +17,27 @@ class AboutBloc extends Bloc<AboutEvent, AboutState> {
 
   @override
   Stream<AboutState> mapEventToState(AboutEvent event) async* {
-    if (event is AboutStarted) {
-      await _aboutRepository.init(event.currentLocale);
-    } else if (event is AboutColormindApiTaped) {
-      _aboutRepository.openAboutColormind();
-    } else if (event is AboutHuemintApiTaped) {
-      _aboutRepository.openAboutHuemint();
-    } else if (event is AboutSourceCodeTaped) {
-      _aboutRepository.openSourceCode();
-    } else if (event is AboutSoundAssetsTaped) {
-      _aboutRepository.openAboutSounds();
-    } else if (event is AboutGoogleTaped) {
-      _aboutRepository.openAboutGoogle();
-    } else if (event is AboutLicenseTaped) {
-      _aboutRepository.openAboutLicenses();
+    try {
+      if (event is AboutStarted) {
+        await _aboutRepository.init(event.currentLocale);
+      } else if (event is AboutColormindTaped) {
+        _aboutRepository.openAboutColormind();
+      } else if (event is AboutHuemintTaped) {
+        _aboutRepository.openAboutHuemint();
+      } else if (event is AboutSourceCodeTaped) {
+        _aboutRepository.openSourceCode();
+      } else if (event is AboutSoundsTaped) {
+        _aboutRepository.openAboutSounds();
+      } else if (event is AboutGoogleTaped) {
+        _aboutRepository.openAboutGoogle();
+      } else if (event is AboutLicensesTaped) {
+        _aboutRepository.openAboutLicenses();
+      }
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
+      yield const AboutFailure();
     }
+
     yield AboutInitial(appVersion: _aboutRepository.version);
   }
 }

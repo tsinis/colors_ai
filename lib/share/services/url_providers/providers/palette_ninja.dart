@@ -10,7 +10,7 @@ class PaletteNinja extends ColorsUrlProvider {
       sb
         ..write('#')
         ..write(color.toHex().toLowerCase())
-        ..write(separateSymbol);
+        ..write(_separateSymbol);
     }
 
     return _removeLastChar(sb.toString());

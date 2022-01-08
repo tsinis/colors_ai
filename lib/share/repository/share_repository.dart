@@ -8,8 +8,9 @@ import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../core/models/color_palette/color_palette.dart';
-import '../../core/services/clipboards.dart';
+import '../../core/services/clipboard.dart';
 import '../../core/ui/constants.dart';
+import '../extensions/file_format_extension.dart';
 import '../mixins/device_capabilities.dart';
 import '../mixins/file_creator.dart';
 import '../mixins/text_based_file_creator.dart';
@@ -19,7 +20,7 @@ import '../services/url_providers/colors_url_provider.dart';
 import 'conditional_import/share_io_png.dart' if (dart.library.js) 'conditional_import/share_web_png.dart';
 
 class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities, UrlProvidersList {
-  final Clipboards _clipboard;
+  final ClipBoard _clipboard;
   FileFormat? _selectedFormat;
   final String _nameOfFile;
   ColorsUrlProvider? _selectedUrlProvider;
@@ -45,7 +46,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  ShareRepository({Clipboards clipboard = const Clipboards(), String nameOfFile = kNameForFileSystem})
+  ShareRepository({ClipBoard clipboard = const ClipBoard(), String nameOfFile = kNameForFileSystem})
       : _clipboard = clipboard,
         _nameOfFile = nameOfFile;
 
@@ -118,7 +119,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider urlProvider = _selectedUrlProvider ?? UrlProvidersList.providers.first;
     final String url = urlProvider.url(palette);
-    copyOnly ? await _clipboard.copyUrl(url) : await Share.share(url, subject: kAppName);
+    copyOnly ? await _clipboard.copyTextData(url) : await Share.share(url, subject: kAppName);
   }
 
   Future<void> _saveFile(File file) async {

@@ -1,10 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
 class HexFormatter extends TextInputFormatter {
-  final String regExpValidator;
+  final String _regExpValidator;
 
-  HexFormatter({this.regExpValidator = kValidHexPattern});
+  HexFormatter({String regExpValidator = kValidHexPattern}) : _regExpValidator = regExpValidator;
 
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
@@ -12,7 +13,7 @@ class HexFormatter extends TextInputFormatter {
     final TextSelection selection = TextSelection(baseOffset: hex.length, extentOffset: hex.length);
     final TextEditingValue validatedValue = TextEditingValue(text: hex, selection: selection);
 
-    return FilteringTextInputFormatter.allow(RegExp(regExpValidator)).formatEditUpdate(oldValue, validatedValue);
+    return FilteringTextInputFormatter.allow(RegExp(_regExpValidator)).formatEditUpdate(oldValue, validatedValue);
   }
 
   static String? formatCompleteInput(String? input) {
@@ -21,5 +22,6 @@ class HexFormatter extends TextInputFormatter {
     }
   }
 
+  @visibleForTesting
   static String formatInput(String input) => input.replaceFirst('#', '').toUpperCase();
 }

@@ -22,14 +22,16 @@ part 'providers/poolors.dart';
 part 'providers/sessions_college.dart';
 
 abstract class ColorsUrlProvider with EquatableMixin {
-  final String baseUrl;
-  final String? formats;
-  final String? providerName;
-  final String separateSymbol;
+  final String _baseUrl;
+  final String? _formats;
+  final String? _providerName;
+  final String _separateSymbol;
+
+  String? get formats => _formats;
 
   String get name {
-    if (providerName != null) {
-      return providerName!;
+    if (_providerName != null) {
+      return _providerName!;
     } else {
       final StringBuffer sb = StringBuffer();
       final RegExp pascalCaseWords = RegExp('(?:[A-Z]+|^)[a-z]*');
@@ -44,23 +46,26 @@ abstract class ColorsUrlProvider with EquatableMixin {
   @override
   List<String> get props => <String>[keyName];
 
-  String get _fullUrl => 'https://$baseUrl';
+  String get _fullUrl => 'https://$_baseUrl';
 
   const ColorsUrlProvider({
-    required this.baseUrl,
-    this.providerName,
-    this.formats,
-    this.separateSymbol = '-',
-  });
+    required String baseUrl,
+    String? providerName,
+    String? formats,
+    String separateSymbol = '-',
+  })  : _baseUrl = baseUrl,
+        _providerName = providerName,
+        _formats = formats,
+        _separateSymbol = separateSymbol;
 
   String url(ColorPalette palette) {
     final StringBuffer sb = StringBuffer(_fullUrl);
     for (final Color color in palette.colors) {
-      sb.write(color.toHex().toLowerCase() + separateSymbol);
+      sb.write(color.toHex().toLowerCase() + _separateSymbol);
     }
 
     return _removeLastChar(sb.toString());
   }
 
-  String _removeLastChar(String name) => name.substring(0, name.length - separateSymbol.length);
+  String _removeLastChar(String name) => name.substring(0, name.length - _separateSymbol.length).trim();
 }

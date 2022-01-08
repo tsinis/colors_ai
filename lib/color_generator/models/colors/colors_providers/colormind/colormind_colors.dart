@@ -18,8 +18,10 @@ part 'colormind_colors.g.dart';
 @ColormindColorsConverter()
 @JsonSerializable(createToJson: false, checked: true)
 class ColormindColors extends ColorsFromAPI {
-  @JsonKey(name: 'result', required: true)
+  @JsonKey(name: jsonKey, required: true)
   final List<Color> colors;
+
+  static const String jsonKey = 'result';
 
   /// An annotation used to specify how a field is serialized.
   const ColormindColors({this.colors = const <Color>[]}) : super(colors);

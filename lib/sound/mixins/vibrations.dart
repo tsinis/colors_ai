@@ -4,18 +4,27 @@ import 'package:vibration/vibration.dart';
 mixin Vibrations {
   late final bool _customVibrationsAvailable;
 
-  Future<void> initVibrations() async {
+  Future<bool> initVibrations() async {
     if (platform.isMobile) {
-      _customVibrationsAvailable =
-          (await Vibration.hasVibrator() ?? false) && (await Vibration.hasCustomVibrationsSupport() ?? false);
+      try {
+        return _customVibrationsAvailable =
+            (await Vibration.hasVibrator() ?? false) && (await Vibration.hasCustomVibrationsSupport() ?? false);
+        // ignore: avoid_catches_without_on_clauses
+      } catch (_) {
+        return _customVibrationsAvailable = false;
+      }
     } else {
-      _customVibrationsAvailable = false;
+      return _customVibrationsAvailable = false;
     }
   }
 
-  void vibrate({int durationInMs = 150}) {
+  bool vibrate({int durationInMs = 150}) {
     if (_customVibrationsAvailable) {
       Vibration.vibrate(duration: durationInMs);
+
+      return true;
     }
+
+    return false;
   }
 }

@@ -12,7 +12,7 @@ abstract class NavigationState extends Equatable {
 }
 
 class NavigationFailure extends NavigationState {
-  const NavigationFailure() : super(1);
+  const NavigationFailure() : super(-1);
 }
 
 class NavigationShareTabInitial extends NavigationState {

@@ -8,60 +8,72 @@ import '../../core/models/color_palette/color_palette.dart';
 import 'colors_from_api.dart';
 
 abstract class API<T extends Object> {
-  final String generateModelKey;
-  final String paletteInputKey;
-
-  final String unlockedColorChar;
+  final String _generateModelKey;
+  final String _paletteInputKey;
+  final String _unlockedColorChar;
   final ColorsFromAPI _apiColors;
   final Map<String, String> _headers;
   final String _host;
+  final Client? _httpClient;
   final Duration _timeout;
 
   const API(
     this._host,
     this._apiColors, {
-    required this.unlockedColorChar,
-    required this.generateModelKey,
-    required this.paletteInputKey,
+    required String unlockedColorChar,
+    required String generateModelKey,
+    required String paletteInputKey,
     Duration timeout = const Duration(seconds: 8),
     Map<String, String> headers = const <String, String>{'Content-Type': 'application/json'},
-  })  : _headers = headers,
+    Client? httpClient,
+  })  : _unlockedColorChar = unlockedColorChar,
+        _generateModelKey = generateModelKey,
+        _paletteInputKey = paletteInputKey,
+        _headers = headers,
+        _httpClient = httpClient,
         _timeout = timeout;
 
-  @required
+  @visibleForTesting
   T apiColorTransformer(Color color);
 
   @required
   Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors);
 
-  @protected
   MapEntry<String, List<Object>> colorsToInput(ColorPalette palette, List<bool> lockedColors) {
     final List<Object> paletteToInput = List<Object>.of(<Object>[]);
     palette.colors.asMap().forEach((int colorIndex, Color color) {
       final bool isLocked = lockedColors[colorIndex];
-      paletteToInput.add(isLocked ? unlockedColorChar : apiColorTransformer(color));
+      paletteToInput.add(isLocked ? _unlockedColorChar : apiColorTransformer(color));
     });
 
-    return MapEntry<String, List<Object>>(paletteInputKey, paletteToInput);
+    return MapEntry<String, List<Object>>(_paletteInputKey, paletteToInput);
   }
 
-  @protected
-  MapEntry<String, String> modelToInput(String modelValue) => MapEntry<String, String>(generateModelKey, modelValue);
+  MapEntry<String, String> modelToInput(String modelValue) => MapEntry<String, String>(_generateModelKey, modelValue);
 
   @protected
   Future<ColorPalette> sendPostRequest(Object body) async {
     final Uri? uri = Uri.tryParse(_host);
     if (uri == null) {
-      throw Exception('Cannot parse host!');
+      throw Exception('Cannot parse host.');
     }
     final String payload = jsonEncode(body);
     debugPrint('REQUEST PAYLOAD: $payload');
-    final Response response = await post(uri, headers: _headers, body: payload).timeout(_timeout);
 
-    if (response.statusCode < 200 || response.statusCode > 299) {
-      throw Exception('Network error, status Code: ${response.statusCode}');
+    late final Response response;
+    if (_httpClient != null) {
+      response = await _httpClient!.post(uri, headers: _headers, body: payload).timeout(_timeout);
     } else {
-      return _apiColors.fromResponse(response);
+      response = await post(uri, headers: _headers, body: payload).timeout(_timeout);
     }
+
+    if (isErrorStatusCode(response.statusCode)) {
+      throw Exception('Network error, status Code: ${response.statusCode}.');
+    }
+
+    return _apiColors.fromResponse(response);
   }
+
+  @visibleForTesting
+  static bool isErrorStatusCode(int statusCode) => statusCode < 200 || statusCode > 299;
 }

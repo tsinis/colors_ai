@@ -9,6 +9,7 @@ import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/string_extension.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../blocs/share_bloc.dart';
+import '../../../extensions/file_format_extension.dart';
 import '../../../models/file_format.dart';
 import 'share_section_interface.dart';
 

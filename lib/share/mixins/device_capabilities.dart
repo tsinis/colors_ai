@@ -10,9 +10,14 @@ mixin DeviceCapabilities {
   late final String storagePath;
 
   Future<void> init() async {
-    storagePath = kIsWeb ? '' : await DataStorage.path;
-    final PrintingInfo info = await Printing.info();
-    canSharePdf = info.canShare;
-    canSharePng = info.canRaster;
+    try {
+      storagePath = kIsWeb ? '' : await const DataStorage().path;
+      final PrintingInfo info = await Printing.info();
+      canSharePdf = info.canShare;
+      canSharePng = info.canRaster;
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
+      canSharePng = canSharePdf = false;
+    }
   }
 }

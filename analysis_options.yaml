@@ -13,7 +13,7 @@ analyzer:
     # Assets
     - 'assets/**'
     # Mocks for test
-    - 'test/data/**'
+    - '**/*.mocks.dart'
     # Coverage
     - 'test/.test_coverage.dart'
     # Conditional imports

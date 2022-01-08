@@ -35,13 +35,16 @@
     "nullsafety",
     "Palettable",
     "Poolors",
+    "precache",
     "pubspec",
     "reorderable",
     "RGBO",
+    "rgbs",
     "roboto",
     "setstate",
     "Snackbars",
     "Spacebar",
+    "Subtags",
     "swipeable",
     "todos",
     "unawaited",
@@ -51,6 +54,7 @@
   "cSpell.ignorePaths": [
     ".git", // Ignore the .git directory
     "README.md", // Ignore README
-    "**/l10n/*.arb" // Ignore all .arb files in l10n
+    "**/l10n/*.arb", // Ignore all .arb files in l10n
+    "**/url_providers/providers/*.dart" // Ignore all URL providers
   ]
 }

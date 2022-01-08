@@ -2,7 +2,7 @@ part of 'snackbar_bloc.dart';
 
 abstract class SnackbarEvent extends Equatable {
   @override
-  List<Object> get props => <Object>[];
+  List<Object?> get props => <Object>[];
 
   const SnackbarEvent();
 }
@@ -33,5 +33,10 @@ class ColorCopiedSuccess extends SnackbarEvent {
 }
 
 class ServerStatusCheckedSuccess extends SnackbarEvent {
-  const ServerStatusCheckedSuccess();
+  final DateTime? time;
+
+  @override
+  List<DateTime?> get props => <DateTime?>[time];
+
+  const ServerStatusCheckedSuccess([this.time]);
 }

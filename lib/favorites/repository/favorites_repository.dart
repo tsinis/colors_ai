@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import '../../core/extensions/color_palette_extension.dart';
 import '../../core/models/color_palette/color_palette.dart';
 import '../interfaces/favorites_storage.dart';
 
@@ -9,9 +10,7 @@ class FavoritesRepository {
 
   Future<bool> get loadStoredFavorites async {
     final Iterable<ColorPalette> stored = await _storage.storedFavorites;
-    _palettes
-      ..clear()
-      ..addAll(stored);
+    _palettes.addAll(stored);
 
     return stored.isNotEmpty;
   }
@@ -24,7 +23,7 @@ class FavoritesRepository {
       : _palettes = palettes,
         _storage = storage;
 
-  void add(List<Color> colors) => _palettes.add(ColorPalette(colors: List<Color>.unmodifiable(colors)));
+  void add(List<Color> colors) => _palettes.add(colors.toPalette());
 
   void remove(Set<int> indexes) {
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);

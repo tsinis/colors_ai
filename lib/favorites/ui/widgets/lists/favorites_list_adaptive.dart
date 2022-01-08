@@ -188,7 +188,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                               opacity: isHoveringColor || isSelectedToRemove ? 1 : 0,
                                                               child: TextButton(
                                                                 onPressed: () {
-                                                                  BlocProvider.of<ColorPickerBLoc>(context)
+                                                                  BlocProvider.of<ColorPickerBloc>(context)
                                                                       .add(ColorPickerCopied(color));
                                                                   BlocProvider.of<SnackbarBloc>(context)
                                                                       .add(const ColorCopiedSuccess());

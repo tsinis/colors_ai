@@ -9,37 +9,36 @@ import '../lib/testing/test_keys.dart';
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
-  testWidgets('Onboarding should dissapear after tap on "GOT IT" button', (WidgetTester tester) async {
+  testWidgets('Onboarding should disappear after tap on "GOT IT" button', (WidgetTester tester) async {
     await app.main();
     debugPrint('App is started');
     try {
       await tester.pumpAndSettle(
-        const Duration(milliseconds: 100),
+        const Duration(seconds: 2),
         EnginePhase.sendSemanticsUpdate,
         const Duration(seconds: 5),
       );
       // ignore: avoid_catches_without_on_clauses
-    } catch (expection) {
+    } catch (exception) {
       debugPrint(
-        'Expection is: $expection. Because: Infinity loop "Pull to refresh" animation is showed, cannot wait till settle',
+        'Exception is: $exception. Because: Infinity loop "Pull to refresh" animation is showed, cannot wait till settle',
       );
     }
+    await tester.pump(const Duration(seconds: 2));
+    await tester.pump();
     debugPrint('App is pumped');
     final Finder button = find.byKey(TestKeys.onboardingFinish);
     debugPrint('Described BUTTON: $button');
-    final Finder dissapear = find.byKey(TestKeys.disappearedOnboard);
-    debugPrint('Described DISSAPEAR: $dissapear');
+    final Finder disappear = find.byKey(TestKeys.disappearedOnboard);
+    debugPrint('Described DISAPPEAR: $disappear');
     await tester.ensureVisible(button);
     debugPrint('Ensured button is visible');
     expect(button, findsOneWidget, reason: 'We did not taped yet');
-    expect(dissapear, findsNothing);
+    expect(disappear, findsNothing);
 
     await tester.tap(button);
-    debugPrint('Button is taped');
     await tester.pump();
-    debugPrint('App is pumped again');
     expect(button, findsNothing, reason: 'We DID taped the button');
-    expect(dissapear, findsOneWidget);
-    debugPrint('Test Finished, result is:');
+    expect(disappear, findsOneWidget);
   });
 }

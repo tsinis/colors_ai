@@ -6,6 +6,7 @@ import '../../../app/theme/constants.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../blocs/share_bloc.dart';
+import '../../extensions/file_format_extension.dart';
 import '../../mixins/text_based_file_creator.dart';
 import '../../models/color_space.dart';
 import '../../models/file_format.dart';

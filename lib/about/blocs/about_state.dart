@@ -14,5 +14,5 @@ class AboutInitial extends AboutState {
 }
 
 class AboutFailure extends AboutState {
-  const AboutFailure() : super(appVersion: '');
+  const AboutFailure() : super(appVersion: '0');
 }
