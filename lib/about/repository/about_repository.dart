@@ -3,6 +3,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../core/services/url_launcher.dart';
+import '../../core/ui/constants.dart';
 
 class AboutRepository {
   final String _aboutColormind;
@@ -26,7 +27,7 @@ class AboutRepository {
     String aboutColormind = 'http://colormind.io/api-access',
     String aboutGoogle = 'https://about.google/intl/',
     String aboutHuemint = 'https://huemint.com/about',
-    String defaultLanguageCode = 'en',
+    String defaultLanguageCode = kDefaultLanguageCode,
     String materialSounds = 'https://material.io/design/sound/sound-resources.html',
     String soundsLicense = 'https://creativecommons.org/licenses/by/4.0/legalcode.',
     String sourceCode = 'https://github.com/tsinis/colors_ai',

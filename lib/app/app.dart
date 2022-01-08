@@ -12,6 +12,7 @@ import '../core/ui/view/splash_screen.dart';
 import '../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
 import '../favorites/repository/remove_favorites_repository.dart';
+import '../l10n/utils/locale_detector.dart';
 import '../navigation/blocs/navigation_bloc.dart';
 import '../onboarding/blocs/onboarding_bloc.dart';
 import '../settings/blocs/settings_bloc.dart';
@@ -34,6 +35,7 @@ class App extends StatelessWidget {
           }
 
           return MaterialApp(
+            locale: detectedLocale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme(isDark: settingsState.isDarkTheme).theme,
