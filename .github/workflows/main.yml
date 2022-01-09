@@ -9,9 +9,9 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Install Flutter
       uses: subosito/flutter-action@v2
     - name: Install app dependencies
@@ -24,9 +24,6 @@ jobs:
       run: flutter gen-l10n
     - name: Test app
       run: flutter test --coverage
-    - name: Upload coverage to Codecov
-      run: curl -s https://codecov.io/bash
-      shell: bash
     - uses: codecov/codecov-action@v2
       with:
         file: ./coverage/lcov.info
