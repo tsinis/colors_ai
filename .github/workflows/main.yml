@@ -2,9 +2,16 @@ name: Tests
 
 on:
   push:
-    branches: [ main ]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
+      - ".github/workflows/main.yaml"
   pull_request:
-    branches: [ main ]
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "pubspec.yaml"
 
 jobs:
   test:
