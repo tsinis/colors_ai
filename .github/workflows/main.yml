@@ -16,6 +16,11 @@ jobs:
       uses: subosito/flutter-action@v2
     - name: Install app dependencies
       run: flutter pub get
+    - name: Create key for data storage
+      uses: finnp/create-file-action@master
+        env:
+          FILE_NAME: lib/core/services/data_storage.key.dart
+          FILE_DATA: "part of 'data_storage.dart'; const String secureKey = 'key';"
     - name: Generate localization files
       run: flutter gen-l10n
     - name: Test app
