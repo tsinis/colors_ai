@@ -12,7 +12,7 @@ import '../core/ui/view/splash_screen.dart';
 import '../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
 import '../favorites/repository/remove_favorites_repository.dart';
-import '../l10n/utils/locale_detector.dart';
+import '../l10n/utils/detected_locale.dart';
 import '../navigation/blocs/navigation_bloc.dart';
 import '../onboarding/blocs/onboarding_bloc.dart';
 import '../settings/blocs/settings_bloc.dart';

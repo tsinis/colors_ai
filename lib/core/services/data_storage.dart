@@ -50,7 +50,10 @@ class DataStorage {
     ),
     String secureKey = secureKey,
   })  : _keyStorage = keyStorage,
-        _secureKey = secureKey; //TODO: Provide key from outside (ENV or something like that), for CI/CD builds.
+
+        /// Example of how to provide default 'secureKey' to CI/CD is available at:
+        /// https://github.com/tsinis/colors_ai/blob/main/.github/workflows/main.yml#L19-L22
+        _secureKey = secureKey;
 
   Future<HiveCipher?> init() async {
     final HydratedCipher? encryptionCipher = await _encryptionCipher;

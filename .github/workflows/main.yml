@@ -9,18 +9,17 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
     - uses: actions/checkout@v1
     - name: Install Flutter
       uses: subosito/flutter-action@v2
     - name: Install app dependencies
       run: flutter pub get
-    - name: Create key for data storage
-      uses: finnp/create-file-action@master
-      env:
-        FILE_NAME: ./lib/core/services/data_storage.key.dart
-        FILE_DATA: "part of 'data_storage.dart'; const String secureKey = 'key';"
+    - name: Create sample key for data storage
+      run: |
+        touch ./lib/core/services/data_storage.key.dart
+        echo "part of 'data_storage.dart'; const String secureKey = 'key';" >> lib/core/services/data_storage.key.dart
     - name: Generate localization files
       run: flutter gen-l10n
     - name: Test app
@@ -30,5 +29,4 @@ jobs:
       shell: bash
     - uses: codecov/codecov-action@v2
       with:
-        token: ${{secrets.CODECOV_TOKEN}}
         file: ./coverage/lcov.info
