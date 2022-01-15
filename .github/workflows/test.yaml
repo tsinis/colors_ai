@@ -6,7 +6,7 @@ on:
       - "lib/**"
       - "test/**"
       - "pubspec.yaml"
-      - ".github/workflows/main.yaml"
+      - ".github/workflows/test.yaml"
   pull_request:
     paths:
       - "lib/**"

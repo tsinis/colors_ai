@@ -18,6 +18,7 @@ class GradientSliderShape extends SliderTrackShape with BaseSliderTrackShape {
   });
 
   @override
+  // ignore: long-parameter-list, long-method
   void paint(
     PaintingContext context,
     Offset offset, {
@@ -39,7 +40,12 @@ class GradientSliderShape extends SliderTrackShape with BaseSliderTrackShape {
       return;
     }
     final Rect trackRect = getPreferredRect(
-        parentBox: parentBox, offset: offset, sliderTheme: sliderTheme, isEnabled: isEnabled, isDiscrete: isDiscrete);
+      parentBox: parentBox,
+      offset: offset,
+      sliderTheme: sliderTheme,
+      isEnabled: isEnabled,
+      isDiscrete: isDiscrete,
+    );
     final ColorTween activeTrackColorTween =
         ColorTween(begin: sliderTheme.disabledActiveTrackColor, end: sliderTheme.activeTrackColor);
     final ColorTween inactiveTrackColorTween = darkenInactive

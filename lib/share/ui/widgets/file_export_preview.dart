@@ -138,6 +138,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                           child: AnimatedSize(
                                             duration: widget.duration,
                                             curve: widget.curve,
+                                            // ignore: avoid-wrapping-in-padding
                                             child: Padding(
                                               padding: EdgeInsets.all(file.isPrintable ? 2 : 0),
                                               child: AnimatedContainer(

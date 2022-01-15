@@ -252,7 +252,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.8.1"
+    version: "4.9.1"
   dart_style:
     dependency: transitive
     description:

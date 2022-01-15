@@ -1,6 +1,6 @@
 [![Tests](https://github.com/tsinis/colors_ai/actions/workflows/main.yml/badge.svg)](https://github.com/tsinis/colors_ai/actions/workflows/main.yml)
 [![Codemagic build status](https://api.codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/status_badge.svg)](https://codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/latest_build)
-[![Google Play Store](https://img.shields.io/endpoint?color=brightgreen&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
+[![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Snapcraft](https://snapcraft.io/colors-ai/badge.svg)](https://snapcraft.io/colors-ai)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -58,7 +58,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-Application is **covered by hundreds of tests**, you can find here: Unit (mainly), Widget, Golden and Integration tests.
+Most of the application is **covered by hundreds of tests**, you can find here: Unit (mainly), Widget, Golden and Integration tests.
 
 ## Accessibility
 
@@ -92,7 +92,8 @@ All animations here are made with pure Flutter. The application's UI is designed
 ## To-Do Section
 
 * [ ] Refactor.
-* [ ] Write more tests.
+* [ ] Use Freezed for Events/States.
+* [ ] Write the rest of the test for UI.
 * [x] Separate data layer more.
 * [x] Create more interfaces for Data and Repository layers.
 * [x] Add exports to PDF and PNG.
