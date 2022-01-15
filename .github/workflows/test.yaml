@@ -18,19 +18,28 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-    - uses: actions/checkout@v2
+    steps:
+    - name: Checks-out repository
+      uses: actions/checkout@v2
+
     - name: Install Flutter
       uses: subosito/flutter-action@v2
-    - name: Install app dependencies
-      run: flutter pub get
+
     - name: Create sample key for data storage
       run: |
         touch ./lib/core/services/data_storage.key.dart
         echo "part of 'data_storage.dart'; const String secureKey = 'key';" >> lib/core/services/data_storage.key.dart
+
+    - name: Install app dependencies
+      run: flutter pub get
+
     - name: Generate localization files
       run: flutter gen-l10n
+
     - name: Test app
       run: flutter test --coverage
-    - uses: codecov/codecov-action@v2
+
+    - name: Upload Code Coverage
+      uses: codecov/codecov-action@v2
       with:
         file: ./coverage/lcov.info
