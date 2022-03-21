@@ -1,0 +1,28 @@
+workflows:
+  integration-test:
+    name: Integration Test
+    max_build_duration: 10
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - flutter packages pub get
+      - |
+        flutter pub get
+        flutter gen-l10n
+        touch lib/core/services/data_storage.key.dart
+        echo "part of 'data_storage.dart'; const String secureKey = 'integration_test';" >> lib/core/services/data_storage.key.dart
+      - sudo apt-get --assume-yes install libvlc-dev vlc libsecret-1-dev libjsoncpp-dev
+        libsecret-1-0 libjsoncpp1
+      - name: Integration tests
+        script: |
+          flutter emulators --launch emulator &
+          adb wait-for-device
+          mkdir -p test-results
+          flutter -d emulator-5554 test integration_test/onboarding_test.dart --machine > test-results/integration-android.json
+          zip -r test_results.zip test-results/
+        test_report: test-results/flutter.json
+    artifacts:
+      - flutter_drive.log
+      - test_results.zip
