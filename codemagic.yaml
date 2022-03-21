@@ -13,8 +13,6 @@ workflows:
         flutter gen-l10n
         touch lib/core/services/data_storage.key.dart
         echo "part of 'data_storage.dart'; const String secureKey = 'integration_test';" >> lib/core/services/data_storage.key.dart
-      - sudo apt-get --assume-yes install libvlc-dev vlc libsecret-1-dev libjsoncpp-dev
-        libsecret-1-0 libjsoncpp1
       - name: Integration tests
         script: |
           flutter emulators --launch emulator &
