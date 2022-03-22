@@ -15,8 +15,10 @@ workflows:
         echo "part of 'data_storage.dart'; const String secureKey = 'integration_test';" >> lib/core/services/data_storage.key.dart
       - name: Integration tests
         script: |
+          open -a Simulator
           mkdir -p test-results
-          flutter -d iPhone test integration_test/onboarding_test.dart --machine > test-results/integration-android.json
+          flutter devices
+          flutter -d ios test integration_test/onboarding_test.dart --machine > test-results/integration-android.json
           zip -r test_results.zip test-results/
         test_report: test-results/flutter.json
     artifacts:
