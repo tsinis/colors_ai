@@ -14,12 +14,7 @@ workflows:
         touch lib/core/services/data_storage.key.dart
         echo "part of 'data_storage.dart'; const String secureKey = 'integration_test';" >> lib/core/services/data_storage.key.dart
       - name: Integration tests
-        script: |
-          open -a Simulator
-          mkdir -p test-results
-          flutter devices
-          flutter test integration_test/onboarding_test.dart --machine > test-results/integration-android.json
-          zip -r test_results.zip test-results/
+        script: bash resources/scripts/ios_e2e_test.sh
         test_report: test-results/flutter.json
     artifacts:
       - flutter_drive.log
