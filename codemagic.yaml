@@ -1,0 +1,21 @@
+workflows:
+  integration-test:
+    name: Integration Test
+    max_build_duration: 10
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - flutter packages pub get
+      - |
+        flutter pub get
+        flutter gen-l10n
+        touch lib/core/services/data_storage.key.dart
+        echo "part of 'data_storage.dart'; const String secureKey = 'integration_test';" >> lib/core/services/data_storage.key.dart
+      - name: Integration tests
+        script: bash resources/scripts/ios_e2e_test.sh
+        test_report: test-results/flutter.json
+    artifacts:
+      - flutter_drive.log
+      - test_results.zip
