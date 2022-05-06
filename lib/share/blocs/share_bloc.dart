@@ -32,6 +32,8 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
     if (savedFormat != null) {
       _share.restoreFormatFromJson(savedFormat);
     }
+
+    return null;
   }
 
   @override
@@ -84,6 +86,8 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
         _formatKey: state.selectedFormat?.name,
       };
     }
+
+    return null;
   }
 
   Future<void> _shareFailed() async => Future<void>.delayed(Duration.zero);

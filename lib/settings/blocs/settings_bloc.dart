@@ -47,6 +47,8 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
       ..colormindForUI = forUI
       ..huemintAdjacency = huemintAdjacency
       ..huemintTemperature = huemintTemperature;
+
+    return null;
   }
 
   @override
@@ -100,5 +102,7 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
         _selectedApiKey: state.selectedAPI.name,
       };
     }
+
+    return null;
   }
 }

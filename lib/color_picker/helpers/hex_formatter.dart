@@ -20,6 +20,8 @@ class HexFormatter extends TextInputFormatter {
     if (input != null && RegExp(kCompleteValidHexPattern).hasMatch(input)) {
       return formatInput(input);
     }
+
+    return null;
   }
 
   @visibleForTesting

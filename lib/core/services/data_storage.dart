@@ -42,6 +42,8 @@ class DataStorage {
 
       return HydratedAesCipher(encryptionKey);
     }
+
+    return null;
   }
 
   const DataStorage({

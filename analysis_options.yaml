@@ -62,6 +62,7 @@ dart_code_metrics:
     - avoid-nested-conditional-expressions:
       acceptable-level: 2
     - always-remove-listener
+    - avoid-collection-methods-with-unrelated-types
     - avoid-global-state
     - avoid-missing-enum-constant-in-map
     - avoid-throw-in-catch-block
@@ -70,13 +71,16 @@ dart_code_metrics:
     - avoid-unrelated-type-assertions
     - avoid-unused-parameters
     - avoid-wrapping-in-padding
+    - ban-name
     - binary-expression-operand-order
+    - check-unused-code
     - double-literal-format
     - member-ordering-extended
     - newline-before-return
     - no-boolean-literal-compare
     - no-equal-then-else
     - no-object-declaration
+    - prefer-async-await
     - prefer-const-border-radius
     - prefer-correct-type-name
     - prefer-first
@@ -87,6 +91,7 @@ dart_code_metrics:
     - prefer-trailing-comma
     - provide-correct-intl-args
     - refer-correct-identifier-length
+    - tag-name
     - technical-debt
 
 linter:

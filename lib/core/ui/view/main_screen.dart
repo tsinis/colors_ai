@@ -133,6 +133,8 @@ class _NavigationScreenState extends State<MainScreen> {
                               message = AppLocalizations.of(context).serverMaintenanceMessage;
                             } else if (isShareFailed) {
                               message = AppLocalizations.of(context).shareFailedMessage;
+                            } else {
+                              // TODO: Add Error message.
                             }
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

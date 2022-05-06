@@ -7,6 +7,7 @@ import '../extensions/color_extensions.dart';
 class ClipBoard {
   final String _dataFormat;
 
+  // TODO: Fix on Android with new Kotlin version.
   Future<String?> get data async => (await Clipboard.getData(_dataFormat))?.text;
 
   const ClipBoard({String dataFormat = Clipboard.kTextPlain}) : _dataFormat = dataFormat;

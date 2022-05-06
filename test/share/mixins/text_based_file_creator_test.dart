@@ -8,10 +8,10 @@ class _TextBasedFileCreatorTest with TextBasedFileCreator {}
 void main() => group(
       '$TextBasedFileCreator',
       () {
-        final _TextBasedFileCreatorTest _textFileCreator = _TextBasedFileCreatorTest();
+        final _TextBasedFileCreatorTest textFileCreator = _TextBasedFileCreatorTest();
 
         test('toJson()', () {
-          final String json = _textFileCreator.toJson(palette);
+          final String json = textFileCreator.toJson(palette);
           expect(
             json,
             '''
@@ -23,7 +23,7 @@ void main() => group(
         });
 
         test('toScss()', () {
-          final String scss = _textFileCreator.toScss(palette);
+          final String scss = textFileCreator.toScss(palette);
           expect(
             scss,
             r'''
@@ -33,7 +33,7 @@ $color-2: #ffffffff;''',
         });
 
         test('toSvg()', () {
-          final String svg = _textFileCreator.toSvg(palette);
+          final String svg = textFileCreator.toSvg(palette);
           expect(
             svg,
             '''
