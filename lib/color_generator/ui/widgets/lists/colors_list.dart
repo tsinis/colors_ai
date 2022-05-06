@@ -5,12 +5,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
 import '../../../../app/theme/constants.dart';
 import '../../../../color_picker/ui/view/colorpicker.dart';
 import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../core/ui/widgets/lists/default_grey_colors_list.dart';
 import '../../../../favorites/blocs/add_favorites/fab_bloc.dart';
@@ -51,7 +51,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
   late Completer<void> refreshCompleter;
   late final Animation<double> reverseAnimation;
 
-  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+  bool get isPortrait => context.media.orientation == Orientation.portrait;
 
   List<Color> get palette => widget.palette.colors;
 
@@ -119,7 +119,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                       child: Padding(
                         padding: EdgeInsets.only(bottom: tileHeight / 3),
                         child: Text(
-                          AppLocalizations.of(context).pullToRefreshTip,
+                          context.l10n.pullToRefreshTip,
                           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                         ),
                       ),

@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
 import '../../../color_generator/blocs/colors_generated/colors_bloc.dart';
@@ -22,6 +21,7 @@ import '../../../share/repository/share_repository.dart';
 import '../../../share/ui/view/share_colors_tab.dart';
 import '../../../sound/blocs/sound_bloc.dart';
 import '../../../sound/repository/sounds_repository.dart';
+import '../../extensions/context_extensions.dart';
 import '../../repository/colors_repository.dart';
 import '../constants.dart';
 import '../widgets/overflow_menu.dart';
@@ -41,11 +41,10 @@ class _NavigationScreenState extends State<MainScreen> {
   final SoundBloc soundBloc = SoundBloc(SoundsRepository());
   final FocusNode keyboardListenerNode = FocusNode(debugLabel: 'keyboard');
 
-  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
-  SystemUiOverlayStyle get overlayStyle => Theme.of(context).brightness == Brightness.dark
-      ? SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: Theme.of(context).cardColor)
-      : SystemUiOverlayStyle.dark
-          .copyWith(systemNavigationBarColor: Theme.of(context).navigationRailTheme.backgroundColor);
+  bool get isPortrait => context.media.orientation == Orientation.portrait;
+  SystemUiOverlayStyle get overlayStyle => context.theme.brightness == Brightness.dark
+      ? SystemUiOverlayStyle.light.copyWith(systemNavigationBarColor: context.theme.cardColor)
+      : SystemUiOverlayStyle.dark.copyWith(systemNavigationBarColor: context.theme.navigationRailTheme.backgroundColor);
 
   @override
   void initState() {
@@ -124,15 +123,15 @@ class _NavigationScreenState extends State<MainScreen> {
                             final bool isFileCopied = snackbarState is FileCopySuccess;
                             final bool isShareFailed = snackbarState is ShareAttemptFailure;
                             if (isUrlCopied) {
-                              message = AppLocalizations.of(context).urlCopiedMessage;
+                              message = context.l10n.urlCopiedMessage;
                             } else if (snackbarState is ColorCopySuccess) {
-                              message = AppLocalizations.of(context).colorCopiedMessage(snackbarState.clipboard);
+                              message = context.l10n.colorCopiedMessage(snackbarState.clipboard);
                             } else if (isFileCopied) {
-                              message = AppLocalizations.of(context).formatCopied(snackbarState.format);
+                              message = context.l10n.formatCopied(snackbarState.format);
                             } else if (snackbarState is ServerStatusCheckSuccess) {
-                              message = AppLocalizations.of(context).serverMaintenanceMessage;
+                              message = context.l10n.serverMaintenanceMessage;
                             } else if (isShareFailed) {
-                              message = AppLocalizations.of(context).shareFailedMessage;
+                              message = context.l10n.shareFailedMessage;
                             } else {
                               // TODO: Add Error message.
                             }
@@ -147,8 +146,8 @@ class _NavigationScreenState extends State<MainScreen> {
                                     : SnackBarBehavior.floating,
                                 action: isUrlCopied
                                     ? SnackBarAction(
-                                        textColor: Theme.of(context).scaffoldBackgroundColor,
-                                        label: AppLocalizations.of(context).urlOpenButtonLabel,
+                                        textColor: context.theme.scaffoldBackgroundColor,
+                                        label: context.l10n.urlOpenButtonLabel,
                                         onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(
                                           const UrlOpenedSuccess(),
                                         ),

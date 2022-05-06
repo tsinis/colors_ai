@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
 import '../../../navigation/blocs/navigation_bloc.dart';
@@ -14,10 +14,10 @@ class AppBarInfoTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
         builder: (_, RemoveFavoritesState favState) {
-          final List<String> tabLabels = tabNames(AppLocalizations.of(context));
+          final List<String> tabLabels = tabNames(context.l10n);
           late String? appBarInfo;
           if (selectedTabIndex == const NavigationFavoritesTabInitial().tabIndex && favState.selections.isNotEmpty) {
-            appBarInfo = AppLocalizations.of(context).removeSomeTitle(favState.selections.length);
+            appBarInfo = context.l10n.removeSomeTitle(favState.selections.length);
           } else {
             appBarInfo = null;
           }

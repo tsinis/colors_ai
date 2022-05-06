@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/theme/constants.dart';
 import '../../../color_generator/ui/widgets/buttons/generate_colors_fab.dart';
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
@@ -31,21 +31,21 @@ class _NavRailState extends State<NavRail> with NavTabIndexer {
 
   @override
   void didChangeDependencies() {
-    isExtended = MediaQuery.of(context).size.width >= 1366;
+    isExtended = context.media.size.width >= 1366;
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) => GestureDetector(
         onTap: () {
-          if (MediaQuery.of(context).size.width > 840 || isExtended) {
+          if (context.media.size.width > 840 || isExtended) {
             setState(() => isExtended = !isExtended);
           }
         },
         child: BlocBuilder<FavoritesBloc, FavoritesState>(
           builder: (_, FavoritesState saveState) {
             final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
-            final List<String> tabLabels = tabNames(AppLocalizations.of(context));
+            final List<String> tabLabels = tabNames(context.l10n);
 
             return NavigationRail(
               selectedIndex: widget.navState.tabIndex,
@@ -80,16 +80,14 @@ class _NavRailState extends State<NavRail> with NavTabIndexer {
                 ),
                 NavigationRailDestination(
                   label: Text(
-                    isFavoritesEmpty
-                        ? AppLocalizations.of(context).noFavoritesTabLabel
-                        : AppLocalizations.of(context).favoritesTabLabel,
+                    isFavoritesEmpty ? context.l10n.noFavoritesTabLabel : context.l10n.favoritesTabLabel,
                   ),
                   selectedIcon: const Icon(Icons.bookmarks),
                   icon: Icon(
                     Icons.bookmarks_outlined,
                     color: isFavoritesEmpty
-                        ? Theme.of(context).disabledColor
-                        : Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+                        ? context.theme.disabledColor
+                        : context.theme.bottomNavigationBarTheme.selectedItemColor,
                   ),
                 ),
               ],

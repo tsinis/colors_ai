@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/extensions/context_extensions.dart';
 import 'no_favorites/empty_list.dart';
 import 'no_favorites/magnifier.dart';
 
@@ -48,7 +49,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
             children: <Widget>[
               CustomPaint(
                 size: const Size(320, 320),
-                painter: EmptyList(outlineColor: Theme.of(context).textTheme.headline2!.color!),
+                painter: EmptyList(outlineColor: context.theme.textTheme.headline2!.color!),
               ),
               ScaleTransition(
                 scale: animation,
@@ -58,9 +59,9 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
                   child: CustomPaint(
                     size: const Size(240, 240),
                     painter: Magnifier(
-                      backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
+                      backgroundColor: context.theme.floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
                       holdersColor: Colors.grey[800]!,
-                      outlineColor: Theme.of(context).textTheme.headline2!.color!,
+                      outlineColor: context.theme.textTheme.headline2!.color!,
                     ),
                   ),
                 ),

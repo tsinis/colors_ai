@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/theme/constants.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/repository/colors_repository.dart';
 import '../../blocs/share_bloc.dart';
@@ -25,7 +26,7 @@ class ShareColorsTab extends StatelessWidget {
           final FileFormat selectedFormat = state.selectedFormat ?? FileFormat.values.first;
           final ColorPalette palette = context.read<ColorsRepository>().palette;
           final String? exportFormats = selectedProvider.formats;
-          final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+          final bool isPortrait = context.media.orientation == Orientation.portrait;
 
           return LayoutBuilder(
             builder: (_, BoxConstraints size) => isPortrait

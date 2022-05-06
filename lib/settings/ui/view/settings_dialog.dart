@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../app/theme/constants.dart';
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/extensions/string_extension.dart';
 import '../../blocs/settings_bloc.dart';
 import '../../extensions/string_selected_api_extension.dart';
@@ -20,7 +20,7 @@ class SettingsDialog extends StatelessWidget {
           shape: kDefaultShape,
           scrollable: true,
           contentPadding: const EdgeInsets.only(bottom: 16, top: 16),
-          title: Text(AppLocalizations.of(context).settings),
+          title: Text(context.l10n.settings),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -29,14 +29,14 @@ class SettingsDialog extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: DropdownButtonFormField<SelectedAPI>(
                   isExpanded: true,
-                  dropdownColor: Theme.of(context).dialogBackgroundColor,
+                  dropdownColor: context.theme.dialogBackgroundColor,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Theme.of(context).splashColor,
-                    labelText: AppLocalizations.of(context).selectAiProvider,
+                    fillColor: context.theme.splashColor,
+                    labelText: context.l10n.selectAiProvider,
                     helperStyle: const TextStyle(fontSize: 12),
                     helperMaxLines: 1,
-                    helperText: state.selectedAPI.helperText(AppLocalizations.of(context)),
+                    helperText: state.selectedAPI.helperText(context.l10n),
                   ),
                   value: state.selectedAPI,
                   onChanged: (SelectedAPI? api) => BlocProvider.of<SettingsBloc>(context).add(SettingsApiSelected(api)),
@@ -60,9 +60,9 @@ class SettingsDialog extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 4),
                   child: SwitchListTile(
                     dense: true,
-                    title: Text(AppLocalizations.of(context).colorsForUiTitle),
-                    subtitle: Text(AppLocalizations.of(context).colorsForUiSubtitle),
-                    activeColor: Theme.of(context).indicatorColor,
+                    title: Text(context.l10n.colorsForUiTitle),
+                    subtitle: Text(context.l10n.colorsForUiSubtitle),
+                    activeColor: context.theme.indicatorColor,
                     value: state.colormindForUI,
                     onChanged: (bool isForUi) {
                       if (isForUi) {
@@ -85,11 +85,11 @@ class SettingsDialog extends StatelessWidget {
                     children: <ListTile>[
                       ListTile(
                         dense: true,
-                        title: Text(AppLocalizations.of(context).adjacency),
+                        title: Text(context.l10n.adjacency),
                         subtitle: SliderTheme(
                           data: SliderThemeData(
-                            valueIndicatorColor: Theme.of(context).primaryColor,
-                            valueIndicatorTextStyle: TextStyle(color: Theme.of(context).primaryColorLight),
+                            valueIndicatorColor: context.theme.primaryColor,
+                            valueIndicatorTextStyle: TextStyle(color: context.theme.primaryColorLight),
                           ),
                           child: Slider(
                             value: state.huemintAdjacency.toDouble(),
@@ -103,7 +103,7 @@ class SettingsDialog extends StatelessWidget {
                       ),
                       ListTile(
                         dense: true,
-                        title: Text(AppLocalizations.of(context).temperature),
+                        title: Text(context.l10n.temperature),
                         subtitle: SliderTheme(
                           data: const SliderThemeData(trackShape: GradientSliderShape()),
                           child: Slider(
@@ -123,21 +123,21 @@ class SettingsDialog extends StatelessWidget {
               const Divider(height: 1),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 8, top: 12),
-                child: Text(AppLocalizations.of(context).appearance),
+                child: Text(context.l10n.appearance),
               ),
               RadioListTile<bool?>(
                 dense: true,
-                title: Text(AppLocalizations.of(context).lightThemeTitle),
+                title: Text(context.l10n.lightThemeTitle),
                 contentPadding: const EdgeInsets.only(right: 32, left: 16),
-                subtitle: Text(AppLocalizations.of(context).lightThemeSubtitle),
+                subtitle: Text(context.l10n.lightThemeSubtitle),
                 value: false,
                 groupValue: state.isDarkTheme,
                 onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsLightThemeSelected()),
               ),
               RadioListTile<bool?>(
                 dense: true,
-                title: Text(AppLocalizations.of(context).darkThemeTitle),
-                subtitle: Text(AppLocalizations.of(context).darkThemeSubtitle),
+                title: Text(context.l10n.darkThemeTitle),
+                subtitle: Text(context.l10n.darkThemeSubtitle),
                 value: true,
                 groupValue: state.isDarkTheme,
                 onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsDarkThemeSelected()),
@@ -145,8 +145,8 @@ class SettingsDialog extends StatelessWidget {
               Flexible(
                 child: RadioListTile<bool?>(
                   dense: true,
-                  title: Text(AppLocalizations.of(context).systemThemeTitle),
-                  subtitle: Text(AppLocalizations.of(context).systemThemeSubtitle),
+                  title: Text(context.l10n.systemThemeTitle),
+                  subtitle: Text(context.l10n.systemThemeSubtitle),
                   value: null,
                   groupValue: state.isDarkTheme,
                   onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected()),
@@ -163,13 +163,13 @@ class SettingsDialog extends StatelessWidget {
                 ..add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2))
                 ..add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2)),
               child: Text(
-                AppLocalizations.of(context).resetButtonLabel,
-                style: TextStyle(color: Theme.of(context).errorColor),
+                context.l10n.resetButtonLabel,
+                style: TextStyle(color: context.theme.errorColor),
               ),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text(MaterialLocalizations.of(context).closeButtonLabel.toBeginningOfSentenceCase()),
+              child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
             ),
           ],
         ),

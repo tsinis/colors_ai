@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
@@ -8,6 +7,7 @@ import '../../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../../color_picker/blocs/colorpicker_bloc.dart';
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../navigation/blocs/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
@@ -36,7 +36,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
   int? hoveringPalette;
 
   double get cardHeight => widget.size + (widget.padding * 2);
-  Color get removeColor => Theme.of(context).errorColor;
+  Color get removeColor => context.theme.errorColor;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -47,7 +47,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                 builder: (_, BoxConstraints windowSize) {
                   final List<ColorPalette> favorites = state.palettes;
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
-                  final double maxHeighForTip = widget.padding + (40 * MediaQuery.of(context).textScaleFactor);
+                  final double maxHeighForTip = widget.padding + (40 * context.media.textScaleFactor);
                   final bool canShowTip = favorites.length * cardHeight <= windowSize.maxHeight - maxHeighForTip;
 
                   return Stack(
@@ -60,7 +60,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                           duration: const Duration(milliseconds: 800),
                           opacity: canShowTip ? 1 : 0,
                           child: Text(
-                            AppLocalizations.of(context).removeFavoritesTipLandscape,
+                            context.l10n.removeFavoritesTipLandscape,
                             textAlign: TextAlign.center,
                             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                           ),
@@ -103,7 +103,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                 children: <Widget>[
                                                   Tooltip(
                                                     preferBelow: false,
-                                                    message: AppLocalizations.of(context).removeFavoritesTooltip,
+                                                    message: context.l10n.removeFavoritesTooltip,
                                                     child: IconButton(
                                                       splashRadius: widget.size / 4,
                                                       onPressed: () {
@@ -115,16 +115,14 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                       icon: Icon(
                                                         Icons.delete_forever_outlined,
                                                         color: isSelectedToRemove
-                                                            ? Theme.of(context).errorColor.withOpacity(0.8)
-                                                            : Theme.of(context)
-                                                                .bottomNavigationBarTheme
-                                                                .unselectedItemColor,
+                                                            ? context.theme.errorColor.withOpacity(0.8)
+                                                            : context
+                                                                .theme.bottomNavigationBarTheme.unselectedItemColor,
                                                       ),
                                                     ),
                                                   ),
                                                   Tooltip(
-                                                    message:
-                                                        AppLocalizations.of(context).selectToRemoveFavoritesTooltip,
+                                                    message: context.l10n.selectToRemoveFavoritesTooltip,
                                                     child: Checkbox(
                                                       value: isSelectedToRemove,
                                                       onChanged: (bool? i) => setState(
@@ -174,7 +172,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                             : (isHoveringColor ? 6 : 2),
                                                         shadowColor: isSelectedToRemove
                                                             ? removeColor
-                                                            : Theme.of(context).shadowColor,
+                                                            : context.theme.shadowColor,
                                                         color: color,
                                                         duration: widget.hoverDuration,
                                                         curve: widget.hoverCurve,

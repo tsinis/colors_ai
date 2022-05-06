@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
 import '../../../common/ui/widgets/helpers/orientation_switcher.dart';
+import '../../../core/extensions/context_extensions.dart';
 import '../../../testing/test_keys.dart';
 import '../../blocs/onboarding_bloc.dart';
 import '../widgets/animations/pull_to_refresh_animation.dart';
@@ -22,7 +22,7 @@ class OnboardingOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final bool isPortrait = context.media.orientation == Orientation.portrait;
 
     return BlocBuilder<OnboardingBloc, OnboardingState>(
       builder: (_, OnboardingState state) => (state is OnboardingDoneSuccess)
@@ -36,34 +36,32 @@ class OnboardingOverlay extends StatelessWidget {
                       isPortrait: isPortrait,
                       children: <Widget>[
                         OnboardingTile(
-                          AppLocalizations.of(context).onboardingLockTip,
+                          context.l10n.onboardingLockTip,
                           isPortrait: isPortrait,
                         ),
                         OnboardingTile(
-                          isPortrait
-                              ? AppLocalizations.of(context).onboardingSelectTip
-                              : AppLocalizations.of(context).onboardingSelectTipLandscape,
+                          isPortrait ? context.l10n.onboardingSelectTip : context.l10n.onboardingSelectTipLandscape,
                           begin: -0.6,
                           end: 0.1,
                           isPortrait: isPortrait,
                           oppositeSide: true,
                         ),
                         OnboardingTile(
-                          AppLocalizations.of(context).onboardingMoveTip,
+                          context.l10n.onboardingMoveTip,
                           isPortrait: isPortrait,
                           icon: Icons.drag_handle_outlined,
                         ),
                         if (isPortrait)
                           OnboardingTile(
-                            AppLocalizations.of(context).onboardingSaveTip,
+                            context.l10n.onboardingSaveTip,
                             begin: 0.5,
-                            additionalText: AppLocalizations.of(context).onboardingGenerateTip,
+                            additionalText: context.l10n.onboardingGenerateTip,
                             isPortrait: isPortrait,
                             oppositeSide: true,
                           )
                         else
                           OnboardingTile(
-                            AppLocalizations.of(context).onboardingGenerateTipLandscape,
+                            context.l10n.onboardingGenerateTipLandscape,
                             end: 1,
                             isPortrait: isPortrait,
                             oppositeSide: true,
@@ -72,7 +70,7 @@ class OnboardingOverlay extends StatelessWidget {
                           OnboardingTile('', begin: -0.1, end: 0.8, isPortrait: isPortrait)
                         else
                           OnboardingTile(
-                            AppLocalizations.of(context).onboardingSaveTipLandscape,
+                            context.l10n.onboardingSaveTipLandscape,
                             isPortrait: isPortrait,
                           ),
                       ],
@@ -102,10 +100,10 @@ class OnboardingOverlay extends StatelessWidget {
                     height: size.maxHeight / length,
                     child: Center(
                       child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(primary: Theme.of(context).indicatorColor),
+                        style: ElevatedButton.styleFrom(primary: context.theme.indicatorColor),
                         onPressed: () => BlocProvider.of<OnboardingBloc>(context).add(const OnboardingFinished()),
                         child: Text(
-                          AppLocalizations.of(context).onboardingDoneButtonLabel,
+                          context.l10n.onboardingDoneButtonLabel,
                           key: TestKeys.onboardingFinish,
                           style: const TextStyle(color: Colors.white),
                         ),

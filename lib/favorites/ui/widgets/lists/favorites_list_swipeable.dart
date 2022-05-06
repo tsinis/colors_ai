@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
 import '../../../../color_generator/blocs/colors_locked/lock_bloc.dart';
 import '../../../../core/extensions/color_extensions.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../../navigation/blocs/navigation_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
@@ -35,8 +35,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
                   final double cardHeight =
                       (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
-                  final double maxHeighForTip =
-                      size.maxHeight - padding - (tipHeight * MediaQuery.of(context).textScaleFactor);
+                  final double maxHeighForTip = size.maxHeight - padding - (tipHeight * context.media.textScaleFactor);
                   final bool canShowTip = favorites.length * (cardHeight + (padding * 2.5)) <= maxHeighForTip;
 
                   return Stack(
@@ -48,7 +47,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                           duration: duration,
                           opacity: canShowTip ? 1 : 0,
                           child: Text(
-                            AppLocalizations.of(context).removeFavoritesTip,
+                            context.l10n.removeFavoritesTip,
                             textAlign: TextAlign.center,
                             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
                           ),
@@ -66,13 +65,13 @@ class FavoritesListSwipeable extends StatelessWidget {
                           secondaryBackground: const RemoveBackground.secondary(),
                           background: const RemoveBackground.primary(),
                           child: Semantics(
-                            label: AppLocalizations.of(context).favoritePaletteSematic(paletteIndex),
+                            label: context.l10n.favoritePaletteSematic(paletteIndex),
                             child: ListTile(
                               onLongPress: () => BlocProvider.of<RemoveFavoritesBloc>(context)
                                   .add(RemoveFavoritesSelected(paletteIndex)),
                               enableFeedback: true,
                               minVerticalPadding: padding,
-                              selectedTileColor: Theme.of(context).errorColor.withOpacity(0.2),
+                              selectedTileColor: context.theme.errorColor.withOpacity(0.2),
                               selected: removeState.selections.contains(paletteIndex),
                               contentPadding: EdgeInsets.symmetric(horizontal: padding),
                               onTap: () {

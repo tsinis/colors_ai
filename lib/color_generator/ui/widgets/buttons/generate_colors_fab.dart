@@ -1,10 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../navigation/blocs/navigation_bloc.dart';
 import '../../../../sound/blocs/sound_bloc.dart';
 
@@ -42,7 +42,7 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
   bool get alwaysShow => widget.isExtended != null;
   bool get isExtended => widget.isExtended ?? false;
   bool get isDisabled => isFailed || !isGenerateTab;
-  String get tooltip => AppLocalizations.of(context).generateTabLabel;
+  String get tooltip => context.l10n.generateTabLabel;
 
   @override
   void dispose() {
@@ -81,7 +81,7 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
                     duration: widget.animationDuration,
                     child: FloatingActionButton.extended(
                       focusColor: widget.focusColor ?? Colors.tealAccent[400],
-                      backgroundColor: Theme.of(context).indicatorColor,
+                      backgroundColor: context.theme.indicatorColor,
                       disabledElevation: widget.disabledElevation,
                       onPressed: isDisabled ? null : onFabPressed,
                       isExtended: isExtended,

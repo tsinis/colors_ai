@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../app/theme/constants.dart';
+import '../../../../core/extensions/context_extensions.dart';
 
 class AnimatedListTile extends StatefulWidget {
   final Widget child;
@@ -31,7 +32,7 @@ class AnimatedListTile extends StatefulWidget {
 class _AnimatedListItemState extends State<AnimatedListTile> {
   bool isAnimationDone = false;
 
-  bool get isPortrait => MediaQuery.of(context).orientation == Orientation.portrait;
+  bool get isPortrait => context.media.orientation == Orientation.portrait;
 
   double get tileHeight => widget.size.maxHeight / widget.length;
 

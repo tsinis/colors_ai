@@ -58,7 +58,6 @@ abstract class API<T extends Object> {
       throw Exception('Cannot parse host.');
     }
     final String payload = jsonEncode(body);
-    debugPrint('REQUEST PAYLOAD: $payload');
 
     late final Response response;
     if (_httpClient != null) {

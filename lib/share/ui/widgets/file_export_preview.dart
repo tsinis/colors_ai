@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../app/theme/constants.dart';
 import '../../../common/blocs/snackbars/snackbar_bloc.dart';
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../blocs/share_bloc.dart';
 import '../../extensions/file_format_extension.dart';
@@ -53,7 +54,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
     if (isPrintable) {
       return isHovering ? Colors.white : Colors.grey[200]!;
     } else {
-      final bool isDark = Theme.of(context).brightness == Brightness.dark;
+      final bool isDark = context.theme.brightness == Brightness.dark;
 
       return isHovering
           ? (isDark ? Colors.grey[800]! : Colors.grey[100]!)

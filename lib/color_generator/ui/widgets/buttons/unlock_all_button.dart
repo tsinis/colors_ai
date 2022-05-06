@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../sound/blocs/sound_bloc.dart';
 import '../../../blocs/colors_locked/lock_bloc.dart';
 
@@ -12,7 +12,7 @@ class UnlockAllButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => IconButton(
-        tooltip: AppLocalizations.of(context).unlockAllColors,
+        tooltip: context.l10n.unlockAllColors,
         icon: icon,
         onPressed: () {
           BlocProvider.of<SoundBloc>(context).add(const SoundLocked());

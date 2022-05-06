@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/ui/widgets/helpers/orientation_switcher.dart';
+import '../../../core/extensions/context_extensions.dart';
 
 class OnboardingTile extends StatelessWidget {
   final String? additionalText;
@@ -24,7 +25,7 @@ class OnboardingTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color gradientColor = Theme.of(context).primaryColor;
+    final Color gradientColor = context.theme.primaryColor;
 
     return Expanded(
       child: DecoratedBox(

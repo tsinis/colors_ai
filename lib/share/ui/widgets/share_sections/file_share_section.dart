@@ -3,9 +3,9 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/extensions/string_extension.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../blocs/share_bloc.dart';
@@ -33,7 +33,7 @@ class FileShareSection extends ShareSectionInterface {
 
   @override
   Widget build(BuildContext context) {
-    final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final bool isPortrait = context.media.orientation == Orientation.portrait;
 
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
@@ -44,14 +44,14 @@ class FileShareSection extends ShareSectionInterface {
             child: DropdownButtonFormField<FileFormat>(
               isExpanded: !isPortrait,
               isDense: isPortrait,
-              dropdownColor: Theme.of(context).dialogBackgroundColor,
+              dropdownColor: context.theme.dialogBackgroundColor,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Theme.of(context).splashColor,
-                labelText: AppLocalizations.of(context).shareFile,
+                fillColor: context.theme.splashColor,
+                labelText: context.l10n.shareFile,
                 helperStyle: const TextStyle(fontSize: 12),
                 helperMaxLines: 1,
-                helperText: _helperText(AppLocalizations.of(context)),
+                helperText: _helperText(context.l10n),
               ),
               value: selectedFormat,
               onChanged: (FileFormat? newFormat) =>
@@ -76,7 +76,7 @@ class FileShareSection extends ShareSectionInterface {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).copyAsFormat(selectedFormat.format)),
+                    label: Text(context.l10n.copyAsFormat(selectedFormat.format)),
                     onPressed: _cannotCopy
                         ? null
                         : () {
@@ -120,9 +120,9 @@ class FileShareSection extends ShareSectionInterface {
 
   String _shareOrSaveButtonLabel(BuildContext context) {
     if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
-      return '${MaterialLocalizations.of(context).saveButtonLabel.toBeginningOfSentenceCase()} ${selectedFormat.format}';
+      return '${context.materialL10n.saveButtonLabel.toBeginningOfSentenceCase()} ${selectedFormat.format}';
     } else {
-      return AppLocalizations.of(context).shareAsFormat(selectedFormat.format);
+      return context.l10n.shareAsFormat(selectedFormat.format);
     }
   }
 }

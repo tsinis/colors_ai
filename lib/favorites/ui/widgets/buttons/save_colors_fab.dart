@@ -1,10 +1,10 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../app/theme/constants.dart';
 import '../../../../color_generator/blocs/colors_generated/colors_bloc.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/repository/colors_repository.dart';
 import '../../../../navigation/blocs/navigation_bloc.dart';
 import '../../../../sound/blocs/sound_bloc.dart';
@@ -33,7 +33,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
   bool get alwaysShow => widget.isExtended != null;
   bool get isDisabled => isFailed || !isGenerateTab;
   bool get isExtended => widget.isExtended ?? false;
-  String get tooltip => AppLocalizations.of(context).savePaletteToFavorites;
+  String get tooltip => context.l10n.savePaletteToFavorites;
 
   @override
   void dispose() {
@@ -101,11 +101,10 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
                             disabledElevation: 2,
                             isExtended: isExtended,
                             onPressed: isDisabled ? null : onFabPressed,
-                            label: Text(AppLocalizations.of(context).addToFavorites),
+                            label: Text(context.l10n.addToFavorites),
                             icon: const Icon(Icons.bookmark_add_outlined),
                             tooltip: tooltip,
-                            backgroundColor:
-                                isDisabled ? Theme.of(context).scaffoldBackgroundColor : colorAnimation.value,
+                            backgroundColor: isDisabled ? context.theme.scaffoldBackgroundColor : colorAnimation.value,
                           ),
                         ),
                       );

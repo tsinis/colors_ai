@@ -2,8 +2,8 @@ import 'package:clock/clock.dart';
 import 'package:flutter/gestures.dart' show TapGestureRecognizer;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/ui/constants.dart';
 import '../../blocs/about_bloc.dart';
 import '../widgets/about_dialog_m3.dart';
@@ -28,7 +28,7 @@ class AboutAppDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextStyle? linkStyle =
-        linkTextStyle ?? Theme.of(context).textTheme.bodyText2?.copyWith(color: Theme.of(context).indicatorColor);
+        linkTextStyle ?? context.theme.textTheme.bodyText2?.copyWith(color: context.theme.indicatorColor);
 
     return AboutDialogM3(
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
@@ -41,43 +41,42 @@ class AboutAppDialog extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: width),
           child: Text.rich(
             TextSpan(
-              style: Theme.of(context).textTheme.bodyText2,
+              style: context.theme.textTheme.bodyText2,
               children: <TextSpan>[
-                TextSpan(text: AppLocalizations.of(context).aboutGenerator),
+                TextSpan(text: context.l10n.aboutGenerator),
                 TextSpan(
                   style: linkStyle,
                   text: ' Colormind.io',
                   recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutColormindTaped()),
                 ),
-                TextSpan(text: ' ${AppLocalizations.of(context).and} '),
+                TextSpan(text: ' ${context.l10n.and} '),
                 TextSpan(
                   style: linkStyle,
                   text: 'Huemint.com',
                   recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutHuemintTaped()),
                 ),
-                TextSpan(text: '. ${AppLocalizations.of(context).aboutSourceCode}'),
+                TextSpan(text: '. ${context.l10n.aboutSourceCode}'),
                 TextSpan(
                   style: linkStyle,
-                  text: ' ${AppLocalizations.of(context).aboutSourceRepository}',
+                  text: ' ${context.l10n.aboutSourceRepository}',
                   recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSourceCodeTaped()),
                 ),
                 const TextSpan(text: '.'),
                 TextSpan(
-                  text:
-                      '\n\n${AppLocalizations.of(context).aboutAttribution.toUpperCase()}:\n\n${AppLocalizations.of(context).aboutSounds}',
+                  text: '\n\n${context.l10n.aboutAttribution.toUpperCase()}:\n\n${context.l10n.aboutSounds}',
                 ),
                 TextSpan(
                   style: linkStyle,
                   text: ' "Material Product Sounds"',
                   recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSoundsTaped()),
                 ),
-                TextSpan(text: ' ${AppLocalizations.of(context).aboutByGoogle}'),
+                TextSpan(text: ' ${context.l10n.aboutByGoogle}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' Google',
                   recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutGoogleTaped()),
                 ),
-                TextSpan(text: ' ${AppLocalizations.of(context).aboutSoundsLicense}'),
+                TextSpan(text: ' ${context.l10n.aboutSoundsLicense}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' CC BY 4.0',

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/extensions/context_extensions.dart';
 import 'no_network/illustrations/decorative_symbols.dart';
 import 'no_network/illustrations/transmitter_tower.dart';
 import 'no_network/pulse_animation.dart';
@@ -62,7 +63,7 @@ class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMix
                 top: 100,
                 child: CustomPaint(
                   size: const Size(300, 400),
-                  painter: TransmitterTower(color: Theme.of(context).primaryIconTheme.color!),
+                  painter: TransmitterTower(color: context.theme.primaryIconTheme.color!),
                 ),
               ),
             ],

@@ -1,7 +1,7 @@
+import 'package:colors_ai/core/extensions/context_extensions.dart';
 import 'package:colors_ai/settings/extensions/string_selected_api_extension.dart';
 import 'package:colors_ai/settings/models/selected_api.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() => testWidgets('StringSelectedApiExtension helperText()', (WidgetTester tester) async {
@@ -16,8 +16,8 @@ void main() => testWidgets('StringSelectedApiExtension helperText()', (WidgetTes
           home: Builder(
             builder: (BuildContext context) => Column(
               children: <Text>[
-                Text(colormind.helperText(AppLocalizations.of(context)), key: colormindKey),
-                Text(huemint.helperText(AppLocalizations.of(context)), key: huemintKey),
+                Text(colormind.helperText(context.l10n), key: colormindKey),
+                Text(huemint.helperText(context.l10n), key: huemintKey),
               ],
             ),
           ),

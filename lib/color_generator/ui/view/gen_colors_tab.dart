@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import '../../../core/extensions/context_extensions.dart';
 import '../../../favorites/blocs/add_favorites/fab_bloc.dart';
 import '../../blocs/colors_generated/colors_bloc.dart';
 import '../widgets/animated/no_network.dart';
@@ -35,11 +35,11 @@ class GenColorsTab extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 20),
                   child: Text.rich(
                     TextSpan(
-                      text: AppLocalizations.of(context).noConnectionTitle,
+                      text: context.l10n.noConnectionTitle,
                       style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       children: <TextSpan>[
                         TextSpan(
-                          text: '\n${AppLocalizations.of(context).noConnectionDescription}',
+                          text: '\n${context.l10n.noConnectionDescription}',
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.normal,
@@ -55,7 +55,7 @@ class GenColorsTab extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 56, bottom: 24),
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.refresh_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).returnButtonLabel),
+                    label: Text(context.l10n.returnButtonLabel),
                     onPressed: () => BlocProvider.of<ColorsBloc>(context).add(const ColorsStarted()),
                   ),
                 ),

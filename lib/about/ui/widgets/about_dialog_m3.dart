@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/theme/constants.dart';
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/extensions/string_extension.dart';
 
 class AboutDialogM3 extends StatelessWidget {
@@ -36,16 +37,16 @@ class AboutDialogM3 extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                IconTheme(data: Theme.of(context).iconTheme, child: applicationIcon),
+                IconTheme(data: context.theme.iconTheme, child: applicationIcon),
                 Expanded(
                   child: Padding(
                     padding: contentPadding,
                     child: ListBody(
                       children: <Widget>[
-                        Text(applicationName, style: Theme.of(context).textTheme.headline5),
-                        Text(applicationVersion, style: Theme.of(context).textTheme.bodyText2),
+                        Text(applicationName, style: context.theme.textTheme.headline5),
+                        Text(applicationVersion, style: context.theme.textTheme.bodyText2),
                         SizedBox(height: textVerticalSeparation),
-                        Text(applicationLegalese ?? '', style: Theme.of(context).textTheme.caption),
+                        Text(applicationLegalese ?? '', style: context.theme.textTheme.caption),
                       ],
                     ),
                   ),
@@ -57,7 +58,7 @@ class AboutDialogM3 extends StatelessWidget {
         ),
         actions: <Widget>[
           TextButton(
-            child: Text(MaterialLocalizations.of(context).viewLicensesButtonLabel.toBeginningOfSentenceCase()),
+            child: Text(context.materialL10n.viewLicensesButtonLabel.toBeginningOfSentenceCase()),
             onPressed: () => showLicensePage(
               context: context,
               applicationName: applicationName,
@@ -67,7 +68,7 @@ class AboutDialogM3 extends StatelessWidget {
             ),
           ),
           TextButton(
-            child: Text(MaterialLocalizations.of(context).closeButtonLabel.toBeginningOfSentenceCase()),
+            child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
             onPressed: () => Navigator.pop(context),
           ),
         ],

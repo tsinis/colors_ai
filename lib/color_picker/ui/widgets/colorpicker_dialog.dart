@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show TextInputFormatter;
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
+import '../../../core/extensions/context_extensions.dart';
 import '../../../core/services/clipboard.dart';
 import '../../helpers/hex_formatter.dart';
 
@@ -29,13 +29,13 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   late Color selectedColor;
 
   bool get hidePickerArea {
-    final double heightAvailable = MediaQuery.of(context).size.height - keyboardHeight;
+    final double heightAvailable = context.media.size.height - keyboardHeight;
 
     return isMobile && heightAvailable < 480;
   }
 
   bool get isMobile => platform.isMobile;
-  double get keyboardHeight => MediaQuery.of(context).viewInsets.bottom;
+  double get keyboardHeight => context.media.viewInsets.bottom;
   bool get keyboardIsVisible => keyboardHeight != 0;
   double get pickerAreaHeightPercent => hidePickerArea ? (keyboardIsVisible ? 0 : 1) : 1;
 
@@ -114,15 +114,15 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
               scrollPadding: const EdgeInsets.only(bottom: 20),
               inputFormatters: <TextInputFormatter>[HexFormatter()],
               decoration: InputDecoration(
-                errorText: hasError ? AppLocalizations.of(context).invalidHexErrorLabel : null,
+                errorText: hasError ? context.l10n.invalidHexErrorLabel : null,
                 prefixIcon: const Icon(Icons.tag),
-                hintText: AppLocalizations.of(context).hexHintTextLabel,
+                hintText: context.l10n.hexHintTextLabel,
                 suffixIcon: IconButton(
-                  tooltip: MaterialLocalizations.of(context).pasteButtonLabel,
+                  tooltip: context.materialL10n.pasteButtonLabel,
                   onPressed: validateAndPaste,
                   icon: Icon(
                     Icons.content_paste_outlined,
-                    color: Theme.of(context).textTheme.bodyText1?.color,
+                    color: context.theme.textTheme.bodyText1?.color,
                   ),
                 ),
               ),

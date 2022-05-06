@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../about/blocs/about_bloc.dart';
 import '../color_generator/models/locks/locked_colors.dart';
+import '../core/extensions/context_extensions.dart';
 import '../core/models/color_palette/color_palette.dart';
 import '../core/repository/colors_repository.dart';
 import '../core/ui/constants.dart';
@@ -64,7 +64,7 @@ class App extends StatelessWidget {
                 )..init(),
                 child: BlocBuilder<OnboardingBloc, OnboardingState>(
                   builder: (_, OnboardingState state) => ColoredBox(
-                    color: Theme.of(context).primaryColor,
+                    color: context.theme.primaryColor,
                     child: Stack(
                       children: <Widget>[
                         const SplashScreen(),

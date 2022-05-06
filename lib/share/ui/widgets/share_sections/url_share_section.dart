@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
 import '../../../blocs/share_bloc.dart';
 import '../../../services/url_providers/colors_url_provider.dart';
@@ -28,7 +28,7 @@ class UrlShareSection extends ShareSectionInterface {
 
   @override
   Widget build(BuildContext context) {
-    final bool isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+    final bool isPortrait = context.media.orientation == Orientation.portrait;
 
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: isPortrait ? maxWidth : maxWidth * 0.32),
@@ -39,17 +39,17 @@ class UrlShareSection extends ShareSectionInterface {
             child: DropdownButtonFormField<ColorsUrlProvider>(
               isExpanded: !isPortrait,
               isDense: isPortrait,
-              dropdownColor: Theme.of(context).dialogBackgroundColor,
+              dropdownColor: context.theme.dialogBackgroundColor,
               decoration: InputDecoration(
                 filled: true,
-                fillColor: Theme.of(context).splashColor,
-                labelText: AppLocalizations.of(context).shareLinksLabel,
+                fillColor: context.theme.splashColor,
+                labelText: context.l10n.shareLinksLabel,
                 helperStyle: const TextStyle(fontSize: 12),
                 helperMaxLines: 1,
                 helperText: (selectedUrlProvider == const ArtsGoogle())
-                    ? AppLocalizations.of(context).googleArtsExport
+                    ? context.l10n.googleArtsExport
                     : (exportFormats != null)
-                        ? '* ${AppLocalizations.of(context).exportTo} $exportFormats'
+                        ? '* ${context.l10n.exportTo} $exportFormats'
                         : null,
               ),
               value: selectedUrlProvider,
@@ -83,7 +83,7 @@ class UrlShareSection extends ShareSectionInterface {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
-                    label: Text(AppLocalizations.of(context).copyUrlButtonLabel),
+                    label: Text(context.l10n.copyUrlButtonLabel),
                     onPressed: () {
                       BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
                       BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
@@ -94,7 +94,7 @@ class UrlShareSection extends ShareSectionInterface {
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
-                    label: Text(AppLocalizations.of(context).shareUrlButtonLabel),
+                    label: Text(context.l10n.shareUrlButtonLabel),
                     onPressed: _isNotSupportedByOS
                         ? null
                         : () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),

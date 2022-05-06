@@ -1,11 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show SchedulerBinding;
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../about/ui/view/about_app_dialog.dart';
 import '../../../app/theme/constants.dart';
 import '../../../settings/ui/view/settings_dialog.dart';
+import '../../extensions/context_extensions.dart';
 
 class OverflowMenu extends StatelessWidget {
   const OverflowMenu({Key? key}) : super(key: key);
@@ -30,11 +30,11 @@ class OverflowMenu extends StatelessWidget {
         itemBuilder: (_) => <PopupMenuItem<void>>[
           PopupMenuItem<void>(
             onTap: () => showDialog(context, const SettingsDialog()),
-            child: Text(AppLocalizations.of(context).settings),
+            child: Text(context.l10n.settings),
           ),
           PopupMenuItem<void>(
             onTap: () => showDialog(context, const AboutAppDialog()),
-            child: Text(AppLocalizations.of(context).help),
+            child: Text(context.l10n.help),
           ),
         ],
       );

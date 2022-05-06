@@ -2,10 +2,10 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:mdi/mdi.dart';
 
 import '../../../../app/theme/constants.dart';
+import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/extensions/string_extension.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
@@ -61,19 +61,19 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                   shape: kDefaultShape,
                   content: Text(
                     haveSelection
-                        ? '${AppLocalizations.of(context).removeSomeTitle(state.selections.length)}?'
-                        : '${AppLocalizations.of(context).removeAllTitle}?',
+                        ? '${context.l10n.removeSomeTitle(state.selections.length)}?'
+                        : '${context.l10n.removeAllTitle}?',
                   ),
                   actions: <TextButton>[
                     TextButton(
                       onPressed: () => Navigator.pop(dialogContext, false),
-                      child: Text(MaterialLocalizations.of(context).cancelButtonLabel.toBeginningOfSentenceCase()),
+                      child: Text(context.materialL10n.cancelButtonLabel.toBeginningOfSentenceCase()),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(dialogContext, true),
                       child: Text(
-                        AppLocalizations.of(context).removeButtonLabel,
-                        style: TextStyle(color: Theme.of(context).errorColor),
+                        context.l10n.removeButtonLabel,
+                        style: TextStyle(color: context.theme.errorColor),
                       ),
                     ),
                   ],
@@ -92,9 +92,8 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
 
           return BlocBuilder<FavoritesBloc, FavoritesState>(
             builder: (_, FavoritesState favState) => IconButton(
-              tooltip: haveSelection
-                  ? AppLocalizations.of(context).removeSomeTitle(state.selections.length)
-                  : AppLocalizations.of(context).removeAllTitle,
+              tooltip:
+                  haveSelection ? context.l10n.removeSomeTitle(state.selections.length) : context.l10n.removeAllTitle,
               icon: Stack(
                 children: <Widget>[
                   if (haveSelection)
@@ -103,7 +102,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                       child: Icon(
                         Mdi.bookmarkRemoveOutline,
                         size: 25,
-                        color: Theme.of(context).errorColor,
+                        color: context.theme.errorColor,
                       ),
                     )
                   else

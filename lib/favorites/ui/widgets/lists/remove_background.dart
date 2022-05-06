@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/extensions/context_extensions.dart';
+
 class RemoveBackground extends StatelessWidget {
   final bool _secondary;
 
@@ -13,7 +15,7 @@ class RemoveBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ColoredBox(
-        color: Theme.of(context).errorColor,
+        color: context.theme.errorColor,
         child: Align(
           alignment: _secondary ? Alignment.centerRight : Alignment.centerLeft,
           child: const Padding(
