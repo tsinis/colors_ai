@@ -1,5 +1,6 @@
 import 'package:colors_ai/about/repository/about_repository.dart';
 import 'package:colors_ai/core/ui/constants.dart';
+import 'package:flutter/foundation.dart' show LicenseRegistry, LicenseEntryWithLineBreaks, LicenseEntry;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -29,8 +30,13 @@ Future<void> main() async {
   setUp(() => reset(mockedUrlLauncher));
 
   test('$AboutRepository init()$supportedUrlLocale', () async {
+    TestWidgetsFlutterBinding.ensureInitialized();
     verifyZeroInteractions(mockedUrlLauncher);
     await aboutRepository.init(supportedUrlLocale);
+
+    final List<LicenseEntry> fontLicenses = await LicenseRegistry.licenses.toList();
+    expect(fontLicenses.length, 1);
+    expect(fontLicenses.first.runtimeType, LicenseEntryWithLineBreaks);
 
     expect(aboutRepository.supportedUrlLocale, supportedUrlLocale);
     when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
@@ -47,8 +53,11 @@ Future<void> main() async {
   test(
     '$AboutRepository init()$undefinedUrlLocale',
     () async {
+      TestWidgetsFlutterBinding.ensureInitialized();
       await aboutRepository.init(null);
-
+      final List<LicenseEntry> fontLicenses = await LicenseRegistry.licenses.toList();
+      expect(fontLicenses.length, 2);
+      expect(fontLicenses.first.runtimeType, LicenseEntryWithLineBreaks);
       expect(aboutRepository.supportedUrlLocale, defaultLangCode);
       expect(aboutRepository.version, mockVersion);
     },

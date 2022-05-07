@@ -36,10 +36,8 @@ class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
         yield isValidData ? UrlCopySuccess(clipboardData) : const ClipboardCopyFailure();
       } else if (event is FileCopiedSuccess) {
         yield isValidData ? FileCopySuccess(event.format) : const ClipboardCopyFailure();
-      } else if (event is UrlOpenedSuccess) {
-        if (isValidData) {
-          await _urlLauncher.openURL(clipboardData);
-        }
+      } else if (event is UrlOpenedSuccess && isValidData) {
+        await _urlLauncher.openURL(clipboardData);
       }
     }
     yield const SnackbarsInitial();

@@ -38,16 +38,6 @@ void main() {
       expect: () => <TypeMatcher<SnackbarState>>[isA<ShareAttemptFailure>(), isA<SnackbarsInitial>()],
     );
 
-    blocTest<SnackbarBloc, SnackbarState>(
-      '$UrlOpenedSuccess',
-      build: () => SnackbarBloc(clipboard: FakeClipboard(), urlLauncher: mockedUrlLauncher),
-      act: (SnackbarBloc bloc) {
-        when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
-        bloc.add(const UrlOpenedSuccess());
-      },
-      expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
-    );
-
     events
       ..forEach(testCopyEvent)
       ..forEach((SnackbarEvent event) => testCopyEvent(event, withException: true));
@@ -64,6 +54,31 @@ void main() {
       build: SnackbarBloc.new,
       act: (SnackbarBloc bloc) => bloc.add(ServerStatusCheckedSuccess(noMaintenanceTime)),
       expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
+    );
+
+    blocTest<SnackbarBloc, SnackbarState>(
+      '$UrlOpenedSuccess with invalid data',
+      build: () => SnackbarBloc(clipboard: FakeClipboard(), urlLauncher: mockedUrlLauncher),
+      act: (SnackbarBloc bloc) {
+        when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
+        bloc.add(const UrlOpenedSuccess());
+      },
+      expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
+      verify: (_) => verifyZeroInteractions(mockedUrlLauncher),
+    );
+
+    final ClipBoard clipboard = FakeClipboard();
+
+    blocTest<SnackbarBloc, SnackbarState>(
+      '$UrlOpenedSuccess with valid data',
+      build: () => SnackbarBloc(clipboard: clipboard, urlLauncher: mockedUrlLauncher),
+      act: (SnackbarBloc bloc) async {
+        await clipboard.copyTextData('url');
+        when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
+        bloc.add(const UrlOpenedSuccess());
+      },
+      expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
+      verify: (_) => verify(mockedUrlLauncher.openURL('url')).called(1),
     );
   });
 }

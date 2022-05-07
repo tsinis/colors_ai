@@ -16,7 +16,7 @@ dependencies:
   color_converter: ^0.2.1
   dart_vlc: 0.1.7 # without experimental iOS implementation
   equatable: ^2.0.3 # From Flutter Community
-  file_selector: 0.8.2+1 # From Google
+  file_selector: 0.8.3 # From Google
   file_selector_linux: ^0.0.2+1 # From Google
   file_selector_windows: ^0.8.2 # From Google
   flutter:  # From Google

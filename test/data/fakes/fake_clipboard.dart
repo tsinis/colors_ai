@@ -21,10 +21,10 @@ class FakeClipboard extends Fake implements ClipBoard {
   FakeClipboard({this.throwExceptionOnCopy = false, this.throwExceptionOnPaste = false});
 
   @override
-  Future<void> copyColor(Color? color) => copyTextData(color?.toHex());
+  Future<void> copyColor([Color? color]) => copyTextData(color?.toHex());
 
   @override
-  Future<void> copyTextData(String? text) async {
+  Future<void> copyTextData([String? text]) async {
     if (text == null || text.isEmpty) {
       return;
     } else if (throwExceptionOnCopy) {
