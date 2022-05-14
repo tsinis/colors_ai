@@ -48,14 +48,14 @@ void main() => group('$OnboardingRepository', () {
         verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
       });
 
-      test('loadOnboardData form corrupted storage', () async {
+      test('loadOnboardData from corrupted storage', () async {
         final FakeHiveBox<bool> corruptedBox = FakeHiveBox<bool>.corruptedEmpty();
         final OnboardingRepository corruptedRepo = OnboardingRepository(
           OnboardingHiveStorage(openedBox: corruptedBox),
         );
         verifyNoBoxInteractions(corruptedBox);
         final bool isFirstRun = await corruptedRepo.loadOnboardData;
-        expect(isFirstRun, !onboardingDone);
+        expect(isFirstRun, onboardingDone);
         verifyNoBoxInteractions(corruptedBox);
       });
     });

@@ -1,19 +1,16 @@
-import 'package:platform_info/platform_info.dart';
 import 'package:vibration/vibration.dart';
 
-mixin Vibrations {
+class Vibrations {
   late final bool _customVibrationsAvailable;
 
-  Future<bool> initVibrations() async {
-    if (platform.isMobile) {
-      try {
-        return _customVibrationsAvailable =
-            (await Vibration.hasVibrator() ?? false) && (await Vibration.hasCustomVibrationsSupport() ?? false);
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
-        return _customVibrationsAvailable = false;
-      }
-    } else {
+  Future<bool> init() async {
+    try {
+      final bool hasBasicVibrator = await Vibration.hasVibrator() ?? false;
+      final bool hasExtenderVibrator = await Vibration.hasCustomVibrationsSupport() ?? false;
+
+      return _customVibrationsAvailable = hasBasicVibrator && hasExtenderVibrator;
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
       return _customVibrationsAvailable = false;
     }
   }
@@ -21,10 +18,8 @@ mixin Vibrations {
   bool vibrate({int durationInMs = 150}) {
     if (_customVibrationsAvailable) {
       Vibration.vibrate(duration: durationInMs);
-
-      return true;
     }
 
-    return false;
+    return _customVibrationsAvailable;
   }
 }

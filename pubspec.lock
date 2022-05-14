@@ -219,7 +219,7 @@ packages:
     source: hosted
     version: "3.0.1"
   coverage:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: coverage
       url: "https://pub.dartlang.org"
@@ -252,7 +252,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.15.0"
+    version: "4.15.1"
   dart_style:
     dependency: transitive
     description:
@@ -756,7 +756,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.9"
+    version: "2.0.10"
   path_provider_android:
     dependency: transitive
     description:
@@ -847,7 +847,7 @@ packages:
       name: printing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.8.0"
+    version: "5.9.0"
   process:
     dependency: transitive
     description:

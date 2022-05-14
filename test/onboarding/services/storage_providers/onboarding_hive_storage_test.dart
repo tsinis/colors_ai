@@ -23,6 +23,23 @@ void main() => group('$OnboardingHiveStorage', () {
         verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
       });
 
+      test('doMigration() with null old data', () async {
+        verifyNoBoxInteractions(fakeBox);
+        await onboardStorage.doMigration(null);
+        final Iterable<bool> storedValues = fakeBox.values;
+        expect(storedValues.isEmpty, true);
+        verifyNoBoxInteractions(fakeBox);
+      });
+
+      test('doMigration() with non-null old data', () async {
+        verifyNoBoxInteractions(fakeBox);
+        await onboardStorage.doMigration(onboardingDone);
+        final Iterable<bool> storedValues = fakeBox.values;
+        expect(storedValues.length, 1);
+        expect(storedValues.first, onboardingDone);
+        verifyNoBoxInteractions(fakeBox, shouldBeOpen: true, shouldBeEmpty: false);
+      });
+
       test('loadValue on first run', () async {
         verifyNoBoxInteractions(fakeBox);
         final bool isFirstRun = await onboardStorage.loadValue;
@@ -45,12 +62,12 @@ void main() => group('$OnboardingHiveStorage', () {
         verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
       });
 
-      test('loadValue form corrupted storage', () async {
+      test('loadValue from corrupted storage', () async {
         final FakeHiveBox<bool> corruptedBox = FakeHiveBox<bool>.corruptedEmpty();
         final OnboardingHiveStorage corruptedStorage = OnboardingHiveStorage(openedBox: corruptedBox);
         verifyNoBoxInteractions(corruptedBox);
         final bool isFirstRun = await corruptedStorage.loadValue;
-        expect(isFirstRun, !onboardingDone);
+        expect(isFirstRun, onboardingDone);
         verifyNoBoxInteractions(corruptedBox);
       });
     });

@@ -16,7 +16,7 @@ class OnboardingHiveStorage extends HiveStorageInterface<bool> {
     } catch (e) {
       debugPrint('Exception during onboarding box opening: $e');
 
-      return true;
+      return false;
     } finally {
       await onboardBox.close();
     }

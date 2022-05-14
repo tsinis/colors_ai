@@ -38,7 +38,7 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
   int get length {
     _throwErrorIfCorrupted();
 
-    return _items.length;
+    return _length;
   }
 
   @override
@@ -47,6 +47,8 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
 
     return _items.values;
   }
+
+  int get _length => _items.length;
 
   FakeHiveBox(Map<dynamic, T> items, {bool throwCorruptedException = false})
       : _items = items,
@@ -61,15 +63,15 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
 
   @override
   Future<int> add(T value) async {
-    await put(_items.length + 1, value);
+    await put(_length + 1, value);
 
-    return _items.length;
+    return _length;
   }
 
   @override
   Future<int> clear() async {
     _markBoxAsOpen();
-    final int length = _items.length;
+    final int length = _length;
     _items.clear();
 
     return length;
@@ -111,6 +113,18 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
     _markBoxAsOpen();
     _items[key] = value;
     events.add(BoxEvent(key, value, false));
+  }
+
+  @override
+  Future<Iterable<int>> addAll(Iterable<T> values) async {
+    _markBoxAsOpen();
+    final Set<int> indexes = <int>{};
+    await Future.forEach<T>(values, (T value) async {
+      indexes.add(_length);
+      await add(value);
+    });
+
+    return Iterable.castFrom(indexes);
   }
 
   @override

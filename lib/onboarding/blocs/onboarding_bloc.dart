@@ -18,11 +18,7 @@ class OnboardingBloc extends Bloc<OnboardingEvent, OnboardingState> {
     if (event is OnboardingStarted) {
       yield const OnboardingLoadInProgress();
       final bool isFirstRun = await _onboardingRepository.loadOnboardData;
-      try {
-        yield isFirstRun ? const OnboardingNotFinished() : const OnboardingDoneSuccess();
-      } on Exception catch (_) {
-        yield const OnboardingDoneSuccess();
-      }
+      yield isFirstRun ? const OnboardingNotFinished() : const OnboardingDoneSuccess();
     } else if (event is OnboardingFinished) {
       yield const OnboardingDoneSuccess();
       await _onboardingRepository.onboardingDone();

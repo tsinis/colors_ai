@@ -3,6 +3,7 @@ part of '../colors_url_provider.dart';
 class DopelyColors extends ColorsUrlProvider {
   const DopelyColors()
       : super(
+          // coverage:ignore-line
           baseUrl: 'colors.dopely.top/color-wheel/custom/',
           formats: 'JPG, JPEG, CSS, PDF, PNG, SVG, TXT, HTML +',
         );

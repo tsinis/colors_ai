@@ -66,6 +66,26 @@ void main() => group('$GeneratorDAO', () {
         expect(fetchedColors.colors, isNotEmpty);
       });
 
+      test('fetchNewColors() without specific API (use default)', () async {
+        final MockColormindClient mockedClient = MockColormindClient();
+        final ColorPalette fetchedColors = await generatorDAO.fetchNewColors(
+          kDefaultColors.toPalette(),
+          mockedClient.generateLocks(),
+        );
+
+        expect(fetchedColors.colors, isNotEmpty);
+      });
+
+      test('fetchNewColors() without specific API (use non-default)', () async {
+        final MockColormindClient mockedClient = MockColormindClient();
+        final ColorPalette fetchedColors = await GeneratorDAO(api: SelectedAPI.huemint).fetchNewColors(
+          kDefaultColors.toPalette(),
+          mockedClient.generateLocks(),
+        );
+
+        expect(fetchedColors.colors, isNotEmpty);
+      });
+
       test('fetchNewColors() with Network error', () async {
         final MockColormindClient mockedClient = MockColormindClient(statusCodeToReturn: 404);
         final API<IntRGBColor> api = ColormindAPI(httpClient: mockedClient, forUI: true);

@@ -7,10 +7,15 @@ import 'package:just_audio/just_audio.dart';
 class SoundsPlayer {
   bool _isPlaybackCompleted = true;
   late final bool _isPC;
-  final AudioPlayer _justAudioPlayer = AudioPlayer();
-  late final Player? _vlcPlayer;
+  late final AudioPlayer _justAudioPlayer;
+  late final Player? _vlcPlayer; // TODO
 
-  SoundsPlayer({bool? useVLC, List<String> vlcCommandlineArgs = const <String>['--no-video'], int vlcPlayerId = 0}) {
+  SoundsPlayer({
+    bool? useVLC,
+    int vlcPlayerId = 0,
+    List<String> vlcCommandlineArgs = const <String>['--no-video'],
+    AudioPlayer? justAudioPlayer,
+  }) {
     _isPC = useVLC ?? !kIsWeb && (Platform.isWindows || Platform.isLinux);
     if (_isPC) {
       DartVLC.initialize();
@@ -18,6 +23,7 @@ class SoundsPlayer {
       _vlcPlayer?.playbackStream.listen((PlaybackState playback) => _onPlayStateChange(!playback.isCompleted));
     } else {
       _vlcPlayer = null;
+      _justAudioPlayer = justAudioPlayer ?? AudioPlayer();
       _justAudioPlayer.processingStateStream.listen(
         (ProcessingState state) =>
             _onPlayStateChange(state == ProcessingState.completed || state == ProcessingState.idle),
