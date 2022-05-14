@@ -35,7 +35,7 @@ class Colorpicker extends StatelessWidget {
         child: BlocBuilder<ColorPickerBloc, ColorPickerState>(
           builder: (BuildContext dialogContext, ColorPickerState state) {
             if (state is ColorPickerOpenInitial) {
-              SchedulerBinding.instance?.addPostFrameCallback(
+              SchedulerBinding.instance.addPostFrameCallback(
                 (_) async => showModal<void>(
                   context: dialogContext,
                   builder: (_) => ColorpickerDialog(

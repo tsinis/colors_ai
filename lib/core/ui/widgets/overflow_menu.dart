@@ -11,7 +11,7 @@ class OverflowMenu extends StatelessWidget {
   const OverflowMenu({Key? key}) : super(key: key);
 
   void showDialog(BuildContext context, Widget dialog) {
-    SchedulerBinding.instance?.addPostFrameCallback(
+    SchedulerBinding.instance.addPostFrameCallback(
       (_) async => showModal<void>(
         context: context,
         configuration: const FadeScaleTransitionConfiguration(

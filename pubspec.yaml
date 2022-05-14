@@ -8,13 +8,13 @@ maintainer: Roman Cinis
 publish_to: 'none'
 
 environment:
-  sdk: ">=2.16.0"
-  flutter: ">=2.10.5"
+  sdk: ">=2.17.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   animations: ^2.0.2 # From Google
+  audioplayers: ^1.0.0-rc.4
   color_converter: ^0.2.1
-  dart_vlc: 0.1.7 # without experimental iOS implementation
   equatable: ^2.0.3 # From Flutter Community
   file_selector: 0.8.3 # From Google
   file_selector_linux: ^0.0.2+1 # From Google
@@ -31,7 +31,6 @@ dependencies:
   hydrated_bloc: 7.0.1
   intl: ^0.17.0 # From Google
   json_annotation: ^4.5.0 # From Google
-  just_audio: ^0.9.21 # Flutter Favorite
   mdi: ^5.0.0-nullsafety.0
   package_info_plus: ^1.4.2 # From Flutter Community (former Google)
   path_provider: ^2.0.10 # From Google
@@ -50,9 +49,8 @@ dependencies:
 dev_dependencies:
   bloc_test: 8.5.0
   build_runner: ^2.1.10 # From Google
-  coverage: 1.0.3 # From Google
   dart_code_metrics: ^4.15.1 # Flutter Favorite
-  flutter_lints: ^1.0.4  # From Google
+  flutter_lints: ^2.0.1  # From Google
   flutter_test: # From Google
     sdk: flutter
   golden_toolkit: ^0.13.0

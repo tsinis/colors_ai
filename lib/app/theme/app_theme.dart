@@ -116,7 +116,7 @@ class AppTheme {
   );
 
   ThemeData get theme {
-    final bool isDarkTheme = isDark ?? SchedulerBinding.instance?.window.platformBrightness == Brightness.dark;
+    final bool isDarkTheme = isDark ?? SchedulerBinding.instance.window.platformBrightness == Brightness.dark;
 
     return isDarkTheme ? _darkTheme : _lightTheme;
   }

@@ -26,11 +26,8 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
 
   Box<ColorPalette> get _storageBox => Hive.box(boxName);
 
-  const FavoritesHiveStorage({
-    HiveCipher? encryption,
-    String boxName = 'favorite',
-    Box<ColorPalette>? openedBox,
-  }) : super(encryption, boxName: boxName, openedBox: openedBox);
+  const FavoritesHiveStorage({HiveCipher? encryption, String boxName = 'favorite'})
+      : super(encryption, boxName: boxName);
 
   @override
   Future<void> clear() => _storageBox.clear();

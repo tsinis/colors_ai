@@ -47,7 +47,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
         builder: (BuildContext dialogContext, RemoveFavoritesState state) {
           final bool haveSelection = state.selections.isNotEmpty;
           if (state is RemoveFavoritesOpenDialogInitial) {
-            SchedulerBinding.instance?.addPostFrameCallback(
+            SchedulerBinding.instance.addPostFrameCallback(
               // ignore: prefer-async-await
               (_) async => showModal<bool>(
                 context: dialogContext,

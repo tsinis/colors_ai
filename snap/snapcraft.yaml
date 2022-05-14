@@ -25,8 +25,13 @@ parts:
     build-packages:
       - libjsoncpp-dev
       - libsecret-1-dev
-      - libvlc-dev
-      - vlc
+      - clang cmake
+      - ninja-build
+      - pkg-config
+      - libgtk-3-dev
+      - liblzma-dev
+      - libgstreamer1.0-dev
+      - libgstreamer-plugins-base1.0-dev
     stage-packages:
       - libjsoncpp1
       - libsecret-1-dev
