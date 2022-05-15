@@ -37,7 +37,8 @@ class SoundsRepository {
     final String asset = sounds.asset(sound);
     try {
       await _player.playSound(asset, volume, cacheOnly: cacheOnly);
-    } on Exception catch (e) {
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
       debugPrint('Exception during audio playback $e');
     }
   }

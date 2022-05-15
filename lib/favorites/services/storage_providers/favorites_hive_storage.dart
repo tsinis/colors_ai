@@ -14,7 +14,8 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
       final Box<ColorPalette> storageBox = await openBox;
 
       return storageBox.values;
-    } on Exception catch (e) {
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
       debugPrint('Exception during favorites box opening: $e');
 
       return <ColorPalette>[];
@@ -36,21 +37,22 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
   Future<void> add(List<Color> colors) => _storageBox.add(ColorPalette(colors: List<Color>.unmodifiable(colors)));
 
   @override
-  Future<void> update(Set<int> indexes) async {
-    final List<ColorPalette> storedPalettes = List<ColorPalette>.from(_storageBox.values);
+  Future<int> update(Set<int> indexes) async {
+    final List<ColorPalette> storedPalettes = palettes;
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
     await clear();
     switch (palettesToRemove.length) {
       case 0:
-        return;
+        return 0;
       case 1:
         storedPalettes.removeAt(palettesToRemove.first);
         await _storageBox.addAll(List<ColorPalette>.unmodifiable(storedPalettes));
-        return;
+        return 1;
       default:
         final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(storedPalettes.asMap())
           ..removeWhere((int index, _) => palettesToRemove.contains(index));
         await _storageBox.addAll(indexMap.values);
+        return palettesToRemove.length;
     }
   }
 
