@@ -13,10 +13,6 @@ class RemoveFavoritesOpenDialogInitial extends RemoveFavoritesState {
   const RemoveFavoritesOpenDialogInitial(Set<int> selections) : super(selections);
 }
 
-class RemoveFavoritesFailure extends RemoveFavoritesState {
-  const RemoveFavoritesFailure() : super(const <int>{});
-}
-
 class RemoveFavoritesSelectionSelected extends RemoveFavoritesState {
   const RemoveFavoritesSelectionSelected(Set<int> selections) : super(selections);
 }

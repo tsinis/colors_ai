@@ -12,12 +12,12 @@ class LockSuccess extends LockState {
 
   const LockSuccess({this.lockedColors});
 
-  bool isLocked(int index) => lockedColors?[index] ?? false;
-}
-
-class LockFailure extends LockState {
-  @override
-  List<Object> get props => <Object>[];
-
-  const LockFailure();
+  bool isLocked(int index) {
+    try {
+      return lockedColors?.elementAt(index) ?? false;
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
+      return false;
+    }
+  }
 }

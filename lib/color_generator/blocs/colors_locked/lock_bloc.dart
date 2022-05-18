@@ -18,10 +18,6 @@ class LockBloc extends Bloc<LockEvent, LockState> {
     } else if (event is LockAllUnlocked) {
       _colorsRepository.unlockAll();
     }
-    try {
-      yield LockSuccess(lockedColors: _colorsRepository.lockedColors);
-    } on Exception catch (_) {
-      yield const LockFailure();
-    }
+    yield LockSuccess(lockedColors: _colorsRepository.lockedColors);
   }
 }

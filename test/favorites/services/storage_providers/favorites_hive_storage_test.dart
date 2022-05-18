@@ -1,7 +1,5 @@
 // ignore_for_file: avoid_annotating_with_dynamic
 
-import 'dart:io';
-
 import 'package:colors_ai/core/models/color_palette/color_palette.dart';
 import 'package:colors_ai/favorites/services/storage_providers/favorites_hive_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,7 +11,7 @@ import '../../data.dart';
 void main() => group('$FavoritesHiveStorage', () {
       late FavoritesHiveStorage favoritesStorage;
 
-      setUpAll(() => Hive.init('./hive_test'));
+      setUpAll(createFakeStorageDir);
 
       setUp(() => favoritesStorage = FavoritesHiveStorage(boxName: uniqueBoxName));
 
@@ -58,10 +56,17 @@ void main() => group('$FavoritesHiveStorage', () {
       );
 
       test('update() with no indexes', () async {
-        final Iterable<ColorPalette> palettes = await favoritesStorage.storedFavorites;
+        Iterable<ColorPalette> palettes = await favoritesStorage.storedFavorites;
         expect(palettes.isEmpty, true);
+        await favoritesStorage.add(colors);
+        palettes = favoritesStorage.palettes;
+        expect(palettes.length, 1);
+        expect(palettes.first, palette);
         final int updatedCount = await favoritesStorage.update(<int>{});
         expect(updatedCount, 0);
+        palettes = favoritesStorage.palettes;
+        expect(palettes.length, 1);
+        expect(palettes.first, palette);
       });
 
       test('update() with single index', () async {
@@ -130,5 +135,5 @@ void main() => group('$FavoritesHiveStorage', () {
         expect(palettes.first, palette);
       });
 
-      tearDownAll(() => Directory('hive_test').deleteSync(recursive: true));
+      tearDownAll(deleteFakeStorageDir);
     });

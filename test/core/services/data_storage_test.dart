@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:colors_ai/core/services/data_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
@@ -7,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
 
 import '../../data/fakes/fake_path_provider_platform.dart';
+import '../../data/helpers/utils.dart';
 import '../../data/mocks/generated.mocks.dart';
 
 void main() => group('$DataStorage', () {
@@ -56,5 +55,5 @@ void main() => group('$DataStorage', () {
         verifyNoMoreInteractions(mockedSecureStorage);
       });
 
-      tearDownAll(() => Directory(fakePlatform.applicationDocumentsPath).deleteSync(recursive: true));
+      tearDownAll(() => deleteFakeStorageDir(directoryName: fakePlatform.applicationDocumentsPath));
     });

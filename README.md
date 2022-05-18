@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg?token=HXC806IIKE)](https://codecov.io/gh/tsinis/colors_ai)
 [![Tests](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml/badge.svg)](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml)
 [![Codemagic build status](https://api.codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/status_badge.svg)](https://codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/latest_build)
 [![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
@@ -58,7 +59,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-Most of the application is **covered by hundreds of tests**, you can find here: Unit (mainly), Widget, Golden and Integration tests.
+Most of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: Unit (mainly), Widget, Golden and Integration [tests](./test).
 
 ## Accessibility
 
@@ -66,7 +67,7 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 ## How to run it
 
-Flutter version **2.8** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
+Flutter version *3.0** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```shell
 flutter pub get

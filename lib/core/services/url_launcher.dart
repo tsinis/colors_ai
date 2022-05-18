@@ -7,11 +7,16 @@ class UrlLauncher {
     if (url == null) {
       return false;
     }
+    final Uri? maybeUrl = Uri.tryParse(url);
+
+    if (maybeUrl == null) {
+      return false;
+    }
 
     try {
-      final bool canLaunchUrl = await canLaunch(url);
+      final bool canLaunch = await canLaunchUrl(maybeUrl);
 
-      return canLaunchUrl ? await launch(url) : throw UnsupportedError('Could not launch $url');
+      return canLaunch ? await launchUrl(maybeUrl) : throw UnsupportedError('Could not launch $url');
       // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       return false;

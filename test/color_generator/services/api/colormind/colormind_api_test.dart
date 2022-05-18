@@ -17,9 +17,9 @@ void main() => group('$ColormindAPI', () {
 
       setUp(
         () => colormindAPI = ColormindAPI(
-          unlockedColorChar: unlockedColorChar,
-          paletteInputKey: paletteInputKey,
-          generateModelKey: modelKey,
+          unlockedColorChar: colormindUnlockedChar,
+          paletteInputKey: colormindPaletteInputKey,
+          generateModelKey: colormindModelKey,
           httpClient: mockedClient,
           forUI: false,
         ),
@@ -32,16 +32,16 @@ void main() => group('$ColormindAPI', () {
 
       test('colorsToInput()', () {
         final MapEntry<String, List<Object>> entry = colormindAPI.colorsToInput(colors.toPalette(), locks);
-        expect(entry.key, paletteInputKey);
+        expect(entry.key, colormindPaletteInputKey);
         expect(entry.value.length, colors.length);
-        expect(entry.value.contains(unlockedColorChar), isTrue);
+        expect(entry.value.contains(colormindUnlockedChar), isTrue);
         expect(entry.value.last, blackColorAsIntRGBColor);
       });
 
       test('modelToInput()', () {
         const String modelValue = 'modelValue';
         final MapEntry<String, String> model = colormindAPI.modelToInput(modelValue);
-        expect(model.key, modelKey);
+        expect(model.key, colormindModelKey);
         expect(model.value, modelValue);
       });
 

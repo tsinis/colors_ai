@@ -1,10 +1,9 @@
-import 'dart:io';
-
 import 'package:colors_ai/core/interfaces/storage_interfaces/hive_storage_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 
 import '../../../data/fakes/fake_hive_box.dart';
+import '../../../data/helpers/utils.dart';
 
 class _HiveStorageInterfaceTest extends HiveStorageInterface<Object> {
   const _HiveStorageInterfaceTest(String boxName, [Box<Object>? box]) : super(null, boxName: boxName, openedBox: box);
@@ -23,10 +22,10 @@ void main() => group('HiveStorageInterface', () {
       test(
         'openBox unopened box',
         () async {
-          Hive.init('./hive_test');
+          createFakeStorageDir();
           expect((await const _HiveStorageInterfaceTest(boxName).openBox).isOpen, true);
         },
       );
 
-      tearDownAll(() => Directory('hive_test').deleteSync(recursive: true));
+      tearDownAll(deleteFakeStorageDir);
     });

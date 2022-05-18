@@ -25,7 +25,6 @@ void main() => group('$ColorAdapter', () {
       test('write()', () {
         final BinaryWriter mockedWriter = MockBinaryWriter();
         verifyZeroInteractions(mockedWriter);
-        when<void>(mockedWriter.writeInt(0));
         adapter.write(mockedWriter, transparentColor);
         verify(mockedWriter.writeInt(0)).called(1);
         verifyNoMoreInteractions(mockedWriter);
