@@ -21,59 +21,36 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       yield const FavoritesLoadInProgress();
       final bool isDataLoaded = await _favorites.loadStoredFavorites;
       if (isDataLoaded) {
-        try {
-          yield FavoritesLoadSuccess(_favorites.palettes);
-        } catch (_) {
-          yield const FavoritesFailure();
-        }
+        yield FavoritesLoadSuccess(_favorites.palettes);
       } else {
-        try {
-          yield const FavoritesEmptyInitial();
-        } catch (_) {
-          yield const FavoritesFailure();
-        }
+        yield const FavoritesEmptyInitial();
       }
     } else if (event is FavoritesAdded) {
       if (event.favorite.isNotEmpty) {
         _favorites.add(event.favorite);
-        try {
-          yield FavoritesLoadSuccess(_favorites.palettes);
-        } catch (_) {
-          yield const FavoritesFailure();
-        }
+        yield FavoritesLoadSuccess(_favorites.palettes);
         await _favorites.storage.add(event.favorite);
       } else {
-        try {
-          yield const FavoritesEmptyInitial();
-        } catch (_) {
-          yield const FavoritesFailure();
-        }
+        yield const FavoritesEmptyInitial();
       }
     } else if (event is FavoritesOneRemoved) {
       _favorites.remove(<int>{event.colorToRemoveIndex});
-      try {
-        if (_favorites.palettes.isNotEmpty) {
-          yield FavoritesLoadSuccess(_favorites.palettes);
-          await _favorites.storage.update(<int>{event.colorToRemoveIndex});
-        } else {
-          yield const FavoritesEmptyInitial();
-          await _favorites.storage.clear();
-        }
-      } catch (_) {
-        yield const FavoritesFailure();
+      if (_favorites.palettes.isNotEmpty) {
+        yield FavoritesLoadSuccess(_favorites.palettes);
+        await _favorites.storage.update(<int>{event.colorToRemoveIndex});
+      } else {
+        yield const FavoritesEmptyInitial();
+        await _favorites.storage.clear();
       }
     } else if (event is FavoritesSeveralRemoved) {
       _favorites.remove(event.palettesIndex);
-      try {
-        if (_favorites.palettes.isNotEmpty) {
-          yield FavoritesLoadSuccess(_favorites.palettes);
-        } else {
-          yield const FavoritesEmptyInitial();
-        }
-      } catch (_) {
-        yield const FavoritesFailure();
+      if (_favorites.palettes.isNotEmpty) {
+        yield FavoritesLoadSuccess(_favorites.palettes);
+        _favorites.storage.update(event.palettesIndex);
+      } else {
+        yield const FavoritesEmptyInitial();
+        _favorites.storage.clear();
       }
-      _favorites.storage.update(event.palettesIndex);
     }
   }
 }

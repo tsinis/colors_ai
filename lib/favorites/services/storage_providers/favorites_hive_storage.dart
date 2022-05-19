@@ -38,6 +38,9 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
 
   @override
   Future<int> update(Set<int> indexes) async {
+    if (palettes.isEmpty) {
+      return 0;
+    }
     final List<ColorPalette> storedPalettes = palettes;
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
     if (palettesToRemove.isNotEmpty) {

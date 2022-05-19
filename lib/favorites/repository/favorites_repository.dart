@@ -26,6 +26,9 @@ class FavoritesRepository {
   void add(List<Color> colors) => _palettes.add(colors.toPalette());
 
   void remove(Set<int> indexes) {
+    if (_palettes.isEmpty) {
+      return;
+    }
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
     final List<ColorPalette> storedPalettes = List<ColorPalette>.from(_palettes);
     if (palettesToRemove.isNotEmpty) {

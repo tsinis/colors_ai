@@ -5,11 +5,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../data.dart';
 
-class ColorPickerEventTest extends ColorPickerEvent {}
+class ColorPickerEventTest extends ColorPickerEvent {
+  const ColorPickerEventTest();
+}
 
 void main() {
   test('$ColorPickerEvent props', () {
-    final ColorPickerEvent pickerEvent = ColorPickerEventTest();
+    const ColorPickerEvent pickerEvent = ColorPickerEventTest();
     expect(pickerEvent.props.isEmpty, true);
   });
 

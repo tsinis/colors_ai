@@ -1,11 +1,13 @@
 import 'package:colors_ai/common/blocs/snackbars/snackbar_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class SnackbarEventTest extends SnackbarEvent {}
+class SnackbarEventTest extends SnackbarEvent {
+  const SnackbarEventTest();
+}
 
 void main() {
   test('$SnackbarEvent props', () {
-    final SnackbarEvent snackbarEvent = SnackbarEventTest();
+    const SnackbarEvent snackbarEvent = SnackbarEventTest();
     expect(snackbarEvent.props.isEmpty, true);
   });
 

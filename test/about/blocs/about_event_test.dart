@@ -1,11 +1,13 @@
 import 'package:colors_ai/about/blocs/about_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class AboutEventTest extends AboutEvent {}
+class AboutEventTest extends AboutEvent {
+  const AboutEventTest();
+}
 
 void main() {
   test('$AboutEvent props', () {
-    final AboutEvent aboutEvent = AboutEventTest();
+    const AboutEvent aboutEvent = AboutEventTest();
     expect(aboutEvent.props.isEmpty, true);
   });
 

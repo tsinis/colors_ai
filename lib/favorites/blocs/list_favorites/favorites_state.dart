@@ -11,10 +11,6 @@ class FavoritesEmptyInitial extends FavoritesState {
   const FavoritesEmptyInitial();
 }
 
-class FavoritesFailure extends FavoritesState {
-  const FavoritesFailure();
-}
-
 class FavoritesLoadInProgress extends FavoritesState {
   const FavoritesLoadInProgress();
 }
