@@ -42,7 +42,7 @@ jobs:
       uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
       with:
         min_coverage: 90
-        exclude: **/*.g.dart **/*.gen.dart **/*.freezed.dart
+        exclude: '**/*.g.dart **/*.gen.dart **/*.freezed.dart'
 
     - name: Upload Code Coverage
       uses: codecov/codecov-action@v2
