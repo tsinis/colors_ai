@@ -12,7 +12,7 @@ void main() {
   test('$FavoritesSeveralRemoved props', () {
     const FavoritesEvent favsEvent = FavoritesSeveralRemoved(<int>{0});
     expect(favsEvent.props, <Object>[
-      <int>{0}
+      <int>{0},
     ]);
   });
 

@@ -20,7 +20,7 @@ void main() => group(
           expect(deviceCapabilities.canSharePdf, false);
           expect(deviceCapabilities.canSharePng, false);
           expect(deviceCapabilities.storagePath.startsWith(fakePlatform.applicationDocumentsPath), true);
-        }); //TODO Add Fake Platforms.
+        });
 
         test('init() with $Exception', () async {
           final FakePathProviderPlatform fakePlatform = FakePathProviderPlatform();

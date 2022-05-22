@@ -36,6 +36,7 @@ class ColorsRepository {
   void fromFavorites(ColorPalette palette) => _colorPalette.addAll(palette.colors);
 
   Future<bool> getNewColors() async {
+    //TODO? Show SnackBar when all colors are locked?
     if (_locked.list.contains(false)) {
       try {
         final ColorPalette newColors = await _getNewColors(_colorPalette, _locked.list);
@@ -43,7 +44,8 @@ class ColorsRepository {
         _colorPalette.addAll(filteredColors);
 
         return true;
-      } on Exception catch (e) {
+        // ignore: avoid_catches_without_on_clauses
+      } catch (e) {
         debugPrint(e.toString());
 
         return false;

@@ -55,7 +55,7 @@ abstract class API<T extends Object> {
   Future<ColorPalette> sendPostRequest(Object body) async {
     final Uri? uri = Uri.tryParse(_host);
     if (uri == null) {
-      throw Exception('Cannot parse host.');
+      throw const FormatException('Cannot parse host.');
     }
     final String payload = jsonEncode(body);
 

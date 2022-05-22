@@ -10,6 +10,7 @@ import 'package:colors_ai/settings/models/selected_api.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../data/mocks/http/mock_colormind_client.dart';
+import '../../data/mocks/http/mock_huemint_client.dart';
 
 void main() => group('$GeneratorDAO', () {
       late GeneratorDAO generatorDAO;
@@ -68,7 +69,8 @@ void main() => group('$GeneratorDAO', () {
 
       test('fetchNewColors() without specific API (use default)', () async {
         final MockColormindClient mockedClient = MockColormindClient();
-        final ColorPalette fetchedColors = await generatorDAO.fetchNewColors(
+        final GeneratorDAO mockedDao = GeneratorDAO(httpClient: mockedClient);
+        final ColorPalette fetchedColors = await mockedDao.fetchNewColors(
           kDefaultColors.toPalette(),
           mockedClient.generateLocks(),
         );
@@ -77,8 +79,9 @@ void main() => group('$GeneratorDAO', () {
       });
 
       test('fetchNewColors() without specific API (use non-default)', () async {
-        final MockColormindClient mockedClient = MockColormindClient();
-        final ColorPalette fetchedColors = await GeneratorDAO(api: SelectedAPI.huemint).fetchNewColors(
+        final MockHuemintClient mockedClient = MockHuemintClient();
+        final GeneratorDAO mockedDao = GeneratorDAO(httpClient: mockedClient, api: SelectedAPI.huemint);
+        final ColorPalette fetchedColors = await mockedDao.fetchNewColors(
           kDefaultColors.toPalette(),
           mockedClient.generateLocks(),
         );

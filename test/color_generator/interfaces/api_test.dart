@@ -64,6 +64,21 @@ void main() => group('API', () {
         expect(isErrorStatusCode, false);
       });
 
+      test('sendPostRequest() with $FormatException on host parse', () async {
+        final API<Color> testApi = _APITest(
+          'https://^[',
+          const ColormindColors(),
+          unlockedColorChar,
+          generateModelKey,
+          paletteInputKey,
+          mockedClient,
+        );
+        await expectLater(
+          () async => testApi.fetchNewColors(colors.toPalette(), locks),
+          throwsA(isA<FormatException>()),
+        );
+      });
+
       test('apiColorTransformer()', () => expect(api.apiColorTransformer(blackColor), blackColor));
 
       test('colorsToInput()', () {
