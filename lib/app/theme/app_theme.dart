@@ -5,13 +5,7 @@ class AppTheme {
   final bool? isDark;
 
   static const Color _grey800 = Color(0xFF424242); // Constant value of Colors.grey[800].
-  static const RoundedRectangleBorder _material3ButtonShape =
-      RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)));
 
-  static const RoundedRectangleBorder _material3FabBorder =
-      RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16)));
-
-  static const BoxConstraints _material3FabSize = BoxConstraints.tightForFinite(height: 56);
   static const VisualDensity _visualDensity = VisualDensity.standard;
 
   final ThemeData _darkTheme = ThemeData.from(
@@ -20,6 +14,7 @@ class AppTheme {
       secondary: Colors.grey[600],
     ),
   ).copyWith(
+    useMaterial3: true,
     scaffoldBackgroundColor: Colors.grey[700],
     checkboxTheme: CheckboxThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.grey)),
     focusColor: Colors.grey,
@@ -31,20 +26,25 @@ class AppTheme {
     textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: Colors.grey[350])),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        shape: _material3ButtonShape,
-        primary: Colors.grey[350],
+        primary: Colors.grey[800],
+        onPrimary: Colors.grey[350],
         visualDensity: _visualDensity,
       ),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       extendedPadding: const EdgeInsets.symmetric(horizontal: 16),
-      extendedSizeConstraints: _material3FabSize,
-      shape: _material3FabBorder,
       backgroundColor: Colors.grey[600],
       foregroundColor: Colors.white,
       disabledElevation: 0,
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      indicatorColor: Colors.grey[850],
+      iconTheme: MaterialStateProperty.all<IconThemeData>(
+        IconThemeData(color: Colors.grey[350]),
+      ),
+    ),
     navigationRailTheme: NavigationRailThemeData(
+      indicatorColor: Colors.grey[600],
       backgroundColor: const Color(0xFF585858),
       selectedIconTheme: IconThemeData(color: Colors.grey[200]),
       unselectedIconTheme: IconThemeData(color: Colors.grey[350]),
@@ -56,13 +56,13 @@ class AppTheme {
         visualDensity: _visualDensity,
         primary: Colors.grey[300],
         backgroundColor: Colors.transparent,
-        shape: _material3ButtonShape,
         side: BorderSide(color: Colors.grey[400]!),
       ),
     ),
   );
 
   final ThemeData _lightTheme = ThemeData(
+    useMaterial3: true,
     primarySwatch: Colors.grey,
     primaryColor: Colors.grey[400],
     disabledColor: Colors.grey[600],
@@ -75,11 +75,17 @@ class AppTheme {
     indicatorColor: Colors.teal,
     dialogTheme: DialogTheme(backgroundColor: Colors.grey[100]),
     radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.black)),
-    textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: Colors.grey[850])),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        primary: Colors.grey[850],
+        padding: EdgeInsets.zero,
+        elevation: 0,
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: Colors.grey[200],
-        shape: _material3ButtonShape,
+        primary: Colors.grey[100],
+        onPrimary: Colors.grey[850],
         visualDensity: _visualDensity,
       ),
     ),
@@ -91,8 +97,6 @@ class AppTheme {
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       extendedPadding: const EdgeInsets.symmetric(horizontal: 16),
-      extendedSizeConstraints: _material3FabSize,
-      shape: _material3FabBorder,
       backgroundColor: Colors.grey[100],
       foregroundColor: Colors.grey[850],
       focusElevation: 10,
@@ -102,7 +106,6 @@ class AppTheme {
         primary: Colors.grey[850],
         visualDensity: _visualDensity,
         backgroundColor: Colors.transparent,
-        shape: _material3ButtonShape,
         side: const BorderSide(color: _grey800),
       ),
     ),

@@ -20,7 +20,16 @@ void main() => group('$SoundsRepository', () {
         verifyZeroInteractions(mockedPlayer);
         await soundsRepository.init();
         verify(
-          mockedPlayer.playSound(asset(notificationSimpleFileName), 0.1, cacheOnly: true),
+          mockedPlayer.playSound(
+            asset(notificationSimpleFileName),
+            0.1,
+            cachedFileNames: const <String>[
+              pathToAssetsDir + lockSoundFileName + fileFormat,
+              pathToAssetsDir + refreshSoundFileName + fileFormat,
+              pathToAssetsDir + notificationHighFileName + fileFormat,
+              pathToAssetsDir + notificationSimpleFileName + fileFormat,
+            ],
+          ),
         ).called(1);
         verifyNoMoreInteractions(mockedPlayer);
       });

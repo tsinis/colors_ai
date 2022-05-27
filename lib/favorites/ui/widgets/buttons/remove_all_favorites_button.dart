@@ -57,12 +57,13 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                 ),
                 // https://material.io/components/dialogs#alert-dialog
                 builder: (_) => AlertDialog(
-                  actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
+                  contentPadding: const EdgeInsets.only(top: 40),
                   shape: kDefaultShape,
                   content: Text(
                     haveSelection
                         ? '${context.l10n.removeSomeTitle(state.selections.length)}?'
                         : '${context.l10n.removeAllTitle}?',
+                    textAlign: TextAlign.center,
                   ),
                   actions: <TextButton>[
                     TextButton(

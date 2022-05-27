@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/extensions/context_extensions.dart';
+
 class AppIcon extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
   final Clip clipBehavior;
@@ -23,6 +25,7 @@ class AppIcon extends StatelessWidget {
             height: 102.4,
             child: Material(
               elevation: elevation,
+              shadowColor: context.theme.shadowColor,
               clipBehavior: clipBehavior,
               borderRadius: borderRadius,
               child: ColoredBox(

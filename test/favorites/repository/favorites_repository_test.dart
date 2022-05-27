@@ -57,8 +57,7 @@ void main() => group('$FavoritesRepository', () {
         expect(palettes.first, palette);
         favoritesRepository.remove(<int>{});
         palettes = favoritesRepository.palettes;
-        expect(palettes.length, 1);
-        expect(palettes.first, palette);
+        expect(palettes.isEmpty, true);
       });
 
       test('update() with single index', () async {

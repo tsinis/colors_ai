@@ -67,7 +67,7 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 ## How to run it
 
-Flutter version *3.0** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
+Flutter **3** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```shell
 flutter pub get
@@ -115,11 +115,11 @@ The following is a list of sound assets used in this application and their prope
 
 ["Material Product Sounds"](https://material.io/design/sound/sound-resources.html) by [Google](https://about.google) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/legalcode)
 
-Assets Used:
+Assets Used (converted from original WAV to MP3):
 
-* notification_high-intensity.wav
-* notification_simple-02.wav
-* ui_lock.wav
-* ui_refresh-feed.wav
+* notification_high-intensity.mp3
+* notification_simple-02.mp3
+* ui_lock.mp3
+* ui_refresh-feed.mp3
 
 > Flutter and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.

@@ -1,16 +1,16 @@
 import 'sound.dart';
 
 class SoundsSource {
+  final String directory;
   final String format;
   final String lock;
   final String notificationHigh;
   final String notificationSimple;
-  final String path;
   final String refresh;
 
   const SoundsSource({
-    this.format = '.wav',
-    this.path = 'assets/sounds/',
+    this.directory = 'sounds/',
+    this.format = '.mp3',
     this.lock = 'ui_lock',
     this.refresh = 'ui_refresh-feed',
     this.notificationSimple = 'notification_simple-02',
@@ -32,5 +32,5 @@ class SoundsSource {
     }
   }
 
-  String _assetPath(String assetName) => path + assetName + format;
+  String _assetPath(String assetName) => directory + assetName + format;
 }

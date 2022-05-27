@@ -13,7 +13,7 @@ const String refreshSoundFileName = 'playRefresh';
 
 const SoundsSource soundsSource = SoundsSource(
   format: fileFormat,
-  path: pathToAssetsDir,
+  directory: pathToAssetsDir,
   lock: lockSoundFileName,
   refresh: refreshSoundFileName,
   notificationSimple: notificationSimpleFileName,

@@ -5,7 +5,6 @@ import '../../../core/extensions/context_extensions.dart';
 import '../../../core/extensions/string_extension.dart';
 
 class AboutDialogM3 extends StatelessWidget {
-  final EdgeInsetsGeometry actionsPadding;
   final Widget applicationIcon;
   final String? applicationLegalese;
   final String applicationName;
@@ -20,7 +19,6 @@ class AboutDialogM3 extends StatelessWidget {
     required this.applicationVersion,
     required this.applicationIcon,
     this.contentPadding = const EdgeInsets.symmetric(horizontal: 24),
-    this.actionsPadding = const EdgeInsets.only(bottom: 8, right: 8),
     this.textVerticalSeparation = 18,
     this.shape = kDefaultShape,
     this.applicationLegalese,
@@ -30,7 +28,6 @@ class AboutDialogM3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AlertDialog(
-        actionsPadding: actionsPadding,
         shape: shape,
         content: ListBody(
           children: <Widget>[

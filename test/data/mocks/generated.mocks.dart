@@ -414,10 +414,10 @@ class MockSoundsPlayer extends _i2.Mock implements _i10.SoundsPlayer {
 
   @override
   _i9.Future<void> playSound(String? asset, double? volume,
-          {bool? cacheOnly = false}) =>
+          {List<String>? cachedFileNames}) =>
       (super.noSuchMethod(
           Invocation.method(
-              #playSound, [asset, volume], {#cacheOnly: cacheOnly}),
+              #playSound, [asset, volume], {#cachedFileNames: cachedFileNames}),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i9.Future<void>);
 }

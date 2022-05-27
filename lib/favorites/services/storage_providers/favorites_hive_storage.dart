@@ -43,9 +43,7 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
     }
     final List<ColorPalette> storedPalettes = palettes;
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
-    if (palettesToRemove.isNotEmpty) {
-      await clear();
-    }
+    await clear();
     switch (palettesToRemove.length) {
       case 0:
         return 0;

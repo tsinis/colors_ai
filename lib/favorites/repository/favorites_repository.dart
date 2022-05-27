@@ -31,9 +31,8 @@ class FavoritesRepository {
     }
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
     final List<ColorPalette> storedPalettes = List<ColorPalette>.from(_palettes);
-    if (palettesToRemove.isNotEmpty) {
-      _palettes.clear();
-    }
+    _palettes.clear();
+
     switch (palettesToRemove.length) {
       case 0:
         return;

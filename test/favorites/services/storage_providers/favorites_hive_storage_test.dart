@@ -65,8 +65,7 @@ void main() => group('$FavoritesHiveStorage', () {
         final int updatedCount = await favoritesStorage.update(<int>{});
         expect(updatedCount, 0);
         palettes = favoritesStorage.palettes;
-        expect(palettes.length, 1);
-        expect(palettes.first, palette);
+        expect(palettes.isEmpty, true);
       });
 
       test('update() with single index', () async {
