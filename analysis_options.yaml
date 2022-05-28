@@ -307,5 +307,7 @@ linter:
     secure_pubspec_urls: true
     sized_box_shrink_expand: true
     unnecessary_late: true
+    unnecessary_null_aware_operator_on_extension_on_nullable: true
+    unnecessary_to_list_in_spreads: true
     use_decorated_box: true
     use_late_for_private_fields_and_variables: true

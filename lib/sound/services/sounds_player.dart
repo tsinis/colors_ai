@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:platform_info/platform_info.dart';
 
 class SoundsPlayer {
   final AudioPlayer _audioPlayer = AudioPlayer();
@@ -13,11 +12,8 @@ class SoundsPlayer {
         await _audioPlayer.setVolume(normalizedVolume);
       } else if (!cacheOnly) {
         final AssetSource sound = AssetSource(asset);
-        if (platform.isAndroid) {
-          await _audioPlayer.play(sound, volume: volume, mode: PlayerMode.lowLatency);
-        } else {
-          await _audioPlayer.play(sound, volume: volume);
-        }
+        //TODO Add mode: [PlayerMode.lowLatency] on Android platform after fix.
+        await _audioPlayer.play(sound, volume: volume);
       }
     }
   }
