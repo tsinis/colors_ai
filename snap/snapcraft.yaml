@@ -11,7 +11,7 @@ architectures:
 
 apps:
   colors-ai:
-    command: colors_ai
+    command: colors-ai
     extensions: [gnome-3-38]
     plugs:
       - home
