@@ -11,7 +11,7 @@ architectures:
 
 apps:
   colors-ai:
-    command: colors-ai
+    command: colorsai
     extensions: [gnome-3-38]
     plugs:
       - home
@@ -46,7 +46,7 @@ parts:
       - libsecret-1-dev
     override-prime: ""
 
-  colors-ai:
+  colorsai:
     after: [flutter-git]
     source: .
     plugin: nil
