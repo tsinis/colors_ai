@@ -12,7 +12,7 @@ architectures:
 apps:
   colors-ai:
     command: colors_ai
-    extensions: [flutter-stable]
+    extensions: [gnome-3-38]
     plugs:
       - home
       - network
@@ -43,7 +43,7 @@ parts:
       - libsecret-1-dev
     override-prime: ""
 
-  colorsai:
+  colors-ai:
     after: [flutter-git]
     source: .
     plugin: nil
