@@ -18,10 +18,16 @@ apps:
       - network
 
 parts:
-  colors-ai:
-    source: .
-    plugin: flutter
-    flutter-target: lib/main.dart
+  flutter-git:
+    source: https://github.com/flutter/flutter.git
+    source-branch: stable
+    source-depth: 1
+    plugin: nil
+    override-build: |
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
+      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/libexec
+      cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
+      ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $SNAPCRAFT_PART_INSTALL/usr/bin/flutter
     build-packages:
       - libjsoncpp-dev
       - libsecret-1-dev
@@ -35,7 +41,20 @@ parts:
     stage-packages:
       - libjsoncpp1
       - libsecret-1-dev
+    override-prime: ""
+
+  colorsai:
+    after: [flutter-git]
+    source: .
+    plugin: nil
     override-build: |
+      set -eux
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      flutter upgrade
+      flutter config --enable-linux-desktop
+      flutter doctor
       flutter pub get
       flutter gen-l10n
-      snapcraftctl build
+      rm -rf build
+      flutter build linux --release -v
+      cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
