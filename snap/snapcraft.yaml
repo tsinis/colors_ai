@@ -11,14 +11,6 @@ architectures:
   - build-on: [amd64]
 compression: lzo
 
-apps:
-  colors-ai:
-    command: colors-ai
-    extensions: [gnome-3-38]
-    plugs:
-      - home
-      - network
-
 parts:
   flutter-git:
     source: https://github.com/flutter/flutter.git
@@ -63,3 +55,11 @@ parts:
       rm -rf build
       flutter build linux --release -v
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
+
+apps:
+  colors-ai:
+    command: bin/colors-ai
+    extensions: [gnome-3-38]
+    plugs:
+      - home
+      - network
