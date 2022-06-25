@@ -6,10 +6,10 @@ description: A color scheme generator that uses deep learning from public APIs.
 confinement: strict
 license: MIT
 base: core20
-grade: stable
+grade: devel
+compression: lzo
 architectures:
   - build-on: [amd64]
-compression: lzo
 
 parts:
   flutter-git:
@@ -46,14 +46,14 @@ parts:
     plugin: nil
     override-build: |
       set -eux
-      mkdir -p $SNAPCRAFT_PART_INSTALL/bin
+      flutter channel stable
       flutter upgrade
       flutter config --enable-linux-desktop
       flutter doctor
       flutter pub get
       flutter gen-l10n
-      rm -rf build
       flutter build linux --release -v
+      mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
 
 apps:
