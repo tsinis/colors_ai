@@ -16,8 +16,8 @@ class ColorpickerDialog extends StatefulWidget {
     this.color, {
     required this.onColorChanged,
     this.clipboard = const ClipBoard(),
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _ColorpickerDialogState createState() => _ColorpickerDialogState();

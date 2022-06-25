@@ -1,18 +1,11 @@
-part of 'about_bloc.dart';
+import '../../core/constants.dart';
 
-abstract class AboutState extends Equatable {
-  final String appVersion;
+part 'about_state.freezed.dart';
 
-  @override
-  List<String> get props => <String>[appVersion];
-
-  const AboutState({required this.appVersion});
-}
-
-class AboutInitial extends AboutState {
-  const AboutInitial({required String appVersion}) : super(appVersion: appVersion);
-}
-
-class AboutFailure extends AboutState {
-  const AboutFailure() : super(appVersion: '0');
+@freezedWithoutJson
+class AboutState with _$AboutState {
+  const factory AboutState.failure() = _AboutFailure;
+  const factory AboutState.initial() = _AboutInitial;
+  const factory AboutState.loaded({required String appVersion}) = _AboutLoaded;
+  const factory AboutState.started({required String currentLocale}) = _AboutStarted;
 }

@@ -1,12 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 import '../repository/sounds_repository.dart';
+import 'sound_event.dart';
 
-part 'sound_event.dart';
+export 'sound_event.dart';
 
 class SoundBloc extends Bloc<SoundEvent, void> {
   final SoundsRepository _soundRepository;
@@ -15,21 +15,19 @@ class SoundBloc extends Bloc<SoundEvent, void> {
 
   @override
   Stream<void> mapEventToState(SoundEvent event) async* {
-    if (event is SoundStarted) {
-      await _soundRepository.init();
+    event.when(
+      copied: _soundRepository.playCopy,
+      locked: _soundRepository.playLock,
+      refreshed: _soundRepository.playRefresh,
+      favoritesAdded: _soundRepository.playFavoritesAdded,
+      started: () async {
+        await _soundRepository.init();
 
-      /// On web it's not allowed to play sounds without user interaction first.
-      if (!kIsWeb) {
-        _soundRepository.playFavoritesAdded();
-      }
-    } else if (event is SoundRefreshed) {
-      _soundRepository.playRefresh();
-    } else if (event is SoundFavoritesAdded) {
-      _soundRepository.playFavoritesAdded();
-    } else if (event is SoundLocked) {
-      _soundRepository.playLock();
-    } else if (event is SoundCopied) {
-      _soundRepository.playCopy();
-    }
+        /// On web it's not allowed to play sounds without user interaction first.
+        if (!kIsWeb) {
+          _soundRepository.playFavoritesAdded();
+        }
+      },
+    );
   }
 }

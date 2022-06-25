@@ -9,6 +9,6 @@ abstract class ShareSectionInterface extends StatelessWidget {
   const ShareSectionInterface({
     required this.palette,
     required this.maxWidth,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 }

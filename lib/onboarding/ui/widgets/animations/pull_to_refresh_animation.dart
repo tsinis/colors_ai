@@ -12,8 +12,8 @@ class PullToRefreshAnimation extends StatefulWidget {
     this.color = Colors.black,
     this.curve = Curves.easeInOutQuart,
     this.duration = kDefaultLongTransitionDuration,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _PullToRefreshAnimationState createState() => _PullToRefreshAnimationState();

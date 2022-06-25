@@ -1,7 +1,7 @@
 import '../blocs/navigation_bloc.dart';
 
 mixin NavTabIndexer {
-  int get colorsGenTabIndex => const NavigationGenerateTabInitial().tabIndex;
-  int get favoritesTabIndex => const NavigationFavoritesTabInitial().tabIndex;
-  int get shareTabIndex => const NavigationShareTabInitial().tabIndex;
+  int get colorsGenTabIndex => NavigationState.generate.index;
+  int get favoritesTabIndex => NavigationState.favorites.index;
+  int get shareTabIndex => NavigationState.share.index;
 }

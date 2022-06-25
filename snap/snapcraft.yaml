@@ -1,13 +1,13 @@
 name: colors-ai
-version: 2.0.1
+version: 2.1.0
 summary: Colors AI
 description: A color scheme generator that uses deep learning from public APIs.
 confinement: strict
 license: MIT
-base: core18
-grade: stable
+base: core20
+grade: devel
 architectures:
-  - build-on: [ amd64 ]
+  - build-on: [amd64]
 
 apps:
   colors-ai:

@@ -8,7 +8,7 @@ import '../../../settings/ui/view/settings_dialog.dart';
 import '../../extensions/context_extensions.dart';
 
 class OverflowMenu extends StatelessWidget {
-  const OverflowMenu({Key? key}) : super(key: key);
+  const OverflowMenu({super.key});
 
   void showDialog(BuildContext context, Widget dialog) {
     SchedulerBinding.instance.addPostFrameCallback(

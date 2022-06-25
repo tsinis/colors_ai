@@ -1,24 +1,11 @@
-part of 'onboarding_bloc.dart';
+import '../../core/constants.dart';
 
-abstract class OnboardingState extends Equatable {
-  @override
-  List<Object> get props => <Object>[];
+part 'onboarding_state.freezed.dart';
 
-  const OnboardingState();
-}
-
-class OnboardingInitial extends OnboardingState {
-  const OnboardingInitial();
-}
-
-class OnboardingLoadInProgress extends OnboardingState {
-  const OnboardingLoadInProgress();
-}
-
-class OnboardingNotFinished extends OnboardingState {
-  const OnboardingNotFinished();
-}
-
-class OnboardingDoneSuccess extends OnboardingState {
-  const OnboardingDoneSuccess();
+@freezedWithoutJson
+class OnboardingState with _$OnboardingState {
+  const factory OnboardingState.initial() = _OnboardingInitial;
+  const factory OnboardingState.loading() = _OnboardingLoading;
+  const factory OnboardingState.notFinished() = _OnboardingNotFinished;
+  const factory OnboardingState.doneSuccess() = _OnboardingDoneSuccess;
 }

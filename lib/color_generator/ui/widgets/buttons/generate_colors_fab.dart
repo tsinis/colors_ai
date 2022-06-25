@@ -25,8 +25,8 @@ class GenerateColorsFAB extends StatefulWidget {
     this.padding = 16,
     this.focusColor,
     this.isExtended,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _GenerateColorsFABState createState() => _GenerateColorsFABState();
@@ -58,7 +58,7 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
   }
 
   void onFabPressed() {
-    BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
+    BlocProvider.of<SoundBloc>(context).add(const SoundEvent.refreshed());
     BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
   }
 
@@ -69,7 +69,7 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
           padding: isExtended ? EdgeInsets.all(widget.padding) : EdgeInsets.symmetric(vertical: widget.padding),
           child: BlocBuilder<NavigationBloc, NavigationState>(
             builder: (_, NavigationState navState) {
-              isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
+              isGenerateTab = navState == NavigationState.generate;
 
               return BlocBuilder<ColorsBloc, ColorsState>(
                 builder: (_, ColorsState colorState) {

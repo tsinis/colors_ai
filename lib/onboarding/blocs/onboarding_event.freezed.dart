@@ -1,0 +1,284 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+
+part of 'onboarding_event.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
+/// @nodoc
+mixin _$OnboardingEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() finished,
+    required TResult Function() started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? finished,
+    TResult Function()? started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? finished,
+    TResult Function()? started,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnboardingFinished value) finished,
+    required TResult Function(_OnboardingStarted value) started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_OnboardingFinished value)? finished,
+    TResult Function(_OnboardingStarted value)? started,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnboardingFinished value)? finished,
+    TResult Function(_OnboardingStarted value)? started,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $OnboardingEventCopyWith<$Res> {
+  factory $OnboardingEventCopyWith(
+          OnboardingEvent value, $Res Function(OnboardingEvent) then) =
+      _$OnboardingEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$OnboardingEventCopyWithImpl<$Res>
+    implements $OnboardingEventCopyWith<$Res> {
+  _$OnboardingEventCopyWithImpl(this._value, this._then);
+
+  final OnboardingEvent _value;
+  // ignore: unused_field
+  final $Res Function(OnboardingEvent) _then;
+}
+
+/// @nodoc
+abstract class _$$_OnboardingFinishedCopyWith<$Res> {
+  factory _$$_OnboardingFinishedCopyWith(_$_OnboardingFinished value,
+          $Res Function(_$_OnboardingFinished) then) =
+      __$$_OnboardingFinishedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnboardingFinishedCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res>
+    implements _$$_OnboardingFinishedCopyWith<$Res> {
+  __$$_OnboardingFinishedCopyWithImpl(
+      _$_OnboardingFinished _value, $Res Function(_$_OnboardingFinished) _then)
+      : super(_value, (v) => _then(v as _$_OnboardingFinished));
+
+  @override
+  _$_OnboardingFinished get _value => super._value as _$_OnboardingFinished;
+}
+
+/// @nodoc
+
+class _$_OnboardingFinished implements _OnboardingFinished {
+  const _$_OnboardingFinished();
+
+  @override
+  String toString() {
+    return 'OnboardingEvent.finished()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnboardingFinished);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() finished,
+    required TResult Function() started,
+  }) {
+    return finished();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? finished,
+    TResult Function()? started,
+  }) {
+    return finished?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? finished,
+    TResult Function()? started,
+    required TResult orElse(),
+  }) {
+    if (finished != null) {
+      return finished();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnboardingFinished value) finished,
+    required TResult Function(_OnboardingStarted value) started,
+  }) {
+    return finished(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_OnboardingFinished value)? finished,
+    TResult Function(_OnboardingStarted value)? started,
+  }) {
+    return finished?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnboardingFinished value)? finished,
+    TResult Function(_OnboardingStarted value)? started,
+    required TResult orElse(),
+  }) {
+    if (finished != null) {
+      return finished(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnboardingFinished implements OnboardingEvent {
+  const factory _OnboardingFinished() = _$_OnboardingFinished;
+}
+
+/// @nodoc
+abstract class _$$_OnboardingStartedCopyWith<$Res> {
+  factory _$$_OnboardingStartedCopyWith(_$_OnboardingStarted value,
+          $Res Function(_$_OnboardingStarted) then) =
+      __$$_OnboardingStartedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_OnboardingStartedCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res>
+    implements _$$_OnboardingStartedCopyWith<$Res> {
+  __$$_OnboardingStartedCopyWithImpl(
+      _$_OnboardingStarted _value, $Res Function(_$_OnboardingStarted) _then)
+      : super(_value, (v) => _then(v as _$_OnboardingStarted));
+
+  @override
+  _$_OnboardingStarted get _value => super._value as _$_OnboardingStarted;
+}
+
+/// @nodoc
+
+class _$_OnboardingStarted implements _OnboardingStarted {
+  const _$_OnboardingStarted();
+
+  @override
+  String toString() {
+    return 'OnboardingEvent.started()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_OnboardingStarted);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() finished,
+    required TResult Function() started,
+  }) {
+    return started();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? finished,
+    TResult Function()? started,
+  }) {
+    return started?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? finished,
+    TResult Function()? started,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OnboardingFinished value) finished,
+    required TResult Function(_OnboardingStarted value) started,
+  }) {
+    return started(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_OnboardingFinished value)? finished,
+    TResult Function(_OnboardingStarted value)? started,
+  }) {
+    return started?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OnboardingFinished value)? finished,
+    TResult Function(_OnboardingStarted value)? started,
+    required TResult orElse(),
+  }) {
+    if (started != null) {
+      return started(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnboardingStarted implements OnboardingEvent {
+  const factory _OnboardingStarted() = _$_OnboardingStarted;
+}

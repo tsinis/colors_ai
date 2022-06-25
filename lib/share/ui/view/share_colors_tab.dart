@@ -7,6 +7,7 @@ import '../../../core/extensions/context_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/repository/colors_repository.dart';
 import '../../blocs/share_bloc.dart';
+import '../../mixins/url_providers_list.dart';
 import '../../models/file_format.dart';
 import '../../services/url_providers/colors_url_provider.dart';
 import '../widgets/file_export_preview.dart';
@@ -14,105 +15,111 @@ import '../widgets/share_sections/file_share_section.dart';
 import '../widgets/share_sections/url_share_section.dart';
 
 class ShareColorsTab extends StatelessWidget {
-  const ShareColorsTab({Key? key}) : super(key: key);
+  const ShareColorsTab({super.key});
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, ShareState state) {
-          if (state is ShareFailure) {
-            BlocProvider.of<SnackbarBloc>(context).add(const ShareFail());
-          }
-          final ColorsUrlProvider selectedProvider = state.selectedProvider ?? state.providersList.first;
-          final FileFormat selectedFormat = state.selectedFormat ?? FileFormat.values.first;
+          state.whenOrNull(failure: () => BlocProvider.of<SnackbarBloc>(context).add(const ShareFail()));
+
+          final ColorsUrlProvider? provider = state.whenOrNull<ColorsUrlProvider?>(
+            formatSelected: (ColorsUrlProvider? provider, _, __, ___) => provider,
+          );
+          final FileFormat? format = state.whenOrNull<FileFormat?>(
+            formatSelected: (_, FileFormat? format, __, ___) => format,
+          );
+
+          final ColorsUrlProvider selectedProvider = provider ?? UrlProvidersList.providers.first;
+          final FileFormat selectedFormat = format ?? FileFormat.values.first;
           final ColorPalette palette = context.read<ColorsRepository>().palette;
           final String? exportFormats = selectedProvider.formats;
           final bool isPortrait = context.media.orientation == Orientation.portrait;
 
+          final double opacity = state.maybeMap(orElse: () => 0, formatSelected: (_) => 1);
+
           return LayoutBuilder(
-            builder: (_, BoxConstraints size) => isPortrait
-                ? ListView(
-                    children: <Widget>[
-                      UrlShareSection(
+            builder: (_, BoxConstraints size) {
+              final Widget? child = state.whenOrNull(
+                formatSelected: (_, __, bool canSharePdf, bool canSharePng) => !canSharePdf
+                    ? const SizedBox.shrink()
+                    : FileShareSection(
                         palette,
                         width: size.maxWidth,
-                        selectedUrlProvider: selectedProvider,
-                        exportFormats: exportFormats,
-                        providersList: state.providersList,
+                        canSharePng: canSharePng,
+                        canSharePdf: canSharePdf,
+                        selectedFormat: selectedFormat,
                       ),
-                      AnimatedOpacity(
-                        curve: kDefaultTransitionCurve,
-                        duration: kDefaultLongTransitionDuration,
-                        opacity: state is ShareSelectedInitial ? 1 : 0,
-                        child: (state is ShareSelectedInitial && state.canSharePdf)
-                            ? FileShareSection(
-                                palette,
-                                width: size.maxWidth,
-                                canSharePng: state.canSharePng,
-                                canSharePdf: state.canSharePdf,
-                                selectedFormat: selectedFormat,
-                              )
-                            : const SizedBox.shrink(),
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.92,
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(maxHeight: size.maxHeight * 0.6, maxWidth: size.maxWidth * 0.8),
-                          child: FileExportPreview(palette),
+              );
+
+              return isPortrait
+                  ? ListView(
+                      children: <Widget>[
+                        UrlShareSection(
+                          palette,
+                          width: size.maxWidth,
+                          exportFormats: exportFormats,
+                          selectedUrlProvider: selectedProvider,
+                          providersList: UrlProvidersList.providers,
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-                  )
-                : SingleChildScrollView(
-                    child: SizedBox(
-                      height: size.maxHeight,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const SizedBox(height: 24),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: <Widget>[
-                              AnimatedOpacity(
-                                curve: kDefaultTransitionCurve,
-                                duration: kDefaultLongTransitionDuration,
-                                opacity: state is ShareSelectedInitial ? 1 : 0,
-                                child: (state is ShareSelectedInitial && state.canSharePdf)
-                                    ? FileShareSection(
-                                        palette,
-                                        width: size.maxWidth,
-                                        canSharePng: state.canSharePng,
-                                        canSharePdf: state.canSharePdf,
-                                        selectedFormat: selectedFormat,
-                                      )
-                                    : const SizedBox.shrink(),
-                              ),
-                              SizedBox(height: size.maxHeight / 6, child: const VerticalDivider(color: Colors.grey)),
-                              UrlShareSection(
-                                palette,
-                                width: size.maxWidth,
-                                selectedUrlProvider: selectedProvider,
-                                exportFormats: exportFormats,
-                                providersList: state.providersList,
-                              ),
-                            ],
+                        AnimatedOpacity(
+                          curve: kDefaultTransitionCurve,
+                          duration: kDefaultLongTransitionDuration,
+                          opacity: opacity,
+                          child: child,
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.92,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(maxHeight: size.maxHeight * 0.6, maxWidth: size.maxWidth * 0.8),
+                            child: FileExportPreview(palette),
                           ),
-                          Flexible(
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(24),
-                                child: ConstrainedBox(
-                                  constraints:
-                                      BoxConstraints(maxHeight: size.maxHeight * 0.6, maxWidth: size.maxWidth * 0.8),
-                                  child: FileExportPreview(palette),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                    )
+                  : SingleChildScrollView(
+                      child: SizedBox(
+                        height: size.maxHeight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(height: 24),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                AnimatedOpacity(
+                                  curve: kDefaultTransitionCurve,
+                                  duration: kDefaultLongTransitionDuration,
+                                  opacity: opacity,
+                                  child: child,
+                                ),
+                                SizedBox(height: size.maxHeight / 6, child: const VerticalDivider(color: Colors.grey)),
+                                UrlShareSection(
+                                  palette,
+                                  width: size.maxWidth,
+                                  selectedUrlProvider: selectedProvider,
+                                  exportFormats: exportFormats,
+                                  providersList: UrlProvidersList.providers,
+                                ),
+                              ],
+                            ),
+                            Flexible(
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24),
+                                  child: ConstrainedBox(
+                                    constraints:
+                                        BoxConstraints(maxHeight: size.maxHeight * 0.6, maxWidth: size.maxWidth * 0.8),
+                                    child: FileExportPreview(palette),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+            },
           );
         },
       );

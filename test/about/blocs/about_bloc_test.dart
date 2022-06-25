@@ -9,12 +9,12 @@ import '../data.dart';
 
 Future<void> main() async {
   const Map<String, AboutEvent> events = <String, AboutEvent>{
-    sourceCode: AboutSourceCodeTaped(),
-    colormind: AboutColormindTaped(),
-    licenses: AboutLicensesTaped(),
-    huemint: AboutHuemintTaped(),
-    sounds: AboutSoundsTaped(),
-    google: AboutGoogleTaped(),
+    sourceCode: AboutEvent.sourceCodeTaped(),
+    colormind: AboutEvent.colormindTaped(),
+    licenses: AboutEvent.licensesTaped(),
+    huemint: AboutEvent.huemintTaped(),
+    sounds: AboutEvent.soundsTaped(),
+    google: AboutEvent.googleTaped(),
   };
 
   setUpAll(
@@ -33,7 +33,7 @@ Future<void> main() async {
     '$AboutBloc on Initial',
     build: () => AboutBloc(aboutRepository),
     expect: () => isEmpty,
-    verify: (AboutBloc bloc) => expect(bloc.state.appVersion, isEmpty),
+    verify: (AboutBloc bloc) => expect(bloc.state, const AboutState.initial()),
   );
 
   blocTest<AboutBloc, AboutState>(
@@ -42,32 +42,32 @@ Future<void> main() async {
     act: (AboutBloc bloc) {
       when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenThrow('Link tap error');
       bloc
-        ..add(const AboutStarted(currentLocale: supportedUrlLocale))
-        ..add(const AboutColormindTaped());
+        ..add(const AboutEvent.started(currentLocale: supportedUrlLocale))
+        ..add(const AboutEvent.colormindTaped());
     },
     skip: 1,
-    expect: () => <TypeMatcher<AboutState>>[isA<AboutFailure>(), isA<AboutInitial>()],
+    expect: () => <AboutState>[const AboutState.failure(), const AboutState.loaded(appVersion: '1.0')],
   );
 
   blocTest<AboutBloc, AboutState>(
-    '$AboutBloc $AboutStarted$supportedUrlLocale',
+    '$AboutBloc AboutState.started(currentLocale:$supportedUrlLocale)',
     build: () => AboutBloc(aboutRepository),
-    act: (AboutBloc bloc) => bloc.add(const AboutStarted(currentLocale: supportedUrlLocale)),
-    expect: () => <TypeMatcher<AboutState>>[isA<AboutInitial>()],
+    act: (AboutBloc bloc) => bloc.add(const AboutEvent.started(currentLocale: supportedUrlLocale)),
+    expect: () => <AboutState>[const AboutState.loaded(appVersion: '1.0')],
     verify: (AboutBloc bloc) {
       expect(aboutRepository.supportedUrlLocale, supportedUrlLocale);
-      expect(bloc.state.appVersion, mockVersion);
+      expect(bloc.state, const AboutState.loaded(appVersion: '1.0'));
     },
   );
 
   blocTest<AboutBloc, AboutState>(
-    '$AboutBloc $AboutStarted$undefinedUrlLocale',
+    '$AboutBloc AboutState.started(currentLocale:$undefinedUrlLocale)',
     build: () => AboutBloc(aboutRepository),
-    act: (AboutBloc bloc) => bloc.add(const AboutStarted(currentLocale: undefinedUrlLocale)),
-    expect: () => <TypeMatcher<AboutState>>[isA<AboutInitial>()],
+    act: (AboutBloc bloc) => bloc.add(const AboutEvent.started(currentLocale: undefinedUrlLocale)),
+    expect: () => <AboutState>[const AboutState.loaded(appVersion: '1.0')],
     verify: (AboutBloc bloc) {
       expect(aboutRepository.supportedUrlLocale, defaultLangCode);
-      expect(bloc.state.appVersion, mockVersion);
+      expect(bloc.state, const AboutState.loaded(appVersion: '1.0'));
     },
   );
 
@@ -82,7 +82,7 @@ Future<void> main() async {
         act: (AboutBloc bloc) {
           when<Future<bool>>(mockedUrlLauncher.openURL(url)).thenAnswer((_) async => true);
           bloc
-            ..add(const AboutStarted(currentLocale: defaultLangCode))
+            ..add(const AboutEvent.started(currentLocale: defaultLangCode))
             ..add(event);
         },
         skip: 1,

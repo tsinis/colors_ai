@@ -22,8 +22,8 @@ class FileExportPreview extends StatefulWidget {
     this._palette, {
     this.duration = const Duration(milliseconds: 600),
     this.curve = kDefaultTransitionCurve,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<FileExportPreview> createState() => _FileExportPreviewState();
@@ -52,13 +52,13 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
 
   Color fileBackgroundColor({required bool isPrintable}) {
     if (isPrintable) {
-      return isHovering ? Colors.white : Colors.grey[200]!;
+      return isHovering ? Colors.white : Colors.grey.shade200;
     } else {
       final bool isDark = context.theme.brightness == Brightness.dark;
 
       return isHovering
-          ? (isDark ? Colors.grey[800]! : Colors.grey[100]!)
-          : (isDark ? Colors.grey[900]! : Colors.grey[300]!);
+          ? (isDark ? Colors.grey.shade800 : Colors.grey.shade100)
+          : (isDark ? Colors.grey.shade900 : Colors.grey.shade300);
     }
   }
 
@@ -71,13 +71,16 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, ShareState state) {
-          final FileFormat file = state.selectedFormat ?? FileFormat.values.first;
+          final FileFormat? selectedFormat = state.whenOrNull<FileFormat?>(
+            formatSelected: (_, FileFormat? format, __, ___) => format,
+          );
+          final FileFormat file = selectedFormat ?? FileFormat.values.first;
 
           return GestureDetector(
             onTap: () {
               setState(() => isHovering = !isHovering);
               if (!file.isPrintable) {
-                BlocProvider.of<ShareBloc>(context).add(ShareFileCopied(widget._palette));
+                BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileCopied(widget._palette));
                 BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(file.format));
               }
             },

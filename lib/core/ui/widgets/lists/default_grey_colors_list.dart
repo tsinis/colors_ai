@@ -6,7 +6,7 @@ import '../../../../common/ui/widgets/helpers/orientation_switcher.dart';
 class DefaultGreyColorsList extends StatelessWidget {
   final int? length;
 
-  const DefaultGreyColorsList({this.length, Key? key}) : super(key: key);
+  const DefaultGreyColorsList({this.length, super.key});
 
   @override
   Widget build(BuildContext context) => OrientationBuilder(

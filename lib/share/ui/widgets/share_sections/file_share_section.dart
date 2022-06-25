@@ -55,7 +55,7 @@ class FileShareSection extends ShareSectionInterface {
               ),
               value: selectedFormat,
               onChanged: (FileFormat? newFormat) =>
-                  BlocProvider.of<ShareBloc>(context).add(ShareFormatSelected(format: newFormat)),
+                  BlocProvider.of<ShareBloc>(context).add(ShareEvent.formatSelected(format: newFormat)),
               items: List<DropdownMenuItem<FileFormat>>.generate(
                 FileFormat.values.length,
                 (int index) => DropdownMenuItem<FileFormat>(
@@ -80,7 +80,7 @@ class FileShareSection extends ShareSectionInterface {
                     onPressed: _cannotCopy
                         ? null
                         : () {
-                            BlocProvider.of<ShareBloc>(context).add(ShareFileCopied(palette));
+                            BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileCopied(palette));
                             BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(selectedFormat.format));
                           },
                   ),
@@ -90,7 +90,7 @@ class FileShareSection extends ShareSectionInterface {
                   child: ElevatedButton.icon(
                     icon: const Icon(Icons.link, size: 20),
                     label: Text(_shareOrSaveButtonLabel(context)),
-                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareFileShared(palette)),
+                    onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileShared(palette)),
                   ),
                 ),
               ],

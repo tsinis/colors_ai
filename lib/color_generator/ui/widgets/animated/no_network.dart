@@ -10,8 +10,8 @@ class NoNetwork extends StatefulWidget {
 
   const NoNetwork({
     this.repeatPeriod = const Duration(seconds: 4),
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _NoNetworkState createState() => _NoNetworkState();

@@ -41,7 +41,7 @@ class App extends StatelessWidget {
             theme: AppTheme(isDark: settingsState.isDarkTheme).theme,
             onGenerateTitle: (BuildContext context) {
               BlocProvider.of<AboutBloc>(context).add(
-                AboutStarted(currentLocale: Localizations.localeOf(context).languageCode),
+                AboutEvent.started(currentLocale: Localizations.localeOf(context).languageCode),
               );
 
               return kAppName;
@@ -71,7 +71,11 @@ class App extends StatelessWidget {
                         AnimatedOpacity(
                           curve: kDefaultTransitionCurve,
                           duration: kDefaultLongTransitionDuration,
-                          opacity: state is OnboardingLoadInProgress || state is OnboardingInitial ? 0 : 1,
+                          opacity: state.maybeWhen(
+                            initial: () => 0,
+                            loading: () => 0,
+                            orElse: () => 1,
+                          ),
                           child: const MainScreen(),
                         ),
                       ],

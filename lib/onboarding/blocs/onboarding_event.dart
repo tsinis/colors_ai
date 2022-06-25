@@ -1,16 +1,9 @@
-part of 'onboarding_bloc.dart';
+import '../../core/constants.dart';
 
-abstract class OnboardingEvent extends Equatable {
-  @override
-  List<Object> get props => <Object>[];
+part 'onboarding_event.freezed.dart';
 
-  const OnboardingEvent();
-}
-
-class OnboardingStarted extends OnboardingEvent {
-  const OnboardingStarted();
-}
-
-class OnboardingFinished extends OnboardingEvent {
-  const OnboardingFinished();
+@freezedWithoutJson
+class OnboardingEvent with _$OnboardingEvent {
+  const factory OnboardingEvent.finished() = _OnboardingFinished;
+  const factory OnboardingEvent.started() = _OnboardingStarted;
 }

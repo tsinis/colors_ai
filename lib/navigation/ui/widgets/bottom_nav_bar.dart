@@ -14,8 +14,8 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
   const BottomNavBar(
     this.navState, {
     this.labelBehavior = NavigationDestinationLabelBehavior.alwaysHide,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
@@ -26,10 +26,10 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
           return NavigationBar(
             backgroundColor: context.theme.primaryColor,
             labelBehavior: labelBehavior,
-            selectedIndex: navState.tabIndex,
+            selectedIndex: navState.index,
             onDestinationSelected: (int newTabIndex) {
               if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
-                BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
+                BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.changed(newTabIndex));
               }
             },
             destinations: <NavigationDestination>[

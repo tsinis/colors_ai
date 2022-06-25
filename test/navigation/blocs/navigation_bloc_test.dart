@@ -6,23 +6,23 @@ void main() => group('$NavigationBloc', () {
       blocTest<NavigationBloc, NavigationState>('on Initial', build: NavigationBloc.new, expect: () => isEmpty);
 
       blocTest<NavigationBloc, NavigationState>(
-        '$NavigationGeneratorTabStarted',
+        '$NavigationEvent.started',
         build: NavigationBloc.new,
-        act: (NavigationBloc bloc) => bloc.add(const NavigationGeneratorTabStarted()),
-        expect: () => <TypeMatcher<NavigationState>>[isA<NavigationGenerateTabInitial>()],
+        act: (NavigationBloc bloc) => bloc.add(const NavigationEvent.started()),
+        expect: () => <NavigationState>[NavigationState.generate],
       );
 
       blocTest<NavigationBloc, NavigationState>(
-        '$NavigationTabChanged',
+        '$NavigationEvent.changed',
         build: NavigationBloc.new,
-        act: (NavigationBloc bloc) => bloc.add(NavigationTabChanged(const NavigationShareTabInitial().tabIndex)),
-        expect: () => <TypeMatcher<NavigationState>>[isA<NavigationShareTabInitial>()],
+        act: (NavigationBloc bloc) => bloc.add(NavigationEvent.changed(NavigationState.share.index)),
+        expect: () => <NavigationState>[NavigationState.share],
       );
 
       blocTest<NavigationBloc, NavigationState>(
-        '$NavigationTabChanged with $RangeError',
+        '$NavigationEvent.changed with $RangeError',
         build: NavigationBloc.new,
-        act: (NavigationBloc bloc) => bloc.add(const NavigationTabChanged(-1)),
-        expect: () => <TypeMatcher<NavigationState>>[isA<NavigationFailure>(), isA<NavigationGenerateTabInitial>()],
+        act: (NavigationBloc bloc) => bloc.add(const NavigationEvent.changed(-1)),
+        expect: () => <NavigationState>[NavigationState.generate],
       );
     });

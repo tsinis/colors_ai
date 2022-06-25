@@ -1,21 +1,9 @@
-part of 'navigation_bloc.dart';
+import '../../core/constants.dart';
 
-abstract class NavigationEvent extends Equatable {
-  const NavigationEvent();
-}
+part 'navigation_event.freezed.dart';
 
-class NavigationGeneratorTabStarted extends NavigationEvent {
-  @override
-  List<int> get props => <int>[const NavigationGenerateTabInitial().tabIndex];
-
-  const NavigationGeneratorTabStarted();
-}
-
-class NavigationTabChanged extends NavigationEvent {
-  final int newTabIndex;
-
-  @override
-  List<int> get props => <int>[newTabIndex];
-
-  const NavigationTabChanged(this.newTabIndex);
+@freezedWithoutJson
+class NavigationEvent with _$NavigationEvent {
+  const factory NavigationEvent.started() = _NavigationGeneratorTabStarted;
+  const factory NavigationEvent.changed(int newTabIndex) = _NavigationTabChanged;
 }

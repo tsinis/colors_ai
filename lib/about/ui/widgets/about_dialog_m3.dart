@@ -23,8 +23,8 @@ class AboutDialogM3 extends StatelessWidget {
     this.shape = kDefaultShape,
     this.applicationLegalese,
     this.children,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => AlertDialog(

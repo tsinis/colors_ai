@@ -48,7 +48,7 @@ class _NavigationScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    soundBloc.add(const SoundStarted());
+    soundBloc.add(const SoundEvent.started());
     super.initState();
   }
 
@@ -65,7 +65,8 @@ class _NavigationScreenState extends State<MainScreen> {
         ],
         child: BlocBuilder<NavigationBloc, NavigationState>(
           builder: (BuildContext navContext, NavigationState navState) {
-            final bool isGenTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
+            final bool isGenTab = navState == NavigationState.generate;
+
             if (!isGenTab) {
               BlocProvider.of<FabBloc>(context).add(const FabHided());
             }
@@ -85,7 +86,7 @@ class _NavigationScreenState extends State<MainScreen> {
                   }
                   if (event.logicalKey == kSpacebar && isGenTab) {
                     if (kIsWeb) {
-                      BlocProvider.of<SoundBloc>(navContext).add(const SoundRefreshed());
+                      BlocProvider.of<SoundBloc>(navContext).add(const SoundEvent.refreshed());
                     }
                     BlocProvider.of<ColorsBloc>(navContext).add(const ColorsGenerated());
                   }
@@ -96,11 +97,11 @@ class _NavigationScreenState extends State<MainScreen> {
                     floatingActionButton: isPortrait ? const SaveColorsFAB() : null,
                     appBar: AppBar(
                       systemOverlayStyle: overlayStyle.copyWith(statusBarColor: Colors.transparent),
-                      actions: <Widget>[kAppBarActions[navState.tabIndex], const OverflowMenu()],
+                      actions: <Widget>[kAppBarActions[navState.index], const OverflowMenu()],
                       toolbarHeight: kToolbarHeight + (platform.isMacOS ? 12 : 0),
                       title: Padding(
                         padding: EdgeInsets.only(top: platform.isMacOS ? 16 : 0),
-                        child: AppBarInfoTitle(selectedTabIndex: navState.tabIndex),
+                        child: AppBarInfoTitle(selectedTabIndex: navState.index),
                       ),
                     ),
                     body: MultiBlocProvider(
@@ -108,7 +109,7 @@ class _NavigationScreenState extends State<MainScreen> {
                         BlocProvider<ColorPickerBloc>(create: (_) => ColorPickerBloc()),
                         BlocProvider<ShareBloc>(
                           lazy: false,
-                          create: (_) => ShareBloc(ShareRepository())..add(const ShareStarted()),
+                          create: (_) => ShareBloc(ShareRepository())..add(const ShareEvent.started()),
                         ),
                         BlocProvider<SnackbarBloc>(
                           create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
@@ -117,7 +118,7 @@ class _NavigationScreenState extends State<MainScreen> {
                       child: BlocListener<SnackbarBloc, SnackbarState>(
                         listener: (BuildContext context, SnackbarState snackbarState) {
                           if (snackbarState is! SnackbarsInitial) {
-                            BlocProvider.of<SoundBloc>(context).add(const SoundCopied());
+                            BlocProvider.of<SoundBloc>(context).add(const SoundEvent.copied());
                             late String message;
                             final bool isUrlCopied = snackbarState is UrlCopySuccess;
                             final bool isFileCopied = snackbarState is FileCopySuccess;
@@ -162,7 +163,7 @@ class _NavigationScreenState extends State<MainScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               if (!isPortrait) NavRail(navState, toShowGenFab: showGenFab),
-                              Expanded(child: widget.navTabs.elementAt(navState.tabIndex)),
+                              Expanded(child: widget.navTabs.elementAt(navState.index)),
                             ],
                           ),
                         ),

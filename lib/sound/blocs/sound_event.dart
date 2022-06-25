@@ -1,28 +1,12 @@
-part of 'sound_bloc.dart';
+import '../../core/constants.dart';
 
-abstract class SoundEvent extends Equatable {
-  @override
-  List<Object> get props => <Object>[];
+part 'sound_event.freezed.dart';
 
-  const SoundEvent();
-}
-
-class SoundStarted extends SoundEvent {
-  const SoundStarted();
-}
-
-class SoundLocked extends SoundEvent {
-  const SoundLocked();
-}
-
-class SoundRefreshed extends SoundEvent {
-  const SoundRefreshed();
-}
-
-class SoundCopied extends SoundEvent {
-  const SoundCopied();
-}
-
-class SoundFavoritesAdded extends SoundEvent {
-  const SoundFavoritesAdded();
+@freezedWithoutJson
+class SoundEvent with _$SoundEvent {
+  const factory SoundEvent.locked() = _SoundLocked;
+  const factory SoundEvent.started() = _SoundStarted;
+  const factory SoundEvent.copied() = _SoundCopied;
+  const factory SoundEvent.refreshed() = _SoundRefreshed;
+  const factory SoundEvent.favoritesAdded() = _SoundFavoritesAdded;
 }

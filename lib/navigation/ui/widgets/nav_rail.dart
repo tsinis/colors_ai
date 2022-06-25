@@ -19,8 +19,8 @@ class NavRail extends StatefulWidget {
     this.navState, {
     required this.toShowGenFab,
     this.duration = kDefaultTransitionDuration,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<NavRail> createState() => _NavRailState();
@@ -48,10 +48,10 @@ class _NavRailState extends State<NavRail> with NavTabIndexer {
             final List<String> tabLabels = tabNames(context.l10n);
 
             return NavigationRail(
-              selectedIndex: widget.navState.tabIndex,
+              selectedIndex: widget.navState.index,
               onDestinationSelected: (int newTabIndex) {
                 if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
-                  BlocProvider.of<NavigationBloc>(context).add(NavigationTabChanged(newTabIndex));
+                  BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.changed(newTabIndex));
                 }
               },
               extended: isExtended,

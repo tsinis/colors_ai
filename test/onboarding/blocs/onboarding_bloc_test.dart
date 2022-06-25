@@ -24,15 +24,15 @@ void main() => group('$OnboardingBloc', () {
       );
 
       blocTest<OnboardingBloc, OnboardingState>(
-        '$OnboardingStarted',
+        '$OnboardingEvent.started',
         build: () => OnboardingBloc(onboardingRepository),
-        act: (OnboardingBloc bloc) => bloc.add(const OnboardingStarted()),
-        expect: () => <TypeMatcher<OnboardingState>>[isA<OnboardingLoadInProgress>(), isA<OnboardingNotFinished>()],
+        act: (OnboardingBloc bloc) => bloc.add(const OnboardingEvent.started()),
+        expect: () => <OnboardingState>[const OnboardingState.loading(), const OnboardingState.notFinished()],
         verify: (OnboardingBloc bloc) => expect(fakeBox.isOpen, false),
       );
 
       blocTest<OnboardingBloc, OnboardingState>(
-        '$OnboardingStarted with corrupted storage',
+        '$OnboardingEvent.started with corrupted storage',
         build: () {
           final FakeHiveBox<bool> corruptedBox = FakeHiveBox<bool>.corruptedEmpty();
           final OnboardingRepository corruptedRepo = OnboardingRepository(
@@ -41,16 +41,16 @@ void main() => group('$OnboardingBloc', () {
 
           return OnboardingBloc(corruptedRepo);
         },
-        act: (OnboardingBloc bloc) => bloc.add(const OnboardingStarted()),
-        expect: () => <TypeMatcher<OnboardingState>>[isA<OnboardingLoadInProgress>(), isA<OnboardingDoneSuccess>()],
+        act: (OnboardingBloc bloc) => bloc.add(const OnboardingEvent.started()),
+        expect: () => <OnboardingState>[const  OnboardingState.loading(), const OnboardingState.doneSuccess()],
         verify: (OnboardingBloc bloc) => expect(fakeBox.isOpen, false),
       );
 
       blocTest<OnboardingBloc, OnboardingState>(
-        '$OnboardingFinished',
+        '$OnboardingEvent.finished',
         build: () => OnboardingBloc(onboardingRepository),
-        act: (OnboardingBloc bloc) => bloc.add(const OnboardingFinished()),
-        expect: () => <TypeMatcher<OnboardingState>>[isA<OnboardingDoneSuccess>()],
+        act: (OnboardingBloc bloc) => bloc.add(const OnboardingEvent.finished()),
+        expect: () => <OnboardingState>[const  OnboardingState.doneSuccess()],
         verify: (OnboardingBloc bloc) => expect(fakeBox.isOpen, false),
       );
     });

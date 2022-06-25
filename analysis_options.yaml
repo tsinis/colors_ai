@@ -8,6 +8,7 @@ analyzer:
     - 'build/**'
     # Generated code
     - 'lib/**/*.g.dart'
+    - 'lib/**/*.freezed.dart'
     - 'lib/generated_plugin_registrant.dart'
     - 'lib/generated/**'
     # Assets

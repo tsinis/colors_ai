@@ -1,16 +1,15 @@
 import 'dart:async';
 
-import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
-import '../../core/models/color_palette/color_palette.dart';
-import '../mixins/url_providers_list.dart';
 import '../models/file_format.dart';
 import '../repository/share_repository.dart';
 import '../services/url_providers/colors_url_provider.dart';
+import 'share_event.dart';
+import 'share_state.dart';
 
-part 'share_event.dart';
-part 'share_state.dart';
+export 'share_event.dart';
+export 'share_state.dart';
 
 class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   final ShareRepository _share;
@@ -20,7 +19,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   ShareBloc(this._share, {String urlProviderKey = 'url', String formatKey = 'format'})
       : _formatKey = formatKey,
         _urlProviderKey = urlProviderKey,
-        super(const ShareEmptyInitial());
+        super(const ShareState.emptyInitial());
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
@@ -38,57 +37,38 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
 
   @override
   Stream<ShareState> mapEventToState(ShareEvent event) async* {
-    if (event is ShareStarted) {
+    if (event == const ShareEvent.started()) {
       await _share.init();
-    } else if (event is ShareFormatSelected) {
-      _share.selectedFormat = event.format;
-    } else if (event is ShareFileShared) {
-      try {
-        await _share.asFile(event.palette);
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
-        yield const ShareFailure();
-        await _shareFailed();
-      }
-    } else if (event is ShareFileCopied) {
-      try {
-        await _share.copyFile(event.palette);
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
-        yield const ShareFailure();
-        await _shareFailed();
-      }
-    } else if (event is ShareUrlShared) {
-      _share.asUrl(event.palette);
-    } else if (event is ShareUrlCopied) {
-      _share.copyUrl(event.palette);
-    } else if (event is ShareUrlProviderSelected) {
-      _share.selectedUrlProvider = event.urlProvider;
     }
     try {
-      yield ShareSelectedInitial(
-        urlProvider: _share.selectedUrlProvider,
-        fileFormat: _share.selectedFormat,
-        canSharePdf: _share.canSharePdf,
-        canSharePng: _share.canSharePng,
+      event.whenOrNull(
+        urlShared: _share.asUrl,
+        urlCopied: _share.copyUrl,
+        fileShared: _share.asFile,
+        fileCopied: _share.copyFile,
+        formatSelected: (FileFormat? format) => _share.selectedFormat = format,
+        urlProviderSelected: (ColorsUrlProvider? provider) => _share.selectedUrlProvider = provider,
       );
-    } on Exception catch (_) {
-      yield const ShareFailure();
+      // ignore: avoid_catches_without_on_clauses
+    } catch (_) {
+      yield const ShareState.failure();
       await _shareFailed();
     }
+    yield ShareState.formatSelected(
+      selectedProvider: _share.selectedUrlProvider,
+      selectedFormat: _share.selectedFormat,
+      canSharePdf: _share.canSharePdf,
+      canSharePng: _share.canSharePng,
+    );
   }
 
   @override
-  Map<String, dynamic>? toJson(ShareState state) {
-    if (state is ShareSelectedInitial) {
-      return <String, String?>{
-        _urlProviderKey: state.selectedProvider?.keyName,
-        _formatKey: state.selectedFormat?.name,
-      };
-    }
-
-    return null;
-  }
+  Map<String, dynamic>? toJson(ShareState state) => state.whenOrNull(
+        formatSelected: (ColorsUrlProvider? provider, FileFormat? format, _, __) => <String, String?>{
+          _urlProviderKey: provider?.keyName,
+          _formatKey: format?.name,
+        },
+      );
 
   Future<void> _shareFailed() async => Future<void>.delayed(Duration.zero);
 }

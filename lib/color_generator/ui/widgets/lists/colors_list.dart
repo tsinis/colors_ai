@@ -36,8 +36,8 @@ class ColorsList extends StatefulWidget {
     this.curve = Curves.easeInCirc,
     this.reverseCurve = Curves.easeInExpo,
     this.duration = kDefaultLongTransitionDuration,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _ColorsListState createState() => _ColorsListState();
@@ -135,7 +135,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                     triggerMode: RefreshIndicatorTriggerMode.anywhere,
                     displacement: tileHeight,
                     onRefresh: () {
-                      BlocProvider.of<SoundBloc>(context).add(const SoundRefreshed());
+                      BlocProvider.of<SoundBloc>(context).add(const SoundEvent.refreshed());
                       BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
                       BlocProvider.of<FabBloc>(context).add(const FabShowed());
 
@@ -145,8 +145,11 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                       opacity: animation,
                       child: BlocBuilder<OnboardingBloc, OnboardingState>(
                         builder: (_, OnboardingState onboardingState) {
-                          final bool isHoveringAvailable =
-                              onboardingState is OnboardingDoneSuccess && !platform.isMobile;
+                          final bool isOnboardingDone = onboardingState.maybeWhen(
+                            doneSuccess: () => true,
+                            orElse: () => false,
+                          );
+                          final bool isHoveringAvailable = isOnboardingDone && !platform.isMobile;
 
                           return ReorderableListView.builder(
                             itemCount: length,
@@ -175,7 +178,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                                     onDragEnded: cancelOperation,
                                     child: InkWell(
                                       onDoubleTap: () {
-                                        BlocProvider.of<SoundBloc>(context).add(const SoundLocked());
+                                        BlocProvider.of<SoundBloc>(context).add(const SoundEvent.locked());
                                         BlocProvider.of<LockBloc>(context).add(LockChanged(index));
                                       },
                                       child: DecoratedBox(

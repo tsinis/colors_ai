@@ -1,33 +1,17 @@
-part of 'share_bloc.dart';
+import '../../core/constants.dart';
+import '../models/file_format.dart';
+import '../services/url_providers/colors_url_provider.dart';
 
-abstract class ShareState extends Equatable {
-  final FileFormat? selectedFormat;
-  final ColorsUrlProvider? selectedProvider;
+part 'share_state.freezed.dart';
 
-  @override
-  List<Object?> get props => <Object?>[selectedProvider, selectedFormat];
-
-  List<ColorsUrlProvider> get providersList => UrlProvidersList.providers;
-
-  const ShareState({this.selectedProvider, this.selectedFormat});
-}
-
-class ShareFailure extends ShareState {
-  const ShareFailure() : super();
-}
-
-class ShareEmptyInitial extends ShareState {
-  const ShareEmptyInitial() : super();
-}
-
-class ShareSelectedInitial extends ShareState {
-  final bool canSharePdf;
-  final bool canSharePng;
-
-  const ShareSelectedInitial({
-    required this.canSharePdf,
-    required this.canSharePng,
-    ColorsUrlProvider? urlProvider,
-    FileFormat? fileFormat,
-  }) : super(selectedProvider: urlProvider, selectedFormat: fileFormat);
+@freezedWithoutJson
+class ShareState with _$ShareState {
+  const factory ShareState.failure() = _ShareFailure;
+  const factory ShareState.emptyInitial() = _ShareEmptyInitial;
+  const factory ShareState.formatSelected({
+    required ColorsUrlProvider? selectedProvider,
+    required FileFormat? selectedFormat,
+    required bool canSharePdf,
+    required bool canSharePng,
+  }) = _ShareFormatSelectedInitial;
 }

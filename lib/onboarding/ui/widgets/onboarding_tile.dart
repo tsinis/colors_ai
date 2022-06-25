@@ -20,8 +20,8 @@ class OnboardingTile extends StatelessWidget {
     this.oppositeSide = false,
     this.icon,
     this.additionalText,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

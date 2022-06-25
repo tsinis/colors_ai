@@ -22,8 +22,8 @@ class SpaceBarAnimation extends StatefulWidget {
     this.relativeSize = const Size(500, 100),
     this.curve = Curves.elasticOut,
     this.widthFactor = 0.66,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<SpaceBarAnimation> createState() => _SpaceBarAnimationState();

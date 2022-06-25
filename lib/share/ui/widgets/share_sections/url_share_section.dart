@@ -54,7 +54,7 @@ class UrlShareSection extends ShareSectionInterface {
               ),
               value: selectedUrlProvider,
               onChanged: (ColorsUrlProvider? newProvider) =>
-                  BlocProvider.of<ShareBloc>(context).add(ShareUrlProviderSelected(urlProvider: newProvider)),
+                  BlocProvider.of<ShareBloc>(context).add(ShareEvent.urlProviderSelected(urlProvider: newProvider)),
               items: List<DropdownMenuItem<ColorsUrlProvider>>.generate(
                 providersList.length,
                 (int index) => DropdownMenuItem<ColorsUrlProvider>(
@@ -85,7 +85,7 @@ class UrlShareSection extends ShareSectionInterface {
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
                     label: Text(context.l10n.copyUrlButtonLabel),
                     onPressed: () {
-                      BlocProvider.of<ShareBloc>(context).add(ShareUrlCopied(palette));
+                      BlocProvider.of<ShareBloc>(context).add(ShareEvent.urlCopied(palette));
                       BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
                     },
                   ),
@@ -97,7 +97,7 @@ class UrlShareSection extends ShareSectionInterface {
                     label: Text(context.l10n.shareUrlButtonLabel),
                     onPressed: _isNotSupportedByOS
                         ? null
-                        : () => BlocProvider.of<ShareBloc>(context).add(ShareUrlShared(palette)),
+                        : () => BlocProvider.of<ShareBloc>(context).add(ShareEvent.urlShared(palette)),
                   ),
                 ),
               ],

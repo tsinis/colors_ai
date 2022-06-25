@@ -22,8 +22,8 @@ class AboutAppDialog extends StatelessWidget {
     this.topPadding = 20,
     this.linkTextStyle,
     this.width = 320,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,10 @@ class AboutAppDialog extends StatelessWidget {
         linkTextStyle ?? context.theme.textTheme.bodyText2?.copyWith(color: context.theme.indicatorColor);
 
     return AboutDialogM3(
-      applicationVersion: BlocProvider.of<AboutBloc>(context).state.appVersion,
+      applicationVersion: BlocProvider.of<AboutBloc>(context).state.maybeWhen(
+            loaded: (String version) => version,
+            orElse: () => '0',
+          ),
       applicationLegalese: clock.now().year.toString() + applicationLegalese,
       applicationIcon: applicationIcon,
       applicationName: kAppName,
@@ -47,19 +50,22 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(
                   style: linkStyle,
                   text: ' Colormind.io',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutColormindTaped()),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => _onLinkTap(context, const AboutEvent.colormindTaped()),
                 ),
                 TextSpan(text: ' ${context.l10n.and} '),
                 TextSpan(
                   style: linkStyle,
                   text: 'Huemint.com',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutHuemintTaped()),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => _onLinkTap(context, const AboutEvent.huemintTaped()),
                 ),
                 TextSpan(text: '. ${context.l10n.aboutSourceCode}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' ${context.l10n.aboutSourceRepository}',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSourceCodeTaped()),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => _onLinkTap(context, const AboutEvent.sourceCodeTaped()),
                 ),
                 const TextSpan(text: '.'),
                 TextSpan(
@@ -68,19 +74,20 @@ class AboutAppDialog extends StatelessWidget {
                 TextSpan(
                   style: linkStyle,
                   text: ' "Material Product Sounds"',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutSoundsTaped()),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutEvent.soundsTaped()),
                 ),
                 TextSpan(text: ' ${context.l10n.aboutByGoogle}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' Google',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutGoogleTaped()),
+                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutEvent.googleTaped()),
                 ),
                 TextSpan(text: ' ${context.l10n.aboutSoundsLicense}'),
                 TextSpan(
                   style: linkStyle,
                   text: ' CC BY 4.0',
-                  recognizer: TapGestureRecognizer()..onTap = () => _onLinkTap(context, const AboutLicensesTaped()),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => _onLinkTap(context, const AboutEvent.licensesTaped()),
                 ),
                 const TextSpan(text: '.'),
               ],

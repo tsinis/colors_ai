@@ -26,8 +26,8 @@ class Colorpicker extends StatelessWidget {
     required this.textColor,
     required this.buttonSize,
     required this.isPortrait,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => BlocProvider<ColorPickerBloc>(
@@ -69,7 +69,7 @@ class Colorpicker extends StatelessWidget {
                   : null,
               onPressed: () {
                 BlocProvider.of<ColorPickerBloc>(dialogContext).add(const ColorPickerShowed());
-                BlocProvider.of<SoundBloc>(dialogContext).add(const SoundLocked());
+                BlocProvider.of<SoundBloc>(dialogContext).add(const SoundEvent.locked());
                 BlocProvider.of<LockBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
               },
               child: Align(

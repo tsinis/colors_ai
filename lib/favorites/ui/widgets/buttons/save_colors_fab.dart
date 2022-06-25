@@ -14,7 +14,7 @@ import '../../../blocs/list_favorites/favorites_bloc.dart';
 class SaveColorsFAB extends StatefulWidget {
   final bool? isExtended;
 
-  const SaveColorsFAB({this.isExtended, Key? key}) : super(key: key);
+  const SaveColorsFAB({this.isExtended, super.key});
 
   @override
   _SaveColorsFABState createState() => _SaveColorsFABState();
@@ -60,7 +60,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
   }
 
   void onFabPressed() {
-    BlocProvider.of<SoundBloc>(context).add(const SoundFavoritesAdded());
+    BlocProvider.of<SoundBloc>(context).add(const SoundEvent.favoritesAdded());
     BlocProvider.of<FavoritesBloc>(context)
         .add(FavoritesAdded(favorite: context.read<ColorsRepository>().palette.colors));
     if (!alwaysShow) {
@@ -85,7 +85,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
               padding: isExtended ? const EdgeInsets.fromLTRB(16, 8, 16, 0) : const EdgeInsets.only(top: 8),
               child: BlocBuilder<NavigationBloc, NavigationState>(
                 builder: (_, NavigationState navState) {
-                  isGenerateTab = navState.tabIndex == const NavigationGenerateTabInitial().tabIndex;
+                  isGenerateTab = navState == NavigationState.generate;
 
                   return BlocBuilder<ColorsBloc, ColorsState>(
                     builder: (_, ColorsState colorState) {

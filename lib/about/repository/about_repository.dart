@@ -16,9 +16,9 @@ class AboutRepository {
   final String _sourceCode;
   final List<String> _unsupportedUrlLocales;
   final UrlLauncher _urlLauncher;
-  late String _version;
+  String? _version;
 
-  String get version => _version;
+  String get version => _version ?? '0';
 
   @visibleForTesting
   String get supportedUrlLocale => _unsupportedUrlLocales.contains(_locale) ? _defaultLanguageCode : _locale;

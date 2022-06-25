@@ -24,8 +24,8 @@ class FavoritesListAdaptive extends StatefulWidget {
     this.hoverCurve = kDefaultTransitionCurve,
     this.size = 88,
     this.padding = 20,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _FavoritesListState createState() => _FavoritesListState();
@@ -142,7 +142,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                               BlocProvider.of<ColorsBloc>(context)
                                                   .add(ColorsRestored(palette: favorites.elementAt(paletteIndex)));
                                               BlocProvider.of<NavigationBloc>(context)
-                                                  .add(const NavigationGeneratorTabStarted());
+                                                  .add(const NavigationEvent.started());
                                             },
                                             child: FittedBox(
                                               fit: BoxFit.scaleDown,

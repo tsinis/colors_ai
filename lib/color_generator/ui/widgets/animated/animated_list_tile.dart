@@ -22,8 +22,8 @@ class AnimatedListTile extends StatefulWidget {
     this.curve = kDefaultTransitionCurve,
     this.hoverPadding = 32,
     this.hoverIndex,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _AnimatedListItemState createState() => _AnimatedListItemState();

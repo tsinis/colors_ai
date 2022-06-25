@@ -10,7 +10,7 @@ import '../widgets/lists/favorites_list_adaptive.dart';
 import '../widgets/lists/favorites_list_swipeable.dart';
 
 class FavoritesTab extends StatelessWidget {
-  const FavoritesTab({Key? key}) : super(key: key);
+  const FavoritesTab({super.key});
 
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(

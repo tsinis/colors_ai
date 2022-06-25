@@ -5,7 +5,7 @@ import 'no_favorites/empty_list.dart';
 import 'no_favorites/magnifier.dart';
 
 class NoFavorites extends StatefulWidget {
-  const NoFavorites({Key? key}) : super(key: key);
+  const NoFavorites({super.key});
 
   @override
   _NoFavoritesState createState() => _NoFavoritesState();

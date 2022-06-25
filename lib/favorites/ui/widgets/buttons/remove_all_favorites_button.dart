@@ -11,7 +11,7 @@ import '../../../blocs/list_favorites/favorites_bloc.dart';
 import '../../../blocs/remove_favorites/remove_favorites_bloc.dart';
 
 class RemoveAllFavoritesButton extends StatefulWidget {
-  const RemoveAllFavoritesButton({Key? key}) : super(key: key);
+  const RemoveAllFavoritesButton({super.key});
 
   @override
   State<RemoveAllFavoritesButton> createState() => _RemoveAllFavoritesButtonState();

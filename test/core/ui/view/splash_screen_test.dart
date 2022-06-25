@@ -16,7 +16,7 @@ void main() => testWidgets('$SplashScreen should be visible until onboarding dat
       await tester.pumpWidget(
         BlocProvider<OnboardingBloc>(
           create: (_) => OnboardingBloc(OnboardingRepository(OnboardingHiveStorage(openedBox: fakeBox)))
-            ..add(const OnboardingStarted()),
+            ..add(const OnboardingEvent.started()),
           child: MaterialApp(
             home: BlocBuilder<OnboardingBloc, OnboardingState>(
               builder: (_, OnboardingState state) => Stack(
@@ -24,7 +24,11 @@ void main() => testWidgets('$SplashScreen should be visible until onboarding dat
                   const SplashScreen(),
                   AnimatedOpacity(
                     duration: duration,
-                    opacity: state is OnboardingLoadInProgress || state is OnboardingInitial ? 0 : 1,
+                    opacity: state.maybeWhen(
+                      initial: () => 0,
+                      loading: () => 0,
+                      orElse: () => 1,
+                    ),
                   ),
                 ],
               ),

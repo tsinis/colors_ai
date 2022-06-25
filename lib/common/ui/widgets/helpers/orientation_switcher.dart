@@ -9,8 +9,8 @@ class OrientationSwitcher extends StatelessWidget {
     required this.children,
     required this.isPortrait,
     this.mainAxisAlignment = MainAxisAlignment.spaceAround,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => isPortrait

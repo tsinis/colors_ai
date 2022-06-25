@@ -37,12 +37,12 @@ Colors AI is a cross-platform color scheme generator that uses **deep learning f
 Features:
 
 * Choose from open APIs, with the ability to set up custom settings
-* URL providers to other static color generators
 * Export section with many export formats to save or clipboard copy
-* Dark and light theme
-* Data encryption
+* URL providers to other static color generators
 * Localized to several languages
+* Dark and light theme
 * Material Design 3
+* Data encryption
 * Accessibility
 * And much more
 
@@ -93,15 +93,12 @@ All animations here are made with pure Flutter. The application's UI is designed
 ## To-Do Section
 
 * [ ] Refactor.
-* [ ] Use Freezed for Events/States.
+* [ ] Use Freezed for more Events/States.
 * [ ] Write the rest of the test for UI.
 * [x] Separate data layer more.
 * [x] Create more interfaces for Data and Repository layers.
 * [x] Add exports to PDF and PNG.
 * [x] L10N.
-* [ ] Add more keyboard shortcuts.
-* [ ] Add Feedback.
-* [ ] Provide support for Favorites export/backup.
 
 > You can also find a few more specific TODOs in source code files.
 

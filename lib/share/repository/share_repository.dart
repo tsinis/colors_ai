@@ -54,7 +54,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
 
   void restoreUrlProviderFromJson(String provider) => selectedUrlProvider = urlProviderByKeyName(provider);
 
-  Future<void> asFile(ColorPalette palette) async {
+  Future<bool> asFile(ColorPalette palette) async {
     try {
       switch (_selectedFile) {
         case FileFormat.pdfA4:
@@ -82,15 +82,17 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
           await _shareTextData(toScss(palette));
           break;
       }
+
+      return true;
       // ignore: avoid_catches_without_on_clauses
     } catch (_) {
-      rethrow;
+      return false;
     }
   }
 
   void asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
 
-  Future<void> copyFile(ColorPalette palette) async {
+  Future<bool> copyFile(ColorPalette palette) async {
     try {
       switch (_selectedFile) {
         case FileFormat.svg:
@@ -108,9 +110,11 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
         case FileFormat.pngLetter:
           break;
       }
+
+      return true;
       // ignore: avoid_catches_without_on_clauses
     } catch (_) {
-      rethrow;
+      return false;
     }
   }
 

@@ -33,7 +33,7 @@ Future<void> main() async {
           lazy: false,
           create: (_) => OnboardingBloc(
             OnboardingRepository(OnboardingHiveStorage(encryption: encryption)),
-          )..add(const OnboardingStarted()),
+          )..add(const OnboardingEvent.started()),
         ),
         BlocProvider<FavoritesBloc>(
           create: (_) => FavoritesBloc(

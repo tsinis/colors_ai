@@ -1,41 +1,14 @@
-part of 'about_bloc.dart';
+import '../../core/constants.dart';
 
-abstract class AboutEvent extends Equatable {
-  @override
-  List<Object> get props => <Object>[];
+part 'about_event.freezed.dart';
 
-  const AboutEvent();
-}
-
-class AboutStarted extends AboutEvent {
-  final String currentLocale;
-
-  @override
-  List<String> get props => <String>[currentLocale];
-
-  const AboutStarted({required this.currentLocale});
-}
-
-class AboutColormindTaped extends AboutEvent {
-  const AboutColormindTaped();
-}
-
-class AboutHuemintTaped extends AboutEvent {
-  const AboutHuemintTaped();
-}
-
-class AboutSourceCodeTaped extends AboutEvent {
-  const AboutSourceCodeTaped();
-}
-
-class AboutSoundsTaped extends AboutEvent {
-  const AboutSoundsTaped();
-}
-
-class AboutGoogleTaped extends AboutEvent {
-  const AboutGoogleTaped();
-}
-
-class AboutLicensesTaped extends AboutEvent {
-  const AboutLicensesTaped();
+@freezedWithoutJson
+class AboutEvent with _$AboutEvent {
+  const factory AboutEvent.colormindTaped() = _AboutColormindTaped;
+  const factory AboutEvent.googleTaped() = _AboutGoogleTaped;
+  const factory AboutEvent.huemintTaped() = _AboutHuemintTaped;
+  const factory AboutEvent.licensesTaped() = _AboutLicensesTaped;
+  const factory AboutEvent.soundsTaped() = _AboutSoundsTaped;
+  const factory AboutEvent.sourceCodeTaped() = _AboutSourceCodeTaped;
+  const factory AboutEvent.started({required String currentLocale}) = _AboutStarted;
 }

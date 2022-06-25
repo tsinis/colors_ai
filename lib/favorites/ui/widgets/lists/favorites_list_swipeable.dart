@@ -20,8 +20,8 @@ class FavoritesListSwipeable extends StatelessWidget {
     this.padding = 20,
     this.tipHeight = 42,
     this.duration = const Duration(milliseconds: 800),
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -78,7 +78,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                                 BlocProvider.of<LockBloc>(context).add(const LockAllUnlocked());
                                 BlocProvider.of<ColorsBloc>(context)
                                     .add(ColorsRestored(palette: favorites.elementAt(paletteIndex)));
-                                BlocProvider.of<NavigationBloc>(context).add(const NavigationGeneratorTabStarted());
+                                BlocProvider.of<NavigationBloc>(context).add(const NavigationEvent.started());
                               },
                               title: Row(
                                 children: List<Widget>.generate(
