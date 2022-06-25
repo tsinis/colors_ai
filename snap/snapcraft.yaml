@@ -61,7 +61,7 @@ parts:
 
 apps:
   colors-ai:
-    command: bin/colors-ai
+    command: colors-ai
     extensions: [gnome-3-38]
     plugs:
       - home
