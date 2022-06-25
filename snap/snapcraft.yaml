@@ -35,6 +35,8 @@ parts:
       - liblzma-dev
       - libgstreamer1.0-dev
       - libgstreamer-plugins-base1.0-dev
+      - xz-utils
+      - zip
     stage-packages:
       - libjsoncpp1
       - libsecret-1-dev
@@ -42,8 +44,8 @@ parts:
 
   colors-ai:
     after: [flutter-git]
-    source: .
     plugin: nil
+    source: .
     stage-packages:
       - libjsoncpp1
       - libsecret-1-dev
@@ -61,7 +63,7 @@ parts:
 
 apps:
   colors-ai:
-    command: colors-ai
+    command: bin/colors-ai
     extensions: [gnome-3-38]
     plugs:
       - home
