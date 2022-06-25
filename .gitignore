@@ -119,4 +119,3 @@ nohup.out
 fvm
 .fvm
 api_tests/
-lib/core/services/data_storage.key.dart

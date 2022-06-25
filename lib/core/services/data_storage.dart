@@ -14,8 +14,6 @@ import '../../onboarding/services/storage_providers/onboarding_hive_storage.dart
 import '../models/color_palette/color_palette.dart';
 import '../ui/constants.dart';
 
-part 'data_storage.key.dart';
-
 class DataStorage {
   static const String _folderName = '.$kNameForFileSystem';
 
@@ -50,11 +48,10 @@ class DataStorage {
     FlutterSecureStorage keyStorage = const FlutterSecureStorage(
       aOptions: AndroidOptions(encryptedSharedPreferences: true),
     ),
-    String secureKey = secureKey,
+    String secureKey = '91pT819vNhqJxtKyceNPnz5szsURIsLF',
   })  : _keyStorage = keyStorage,
 
-        /// Example of how to provide default 'secureKey' to CI/CD is available at:
-        /// https://github.com/tsinis/colors_ai/blob/main/.github/workflows/main.yml#L19-L22
+        /// Key for a secure storage, value is stored on device.
         _secureKey = secureKey;
 
   Future<HiveCipher?> init() async {
