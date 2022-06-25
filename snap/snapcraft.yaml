@@ -40,7 +40,7 @@ parts:
       - libsecret-1-dev
     override-prime: ""
 
-  colors-ai:
+  colorsai:
     after: [flutter-git]
     source: .
     plugin: nil
@@ -58,7 +58,7 @@ parts:
 
 apps:
   colors-ai:
-    command: bin/colors-ai
+    command: bin/colorsai
     extensions: [gnome-3-38]
     plugs:
       - home
