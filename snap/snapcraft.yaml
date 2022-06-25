@@ -2,16 +2,18 @@ name: colors-ai
 version: 2.1.0
 summary: Colors AI
 description: A color scheme generator that uses deep learning from public APIs.
+
 confinement: strict
 license: MIT
 base: core20
-grade: devel
+grade: stable
 architectures:
   - build-on: [amd64]
+compression: lzo
 
 apps:
   colors-ai:
-    command: colorsai
+    command: colors-ai
     extensions: [gnome-3-38]
     plugs:
       - home
@@ -46,7 +48,7 @@ parts:
       - libsecret-1-dev
     override-prime: ""
 
-  colorsai:
+  colors-ai:
     after: [flutter-git]
     source: .
     plugin: nil
