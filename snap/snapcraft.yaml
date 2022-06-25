@@ -36,11 +36,11 @@ parts:
       - libgstreamer1.0-dev
       - libgstreamer-plugins-base1.0-dev
     stage-packages:
-      - libjsoncpp1
       - libsecret-1-dev
+      - libjsoncpp1-dev
     override-prime: ""
 
-  colorsai:
+  colors-ai:
     after: [flutter-git]
     source: .
     plugin: nil
@@ -58,7 +58,7 @@ parts:
 
 apps:
   colors-ai:
-    command: bin/colorsai
+    command: bin/colors-ai
     extensions: [gnome-3-38]
     plugs:
       - home
