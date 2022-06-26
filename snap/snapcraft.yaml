@@ -58,9 +58,11 @@ parts:
       flutter doctor
       flutter pub get
       flutter gen-l10n
+      rm -rf build
       flutter build linux --release -v
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
+      ls
 
 apps:
   colors-ai:
