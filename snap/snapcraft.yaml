@@ -33,6 +33,7 @@ parts:
       - pkg-config
       - libgtk-3-dev
       - liblzma-dev
+      - tree
       - libgstreamer1.0-dev
       - libgstreamer-plugins-base1.0-dev
       - libgles2-mesa-dev
@@ -65,8 +66,9 @@ parts:
       cd ..
       cd ..
       cd ..
-      ls
-      ls $SNAP/bin/
+      cd ..
+      tree .
+      tree $SNAP/bin/
 
 apps:
   colors-ai:
