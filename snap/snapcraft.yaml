@@ -6,7 +6,7 @@ description: A color scheme generator that uses deep learning from public APIs.
 confinement: strict
 license: MIT
 base: core20
-grade: devel
+grade: stable
 compression: lzo
 architectures:
   - build-on: [amd64]

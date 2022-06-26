@@ -3,22 +3,22 @@ include: package:lints/recommended.yaml
 analyzer:
   exclude:
     # Web
-    - 'web/**'
+    - "web/**"
     # Build
-    - 'build/**'
+    - "build/**"
     # Generated code
-    - 'lib/**/*.g.dart'
-    - 'lib/**/*.freezed.dart'
-    - 'lib/generated_plugin_registrant.dart'
-    - 'lib/generated/**'
+    - "lib/**/*.g.dart"
+    - "lib/**/*.freezed.dart"
+    - "lib/generated_plugin_registrant.dart"
+    - "lib/generated/**"
     # Assets
-    - 'assets/**'
+    - "assets/**"
     # Mocks for test
-    - '**/*.mocks.dart'
+    - "**/*.mocks.dart"
     # Coverage
-    - 'test/.test_coverage.dart'
+    - "test/.test_coverage.dart"
     # Conditional imports
-    - 'lib/share/repository/conditional_import/**'
+    - "lib/share/repository/conditional_import/**"
 
   strong-mode:
     implicit-casts: false
@@ -64,6 +64,7 @@ dart_code_metrics:
       acceptable-level: 2
     - always-remove-listener
     - avoid-collection-methods-with-unrelated-types
+    - avoid-banned-imports
     - avoid-global-state
     - avoid-missing-enum-constant-in-map
     - avoid-throw-in-catch-block
