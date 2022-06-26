@@ -43,7 +43,7 @@ parts:
       - libsecret-1-dev
     override-prime: ""
 
-  build-app:
+  colors:
     after: [flutter-git]
     plugin: nil
     source: .
@@ -62,10 +62,12 @@ parts:
       flutter build linux --release -v
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
+      cd ..
+      ls
 
 apps:
   colors-ai:
-    command: bin/colors-ai
+    command: /bin/colors-ai
     extensions: [gnome-3-38]
     plugs:
       - home
