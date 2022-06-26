@@ -33,7 +33,6 @@ parts:
       - pkg-config
       - libgtk-3-dev
       - liblzma-dev
-      - tree
       - libgstreamer1.0-dev
       - libgstreamer-plugins-base1.0-dev
       - libgles2-mesa-dev
@@ -63,11 +62,10 @@ parts:
       flutter build linux --release -v
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
-      tree $SNAPCRAFT_PRIME
 
 apps:
   colors-ai:
-    command: $SNAPCRAFT_PART_INSTALL/bin/colors_ai
+    command: bin/colors_ai
     extensions: [gnome-3-38]
     plugs:
       - home
