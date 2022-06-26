@@ -63,16 +63,12 @@ parts:
       flutter build linux --release -v
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
-      cd ..
-      cd ..
-      cd ..
-      cd ..
-      tree .
-      tree $SNAP/bin/
+      tree $SNAPCRAFT_PART_INSTALL
+      tree $SNAP/usr/
 
 apps:
   colors-ai:
-    command: $SNAP/bin/colors-ai
+    command: $SNAP/usr/bin/colors-ai
     extensions: [gnome-3-38]
     plugs:
       - home
