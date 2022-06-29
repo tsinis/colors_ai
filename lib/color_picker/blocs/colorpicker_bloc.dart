@@ -1,35 +1,38 @@
-import 'dart:ui' show Color;
+import 'dart:ui';
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/services/clipboard.dart';
+import 'colorpicker_event.dart';
+import 'colorpicker_state.dart';
 
-part 'colorpicker_event.dart';
-part 'colorpicker_state.dart';
+export 'colorpicker_event.dart';
+export 'colorpicker_state.dart';
 
 class ColorPickerBloc extends Bloc<ColorPickerEvent, ColorPickerState> {
   final ClipBoard _clipboard;
 
   ColorPickerBloc({ClipBoard clipboard = const ClipBoard()})
       : _clipboard = clipboard,
-        super(const ColorPickerCloseInitial());
+        super(const ColorPickerState.close());
 
   @override
-  Stream<ColorPickerState> mapEventToState(ColorPickerEvent event) async* {
-    if (event is ColorPickerCopied) {
-      try {
-        await _clipboard.copyColor(event.color);
-        // ignore: avoid_catches_without_on_clauses
-      } catch (_) {
-        yield const ColorPickerFailure();
-      } finally {
-        yield const ColorPickerCloseInitial();
-      }
-    } else if (event is ColorPickerShowed) {
-      yield const ColorPickerOpenInitial();
-    } else {
-      yield const ColorPickerCloseInitial();
-    }
-  }
+  Stream<ColorPickerState> mapEventToState(ColorPickerEvent event) => event.when(
+        copied: (Color color) async* {
+          try {
+            await _clipboard.copyColor(color);
+            // ignore: avoid_catches_without_on_clauses
+          } catch (_) {
+            yield const ColorPickerState.failure();
+          } finally {
+            yield const ColorPickerState.close();
+          }
+        },
+        showed: () async* {
+          yield const ColorPickerState.open();
+        },
+        hided: () async* {
+          yield const ColorPickerState.close();
+        },
+      );
 }

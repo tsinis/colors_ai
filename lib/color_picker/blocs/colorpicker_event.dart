@@ -1,25 +1,12 @@
-part of 'colorpicker_bloc.dart';
+import 'dart:ui' show Color;
 
-abstract class ColorPickerEvent extends Equatable {
-  @override
-  List<Object> get props => <Object>[];
+import '../../core/constants.dart';
 
-  const ColorPickerEvent();
-}
+part 'colorpicker_event.freezed.dart';
 
-class ColorPickerShowed extends ColorPickerEvent {
-  const ColorPickerShowed();
-}
-
-class ColorPickerHided extends ColorPickerEvent {
-  const ColorPickerHided();
-}
-
-class ColorPickerCopied extends ColorPickerEvent {
-  final Color color;
-
-  @override
-  List<Color> get props => <Color>[color];
-
-  const ColorPickerCopied(this.color);
+@freezedWithoutJson
+class ColorPickerEvent with _$ColorPickerEvent {
+  const factory ColorPickerEvent.hided() = _ColorPickerHided;
+  const factory ColorPickerEvent.showed() = _ColorPickerShowed;
+  const factory ColorPickerEvent.copied(Color color) = _ColorPickerCopied;
 }

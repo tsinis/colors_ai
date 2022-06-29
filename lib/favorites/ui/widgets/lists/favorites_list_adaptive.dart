@@ -187,7 +187,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                               child: TextButton(
                                                                 onPressed: () {
                                                                   BlocProvider.of<ColorPickerBloc>(context)
-                                                                      .add(ColorPickerCopied(color));
+                                                                      .add(ColorPickerEvent.copied(color));
                                                                   BlocProvider.of<SnackbarBloc>(context)
                                                                       .add(const ColorCopiedSuccess());
                                                                 },

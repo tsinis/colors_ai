@@ -1,4 +1,5 @@
-// ignore_for_file: avoid_catches_without_on_clauses, unawaited_futures
+// ignore_for_file: unawaited_futures
+
 import 'dart:ui' show Color;
 
 import 'package:equatable/equatable.dart';

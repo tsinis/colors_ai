@@ -34,26 +34,28 @@ class Colorpicker extends StatelessWidget {
         create: (_) => ColorPickerBloc(),
         child: BlocBuilder<ColorPickerBloc, ColorPickerState>(
           builder: (BuildContext dialogContext, ColorPickerState state) {
-            if (state is ColorPickerOpenInitial) {
-              SchedulerBinding.instance.addPostFrameCallback(
-                (_) async => showModal<void>(
-                  context: dialogContext,
-                  builder: (_) => ColorpickerDialog(
-                    color,
-                    onColorChanged: (Color newColor) {
-                      BlocProvider.of<FabBloc>(context).add(const FabShowed());
-                      BlocProvider.of<ColorsBloc>(context).add(ColorsChanged(newColor, index));
-                    },
+            state.whenOrNull(
+              open: () {
+                SchedulerBinding.instance.addPostFrameCallback(
+                  (_) async => showModal<void>(
+                    context: dialogContext,
+                    builder: (_) => ColorpickerDialog(
+                      color,
+                      onColorChanged: (Color newColor) {
+                        BlocProvider.of<FabBloc>(context).add(const FabShowed());
+                        BlocProvider.of<ColorsBloc>(context).add(ColorsChanged(newColor, index));
+                      },
+                    ),
+                    configuration: const FadeScaleTransitionConfiguration(
+                      barrierColor: Colors.transparent,
+                      transitionDuration: kDefaultTransitionDuration,
+                      reverseTransitionDuration: kDefaultReverseTransitionDuration,
+                    ),
                   ),
-                  configuration: const FadeScaleTransitionConfiguration(
-                    barrierColor: Colors.transparent,
-                    transitionDuration: kDefaultTransitionDuration,
-                    reverseTransitionDuration: kDefaultReverseTransitionDuration,
-                  ),
-                ),
-              );
-              BlocProvider.of<ColorPickerBloc>(dialogContext).add(const ColorPickerHided());
-            }
+                );
+                BlocProvider.of<ColorPickerBloc>(dialogContext).add(const ColorPickerEvent.hided());
+              },
+            );
 
             return TextButton(
               style: ButtonStyle(
@@ -63,12 +65,12 @@ class Colorpicker extends StatelessWidget {
               ),
               onLongPress: isPortrait
                   ? () {
-                      BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerCopied(color));
+                      BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerEvent.copied(color));
                       BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
                     }
                   : null,
               onPressed: () {
-                BlocProvider.of<ColorPickerBloc>(dialogContext).add(const ColorPickerShowed());
+                BlocProvider.of<ColorPickerBloc>(dialogContext).add(const ColorPickerEvent.showed());
                 BlocProvider.of<SoundBloc>(dialogContext).add(const SoundEvent.locked());
                 BlocProvider.of<LockBloc>(dialogContext).add(LockChanged(index, onlyLock: true));
               },
@@ -82,7 +84,7 @@ class Colorpicker extends StatelessWidget {
                       onTap: isPortrait
                           ? null
                           : () {
-                              BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerCopied(color));
+                              BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerEvent.copied(color));
                               BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
                             },
                       child: Text(

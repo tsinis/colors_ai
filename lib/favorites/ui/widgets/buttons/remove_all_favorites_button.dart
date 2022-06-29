@@ -25,15 +25,8 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
   void initState() {
     super.initState();
     animationController = AnimationController(vsync: this, duration: kDefaultLongTransitionDuration);
-    animation = Tween<double>(begin: 0.4, end: 1).animate(animationController)
-      ..addStatusListener((AnimationStatus status) {
-        if (status == AnimationStatus.completed) {
-          animationController.reverse();
-        } else if (status == AnimationStatus.dismissed) {
-          animationController.forward();
-        }
-      });
-    animationController.forward();
+    animation = Tween<double>(begin: 0.4, end: 1).animate(animationController);
+    animationController.repeat(reverse: true);
   }
 
   @override

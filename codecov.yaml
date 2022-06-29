@@ -1,4 +1,0 @@
-ignore:
-  - "**/*.arb" # ignore l10n files
-  - '**/constants.dart' # ignore constants
-  - '**/*.g.dart' # ignore generated code

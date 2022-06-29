@@ -29,7 +29,7 @@ void main() => group('$RemoveAllFavoritesButton', () {
         },
       );
 
-      testWidgets('', (WidgetTester tester) async {
+      testWidgets('tap', (WidgetTester tester) async {
         await tester.pumpWidget(
           MultiBlocProvider(
             providers: <BlocProvider<BlocBase<Object>>>[
@@ -45,8 +45,11 @@ void main() => group('$RemoveAllFavoritesButton', () {
             ),
           ),
         );
+        final Finder button = find.byType(RemoveAllFavoritesButton);
+        expect(button, findsOneWidget); // TODO: Test all cases.
 
-        expect(find.byType(RemoveAllFavoritesButton), findsOneWidget); // TODO: Test all cases.
+        expect(find.byType(AlertDialog), findsNothing);
+        await tester.tap(button);
       });
 
       tearDownAll(deleteFakeStorageDir);

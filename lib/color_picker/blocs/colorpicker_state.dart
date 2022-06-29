@@ -1,20 +1,10 @@
-part of 'colorpicker_bloc.dart';
+import '../../core/constants.dart';
 
-abstract class ColorPickerState extends Equatable {
-  @override
-  List<Object> get props => <Object>[];
+part 'colorpicker_state.freezed.dart';
 
-  const ColorPickerState();
-}
-
-class ColorPickerCloseInitial extends ColorPickerState {
-  const ColorPickerCloseInitial();
-}
-
-class ColorPickerOpenInitial extends ColorPickerState {
-  const ColorPickerOpenInitial();
-}
-
-class ColorPickerFailure extends ColorPickerState {
-  const ColorPickerFailure();
+@freezedWithoutJson
+class ColorPickerState with _$ColorPickerState {
+  const factory ColorPickerState.close() = _ColorPickerClose;
+  const factory ColorPickerState.open() = _ColorPickerOpen;
+  const factory ColorPickerState.failure() = _ColorPickerFailure;
 }
