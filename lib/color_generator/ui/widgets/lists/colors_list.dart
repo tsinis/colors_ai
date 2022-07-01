@@ -40,7 +40,7 @@ class ColorsList extends StatefulWidget {
   });
 
   @override
-  _ColorsListState createState() => _ColorsListState();
+  State<ColorsList> createState() => _ColorsListState();
 }
 
 class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateMixin {

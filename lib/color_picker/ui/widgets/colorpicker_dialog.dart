@@ -20,7 +20,7 @@ class ColorpickerDialog extends StatefulWidget {
   });
 
   @override
-  _ColorpickerDialogState createState() => _ColorpickerDialogState();
+  State<ColorpickerDialog> createState() => _ColorpickerDialogState();
 }
 
 class _ColorpickerDialogState extends State<ColorpickerDialog> {

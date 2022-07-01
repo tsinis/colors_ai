@@ -14,7 +14,7 @@ class NoNetwork extends StatefulWidget {
   });
 
   @override
-  _NoNetworkState createState() => _NoNetworkState();
+  State<NoNetwork> createState() => _NoNetworkState();
 }
 
 class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMixin {

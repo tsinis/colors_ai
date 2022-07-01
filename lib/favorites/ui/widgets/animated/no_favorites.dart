@@ -8,7 +8,7 @@ class NoFavorites extends StatefulWidget {
   const NoFavorites({super.key});
 
   @override
-  _NoFavoritesState createState() => _NoFavoritesState();
+  State<NoFavorites> createState() => _NoFavoritesState();
 }
 
 class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStateMixin {

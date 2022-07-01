@@ -28,7 +28,7 @@ class FavoritesListAdaptive extends StatefulWidget {
   });
 
   @override
-  _FavoritesListState createState() => _FavoritesListState();
+  State<FavoritesListAdaptive> createState() => _FavoritesListState();
 }
 
 class _FavoritesListState extends State<FavoritesListAdaptive> {

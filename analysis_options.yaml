@@ -105,7 +105,6 @@ linter:
     depend_on_referenced_packages: false # false positive on l10n
     diagnostic_describe_all_properties: false
     flutter_style_todos: false # for Flutter Team only
-    library_private_types_in_public_api: false
     lines_longer_than_80_chars: false # 120 here :-/
     omit_local_variable_types: false # against always_specify_types
     prefer_double_quotes: false # against prefer_single_quotes
@@ -313,3 +312,4 @@ linter:
     unnecessary_to_list_in_spreads: true
     use_decorated_box: true
     use_late_for_private_fields_and_variables: true
+    discarded_futures: true

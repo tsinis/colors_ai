@@ -29,7 +29,7 @@ class GenerateColorsFAB extends StatefulWidget {
   });
 
   @override
-  _GenerateColorsFABState createState() => _GenerateColorsFABState();
+  State<GenerateColorsFAB> createState() => _GenerateColorsFABState();
 }
 
 class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTickerProviderStateMixin {

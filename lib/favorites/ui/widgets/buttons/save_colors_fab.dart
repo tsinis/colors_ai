@@ -17,7 +17,7 @@ class SaveColorsFAB extends StatefulWidget {
   const SaveColorsFAB({this.isExtended, super.key});
 
   @override
-  _SaveColorsFABState createState() => _SaveColorsFABState();
+  State<SaveColorsFAB> createState() => _SaveColorsFABState();
 }
 
 class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateMixin {

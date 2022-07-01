@@ -33,7 +33,7 @@ class MainScreen extends StatefulWidget {
       : super(key: key);
 
   @override
-  _NavigationScreenState createState() => _NavigationScreenState();
+  State<MainScreen> createState() => _NavigationScreenState();
 }
 
 class _NavigationScreenState extends State<MainScreen> {

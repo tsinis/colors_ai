@@ -26,7 +26,7 @@ class AnimatedListTile extends StatefulWidget {
   });
 
   @override
-  _AnimatedListItemState createState() => _AnimatedListItemState();
+  State<AnimatedListTile> createState() => _AnimatedListItemState();
 }
 
 class _AnimatedListItemState extends State<AnimatedListTile> {

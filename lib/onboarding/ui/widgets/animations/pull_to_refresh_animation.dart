@@ -16,7 +16,7 @@ class PullToRefreshAnimation extends StatefulWidget {
   });
 
   @override
-  _PullToRefreshAnimationState createState() => _PullToRefreshAnimationState();
+  State<PullToRefreshAnimation> createState() => _PullToRefreshAnimationState();
 }
 
 class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with AnimationMixin<PullToRefreshAnimation> {
