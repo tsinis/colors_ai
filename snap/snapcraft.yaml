@@ -9,7 +9,7 @@ base: core20
 grade: stable
 compression: lzo
 architectures:
-  - build-on: [amd64]
+  - build-on: [arm64]
 
 parts:
   flutter-git:
