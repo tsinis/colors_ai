@@ -103,7 +103,7 @@ linter:
     avoid_as: false # deprecated
     avoid_types_on_closure_parameters: false # against always_specify_types
     depend_on_referenced_packages: false # false positive on l10n
-    diagnostic_describe_all_properties: false
+    diagnostic_describe_all_properties: false # for Flutter Team only
     flutter_style_todos: false # for Flutter Team only
     lines_longer_than_80_chars: false # 120 here :-/
     omit_local_variable_types: false # against always_specify_types
