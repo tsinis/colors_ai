@@ -119,7 +119,7 @@ class _NavigationScreenState extends State<MainScreen> {
                         listener: (BuildContext context, SnackbarState snackbarState) {
                           if (snackbarState is! SnackbarsInitial) {
                             BlocProvider.of<SoundBloc>(context).add(const SoundEvent.copied());
-                            late String message;
+                            String? message;
                             final bool isUrlCopied = snackbarState is UrlCopySuccess;
                             final bool isFileCopied = snackbarState is FileCopySuccess;
                             final bool isShareFailed = snackbarState is ShareAttemptFailure;
@@ -133,8 +133,9 @@ class _NavigationScreenState extends State<MainScreen> {
                               message = context.l10n.serverMaintenanceMessage;
                             } else if (isShareFailed) {
                               message = context.l10n.shareFailedMessage;
-                            } else {
-                              // TODO: Add Error message.
+                            }
+                            if (message == null) {
+                              return;
                             }
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

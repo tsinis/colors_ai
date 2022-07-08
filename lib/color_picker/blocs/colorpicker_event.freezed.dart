@@ -436,7 +436,7 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
 abstract class _ColorPickerCopied implements ColorPickerEvent {
   const factory _ColorPickerCopied(final Color color) = _$_ColorPickerCopied;
 
-  Color get color => throw _privateConstructorUsedError;
+  Color get color;
   @JsonKey(ignore: true)
   _$$_ColorPickerCopiedCopyWith<_$_ColorPickerCopied> get copyWith =>
       throw _privateConstructorUsedError;

@@ -1071,7 +1071,7 @@ abstract class _AboutStarted implements AboutEvent {
   const factory _AboutStarted({required final String currentLocale}) =
       _$_AboutStarted;
 
-  String get currentLocale => throw _privateConstructorUsedError;
+  String get currentLocale;
   @JsonKey(ignore: true)
   _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
       throw _privateConstructorUsedError;

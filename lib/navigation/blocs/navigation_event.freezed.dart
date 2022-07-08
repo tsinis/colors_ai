@@ -315,7 +315,7 @@ abstract class _NavigationTabChanged implements NavigationEvent {
   const factory _NavigationTabChanged(final int newTabIndex) =
       _$_NavigationTabChanged;
 
-  int get newTabIndex => throw _privateConstructorUsedError;
+  int get newTabIndex;
   @JsonKey(ignore: true)
   _$$_NavigationTabChangedCopyWith<_$_NavigationTabChanged> get copyWith =>
       throw _privateConstructorUsedError;

@@ -400,7 +400,7 @@ class _$_ShareUrlShared implements _ShareUrlShared {
 abstract class _ShareUrlShared implements ShareEvent {
   const factory _ShareUrlShared(final ColorPalette palette) = _$_ShareUrlShared;
 
-  ColorPalette get palette => throw _privateConstructorUsedError;
+  ColorPalette get palette;
   @JsonKey(ignore: true)
   _$$_ShareUrlSharedCopyWith<_$_ShareUrlShared> get copyWith =>
       throw _privateConstructorUsedError;
@@ -566,7 +566,7 @@ class _$_ShareUrlCopied implements _ShareUrlCopied {
 abstract class _ShareUrlCopied implements ShareEvent {
   const factory _ShareUrlCopied(final ColorPalette palette) = _$_ShareUrlCopied;
 
-  ColorPalette get palette => throw _privateConstructorUsedError;
+  ColorPalette get palette;
   @JsonKey(ignore: true)
   _$$_ShareUrlCopiedCopyWith<_$_ShareUrlCopied> get copyWith =>
       throw _privateConstructorUsedError;
@@ -733,7 +733,7 @@ abstract class _ShareFileShared implements ShareEvent {
   const factory _ShareFileShared(final ColorPalette palette) =
       _$_ShareFileShared;
 
-  ColorPalette get palette => throw _privateConstructorUsedError;
+  ColorPalette get palette;
   @JsonKey(ignore: true)
   _$$_ShareFileSharedCopyWith<_$_ShareFileShared> get copyWith =>
       throw _privateConstructorUsedError;
@@ -900,7 +900,7 @@ abstract class _ShareFileCopied implements ShareEvent {
   const factory _ShareFileCopied(final ColorPalette palette) =
       _$_ShareFileCopied;
 
-  ColorPalette get palette => throw _privateConstructorUsedError;
+  ColorPalette get palette;
   @JsonKey(ignore: true)
   _$$_ShareFileCopiedCopyWith<_$_ShareFileCopied> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1068,7 +1068,7 @@ abstract class _ShareFormatSelected implements ShareEvent {
   const factory _ShareFormatSelected({required final FileFormat? format}) =
       _$_ShareFormatSelected;
 
-  FileFormat? get format => throw _privateConstructorUsedError;
+  FileFormat? get format;
   @JsonKey(ignore: true)
   _$$_ShareFormatSelectedCopyWith<_$_ShareFormatSelected> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1240,7 +1240,7 @@ abstract class _ShareUrlProviderSelected implements ShareEvent {
           {required final ColorsUrlProvider? urlProvider}) =
       _$_ShareUrlProviderSelected;
 
-  ColorsUrlProvider? get urlProvider => throw _privateConstructorUsedError;
+  ColorsUrlProvider? get urlProvider;
   @JsonKey(ignore: true)
   _$$_ShareUrlProviderSelectedCopyWith<_$_ShareUrlProviderSelected>
       get copyWith => throw _privateConstructorUsedError;

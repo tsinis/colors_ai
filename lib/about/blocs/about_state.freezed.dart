@@ -457,7 +457,7 @@ abstract class _AboutLoaded implements AboutState {
   const factory _AboutLoaded({required final String appVersion}) =
       _$_AboutLoaded;
 
-  String get appVersion => throw _privateConstructorUsedError;
+  String get appVersion;
   @JsonKey(ignore: true)
   _$$_AboutLoadedCopyWith<_$_AboutLoaded> get copyWith =>
       throw _privateConstructorUsedError;
@@ -604,7 +604,7 @@ abstract class _AboutStarted implements AboutState {
   const factory _AboutStarted({required final String currentLocale}) =
       _$_AboutStarted;
 
-  String get currentLocale => throw _privateConstructorUsedError;
+  String get currentLocale;
   @JsonKey(ignore: true)
   _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
       throw _privateConstructorUsedError;

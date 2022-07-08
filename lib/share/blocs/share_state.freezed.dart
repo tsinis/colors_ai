@@ -508,10 +508,10 @@ abstract class _ShareFormatSelectedInitial implements ShareState {
       required final bool canSharePdf,
       required final bool canSharePng}) = _$_ShareFormatSelectedInitial;
 
-  ColorsUrlProvider? get selectedProvider => throw _privateConstructorUsedError;
-  FileFormat? get selectedFormat => throw _privateConstructorUsedError;
-  bool get canSharePdf => throw _privateConstructorUsedError;
-  bool get canSharePng => throw _privateConstructorUsedError;
+  ColorsUrlProvider? get selectedProvider;
+  FileFormat? get selectedFormat;
+  bool get canSharePdf;
+  bool get canSharePng;
   @JsonKey(ignore: true)
   _$$_ShareFormatSelectedInitialCopyWith<_$_ShareFormatSelectedInitial>
       get copyWith => throw _privateConstructorUsedError;
