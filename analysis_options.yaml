@@ -303,6 +303,7 @@ linter:
     # Linter 1.15.0+
     avoid_final_parameters: true
     conditional_uri_does_not_exist: true
+    discarded_futures: true
     no_leading_underscores_for_library_prefixes: true
     no_leading_underscores_for_local_identifiers: true
     secure_pubspec_urls: true
@@ -312,4 +313,3 @@ linter:
     unnecessary_to_list_in_spreads: true
     use_decorated_box: true
     use_late_for_private_fields_and_variables: true
-    discarded_futures: true
