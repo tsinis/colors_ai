@@ -79,6 +79,7 @@ class AppIcon extends StatelessWidget {
       );
 }
 
+// Ignored because we are only use it here.
 // ignore: prefer-single-widget-per-file
 class Rectangle extends StatelessWidget {
   final double blurRadius;

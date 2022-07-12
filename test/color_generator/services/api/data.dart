@@ -5,13 +5,13 @@ import 'package:colors_ai/core/models/typedef_aliases/int_rgb_color.dart';
 const Color blackColor = Color(0xFF000000);
 const List<Color> colors = <Color>[blackColor, blackColor];
 
-/// Colormind API part:
+/// Colormind API part.
 const String colormindUnlockedChar = '&';
 const String colormindModelKey = 'modelKey';
 const String colormindPaletteInputKey = 'inputKey';
 const IntRGBColor blackColorAsIntRGBColor = <int>[0, 0, 0];
 
-/// Huemint API part:
+/// Huemint API part.
 const double temperature = 0;
 const int adjacency = 0;
 const String huemintUnlockedChar = '-';

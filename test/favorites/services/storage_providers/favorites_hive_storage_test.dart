@@ -36,7 +36,7 @@ void main() => group('$FavoritesHiveStorage', () {
         'palettes should throw error if $Box is closed',
         () => expect(
           () => favoritesStorage.palettes,
-          throwsA((dynamic e) => e is HiveError),
+          throwsA((Object e) => e is HiveError),
         ),
       );
 
@@ -51,7 +51,7 @@ void main() => group('$FavoritesHiveStorage', () {
         'update() should throw error if $Box is closed',
         () => expect(
           () async => favoritesStorage.update(<int>{1}),
-          throwsA((dynamic e) => e is HiveError),
+          throwsA((Object e) => e is HiveError),
         ),
       );
 
@@ -101,7 +101,7 @@ void main() => group('$FavoritesHiveStorage', () {
         'clear() should throw error if $Box is closed',
         () => expect(
           () async => favoritesStorage.clear(),
-          throwsA((dynamic e) => e is HiveError),
+          throwsA((Object e) => e is HiveError),
         ),
       );
 
@@ -121,7 +121,7 @@ void main() => group('$FavoritesHiveStorage', () {
         'add() should throw error if $Box is closed',
         () => expect(
           () async => favoritesStorage.add(colors),
-          throwsA((dynamic e) => e is HiveError),
+          throwsA((Object e) => e is HiveError),
         ),
       );
 

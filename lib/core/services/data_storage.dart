@@ -24,7 +24,7 @@ class DataStorage {
 
   Future<HydratedCipher?> get _encryptionCipher async {
     WidgetsFlutterBinding.ensureInitialized();
-    // https://github.com/mogol/flutter_secure_storage/issues/302
+    // Until https://github.com/mogol/flutter_secure_storage/issues/302.
     final bool containsEncryptionKey =
         await _keyStorage.containsKey(key: _secureKey) && await _keyStorage.read(key: _secureKey) != null;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 
 class ClipboardMock {
-  Map<String, dynamic> _clipboardData = <String, dynamic>{
+  Map<String, Object?> _clipboardData = <String, Object?>{
     'text': null,
   };
 
@@ -11,12 +11,14 @@ class ClipboardMock {
     }
   }
 
-  Future<dynamic> handleMethodCall(MethodCall methodCall) async {
+  Future<Map<String, Object?>?> handleMethodCall(MethodCall methodCall) async {
     switch (methodCall.method) {
       case 'Clipboard.getData':
         return _clipboardData;
       case 'Clipboard.setData':
-        _clipboardData = methodCall.arguments as Map<String, dynamic>;
+        _clipboardData = methodCall.arguments as Map<String, Object?>;
     }
+
+    return null;
   }
 }

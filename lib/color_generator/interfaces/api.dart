@@ -59,12 +59,9 @@ abstract class API<T extends Object> {
     }
     final String payload = jsonEncode(body);
 
-    late final Response response;
-    if (_httpClient != null) {
-      response = await _httpClient!.post(uri, headers: _headers, body: payload).timeout(_timeout);
-    } else {
-      response = await post(uri, headers: _headers, body: payload).timeout(_timeout);
-    }
+    final Response response = _httpClient != null
+        ? await _httpClient!.post(uri, headers: _headers, body: payload).timeout(_timeout)
+        : await post(uri, headers: _headers, body: payload).timeout(_timeout);
 
     if (isErrorStatusCode(response.statusCode)) {
       throw Exception('Network error, status Code: ${response.statusCode}.');

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() => group('FileFormatExtension', () {
       const Set<FileFormat> letter = <FileFormat>{FileFormat.pdfLetter, FileFormat.pngLetter};
-      const Set<FileFormat> a4 = <FileFormat>{FileFormat.pdfA4, FileFormat.pngA4};
+      const Set<FileFormat> a4Format = <FileFormat>{FileFormat.pdfA4, FileFormat.pngA4};
 
       test('title', () {
         for (final FileFormat file in FileFormat.values) {
@@ -26,13 +26,13 @@ void main() => group('FileFormatExtension', () {
 
       test('isA4', () {
         for (final FileFormat file in FileFormat.values) {
-          expect(file.isA4, a4.contains(file));
+          expect(file.isA4, a4Format.contains(file));
         }
       });
 
       test('isPrintable', () {
         for (final FileFormat file in FileFormat.values) {
-          expect(file.isPrintable, letter.contains(file) || a4.contains(file));
+          expect(file.isPrintable, letter.contains(file) || a4Format.contains(file));
         }
       });
     });

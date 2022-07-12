@@ -74,7 +74,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
         animation: fabAnimation,
         child: BlocBuilder<FabBloc, FabState>(
           builder: (_, FabState state) {
-            // https://material.io/design/environment/elevation.html#elevation-in-material-design
+            // Because https://material.io/design/environment/elevation.html#elevation-in-material-design.
             if (state is FabHideInitial && !alwaysShow) {
               fadeController.reverse();
             } else if (state is FabShowInitial && !alwaysShow) {

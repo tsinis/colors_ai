@@ -60,7 +60,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
                     size: const Size(240, 240),
                     painter: Magnifier(
                       backgroundColor: context.theme.floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
-                      holdersColor: Colors.grey[800]!,
+                      holdersColor: Colors.grey.shade800,
                       outlineColor: context.theme.textTheme.headline2!.color!,
                     ),
                   ),

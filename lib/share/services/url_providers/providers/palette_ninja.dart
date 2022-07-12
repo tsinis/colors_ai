@@ -15,5 +15,5 @@ class PaletteNinja extends ColorsUrlProvider {
 
     return _removeLastChar(sb.toString());
   }
-  // https://palette.ninja/#f67509-#f6d409-#dc1408-#430602-#f61609
+  // Example: https://palette.ninja/#f67509-#f6d409-#dc1408-#430602-#f61609.
 }

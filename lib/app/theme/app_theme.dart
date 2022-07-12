@@ -67,7 +67,7 @@ class AppTheme {
     primaryColor: Colors.grey.shade400,
     disabledColor: Colors.grey.shade600,
     errorColor: Colors.red.shade900,
-    scaffoldBackgroundColor: Colors.grey[350], //AAA compliant.
+    scaffoldBackgroundColor: Colors.grey[350], // AAA compliant.
     primaryIconTheme: IconThemeData(color: Colors.grey[850]),
     dialogBackgroundColor: Colors.grey[350],
     splashColor: Colors.grey.shade300,

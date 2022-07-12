@@ -8,12 +8,14 @@ class VibrationsMock {
 
   const VibrationsMock({this.hasVibrator = true, this.hasCustomVibrationsSupport = false});
 
-  Future<dynamic> handleMethodCall(MethodCall methodCall) async {
+  Future<bool?> handleMethodCall(MethodCall methodCall) async {
     switch (methodCall.method) {
       case 'hasVibrator':
         return hasVibrator;
       case 'hasCustomVibrationsSupport':
         return hasCustomVibrationsSupport;
     }
+
+    return null;
   }
 }

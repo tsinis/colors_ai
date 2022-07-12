@@ -1,4 +1,5 @@
-// ignore_for_file: avoid_annotating_with_dynamic
+// Ignored because that is what Hive package is providing in it's methods.
+// ignore_for_file: avoid-dynamic, void_annotating_with_dynamic
 
 import 'dart:async';
 
@@ -81,7 +82,7 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
   Future<void> close() async => _isOpen = false;
 
   @override
-  Future<void> delete(dynamic key) async {
+  Future<void> delete(Object? key) async {
     _markBoxAsOpen();
     final T? value = get(key);
     _items.remove(key);
@@ -96,20 +97,20 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
         .map((MapEntry<dynamic, T> e) => BoxEvent(e.key, e.value, true))
         .toList(growable: false);
 
-    _items.removeWhere((dynamic key, _) => keys.contains(key));
+    _items.removeWhere((Object? key, _) => keys.contains(key));
 
     deleteEvents.forEach(events.add);
   }
 
   @override
-  T? get(dynamic key, {T? defaultValue}) {
+  T? get(Object? key, {T? defaultValue}) {
     _throwErrorIfCorrupted();
 
     return _items[key];
   }
 
   @override
-  Future<void> put(dynamic key, T value) async {
+  Future<void> put(Object? key, T value) async {
     _markBoxAsOpen();
     _items[key] = value;
     events.add(BoxEvent(key, value, false));
@@ -130,14 +131,14 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
   @override
   Future<void> putAll(Map<dynamic, T> entries) async {
     _markBoxAsOpen();
-    entries.forEach((dynamic key, T value) {
+    entries.forEach((Object? key, T value) {
       _items[key] = value;
       events.add(BoxEvent(key, value, false));
     });
   }
 
   @override
-  Stream<BoxEvent> watch({dynamic key}) =>
+  Stream<BoxEvent> watch({Object? key}) =>
       (key == null) ? events.stream : events.stream.where((BoxEvent event) => event.key == key);
 
   void _markBoxAsOpen() {

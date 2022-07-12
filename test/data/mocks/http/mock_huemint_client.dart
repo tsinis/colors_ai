@@ -19,7 +19,7 @@ class MockHuemintClient extends MockApiClient {
         enableAlpha: false,
       ),
     );
-    final Map<String, dynamic> palette = <String, dynamic>{
+    final Map<String, Object> palette = <String, Object>{
       HuemintColors.paletteKey: colors.toList(growable: false),
       'score': -5.672145843505859,
     };

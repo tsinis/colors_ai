@@ -40,5 +40,5 @@ class ShareAttemptFailure extends SnackbarState {
 }
 
 class ClipboardCopyFailure extends SnackbarState {
-  const ClipboardCopyFailure() : super(''); //TODO Provide on UI.
+  const ClipboardCopyFailure() : super(''); // TODO Provide on UI.
 }

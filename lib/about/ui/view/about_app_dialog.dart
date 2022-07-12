@@ -17,6 +17,8 @@ class AboutAppDialog extends StatelessWidget {
   final double width;
 
   const AboutAppDialog({
+    // Ignored because I need this copyright sign.
+    // ignore: avoid-non-ascii-symbols
     this.applicationLegalese = ' © Roman Cinis',
     this.applicationIcon = const AppIcon(),
     this.topPadding = 20,

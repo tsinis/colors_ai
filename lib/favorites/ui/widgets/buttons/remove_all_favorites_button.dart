@@ -48,7 +48,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                   transitionDuration: kDefaultTransitionDuration,
                   reverseTransitionDuration: kDefaultReverseTransitionDuration,
                 ),
-                // https://material.io/components/dialogs#alert-dialog
+                // Because https://material.io/components/dialogs#alert-dialog.
                 builder: (_) => AlertDialog(
                   contentPadding: const EdgeInsets.only(top: 40),
                   shape: kDefaultShape,

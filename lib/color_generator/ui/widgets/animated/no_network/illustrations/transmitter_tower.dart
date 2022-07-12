@@ -26,7 +26,7 @@ class TransmitterTower extends CustomPainter {
 
     final Paint redPaint = Paint()
       ..strokeWidth = strokeWidth * 1.25
-      ..color = Colors.red[900]!
+      ..color = Colors.red.shade900
       ..style = style;
 
     final Path path_1 = Path()

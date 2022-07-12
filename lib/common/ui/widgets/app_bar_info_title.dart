@@ -15,12 +15,10 @@ class AppBarInfoTitle extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
         builder: (_, RemoveFavoritesState favState) {
           final List<String> tabLabels = tabNames(context.l10n);
-          late String? appBarInfo;
-          if (selectedTabIndex == NavigationState.favorites.index && favState.selections.isNotEmpty) {
-            appBarInfo = context.l10n.removeSomeTitle(favState.selections.length);
-          } else {
-            appBarInfo = null;
-          }
+          final String? appBarInfo =
+              selectedTabIndex == NavigationState.favorites.index && favState.selections.isNotEmpty
+                  ? context.l10n.removeSomeTitle(favState.selections.length)
+                  : null;
 
           return Text(appBarInfo ?? tabLabels.elementAt(selectedTabIndex));
         },

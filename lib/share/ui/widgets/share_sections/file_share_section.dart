@@ -118,11 +118,7 @@ class FileShareSection extends ShareSectionInterface {
     }
   }
 
-  String _shareOrSaveButtonLabel(BuildContext context) {
-    if (!kIsWeb && (Platform.isWindows || Platform.isLinux)) {
-      return '${context.materialL10n.saveButtonLabel.toBeginningOfSentenceCase()} ${selectedFormat.format}';
-    } else {
-      return context.l10n.shareAsFormat(selectedFormat.format);
-    }
-  }
+  String _shareOrSaveButtonLabel(BuildContext context) => !kIsWeb && (Platform.isWindows || Platform.isLinux)
+      ? '${context.materialL10n.saveButtonLabel.toBeginningOfSentenceCase()} ${selectedFormat.format}'
+      : context.l10n.shareAsFormat(selectedFormat.format);
 }

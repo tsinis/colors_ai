@@ -36,7 +36,6 @@ class ColorsRepository {
   void fromFavorites(ColorPalette palette) => _colorPalette.addAll(palette.colors);
 
   Future<bool> getNewColors() async {
-    //TODO? Show SnackBar when all colors are locked?
     if (_locked.list.contains(false)) {
       try {
         final ColorPalette newColors = await _getNewColors(_colorPalette, _locked.list);
@@ -58,7 +57,7 @@ class ColorsRepository {
   void lock(int colorIndex) => _locked.lock(colorIndex);
 
   void swapColors({required int oldIndex, required int newIndex}) {
-    // ! https://github.com/flutter/flutter/issues/24786 newIndex may be wrong :(
+    // Until https://github.com/flutter/flutter/issues/24786 newIndex may be wrong.
     if (oldIndex < newIndex) {
       // ignore: parameter_assignments
       newIndex -= 1;

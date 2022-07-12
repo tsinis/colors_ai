@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+// Ignored because it's mocked in tests.
 // ignore: implementation_imports
 import 'package:window_size/src/window_size_channel.dart';
 

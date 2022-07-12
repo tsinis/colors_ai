@@ -62,39 +62,50 @@ dart_code_metrics:
   rules:
     - avoid-nested-conditional-expressions:
       acceptable-level: 2
-    - always-remove-listener
-    - avoid-collection-methods-with-unrelated-types
-    - avoid-banned-imports
-    - avoid-global-state
-    - avoid-missing-enum-constant-in-map
-    - avoid-throw-in-catch-block
-    - avoid-unnecessary-setstate
-    - avoid-unnecessary-type-assertions
-    - avoid-unrelated-type-assertions
-    - avoid-unused-parameters
-    - avoid-wrapping-in-padding
-    - ban-name
-    - binary-expression-operand-order
-    - check-unused-code
-    - double-literal-format
-    - member-ordering-extended
-    - newline-before-return
-    - no-boolean-literal-compare
-    - no-equal-then-else
-    - no-object-declaration
-    - prefer-async-await
-    - prefer-const-border-radius
-    - prefer-correct-type-name
-    - prefer-first
-    - prefer-intl-name
-    - prefer-last
-    - prefer-match-file-name
-    - prefer-single-widget-per-file
-    - prefer-trailing-comma
-    - provide-correct-intl-args
-    - refer-correct-identifier-length
-    - tag-name
-    - technical-debt
+    - prefer-correct-identifier-length:
+        exceptions: ["i", "x", "sb"] # i for item, x for math operations, sb for StringBuffer.
+    - always-remove-listener: true
+    - avoid-banned-imports: true
+    - avoid-border-all: true
+    - avoid-collection-methods-with-unrelated-types: true
+    - avoid-dynamic: true
+    - avoid-global-state: true
+    - avoid-missing-enum-constant-in-map: true
+    - avoid-non-ascii-symbols: true
+    - avoid-returning-widgets: true
+    - avoid-throw-in-catch-block: true
+    - avoid-unnecessary-setstate: true
+    - avoid-unnecessary-type-assertions: true
+    - avoid-unrelated-type-assertions: true
+    - avoid-unused-parameters: true
+    - avoid-use-expanded-as-spacer: true
+    - avoid-wrapping-in-padding: true
+    - avoid_restricted_imports: true
+    - ban-name: true
+    - binary-expression-operand-order: true
+    - check-unused-code: true
+    - double-literal-format: true
+    - format-comment: true
+    - member-ordering-extended: true
+    - newline-before-return: true
+    - no-boolean-literal-compare: true
+    - no-equal-then-else: true
+    - no-object-declaration: true
+    - prefer-async-await: true
+    - prefer-conditional-expressions: true
+    - prefer-const-border-radius: true
+    - prefer-correct-type-name: true
+    - prefer-first: true
+    - prefer-immediate-return: true
+    - prefer-intl-name: true
+    - prefer-last: true
+    - prefer-match-file-name: true
+    - prefer-single-widget-per-file: true
+    - prefer-trailing-comma: true
+    - provide-correct-intl-args: true
+    - refer-correct-identifier-length: true
+    - tag-name: true
+    - technical-debt: true
 
 linter:
   rules:
@@ -109,7 +120,7 @@ linter:
     omit_local_variable_types: false # against always_specify_types
     prefer_double_quotes: false # against prefer_single_quotes
     prefer_final_parameters: false # against avoid_final_parameters
-    public_member_api_docs: false # TODO: set to true later
+    public_member_api_docs: false # for Flutter Team only
     sort_constructors_first: false # against member-ordering-extended
     sort_unnamed_constructors_first: false # against member-ordering-extended
     unnecessary_final: false # against prefer_final_locals
@@ -302,6 +313,7 @@ linter:
 
     # Linter 1.15.0+
     avoid_final_parameters: true
+    combinators_ordering: true
     conditional_uri_does_not_exist: true
     discarded_futures: true
     no_leading_underscores_for_library_prefixes: true

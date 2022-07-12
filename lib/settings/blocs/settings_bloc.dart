@@ -94,7 +94,7 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   @override
   Map<String, dynamic>? toJson(SettingsState state) {
     if (state is SettingsChangedInitial) {
-      return <String, dynamic>{
+      return <String, Object?>{
         _themeKey: state.isDarkTheme,
         _colormindForUiKey: state.colormindForUI,
         _huemintAdjacencyKey: state.huemintAdjacency,

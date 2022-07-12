@@ -54,7 +54,7 @@ class _NavigationScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
-        providers: <BlocProvider<BlocBase<dynamic>>>[
+        providers: <BlocProvider<BlocBase<Object?>>>[
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockBloc>(
             create: (_) => LockBloc(context.read<ColorsRepository>())..add(const LockStarted()),

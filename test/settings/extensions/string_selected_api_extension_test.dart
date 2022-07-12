@@ -40,11 +40,11 @@ void main() => testWidgets('StringSelectedApiExtension helperText()', (WidgetTes
 
       final String? colormindText = (colormindWidget as Text).data;
       expect(colormindText, isNotNull);
-      expect(colormindText!.contains(','), true);
+      expect(colormindText?.contains(','), true);
 
       final String? huemintText = (huemintWidget as Text).data;
       expect(huemintText, isNotNull);
-      expect(huemintText!.contains(','), true);
+      expect(huemintText?.contains(','), true);
 
       expect(huemintText != colormindText, true);
     });

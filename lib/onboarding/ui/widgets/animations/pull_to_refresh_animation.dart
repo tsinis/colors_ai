@@ -39,7 +39,7 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
     fade = ReverseAnimation(fadeController);
     opacity = Tween<double>(begin: 1, end: 0).chain(CurveTween(curve: widget.curve)).animate(opacityController);
     height = Tween<double>(begin: 100, end: 200).chain(CurveTween(curve: widget.curve)).animate(heightController);
-    color = ColorTween(begin: Colors.grey[400]!.withOpacity(0.8), end: widget.color.withOpacity(0.4))
+    color = ColorTween(begin: Colors.grey.shade400.withOpacity(0.8), end: widget.color.withOpacity(0.4))
         .chain(CurveTween(curve: widget.curve))
         .animate(colorController);
     super.initState();
@@ -59,7 +59,7 @@ class _PullToRefreshAnimationState extends State<PullToRefreshAnimation> with An
                 end: Alignment.bottomCenter,
                 colors: <Color>[color.value!, widget.color.withOpacity(opacity.value)],
               ),
-              border: Border.all(color: Colors.grey[400]!.withOpacity(opacity.value), width: 4),
+              border: Border.all(color: Colors.grey.shade400.withOpacity(opacity.value), width: 4),
               borderRadius: const BorderRadius.all(Radius.circular(100)),
             ),
             child: FadeTransition(

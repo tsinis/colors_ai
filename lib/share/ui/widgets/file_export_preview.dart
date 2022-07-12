@@ -124,6 +124,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                         axisAlignment: -1,
                                         child: child,
                                       ),
+                                      // ignore: avoid-returning-widgets
                                       child: codeText(isJson: file == FileFormat.json),
                                     ),
                                   ),
