@@ -53,7 +53,7 @@ dart_code_metrics:
     - long-method
     - long-parameter-list
   metrics:
-    cyclomatic-complexity: 20
+    cyclomatic-complexity: 24
     maximum-nesting-level: 5
     number-of-parameters: 4
     source-lines-of-code: 60
@@ -63,7 +63,7 @@ dart_code_metrics:
     - avoid-nested-conditional-expressions:
       acceptable-level: 2
     - prefer-correct-identifier-length:
-        exceptions: ["i", "x", "sb"] # i for item, x for math operations, sb for StringBuffer.
+        exceptions: ["i", "x", "sb"] # i for index, x for math operations, sb for StringBuffer.
     - always-remove-listener: true
     - avoid-banned-imports: true
     - avoid-border-all: true
