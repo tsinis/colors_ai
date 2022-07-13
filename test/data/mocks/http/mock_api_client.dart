@@ -3,7 +3,6 @@ import 'dart:ui' show Color;
 
 import 'package:colors_ai/color_generator/interfaces/api.dart';
 import 'package:colors_ai/color_generator/models/colors/constants.dart';
-import 'package:colors_ai/core/extensions/int_color_extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
@@ -33,7 +32,7 @@ abstract class MockApiClient extends MockClient {
     final int blue = randomChannelColor();
     final int green = randomChannelColor();
 
-    return <int>[red, blue, green].toColor();
+    return Color.fromRGBO(red, blue, green, 1);
   }
 
   static Future<Response> _handlerWithError(Request request) async => Response('Server error.', 404, request: request);

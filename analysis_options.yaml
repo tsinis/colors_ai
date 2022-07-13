@@ -63,7 +63,7 @@ dart_code_metrics:
     - avoid-nested-conditional-expressions:
       acceptable-level: 2
     - prefer-correct-identifier-length:
-        exceptions: ["i", "x", "sb"] # i for item, x for math operations, sb for StringBuffer.
+        exceptions: ["i", "x", "sb"] # i for index, x for math operations, sb for StringBuffer.
     - always-remove-listener: true
     - avoid-banned-imports: true
     - avoid-border-all: true
