@@ -42,7 +42,7 @@ void main() => group('$OnboardingBloc', () {
           return OnboardingBloc(corruptedRepo);
         },
         act: (OnboardingBloc bloc) => bloc.add(const OnboardingEvent.started()),
-        expect: () => <OnboardingState>[const  OnboardingState.loading(), const OnboardingState.doneSuccess()],
+        expect: () => <OnboardingState>[const OnboardingState.loading(), const OnboardingState.doneSuccess()],
         verify: (OnboardingBloc bloc) => expect(fakeBox.isOpen, false),
       );
 
@@ -50,7 +50,7 @@ void main() => group('$OnboardingBloc', () {
         '$OnboardingEvent.finished',
         build: () => OnboardingBloc(onboardingRepository),
         act: (OnboardingBloc bloc) => bloc.add(const OnboardingEvent.finished()),
-        expect: () => <OnboardingState>[const  OnboardingState.doneSuccess()],
+        expect: () => <OnboardingState>[const OnboardingState.doneSuccess()],
         verify: (OnboardingBloc bloc) => expect(fakeBox.isOpen, false),
       );
     });

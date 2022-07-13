@@ -7,10 +7,6 @@ abstract class FabEvent extends Equatable {
   const FabEvent();
 }
 
-class FabStarted extends FabEvent {
-  const FabStarted();
-}
-
 class FabHided extends FabEvent {
   const FabHided();
 }

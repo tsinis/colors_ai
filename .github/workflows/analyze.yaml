@@ -1,0 +1,53 @@
+name: analyze
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "lib/**"
+      - "test/**"
+      - "integration_test/**"
+      - "pubspec.yaml"
+      - ".github/workflows/analyze.yaml"
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v2
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+
+      - name: Install app dependencies
+        run: flutter pub get
+
+      - name: Generate localization files
+        run: flutter gen-l10n
+
+      - name: Test project
+        run: flutter test --no-pub
+
+      - name: Analyze project
+        uses: invertase/github-action-dart-analyzer@v1
+        with:
+          fatal-infos: true
+          fatal-warnings: true
+
+      - name: Dart Code Metrics
+        uses: dart-code-checker/dart-code-metrics-action@v2.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          folders: "lib, test, integration_test"
+          pull_request_comment: true
+          fatal_warnings: true
+          fatal_performance: true
+          fatal_style: true
+          check_unused_files: true
+          check_unused_files_folders: "lib"
+
+      - name: Dart Code Metrics unused code
+        run: flutter pub run dart_code_metrics:metrics check-unused-code lib test integration_test

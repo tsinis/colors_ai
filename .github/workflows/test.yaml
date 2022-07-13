@@ -1,16 +1,20 @@
-name: Tests
+name: tests
 
 on:
   push:
     paths:
       - "lib/**"
       - "test/**"
+      - "integration_test/**"
       - "pubspec.yaml"
       - ".github/workflows/test.yaml"
   pull_request:
+    branches:
+      - main
     paths:
       - "lib/**"
       - "test/**"
+      - "integration_test/**"
       - "pubspec.yaml"
 
 jobs:
@@ -31,12 +35,12 @@ jobs:
         run: flutter gen-l10n
 
       - name: Test app
-        run: flutter test --coverage
+        run: flutter test --coverage --no-pub
 
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
         with:
-          min_coverage: 90
+          min_coverage: 91
           exclude: "**/*.g.dart **/*.gen.dart **/*.freezed.dart"
 
       - name: Upload Code Coverage
