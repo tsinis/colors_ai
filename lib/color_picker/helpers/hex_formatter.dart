@@ -26,6 +26,6 @@ class HexFormatter extends TextInputFormatter {
 
   @visibleForTesting
   static String formatInput(String input) => input.replaceFirst('#', '').toUpperCase();
-
-  String unused() => 'unused one';
 }
+
+String unused() => 'unused one';
