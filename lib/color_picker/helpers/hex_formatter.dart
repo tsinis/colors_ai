@@ -9,7 +9,7 @@ class HexFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
-    final String hex = formatInput(newValue.text);
+    final hex = formatInput(newValue.text);
     final TextSelection selection = TextSelection(baseOffset: hex.length, extentOffset: hex.length);
     final TextEditingValue validatedValue = TextEditingValue(text: hex, selection: selection);
 
@@ -20,10 +20,13 @@ class HexFormatter extends TextInputFormatter {
     if (input != null && RegExp(kCompleteValidHexPattern).hasMatch(input)) {
       return formatInput(input);
     }
-
     return null;
   }
 
   @visibleForTesting
   static String formatInput(String input) => input.replaceFirst('#', '').toUpperCase();
+
+  String unused() {
+    return 'unused one';
+  }
 }
