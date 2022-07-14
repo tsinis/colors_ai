@@ -50,18 +50,18 @@ dependencies:
 dev_dependencies:
   analyzer: ^4.2.0
   bloc_test: 8.5.0
-  build_runner: ^2.1.11 # From Google
+  build_runner: ^2.2.0 # From Google
   dart_code_metrics: ^4.16.0 # Flutter Favorite
   flutter_lints: ^2.0.1 # From Google
   flutter_test: # From Google
     sdk: flutter
-  freezed: ^2.0.4 # Flutter Favorite
+  freezed: ^2.0.5 # Flutter Favorite
   golden_toolkit: ^0.13.0
   hive_generator: ^1.1.3
   integration_test: # From Google
     sdk: flutter
   json_serializable: ^6.3.1 # From Google
-  mockito: ^5.0.0-nullsafety.5 # From Google
+  mockito: ^5.2.0 # From Google
   msix: 2.7.3 # Flutter Favorite (generating from SVG)
 
 dependency_overrides:
