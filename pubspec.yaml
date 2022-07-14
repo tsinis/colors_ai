@@ -50,7 +50,7 @@ dependencies:
 dev_dependencies:
   analyzer: ^4.2.0
   bloc_test: 8.5.0
-  build_runner: ^2.1.11 # From Google
+  build_runner: ^2.2.0 # From Google
   dart_code_metrics: ^4.16.0 # Flutter Favorite
   flutter_lints: ^2.0.1 # From Google
   flutter_test: # From Google
