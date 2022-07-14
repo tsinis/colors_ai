@@ -28,9 +28,6 @@ jobs:
       - name: Generate localization files
         run: flutter gen-l10n
 
-      - name: Test project
-        run: flutter test --no-pub
-
       - name: Analyze project
         uses: invertase/github-action-dart-analyzer@v1
         with:
