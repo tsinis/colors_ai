@@ -11,6 +11,7 @@ import '../../models/selected_api.dart';
 import '../widgets/gradient_slider_shape.dart';
 
 class SettingsDialog extends StatelessWidget {
+  static const TextStyle _tightSpaceStyle = TextStyle(letterSpacing: 0.5, height: 1.2);
   const SettingsDialog({super.key});
 
   @override
@@ -34,7 +35,8 @@ class SettingsDialog extends StatelessWidget {
                     filled: true,
                     fillColor: context.theme.splashColor,
                     labelText: context.l10n.selectAiProvider,
-                    helperStyle: const TextStyle(fontSize: 12),
+                    labelStyle: _tightSpaceStyle.copyWith(fontSize: 14),
+                    helperStyle: _tightSpaceStyle.copyWith(fontSize: 12),
                     helperMaxLines: 1,
                     helperText: state.selectedAPI.helperText(context.l10n),
                   ),
@@ -60,8 +62,11 @@ class SettingsDialog extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 4),
                   child: SwitchListTile(
                     dense: true,
-                    title: Text(context.l10n.colorsForUiTitle),
-                    subtitle: Text(context.l10n.colorsForUiSubtitle),
+                    title: Text(context.l10n.colorsForUiTitle, style: _tightSpaceStyle),
+                    subtitle: Text(
+                      context.l10n.colorsForUiSubtitle,
+                      style: _tightSpaceStyle,
+                    ),
                     activeColor: context.theme.indicatorColor,
                     value: state.colormindForUI,
                     onChanged: (bool isForUi) {
@@ -129,7 +134,7 @@ class SettingsDialog extends StatelessWidget {
                 dense: true,
                 title: Text(context.l10n.lightThemeTitle),
                 contentPadding: const EdgeInsets.only(right: 32, left: 16),
-                subtitle: Text(context.l10n.lightThemeSubtitle),
+                subtitle: Text(context.l10n.lightThemeSubtitle, style: _tightSpaceStyle),
                 value: false,
                 groupValue: state.isDarkTheme,
                 onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsLightThemeSelected()),
@@ -137,7 +142,7 @@ class SettingsDialog extends StatelessWidget {
               RadioListTile<bool?>(
                 dense: true,
                 title: Text(context.l10n.darkThemeTitle),
-                subtitle: Text(context.l10n.darkThemeSubtitle),
+                subtitle: Text(context.l10n.darkThemeSubtitle, style: _tightSpaceStyle),
                 value: true,
                 groupValue: state.isDarkTheme,
                 onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsDarkThemeSelected()),
@@ -146,7 +151,7 @@ class SettingsDialog extends StatelessWidget {
                 child: RadioListTile<bool?>(
                   dense: true,
                   title: Text(context.l10n.systemThemeTitle),
-                  subtitle: Text(context.l10n.systemThemeSubtitle),
+                  subtitle: Text(context.l10n.systemThemeSubtitle, style: _tightSpaceStyle),
                   value: null,
                   groupValue: state.isDarkTheme,
                   onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected()),
