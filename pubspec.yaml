@@ -55,7 +55,7 @@ dev_dependencies:
   flutter_lints: ^2.0.1 # From Google
   flutter_test: # From Google
     sdk: flutter
-  freezed: ^2.0.5 # Flutter Favorite
+  freezed: ^2.1.0+1 # Flutter Favorite
   golden_toolkit: ^0.13.0
   hive_generator: ^1.1.3
   integration_test: # From Google
