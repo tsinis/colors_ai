@@ -14,12 +14,11 @@ class OverflowMenu extends StatelessWidget {
     SchedulerBinding.instance.addPostFrameCallback(
       (_) async => showModal<void>(
         context: context,
+        builder: (_) => dialog,
         configuration: const FadeScaleTransitionConfiguration(
           transitionDuration: kDefaultTransitionDuration,
           reverseTransitionDuration: kDefaultReverseTransitionDuration,
         ),
-        useRootNavigator: true,
-        builder: (_) => dialog,
       ),
     );
   }

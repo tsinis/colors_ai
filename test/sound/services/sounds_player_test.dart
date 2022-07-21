@@ -12,7 +12,6 @@ void main() => group('$SoundsPlayer', () {
       const String asset = 'sounds/ui_lock.mp3';
       const String setVolumeMethod = 'setVolume';
       const Set<String> expectedMethodNames = <String>{'setSourceUrl', 'resume'};
-      // TODO Mock Platform.isAndroid, const String setPlayerMode = 'setPlayerMode'.
 
       const MethodChannel channel = MethodChannel('xyz.luan/audioplayers');
       final List<MethodCall> calls = <MethodCall>[];

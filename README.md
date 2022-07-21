@@ -1,4 +1,5 @@
-[![codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg?token=HXC806IIKE)](https://codecov.io/gh/tsinis/colors_ai)
+[![Codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg?token=HXC806IIKE)](https://codecov.io/gh/tsinis/colors_ai)
+[![CodeFactor](https://www.codefactor.io/repository/github/tsinis/colors_ai/badge)](https://www.codefactor.io/repository/github/tsinis/colors_ai)
 [![Tests](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml/badge.svg)](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml)
 [![Codemagic build status](https://api.codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/status_badge.svg)](https://codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/latest_build)
 [![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
@@ -77,9 +78,8 @@ flutter run
 
 ### Platform Specific Setup
 
-You should run the mobile and Windows versions of the app without any additional steps.
+You should run all platforms (except Linux) versions of the app without any additional steps.
 
-* For macOS builds you may need to install [CMake](https://cmake.org/download) first and add your macOS device to your developer's account (not necessary for direct XCode builds).
 * For Linux builds you will need to install those packages first (via sudo apt-get install): `clang, cmake, unzip, curl, ninja-build, pkg-config, libgtk-3-dev, liblzma-dev, libgstreamer1.0-dev, libgles2-mesa-dev, libgstreamer-plugins-base1.0-dev, libsecret-1-dev, libjsoncpp-dev`. If you want to run app from this binary, you will also need `libsecret-1-0` and `libjsoncpp1`. Please do not use a Snap version of Flutter, since it have a locked CMake version at this moment. So basically you can just run:
 
 ```shell
@@ -95,7 +95,6 @@ All animations here are made with pure Flutter. The application's UI is designed
 
 * [ ] Refactor.
 * [ ] Use Freezed for more Events/States.
-* [ ] Write the rest of the test for UI.
 * [x] Separate data layer more.
 * [x] Create more interfaces for Data and Repository layers.
 * [x] Add exports to PDF and PNG.
