@@ -9,16 +9,15 @@ publish_to: "none"
 
 environment:
   sdk: ">=2.17.0"
-  flutter: ">=3.0.0"
+  flutter: ">=3.0.1"
 
 dependencies:
   animations: ^2.0.3 # From Google
   audioplayers: ^1.0.1
   color_converter: ^0.2.1
   equatable: ^2.0.3 # From Flutter Community
-  file_selector: 0.8.4+3 # From Google
+  file_selector: ^0.9.0 # From Google
   file_selector_linux: ^0.0.2+1 # From Google
-  file_selector_windows: ^0.8.2+2 # From Google
   flutter: # From Google
     sdk: flutter
   flutter_bloc: 7.0.0 # Flutter Favorite

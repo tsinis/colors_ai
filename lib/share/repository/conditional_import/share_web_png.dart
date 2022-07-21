@@ -4,10 +4,10 @@ import 'dart:js' as js;
 import 'dart:typed_data';
 
 Future<bool> shareWebPng(Uint8List bytes, {String? filename}) async {
-  final pdfFile = html.Blob(<Uint8List>[bytes], 'application/png');
-  final pdfUrl = html.Url.createObjectUrl(pdfFile);
+  final html.Blob pngFile = html.Blob(<Uint8List>[bytes], 'application/png');
+  final String pngUrl = html.Url.createObjectUrl(pngFile);
   final html.HtmlDocument doc = js.context['document'] as html.HtmlDocument;
-  final link = html.AnchorElement(href: pdfUrl);
+  final html.AnchorElement link = html.AnchorElement(href: pngUrl);
   if (filename != null) {
     link.download = filename;
   } else {
