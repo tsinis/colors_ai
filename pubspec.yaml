@@ -32,7 +32,7 @@ dependencies:
   intl: ^0.17.0 # From Google
   json_annotation: ^4.6.0 # From Google
   mdi: ^5.0.0-nullsafety.0
-  package_info_plus: ^1.4.2 # From Flutter Community (former Google)
+  package_info_plus: ^1.4.3 # From Flutter Community (former Google)
   path_provider: ^2.0.11 # From Google
   platform_info: ^3.2.0 # Contributor
   printing: ^5.9.1
