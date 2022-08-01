@@ -68,12 +68,15 @@ dart_code_metrics:
     - avoid-banned-imports: true
     - avoid-border-all: true
     - avoid-collection-methods-with-unrelated-types: true
+    - avoid-duplicate-exports: true
     - avoid-dynamic: true
     - avoid-global-state: true
     - avoid-missing-enum-constant-in-map: true
     - avoid-non-ascii-symbols: true
     - avoid-returning-widgets: true
+    - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
+    - avoid-top-level-members-in-tests: false # Until https://github.com/dart-code-checker/dart-code-metrics/pull/945
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
     - avoid-unrelated-type-assertions: true
@@ -94,7 +97,9 @@ dart_code_metrics:
     - prefer-async-await: true
     - prefer-conditional-expressions: true
     - prefer-const-border-radius: true
+    - prefer-correct-edge-insets-constructor-rule: true
     - prefer-correct-type-name: true
+    - prefer-enums-by-name: true
     - prefer-first: true
     - prefer-immediate-return: true
     - prefer-intl-name: true
