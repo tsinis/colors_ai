@@ -1,0 +1,43 @@
+name: pull_requests
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - edited
+
+permissions:
+  pull-requests: write
+
+jobs:
+  pr-clean-up:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Auto Author Assign
+        uses: toshimaru/auto-author-assign@v1.6.1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lint Pull Request Title
+        uses: amannn/action-semantic-pull-request@v4
+        with:
+          requireScope: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Label When Approved
+        uses: pullreminders/label-when-approved-action@master
+        env:
+          APPROVALS: "1"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ADD_LABEL: "approved"
+          REMOVE_LABEL: "awaiting%20review"
+
+      - name: Approve Dependabot
+        uses: hmarr/auto-approve-action@v2
+        if: github.actor == 'dependabot[bot]'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
