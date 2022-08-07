@@ -15,6 +15,8 @@ import '../../../../data/helpers/utils.dart';
 void main() => group('$RemoveAllFavoritesButton', () {
       late RemoveFavoritesRepository removeFavsRepository;
       late FavoritesRepository favoritesRepository;
+      late FavoritesBloc favoritesBloc;
+      late RemoveFavoritesBloc removeFavoritesBloc;
 
       setUpAll(createFakeStorageDir);
 
@@ -26,6 +28,12 @@ void main() => group('$RemoveAllFavoritesButton', () {
             FavoritesHiveStorage(boxName: uniqueBoxName),
           );
           await favoritesRepository.storage.storedFavorites;
+          favoritesBloc = FavoritesBloc(favoritesRepository);
+          removeFavoritesBloc = RemoveFavoritesBloc(removeFavsRepository);
+          favoritesBloc.add(const FavoritesStarted());
+          await Future<void>.delayed(const Duration(milliseconds: 5));
+          favoritesBloc.add(const FavoritesAdded(favorite: <Color>[Color.fromARGB(0, 0, 0, 0)]));
+          await Future<void>.delayed(const Duration(milliseconds: 5));
         },
       );
 
@@ -34,10 +42,12 @@ void main() => group('$RemoveAllFavoritesButton', () {
           MultiBlocProvider(
             providers: <BlocProvider<BlocBase<Object>>>[
               BlocProvider<FavoritesBloc>(
-                create: (_) => FavoritesBloc(favoritesRepository)..add(const FavoritesStarted()),
+                create: (_) => favoritesBloc,
                 lazy: false,
               ),
-              BlocProvider<RemoveFavoritesBloc>(create: (_) => RemoveFavoritesBloc(removeFavsRepository)),
+              BlocProvider<RemoveFavoritesBloc>(
+                create: (_) => removeFavoritesBloc..add(const RemoveFavoritesSelected(0)),
+              ),
             ],
             child: const MaterialApp(
               localizationsDelegates: AppLocalizations.localizationsDelegates,
