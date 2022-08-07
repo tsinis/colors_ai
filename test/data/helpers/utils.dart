@@ -9,7 +9,6 @@ String get uniqueBoxName => DateTime.now().toUtc().millisecondsSinceEpoch.toStri
 void deleteFakeStorageDir({String directoryName = fakeStorageDir}) {
   try {
     Directory(directoryName).deleteSync(recursive: true);
-    // ignore: avoid_catches_without_on_clauses
   } catch (_) {}
 }
 

@@ -9,7 +9,6 @@ class Vibrations {
       final bool hasExtenderVibrator = await Vibration.hasCustomVibrationsSupport() ?? false;
 
       return _customVibrationsAvailable = hasBasicVibrator && hasExtenderVibrator;
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       return _customVibrationsAvailable = false;
     }

@@ -15,7 +15,6 @@ mixin DeviceCapabilities {
       final PrintingInfo info = await Printing.info();
       canSharePdf = info.canShare;
       canSharePng = info.canRaster;
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       canSharePng = canSharePdf = false;
     }

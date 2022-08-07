@@ -26,7 +26,6 @@ class AboutBloc extends Bloc<AboutEvent, AboutState> {
         licensesTaped: _aboutRepository.openAboutLicenses,
         colormindTaped: _aboutRepository.openAboutColormind,
       );
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       yield const AboutState.failure();
     }

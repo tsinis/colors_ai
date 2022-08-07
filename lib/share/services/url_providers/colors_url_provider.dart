@@ -30,8 +30,9 @@ abstract class ColorsUrlProvider with EquatableMixin {
   String? get formats => _formats;
 
   String get name {
-    if (_providerName != null) {
-      return _providerName!;
+    final String? providerName = _providerName;
+    if (providerName != null) {
+      return providerName;
     } else {
       final StringBuffer sb = StringBuffer();
       final RegExp pascalCaseWords = RegExp('(?:[A-Z]+|^)[a-z]*');

@@ -37,7 +37,6 @@ class SystemUI {
           );
 
         return true;
-        // ignore: avoid_catches_without_on_clauses
       } catch (_) {
         return false;
       }

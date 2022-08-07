@@ -21,7 +21,6 @@ class ColorPickerBloc extends Bloc<ColorPickerEvent, ColorPickerState> {
         copied: (Color color) async* {
           try {
             await _clipboard.copyColor(color);
-            // ignore: avoid_catches_without_on_clauses
           } catch (_) {
             yield const ColorPickerState.failure();
           } finally {

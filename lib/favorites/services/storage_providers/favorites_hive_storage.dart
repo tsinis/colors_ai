@@ -14,7 +14,6 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
       final Box<ColorPalette> storageBox = await openBox;
 
       return storageBox.values;
-      // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       debugPrint('Exception during favorites box opening: $e');
 

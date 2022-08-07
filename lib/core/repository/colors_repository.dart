@@ -43,7 +43,6 @@ class ColorsRepository {
         _colorPalette.addAll(filteredColors);
 
         return true;
-        // ignore: avoid_catches_without_on_clauses
       } catch (e) {
         debugPrint(e.toString());
 
@@ -59,7 +58,7 @@ class ColorsRepository {
   void swapColors({required int oldIndex, required int newIndex}) {
     // Until https://github.com/flutter/flutter/issues/24786 newIndex may be wrong.
     if (oldIndex < newIndex) {
-      // ignore: parameter_assignments
+      // ignore: parameter_assignments, to have it same as a workaround.
       newIndex -= 1;
     }
     final int colorsAvailable = kDefaultColors.length - 1;

@@ -74,8 +74,9 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
         HuemintSettings.adjacencyMax,
       );
     } else if (event is SettingsApiSelected) {
-      if (event.api != null) {
-        _generatorSettings.api = event.api!;
+      final SelectedAPI? api = event.api;
+      if (api != null) {
+        _generatorSettings.api = api;
       }
     }
     try {

@@ -56,8 +56,8 @@ class OnboardingTile extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           child: oppositeSide
                               ? (additionalText != null)
-                                  ? Text(
-                                      additionalText!,
+                                  ? Text.rich(
+                                      TextSpan(text: additionalText),
                                       textAlign: !isPortrait ? TextAlign.center : TextAlign.left,
                                       style: const TextStyle(fontWeight: FontWeight.bold),
                                     )

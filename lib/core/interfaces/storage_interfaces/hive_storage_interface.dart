@@ -9,6 +9,7 @@ abstract class HiveStorageInterface<T> {
   String get boxName => _boxName;
 
   Future<Box<T>> get openBox async => _openedBox != null
+      // ignore: avoid-non-null-assertion, since null check was already made.
       ? _openedBox!
       : await Hive.openBox<T>(
           _boxName,

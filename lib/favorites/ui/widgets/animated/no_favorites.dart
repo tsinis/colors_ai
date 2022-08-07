@@ -1,3 +1,4 @@
+// ignore_for_file: avoid-non-null-assertion, since those colors are stored in theme.
 import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/context_extensions.dart';

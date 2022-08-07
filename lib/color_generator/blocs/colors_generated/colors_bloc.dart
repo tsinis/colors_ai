@@ -22,8 +22,9 @@ class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
       yield const ColorsLoadInProgress();
       yield ColorsLoadSuccess(_colorsRepository.palette);
     } else if (event is ColorsChanged) {
-      if (event.newColor != null) {
-        _colorsRepository.changeColor(event.newColor!, event.colorIndex);
+      final Color? newColor = event.newColor;
+      if (newColor != null) {
+        _colorsRepository.changeColor(newColor, event.colorIndex);
       }
       yield ColorsChangeSuccess(_colorsRepository.palette);
     } else if (event is ColorsGenerated) {
