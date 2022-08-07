@@ -49,7 +49,6 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
         formatSelected: (FileFormat? format) => _share.selectedFormat = format,
         urlProviderSelected: (ColorsUrlProvider? provider) => _share.selectedUrlProvider = provider,
       );
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       yield const ShareState.failure();
       await _shareFailed();

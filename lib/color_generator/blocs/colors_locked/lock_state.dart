@@ -15,7 +15,6 @@ class LockSuccess extends LockState {
   bool isLocked(int index) {
     try {
       return lockedColors?.elementAt(index) ?? false;
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       return false;
     }

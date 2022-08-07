@@ -12,7 +12,6 @@ class OnboardingHiveStorage extends HiveStorageInterface<bool> {
       final bool? isFirstRun = onboardBox.get(_isFirstRunKey, defaultValue: true);
 
       return !(isFirstRun == false);
-      // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       debugPrint('Exception during onboarding box opening: $e');
 

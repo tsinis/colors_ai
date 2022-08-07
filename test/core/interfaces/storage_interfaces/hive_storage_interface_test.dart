@@ -9,6 +9,7 @@ class _HiveStorageInterfaceTest extends HiveStorageInterface<Object> {
   const _HiveStorageInterfaceTest(String boxName, [Box<Object>? box]) : super(null, boxName: boxName, openedBox: box);
 
   @override
+  // ignore: no-empty-block, since it's a overriden mock.
   Future<void> doMigration(Object? oldData) async {}
 }
 

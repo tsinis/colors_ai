@@ -18,7 +18,6 @@ void main() {
         EnginePhase.sendSemanticsUpdate,
         const Duration(seconds: 5),
       );
-      // ignore: avoid_catches_without_on_clauses
     } catch (exception) {
       debugPrint(
         'Exception is: $exception. Because: Infinity loop "Pull to refresh" animation is showed, cannot wait till settle',

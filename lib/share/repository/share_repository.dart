@@ -84,7 +84,6 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
       }
 
       return true;
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       return false;
     }
@@ -112,7 +111,6 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
       }
 
       return true;
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       return false;
     }

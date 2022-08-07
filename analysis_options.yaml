@@ -73,12 +73,15 @@ dart_code_metrics:
     - avoid-global-state: true
     - avoid-missing-enum-constant-in-map: true
     - avoid-non-ascii-symbols: true
+    - avoid-non-null-assertion: true
     - avoid-returning-widgets: true
+    - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
     - avoid-top-level-members-in-tests: false # Until https://github.com/dart-code-checker/dart-code-metrics/pull/945
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
+    - avoid-unnecessary-type-casts: true
     - avoid-unrelated-type-assertions: true
     - avoid-unused-parameters: true
     - avoid-use-expanded-as-spacer: true
@@ -92,9 +95,11 @@ dart_code_metrics:
     - member-ordering-extended: true
     - newline-before-return: true
     - no-boolean-literal-compare: true
+    - no-empty-block: true
     - no-equal-then-else: true
     - no-object-declaration: true
     - prefer-async-await: true
+    - prefer-commenting-analyzer-ignores: true
     - prefer-conditional-expressions: true
     - prefer-const-border-radius: true
     - prefer-correct-edge-insets-constructor-rule: true
@@ -261,7 +266,6 @@ linter:
     use_rethrow_when_possible: true
 
     # Effective_dart 1.2.0
-    avoid_catches_without_on_clauses: true
     avoid_catching_errors: true
     avoid_equals_and_hash_code_on_mutable_classes: true
     avoid_function_literals_in_foreach_calls: true

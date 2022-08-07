@@ -17,7 +17,6 @@ class UrlLauncher {
       final bool canLaunch = await canLaunchUrl(maybeUrl);
 
       return canLaunch ? await launchUrl(maybeUrl) : throw UnsupportedError('Could not launch $url');
-      // ignore: avoid_catches_without_on_clauses
     } catch (_) {
       return false;
     }

@@ -62,12 +62,6 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
     }
   }
 
-  Text codeText({required bool isJson}) => Text(
-        isJson ? toJson(widget._palette) : toScss(widget._palette),
-        key: ValueKey<bool>(isJson),
-        style: GoogleFonts.robotoMono(),
-      );
-
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, ShareState state) {
@@ -108,7 +102,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                       child: AnimatedSize(
                         duration: widget.duration,
                         curve: widget.curve,
-                        child: (file == FileFormat.scss || file == FileFormat.json)
+                        child: file == FileFormat.scss || file == FileFormat.json
                             ? FractionallySizedBox(
                                 widthFactor: 0.6,
                                 heightFactor: 0.6,
@@ -124,8 +118,11 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                         axisAlignment: -1,
                                         child: child,
                                       ),
-                                      // ignore: avoid-returning-widgets
-                                      child: codeText(isJson: file == FileFormat.json),
+                                      child: Text(
+                                        file == FileFormat.json ? toJson(widget._palette) : toScss(widget._palette),
+                                        key: ValueKey<bool>(file == FileFormat.json),
+                                        style: GoogleFonts.robotoMono(),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -143,14 +140,11 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
                                           child: AnimatedSize(
                                             duration: widget.duration,
                                             curve: widget.curve,
-                                            // ignore: avoid-wrapping-in-padding
-                                            child: Padding(
-                                              padding: EdgeInsets.all(file.isPrintable ? 2 : 0),
-                                              child: AnimatedContainer(
-                                                duration: widget.duration,
-                                                curve: widget.curve,
-                                                color: colors.elementAt(colorsIndex),
-                                              ),
+                                            child: AnimatedContainer(
+                                              margin: EdgeInsets.all(file.isPrintable ? 2 : 0),
+                                              duration: widget.duration,
+                                              curve: widget.curve,
+                                              color: colors.elementAt(colorsIndex),
                                             ),
                                           ),
                                         ),

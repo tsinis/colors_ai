@@ -18,7 +18,7 @@ class GradientSliderShape extends SliderTrackShape with BaseSliderTrackShape {
   });
 
   @override
-  // ignore: long-parameter-list, long-method
+  // ignore: long-parameter-list, long-method, since it's override.
   void paint(
     PaintingContext context,
     Offset offset, {

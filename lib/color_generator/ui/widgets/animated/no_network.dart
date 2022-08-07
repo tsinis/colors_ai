@@ -63,7 +63,7 @@ class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMix
                 top: 100,
                 child: CustomPaint(
                   size: const Size(300, 400),
-                  painter: TransmitterTower(color: context.theme.primaryIconTheme.color!),
+                  painter: TransmitterTower(color: context.theme.primaryIconTheme.color),
                 ),
               ),
             ],

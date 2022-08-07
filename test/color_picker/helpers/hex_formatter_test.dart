@@ -21,7 +21,7 @@ void main() {
       test('from partially invalid hex', () => expect(HexFormatter.formatCompleteInput(partiallyValidHex), null));
       test('from null', () => expect(HexFormatter.formatCompleteInput(null), null));
       test('from empty hex', () => expect(HexFormatter.formatCompleteInput(''), null));
-      test('from valid hex', () => expect(colorFromHex(HexFormatter.formatCompleteInput(validHex)!), color));
+      test('from valid hex', () => expect(colorFromHex(HexFormatter.formatCompleteInput(validHex) ?? ''), color));
     });
     group('formatEditUpdate', () {
       TextEditingValue oldValue = TextEditingValue.empty;
