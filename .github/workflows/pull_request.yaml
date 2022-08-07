@@ -41,3 +41,9 @@ jobs:
         if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]' || github.actor == github.event.repository.owner.login
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add Reviewer
+        uses: madrapps/add-reviewers@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: github.event.repository.owner.login
