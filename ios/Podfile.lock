@@ -16,7 +16,7 @@ PODS:
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
-  - vibration (1.7.4-nullsafety.0):
+  - vibration (1.7.5):
     - Flutter
 
 DEPENDENCIES:
@@ -63,7 +63,7 @@ SPEC CHECKSUMS:
   printing: eafa00acb682c0ca029d4d98d0798f55a1e27102
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
-  vibration: 1ec279c4a1a7a646627b54039d812334b3f1114a
+  vibration: 7d883d141656a1c1a6d8d238616b2042a51a1241
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
