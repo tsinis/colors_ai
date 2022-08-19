@@ -6,6 +6,9 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    commit_message:
+      prefix: "chore"
+      include_scope: true
     ignore:
       - dependency-name: "*bloc*"
       - dependency-name: "msix"
