@@ -15,7 +15,7 @@ dependencies:
   animations: ^2.0.3 # From Google
   audioplayers: ^1.0.1
   color_converter: ^0.2.1
-  equatable: ^2.0.3 # From Flutter Community
+  equatable: ^2.0.5 # From Flutter Community
   file_selector: ^0.9.0 # From Google
   file_selector_linux: ^0.0.3 # From Google
   flutter: # From Google
