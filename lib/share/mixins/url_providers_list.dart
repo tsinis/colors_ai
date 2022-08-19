@@ -23,5 +23,5 @@ mixin UrlProvidersList {
         for (final ColorsUrlProvider provider in providers) provider.keyName: provider,
       };
 
-  ColorsUrlProvider? urlProviderByKeyName(String? keyName) => _map[keyName];
+  ColorsUrlProvider? urlProviderByKeyName(String keyName) => _map[keyName];
 }

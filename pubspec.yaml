@@ -15,9 +15,8 @@ dependencies:
   animations: ^2.0.3 # From Google
   audioplayers: ^1.0.1
   color_converter: ^0.2.1
-  equatable: ^2.0.3 # From Flutter Community
-  file_selector: ^0.9.0 # From Google
-  file_selector_linux: ^0.0.3 # From Google
+  equatable: ^2.0.5 # From Flutter Community
+  file_selector: ^0.9.1 # From Google
   flutter: # From Google
     sdk: flutter
   flutter_bloc: 7.0.0 # Flutter Favorite
@@ -32,7 +31,7 @@ dependencies:
   intl: ^0.17.0 # From Google
   json_annotation: ^4.6.0 # From Google
   mdi: ^5.0.0-nullsafety.0
-  package_info_plus: ^1.4.3 # From Flutter Community (former Google)
+  package_info_plus: ^1.4.3+1 # From Flutter Community (former Google)
   path_provider: ^2.0.11 # From Google
   platform_info: ^3.2.0 # Contributor
   printing: ^5.9.2
@@ -47,9 +46,11 @@ dependencies:
       ref: 12decbe0f592e14e03223f6f2c0c7e0e2dbd70a1
 
 dev_dependencies:
+  analyzer: ^4.6.0 # From Google
   bloc_test: 8.5.0
   build_runner: ^2.2.0 # From Google
-  dart_code_metrics: ^4.17.1 # Flutter Favorite
+  code_builder: ^4.2.0 # From Google
+  dart_code_metrics: ^4.18.0-dev.2 # Flutter Favorite
   flutter_lints: ^2.0.1 # From Google
   flutter_test: # From Google
     sdk: flutter

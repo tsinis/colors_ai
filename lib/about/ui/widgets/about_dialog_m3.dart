@@ -6,10 +6,10 @@ import '../../../core/extensions/string_extension.dart';
 
 class AboutDialogM3 extends StatelessWidget {
   final Widget applicationIcon;
-  final String? applicationLegalese;
+  final String applicationLegalese;
   final String applicationName;
   final String applicationVersion;
-  final List<Widget>? children;
+  final List<Widget> children;
   final EdgeInsetsGeometry contentPadding;
   final ShapeBorder? shape;
   final double textVerticalSeparation;
@@ -18,11 +18,11 @@ class AboutDialogM3 extends StatelessWidget {
     required this.applicationName,
     required this.applicationVersion,
     required this.applicationIcon,
+    required this.applicationLegalese,
+    required this.children,
     this.contentPadding = const EdgeInsets.symmetric(horizontal: 24),
     this.textVerticalSeparation = 18,
     this.shape = kDefaultShape,
-    this.applicationLegalese,
-    this.children,
     super.key,
   });
 
@@ -43,14 +43,14 @@ class AboutDialogM3 extends StatelessWidget {
                         Text(applicationName, style: context.theme.textTheme.headline5),
                         Text(applicationVersion, style: context.theme.textTheme.bodyText2),
                         SizedBox(height: textVerticalSeparation),
-                        Text(applicationLegalese ?? '', style: context.theme.textTheme.caption),
+                        Text(applicationLegalese, style: context.theme.textTheme.caption),
                       ],
                     ),
                   ),
                 ),
               ],
             ),
-            ...?children,
+            ...children,
           ],
         ),
         actions: <Widget>[

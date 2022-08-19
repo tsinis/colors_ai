@@ -14,17 +14,17 @@ class GenerateColorsFAB extends StatefulWidget {
   final double? disabledElevation;
   final Color? focusColor;
   final Icon icon;
-  final bool? isExtended;
+  final bool isExtended;
   final double padding;
 
   const GenerateColorsFAB({
+    required this.isExtended,
     this.animationDuration = kDefaultTransitionDuration,
     this.icon = const Icon(Icons.refresh),
     this.curve = Curves.easeIn,
     this.disabledElevation = 2,
     this.padding = 16,
     this.focusColor,
-    this.isExtended,
     super.key,
   });
 
@@ -39,8 +39,7 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
   bool isGenerateTab = true;
   late bool isShowing;
 
-  bool get alwaysShow => widget.isExtended != null;
-  bool get isExtended => widget.isExtended ?? false;
+  bool get isExtended => widget.isExtended;
   bool get isDisabled => isFailed || !isGenerateTab;
   String get tooltip => context.l10n.generateTabLabel;
 
@@ -73,7 +72,7 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
 
               return BlocBuilder<ColorsBloc, ColorsState>(
                 builder: (_, ColorsState colorState) {
-                  if (alwaysShow) {
+                  if (isExtended) {
                     isFailed = colorState is ColorsFailure;
                   }
 
