@@ -20,6 +20,10 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    assignees:
+      - "dependabot"
+    reviewers:
+      - "tsinis"
     commit-message:
       prefix: "chore"
       include: "scope"
