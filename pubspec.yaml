@@ -17,7 +17,7 @@ dependencies:
   color_converter: ^0.2.1
   equatable: ^2.0.3 # From Flutter Community
   file_selector: ^0.9.0 # From Google
-  file_selector_linux: ^0.0.3 # From Google
+  file_selector_linux: ^0.9.0 # From Google
   flutter: # From Google
     sdk: flutter
   flutter_bloc: 7.0.0 # Flutter Favorite
