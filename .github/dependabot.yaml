@@ -26,4 +26,3 @@ updates:
     ignore:
       - dependency-name: "*bloc*"
       - dependency-name: "msix"
-      
