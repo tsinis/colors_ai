@@ -38,6 +38,6 @@ jobs:
           exclude: "**/*.g.dart **/*.gen.dart **/*.freezed.dart"
 
       - name: Upload Code Coverage
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           file: ./coverage/lcov.info
