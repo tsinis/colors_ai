@@ -74,7 +74,7 @@ class _NavigationScreenState extends State<MainScreen> {
             return Shortcuts(
               shortcuts: <ShortcutActivator, Intent>{
                 ...WidgetsApp.defaultShortcuts,
-                const SingleActivator(kSpacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
+                const SingleActivator(kSpacebar): isGenTab ? const DoNothingIntent() : const ActivateIntent(),
               },
               child: KeyboardListener(
                 focusNode: keyboardListenerNode,

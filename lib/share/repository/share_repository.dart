@@ -1,5 +1,4 @@
 import 'dart:io' show File;
-import 'dart:typed_data' show Uint8List;
 
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
@@ -89,7 +88,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  void asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
+  Future<void> asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
 
   Future<bool> copyFile(ColorPalette palette) async {
     try {
@@ -116,7 +115,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  void copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
+  Future<void> copyUrl(ColorPalette palette) => _convertColorsToUrl(palette, copyOnly: true);
 
   Future<void> _convertColorsToUrl(ColorPalette palette, {bool copyOnly = false}) async {
     final ColorsUrlProvider urlProvider = _selectedUrlProvider ?? UrlProvidersList.providers.first;

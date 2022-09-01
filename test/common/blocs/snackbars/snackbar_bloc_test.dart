@@ -59,7 +59,7 @@ void main() {
     blocTest<SnackbarBloc, SnackbarState>(
       '$UrlOpenedSuccess with invalid data',
       build: () => SnackbarBloc(clipboard: FakeClipboard(), urlLauncher: mockedUrlLauncher),
-      act: (SnackbarBloc bloc) {
+      act: (SnackbarBloc bloc) async {
         when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
         bloc.add(const UrlOpenedSuccess());
       },
@@ -78,7 +78,7 @@ void main() {
         bloc.add(const UrlOpenedSuccess());
       },
       expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
-      verify: (_) => verify(mockedUrlLauncher.openURL('url')).called(1),
+      verify: (_) async => verify(mockedUrlLauncher.openURL('url')).called(1),
     );
   });
 }

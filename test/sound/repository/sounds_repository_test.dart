@@ -37,13 +37,13 @@ void main() => group('$SoundsRepository', () {
       test('play sound and handle player exception', () async {
         verifyZeroInteractions(mockedPlayer);
         when<void>(mockedPlayer.playSound(asset(notificationHighFileName), any)).thenThrow(Exception());
-        soundsRepository.playCopy();
+        await soundsRepository.playCopy();
         verify(mockedPlayer.playSound(asset(notificationHighFileName), any)).called(1);
         verifyNoMoreInteractions(mockedPlayer);
       });
 
       methods.forEach(
-        (String soundName, VoidCallback playSoundMethod) => test('$soundName()', () {
+        (String soundName, VoidCallback playSoundMethod) => test('$soundName()', () async {
           verifyZeroInteractions(mockedPlayer);
           playSoundMethod();
           verify(mockedPlayer.playSound(asset(soundName), any)).called(1);

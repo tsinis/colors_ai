@@ -59,14 +59,15 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
     );
   }
 
-  void onFabPressed() {
+  Future<void> onFabPressed() {
     BlocProvider.of<SoundBloc>(context).add(const SoundEvent.favoritesAdded());
     BlocProvider.of<FavoritesBloc>(context)
         .add(FavoritesAdded(favorite: context.read<ColorsRepository>().palette.colors));
     if (!alwaysShow) {
       fadeController.reverse();
     }
-    colorController.forward().whenComplete(colorController.reverse);
+
+    return colorController.forward().whenComplete(colorController.reverse);
   }
 
   @override

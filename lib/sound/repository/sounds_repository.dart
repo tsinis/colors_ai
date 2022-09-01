@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 
 import '../mixins/vibrations.dart';
@@ -20,13 +22,13 @@ class SoundsRepository {
   }
 
   void playFavoritesAdded() {
-    _playSound(Sound.notificationSimple);
+    unawaited(_playSound(Sound.notificationSimple));
     _vibrations.vibrate();
   }
 
-  void playCopy() => _playSound(Sound.notificationHigh);
-  void playLock() => _playSound(Sound.lock, volume: 0.8);
-  void playRefresh() => _playSound(Sound.refresh, volume: 0.6);
+  Future<void> playCopy() => _playSound(Sound.notificationHigh);
+  Future<void> playLock() => _playSound(Sound.lock, volume: 0.8);
+  Future<void> playRefresh() => _playSound(Sound.refresh, volume: 0.6);
 
   Future<void> init() async {
     await _vibrations.init();

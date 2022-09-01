@@ -76,7 +76,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     controller.forward();
   }
 
-  void cancelOperation() => cancelableOperation.cancel();
+  Future<void> cancelOperation() => cancelableOperation.cancel();
 
   void changeHoverIndex([int? index]) => setState(() => hoverIndex = index);
 
