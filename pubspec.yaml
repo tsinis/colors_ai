@@ -8,15 +8,15 @@ maintainer: Roman Cinis
 publish_to: "none"
 
 environment:
-  sdk: ">=2.17.0"
-  flutter: ">=3.0.1"
+  sdk: ">=2.18.0"
+  flutter: ">=3.3.0"
 
 dependencies:
   animations: ^2.0.4 # From Google
   audioplayers: ^1.0.1
   color_converter: ^0.2.1
   equatable: ^2.0.5 # From Flutter Community
-  file_selector: ^0.9.1 # From Google
+  file_selector: ^0.9.2 # From Google
   flutter: # From Google
     sdk: flutter
   flutter_bloc: 7.0.0 # Flutter Favorite
@@ -38,12 +38,12 @@ dependencies:
   share_plus: ^4.0.10+1 # From Flutter Community (former Google)
   simple_animations: ^5.0.0+2
   url_launcher: ^6.1.5 # From Google
-  vibration: ^1.7.5
+  vibration: ^1.7.6
   window_size: # From Google
     git:
       url: https://github.com/google/flutter-desktop-embedding
       path: plugins/window_size
-      ref: 12decbe0f592e14e03223f6f2c0c7e0e2dbd70a1
+      ref: 17d4710c17f4913137e7ec931f6e71eaef443363
 
 dev_dependencies:
   analyzer: ^4.6.0 # From Google
