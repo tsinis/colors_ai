@@ -60,7 +60,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-More than 90% of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](./test) and [Integration tests](./integration_test).
+More than 92% of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](./test) and [Integration tests](./integration_test).
 
 ## Accessibility
 
@@ -68,7 +68,7 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 ## How to run it
 
-Flutter **3** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
+Flutter **3.3** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
 
 ```shell
 flutter pub get
