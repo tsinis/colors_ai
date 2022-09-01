@@ -8,7 +8,7 @@ maintainer: Roman Cinis
 publish_to: "none"
 
 environment:
-  sdk: ">=2.18.0"
+  sdk: ">=2.17.6"
   flutter: ">=3.3.0"
 
 dependencies:
