@@ -81,6 +81,9 @@ class _NavigationScreenState extends State<MainScreen> {
                 includeSemantics: false,
                 autofocus: true,
                 onKeyEvent: (KeyEvent event) {
+                  if (event is KeyUpEvent) {
+                    return;
+                  }
                   if (event.logicalKey == LogicalKeyboardKey.tab && !showGenFab) {
                     setState(() => showGenFab = true);
                   }
