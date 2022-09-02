@@ -38,7 +38,7 @@ dependencies:
   share_plus: ^4.0.10+1 # From Flutter Community (former Google)
   simple_animations: ^5.0.0+2
   url_launcher: ^6.1.5 # From Google
-  vibration: ^1.7.5
+  vibration: ^1.7.6
   window_size: # From Google
     git:
       url: https://github.com/google/flutter-desktop-embedding
