@@ -1,3 +1,4 @@
+import 'package:colors_ai/app/theme/constants.dart';
 import 'package:colors_ai/core/extensions/context_extensions.dart';
 import 'package:colors_ai/core/models/color_palette/color_palette.dart';
 import 'package:colors_ai/favorites/blocs/list_favorites/favorites_bloc.dart';
@@ -37,30 +38,97 @@ void main() => group('$RemoveAllFavoritesButton', () {
         },
       );
 
-      testWidgets('tap', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          MultiBlocProvider(
-            providers: <BlocProvider<BlocBase<Object>>>[
-              BlocProvider<FavoritesBloc>(
-                create: (_) => favoritesBloc,
-                lazy: false,
+      testWidgets(
+        'tap on remove button',
+        (WidgetTester tester) async => tester.runAsync(() async {
+          await tester.pumpWidget(
+            MultiBlocProvider(
+              providers: <BlocProvider<BlocBase<Object>>>[
+                BlocProvider<FavoritesBloc>(
+                  create: (_) => favoritesBloc,
+                  lazy: false,
+                ),
+                BlocProvider<RemoveFavoritesBloc>(
+                  create: (_) => removeFavoritesBloc..add(const RemoveFavoritesSelected(0)),
+                ),
+              ],
+              child: const MaterialApp(
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                home: Material(child: RemoveAllFavoritesButton()),
               ),
-              BlocProvider<RemoveFavoritesBloc>(
-                create: (_) => removeFavoritesBloc..add(const RemoveFavoritesSelected(0)),
-              ),
-            ],
-            child: const MaterialApp(
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              home: Material(child: RemoveAllFavoritesButton()),
             ),
-          ),
-        );
-        final Finder button = find.byType(RemoveAllFavoritesButton);
-        expect(button, findsOneWidget); // TODO: Test all cases.
+          );
+          final Finder button = find.byType(RemoveAllFavoritesButton);
+          await tester.ensureVisible(button);
+          expect(button, findsOneWidget);
 
-        expect(find.byType(AlertDialog), findsNothing);
-        await tester.tap(button);
-      });
+          expect(find.byType(AlertDialog), findsNothing);
+          await tester.tap(button);
+          await Future<void>.delayed(kDefaultTransitionDuration);
+          await tester.pump();
+          await Future<void>.delayed(kDefaultTransitionDuration);
+          await tester.pump();
+          expect(find.byType(AlertDialog), findsOneWidget);
+          final Finder removeButton = find.byWidgetPredicate((Widget widget) {
+            if (widget is TextButton && widget.child is Text) {
+              final Text? text = widget.child as Text?;
+
+              return text?.data == 'Remove';
+            }
+
+            return false;
+          });
+          await tester.ensureVisible(removeButton);
+          await tester.pump();
+          await tester.tap(removeButton);
+        }),
+      );
+
+      testWidgets(
+        'tap on cancel button',
+        (WidgetTester tester) async => tester.runAsync(() async {
+          await tester.pumpWidget(
+            MultiBlocProvider(
+              providers: <BlocProvider<BlocBase<Object>>>[
+                BlocProvider<FavoritesBloc>(
+                  create: (_) => favoritesBloc,
+                  lazy: false,
+                ),
+                BlocProvider<RemoveFavoritesBloc>(
+                  create: (_) => removeFavoritesBloc..add(const RemoveFavoritesSelected(0)),
+                ),
+              ],
+              child: const MaterialApp(
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                home: Material(child: RemoveAllFavoritesButton()),
+              ),
+            ),
+          );
+          final Finder button = find.byType(RemoveAllFavoritesButton);
+          await tester.ensureVisible(button);
+          expect(button, findsOneWidget);
+
+          expect(find.byType(AlertDialog), findsNothing);
+          await tester.tap(button);
+          await Future<void>.delayed(kDefaultTransitionDuration);
+          await tester.pump();
+          await Future<void>.delayed(kDefaultTransitionDuration);
+          await tester.pump();
+          expect(find.byType(AlertDialog), findsOneWidget);
+          final Finder cancelButton = find.byWidgetPredicate((Widget widget) {
+            if (widget is TextButton && widget.child is Text) {
+              final Text? text = widget.child as Text?;
+
+              return text?.data == 'Cancel';
+            }
+
+            return false;
+          });
+          await tester.ensureVisible(cancelButton);
+          await tester.pump();
+          await tester.tap(cancelButton);
+        }),
+      );
 
       tearDownAll(deleteFakeStorageDir);
     });
