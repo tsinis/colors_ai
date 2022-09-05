@@ -74,13 +74,16 @@ class _NavigationScreenState extends State<MainScreen> {
             return Shortcuts(
               shortcuts: <ShortcutActivator, Intent>{
                 ...WidgetsApp.defaultShortcuts,
-                const SingleActivator(kSpacebar): isGenTab ? DoNothingIntent() : const ActivateIntent(),
+                const SingleActivator(kSpacebar): isGenTab ? const DoNothingIntent() : const ActivateIntent(),
               },
               child: KeyboardListener(
                 focusNode: keyboardListenerNode,
                 includeSemantics: false,
                 autofocus: true,
                 onKeyEvent: (KeyEvent event) {
+                  if (event is KeyUpEvent) {
+                    return;
+                  }
                   if (event.logicalKey == LogicalKeyboardKey.tab && !showGenFab) {
                     setState(() => showGenFab = true);
                   }

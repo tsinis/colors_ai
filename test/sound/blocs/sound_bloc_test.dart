@@ -25,7 +25,7 @@ void main() => group(
               '${event.runtimeType}',
               build: () => SoundBloc(soundsRepository),
               act: (SoundBloc bloc) => bloc.add(event),
-              verify: (_) => verify(mockedPlayer.playSound(asset(soundName), any)).called(1),
+              verify: (_) async => verify(mockedPlayer.playSound(asset(soundName), any)).called(1),
             );
           },
         );

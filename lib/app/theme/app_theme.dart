@@ -23,11 +23,11 @@ class AppTheme {
     primaryIconTheme: IconThemeData(color: Colors.grey[350]),
     appBarTheme: const AppBarTheme(shadowColor: Colors.black54, elevation: 2),
     radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color?>(Colors.grey.shade400)),
-    textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(primary: Colors.grey[350])),
+    textButtonTheme: TextButtonThemeData(style: TextButton.styleFrom(foregroundColor: Colors.grey[350])),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: Colors.grey.shade800,
-        onPrimary: Colors.grey[350],
+        foregroundColor: Colors.grey[350],
+        backgroundColor: Colors.grey.shade800,
         visualDensity: _visualDensity,
       ),
     ),
@@ -53,8 +53,8 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
+        foregroundColor: Colors.grey.shade300,
         visualDensity: _visualDensity,
-        primary: Colors.grey.shade300,
         backgroundColor: Colors.transparent,
         side: BorderSide(color: Colors.grey.shade400),
       ),
@@ -77,15 +77,15 @@ class AppTheme {
     radioTheme: RadioThemeData(fillColor: MaterialStateProperty.all<Color>(Colors.black)),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        primary: Colors.grey[850],
+        foregroundColor: Colors.grey[850],
         padding: EdgeInsets.zero,
         elevation: 0,
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        primary: Colors.grey.shade100,
-        onPrimary: Colors.grey[850],
+        foregroundColor: Colors.grey[850],
+        backgroundColor: Colors.grey.shade100,
         visualDensity: _visualDensity,
       ),
     ),
@@ -103,7 +103,7 @@ class AppTheme {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        primary: Colors.grey[850],
+        foregroundColor: Colors.grey[850],
         visualDensity: _visualDensity,
         backgroundColor: Colors.transparent,
         side: const BorderSide(color: _grey800),

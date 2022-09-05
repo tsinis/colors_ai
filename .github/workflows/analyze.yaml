@@ -45,6 +45,3 @@ jobs:
           fatal_style: true
           check_unused_files: true
           check_unused_files_folders: "lib"
-
-      - name: Dart Code Metrics unused code
-        run: flutter pub run dart_code_metrics:metrics check-unused-code lib test integration_test

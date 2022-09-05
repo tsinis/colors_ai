@@ -38,7 +38,7 @@ jobs:
 
       - name: Approve Dependabot
         uses: hmarr/auto-approve-action@v2
-        if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]' || github.actor == github.event.repository.owner.login
+        if: github.actor == 'dependabot[bot]' || github.actor == github.event.repository.owner.login
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 

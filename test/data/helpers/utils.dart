@@ -1,10 +1,11 @@
 import 'dart:io' show Directory;
 
 import 'package:hive/hive.dart';
+import 'package:uuid/uuid.dart';
 
 import '../fakes/constants.dart';
 
-String get uniqueBoxName => DateTime.now().toUtc().millisecondsSinceEpoch.toString();
+String get uniqueBoxName => const Uuid().v4();
 
 void deleteFakeStorageDir({String directoryName = fakeStorageDir}) {
   try {

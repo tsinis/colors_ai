@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:vibration/vibration.dart';
 
 class Vibrations {
@@ -16,7 +18,7 @@ class Vibrations {
 
   bool vibrate({int durationInMs = 150}) {
     if (_customVibrationsAvailable) {
-      Vibration.vibrate(duration: durationInMs);
+      unawaited(Vibration.vibrate(duration: durationInMs));
     }
 
     return _customVibrationsAvailable;
