@@ -1,4 +1,6 @@
 import 'dart:io' show File;
+// ignore: unnecessary_import, because DCM is not yet updated to Flutter 3.3.0
+import 'dart:typed_data' show Uint8List;
 
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/foundation.dart';
