@@ -332,6 +332,7 @@ linter:
     unnecessary_late: true
     unnecessary_null_aware_operator_on_extension_on_nullable: true
     unnecessary_to_list_in_spreads: true
+    unreachable_from_main: true
     use_decorated_box: true
     use_late_for_private_fields_and_variables: true
     use_string_in_part_of_directives: true
