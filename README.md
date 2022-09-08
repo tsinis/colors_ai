@@ -11,7 +11,7 @@
 
 [<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="190" alt="Get it on Google Play">](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/colors-ai)
-[<img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" width="155" alt="Get it from Microsoft">](https://www.microsoft.com/store/apps/9NJVF29FV74V)
+[<img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" width="155" alt="Get it from Microsoft">](https://apps.microsoft.com/store/detail/colors-ai/9NJVF29FV74V)
 
 Or download signed binaries for **all mainstream platforms** in the [Releases](https://github.com/tsinis/colors_ai/releases) section of this repository.
 
@@ -19,17 +19,17 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
 
 ## Table of content
 
-* [Description](#Description)
-* [Technical Data](#Technical-Data)
-  * [Architecture](#Architecture)
-  * [Directory Structure](#Directory-Structure)
-  * [Tests](#Tests)
-* [Accessibility](#Accessibility)
-* [How to run it](#How-to-run-it)
-* [Design](#Design)
-* [To-Do Section](#To-Do-Section)
-* [Licenses](#Licenses)
-* [Attributions](#Attributions)
+* [Description](#description)
+* [Technical Data](#technical-data)
+  * [Architecture](#architecture)
+  * [Directory Structure](#directory-structure)
+  * [Tests](#tests)
+* [Accessibility](#accessibility)
+* [How to run it](#how-to-run-it)
+* [Design](#design)
+* [To-Do Section](#to-do-section)
+* [Licenses](#licenses)
+* [Attributions](#attributions)
 
 ## Description
 

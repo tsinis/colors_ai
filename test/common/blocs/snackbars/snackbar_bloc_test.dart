@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/common/blocs/snackbars/snackbar_bloc.dart';
 import 'package:colors_ai/core/services/clipboard.dart';
@@ -16,6 +18,9 @@ void main() {
 
   void testCopyEvent(SnackbarEvent event, {bool withException = false}) {
     final ClipBoard clipboard = FakeClipboard(throwExceptionOnCopy: withException);
+    if (!withException) {
+      unawaited(clipboard.copyTextData('data'));
+    }
     blocTest<SnackbarBloc, SnackbarState>(
       '${event.runtimeType}${withException ? ' with invalid clipboard data' : ''}',
       build: () => SnackbarBloc(clipboard: clipboard),
