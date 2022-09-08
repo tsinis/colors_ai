@@ -5,6 +5,7 @@ import 'package:pdf/widgets.dart';
 import 'package:printing/printing.dart' show fontFromAssetBundle;
 
 import '../../core/models/color_palette/color_palette.dart';
+import '../../resources/fonts.dart';
 import '../services/export/file_layout.dart';
 
 mixin FileCreator {
@@ -15,7 +16,7 @@ mixin FileCreator {
         PdfPageFormat(PdfPageFormat.inch * 11, PdfPageFormat.inch * 8.5, marginAll: PdfPageFormat.inch * 0.5);
 
     final PdfPageFormat format = isMetric ? a4Format : letter;
-    final TtfFont font = await fontFromAssetBundle('assets/google_fonts/Roboto-Regular.ttf');
+    final TtfFont font = await fontFromAssetBundle(Fonts.robotoRegular);
     final Document document = Document()
       ..addPage(
         Page(

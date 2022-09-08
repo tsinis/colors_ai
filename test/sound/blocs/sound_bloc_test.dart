@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/sound/blocs/sound_bloc.dart';
+import 'package:colors_ai/sound/models/sound.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -9,11 +10,11 @@ void main() => group(
       '$SoundBloc',
       () {
         final Map<SoundEvent, String> events = <SoundEvent, String>{
-          const SoundEvent.started(): notificationSimpleFileName,
-          const SoundEvent.refreshed(): refreshSoundFileName,
-          const SoundEvent.favoritesAdded(): notificationSimpleFileName,
-          const SoundEvent.locked(): lockSoundFileName,
-          const SoundEvent.copied(): notificationHighFileName,
+          const SoundEvent.started(): Sound.notificationSimple.asset,
+          const SoundEvent.refreshed(): Sound.refresh.asset,
+          const SoundEvent.favoritesAdded(): Sound.notificationSimple.asset,
+          const SoundEvent.locked(): Sound.lock.asset,
+          const SoundEvent.copied(): Sound.notificationHigh.asset,
         };
 
         setUp(() => reset(mockedPlayer));
@@ -25,7 +26,7 @@ void main() => group(
               '${event.runtimeType}',
               build: () => SoundBloc(soundsRepository),
               act: (SoundBloc bloc) => bloc.add(event),
-              verify: (_) async => verify(mockedPlayer.playSound(asset(soundName), any)).called(1),
+              verify: (_) async => verify(mockedPlayer.playSound(soundName, any)).called(1),
             );
           },
         );

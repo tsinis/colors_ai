@@ -4,16 +4,13 @@ import 'package:flutter/foundation.dart';
 
 import '../mixins/vibrations.dart';
 import '../models/sound.dart';
-import '../models/sounds_source.dart';
 import '../services/sounds_player.dart';
 
 class SoundsRepository {
-  final SoundsSource sounds;
   late final Vibrations _vibrations;
   late final SoundsPlayer _player;
 
   SoundsRepository({
-    this.sounds = const SoundsSource(),
     SoundsPlayer? player,
     Vibrations? vibrations,
   }) {
@@ -32,15 +29,13 @@ class SoundsRepository {
 
   Future<void> init() async {
     await _vibrations.init();
-    const List<Sound> cache = <Sound>[Sound.lock, Sound.refresh, Sound.notificationHigh, Sound.notificationSimple];
-    final List<String> assetsToCache = List<String>.unmodifiable(cache.map<String>(sounds.asset));
+    final Set<String> assetsToCache = Set<String>.unmodifiable(Sound.values.map<String>((Sound sound) => sound.asset));
     await _playSound(Sound.notificationSimple, cachedAssets: assetsToCache);
   }
 
-  Future<void> _playSound(Sound sound, {double volume = 0.1, List<String>? cachedAssets}) async {
-    final String asset = sounds.asset(sound);
+  Future<void> _playSound(Sound sound, {double volume = 0.1, Set<String>? cachedAssets}) async {
     try {
-      await _player.playSound(asset, volume, cachedFileNames: cachedAssets);
+      await _player.playSound(sound.asset, volume, cachedFileNames: cachedAssets?.toList());
     } catch (e) {
       debugPrint('Exception during audio playback $e');
     }
