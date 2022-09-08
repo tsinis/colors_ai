@@ -82,16 +82,15 @@ msix_config:
   publisher: CN=3F745294-7EE6-4235-B7C5-8E22B9089351
   store: true
 
-  # https://pub.dev/packages/spider
 spider:
   generate_tests: true
   no_comments: true
   export: false
 
   groups:
-    - path: assets/sounds
-      class_name: Sounds
-      types: [.mp3]
     - path: assets/google_fonts
       class_name: Fonts
       types: [.ttf]
+    - path: assets/sounds
+      class_name: Sounds
+      types: [.mp3]
