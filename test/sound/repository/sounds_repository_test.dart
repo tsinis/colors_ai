@@ -1,5 +1,6 @@
 import 'dart:ui' show VoidCallback;
 
+import 'package:colors_ai/sound/models/sound.dart';
 import 'package:colors_ai/sound/repository/sounds_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -10,10 +11,10 @@ void main() => group('$SoundsRepository', () {
       setUp(() => reset(mockedPlayer));
 
       final Map<String, VoidCallback> methods = <String, VoidCallback>{
-        notificationHighFileName: soundsRepository.playCopy,
-        notificationSimpleFileName: soundsRepository.playFavoritesAdded,
-        lockSoundFileName: soundsRepository.playLock,
-        refreshSoundFileName: soundsRepository.playRefresh,
+        Sound.notificationHigh.asset: soundsRepository.playCopy,
+        Sound.notificationSimple.asset: soundsRepository.playFavoritesAdded,
+        Sound.lock.asset: soundsRepository.playLock,
+        Sound.refresh.asset: soundsRepository.playRefresh,
       };
 
       test('init()', () async {
@@ -21,13 +22,13 @@ void main() => group('$SoundsRepository', () {
         await soundsRepository.init();
         verify(
           mockedPlayer.playSound(
-            asset(notificationSimpleFileName),
+            Sound.notificationSimple.asset,
             0.1,
-            cachedFileNames: const <String>[
-              pathToAssetsDir + lockSoundFileName + fileFormat,
-              pathToAssetsDir + refreshSoundFileName + fileFormat,
-              pathToAssetsDir + notificationHighFileName + fileFormat,
-              pathToAssetsDir + notificationSimpleFileName + fileFormat,
+            cachedFileNames: <String>[
+              Sound.lock.asset,
+              Sound.refresh.asset,
+              Sound.notificationSimple.asset,
+              Sound.notificationHigh.asset,
             ],
           ),
         ).called(1);
@@ -36,9 +37,9 @@ void main() => group('$SoundsRepository', () {
 
       test('play sound and handle player exception', () async {
         verifyZeroInteractions(mockedPlayer);
-        when<void>(mockedPlayer.playSound(asset(notificationHighFileName), any)).thenThrow(Exception());
+        when<void>(mockedPlayer.playSound(Sound.notificationHigh.asset, any)).thenThrow(Exception());
         await soundsRepository.playCopy();
-        verify(mockedPlayer.playSound(asset(notificationHighFileName), any)).called(1);
+        verify(mockedPlayer.playSound(Sound.notificationHigh.asset, any)).called(1);
         verifyNoMoreInteractions(mockedPlayer);
       });
 
@@ -46,7 +47,7 @@ void main() => group('$SoundsRepository', () {
         (String soundName, VoidCallback playSoundMethod) => test('$soundName()', () async {
           verifyZeroInteractions(mockedPlayer);
           playSoundMethod();
-          verify(mockedPlayer.playSound(asset(soundName), any)).called(1);
+          verify(mockedPlayer.playSound(soundName, any)).called(1);
           verifyNoMoreInteractions(mockedPlayer);
         }),
       );
