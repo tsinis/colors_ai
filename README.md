@@ -19,17 +19,17 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
 
 ## Table of content
 
-* [Description](#Description)
-* [Technical Data](#Technical-Data)
-  * [Architecture](#Architecture)
-  * [Directory Structure](#Directory-Structure)
-  * [Tests](#Tests)
-* [Accessibility](#Accessibility)
-* [How to run it](#How-to-run-it)
-* [Design](#Design)
-* [To-Do Section](#To-Do-Section)
-* [Licenses](#Licenses)
-* [Attributions](#Attributions)
+* [Description](#description)
+* [Technical Data](#technical-data)
+  * [Architecture](#architecture)
+  * [Directory Structure](#directory-structure)
+  * [Tests](#tests)
+* [Accessibility](#accessibility)
+* [How to run it](#how-to-run-it)
+* [Design](#design)
+* [To-Do Section](#to-do-section)
+* [Licenses](#licenses)
+* [Attributions](#attributions)
 
 ## Description
 
