@@ -68,12 +68,18 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 ## How to run it
 
-Flutter **3** or higher is assumed to be installed. Please run this command from the project's folder, in your terminal:
+Flutter **3** or higher is assumed to be installed. For your convenience, all generated code has been committed to this repository, so all you have to do is run this command from the terminal/command line from the project's root folder:
 
 ```shell
-flutter pub get
-flutter gen-l10n
 flutter run
+```
+
+## How generate localization files
+
+This project follows the [official internationalization guide for Flutter](https://docs.flutter.dev/development/accessibility-and-localization/internationalization). To update localizations, simple add/change texts in ARB files and run:
+
+```shell
+flutter gen-l10n --output-localization-file=app_localizations.g.dart --no-synthetic-package
 ```
 
 ### Platform Specific Setup
