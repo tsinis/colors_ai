@@ -74,7 +74,7 @@ Flutter **3** or higher is assumed to be installed. For your convenience, all ge
 flutter run
 ```
 
-## How generate localization files
+### How to generate localization files
 
 This project follows the [official internationalization guide for Flutter](https://docs.flutter.dev/development/accessibility-and-localization/internationalization). To update localizations, simple add/change texts in ARB files and run:
 

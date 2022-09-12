@@ -85,7 +85,6 @@ spider:
   generate_tests: true
   no_comments: true
   export: false
-
   groups:
     - path: assets/google_fonts
       class_name: Fonts
