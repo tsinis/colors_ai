@@ -14,6 +14,7 @@ class ColormindColorsConverter implements JsonConverter<List<Color>, List<dynami
   // Ignored because JSON can have dynamic content
   // ignore: avoid_annotating_with_dynamic
   List<Color> fromJson(List<dynamic> rgbs) => rgbs.map<Color>((dynamic rgb) {
+        // ignore: avoid-unnecessary-type-assertions, this is value from API.
         if (rgb is! List) {
           throw Exception('Colors from Colormind API are not in List.');
         }

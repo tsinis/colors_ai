@@ -9,6 +9,9 @@
         "jeroen-meijer.pubspec-assist",
         "everettjf.pubspec-dependency-search",
         "rafamel.subtle-brackets",
-        "pflannery.vscode-versionlens"
+        "pflannery.vscode-versionlens",
+        "felixangelov.bloc",
+        "gaetschwartz.build-runner",
+        "blaxou.freezed"
     ]
 }

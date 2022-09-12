@@ -74,11 +74,12 @@ dart_code_metrics:
     - avoid-missing-enum-constant-in-map: true
     - avoid-non-ascii-symbols: true
     - avoid-non-null-assertion: true
+    - avoid-passing-async-when-sync-expected: false # False positive in tests/onTap callbacks.
     - avoid-returning-widgets: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
-    - avoid-top-level-members-in-tests: false # Until https://github.com/dart-code-checker/dart-code-metrics/pull/945
+    - avoid-top-level-members-in-tests: false # Until fixed in DCM action.
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
     - avoid-unnecessary-type-casts: true

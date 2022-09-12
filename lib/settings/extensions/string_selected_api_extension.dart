@@ -1,5 +1,4 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import '../../core/extensions/context_extensions.dart';
 import '../models/selected_api.dart';
 
 extension StringSelectedApiExtension on SelectedAPI {

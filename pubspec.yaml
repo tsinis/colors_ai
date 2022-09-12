@@ -34,7 +34,7 @@ dependencies:
   package_info_plus: ^1.4.3+1 # From Flutter Community (former Google)
   path_provider: ^2.0.11 # From Google
   platform_info: ^3.2.0 # Contributor
-  printing: ^5.9.2
+  printing: ^5.9.3
   share_plus: ^4.1.0 # From Flutter Community (former Google)
   simple_animations: ^5.0.0+2
   url_launcher: ^6.1.5 # From Google
@@ -46,11 +46,11 @@ dependencies:
       ref: 17d4710c17f4913137e7ec931f6e71eaef443363
 
 dev_dependencies:
-  analyzer: ^4.6.0 # From Google
+  analyzer: ^4.7.0 # From Google
   bloc_test: 8.5.0
   build_runner: ^2.2.0 # From Google
   code_builder: ^4.2.0 # From Google
-  dart_code_metrics: ^4.18.0-dev.2 # Flutter Favorite
+  dart_code_metrics: ^4.18.0 # Flutter Favorite
   flutter_lints: ^2.0.1 # From Google
   flutter_test: # From Google
     sdk: flutter
@@ -64,7 +64,6 @@ dev_dependencies:
   msix: 2.7.3 # Flutter Favorite (generating from SVG)
 
 flutter:
-  generate: true
   uses-material-design: true
   assets:
     - assets/google_fonts/

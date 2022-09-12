@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-export 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../l10n/app_localizations.g.dart';
+
+export '../../l10n/app_localizations.g.dart' show AppLocalizations;
 
 extension ContextExtensions on BuildContext {
   AppLocalizations get l10n => AppLocalizations.of(this);
