@@ -78,7 +78,7 @@ dart_code_metrics:
     - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
-    - avoid-top-level-members-in-tests: false # Until https://github.com/dart-code-checker/dart-code-metrics/pull/945
+    - avoid-top-level-members-in-tests: true
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
     - avoid-unnecessary-type-casts: true
