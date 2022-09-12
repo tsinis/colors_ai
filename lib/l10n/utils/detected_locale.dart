@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platform_info/platform_info.dart';
 
+import '../../core/extensions/context_extensions.dart';
 import '../../core/ui/constants.dart';
 
 Locale get detectedLocale {

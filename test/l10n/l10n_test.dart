@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:colors_ai/core/extensions/context_extensions.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() => group(
