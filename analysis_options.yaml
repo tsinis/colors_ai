@@ -74,6 +74,7 @@ dart_code_metrics:
     - avoid-missing-enum-constant-in-map: true
     - avoid-non-ascii-symbols: true
     - avoid-non-null-assertion: true
+    - avoid-passing-async-when-sync-expected: false # False positive in tests/onTap callbacks.
     - avoid-returning-widgets: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
