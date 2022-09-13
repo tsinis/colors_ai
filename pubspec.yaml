@@ -48,7 +48,7 @@ dependencies:
 dev_dependencies:
   analyzer: ^4.7.0 # From Google
   bloc_test: 8.5.0
-  build_runner: ^2.2.0 # From Google
+  build_runner: ^2.2.1 # From Google
   code_builder: ^4.2.0 # From Google
   dart_code_metrics: ^4.18.1 # Flutter Favorite
   flutter_lints: ^2.0.1 # From Google
