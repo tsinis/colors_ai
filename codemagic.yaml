@@ -7,10 +7,7 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - flutter packages pub get
-      - |
-        flutter pub get
-        flutter gen-l10n
+      - flutter pub get
       - name: Integration tests
         script: bash resources/scripts/ios_e2e_test.sh
         test_report: test-results/flutter.json

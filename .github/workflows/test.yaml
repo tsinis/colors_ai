@@ -25,16 +25,13 @@ jobs:
       - name: Install app dependencies
         run: flutter pub get
 
-      - name: Generate localization files
-        run: flutter gen-l10n
-
       - name: Test app
         run: flutter test --coverage --no-pub
 
       - name: Check Code Coverage
         uses: VeryGoodOpenSource/very_good_coverage@v1.2.1
         with:
-          min_coverage: 91
+          min_coverage: 92
           exclude: "**/*.g.dart **/*.gen.dart **/*.freezed.dart"
 
       - name: Upload Code Coverage
