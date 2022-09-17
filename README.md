@@ -5,6 +5,7 @@
 [![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Snapcraft](https://snapcraft.io/colors-ai/badge.svg)](https://snapcraft.io/colors-ai)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
+[![Stars](https://img.shields.io/github/stars/tsinis/colors_ai?logo=github)](https://github.com/tsinis/colors_ai/stars)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [![Video](./resources/images/video_preview.jpg)](https://vimeo.com/tsinis/colors-ai)
@@ -60,7 +61,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-More than 91% (∼96% actually, due to [mixin coverage bug in Dart language](https://github.com/dart-lang/sdk/issues/49887) since Dart 2.18) of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](./test) and [Integration tests](./integration_test).
+More than 92% (∼96% actually, due to [mixin coverage bug in Dart language](https://github.com/dart-lang/sdk/issues/49887) since Dart 2.18) of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](./test) and [Integration tests](./integration_test).
 
 ## Accessibility
 
