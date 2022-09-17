@@ -5,7 +5,7 @@ void main() {
   group('$RemoveFavoritesRepository', () {
     late RemoveFavoritesRepository removeFavsRepository;
 
-    setUp(() => removeFavsRepository = RemoveFavoritesRepository(Set<int>.from(<int>{})));
+    setUp(() => removeFavsRepository = RemoveFavoritesRepository(Set<int>.of(<int>{})));
 
     test('selections', () => expect(removeFavsRepository.selections, <int>{}));
 

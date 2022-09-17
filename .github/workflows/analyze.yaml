@@ -25,9 +25,6 @@ jobs:
       - name: Install app dependencies
         run: flutter pub get
 
-      - name: Generate localization files
-        run: flutter gen-l10n
-
       - name: Analyze project
         uses: invertase/github-action-dart-analyzer@v1
         with:

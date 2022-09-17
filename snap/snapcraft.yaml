@@ -56,9 +56,7 @@ parts:
       flutter channel stable
       flutter upgrade
       flutter config --enable-linux-desktop
-      flutter doctor
       flutter pub get
-      flutter gen-l10n
       rm -rf build
       flutter build linux --release -v
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
