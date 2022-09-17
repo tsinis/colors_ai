@@ -30,7 +30,7 @@ class FavoritesRepository {
       return;
     }
     final Set<int> palettesToRemove = Set<int>.unmodifiable(indexes);
-    final List<ColorPalette> storedPalettes = List<ColorPalette>.from(_palettes);
+    final List<ColorPalette> storedPalettes = List<ColorPalette>.of(_palettes);
     _palettes.clear();
 
     switch (palettesToRemove.length) {
@@ -41,7 +41,7 @@ class FavoritesRepository {
         _palettes.addAll(storedPalettes);
         return;
       default:
-        final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(storedPalettes.asMap())
+        final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.of(storedPalettes.asMap())
           ..removeWhere((int index, _) => palettesToRemove.contains(index));
         _palettes.addAll(indexMap.values);
     }

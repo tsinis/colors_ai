@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() => group('$RemoveFavoritesBloc', () {
       late RemoveFavoritesRepository removeFavsRepository;
 
-      setUp(() => removeFavsRepository = RemoveFavoritesRepository(Set<int>.from(<int>{0})));
+      setUp(() => removeFavsRepository = RemoveFavoritesRepository(Set<int>.of(<int>{0})));
 
       blocTest<RemoveFavoritesBloc, void>(
         'on Initial',

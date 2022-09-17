@@ -24,7 +24,7 @@ void main() => group('$RemoveAllFavoritesButton', () {
 
       setUp(
         () async {
-          removeFavsRepository = RemoveFavoritesRepository(Set<int>.from(<int>{0}));
+          removeFavsRepository = RemoveFavoritesRepository(Set<int>.of(<int>{0}));
           favoritesRepository = FavoritesRepository(
             List<ColorPalette>.empty(growable: true),
             FavoritesHiveStorage(boxName: uniqueBoxName),

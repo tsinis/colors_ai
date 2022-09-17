@@ -51,7 +51,7 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
         await _storageBox.addAll(List<ColorPalette>.unmodifiable(storedPalettes));
         return 1;
       default:
-        final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.from(storedPalettes.asMap())
+        final Map<int, ColorPalette> indexMap = Map<int, ColorPalette>.of(storedPalettes.asMap())
           ..removeWhere((int index, _) => palettesToRemove.contains(index));
         await _storageBox.addAll(indexMap.values);
         return palettesToRemove.length;
