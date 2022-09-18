@@ -39,8 +39,6 @@ function(APPLY_STANDARD_SETTINGS TARGET)
 endfunction()
 
 set(FLUTTER_MANAGED_DIR "${CMAKE_CURRENT_SOURCE_DIR}/flutter")
-
-# Flutter library and tool build rules.
 add_subdirectory(${FLUTTER_MANAGED_DIR})
 
 # Application build
