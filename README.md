@@ -1,7 +1,6 @@
 [![Codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg?token=HXC806IIKE)](https://codecov.io/gh/tsinis/colors_ai)
 [![CodeFactor](https://www.codefactor.io/repository/github/tsinis/colors_ai/badge)](https://www.codefactor.io/repository/github/tsinis/colors_ai)
 [![Tests](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml/badge.svg)](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml)
-[![Codemagic build status](https://api.codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/status_badge.svg)](https://codemagic.io/apps/6146ebca3625bd999e0e46d9/6146ebca3625bd999e0e46d8/latest_build)
 [![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Snapcraft](https://snapcraft.io/colors-ai/badge.svg)](https://snapcraft.io/colors-ai)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
