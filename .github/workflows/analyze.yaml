@@ -24,6 +24,9 @@ jobs:
         uses: check-spelling/check-spelling@main
         with:
           config: .github/workflows/actions_settings/check-spelling
+          extra_dictionaries:
+            cspell:dart/dart.txt
+            cspell:filetypes/filetypes.txt
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2.7.1
