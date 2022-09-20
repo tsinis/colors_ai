@@ -22,6 +22,8 @@ jobs:
 
       - name: Check spelling
         uses: check-spelling/check-spelling@main
+        with:
+          excludes: .github/workflows/actions_settings/check-spelling/excludes.txt
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2.7.1

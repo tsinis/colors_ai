@@ -1,0 +1,17 @@
+ignore$
+\.arb$
+\.yaml$
+\.lock$
+\.gitignore$
+(?:(?i)LICENSE)
+^\.github/
+^\.vscode/
+^\android/
+^\ios/
+^\macos/
+^\windows/
+^\linux/
+^\web/
+^\macos/
+^\resources/
+^\assets/
