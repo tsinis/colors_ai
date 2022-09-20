@@ -24,7 +24,7 @@ jobs:
         uses: check-spelling/check-spelling@main
         with:
           config: .github/workflows/actions_settings/check-spelling
-          extra_dictionaries:
+          extra_dictionaries: cspell:html/html.txt
             cspell:filetypes/filetypes.txt
 
       - name: Install Flutter
