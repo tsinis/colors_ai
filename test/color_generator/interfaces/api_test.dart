@@ -32,7 +32,7 @@ class _APITest extends API<Color> {
   Color apiColorTransformer(Color color) => color;
 
   @override
-  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) async =>
+  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) =>
       sendPostRequest(<String, String>{paletteInputKey: palette.toString()});
 }
 
