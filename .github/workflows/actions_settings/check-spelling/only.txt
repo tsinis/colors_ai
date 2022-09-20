@@ -1,0 +1,3 @@
+# Only process perl / JavaScript / Python files
+\.md$
+\.dart$
