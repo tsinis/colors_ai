@@ -3,6 +3,12 @@
 \.lock$
 \.metadata$
 \.ignore$
+\.png$
+\.jpg$
+\.mp3$
+\.g.dart$
+\.freezed.dart$
+\.gen.dart$
 
 ^\.github/
 ^\.vscode/
