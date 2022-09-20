@@ -37,7 +37,7 @@ class ColormindAPI extends API<IntRGBColor> {
   IntRGBColor apiColorTransformer(Color color) => color.toListInt();
 
   @override
-  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) async {
+  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) {
     final List<bool> invertedLocks = lockedColors.map((bool isLocked) => !isLocked).toList(growable: false);
 
     final Map<String, Object> requestBody = <String, Object>{};

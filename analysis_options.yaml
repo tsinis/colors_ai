@@ -75,6 +75,7 @@ dart_code_metrics:
     - avoid-non-ascii-symbols: true
     - avoid-non-null-assertion: true
     - avoid-passing-async-when-sync-expected: false # False positive in tests/onTap callbacks.
+    - avoid-redundant-async: false # False positive in overrides and blocs.
     - avoid-returning-widgets: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
@@ -90,7 +91,9 @@ dart_code_metrics:
     - avoid_restricted_imports: true
     - ban-name: true
     - binary-expression-operand-order: true
+    - check-for-equals-in-render-object-setters: true
     - check-unused-code: true
+    - consistent-update-render-object: true
     - double-literal-format: true
     - format-comment: true
     - member-ordering-extended: true
@@ -104,11 +107,13 @@ dart_code_metrics:
     - prefer-conditional-expressions: true
     - prefer-const-border-radius: true
     - prefer-correct-edge-insets-constructor-rule: true
+    - prefer-correct-test-file-name: true
     - prefer-correct-type-name: true
     - prefer-enums-by-name: true
     - prefer-first: true
     - prefer-immediate-return: true
     - prefer-intl-name: true
+    - prefer-iterable-of: true
     - prefer-last: true
     - prefer-match-file-name: true
     - prefer-single-widget-per-file: true

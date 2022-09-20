@@ -36,6 +36,6 @@ class GeneratorDAO with ColormindSettings, HuemintSettings {
     ColorPalette palette,
     List<bool> lockedColors, {
     API<Object>? specificAPI,
-  }) async =>
+  }) =>
       (specificAPI ?? _selectedAPI).fetchNewColors(palette, lockedColors);
 }

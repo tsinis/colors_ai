@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   pr-clean-up:
+    name: 🔍 Run PR check
     runs-on: ubuntu-latest
     timeout-minutes: 10
 

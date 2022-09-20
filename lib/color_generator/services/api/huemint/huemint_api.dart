@@ -40,7 +40,7 @@ class HuemintAPI extends API<String> {
       colorToHex(color, enableAlpha: false, includeHashSign: true, toUpperCase: false);
 
   @override
-  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) async {
+  Future<ColorPalette> fetchNewColors(ColorPalette palette, List<bool> lockedColors) {
     final List<int> matrix = List<int>.filled(pow(numColorsValue, 2).toInt(), adjacency);
 
     final Map<String, Object> requestBody = <String, Object>{

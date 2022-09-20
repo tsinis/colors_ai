@@ -1,0 +1,113 @@
+name: release
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  changelog:
+    name: 📃 Create changelog
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      changelog: ${{ steps.build_changelog.outputs.changelog }}
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+
+      - name: Build Changelog
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v2.5.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          configuration: .github/workflows/actions_settings/changelog_config.json
+
+  build:
+    name: 🏗️ Build Artifacts and Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+
+      - name: Read pubspec.yaml version
+        uses: KJ002/read-yaml@1.5
+        id: pubspec-data
+        with:
+          file: "pubspec.yaml"
+          key-path: '["version"]'
+
+      - name: Generate unique Release Tag
+        run: echo RELEASE_TAG=Release-${{ steps.pubspec-data.outputs.data }}-$(date +%s) >> $GITHUB_ENV
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: "11.x"
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2.7.1
+        with:
+          channel: "stable"
+          cache: true
+
+      - name: Decode android/key.properties
+        run: echo "${{ secrets.KEY_PROPERTIES_BASE64 }}" | base64 --decode > android/key.properties
+
+      - name: Decode android/app/key.jks
+        run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > android/app/key.jks
+
+      - name: Pub Get Packages
+        run: flutter pub get
+
+      - name: Build Android app
+        run: flutter build appbundle --release && flutter build apk --release
+
+      - name: Create Github Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "build/app/outputs/bundle/release/app-release.aab,build/app/outputs/flutter-apk/app-release.apk"
+          token: ${{ secrets.GH_TOKEN }}
+          tag: "${{env.RELEASE_TAG}}"
+          body: "${{ github.event.head_commit.message }}"
+
+      - name: Save AAB to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: APPBUNDLE
+          path: build/app/outputs/bundle/release/app-release.aab
+
+      - name: Save APK to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: APK
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+  release_google_play:
+    name: 🏭 Release Artifacts to internal track
+    needs: [build, changelog]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Get AAB from Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: APPBUNDLE
+
+      - name: Create "whatsnew" directory
+        run: mkdir whatsnew
+
+      - name: Put changelog in "whatsnew" directory
+        run: echo "${{ needs.changelog.outputs.changelog }}" > whatsnew/whatsnew-en-US
+
+      - name: Release AAB to Google Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
+          packageName: ${{ secrets.APP_PACKAGE_NAME }}
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: production
+          whatsNewDirectory: distribution/whatsnew
+          status: draft

@@ -134,7 +134,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     await textFile.saveTo(path);
   }
 
-  Future<bool> _shareBytes(Uint8List bytes) async {
+  Future<bool> _shareBytes(Uint8List bytes) {
     if (kIsWeb) {
       if (_fileExtension == 'pdf') {
         return Printing.sharePdf(bytes: bytes);
@@ -161,7 +161,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  Future<bool> _shareTextData(String data) async {
+  Future<bool> _shareTextData(String data) {
     final File file = File(_filePath)..writeAsStringSync(data);
 
     return _shareFile(file);
