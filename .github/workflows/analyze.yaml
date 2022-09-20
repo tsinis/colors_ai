@@ -25,7 +25,6 @@ jobs:
         with:
           config: .github/workflows/actions_settings/check-spelling
           extra_dictionaries:
-            cspell:dart/src/dart.txt
             cspell:filetypes/filetypes.txt
 
       - name: Install Flutter
