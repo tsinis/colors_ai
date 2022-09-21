@@ -108,7 +108,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAYSTORE_ACCOUNT_KEY }}
           packageName: ${{ secrets.APP_PACKAGE_NAME }}
-          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          releaseFiles: app-release.aab
           track: production
           whatsNewDirectory: distribution/whatsnew
           status: draft
