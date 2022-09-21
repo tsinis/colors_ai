@@ -25,6 +25,9 @@ jobs:
           configuration: ".github/workflows/actions_settings/changelog_config.json"
           failOnError: "true"
 
+      - name: Echo Changelog
+        run: echo "${{ needs.changelog.outputs.changelog }}"
+
   build:
     name: 🏗️ Build Artifacts and Release
     runs-on: ubuntu-latest
