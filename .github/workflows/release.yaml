@@ -110,5 +110,5 @@ jobs:
           packageName: ${{ secrets.APP_PACKAGE_NAME }}
           releaseFiles: app-release.aab
           track: production
-          whatsNewDirectory: distribution/whatsnew
+          whatsNewDirectory: whatsnew
           status: draft
