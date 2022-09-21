@@ -23,7 +23,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           configuration: .github/workflows/actions_settings/changelog_config.json
-          # failOnError: "true"
 
   build:
     name: 🏗️ Build Artifacts and Release

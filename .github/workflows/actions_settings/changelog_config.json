@@ -60,9 +60,9 @@
             "target": "- $4\n  - $6"
         }
     ],
-    "max_tags_to_fetch": 100,
-    "max_pull_requests": 100,
-    "max_back_track_time_days": 365,
+    "max_tags_to_fetch": 10,
+    "max_pull_requests": 12,
+    "max_back_track_time_days": 60,
     "tag_resolver": {
         "method": "semver",
         "filter": {
