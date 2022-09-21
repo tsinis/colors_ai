@@ -73,13 +73,13 @@ jobs:
           body: "${{ github.event.head_commit.message }}"
 
       - name: Save AAB to Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: APPBUNDLE
           path: build/app/outputs/bundle/release/app-release.aab
 
       - name: Save APK to Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: APK
           path: build/app/outputs/flutter-apk/app-release.apk
