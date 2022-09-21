@@ -23,6 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           configuration: .github/workflows/actions_settings/changelog_config.json
+          # failOnError: "true"
 
   build:
     name: 🏗️ Build Artifacts and Release
@@ -40,7 +41,7 @@ jobs:
           key-path: '["version"]'
 
       - name: Generate unique Release Tag
-        run: echo RELEASE_TAG=Release-${{ steps.pubspec-data.outputs.data }}-$(date +%s) >> $GITHUB_ENV
+        run: echo RELEASE_TAG=${{ steps.pubspec-data.outputs.data }} >> $GITHUB_ENV
 
       - name: Setup Java
         uses: actions/setup-java@v1
