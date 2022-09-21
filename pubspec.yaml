@@ -12,7 +12,7 @@ environment:
   flutter: ">=3.0.1"
 
 dependencies:
-  animations: ^2.0.4 # From Google
+  animations: ^2.0.5 # From Google
   audioplayers: ^1.0.1
   color_converter: ^0.2.1
   equatable: ^2.0.5 # From Flutter Community
