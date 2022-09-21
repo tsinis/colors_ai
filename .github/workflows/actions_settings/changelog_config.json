@@ -32,9 +32,11 @@
         }
     ],
     "ignore_labels": [
-        "ignore"
+        "ignore",
+        "dependencies",
+        "ci/cd"
     ],
-    "template": "${{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n${{UNCATEGORIZED}}\n</details>",
+    "template": "${{CHANGELOG}}\n\n<details>\n<summary>Changelog</summary>\n\n${{UNCATEGORIZED}}\n</details>",
     "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}",
     "empty_template": "- no changes",
     "label_extractor": [
