@@ -15,8 +15,14 @@ jobs:
     name: 🔍 Run PR check
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
     steps:
+      - name: Assert Branch Naming Convention
+        uses: deepakputhraya/action-branch-name@master
+        with:
+          allowed_prefixes: "feature,feat,test,tests,fix,bug,chore,dependabot,deps,ci,build,docs,doc,style,refactor"
+          ignore: master,develop,main,release
+          min_length: 5
+
       - name: Auto Author Assign
         uses: toshimaru/auto-author-assign@v1.6.1
         with:
@@ -36,6 +42,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADD_LABEL: "approved"
           REMOVE_LABEL: "awaiting%20review"
+
+      - name: Label When Changes Requested
+        uses: TimonVS/pr-labeler-action@v3
+        with:
+          configuration-path: .github/workflows/actions_settings/pr-labeler.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Approve Dependabot
         uses: hmarr/auto-approve-action@v2
