@@ -16,7 +16,7 @@ jobs:
   build-windows:
     runs-on: windows-latest
     name: 🪟 Build Windows app
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checks-out repository
         uses: actions/checkout@v3
@@ -26,13 +26,16 @@ jobs:
         with:
           cache: true
 
-      - name: Enable windows
+      - name: Enable Windows
         run: flutter config --enable-windows-desktop
 
       - name: Install Dependencies
         run: flutter packages get
 
-      - name: Build for windows
+      - name: Build Windows App
+        run: flutter build windows --release
+
+      - name: Create MSIX package
         run: flutter pub run msix:create
 
       - uses: actions/upload-artifact@v3
@@ -44,6 +47,7 @@ jobs:
   publish-windows:
     needs: build-windows
     runs-on: ubuntu-latest
+    name: 🏪 Publish App in Microsoft Store
     steps:
       - uses: actions/download-artifact@v3
         name: Download Release
