@@ -9,7 +9,6 @@
 \.g.dart$
 \.freezed.dart$
 \.gen.dart$
-
 ^\.github/
 ^\.vscode/
 ^\android/
@@ -20,8 +19,6 @@
 ^\macos/
 ^\resources/
 ^\assets/
-
 (?:(?i)LICENSE)
-
 ^\Qlib/settings/models/selected_api.dart\E$
 ^\Qlib/share/models/file_format.dart\E$
