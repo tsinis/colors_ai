@@ -122,6 +122,7 @@ svg
 swipeable
 szs
 todo
+TODO
 toolbar
 tooltip
 tsin
