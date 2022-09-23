@@ -4,19 +4,21 @@ on:
   push:
     branches:
       - release
+    paths:
+      - "pubspec.yaml"
 
 jobs:
   changelog:
     name: 📃 Create changelog
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
     outputs:
       changelog: ${{ steps.build_changelog.outputs.changelog }}
     steps:
       - name: Checks-out repository
         uses: actions/checkout@v3
 
-      - name: Build Changelog
+      - name: Create changelog
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@v3.3.1
         env:
@@ -24,10 +26,10 @@ jobs:
         with:
           configuration: ".github/workflows/actions_settings/changelog_config.json"
 
-  build:
-    name: 🏗️ Build Artifacts and Release
+  build-android-linux:
+    name: 🤖 Build Android and Linux apps
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Checks-out repository
         uses: actions/checkout@v3
@@ -46,32 +48,54 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: "zulu"
-          java-version: "17"
+          java-version: "18"
+
+      - name: Update Linux dependencies
+        run: sudo apt-get update -y
+
+      - name: Install new Linux dependencies
+        run: sudo apt-get --assume-yes --fix-missing install libgles2-mesa-dev clang cmake unzip curl ninja-build pkg-config libgtk-3-dev liblzma-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libsecret-1-dev libjsoncpp-dev libsecret-1-0 libjsoncpp1
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2.7.1
         with:
           cache: true
 
-      - name: Decode android/key.properties
+      - name: Enable Linux
+        run: flutter config --enable-linux-desktop
+
+      - name: Install app dependencies
+        run: flutter pub get
+
+      - name: Build Linux app
+        run: flutter build linux --release
+
+      - name: Compress Linux app
+        uses: papeloto/action-zip@v1
+        with:
+          files: ./build/linux/x64/release/bundle/
+          dest: ./colors-ai-linux.zip
+
+      - name: Decode key.properties
         run: echo "${{ secrets.KEY_PROPERTIES_BASE64 }}" | base64 --decode > android/key.properties
 
-      - name: Decode android/app/key.jks
+      - name: Decode key.jks
         run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > android/app/key.jks
-
-      - name: Pub Get Packages
-        run: flutter pub get
 
       - name: Build Android app
         run: flutter build appbundle --release && flutter build apk --release
 
+      - name: Rename APK
+        run: mv ./build/app/outputs/flutter-apk/app-release.apk ./build/app/outputs/flutter-apk/colors-ai-android.apk
+
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/bundle/release/app-release.aab,build/app/outputs/flutter-apk/app-release.apk"
+          artifacts: "build/app/outputs/flutter-apk/colors-ai-android.apk,colors-ai-linux.zip"
+          body: "${{ github.event.head_commit.message }}"
           token: ${{ secrets.GH_TOKEN }}
           tag: "${{env.RELEASE_TAG}}"
-          body: "${{ github.event.head_commit.message }}"
+          allowUpdates: true
 
       - name: Save AAB to Artifacts
         uses: actions/upload-artifact@v3
@@ -79,19 +103,129 @@ jobs:
           name: APPBUNDLE
           path: build/app/outputs/bundle/release/app-release.aab
 
-      - name: Save APK to Artifacts
+  build-windows:
+    runs-on: windows-latest
+    needs: build-android-linux
+    name: 🖥️ Build Windows app
+    timeout-minutes: 15
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get latest release tag
+        id: previoustag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2.7.1
+        with:
+          cache: true
+
+      - name: Enable Windows
+        run: flutter config --enable-windows-desktop
+
+      - name: Install app dependencies
+        run: flutter pub get
+
+      - name: Build Windows app
+        run: flutter build windows --release
+
+      - name: Create MSIX package
+        run: flutter pub run msix:create
+
+      - name: Save MSIX to Artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: APK
-          path: build/app/outputs/flutter-apk/app-release.apk
+          name: windows-release-build
+          path: build\windows\runner\Release\colors_ai.msix
+          retention-days: 1
 
-  release_google_play:
-    name: 🏭 Release Artifacts to Google Play Store
-    needs: [build, changelog]
+      - name: Copy VC redistributables
+        run: |
+          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\msvcp140.dll') .
+          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140.dll') .
+          Copy-Item (vswhere -latest -find 'VC\Redist\MSVC\*\x64\*\vcruntime140_1.dll') .
+        working-directory: ./build/windows/runner/Release
+
+      - name: Compress Windows app
+        uses: papeloto/action-zip@v1
+        with:
+          files: ./build/windows/runner/Release/
+          dest: ./colors-ai-windows.zip
+
+      - uses: djnicholson/release-action@v2.11
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          tag-name: "${{ steps.previoustag.outputs.tag }}"
+          asset-name: "colors-ai-windows.zip"
+          file: "colors-ai-windows.zip"
+
+  build-apple:
+    name: 🍏 Build macOS and iOS apps
+    needs: build-android-linux
+    runs-on: macos-latest
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get latest release tag
+        id: previoustag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2.7.1
+        with:
+          cache: true
+
+      - name: Enable macOS
+        run: flutter config --enable-macos-desktop
+
+      - name: Install app dependencies
+        run: flutter pub get
+
+      - name: Build iOS app
+        run: flutter build ios --release --no-codesign
+
+      - name: Compress iOS app
+        run: |
+          mkdir -p colors-ai
+          mv ./build/ios/iphoneos/Runner.app colors-ai
+          zip -r -y colors-ai.zip colors-ai/Runner.app
+          mv colors-ai.zip colors-ai-ios.ipa
+
+      - uses: djnicholson/release-action@v2.11
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          tag-name: "${{ steps.previoustag.outputs.tag }}"
+          asset-name: "colors-ai-ios.ipa"
+          file: "colors-ai-ios.ipa"
+
+      - name: Build macOS app
+        run: flutter build macos
+
+      - name: Compress macOS app
+        run: zip -r colors-ai-macos.zip build/macos/Build/Products/Debug
+
+      - uses: djnicholson/release-action@v2.11
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          tag-name: "${{ steps.previoustag.outputs.tag }}"
+          asset-name: "colors-ai-macos.zip"
+          file: "colors-ai-macos.zip"
+
+  publish-on-google-play:
+    name: 🏬 Publish app in Google Play Store
+    needs: [build-android-linux, changelog]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v3
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+
       - name: Get AAB from Artifacts
         uses: actions/download-artifact@v3
         with:
@@ -112,3 +246,24 @@ jobs:
           whatsNewDirectory: whatsnew
           track: production
           status: draft
+
+  publish-on-windows-store:
+    needs: build-windows
+    runs-on: ubuntu-latest
+    name: 🏪 Publish app in Microsoft Store
+    timeout-minutes: 15
+    steps:
+      - uses: actions/download-artifact@v3
+        name: Download Release
+        with:
+          name: windows-release-build
+          path: "${{ github.workspace }}/release"
+
+      - uses: isaacrlevin/windows-store-action@1.0
+        name: Publish to Store
+        with:
+          tenant-id: ${{ secrets.AZURE_AD_TENANT_ID }}
+          client-id: ${{ secrets.AZURE_AD_APPLICATION_CLIENT_ID }}
+          client-secret: ${{ secrets.AZURE_AD_APPLICATION_SECRET }}
+          app-id: ${{ secrets.WINDOWS_STORE_APP_ID }}
+          package-path: "${{ github.workspace }}/release"
