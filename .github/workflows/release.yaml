@@ -190,9 +190,6 @@ jobs:
       - name: Build iOS app
         run: flutter build ios --release --no-codesign
 
-      - name: Build macOS app
-        run: flutter build macos --debug # TODO: run as release.
-
       - name: Compress iOS app
         run: |
           mkdir -p colors-ai
@@ -200,15 +197,18 @@ jobs:
           zip -r -y colors-ai.zip colors-ai/Runner.app
           mv colors-ai.zip colors-ai-ios.ipa
 
-      - name: Compress macOS app
-        run: zip -r colors-ai-macos.zip build/macos/Build/Products/Debug
-
       - uses: djnicholson/release-action@v2.11
         with:
           token: ${{ secrets.GH_TOKEN }}
           tag-name: "${{ steps.previoustag.outputs.tag }}"
           asset-name: "colors-ai-ios.ipa"
           file: "colors-ai-ios.ipa"
+
+      - name: Build macOS app
+        run: flutter build macos
+
+      - name: Compress macOS app
+        run: zip -r colors-ai-macos.zip build/macos/Build/Products/Debug
 
       - uses: djnicholson/release-action@v2.11
         with:
