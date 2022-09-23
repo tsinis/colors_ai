@@ -217,7 +217,7 @@ jobs:
           asset-name: "colors-ai-macos.zip"
           file: "colors-ai-macos.zip"
 
-  release-google-play:
+  publish-on-google-play:
     name: 🏬 Publish app in Google Play Store
     needs: [build-android-linux, changelog]
     runs-on: ubuntu-latest
@@ -247,7 +247,7 @@ jobs:
           track: production
           status: draft
 
-  publish-windows:
+  publish-on-windows-store:
     needs: build-windows
     runs-on: ubuntu-latest
     name: 🏪 Publish app in Microsoft Store
