@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - release
+    paths:
+      - "pubspec.yaml"
 
 jobs:
   changelog:
     name: 📃 Create changelog
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 3
     outputs:
       changelog: ${{ steps.build_changelog.outputs.changelog }}
     steps:
@@ -51,7 +53,7 @@ jobs:
       - name: Update Linux dependencies
         run: sudo apt-get update -y
 
-      - name: Install Linux dependencies
+      - name: Install new Linux dependencies
         run: sudo apt-get --assume-yes --fix-missing install libgles2-mesa-dev clang cmake unzip curl ninja-build pkg-config libgtk-3-dev liblzma-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libsecret-1-dev libjsoncpp-dev libsecret-1-0 libjsoncpp1
 
       - name: Install Flutter
@@ -74,10 +76,10 @@ jobs:
           files: ./build/linux/x64/release/bundle/
           dest: ./colors-ai-linux.zip
 
-      - name: Decode android/key.properties
+      - name: Decode key.properties
         run: echo "${{ secrets.KEY_PROPERTIES_BASE64 }}" | base64 --decode > android/key.properties
 
-      - name: Decode android/app/key.jks
+      - name: Decode key.jks
         run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > android/app/key.jks
 
       - name: Build Android app
@@ -90,22 +92,16 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/flutter-apk/colors-ai-android.apk,colors-ai-linux.zip"
+          body: "${{ github.event.head_commit.message }}"
           token: ${{ secrets.GH_TOKEN }}
           tag: "${{env.RELEASE_TAG}}"
           allowUpdates: true
-          body: "${{ github.event.head_commit.message }}"
 
       - name: Save AAB to Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: APPBUNDLE
           path: build/app/outputs/bundle/release/app-release.aab
-
-      - name: Save APK to Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: APK
-          path: build/app/outputs/flutter-apk/colors-ai-android.apk
 
   build-windows:
     runs-on: windows-latest
@@ -139,7 +135,8 @@ jobs:
       - name: Create MSIX package
         run: flutter pub run msix:create
 
-      - uses: actions/upload-artifact@v3
+      - name: Save MSIX to Artifacts
+        uses: actions/upload-artifact@v3
         with:
           name: windows-release-build
           path: build\windows\runner\Release\colors_ai.msix
@@ -166,7 +163,7 @@ jobs:
           file: "colors-ai-windows.zip"
 
   build-apple:
-    name: Build macOS and iOS
+    name: 🍏 Build macOS and iOS apps
     needs: build-android-linux
     runs-on: macos-latest
     steps:
@@ -249,15 +246,6 @@ jobs:
           whatsNewDirectory: whatsnew
           track: production
           status: draft
-
-      - name: Remove asset
-        uses: flcdrg/remove-release-asset-action@v1
-        id: remove
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_id: "${{ steps.previoustag.outputs.tag }}"
-          asset_name: package.json
 
   publish-windows:
     needs: build-windows
