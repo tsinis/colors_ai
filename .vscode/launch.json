@@ -11,10 +11,23 @@
             "flutterMode": "debug"
         },
         {
+            "name": "Profile",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
             "name": "Release",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
-        }
+        },
+        {
+            "name": "E2E Tests",
+            "request": "launch",
+            "program": "integration_test/integration_test.dart",
+            "type": "dart",
+            "flutterMode": "debug"
+        },
     ]
 }

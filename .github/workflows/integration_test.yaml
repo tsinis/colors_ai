@@ -1,0 +1,37 @@
+name: integration_tests
+
+on:
+  pull_request:
+    branches:
+      - release
+    paths:
+      - "pubspec.yaml"
+
+jobs:
+  integration-test:
+    name: 📱 Run Android E2E tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2.7.1
+        with:
+          cache: true
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "zulu"
+          java-version: "18"
+
+      - name: Install app dependencies
+        run: flutter pub get
+
+      - name: Run Android integration tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 33
+          script: flutter test integration_test
