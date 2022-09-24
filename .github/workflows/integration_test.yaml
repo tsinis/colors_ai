@@ -34,5 +34,8 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           arch: x86_64
-          api-level: 33
-          script: adb kill-server && adb start-server && flutter test integration_test
+          api-level: 29
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          disable-animations: false
+          force-avd-creation: false
+          script: flutter test integration_test
