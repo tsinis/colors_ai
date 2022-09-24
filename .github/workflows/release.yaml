@@ -155,7 +155,8 @@ jobs:
           files: ./build/windows/runner/Release/
           dest: ./colors-ai-windows.zip
 
-      - uses: djnicholson/release-action@v2.11
+      - name: Update Releases with Windows app
+        uses: djnicholson/release-action@v2.11
         with:
           token: ${{ secrets.GH_TOKEN }}
           tag-name: "${{ steps.previoustag.outputs.tag }}"
@@ -197,25 +198,28 @@ jobs:
           zip -r -y colors-ai.zip colors-ai/Runner.app
           mv colors-ai.zip colors-ai-ios.ipa
 
-      - uses: djnicholson/release-action@v2.11
+      - name: Update Releases with iOS app
+        uses: djnicholson/release-action@v2.11
         with:
           token: ${{ secrets.GH_TOKEN }}
           tag-name: "${{ steps.previoustag.outputs.tag }}"
           asset-name: "colors-ai-ios.ipa"
           file: "colors-ai-ios.ipa"
 
-      - name: Build macOS app
-        run: flutter build macos
+      # TODO: Provide macOS builds in Releases too.
+      # - name: Build macOS app
+      #   run: flutter build macos
 
-      - name: Compress macOS app
-        run: zip -r colors-ai-macos.zip build/macos/Build/Products/Debug
+      # - name: Compress macOS app
+      #   run: zip -r colors-ai-macos.zip build/macos/Build/Products/Debug
 
-      - uses: djnicholson/release-action@v2.11
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          tag-name: "${{ steps.previoustag.outputs.tag }}"
-          asset-name: "colors-ai-macos.zip"
-          file: "colors-ai-macos.zip"
+      # - name: Update Releases with macOS app
+      #   uses: djnicholson/release-action@v2.11
+      #   with:
+      #     token: ${{ secrets.GH_TOKEN }}
+      #     tag-name: "${{ steps.previoustag.outputs.tag }}"
+      #     asset-name: "colors-ai-macos.zip"
+      #     file: "colors-ai-macos.zip"
 
   publish-on-google-play:
     name: 🏬 Publish app in Google Play Store
