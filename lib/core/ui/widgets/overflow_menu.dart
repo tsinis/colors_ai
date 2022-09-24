@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart' show SchedulerBinding;
 import '../../../about/ui/view/about_app_dialog.dart';
 import '../../../app/theme/constants.dart';
 import '../../../settings/ui/view/settings_dialog.dart';
+import '../../../testing/test_keys.dart';
 import '../../extensions/context_extensions.dart';
 
 class OverflowMenu extends StatelessWidget {
@@ -25,13 +26,16 @@ class OverflowMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => PopupMenuButton<void>(
+        key: TestKeys.overflowMenuButton,
         icon: const Icon(Icons.more_vert),
         itemBuilder: (_) => <PopupMenuItem<void>>[
           PopupMenuItem<void>(
+            key: TestKeys.settingsMenuItem,
             onTap: () => showDialog(context, const SettingsDialog()),
             child: Text(context.l10n.settings),
           ),
           PopupMenuItem<void>(
+            key: TestKeys.aboutMenuItem,
             onTap: () => showDialog(context, const AboutAppDialog()),
             child: Text(context.l10n.help),
           ),
