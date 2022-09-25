@@ -10,8 +10,8 @@ on:
 jobs:
   integration-test:
     name: 📱 Run Android E2E tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
+    runs-on: macos-latest
+    timeout-minutes: 25
     steps:
       - name: Checks-out repository
         uses: actions/checkout@v3
@@ -30,12 +30,18 @@ jobs:
       - name: Install app dependencies
         run: flutter pub get
 
-      - name: Run Android integration tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          arch: x86_64
-          api-level: 29
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
-          disable-animations: false
-          force-avd-creation: false
-          script: flutter test integration_test
+      - name: Start Simulator
+        run: open -a Simulator.app
+
+      - name: Integration Tests
+        run: flutter test integration_test -d iPhone
+
+      # - name: Run Android integration tests
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     arch: x86_64
+      #     api-level: 29
+      #     emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+      #     disable-animations: false
+      #     force-avd-creation: false
+      #     script: flutter test integration_test
