@@ -31,8 +31,8 @@ jobs:
       - name: Compare version number with previous tag
         uses: nick-invision/assert-action@v1
         with:
-          expected: ${{ steps.read-version.outputs.version-number }}
-          actual: "${{ steps.previoustag.outputs.tag }}"
+          expected: "${{ steps.previoustag.outputs.tag }}"
+          actual: ${{ steps.read-version.outputs.version-number }}
           comparison: notStartsWith
 
       - name: Install Flutter
