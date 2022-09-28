@@ -37,7 +37,7 @@ dependencies:
   printing: ^5.9.3
   share_plus: ^4.4.0 # From Flutter Community (former Google)
   simple_animations: ^5.0.0+2
-  url_launcher: ^6.1.5 # From Google
+  url_launcher: ^6.1.6 # From Google
   vibration: ^1.7.6
   window_size: # From Google
     git:
