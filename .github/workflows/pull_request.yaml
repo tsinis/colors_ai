@@ -54,7 +54,6 @@ jobs:
   auto-approve:
     name: 🎟️ Approve Dependabot and repository Author
     runs-on: ubuntu-latest
-    needs: branch-name-check
     timeout-minutes: 4
     steps:
       - name: Approve Dependabot
