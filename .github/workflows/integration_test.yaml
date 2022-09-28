@@ -9,9 +9,9 @@ on:
 
 jobs:
   integration-test:
-    name: 📱 Run Android E2E tests
+    name: 📱 Run Mobile E2E tests
     runs-on: macos-latest
-    timeout-minutes: 25
+    timeout-minutes: 20
     steps:
       - name: Checks-out repository
         uses: actions/checkout@v3

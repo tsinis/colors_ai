@@ -11,23 +11,39 @@ permissions:
   pull-requests: write
 
 jobs:
-  pr-clean-up:
-    name: 🔍 Run PR check
+  branch-name:
+    name: 🔀 Check branch name
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 4
     steps:
       - name: Assert Branch Naming Convention
         uses: deepakputhraya/action-branch-name@master
         with:
           allowed_prefixes: "feature,feat,test,tests,fix,bug,chore,dependabot,deps,ci,build,docs,doc,style,refactor"
-          ignore: master,develop,main,release
+          ignore: main,release
           min_length: 5
 
-      - name: Auto Author Assign
+  assign:
+    name: ✍🏻 Assign PR Author and Reviewer
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Author Assign
         uses: toshimaru/auto-author-assign@v1.6.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Add Reviewer
+        uses: madrapps/add-reviewers@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          reviewers: github.event.repository.owner.login
+
+  pr-title:
+    name: 📰 Check PR Title
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
       - name: Lint Pull Request Title
         uses: amannn/action-semantic-pull-request@v4
         with:
@@ -35,29 +51,27 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Label When Approved
-        uses: pullreminders/label-when-approved-action@master
-        env:
-          APPROVALS: "1"
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ADD_LABEL: "approved"
-          REMOVE_LABEL: "awaiting%20review"
-
-      - name: Label When Changes Requested
-        uses: TimonVS/pr-labeler-action@v3
-        with:
-          configuration-path: .github/workflows/actions_settings/pr-labeler.yaml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+  auto-approve:
+    name: 🎟️ Approve Dependabot and repository Author
+    runs-on: ubuntu-latest
+    needs: branch-name-check
+    timeout-minutes: 4
+    steps:
       - name: Approve Dependabot
         uses: hmarr/auto-approve-action@v2
         if: github.actor == 'dependabot[bot]' || github.actor == github.event.repository.owner.login
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Add Reviewer
-        uses: madrapps/add-reviewers@v1
+  pr-labels:
+    name: 🏷️ Add PR Labels
+    runs-on: ubuntu-latest
+    needs: branch-name
+    timeout-minutes: 4
+    steps:
+      - name: Detect and add label(s)
+        uses: TimonVS/pr-labeler-action@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          reviewers: github.event.repository.owner.login
+          configuration-path: .github/workflows/actions_settings/pr-labeler.yaml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
