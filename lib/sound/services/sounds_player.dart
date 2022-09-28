@@ -12,8 +12,7 @@ class SoundsPlayer {
         await _audioPlayer.setVolume(normalizedVolume);
       } else if (!cacheOnly) {
         final AssetSource sound = AssetSource(asset);
-        // TODO Add mode: [PlayerMode.lowLatency] on Android platform after fix.
-        await _audioPlayer.play(sound, volume: volume);
+        await _audioPlayer.play(sound, volume: volume, mode: PlayerMode.lowLatency);
       }
     }
   }

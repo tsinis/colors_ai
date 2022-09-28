@@ -9,7 +9,7 @@ on:
 
 jobs:
   changelog:
-    name: 📃 Create changelog
+    name: 📜 Create changelog
     runs-on: ubuntu-latest
     timeout-minutes: 3
     outputs:

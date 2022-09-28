@@ -13,7 +13,7 @@ on:
 
 jobs:
   analysis:
-    name: 🔬 PR analysis
+    name: 🕵️ Analyze
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

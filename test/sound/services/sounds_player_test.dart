@@ -10,6 +10,7 @@ import '../../data/helpers/utils.dart';
 void main() => group('$SoundsPlayer', () {
       const double volume = 0.5;
       const String asset = 'sounds/ui_lock.mp3';
+      const String setPlayerMode = 'setPlayerMode';
       const String setVolumeMethod = 'setVolume';
       const Set<String> expectedMethodNames = <String>{'setSourceUrl', 'resume'};
 
@@ -27,7 +28,7 @@ void main() => group('$SoundsPlayer', () {
         player = SoundsPlayer();
       });
 
-      setUpAll(calls.clear);
+      setUp(calls.clear);
 
       test('playSound() with null asset', () async {
         await player.playSound(null, volume);
@@ -47,12 +48,12 @@ void main() => group('$SoundsPlayer', () {
 
       test('playSound() with null volume and without cache', () async {
         await player.playSound(asset, null);
-        expect(methodNames(), <String>{setVolumeMethod, ...expectedMethodNames});
+        expect(methodNames(), <String>{setPlayerMode, ...expectedMethodNames});
       });
 
       test('playSound() with non-null volume and without cache', () async {
         await player.playSound(asset, volume);
-        expect(methodNames(), <String>{setVolumeMethod, ...expectedMethodNames});
+        expect(methodNames(), <String>{setPlayerMode, setVolumeMethod, ...expectedMethodNames});
       });
 
       tearDownAll(deleteFakeStorageDir);
