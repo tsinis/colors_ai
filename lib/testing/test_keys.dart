@@ -14,5 +14,9 @@ class TestKeys {
   static const Key settingsMenuItem = Key('settingsMenuItem');
   static const Key aboutMenuItem = Key('aboutMenuItem');
 
+  // About app dialog related keys.
+  static const Key viewLicensesButton = Key('viewLicensesButton');
+  static const Key closeAboutDialogButton = Key('closeAboutDialogButton');
+
   const TestKeys._();
 }

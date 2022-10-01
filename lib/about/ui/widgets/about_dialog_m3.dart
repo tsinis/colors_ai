@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/theme/constants.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/extensions/string_extension.dart';
+import '../../../testing/test_keys.dart';
 
 class AboutDialogM3 extends StatelessWidget {
   final Widget applicationIcon;
@@ -55,6 +56,7 @@ class AboutDialogM3 extends StatelessWidget {
         ),
         actions: <Widget>[
           TextButton(
+            key: TestKeys.viewLicensesButton,
             child: Text(context.materialL10n.viewLicensesButtonLabel.toBeginningOfSentenceCase()),
             onPressed: () => showLicensePage(
               context: context,
@@ -65,6 +67,7 @@ class AboutDialogM3 extends StatelessWidget {
             ),
           ),
           TextButton(
+            key: TestKeys.closeAboutDialogButton,
             child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
             onPressed: () => Navigator.pop(context),
           ),

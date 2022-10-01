@@ -12,7 +12,8 @@ class SoundsPlayer {
         await _audioPlayer.setVolume(normalizedVolume);
       } else if (!cacheOnly) {
         final AssetSource sound = AssetSource(asset);
-        await _audioPlayer.play(sound, volume: volume, mode: PlayerMode.lowLatency);
+        // TODO: Turn on  mode: PlayerMode.lowLatency after fix.
+        await _audioPlayer.play(sound, volume: volume);
       }
     }
   }
