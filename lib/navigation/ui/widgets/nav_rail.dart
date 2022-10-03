@@ -9,6 +9,7 @@ import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
 import '../../../favorites/ui/widgets/buttons/save_colors_fab.dart';
 import '../../blocs/navigation_bloc.dart';
 import '../../mixins/nav_tab_indexer.dart';
+import 'constants.dart';
 
 class NavRail extends StatefulWidget {
   final Duration duration;
@@ -70,21 +71,21 @@ class _NavRailState extends State<NavRail> with NavTabIndexer {
               destinations: <NavigationRailDestination>[
                 NavigationRailDestination(
                   label: Text(tabLabels[shareTabIndex]),
-                  selectedIcon: const Icon(Icons.share),
-                  icon: const Icon(Icons.share_outlined),
+                  selectedIcon: kShareSelectedIcon,
+                  icon: kShareUnselectedIcon,
                 ),
                 NavigationRailDestination(
                   label: Text(tabLabels[colorsGenTabIndex]),
-                  icon: const Icon(Icons.palette_outlined),
-                  selectedIcon: const Icon(Icons.palette),
+                  icon: kGenerateSelectedIcon,
+                  selectedIcon: kGenerateUnselectedIcon,
                 ),
                 NavigationRailDestination(
                   label: Text(
                     isFavoritesEmpty ? context.l10n.noFavoritesTabLabel : context.l10n.favoritesTabLabel,
                   ),
-                  selectedIcon: const Icon(Icons.bookmarks),
+                  selectedIcon: kFavoritesSelectedIcon,
                   icon: Icon(
-                    Icons.bookmarks_outlined,
+                    kFavoritesUnselectedIcon.icon,
                     color: isFavoritesEmpty
                         ? context.theme.disabledColor
                         : context.theme.bottomNavigationBarTheme.selectedItemColor,

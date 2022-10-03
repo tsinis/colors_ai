@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/theme/constants.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/extensions/string_extension.dart';
+import '../../../testing/test_keys.dart';
 import '../../blocs/settings_bloc.dart';
 import '../../extensions/string_selected_api_extension.dart';
 import '../../mixins/huemint_settings.dart';
@@ -17,7 +18,7 @@ class SettingsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, SettingsState state) => AlertDialog(
-          actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
+          actionsPadding: const EdgeInsets.only(bottom: 16, right: 16),
           shape: kDefaultShape,
           scrollable: true,
           contentPadding: const EdgeInsets.only(bottom: 16, top: 16),
@@ -29,6 +30,7 @@ class SettingsDialog extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: DropdownButtonFormField<SelectedAPI>(
+                  key: TestKeys.settingsDialogDropdownMenu,
                   isExpanded: true,
                   dropdownColor: context.theme.dialogBackgroundColor,
                   decoration: InputDecoration(
@@ -131,6 +133,7 @@ class SettingsDialog extends StatelessWidget {
                 child: Text(context.l10n.appearance),
               ),
               RadioListTile<bool?>(
+                key: TestKeys.lightThemeSelection,
                 dense: true,
                 title: Text(context.l10n.lightThemeTitle),
                 contentPadding: const EdgeInsets.only(right: 32, left: 16),
@@ -140,6 +143,7 @@ class SettingsDialog extends StatelessWidget {
                 onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsLightThemeSelected()),
               ),
               RadioListTile<bool?>(
+                key: TestKeys.darkThemeSelection,
                 dense: true,
                 title: Text(context.l10n.darkThemeTitle),
                 subtitle: Text(context.l10n.darkThemeSubtitle, style: _tightSpaceStyle),
@@ -149,6 +153,7 @@ class SettingsDialog extends StatelessWidget {
               ),
               Flexible(
                 child: RadioListTile<bool?>(
+                  key: TestKeys.systemThemeSelection,
                   dense: true,
                   title: Text(context.l10n.systemThemeTitle),
                   subtitle: Text(context.l10n.systemThemeSubtitle, style: _tightSpaceStyle),
@@ -161,6 +166,7 @@ class SettingsDialog extends StatelessWidget {
           ),
           actions: <TextButton>[
             TextButton(
+              key: TestKeys.resetSettingsButton,
               onPressed: () => BlocProvider.of<SettingsBloc>(context)
                 ..add(const SettingsSystemThemeSelected())
                 ..add(const SettingsRegularColorsSelected())
@@ -173,7 +179,8 @@ class SettingsDialog extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              key: TestKeys.closeSettingsButton,
+              onPressed: context.closeDialog,
               child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
             ),
           ],

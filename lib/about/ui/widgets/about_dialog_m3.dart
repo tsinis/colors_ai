@@ -68,8 +68,8 @@ class AboutDialogM3 extends StatelessWidget {
           ),
           TextButton(
             key: TestKeys.closeAboutDialogButton,
+            onPressed: context.closeDialog,
             child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
-            onPressed: () => Navigator.pop(context),
           ),
         ],
         scrollable: true,
