@@ -6,6 +6,7 @@ import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
 import '../../blocs/navigation_bloc.dart';
 import '../../mixins/nav_tab_indexer.dart';
+import 'constants.dart';
 
 class BottomNavBar extends StatelessWidget with NavTabIndexer {
   final NavigationDestinationLabelBehavior labelBehavior;
@@ -34,20 +35,26 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
             },
             destinations: <NavigationDestination>[
               NavigationDestination(
+                key: kShareSelectedIcon.key,
                 label: tabLabels[shareTabIndex],
-                selectedIcon: const Icon(Icons.share),
-                icon: Icon(Icons.share_outlined, color: context.theme.primaryIconTheme.color),
-              ),
-              NavigationDestination(
-                label: tabLabels[colorsGenTabIndex],
-                icon: Icon(Icons.palette_outlined, color: context.theme.primaryIconTheme.color),
-                selectedIcon: const Icon(Icons.palette),
-              ),
-              NavigationDestination(
-                label: isFavoritesEmpty ? context.l10n.noFavoritesTabLabel : context.l10n.favoritesTabLabel,
-                selectedIcon: const Icon(Icons.bookmarks),
+                selectedIcon: Icon(kShareSelectedIcon.icon),
                 icon: Icon(
-                  Icons.bookmarks_outlined,
+                  kShareUnselectedIcon.icon,
+                  color: context.theme.primaryIconTheme.color,
+                ),
+              ),
+              NavigationDestination(
+                key: kGenerateSelectedIcon.key,
+                label: tabLabels[colorsGenTabIndex],
+                icon: Icon(kGenerateUnselectedIcon.icon, color: context.theme.primaryIconTheme.color),
+                selectedIcon: Icon(kGenerateSelectedIcon.icon),
+              ),
+              NavigationDestination(
+                key: kFavoritesSelectedIcon.key,
+                label: isFavoritesEmpty ? context.l10n.noFavoritesTabLabel : context.l10n.favoritesTabLabel,
+                selectedIcon: Icon(kFavoritesSelectedIcon.icon),
+                icon: Icon(
+                  kFavoritesUnselectedIcon.icon,
                   color: isFavoritesEmpty ? context.theme.disabledColor : context.theme.primaryIconTheme.color,
                 ),
               ),

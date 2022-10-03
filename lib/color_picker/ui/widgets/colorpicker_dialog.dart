@@ -109,7 +109,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
               enableSuggestions: false,
               enableIMEPersonalizedLearning: false,
               onTap: setColorFromHex,
-              onFieldSubmitted: (_) => Navigator.of(context).pop(),
+              onFieldSubmitted: context.closeDialog,
               textAlignVertical: TextAlignVertical.center,
               scrollPadding: const EdgeInsets.only(bottom: 20),
               inputFormatters: <TextInputFormatter>[HexFormatter()],
