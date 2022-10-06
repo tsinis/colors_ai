@@ -152,7 +152,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
       if (!kIsWeb && (platform.isWindows || platform.isLinux)) {
         await _saveFile(file);
       } else {
-        await Share.shareFiles(<String>[_filePath], subject: kAppName);
+        await Share.shareXFiles(<XFile>[XFile(_filePath)], subject: kAppName);
       }
 
       return true;
