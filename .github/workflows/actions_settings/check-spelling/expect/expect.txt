@@ -103,6 +103,5 @@ xff
 xffbdbdbd
 xffd
 xffffffff
-XFile
 xfile
 yaml
