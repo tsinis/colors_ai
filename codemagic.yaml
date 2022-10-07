@@ -19,12 +19,12 @@ definitions:
     - &flutter_pub_get
       name: Get Flutter packages
       script: flutter pub get
+    - &launch_ios_simulator
+      name: 📱 Launch iPhone Simulator
+      script: flutter emulators --launch apple_ios_simulator
     - &simulator_integration_test
-      name: Emulator tests
-      script: |
-        flutter emulators --launch apple_ios_simulator
-        flutter devices
-        flutter test integration_test
+      name: 📲 Run Integration Tests
+      script: flutter test integration_test
     - &fetch_signing_files
       name: Fetch signing files
       script: |
@@ -112,6 +112,7 @@ workflows:
     environment:
       <<: *env_versions
     scripts:
+      - *launch_ios_simulator
       - *flutter_pub_get
       - *simulator_integration_test
       - *build_ios
