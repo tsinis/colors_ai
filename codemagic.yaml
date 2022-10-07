@@ -27,14 +27,14 @@ definitions:
       script: flutter test integration_test
     - &show_message
       name: Show PR Title
-      script: echo COMMIT_MSG
+      script: echo $COMMIT_MSG
     - &export_pr_title
       name: Exit build if keyword not defined
       script: |
         set -e
         set -x
         export COMMIT_MSG=$(git log -1 --pretty=%B)
-        echo COMMIT_MSG
+        echo $COMMIT_MSG
     - &fetch_signing_files
       name: Fetch signing files
       script: |
