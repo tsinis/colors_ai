@@ -27,14 +27,21 @@ definitions:
       script: flutter test integration_test
     - &show_message
       name: Show PR Title
-      script: echo $COMMIT_MSG
+      script: echo $PR_TITLE
     - &export_pr_title
       name: Exit build if keyword not defined
       script: |
         set -e
         set -x
         export COMMIT_MSG=$(git log -1 --pretty=%B)
-        echo $COMMIT_MSG
+        echo "PR_TITLE=$COMMIT_MSG" >> $CM_ENV
+        if [[ ${COMMIT_MSG^^} == *"CODEMAGIC IGNORE"* ]]
+          then
+            echo "Commit message does not include 'e2e', moving forward..."
+          else
+            echo "Commit including 'e2e' in it's message, ignoring it"
+            exit 1
+        fi
     - &fetch_signing_files
       name: Fetch signing files
       script: |
