@@ -25,6 +25,23 @@ definitions:
     - &simulator_integration_test
       name: 📲 Run Integration Tests
       script: flutter test integration_test
+    - &show_message
+      name: Show PR Title
+      script: echo COMMIT_MSG
+    - &export_pr_title
+      name: Exit build if keyword not defined
+      script: |
+        set -e
+        set -x
+        export COMMIT_MSG=$(git log -1 --pretty=%B)
+        echo COMMIT_MSG
+        if [[ $COMMIT_MSG == *"e2e"* ]]
+          then
+            echo "Commit message does not include 'e2e', moving forward..."
+          else
+            echo "Commit including 'e2e' in it's message, ignoring it"
+            exit 1
+        fi
     - &fetch_signing_files
       name: Fetch signing files
       script: |
@@ -53,11 +70,10 @@ definitions:
   email_release: &email_release
     email:
       recipients:
-        - user_1@example.com
-        - user_2@example.com
+        - diniri7352@canyona.com
       notify:
         success: true
-        failure: true
+        failure: false
   email_develop: &email_develop
     email:
       recipients:
@@ -113,9 +129,13 @@ workflows:
     environment:
       <<: *env_versions
     scripts:
+      - *export_pr_title
       - *launch_ios_simulator
       - *flutter_pub_get
       - *simulator_integration_test
+      - *show_message
       - *build_ios
     artifacts:
       - *ipa
+    publishing:
+      <<: *email_release
