@@ -100,6 +100,7 @@ workflows:
       <<: *email_release
   integration-test:
     name: Integration Test
+    instance_type: mac_mini_m1
     max_build_duration: 12
     triggering:
       events:
