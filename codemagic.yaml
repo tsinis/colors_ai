@@ -35,13 +35,6 @@ definitions:
         set -x
         export COMMIT_MSG=$(git log -1 --pretty=%B)
         echo COMMIT_MSG
-        if [[ $COMMIT_MSG == *"e2e"* ]]
-          then
-            echo "Commit message does not include 'e2e', moving forward..."
-          else
-            echo "Commit including 'e2e' in it's message, ignoring it"
-            exit 1
-        fi
     - &fetch_signing_files
       name: Fetch signing files
       script: |
