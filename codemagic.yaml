@@ -6,8 +6,6 @@ definitions:
   artifacts:
     - &ipa build/ios/ipa/*.ipa
     - &xcode_log /tmp/xcodebuild_logs/*.log
-    - &e2e_log flutter_drive.log
-    - &test_results test_results.zip
     - &dsym $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
     - &app $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
   scripts:
@@ -22,9 +20,10 @@ definitions:
       name: Get Flutter packages
       script: flutter pub get
     - &simulator_integration_test
-      name: iPhone Simulator Integration Tests
-      script: bash resources/scripts/ios_e2e_test.sh
-      test_report: test-results/flutter.json
+      name: Emulator tests
+      script: |
+        flutter emulators --launch apple_ios_simulator
+        flutter -d iPhone test integration_test
     - &fetch_signing_files
       name: Fetch signing files
       script: |
@@ -116,5 +115,4 @@ workflows:
       - *simulator_integration_test
       - *build_ios
     artifacts:
-      - *e2e_log
-      - *test_results
+      - *ipa
