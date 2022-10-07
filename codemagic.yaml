@@ -28,8 +28,8 @@ definitions:
     - &show_message
       name: Show PR Title
       script: echo $PR_TITLE
-    - &export_pr_title
-      name: Abort build if Codemagic is ignored
+    - &check_pr_title
+      name: 🛑 Abort build if Codemagic is ignored
       script: bash resources/scripts/pr_title_check.sh
     - &fetch_signing_files
       name: Fetch signing files
@@ -118,7 +118,7 @@ workflows:
     environment:
       <<: *env_versions
     scripts:
-      - *export_pr_title
+      - *check_pr_title
       - *launch_ios_simulator
       - *flutter_pub_get
       - *simulator_integration_test
