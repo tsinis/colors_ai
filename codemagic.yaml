@@ -23,6 +23,7 @@ definitions:
       name: Emulator tests
       script: |
         flutter emulators --launch apple_ios_simulator
+        flutter devices
         flutter test integration_test
     - &fetch_signing_files
       name: Fetch signing files
