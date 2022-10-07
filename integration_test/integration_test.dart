@@ -27,7 +27,7 @@ void main() {
     await tester.tap(button);
     await tester.pumpAndSettle();
 
-    expect(button, findsNothing, reason: 'DID taped the button');
+    expect(button, findsOneWidget, reason: 'DID taped the button');
     expect(disappear, findsOneWidget);
   });
 
