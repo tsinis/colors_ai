@@ -37,7 +37,7 @@ definitions:
         echo "PR_TITLE=$COMMIT_MSG" >> $CM_ENV
         if [[ ${COMMIT_MSG^^} == *"CODEMAGIC IGNORE"* ]]
           then
-            echo "Commit message does not include 'e2e', moving forward..."
+            echo "Commit message does not include 'CODEMAGIC IGNORE', moving forward..."
           else
             echo "Commit including 'e2e' in it's message, ignoring it"
             exit 1
