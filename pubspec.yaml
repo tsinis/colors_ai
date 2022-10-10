@@ -13,7 +13,7 @@ environment:
 
 dependencies:
   animations: ^2.0.7 # From Google
-  audioplayers: ^1.1.0
+  audioplayers: ^1.1.1
   color_converter: ^0.2.1
   equatable: ^2.0.5 # From Flutter Community
   file_selector: ^0.9.2 # From Google
