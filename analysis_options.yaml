@@ -96,7 +96,9 @@ dart_code_metrics:
     - consistent-update-render-object: true
     - double-literal-format: true
     - format-comment: true
+    - include-methods: true
     - member-ordering-extended: true
+    - missing-test-assertion: false # false positive on bloc tests.
     - newline-before-return: true
     - no-boolean-literal-compare: true
     - no-empty-block: true
@@ -116,6 +118,7 @@ dart_code_metrics:
     - prefer-iterable-of: true
     - prefer-last: true
     - prefer-match-file-name: true
+    - prefer-moving-to-variable: true
     - prefer-single-widget-per-file: true
     - prefer-trailing-comma: true
     - provide-correct-intl-args: true

@@ -1,3 +1,4 @@
+// ignore_for_file: prefer-moving-to-variable, not necessary, it's a test.
 import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/sound/blocs/sound_bloc.dart';
 import 'package:colors_ai/sound/models/sound.dart';

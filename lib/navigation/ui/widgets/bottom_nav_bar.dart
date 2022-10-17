@@ -23,6 +23,7 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
         builder: (_, FavoritesState saveState) {
           final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
           final List<String> tabLabels = tabNames(context.l10n);
+          final Color? iconColor = context.theme.primaryIconTheme.color;
 
           return NavigationBar(
             backgroundColor: context.theme.primaryColor,
@@ -38,15 +39,12 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
                 key: kShareSelectedIcon.key,
                 label: tabLabels[shareTabIndex],
                 selectedIcon: Icon(kShareSelectedIcon.icon),
-                icon: Icon(
-                  kShareUnselectedIcon.icon,
-                  color: context.theme.primaryIconTheme.color,
-                ),
+                icon: Icon(kShareUnselectedIcon.icon, color: iconColor),
               ),
               NavigationDestination(
                 key: kGenerateSelectedIcon.key,
                 label: tabLabels[colorsGenTabIndex],
-                icon: Icon(kGenerateUnselectedIcon.icon, color: context.theme.primaryIconTheme.color),
+                icon: Icon(kGenerateUnselectedIcon.icon, color: iconColor),
                 selectedIcon: Icon(kGenerateSelectedIcon.icon),
               ),
               NavigationDestination(
@@ -55,7 +53,7 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
                 selectedIcon: Icon(kFavoritesSelectedIcon.icon),
                 icon: Icon(
                   kFavoritesUnselectedIcon.icon,
-                  color: isFavoritesEmpty ? context.theme.disabledColor : context.theme.primaryIconTheme.color,
+                  color: isFavoritesEmpty ? context.theme.disabledColor : iconColor,
                 ),
               ),
             ],

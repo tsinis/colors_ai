@@ -151,12 +151,10 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                   children: List<Widget>.generate(
                                                     favorites.elementAt(paletteIndex).colors.length,
                                                     (int colorIndex) {
-                                                      final Color color =
-                                                          favorites.elementAt(paletteIndex).colors[colorIndex];
-                                                      final Color textColor = favorites
-                                                          .elementAt(paletteIndex)
-                                                          .colors[colorIndex]
-                                                          .contrastColor();
+                                                      final List<Color> colors =
+                                                          favorites.elementAt(paletteIndex).colors;
+                                                      final Color color = colors.elementAt(colorIndex);
+                                                      final Color textColor = color.contrastColor();
                                                       final double hoverKey = paletteIndex + (colorIndex / colorsCount);
                                                       final bool isHoveringColor = hoveringColor == hoverKey;
 

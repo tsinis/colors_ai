@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_asserts_with_message, require_trailing_commas
+// ignore_for_file: prefer_asserts_with_message, require_trailing_commas, prefer-moving-to-variable
 
 import 'package:flutter/material.dart';
 
