@@ -57,12 +57,10 @@ class Colorpicker extends StatelessWidget {
               },
             );
 
+            final MaterialStateProperty<Size> size = MaterialStateProperty.all<Size>(buttonSize);
+
             return TextButton(
-              style: ButtonStyle(
-                enableFeedback: true,
-                minimumSize: MaterialStateProperty.all<Size>(buttonSize),
-                maximumSize: MaterialStateProperty.all<Size>(buttonSize),
-              ),
+              style: ButtonStyle(enableFeedback: true, minimumSize: size, maximumSize: size),
               onLongPress: isPortrait
                   ? () {
                       BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerEvent.copied(color));

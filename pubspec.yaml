@@ -8,8 +8,8 @@ maintainer: Roman Cinis
 publish_to: "none"
 
 environment:
-  sdk: ">=2.17.0"
-  flutter: ">=3.0.1"
+  sdk: ">=2.18.0"
+  flutter: ">=3.3.0"
 
 dependencies:
   animations: ^2.0.7 # From Google
@@ -31,7 +31,7 @@ dependencies:
   intl: ^0.17.0 # From Google
   json_annotation: ^4.7.0 # From Google
   mdi: ^5.0.0-nullsafety.0
-  package_info_plus: ^1.4.3+1 # From Flutter Community (former Google)
+  package_info_plus: ^2.0.0 # From Flutter Community (former Google)
   path_provider: ^2.0.11 # From Google
   platform_info: ^3.2.0 # Contributor
   printing: ^5.9.3
