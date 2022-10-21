@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import 'no_favorites/empty_list.dart';
-import 'no_favorites/magnifier.dart';
+import 'no_favorites/magnifier_animation.dart';
 
 class NoFavorites extends StatefulWidget {
   const NoFavorites({super.key});
@@ -59,7 +59,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
                   turns: reverseAnimation,
                   child: CustomPaint(
                     size: const Size(240, 240),
-                    painter: Magnifier(
+                    painter: MagnifierAnimation(
                       backgroundColor: context.theme.floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
                       holdersColor: Colors.grey.shade800,
                       outlineColor: context.theme.textTheme.displayMedium!.color!,
