@@ -14,7 +14,7 @@ on:
 jobs:
   test:
     name: 🧪 Test
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     timeout-minutes: 10
     steps:
       - name: Checks-out repository
@@ -23,7 +23,7 @@ jobs:
       - name: Install Flutter
         uses: subosito/flutter-action@v2.8.0
         with:
-          channel: "master"
+          channel: "beta"
           cache: true
 
       - name: Install app dependencies
