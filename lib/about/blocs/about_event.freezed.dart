@@ -29,13 +29,13 @@ mixin _$AboutEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,13 +63,13 @@ mixin _$AboutEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -90,16 +90,18 @@ mixin _$AboutEvent {
 abstract class $AboutEventCopyWith<$Res> {
   factory $AboutEventCopyWith(
           AboutEvent value, $Res Function(AboutEvent) then) =
-      _$AboutEventCopyWithImpl<$Res>;
+      _$AboutEventCopyWithImpl<$Res, AboutEvent>;
 }
 
 /// @nodoc
-class _$AboutEventCopyWithImpl<$Res> implements $AboutEventCopyWith<$Res> {
+class _$AboutEventCopyWithImpl<$Res, $Val extends AboutEvent>
+    implements $AboutEventCopyWith<$Res> {
   _$AboutEventCopyWithImpl(this._value, this._then);
 
-  final AboutEvent _value;
   // ignore: unused_field
-  final $Res Function(AboutEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -111,14 +113,11 @@ abstract class _$$_AboutColormindTapedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AboutColormindTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$_AboutColormindTaped>
     implements _$$_AboutColormindTapedCopyWith<$Res> {
   __$$_AboutColormindTapedCopyWithImpl(_$_AboutColormindTaped _value,
       $Res Function(_$_AboutColormindTaped) _then)
-      : super(_value, (v) => _then(v as _$_AboutColormindTaped));
-
-  @override
-  _$_AboutColormindTaped get _value => super._value as _$_AboutColormindTaped;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -157,13 +156,13 @@ class _$_AboutColormindTaped implements _AboutColormindTaped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) {
     return colormindTaped?.call();
   }
@@ -203,13 +202,13 @@ class _$_AboutColormindTaped implements _AboutColormindTaped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return colormindTaped?.call(this);
   }
@@ -246,14 +245,11 @@ abstract class _$$_AboutGoogleTapedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AboutGoogleTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$_AboutGoogleTaped>
     implements _$$_AboutGoogleTapedCopyWith<$Res> {
   __$$_AboutGoogleTapedCopyWithImpl(
       _$_AboutGoogleTaped _value, $Res Function(_$_AboutGoogleTaped) _then)
-      : super(_value, (v) => _then(v as _$_AboutGoogleTaped));
-
-  @override
-  _$_AboutGoogleTaped get _value => super._value as _$_AboutGoogleTaped;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -292,13 +288,13 @@ class _$_AboutGoogleTaped implements _AboutGoogleTaped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) {
     return googleTaped?.call();
   }
@@ -338,13 +334,13 @@ class _$_AboutGoogleTaped implements _AboutGoogleTaped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return googleTaped?.call(this);
   }
@@ -381,14 +377,11 @@ abstract class _$$_AboutHuemintTapedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AboutHuemintTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$_AboutHuemintTaped>
     implements _$$_AboutHuemintTapedCopyWith<$Res> {
   __$$_AboutHuemintTapedCopyWithImpl(
       _$_AboutHuemintTaped _value, $Res Function(_$_AboutHuemintTaped) _then)
-      : super(_value, (v) => _then(v as _$_AboutHuemintTaped));
-
-  @override
-  _$_AboutHuemintTaped get _value => super._value as _$_AboutHuemintTaped;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -427,13 +420,13 @@ class _$_AboutHuemintTaped implements _AboutHuemintTaped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) {
     return huemintTaped?.call();
   }
@@ -473,13 +466,13 @@ class _$_AboutHuemintTaped implements _AboutHuemintTaped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return huemintTaped?.call(this);
   }
@@ -516,14 +509,11 @@ abstract class _$$_AboutLicensesTapedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AboutLicensesTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$_AboutLicensesTaped>
     implements _$$_AboutLicensesTapedCopyWith<$Res> {
   __$$_AboutLicensesTapedCopyWithImpl(
       _$_AboutLicensesTaped _value, $Res Function(_$_AboutLicensesTaped) _then)
-      : super(_value, (v) => _then(v as _$_AboutLicensesTaped));
-
-  @override
-  _$_AboutLicensesTaped get _value => super._value as _$_AboutLicensesTaped;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -562,13 +552,13 @@ class _$_AboutLicensesTaped implements _AboutLicensesTaped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) {
     return licensesTaped?.call();
   }
@@ -608,13 +598,13 @@ class _$_AboutLicensesTaped implements _AboutLicensesTaped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return licensesTaped?.call(this);
   }
@@ -651,14 +641,11 @@ abstract class _$$_AboutSoundsTapedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AboutSoundsTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$_AboutSoundsTaped>
     implements _$$_AboutSoundsTapedCopyWith<$Res> {
   __$$_AboutSoundsTapedCopyWithImpl(
       _$_AboutSoundsTaped _value, $Res Function(_$_AboutSoundsTaped) _then)
-      : super(_value, (v) => _then(v as _$_AboutSoundsTaped));
-
-  @override
-  _$_AboutSoundsTaped get _value => super._value as _$_AboutSoundsTaped;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -697,13 +684,13 @@ class _$_AboutSoundsTaped implements _AboutSoundsTaped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) {
     return soundsTaped?.call();
   }
@@ -743,13 +730,13 @@ class _$_AboutSoundsTaped implements _AboutSoundsTaped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return soundsTaped?.call(this);
   }
@@ -786,14 +773,11 @@ abstract class _$$_AboutSourceCodeTapedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_AboutSourceCodeTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$_AboutSourceCodeTaped>
     implements _$$_AboutSourceCodeTapedCopyWith<$Res> {
   __$$_AboutSourceCodeTapedCopyWithImpl(_$_AboutSourceCodeTaped _value,
       $Res Function(_$_AboutSourceCodeTaped) _then)
-      : super(_value, (v) => _then(v as _$_AboutSourceCodeTaped));
-
-  @override
-  _$_AboutSourceCodeTaped get _value => super._value as _$_AboutSourceCodeTaped;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -832,13 +816,13 @@ class _$_AboutSourceCodeTaped implements _AboutSourceCodeTaped {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) {
     return sourceCodeTaped?.call();
   }
@@ -878,13 +862,13 @@ class _$_AboutSourceCodeTaped implements _AboutSourceCodeTaped {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return sourceCodeTaped?.call(this);
   }
@@ -917,25 +901,25 @@ abstract class _$$_AboutStartedCopyWith<$Res> {
   factory _$$_AboutStartedCopyWith(
           _$_AboutStarted value, $Res Function(_$_AboutStarted) then) =
       __$$_AboutStartedCopyWithImpl<$Res>;
+  @useResult
   $Res call({String currentLocale});
 }
 
 /// @nodoc
-class __$$_AboutStartedCopyWithImpl<$Res> extends _$AboutEventCopyWithImpl<$Res>
+class __$$_AboutStartedCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$_AboutStarted>
     implements _$$_AboutStartedCopyWith<$Res> {
   __$$_AboutStartedCopyWithImpl(
       _$_AboutStarted _value, $Res Function(_$_AboutStarted) _then)
-      : super(_value, (v) => _then(v as _$_AboutStarted));
+      : super(_value, _then);
 
-  @override
-  _$_AboutStarted get _value => super._value as _$_AboutStarted;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentLocale = freezed,
+    Object? currentLocale = null,
   }) {
     return _then(_$_AboutStarted(
-      currentLocale: currentLocale == freezed
+      currentLocale: null == currentLocale
           ? _value.currentLocale
           : currentLocale // ignore: cast_nullable_to_non_nullable
               as String,
@@ -961,16 +945,16 @@ class _$_AboutStarted implements _AboutStarted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AboutStarted &&
-            const DeepCollectionEquality()
-                .equals(other.currentLocale, currentLocale));
+            (identical(other.currentLocale, currentLocale) ||
+                other.currentLocale == currentLocale));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentLocale));
+  int get hashCode => Object.hash(runtimeType, currentLocale);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
       __$$_AboutStartedCopyWithImpl<_$_AboutStarted>(this, _$identity);
 
@@ -991,13 +975,13 @@ class _$_AboutStarted implements _AboutStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? colormindTaped,
-    TResult Function()? googleTaped,
-    TResult Function()? huemintTaped,
-    TResult Function()? licensesTaped,
-    TResult Function()? soundsTaped,
-    TResult Function()? sourceCodeTaped,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? colormindTaped,
+    TResult? Function()? googleTaped,
+    TResult? Function()? huemintTaped,
+    TResult? Function()? licensesTaped,
+    TResult? Function()? soundsTaped,
+    TResult? Function()? sourceCodeTaped,
+    TResult? Function(String currentLocale)? started,
   }) {
     return started?.call(currentLocale);
   }
@@ -1037,13 +1021,13 @@ class _$_AboutStarted implements _AboutStarted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutColormindTaped value)? colormindTaped,
-    TResult Function(_AboutGoogleTaped value)? googleTaped,
-    TResult Function(_AboutHuemintTaped value)? huemintTaped,
-    TResult Function(_AboutLicensesTaped value)? licensesTaped,
-    TResult Function(_AboutSoundsTaped value)? soundsTaped,
-    TResult Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutColormindTaped value)? colormindTaped,
+    TResult? Function(_AboutGoogleTaped value)? googleTaped,
+    TResult? Function(_AboutHuemintTaped value)? huemintTaped,
+    TResult? Function(_AboutLicensesTaped value)? licensesTaped,
+    TResult? Function(_AboutSoundsTaped value)? soundsTaped,
+    TResult? Function(_AboutSourceCodeTaped value)? sourceCodeTaped,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return started?.call(this);
   }
