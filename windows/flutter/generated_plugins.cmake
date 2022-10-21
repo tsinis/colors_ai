@@ -7,7 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   file_selector_windows
   flutter_secure_storage_windows
   printing
-  share_plus_windows
+  share_plus
   url_launcher_windows
   window_size
 )
