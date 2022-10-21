@@ -25,9 +25,9 @@ mixin _$ColorPickerEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? hided,
-    TResult? Function()? showed,
-    TResult? Function(Color color)? copied,
+    TResult Function()? hided,
+    TResult Function()? showed,
+    TResult Function(Color color)? copied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +47,9 @@ mixin _$ColorPickerEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ColorPickerHided value)? hided,
-    TResult? Function(_ColorPickerShowed value)? showed,
-    TResult? Function(_ColorPickerCopied value)? copied,
+    TResult Function(_ColorPickerHided value)? hided,
+    TResult Function(_ColorPickerShowed value)? showed,
+    TResult Function(_ColorPickerCopied value)? copied,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,18 +66,17 @@ mixin _$ColorPickerEvent {
 abstract class $ColorPickerEventCopyWith<$Res> {
   factory $ColorPickerEventCopyWith(
           ColorPickerEvent value, $Res Function(ColorPickerEvent) then) =
-      _$ColorPickerEventCopyWithImpl<$Res, ColorPickerEvent>;
+      _$ColorPickerEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ColorPickerEventCopyWithImpl<$Res, $Val extends ColorPickerEvent>
+class _$ColorPickerEventCopyWithImpl<$Res>
     implements $ColorPickerEventCopyWith<$Res> {
   _$ColorPickerEventCopyWithImpl(this._value, this._then);
 
+  final ColorPickerEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(ColorPickerEvent) _then;
 }
 
 /// @nodoc
@@ -89,11 +88,14 @@ abstract class _$$_ColorPickerHidedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ColorPickerHidedCopyWithImpl<$Res>
-    extends _$ColorPickerEventCopyWithImpl<$Res, _$_ColorPickerHided>
+    extends _$ColorPickerEventCopyWithImpl<$Res>
     implements _$$_ColorPickerHidedCopyWith<$Res> {
   __$$_ColorPickerHidedCopyWithImpl(
       _$_ColorPickerHided _value, $Res Function(_$_ColorPickerHided) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ColorPickerHided));
+
+  @override
+  _$_ColorPickerHided get _value => super._value as _$_ColorPickerHided;
 }
 
 /// @nodoc
@@ -128,9 +130,9 @@ class _$_ColorPickerHided implements _ColorPickerHided {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? hided,
-    TResult? Function()? showed,
-    TResult? Function(Color color)? copied,
+    TResult Function()? hided,
+    TResult Function()? showed,
+    TResult Function(Color color)? copied,
   }) {
     return hided?.call();
   }
@@ -162,9 +164,9 @@ class _$_ColorPickerHided implements _ColorPickerHided {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ColorPickerHided value)? hided,
-    TResult? Function(_ColorPickerShowed value)? showed,
-    TResult? Function(_ColorPickerCopied value)? copied,
+    TResult Function(_ColorPickerHided value)? hided,
+    TResult Function(_ColorPickerShowed value)? showed,
+    TResult Function(_ColorPickerCopied value)? copied,
   }) {
     return hided?.call(this);
   }
@@ -197,11 +199,14 @@ abstract class _$$_ColorPickerShowedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ColorPickerShowedCopyWithImpl<$Res>
-    extends _$ColorPickerEventCopyWithImpl<$Res, _$_ColorPickerShowed>
+    extends _$ColorPickerEventCopyWithImpl<$Res>
     implements _$$_ColorPickerShowedCopyWith<$Res> {
   __$$_ColorPickerShowedCopyWithImpl(
       _$_ColorPickerShowed _value, $Res Function(_$_ColorPickerShowed) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ColorPickerShowed));
+
+  @override
+  _$_ColorPickerShowed get _value => super._value as _$_ColorPickerShowed;
 }
 
 /// @nodoc
@@ -236,9 +241,9 @@ class _$_ColorPickerShowed implements _ColorPickerShowed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? hided,
-    TResult? Function()? showed,
-    TResult? Function(Color color)? copied,
+    TResult Function()? hided,
+    TResult Function()? showed,
+    TResult Function(Color color)? copied,
   }) {
     return showed?.call();
   }
@@ -270,9 +275,9 @@ class _$_ColorPickerShowed implements _ColorPickerShowed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ColorPickerHided value)? hided,
-    TResult? Function(_ColorPickerShowed value)? showed,
-    TResult? Function(_ColorPickerCopied value)? copied,
+    TResult Function(_ColorPickerHided value)? hided,
+    TResult Function(_ColorPickerShowed value)? showed,
+    TResult Function(_ColorPickerCopied value)? copied,
   }) {
     return showed?.call(this);
   }
@@ -301,25 +306,26 @@ abstract class _$$_ColorPickerCopiedCopyWith<$Res> {
   factory _$$_ColorPickerCopiedCopyWith(_$_ColorPickerCopied value,
           $Res Function(_$_ColorPickerCopied) then) =
       __$$_ColorPickerCopiedCopyWithImpl<$Res>;
-  @useResult
   $Res call({Color color});
 }
 
 /// @nodoc
 class __$$_ColorPickerCopiedCopyWithImpl<$Res>
-    extends _$ColorPickerEventCopyWithImpl<$Res, _$_ColorPickerCopied>
+    extends _$ColorPickerEventCopyWithImpl<$Res>
     implements _$$_ColorPickerCopiedCopyWith<$Res> {
   __$$_ColorPickerCopiedCopyWithImpl(
       _$_ColorPickerCopied _value, $Res Function(_$_ColorPickerCopied) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ColorPickerCopied));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_ColorPickerCopied get _value => super._value as _$_ColorPickerCopied;
+
   @override
   $Res call({
-    Object? color = null,
+    Object? color = freezed,
   }) {
     return _then(_$_ColorPickerCopied(
-      null == color
+      color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
@@ -345,15 +351,15 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ColorPickerCopied &&
-            (identical(other.color, color) || other.color == color));
+            const DeepCollectionEquality().equals(other.color, color));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, color);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(color));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_ColorPickerCopiedCopyWith<_$_ColorPickerCopied> get copyWith =>
       __$$_ColorPickerCopiedCopyWithImpl<_$_ColorPickerCopied>(
           this, _$identity);
@@ -371,9 +377,9 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? hided,
-    TResult? Function()? showed,
-    TResult? Function(Color color)? copied,
+    TResult Function()? hided,
+    TResult Function()? showed,
+    TResult Function(Color color)? copied,
   }) {
     return copied?.call(color);
   }
@@ -405,9 +411,9 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ColorPickerHided value)? hided,
-    TResult? Function(_ColorPickerShowed value)? showed,
-    TResult? Function(_ColorPickerCopied value)? copied,
+    TResult Function(_ColorPickerHided value)? hided,
+    TResult Function(_ColorPickerShowed value)? showed,
+    TResult Function(_ColorPickerCopied value)? copied,
   }) {
     return copied?.call(this);
   }

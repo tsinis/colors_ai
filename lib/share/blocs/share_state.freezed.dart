@@ -27,9 +27,9 @@ mixin _$ShareState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? failure,
-    TResult? Function()? emptyInitial,
-    TResult? Function(ColorsUrlProvider? selectedProvider,
+    TResult Function()? failure,
+    TResult Function()? emptyInitial,
+    TResult Function(ColorsUrlProvider? selectedProvider,
             FileFormat? selectedFormat, bool canSharePdf, bool canSharePng)?
         formatSelected,
   }) =>
@@ -53,9 +53,9 @@ mixin _$ShareState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShareFailure value)? failure,
-    TResult? Function(_ShareEmptyInitial value)? emptyInitial,
-    TResult? Function(_ShareFormatSelectedInitial value)? formatSelected,
+    TResult Function(_ShareFailure value)? failure,
+    TResult Function(_ShareEmptyInitial value)? emptyInitial,
+    TResult Function(_ShareFormatSelectedInitial value)? formatSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,18 +72,16 @@ mixin _$ShareState {
 abstract class $ShareStateCopyWith<$Res> {
   factory $ShareStateCopyWith(
           ShareState value, $Res Function(ShareState) then) =
-      _$ShareStateCopyWithImpl<$Res, ShareState>;
+      _$ShareStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$ShareStateCopyWithImpl<$Res, $Val extends ShareState>
-    implements $ShareStateCopyWith<$Res> {
+class _$ShareStateCopyWithImpl<$Res> implements $ShareStateCopyWith<$Res> {
   _$ShareStateCopyWithImpl(this._value, this._then);
 
+  final ShareState _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(ShareState) _then;
 }
 
 /// @nodoc
@@ -94,12 +92,14 @@ abstract class _$$_ShareFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ShareFailureCopyWithImpl<$Res>
-    extends _$ShareStateCopyWithImpl<$Res, _$_ShareFailure>
+class __$$_ShareFailureCopyWithImpl<$Res> extends _$ShareStateCopyWithImpl<$Res>
     implements _$$_ShareFailureCopyWith<$Res> {
   __$$_ShareFailureCopyWithImpl(
       _$_ShareFailure _value, $Res Function(_$_ShareFailure) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ShareFailure));
+
+  @override
+  _$_ShareFailure get _value => super._value as _$_ShareFailure;
 }
 
 /// @nodoc
@@ -136,9 +136,9 @@ class _$_ShareFailure implements _ShareFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? failure,
-    TResult? Function()? emptyInitial,
-    TResult? Function(ColorsUrlProvider? selectedProvider,
+    TResult Function()? failure,
+    TResult Function()? emptyInitial,
+    TResult Function(ColorsUrlProvider? selectedProvider,
             FileFormat? selectedFormat, bool canSharePdf, bool canSharePng)?
         formatSelected,
   }) {
@@ -174,9 +174,9 @@ class _$_ShareFailure implements _ShareFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShareFailure value)? failure,
-    TResult? Function(_ShareEmptyInitial value)? emptyInitial,
-    TResult? Function(_ShareFormatSelectedInitial value)? formatSelected,
+    TResult Function(_ShareFailure value)? failure,
+    TResult Function(_ShareEmptyInitial value)? emptyInitial,
+    TResult Function(_ShareFormatSelectedInitial value)? formatSelected,
   }) {
     return failure?.call(this);
   }
@@ -209,11 +209,14 @@ abstract class _$$_ShareEmptyInitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ShareEmptyInitialCopyWithImpl<$Res>
-    extends _$ShareStateCopyWithImpl<$Res, _$_ShareEmptyInitial>
+    extends _$ShareStateCopyWithImpl<$Res>
     implements _$$_ShareEmptyInitialCopyWith<$Res> {
   __$$_ShareEmptyInitialCopyWithImpl(
       _$_ShareEmptyInitial _value, $Res Function(_$_ShareEmptyInitial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ShareEmptyInitial));
+
+  @override
+  _$_ShareEmptyInitial get _value => super._value as _$_ShareEmptyInitial;
 }
 
 /// @nodoc
@@ -250,9 +253,9 @@ class _$_ShareEmptyInitial implements _ShareEmptyInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? failure,
-    TResult? Function()? emptyInitial,
-    TResult? Function(ColorsUrlProvider? selectedProvider,
+    TResult Function()? failure,
+    TResult Function()? emptyInitial,
+    TResult Function(ColorsUrlProvider? selectedProvider,
             FileFormat? selectedFormat, bool canSharePdf, bool canSharePng)?
         formatSelected,
   }) {
@@ -288,9 +291,9 @@ class _$_ShareEmptyInitial implements _ShareEmptyInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShareFailure value)? failure,
-    TResult? Function(_ShareEmptyInitial value)? emptyInitial,
-    TResult? Function(_ShareFormatSelectedInitial value)? formatSelected,
+    TResult Function(_ShareFailure value)? failure,
+    TResult Function(_ShareEmptyInitial value)? emptyInitial,
+    TResult Function(_ShareFormatSelectedInitial value)? formatSelected,
   }) {
     return emptyInitial?.call(this);
   }
@@ -320,7 +323,6 @@ abstract class _$$_ShareFormatSelectedInitialCopyWith<$Res> {
           _$_ShareFormatSelectedInitial value,
           $Res Function(_$_ShareFormatSelectedInitial) then) =
       __$$_ShareFormatSelectedInitialCopyWithImpl<$Res>;
-  @useResult
   $Res call(
       {ColorsUrlProvider? selectedProvider,
       FileFormat? selectedFormat,
@@ -330,35 +332,38 @@ abstract class _$$_ShareFormatSelectedInitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ShareFormatSelectedInitialCopyWithImpl<$Res>
-    extends _$ShareStateCopyWithImpl<$Res, _$_ShareFormatSelectedInitial>
+    extends _$ShareStateCopyWithImpl<$Res>
     implements _$$_ShareFormatSelectedInitialCopyWith<$Res> {
   __$$_ShareFormatSelectedInitialCopyWithImpl(
       _$_ShareFormatSelectedInitial _value,
       $Res Function(_$_ShareFormatSelectedInitial) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_ShareFormatSelectedInitial));
 
-  @pragma('vm:prefer-inline')
+  @override
+  _$_ShareFormatSelectedInitial get _value =>
+      super._value as _$_ShareFormatSelectedInitial;
+
   @override
   $Res call({
     Object? selectedProvider = freezed,
     Object? selectedFormat = freezed,
-    Object? canSharePdf = null,
-    Object? canSharePng = null,
+    Object? canSharePdf = freezed,
+    Object? canSharePng = freezed,
   }) {
     return _then(_$_ShareFormatSelectedInitial(
-      selectedProvider: freezed == selectedProvider
+      selectedProvider: selectedProvider == freezed
           ? _value.selectedProvider
           : selectedProvider // ignore: cast_nullable_to_non_nullable
               as ColorsUrlProvider?,
-      selectedFormat: freezed == selectedFormat
+      selectedFormat: selectedFormat == freezed
           ? _value.selectedFormat
           : selectedFormat // ignore: cast_nullable_to_non_nullable
               as FileFormat?,
-      canSharePdf: null == canSharePdf
+      canSharePdf: canSharePdf == freezed
           ? _value.canSharePdf
           : canSharePdf // ignore: cast_nullable_to_non_nullable
               as bool,
-      canSharePng: null == canSharePng
+      canSharePng: canSharePng == freezed
           ? _value.canSharePng
           : canSharePng // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -394,23 +399,26 @@ class _$_ShareFormatSelectedInitial implements _ShareFormatSelectedInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShareFormatSelectedInitial &&
-            (identical(other.selectedProvider, selectedProvider) ||
-                other.selectedProvider == selectedProvider) &&
-            (identical(other.selectedFormat, selectedFormat) ||
-                other.selectedFormat == selectedFormat) &&
-            (identical(other.canSharePdf, canSharePdf) ||
-                other.canSharePdf == canSharePdf) &&
-            (identical(other.canSharePng, canSharePng) ||
-                other.canSharePng == canSharePng));
+            const DeepCollectionEquality()
+                .equals(other.selectedProvider, selectedProvider) &&
+            const DeepCollectionEquality()
+                .equals(other.selectedFormat, selectedFormat) &&
+            const DeepCollectionEquality()
+                .equals(other.canSharePdf, canSharePdf) &&
+            const DeepCollectionEquality()
+                .equals(other.canSharePng, canSharePng));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, selectedProvider, selectedFormat, canSharePdf, canSharePng);
+      runtimeType,
+      const DeepCollectionEquality().hash(selectedProvider),
+      const DeepCollectionEquality().hash(selectedFormat),
+      const DeepCollectionEquality().hash(canSharePdf),
+      const DeepCollectionEquality().hash(canSharePng));
 
   @JsonKey(ignore: true)
   @override
-  @pragma('vm:prefer-inline')
   _$$_ShareFormatSelectedInitialCopyWith<_$_ShareFormatSelectedInitial>
       get copyWith => __$$_ShareFormatSelectedInitialCopyWithImpl<
           _$_ShareFormatSelectedInitial>(this, _$identity);
@@ -431,9 +439,9 @@ class _$_ShareFormatSelectedInitial implements _ShareFormatSelectedInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? failure,
-    TResult? Function()? emptyInitial,
-    TResult? Function(ColorsUrlProvider? selectedProvider,
+    TResult Function()? failure,
+    TResult Function()? emptyInitial,
+    TResult Function(ColorsUrlProvider? selectedProvider,
             FileFormat? selectedFormat, bool canSharePdf, bool canSharePng)?
         formatSelected,
   }) {
@@ -471,9 +479,9 @@ class _$_ShareFormatSelectedInitial implements _ShareFormatSelectedInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ShareFailure value)? failure,
-    TResult? Function(_ShareEmptyInitial value)? emptyInitial,
-    TResult? Function(_ShareFormatSelectedInitial value)? formatSelected,
+    TResult Function(_ShareFailure value)? failure,
+    TResult Function(_ShareEmptyInitial value)? emptyInitial,
+    TResult Function(_ShareFormatSelectedInitial value)? formatSelected,
   }) {
     return formatSelected?.call(this);
   }

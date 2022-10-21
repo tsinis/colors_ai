@@ -27,11 +27,11 @@ mixin _$SoundEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? locked,
-    TResult? Function()? started,
-    TResult? Function()? copied,
-    TResult? Function()? refreshed,
-    TResult? Function()? favoritesAdded,
+    TResult Function()? locked,
+    TResult Function()? started,
+    TResult Function()? copied,
+    TResult Function()? refreshed,
+    TResult Function()? favoritesAdded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,11 +55,11 @@ mixin _$SoundEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SoundLocked value)? locked,
-    TResult? Function(_SoundStarted value)? started,
-    TResult? Function(_SoundCopied value)? copied,
-    TResult? Function(_SoundRefreshed value)? refreshed,
-    TResult? Function(_SoundFavoritesAdded value)? favoritesAdded,
+    TResult Function(_SoundLocked value)? locked,
+    TResult Function(_SoundStarted value)? started,
+    TResult Function(_SoundCopied value)? copied,
+    TResult Function(_SoundRefreshed value)? refreshed,
+    TResult Function(_SoundFavoritesAdded value)? favoritesAdded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -78,18 +78,16 @@ mixin _$SoundEvent {
 abstract class $SoundEventCopyWith<$Res> {
   factory $SoundEventCopyWith(
           SoundEvent value, $Res Function(SoundEvent) then) =
-      _$SoundEventCopyWithImpl<$Res, SoundEvent>;
+      _$SoundEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SoundEventCopyWithImpl<$Res, $Val extends SoundEvent>
-    implements $SoundEventCopyWith<$Res> {
+class _$SoundEventCopyWithImpl<$Res> implements $SoundEventCopyWith<$Res> {
   _$SoundEventCopyWithImpl(this._value, this._then);
 
+  final SoundEvent _value;
   // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final $Res Function(SoundEvent) _then;
 }
 
 /// @nodoc
@@ -100,12 +98,14 @@ abstract class _$$_SoundLockedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SoundLockedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundLocked>
+class __$$_SoundLockedCopyWithImpl<$Res> extends _$SoundEventCopyWithImpl<$Res>
     implements _$$_SoundLockedCopyWith<$Res> {
   __$$_SoundLockedCopyWithImpl(
       _$_SoundLocked _value, $Res Function(_$_SoundLocked) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_SoundLocked));
+
+  @override
+  _$_SoundLocked get _value => super._value as _$_SoundLocked;
 }
 
 /// @nodoc
@@ -142,11 +142,11 @@ class _$_SoundLocked implements _SoundLocked {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? locked,
-    TResult? Function()? started,
-    TResult? Function()? copied,
-    TResult? Function()? refreshed,
-    TResult? Function()? favoritesAdded,
+    TResult Function()? locked,
+    TResult Function()? started,
+    TResult Function()? copied,
+    TResult Function()? refreshed,
+    TResult Function()? favoritesAdded,
   }) {
     return locked?.call();
   }
@@ -182,11 +182,11 @@ class _$_SoundLocked implements _SoundLocked {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SoundLocked value)? locked,
-    TResult? Function(_SoundStarted value)? started,
-    TResult? Function(_SoundCopied value)? copied,
-    TResult? Function(_SoundRefreshed value)? refreshed,
-    TResult? Function(_SoundFavoritesAdded value)? favoritesAdded,
+    TResult Function(_SoundLocked value)? locked,
+    TResult Function(_SoundStarted value)? started,
+    TResult Function(_SoundCopied value)? copied,
+    TResult Function(_SoundRefreshed value)? refreshed,
+    TResult Function(_SoundFavoritesAdded value)? favoritesAdded,
   }) {
     return locked?.call(this);
   }
@@ -220,12 +220,14 @@ abstract class _$$_SoundStartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SoundStartedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundStarted>
+class __$$_SoundStartedCopyWithImpl<$Res> extends _$SoundEventCopyWithImpl<$Res>
     implements _$$_SoundStartedCopyWith<$Res> {
   __$$_SoundStartedCopyWithImpl(
       _$_SoundStarted _value, $Res Function(_$_SoundStarted) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_SoundStarted));
+
+  @override
+  _$_SoundStarted get _value => super._value as _$_SoundStarted;
 }
 
 /// @nodoc
@@ -262,11 +264,11 @@ class _$_SoundStarted implements _SoundStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? locked,
-    TResult? Function()? started,
-    TResult? Function()? copied,
-    TResult? Function()? refreshed,
-    TResult? Function()? favoritesAdded,
+    TResult Function()? locked,
+    TResult Function()? started,
+    TResult Function()? copied,
+    TResult Function()? refreshed,
+    TResult Function()? favoritesAdded,
   }) {
     return started?.call();
   }
@@ -302,11 +304,11 @@ class _$_SoundStarted implements _SoundStarted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SoundLocked value)? locked,
-    TResult? Function(_SoundStarted value)? started,
-    TResult? Function(_SoundCopied value)? copied,
-    TResult? Function(_SoundRefreshed value)? refreshed,
-    TResult? Function(_SoundFavoritesAdded value)? favoritesAdded,
+    TResult Function(_SoundLocked value)? locked,
+    TResult Function(_SoundStarted value)? started,
+    TResult Function(_SoundCopied value)? copied,
+    TResult Function(_SoundRefreshed value)? refreshed,
+    TResult Function(_SoundFavoritesAdded value)? favoritesAdded,
   }) {
     return started?.call(this);
   }
@@ -340,12 +342,14 @@ abstract class _$$_SoundCopiedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_SoundCopiedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundCopied>
+class __$$_SoundCopiedCopyWithImpl<$Res> extends _$SoundEventCopyWithImpl<$Res>
     implements _$$_SoundCopiedCopyWith<$Res> {
   __$$_SoundCopiedCopyWithImpl(
       _$_SoundCopied _value, $Res Function(_$_SoundCopied) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_SoundCopied));
+
+  @override
+  _$_SoundCopied get _value => super._value as _$_SoundCopied;
 }
 
 /// @nodoc
@@ -382,11 +386,11 @@ class _$_SoundCopied implements _SoundCopied {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? locked,
-    TResult? Function()? started,
-    TResult? Function()? copied,
-    TResult? Function()? refreshed,
-    TResult? Function()? favoritesAdded,
+    TResult Function()? locked,
+    TResult Function()? started,
+    TResult Function()? copied,
+    TResult Function()? refreshed,
+    TResult Function()? favoritesAdded,
   }) {
     return copied?.call();
   }
@@ -422,11 +426,11 @@ class _$_SoundCopied implements _SoundCopied {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SoundLocked value)? locked,
-    TResult? Function(_SoundStarted value)? started,
-    TResult? Function(_SoundCopied value)? copied,
-    TResult? Function(_SoundRefreshed value)? refreshed,
-    TResult? Function(_SoundFavoritesAdded value)? favoritesAdded,
+    TResult Function(_SoundLocked value)? locked,
+    TResult Function(_SoundStarted value)? started,
+    TResult Function(_SoundCopied value)? copied,
+    TResult Function(_SoundRefreshed value)? refreshed,
+    TResult Function(_SoundFavoritesAdded value)? favoritesAdded,
   }) {
     return copied?.call(this);
   }
@@ -461,11 +465,14 @@ abstract class _$$_SoundRefreshedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SoundRefreshedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundRefreshed>
+    extends _$SoundEventCopyWithImpl<$Res>
     implements _$$_SoundRefreshedCopyWith<$Res> {
   __$$_SoundRefreshedCopyWithImpl(
       _$_SoundRefreshed _value, $Res Function(_$_SoundRefreshed) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_SoundRefreshed));
+
+  @override
+  _$_SoundRefreshed get _value => super._value as _$_SoundRefreshed;
 }
 
 /// @nodoc
@@ -502,11 +509,11 @@ class _$_SoundRefreshed implements _SoundRefreshed {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? locked,
-    TResult? Function()? started,
-    TResult? Function()? copied,
-    TResult? Function()? refreshed,
-    TResult? Function()? favoritesAdded,
+    TResult Function()? locked,
+    TResult Function()? started,
+    TResult Function()? copied,
+    TResult Function()? refreshed,
+    TResult Function()? favoritesAdded,
   }) {
     return refreshed?.call();
   }
@@ -542,11 +549,11 @@ class _$_SoundRefreshed implements _SoundRefreshed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SoundLocked value)? locked,
-    TResult? Function(_SoundStarted value)? started,
-    TResult? Function(_SoundCopied value)? copied,
-    TResult? Function(_SoundRefreshed value)? refreshed,
-    TResult? Function(_SoundFavoritesAdded value)? favoritesAdded,
+    TResult Function(_SoundLocked value)? locked,
+    TResult Function(_SoundStarted value)? started,
+    TResult Function(_SoundCopied value)? copied,
+    TResult Function(_SoundRefreshed value)? refreshed,
+    TResult Function(_SoundFavoritesAdded value)? favoritesAdded,
   }) {
     return refreshed?.call(this);
   }
@@ -581,11 +588,14 @@ abstract class _$$_SoundFavoritesAddedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_SoundFavoritesAddedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundFavoritesAdded>
+    extends _$SoundEventCopyWithImpl<$Res>
     implements _$$_SoundFavoritesAddedCopyWith<$Res> {
   __$$_SoundFavoritesAddedCopyWithImpl(_$_SoundFavoritesAdded _value,
       $Res Function(_$_SoundFavoritesAdded) _then)
-      : super(_value, _then);
+      : super(_value, (v) => _then(v as _$_SoundFavoritesAdded));
+
+  @override
+  _$_SoundFavoritesAdded get _value => super._value as _$_SoundFavoritesAdded;
 }
 
 /// @nodoc
@@ -622,11 +632,11 @@ class _$_SoundFavoritesAdded implements _SoundFavoritesAdded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? locked,
-    TResult? Function()? started,
-    TResult? Function()? copied,
-    TResult? Function()? refreshed,
-    TResult? Function()? favoritesAdded,
+    TResult Function()? locked,
+    TResult Function()? started,
+    TResult Function()? copied,
+    TResult Function()? refreshed,
+    TResult Function()? favoritesAdded,
   }) {
     return favoritesAdded?.call();
   }
@@ -662,11 +672,11 @@ class _$_SoundFavoritesAdded implements _SoundFavoritesAdded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SoundLocked value)? locked,
-    TResult? Function(_SoundStarted value)? started,
-    TResult? Function(_SoundCopied value)? copied,
-    TResult? Function(_SoundRefreshed value)? refreshed,
-    TResult? Function(_SoundFavoritesAdded value)? favoritesAdded,
+    TResult Function(_SoundLocked value)? locked,
+    TResult Function(_SoundStarted value)? started,
+    TResult Function(_SoundCopied value)? copied,
+    TResult Function(_SoundRefreshed value)? refreshed,
+    TResult Function(_SoundFavoritesAdded value)? favoritesAdded,
   }) {
     return favoritesAdded?.call(this);
   }
