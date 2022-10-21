@@ -22,3 +22,4 @@
 - [ ] 🧪 Tests
 - [ ] 📝 Documentation
 - [ ] ⚙️ CI/CD and/or GitHub Workflow configuration change
+- [ ] 📦 Dependencies update

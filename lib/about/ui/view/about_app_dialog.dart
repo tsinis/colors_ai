@@ -29,7 +29,7 @@ class AboutAppDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? bodyText2 = context.theme.textTheme.bodyText2;
+    final TextStyle? bodyText2 = context.theme.textTheme.bodyMedium;
     final TextStyle? linkStyle = linkTextStyle ?? bodyText2?.copyWith(color: context.theme.indicatorColor);
 
     return AboutDialogM3(

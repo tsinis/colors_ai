@@ -41,10 +41,10 @@ class AboutDialogM3 extends StatelessWidget {
                     padding: contentPadding,
                     child: ListBody(
                       children: <Widget>[
-                        Text(applicationName, style: context.theme.textTheme.headline5),
-                        Text(applicationVersion, style: context.theme.textTheme.bodyText2),
+                        Text(applicationName, style: context.theme.textTheme.headlineSmall),
+                        Text(applicationVersion, style: context.theme.textTheme.bodyMedium),
                         SizedBox(height: textVerticalSeparation),
-                        Text(applicationLegalese, style: context.theme.textTheme.caption),
+                        Text(applicationLegalese, style: context.theme.textTheme.bodySmall),
                       ],
                     ),
                   ),
