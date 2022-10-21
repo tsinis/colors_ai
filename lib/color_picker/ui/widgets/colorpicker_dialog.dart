@@ -122,7 +122,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
                   onPressed: validateAndPaste,
                   icon: Icon(
                     Icons.content_paste_outlined,
-                    color: context.theme.textTheme.bodyText1?.color,
+                    color: context.theme.textTheme.bodyLarge?.color,
                   ),
                 ),
               ),

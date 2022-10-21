@@ -26,10 +26,10 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notFinished,
-    TResult Function()? doneSuccess,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? notFinished,
+    TResult? Function()? doneSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$OnboardingState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingInitial value)? initial,
-    TResult Function(_OnboardingLoading value)? loading,
-    TResult Function(_OnboardingNotFinished value)? notFinished,
-    TResult Function(_OnboardingDoneSuccess value)? doneSuccess,
+    TResult? Function(_OnboardingInitial value)? initial,
+    TResult? Function(_OnboardingLoading value)? loading,
+    TResult? Function(_OnboardingNotFinished value)? notFinished,
+    TResult? Function(_OnboardingDoneSuccess value)? doneSuccess,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,17 +72,18 @@ mixin _$OnboardingState {
 abstract class $OnboardingStateCopyWith<$Res> {
   factory $OnboardingStateCopyWith(
           OnboardingState value, $Res Function(OnboardingState) then) =
-      _$OnboardingStateCopyWithImpl<$Res>;
+      _$OnboardingStateCopyWithImpl<$Res, OnboardingState>;
 }
 
 /// @nodoc
-class _$OnboardingStateCopyWithImpl<$Res>
+class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
     implements $OnboardingStateCopyWith<$Res> {
   _$OnboardingStateCopyWithImpl(this._value, this._then);
 
-  final OnboardingState _value;
   // ignore: unused_field
-  final $Res Function(OnboardingState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -94,14 +95,11 @@ abstract class _$$_OnboardingInitialCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnboardingInitialCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingInitial>
     implements _$$_OnboardingInitialCopyWith<$Res> {
   __$$_OnboardingInitialCopyWithImpl(
       _$_OnboardingInitial _value, $Res Function(_$_OnboardingInitial) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingInitial));
-
-  @override
-  _$_OnboardingInitial get _value => super._value as _$_OnboardingInitial;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -137,10 +135,10 @@ class _$_OnboardingInitial implements _OnboardingInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notFinished,
-    TResult Function()? doneSuccess,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? notFinished,
+    TResult? Function()? doneSuccess,
   }) {
     return initial?.call();
   }
@@ -174,10 +172,10 @@ class _$_OnboardingInitial implements _OnboardingInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingInitial value)? initial,
-    TResult Function(_OnboardingLoading value)? loading,
-    TResult Function(_OnboardingNotFinished value)? notFinished,
-    TResult Function(_OnboardingDoneSuccess value)? doneSuccess,
+    TResult? Function(_OnboardingInitial value)? initial,
+    TResult? Function(_OnboardingLoading value)? loading,
+    TResult? Function(_OnboardingNotFinished value)? notFinished,
+    TResult? Function(_OnboardingDoneSuccess value)? doneSuccess,
   }) {
     return initial?.call(this);
   }
@@ -211,14 +209,11 @@ abstract class _$$_OnboardingLoadingCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnboardingLoadingCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingLoading>
     implements _$$_OnboardingLoadingCopyWith<$Res> {
   __$$_OnboardingLoadingCopyWithImpl(
       _$_OnboardingLoading _value, $Res Function(_$_OnboardingLoading) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingLoading));
-
-  @override
-  _$_OnboardingLoading get _value => super._value as _$_OnboardingLoading;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -254,10 +249,10 @@ class _$_OnboardingLoading implements _OnboardingLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notFinished,
-    TResult Function()? doneSuccess,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? notFinished,
+    TResult? Function()? doneSuccess,
   }) {
     return loading?.call();
   }
@@ -291,10 +286,10 @@ class _$_OnboardingLoading implements _OnboardingLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingInitial value)? initial,
-    TResult Function(_OnboardingLoading value)? loading,
-    TResult Function(_OnboardingNotFinished value)? notFinished,
-    TResult Function(_OnboardingDoneSuccess value)? doneSuccess,
+    TResult? Function(_OnboardingInitial value)? initial,
+    TResult? Function(_OnboardingLoading value)? loading,
+    TResult? Function(_OnboardingNotFinished value)? notFinished,
+    TResult? Function(_OnboardingDoneSuccess value)? doneSuccess,
   }) {
     return loading?.call(this);
   }
@@ -328,15 +323,11 @@ abstract class _$$_OnboardingNotFinishedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnboardingNotFinishedCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingNotFinished>
     implements _$$_OnboardingNotFinishedCopyWith<$Res> {
   __$$_OnboardingNotFinishedCopyWithImpl(_$_OnboardingNotFinished _value,
       $Res Function(_$_OnboardingNotFinished) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingNotFinished));
-
-  @override
-  _$_OnboardingNotFinished get _value =>
-      super._value as _$_OnboardingNotFinished;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -372,10 +363,10 @@ class _$_OnboardingNotFinished implements _OnboardingNotFinished {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notFinished,
-    TResult Function()? doneSuccess,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? notFinished,
+    TResult? Function()? doneSuccess,
   }) {
     return notFinished?.call();
   }
@@ -409,10 +400,10 @@ class _$_OnboardingNotFinished implements _OnboardingNotFinished {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingInitial value)? initial,
-    TResult Function(_OnboardingLoading value)? loading,
-    TResult Function(_OnboardingNotFinished value)? notFinished,
-    TResult Function(_OnboardingDoneSuccess value)? doneSuccess,
+    TResult? Function(_OnboardingInitial value)? initial,
+    TResult? Function(_OnboardingLoading value)? loading,
+    TResult? Function(_OnboardingNotFinished value)? notFinished,
+    TResult? Function(_OnboardingDoneSuccess value)? doneSuccess,
   }) {
     return notFinished?.call(this);
   }
@@ -446,15 +437,11 @@ abstract class _$$_OnboardingDoneSuccessCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnboardingDoneSuccessCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingDoneSuccess>
     implements _$$_OnboardingDoneSuccessCopyWith<$Res> {
   __$$_OnboardingDoneSuccessCopyWithImpl(_$_OnboardingDoneSuccess _value,
       $Res Function(_$_OnboardingDoneSuccess) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingDoneSuccess));
-
-  @override
-  _$_OnboardingDoneSuccess get _value =>
-      super._value as _$_OnboardingDoneSuccess;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -490,10 +477,10 @@ class _$_OnboardingDoneSuccess implements _OnboardingDoneSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? notFinished,
-    TResult Function()? doneSuccess,
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? notFinished,
+    TResult? Function()? doneSuccess,
   }) {
     return doneSuccess?.call();
   }
@@ -527,10 +514,10 @@ class _$_OnboardingDoneSuccess implements _OnboardingDoneSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingInitial value)? initial,
-    TResult Function(_OnboardingLoading value)? loading,
-    TResult Function(_OnboardingNotFinished value)? notFinished,
-    TResult Function(_OnboardingDoneSuccess value)? doneSuccess,
+    TResult? Function(_OnboardingInitial value)? initial,
+    TResult? Function(_OnboardingLoading value)? loading,
+    TResult? Function(_OnboardingNotFinished value)? notFinished,
+    TResult? Function(_OnboardingDoneSuccess value)? doneSuccess,
   }) {
     return doneSuccess?.call(this);
   }

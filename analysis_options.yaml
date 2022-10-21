@@ -130,7 +130,6 @@ linter:
   rules:
     # Disabled
     always_use_package_imports: false # against prefer_relative_imports
-    avoid_as: false # deprecated
     avoid_types_on_closure_parameters: false # against always_specify_types
     depend_on_referenced_packages: false # false positive on l10n
     diagnostic_describe_all_properties: false # for Flutter Team only
@@ -174,7 +173,6 @@ linter:
     comment_references: true
     control_flow_in_finally: true
     empty_statements: true
-    invariant_booleans: true
     iterable_contains_unrelated_type: true
     join_return_with_assignment: true
     leading_newlines_in_multiline_strings: true
@@ -325,7 +323,6 @@ linter:
     use_build_context_synchronously: true
     use_if_null_to_convert_nulls_to_bools: true
     use_is_even_rather_than_modulo: true
-    use_late: true
     use_named_constants: true
     use_test_throws_matchers: true
 
