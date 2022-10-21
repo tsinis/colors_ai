@@ -57,7 +57,7 @@ SPEC CHECKSUMS:
   audioplayers_darwin: dcad41de4fbd0099cb3749f7ab3b0cb8f70b810c
   file_selector_macos: f1b08a781e66103e3ba279fd5d4024a2478b3af6
   flutter_secure_storage_macos: 6ceee8fbc7f484553ad17f79361b556259df89aa
-  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
+  FlutterMacOS: 85f90bfb3f1703249cf1539e4dfbff31e8584698
   package_info_plus: 02d7a575e80f194102bef286361c6c326e4c29ce
   path_provider_macos: 3c0c3b4b0d4a76d2bf989a913c2de869c5641a19
   printing: e4b7e232ff3d5d50a70b20d959aa71035a5c31f9
