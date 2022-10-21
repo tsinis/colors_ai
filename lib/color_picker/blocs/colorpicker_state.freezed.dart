@@ -25,9 +25,9 @@ mixin _$ColorPickerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? close,
-    TResult Function()? open,
-    TResult Function()? failure,
+    TResult? Function()? close,
+    TResult? Function()? open,
+    TResult? Function()? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +47,9 @@ mixin _$ColorPickerState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ColorPickerClose value)? close,
-    TResult Function(_ColorPickerOpen value)? open,
-    TResult Function(_ColorPickerFailure value)? failure,
+    TResult? Function(_ColorPickerClose value)? close,
+    TResult? Function(_ColorPickerOpen value)? open,
+    TResult? Function(_ColorPickerFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,17 +66,18 @@ mixin _$ColorPickerState {
 abstract class $ColorPickerStateCopyWith<$Res> {
   factory $ColorPickerStateCopyWith(
           ColorPickerState value, $Res Function(ColorPickerState) then) =
-      _$ColorPickerStateCopyWithImpl<$Res>;
+      _$ColorPickerStateCopyWithImpl<$Res, ColorPickerState>;
 }
 
 /// @nodoc
-class _$ColorPickerStateCopyWithImpl<$Res>
+class _$ColorPickerStateCopyWithImpl<$Res, $Val extends ColorPickerState>
     implements $ColorPickerStateCopyWith<$Res> {
   _$ColorPickerStateCopyWithImpl(this._value, this._then);
 
-  final ColorPickerState _value;
   // ignore: unused_field
-  final $Res Function(ColorPickerState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -88,14 +89,11 @@ abstract class _$$_ColorPickerCloseCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ColorPickerCloseCopyWithImpl<$Res>
-    extends _$ColorPickerStateCopyWithImpl<$Res>
+    extends _$ColorPickerStateCopyWithImpl<$Res, _$_ColorPickerClose>
     implements _$$_ColorPickerCloseCopyWith<$Res> {
   __$$_ColorPickerCloseCopyWithImpl(
       _$_ColorPickerClose _value, $Res Function(_$_ColorPickerClose) _then)
-      : super(_value, (v) => _then(v as _$_ColorPickerClose));
-
-  @override
-  _$_ColorPickerClose get _value => super._value as _$_ColorPickerClose;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -130,9 +128,9 @@ class _$_ColorPickerClose implements _ColorPickerClose {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? close,
-    TResult Function()? open,
-    TResult Function()? failure,
+    TResult? Function()? close,
+    TResult? Function()? open,
+    TResult? Function()? failure,
   }) {
     return close?.call();
   }
@@ -164,9 +162,9 @@ class _$_ColorPickerClose implements _ColorPickerClose {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ColorPickerClose value)? close,
-    TResult Function(_ColorPickerOpen value)? open,
-    TResult Function(_ColorPickerFailure value)? failure,
+    TResult? Function(_ColorPickerClose value)? close,
+    TResult? Function(_ColorPickerOpen value)? open,
+    TResult? Function(_ColorPickerFailure value)? failure,
   }) {
     return close?.call(this);
   }
@@ -199,14 +197,11 @@ abstract class _$$_ColorPickerOpenCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ColorPickerOpenCopyWithImpl<$Res>
-    extends _$ColorPickerStateCopyWithImpl<$Res>
+    extends _$ColorPickerStateCopyWithImpl<$Res, _$_ColorPickerOpen>
     implements _$$_ColorPickerOpenCopyWith<$Res> {
   __$$_ColorPickerOpenCopyWithImpl(
       _$_ColorPickerOpen _value, $Res Function(_$_ColorPickerOpen) _then)
-      : super(_value, (v) => _then(v as _$_ColorPickerOpen));
-
-  @override
-  _$_ColorPickerOpen get _value => super._value as _$_ColorPickerOpen;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -241,9 +236,9 @@ class _$_ColorPickerOpen implements _ColorPickerOpen {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? close,
-    TResult Function()? open,
-    TResult Function()? failure,
+    TResult? Function()? close,
+    TResult? Function()? open,
+    TResult? Function()? failure,
   }) {
     return open?.call();
   }
@@ -275,9 +270,9 @@ class _$_ColorPickerOpen implements _ColorPickerOpen {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ColorPickerClose value)? close,
-    TResult Function(_ColorPickerOpen value)? open,
-    TResult Function(_ColorPickerFailure value)? failure,
+    TResult? Function(_ColorPickerClose value)? close,
+    TResult? Function(_ColorPickerOpen value)? open,
+    TResult? Function(_ColorPickerFailure value)? failure,
   }) {
     return open?.call(this);
   }
@@ -310,14 +305,11 @@ abstract class _$$_ColorPickerFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$_ColorPickerFailureCopyWithImpl<$Res>
-    extends _$ColorPickerStateCopyWithImpl<$Res>
+    extends _$ColorPickerStateCopyWithImpl<$Res, _$_ColorPickerFailure>
     implements _$$_ColorPickerFailureCopyWith<$Res> {
   __$$_ColorPickerFailureCopyWithImpl(
       _$_ColorPickerFailure _value, $Res Function(_$_ColorPickerFailure) _then)
-      : super(_value, (v) => _then(v as _$_ColorPickerFailure));
-
-  @override
-  _$_ColorPickerFailure get _value => super._value as _$_ColorPickerFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -352,9 +344,9 @@ class _$_ColorPickerFailure implements _ColorPickerFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? close,
-    TResult Function()? open,
-    TResult Function()? failure,
+    TResult? Function()? close,
+    TResult? Function()? open,
+    TResult? Function()? failure,
   }) {
     return failure?.call();
   }
@@ -386,9 +378,9 @@ class _$_ColorPickerFailure implements _ColorPickerFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ColorPickerClose value)? close,
-    TResult Function(_ColorPickerOpen value)? open,
-    TResult Function(_ColorPickerFailure value)? failure,
+    TResult? Function(_ColorPickerClose value)? close,
+    TResult? Function(_ColorPickerOpen value)? open,
+    TResult? Function(_ColorPickerFailure value)? failure,
   }) {
     return failure?.call(this);
   }
