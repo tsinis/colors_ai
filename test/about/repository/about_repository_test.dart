@@ -1,6 +1,6 @@
 import 'package:colors_ai/about/repository/about_repository.dart';
 import 'package:colors_ai/core/ui/constants.dart';
-import 'package:flutter/foundation.dart' show LicenseRegistry, LicenseEntryWithLineBreaks, LicenseEntry;
+import 'package:flutter/foundation.dart' show LicenseEntry, LicenseEntryWithLineBreaks, LicenseRegistry;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:package_info_plus/package_info_plus.dart';

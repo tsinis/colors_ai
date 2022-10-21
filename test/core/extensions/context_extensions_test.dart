@@ -79,7 +79,7 @@ void main() => group(
               ),
             );
 
-            expect(theme.textTheme.bodyText1?.fontFamily, 'Roboto');
+            expect(theme.textTheme.bodyLarge?.fontFamily, 'Roboto');
           },
         );
 

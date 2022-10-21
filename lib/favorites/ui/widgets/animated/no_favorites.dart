@@ -1,5 +1,5 @@
 // ignore_for_file: avoid-non-null-assertion, since those colors are stored in theme.
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Magnifier;
 
 import '../../../../core/extensions/context_extensions.dart';
 import 'no_favorites/empty_list.dart';
@@ -50,7 +50,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
             children: <Widget>[
               CustomPaint(
                 size: const Size(320, 320),
-                painter: EmptyList(outlineColor: context.theme.textTheme.headline2!.color!),
+                painter: EmptyList(outlineColor: context.theme.textTheme.displayMedium!.color!),
               ),
               ScaleTransition(
                 scale: animation,
@@ -62,7 +62,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
                     painter: Magnifier(
                       backgroundColor: context.theme.floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
                       holdersColor: Colors.grey.shade800,
-                      outlineColor: context.theme.textTheme.headline2!.color!,
+                      outlineColor: context.theme.textTheme.displayMedium!.color!,
                     ),
                   ),
                 ),
