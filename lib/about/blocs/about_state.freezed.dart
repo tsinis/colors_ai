@@ -26,10 +26,10 @@ mixin _$AboutState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? failure,
-    TResult Function()? initial,
-    TResult Function(String appVersion)? loaded,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? failure,
+    TResult? Function()? initial,
+    TResult? Function(String appVersion)? loaded,
+    TResult? Function(String currentLocale)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$AboutState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutFailure value)? failure,
-    TResult Function(_AboutInitial value)? initial,
-    TResult Function(_AboutLoaded value)? loaded,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutFailure value)? failure,
+    TResult? Function(_AboutInitial value)? initial,
+    TResult? Function(_AboutLoaded value)? loaded,
+    TResult? Function(_AboutStarted value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,16 +72,18 @@ mixin _$AboutState {
 abstract class $AboutStateCopyWith<$Res> {
   factory $AboutStateCopyWith(
           AboutState value, $Res Function(AboutState) then) =
-      _$AboutStateCopyWithImpl<$Res>;
+      _$AboutStateCopyWithImpl<$Res, AboutState>;
 }
 
 /// @nodoc
-class _$AboutStateCopyWithImpl<$Res> implements $AboutStateCopyWith<$Res> {
+class _$AboutStateCopyWithImpl<$Res, $Val extends AboutState>
+    implements $AboutStateCopyWith<$Res> {
   _$AboutStateCopyWithImpl(this._value, this._then);
 
-  final AboutState _value;
   // ignore: unused_field
-  final $Res Function(AboutState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -92,14 +94,12 @@ abstract class _$$_AboutFailureCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AboutFailureCopyWithImpl<$Res> extends _$AboutStateCopyWithImpl<$Res>
+class __$$_AboutFailureCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$_AboutFailure>
     implements _$$_AboutFailureCopyWith<$Res> {
   __$$_AboutFailureCopyWithImpl(
       _$_AboutFailure _value, $Res Function(_$_AboutFailure) _then)
-      : super(_value, (v) => _then(v as _$_AboutFailure));
-
-  @override
-  _$_AboutFailure get _value => super._value as _$_AboutFailure;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -135,10 +135,10 @@ class _$_AboutFailure implements _AboutFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? failure,
-    TResult Function()? initial,
-    TResult Function(String appVersion)? loaded,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? failure,
+    TResult? Function()? initial,
+    TResult? Function(String appVersion)? loaded,
+    TResult? Function(String currentLocale)? started,
   }) {
     return failure?.call();
   }
@@ -172,10 +172,10 @@ class _$_AboutFailure implements _AboutFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutFailure value)? failure,
-    TResult Function(_AboutInitial value)? initial,
-    TResult Function(_AboutLoaded value)? loaded,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutFailure value)? failure,
+    TResult? Function(_AboutInitial value)? initial,
+    TResult? Function(_AboutLoaded value)? loaded,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return failure?.call(this);
   }
@@ -208,14 +208,12 @@ abstract class _$$_AboutInitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AboutInitialCopyWithImpl<$Res> extends _$AboutStateCopyWithImpl<$Res>
+class __$$_AboutInitialCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$_AboutInitial>
     implements _$$_AboutInitialCopyWith<$Res> {
   __$$_AboutInitialCopyWithImpl(
       _$_AboutInitial _value, $Res Function(_$_AboutInitial) _then)
-      : super(_value, (v) => _then(v as _$_AboutInitial));
-
-  @override
-  _$_AboutInitial get _value => super._value as _$_AboutInitial;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -251,10 +249,10 @@ class _$_AboutInitial implements _AboutInitial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? failure,
-    TResult Function()? initial,
-    TResult Function(String appVersion)? loaded,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? failure,
+    TResult? Function()? initial,
+    TResult? Function(String appVersion)? loaded,
+    TResult? Function(String currentLocale)? started,
   }) {
     return initial?.call();
   }
@@ -288,10 +286,10 @@ class _$_AboutInitial implements _AboutInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutFailure value)? failure,
-    TResult Function(_AboutInitial value)? initial,
-    TResult Function(_AboutLoaded value)? loaded,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutFailure value)? failure,
+    TResult? Function(_AboutInitial value)? initial,
+    TResult? Function(_AboutLoaded value)? loaded,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return initial?.call(this);
   }
@@ -321,25 +319,25 @@ abstract class _$$_AboutLoadedCopyWith<$Res> {
   factory _$$_AboutLoadedCopyWith(
           _$_AboutLoaded value, $Res Function(_$_AboutLoaded) then) =
       __$$_AboutLoadedCopyWithImpl<$Res>;
+  @useResult
   $Res call({String appVersion});
 }
 
 /// @nodoc
-class __$$_AboutLoadedCopyWithImpl<$Res> extends _$AboutStateCopyWithImpl<$Res>
+class __$$_AboutLoadedCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$_AboutLoaded>
     implements _$$_AboutLoadedCopyWith<$Res> {
   __$$_AboutLoadedCopyWithImpl(
       _$_AboutLoaded _value, $Res Function(_$_AboutLoaded) _then)
-      : super(_value, (v) => _then(v as _$_AboutLoaded));
+      : super(_value, _then);
 
-  @override
-  _$_AboutLoaded get _value => super._value as _$_AboutLoaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appVersion = freezed,
+    Object? appVersion = null,
   }) {
     return _then(_$_AboutLoaded(
-      appVersion: appVersion == freezed
+      appVersion: null == appVersion
           ? _value.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
               as String,
@@ -365,16 +363,16 @@ class _$_AboutLoaded implements _AboutLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AboutLoaded &&
-            const DeepCollectionEquality()
-                .equals(other.appVersion, appVersion));
+            (identical(other.appVersion, appVersion) ||
+                other.appVersion == appVersion));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(appVersion));
+  int get hashCode => Object.hash(runtimeType, appVersion);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AboutLoadedCopyWith<_$_AboutLoaded> get copyWith =>
       __$$_AboutLoadedCopyWithImpl<_$_AboutLoaded>(this, _$identity);
 
@@ -392,10 +390,10 @@ class _$_AboutLoaded implements _AboutLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? failure,
-    TResult Function()? initial,
-    TResult Function(String appVersion)? loaded,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? failure,
+    TResult? Function()? initial,
+    TResult? Function(String appVersion)? loaded,
+    TResult? Function(String currentLocale)? started,
   }) {
     return loaded?.call(appVersion);
   }
@@ -429,10 +427,10 @@ class _$_AboutLoaded implements _AboutLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutFailure value)? failure,
-    TResult Function(_AboutInitial value)? initial,
-    TResult Function(_AboutLoaded value)? loaded,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutFailure value)? failure,
+    TResult? Function(_AboutInitial value)? initial,
+    TResult? Function(_AboutLoaded value)? loaded,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return loaded?.call(this);
   }
@@ -468,25 +466,25 @@ abstract class _$$_AboutStartedCopyWith<$Res> {
   factory _$$_AboutStartedCopyWith(
           _$_AboutStarted value, $Res Function(_$_AboutStarted) then) =
       __$$_AboutStartedCopyWithImpl<$Res>;
+  @useResult
   $Res call({String currentLocale});
 }
 
 /// @nodoc
-class __$$_AboutStartedCopyWithImpl<$Res> extends _$AboutStateCopyWithImpl<$Res>
+class __$$_AboutStartedCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$_AboutStarted>
     implements _$$_AboutStartedCopyWith<$Res> {
   __$$_AboutStartedCopyWithImpl(
       _$_AboutStarted _value, $Res Function(_$_AboutStarted) _then)
-      : super(_value, (v) => _then(v as _$_AboutStarted));
+      : super(_value, _then);
 
-  @override
-  _$_AboutStarted get _value => super._value as _$_AboutStarted;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentLocale = freezed,
+    Object? currentLocale = null,
   }) {
     return _then(_$_AboutStarted(
-      currentLocale: currentLocale == freezed
+      currentLocale: null == currentLocale
           ? _value.currentLocale
           : currentLocale // ignore: cast_nullable_to_non_nullable
               as String,
@@ -512,16 +510,16 @@ class _$_AboutStarted implements _AboutStarted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AboutStarted &&
-            const DeepCollectionEquality()
-                .equals(other.currentLocale, currentLocale));
+            (identical(other.currentLocale, currentLocale) ||
+                other.currentLocale == currentLocale));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(currentLocale));
+  int get hashCode => Object.hash(runtimeType, currentLocale);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
       __$$_AboutStartedCopyWithImpl<_$_AboutStarted>(this, _$identity);
 
@@ -539,10 +537,10 @@ class _$_AboutStarted implements _AboutStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? failure,
-    TResult Function()? initial,
-    TResult Function(String appVersion)? loaded,
-    TResult Function(String currentLocale)? started,
+    TResult? Function()? failure,
+    TResult? Function()? initial,
+    TResult? Function(String appVersion)? loaded,
+    TResult? Function(String currentLocale)? started,
   }) {
     return started?.call(currentLocale);
   }
@@ -576,10 +574,10 @@ class _$_AboutStarted implements _AboutStarted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_AboutFailure value)? failure,
-    TResult Function(_AboutInitial value)? initial,
-    TResult Function(_AboutLoaded value)? loaded,
-    TResult Function(_AboutStarted value)? started,
+    TResult? Function(_AboutFailure value)? failure,
+    TResult? Function(_AboutInitial value)? initial,
+    TResult? Function(_AboutLoaded value)? loaded,
+    TResult? Function(_AboutStarted value)? started,
   }) {
     return started?.call(this);
   }
