@@ -9,13 +9,13 @@ import '../../resources/fonts.dart';
 import '../services/export/file_layout.dart';
 
 mixin FileCreator {
-  Future<Uint8List> generateFile(ColorPalette colors, {bool isMetric = true}) async {
-    const PdfPageFormat a4Format =
-        PdfPageFormat(PdfPageFormat.cm * 29.7, PdfPageFormat.cm * 21, marginAll: PdfPageFormat.cm);
-    const PdfPageFormat letter =
-        PdfPageFormat(PdfPageFormat.inch * 11, PdfPageFormat.inch * 8.5, marginAll: PdfPageFormat.inch * 0.5);
+  static const PdfPageFormat _a4Format =
+      PdfPageFormat(PdfPageFormat.cm * 29.7, PdfPageFormat.cm * 21, marginAll: PdfPageFormat.cm);
+  static const PdfPageFormat _letter =
+      PdfPageFormat(PdfPageFormat.inch * 11, PdfPageFormat.inch * 8.5, marginAll: PdfPageFormat.inch * 0.5);
 
-    final PdfPageFormat format = isMetric ? a4Format : letter;
+  Future<Uint8List> generateFile(ColorPalette colors, {bool isMetric = true}) async {
+    final PdfPageFormat format = isMetric ? _a4Format : _letter;
     final TtfFont font = await fontFromAssetBundle(Fonts.robotoRegular);
     final Document document = Document()
       ..addPage(
