@@ -5,38 +5,36 @@ import 'data.dart';
 
 class _TextBasedFileCreatorTest with TextBasedFileCreator {}
 
-void main() => group(
-      '$TextBasedFileCreator',
-      () {
-        final _TextBasedFileCreatorTest textFileCreator = _TextBasedFileCreatorTest();
+void main() => group('$TextBasedFileCreator', () {
+      final _TextBasedFileCreatorTest textFileCreator = _TextBasedFileCreatorTest();
 
-        test('toJson()', () {
-          final String json = textFileCreator.toJson(palette);
-          expect(
-            json,
-            '''
+      test('toJson()', () {
+        final String json = textFileCreator.toJson(palette);
+        expect(
+          json,
+          '''
 {
   "color-1": "#000000",
   "color-2": "#FFFFFF"
 }''',
-          );
-        });
+        );
+      });
 
-        test('toScss()', () {
-          final String scss = textFileCreator.toScss(palette);
-          expect(
-            scss,
-            r'''
+      test('toScss()', () {
+        final String scss = textFileCreator.toScss(palette);
+        expect(
+          scss,
+          r'''
 $color-1: #000000ff;
 $color-2: #ffffffff;''',
-          );
-        });
+        );
+      });
 
-        test('toSvg()', () {
-          final String svg = textFileCreator.toSvg(palette);
-          expect(
-            svg,
-            '''
+      test('toSvg()', () {
+        final String svg = textFileCreator.toSvg(palette);
+        expect(
+          svg,
+          '''
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
       <defs>
         <clipPath id="a">
@@ -48,7 +46,6 @@ $color-2: #ffffffff;''',
         <rect width="100" height="100" x="100" fill="#FFFFFF"/>
       </g>
     </svg>''',
-          );
-        });
-      },
-    );
+        );
+      });
+    });
