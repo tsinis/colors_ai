@@ -1,42 +1,13 @@
-part of 'snackbar_bloc.dart';
+import '../../../core/constants.dart';
 
-abstract class SnackbarEvent extends Equatable {
-  @override
-  List<Object?> get props => <Object>[];
+part 'snackbar_event.freezed.dart';
 
-  const SnackbarEvent();
-}
-
-class ShareFail extends SnackbarEvent {
-  const ShareFail();
-}
-
-class UrlCopiedSuccess extends SnackbarEvent {
-  const UrlCopiedSuccess();
-}
-
-class FileCopiedSuccess extends SnackbarEvent {
-  final String format;
-
-  @override
-  List<String> get props => <String>[format];
-
-  const FileCopiedSuccess(this.format);
-}
-
-class UrlOpenedSuccess extends SnackbarEvent {
-  const UrlOpenedSuccess();
-}
-
-class ColorCopiedSuccess extends SnackbarEvent {
-  const ColorCopiedSuccess();
-}
-
-class ServerStatusCheckedSuccess extends SnackbarEvent {
-  final DateTime? time;
-
-  @override
-  List<DateTime?> get props => <DateTime?>[time];
-
-  const ServerStatusCheckedSuccess([this.time]);
+@freezedWithoutJson
+class SnackbarEvent with _$SnackbarEvent {
+  const factory SnackbarEvent.shareFailed() = _SnackbarShareFailed;
+  const factory SnackbarEvent.urlCopied() = _SnackbarUrlCopied;
+  const factory SnackbarEvent.urlOpened(String url) = _SnackbarUrlOpened;
+  const factory SnackbarEvent.fileCopied(String format) = _SnackbarFileCopied;
+  const factory SnackbarEvent.colorCopied() = _SnackbarColorCopied;
+  const factory SnackbarEvent.serverStatusChecked([DateTime? time]) = _SnackbarServerStatusChecked;
 }

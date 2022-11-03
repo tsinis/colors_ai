@@ -75,7 +75,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
               setState(() => isHovering = !isHovering);
               if (!file.isPrintable) {
                 BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileCopied(widget._palette));
-                BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(file.format));
+                BlocProvider.of<SnackbarBloc>(context).add(SnackbarEvent.fileCopied(file.format));
               }
             },
             child: MouseRegion(

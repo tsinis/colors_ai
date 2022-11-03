@@ -85,7 +85,7 @@ class FileShareSection extends ShareSectionInterface {
                         ? null
                         : () {
                             BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileCopied(palette));
-                            BlocProvider.of<SnackbarBloc>(context).add(FileCopiedSuccess(selectedFormat.format));
+                            BlocProvider.of<SnackbarBloc>(context).add(SnackbarEvent.fileCopied(selectedFormat.format));
                           },
                   ),
                 ),
