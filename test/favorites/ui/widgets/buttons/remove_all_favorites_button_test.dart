@@ -72,6 +72,7 @@ void main() => group('$RemoveAllFavoritesButton', () {
       testWidgets(
         'tap on cancel button',
         (WidgetTester tester) async => tester.runAsync(() async {
+          removeFavsRepository.changeSelection(1);
           final BuildContext? context = await pumpApp(tester, favoritesBloc, removeFavoritesBloc);
           final Finder button = find.byType(RemoveAllFavoritesButton);
           await tester.ensureVisible(button);

@@ -60,7 +60,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-More than ∼96% of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](../test) and [Integration tests](../integration_test).
+More than ∼99% of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](../test) and [Integration tests](../integration_test).
 
 ## Accessibility
 
