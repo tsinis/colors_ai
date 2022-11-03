@@ -88,7 +88,6 @@ dart_code_metrics:
     - avoid-unused-parameters: true
     - avoid-use-expanded-as-spacer: true
     - avoid-wrapping-in-padding: true
-    - avoid_restricted_imports: true
     - ban-name: true
     - binary-expression-operand-order: true
     - check-for-equals-in-render-object-setters: true
@@ -122,7 +121,6 @@ dart_code_metrics:
     - prefer-single-widget-per-file: true
     - prefer-trailing-comma: true
     - provide-correct-intl-args: true
-    - refer-correct-identifier-length: true
     - tag-name: true
     - technical-debt: true
 
