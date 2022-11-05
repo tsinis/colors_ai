@@ -11,15 +11,6 @@ void main() => group('$DeviceCapabilities', () {
 
       setUp(() => deviceCapabilities = _DeviceCapabilitiesTest());
 
-      test('init()', () async {
-        final FakePathProviderPlatform fakePlatform = FakePathProviderPlatform();
-        PathProviderPlatform.instance = fakePlatform;
-        await deviceCapabilities.init();
-        expect(deviceCapabilities.canSharePdf, false);
-        expect(deviceCapabilities.canSharePng, false);
-        expect(deviceCapabilities.storagePath.startsWith(fakePlatform.applicationDocumentsPath), true);
-      });
-
       test('init() with $Exception', () async {
         final FakePathProviderPlatform fakePlatform = FakePathProviderPlatform();
         PathProviderPlatform.instance = fakePlatform;
@@ -27,5 +18,15 @@ void main() => group('$DeviceCapabilities', () {
         await expectLater(init, isA<Future<void>>());
         expect(deviceCapabilities.canSharePdf, false);
         expect(deviceCapabilities.canSharePng, false);
+      });
+
+      test('init()', () async {
+        TestWidgetsFlutterBinding.ensureInitialized();
+        final FakePathProviderPlatform fakePlatform = FakePathProviderPlatform();
+        PathProviderPlatform.instance = fakePlatform;
+        await deviceCapabilities.init();
+        expect(deviceCapabilities.canSharePdf, false);
+        expect(deviceCapabilities.canSharePng, false);
+        expect(deviceCapabilities.storagePath.startsWith(fakePlatform.applicationDocumentsPath), true);
       });
     });

@@ -15,8 +15,6 @@ class FavoritesHiveStorage extends HiveStorageInterface<ColorPalette> implements
 
       return storageBox.values;
     } catch (e) {
-      debugPrint('Exception during favorites box opening: $e');
-
       return <ColorPalette>[];
     }
   }

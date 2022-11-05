@@ -115,52 +115,44 @@ class _NavigationScreenState extends State<MainScreen> {
                           create: (_) => ShareBloc(ShareRepository())..add(const ShareEvent.started()),
                         ),
                         BlocProvider<SnackbarBloc>(
-                          create: (_) => SnackbarBloc()..add(const ServerStatusCheckedSuccess()),
+                          create: (_) => SnackbarBloc()..add(const SnackbarEvent.serverStatusChecked()),
                         ),
                       ],
                       child: BlocListener<SnackbarBloc, SnackbarState>(
                         listener: (BuildContext context, SnackbarState snackbarState) {
-                          if (snackbarState is! SnackbarsInitial) {
-                            BlocProvider.of<SoundBloc>(context).add(const SoundEvent.copied());
-                            String? message;
-                            final bool isUrlCopied = snackbarState is UrlCopySuccess;
-                            final bool isFileCopied = snackbarState is FileCopySuccess;
-                            final bool isShareFailed = snackbarState is ShareAttemptFailure;
-                            if (isUrlCopied) {
-                              message = context.l10n.urlCopiedMessage;
-                            } else if (snackbarState is ColorCopySuccess) {
-                              message = context.l10n.colorCopiedMessage(snackbarState.clipboard);
-                            } else if (isFileCopied) {
-                              message = context.l10n.formatCopied(snackbarState.format);
-                            } else if (snackbarState is ServerStatusCheckSuccess) {
-                              message = context.l10n.serverMaintenanceMessage;
-                            } else if (isShareFailed) {
-                              message = context.l10n.shareFailedMessage;
-                            }
-                            if (message == null) {
-                              return;
-                            }
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                duration: const Duration(seconds: 2),
-                                content: Text(message),
-                                behavior: (isUrlCopied || isShareFailed || isFileCopied)
-                                    ? isPortrait
-                                        ? SnackBarBehavior.fixed
-                                        : SnackBarBehavior.floating
-                                    : SnackBarBehavior.floating,
-                                action: isUrlCopied
-                                    ? SnackBarAction(
-                                        textColor: context.theme.scaffoldBackgroundColor,
-                                        label: context.l10n.urlOpenButtonLabel,
-                                        onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(
-                                          const UrlOpenedSuccess(),
-                                        ),
-                                      )
-                                    : null,
-                              ),
-                            );
+                          final String? message = snackbarState.whenOrNull(
+                            serverStatusCheck: () => context.l10n.serverMaintenanceMessage,
+                            urlCopySuccess: (_) => context.l10n.urlCopiedMessage,
+                            shareFailure: () => context.l10n.shareFailedMessage,
+                            colorCopySuccess: context.l10n.colorCopiedMessage,
+                            fileCopySuccess: context.l10n.formatCopied,
+                          );
+
+                          if (message == null) {
+                            return;
                           }
+                          BlocProvider.of<SoundBloc>(context).add(const SoundEvent.copied());
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              duration: const Duration(seconds: 2),
+                              content: Text(message),
+                              behavior: snackbarState.whenOrNull(
+                                    shareFailure: () => isPortrait ? SnackBarBehavior.fixed : null,
+                                    urlCopySuccess: (_) => isPortrait ? SnackBarBehavior.fixed : null,
+                                    fileCopySuccess: (_) => isPortrait ? SnackBarBehavior.fixed : null,
+                                  ) ??
+                                  SnackBarBehavior.floating,
+                              action: snackbarState.whenOrNull(
+                                urlCopySuccess: (String url) => SnackBarAction(
+                                  textColor: context.theme.scaffoldBackgroundColor,
+                                  label: context.l10n.urlOpenButtonLabel,
+                                  onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(
+                                    SnackbarEvent.urlOpened(url),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
                         },
                         child: SafeArea(
                           child: Row(

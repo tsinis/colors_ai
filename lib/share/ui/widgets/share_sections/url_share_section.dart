@@ -90,7 +90,7 @@ class UrlShareSection extends ShareSectionInterface {
                     label: Text(context.l10n.copyUrlButtonLabel),
                     onPressed: () {
                       BlocProvider.of<ShareBloc>(context).add(ShareEvent.urlCopied(palette));
-                      BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
+                      BlocProvider.of<SnackbarBloc>(context).add(const SnackbarEvent.urlCopied());
                     },
                   ),
                 ),

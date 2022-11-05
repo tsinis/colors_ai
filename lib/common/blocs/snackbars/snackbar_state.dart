@@ -1,44 +1,18 @@
-part of 'snackbar_bloc.dart';
+import '../../../core/constants.dart';
 
-abstract class SnackbarState extends Equatable {
-  final String clipboard;
+part 'snackbar_state.freezed.dart';
 
-  @override
-  List<String> get props => <String>[clipboard];
+@freezedWithoutJson
+class SnackbarState with _$SnackbarState {
+  const factory SnackbarState.initial() = _SnackbarInitial;
 
-  const SnackbarState(this.clipboard);
-}
+  const factory SnackbarState.urlCopySuccess(String url) = _SnackbarUrlCopySuccess;
+  const factory SnackbarState.fileCopySuccess(String format) = _SnackbarFileCopySuccess;
+  const factory SnackbarState.colorCopySuccess(String hex) = _SnackbarColorCopySuccess;
 
-class SnackbarsInitial extends SnackbarState {
-  const SnackbarsInitial() : super('');
-}
+  const factory SnackbarState.serverStatusCheck() = _SnackbarServerStatusCheck;
 
-class UrlCopySuccess extends SnackbarState {
-  final String url;
-
-  const UrlCopySuccess(this.url) : super(url);
-}
-
-class FileCopySuccess extends SnackbarState {
-  final String format;
-
-  const FileCopySuccess(this.format) : super(format);
-}
-
-class ColorCopySuccess extends SnackbarState {
-  final String hex;
-
-  const ColorCopySuccess(this.hex) : super(hex);
-}
-
-class ServerStatusCheckSuccess extends SnackbarState {
-  const ServerStatusCheckSuccess() : super('');
-}
-
-class ShareAttemptFailure extends SnackbarState {
-  const ShareAttemptFailure() : super('');
-}
-
-class ClipboardCopyFailure extends SnackbarState {
-  const ClipboardCopyFailure() : super(''); // TODO Provide on UI.
+  const factory SnackbarState.shareFailure() = _SnackbarShareFailure;
+  const factory SnackbarState.copyFailure() = _SnackbarCopyFailure;
+  const factory SnackbarState.otherFailure() = _SnackbarOtherFailure;
 }

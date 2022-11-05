@@ -64,7 +64,7 @@ class Colorpicker extends StatelessWidget {
               onLongPress: isPortrait
                   ? () {
                       BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerEvent.copied(color));
-                      BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
+                      BlocProvider.of<SnackbarBloc>(context).add(const SnackbarEvent.colorCopied());
                     }
                   : null,
               onPressed: () {
@@ -83,7 +83,7 @@ class Colorpicker extends StatelessWidget {
                           ? null
                           : () {
                               BlocProvider.of<ColorPickerBloc>(context).add(ColorPickerEvent.copied(color));
-                              BlocProvider.of<SnackbarBloc>(context).add(const ColorCopiedSuccess());
+                              BlocProvider.of<SnackbarBloc>(context).add(const SnackbarEvent.colorCopied());
                             },
                       child: Text(
                         color.toHex(),

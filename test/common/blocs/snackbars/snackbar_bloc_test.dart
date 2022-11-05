@@ -11,10 +11,12 @@ import '../../data.dart';
 
 void main() {
   const List<SnackbarEvent> events = <SnackbarEvent>[
-    FileCopiedSuccess('format'),
-    ColorCopiedSuccess(),
-    UrlCopiedSuccess(),
+    SnackbarEvent.fileCopied('format'),
+    SnackbarEvent.colorCopied(),
+    SnackbarEvent.urlCopied(),
   ];
+
+  const String url = 'url';
 
   void testCopyEvent(SnackbarEvent event, {bool withException = false}) {
     final ClipBoard clipboard = FakeClipboard(throwExceptionOnCopy: withException);
@@ -26,9 +28,9 @@ void main() {
       build: () => SnackbarBloc(clipboard: clipboard),
       act: (SnackbarBloc bloc) => bloc.add(event),
       skip: withException ? 0 : 1,
-      expect: () => <TypeMatcher<SnackbarState>>[
-        if (withException) isA<ClipboardCopyFailure>(),
-        ...<TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
+      expect: () => <SnackbarState>[
+        if (withException) const SnackbarState.copyFailure(),
+        ...<SnackbarState>[const SnackbarState.initial()],
       ],
     );
   }
@@ -37,10 +39,10 @@ void main() {
     blocTest<SnackbarBloc, SnackbarState>('on Initial', build: SnackbarBloc.new, expect: () => isEmpty);
 
     blocTest<SnackbarBloc, SnackbarState>(
-      '$ShareFail',
+      '$SnackbarEvent.shareFailed',
       build: SnackbarBloc.new,
-      act: (SnackbarBloc bloc) => bloc.add(const ShareFail()),
-      expect: () => <TypeMatcher<SnackbarState>>[isA<ShareAttemptFailure>(), isA<SnackbarsInitial>()],
+      act: (SnackbarBloc bloc) => bloc.add(const SnackbarEvent.shareFailed()),
+      expect: () => <SnackbarState>[const SnackbarState.shareFailure(), const SnackbarState.initial()],
     );
 
     events
@@ -48,42 +50,39 @@ void main() {
       ..forEach((SnackbarEvent event) => testCopyEvent(event, withException: true));
 
     blocTest<SnackbarBloc, SnackbarState>(
-      '$ServerStatusCheckedSuccess during maintenance time',
+      '$SnackbarEvent.serverStatusChecked during maintenance time',
       build: SnackbarBloc.new,
-      act: (SnackbarBloc bloc) => bloc.add(ServerStatusCheckedSuccess(maintenanceTime)),
-      expect: () => <TypeMatcher<SnackbarState>>[isA<ServerStatusCheckSuccess>(), isA<SnackbarsInitial>()],
+      act: (SnackbarBloc bloc) => bloc.add(SnackbarEvent.serverStatusChecked(maintenanceTime)),
+      expect: () => <SnackbarState>[const SnackbarState.serverStatusCheck(), const SnackbarState.initial()],
     );
 
     blocTest<SnackbarBloc, SnackbarState>(
-      'no $ServerStatusCheckedSuccess after maintenance time',
+      'no $SnackbarEvent.serverStatusChecked after maintenance time',
       build: SnackbarBloc.new,
-      act: (SnackbarBloc bloc) => bloc.add(ServerStatusCheckedSuccess(noMaintenanceTime)),
-      expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
+      act: (SnackbarBloc bloc) => bloc.add(SnackbarEvent.serverStatusChecked(noMaintenanceTime)),
+      expect: () => <SnackbarState>[const SnackbarState.initial()],
     );
 
     blocTest<SnackbarBloc, SnackbarState>(
-      '$UrlOpenedSuccess with invalid data',
+      '$SnackbarEvent.urlOpened with invalid data',
       build: () => SnackbarBloc(clipboard: FakeClipboard(), urlLauncher: mockedUrlLauncher),
-      act: (SnackbarBloc bloc) async {
-        when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
-        bloc.add(const UrlOpenedSuccess());
-      },
-      expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
-      verify: (_) => verifyZeroInteractions(mockedUrlLauncher),
+      act: (SnackbarBloc bloc) => bloc.add(const SnackbarEvent.urlOpened(url)),
+      expect: () => isEmpty,
+      verify: (_) async => verify(mockedUrlLauncher.openURL(url)).called(1),
     );
 
     final ClipBoard clipboard = FakeClipboard();
 
     blocTest<SnackbarBloc, SnackbarState>(
-      '$UrlOpenedSuccess with valid data',
+      '$SnackbarEvent.urlOpened with valid data',
       build: () => SnackbarBloc(clipboard: clipboard, urlLauncher: mockedUrlLauncher),
       act: (SnackbarBloc bloc) async {
-        await clipboard.copyTextData('url');
-        when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
-        bloc.add(const UrlOpenedSuccess());
+        await clipboard.copyTextData(url);
+        when<Future<bool>>(mockedUrlLauncher.openURL(url)).thenAnswer((_) async => true);
+        bloc.add(const SnackbarEvent.urlOpened(url));
       },
-      expect: () => <TypeMatcher<SnackbarState>>[isA<SnackbarsInitial>()],
-      verify: (_) async => verify(mockedUrlLauncher.openURL('url')).called(1),
+      expect: () => <SnackbarState>[const SnackbarState.initial()],
+      verify: (_) async => verify(mockedUrlLauncher.openURL(url)).called(1),
     );
   });
 }

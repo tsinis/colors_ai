@@ -187,7 +187,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                                     BlocProvider.of<ColorPickerBloc>(context)
                                                                         .add(ColorPickerEvent.copied(color));
                                                                     BlocProvider.of<SnackbarBloc>(context)
-                                                                        .add(const ColorCopiedSuccess());
+                                                                        .add(const SnackbarEvent.colorCopied());
                                                                   },
                                                                   child: Text(
                                                                     color.toHex(),

@@ -20,7 +20,9 @@ class ShareColorsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, ShareState state) {
-          state.whenOrNull(failure: () => BlocProvider.of<SnackbarBloc>(context).add(const ShareFail()));
+          state.whenOrNull(
+            failure: () => BlocProvider.of<SnackbarBloc>(context).add(const SnackbarEvent.shareFailed()),
+          );
 
           final ColorsUrlProvider? provider = state.whenOrNull<ColorsUrlProvider?>(
             formatSelected: (ColorsUrlProvider? provider, _, __, ___) => provider,
