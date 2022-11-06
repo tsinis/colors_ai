@@ -108,5 +108,7 @@
     "colormindApiDescription": "Starší, má problémy s konektivitou",
     "huemintApiDescription": "Zbrusu nový, méně známý/populární",
     "adjacency": "Přilehlost (kontrast mezi barvami)",
-    "temperature": "Kreativita (teplota vzorkování)"
+    "temperature": "Kreativita (teplota vzorkování)",
+    "vibrationsTitle": "Vibrace",
+    "vibrationsLabel": "Povolení nebo zakázání haptické odezvy"
 }

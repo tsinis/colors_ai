@@ -576,6 +576,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Creativity (sampling temperature)'**
   String get temperature;
+
+  /// Vibrations switch tile title, in the settings dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibrations'**
+  String get vibrationsTitle;
+
+  /// Vibrations switch tile label, in the settings dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable or disable haptic feedback'**
+  String get vibrationsLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

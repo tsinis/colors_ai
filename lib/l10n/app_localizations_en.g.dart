@@ -262,4 +262,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get temperature => 'Creativity (sampling temperature)';
+
+  @override
+  String get vibrationsTitle => 'Vibrations';
+
+  @override
+  String get vibrationsLabel => 'Enable or disable haptic feedback';
 }

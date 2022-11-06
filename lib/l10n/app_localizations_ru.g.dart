@@ -264,4 +264,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get temperature => 'Креативность (температура выборки)';
+
+  @override
+  String get vibrationsTitle => 'Вибрации';
+
+  @override
+  String get vibrationsLabel => 'Включение или отключение вибраций';
 }

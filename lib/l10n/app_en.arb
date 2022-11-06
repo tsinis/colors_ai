@@ -336,5 +336,13 @@
     "temperature": "Creativity (sampling temperature)",
     "@temperature": {
         "description": "Huemint's bottom slider title, in the settings dialog."
+    },
+    "vibrationsTitle": "Vibrations",
+    "@vibrationsTitle": {
+        "description": "Vibrations switch tile title, in the settings dialog."
+    },
+    "vibrationsLabel": "Enable or disable haptic feedback",
+    "@vibrationsLabel": {
+        "description": "Vibrations switch tile label, in the settings dialog."
     }
 }

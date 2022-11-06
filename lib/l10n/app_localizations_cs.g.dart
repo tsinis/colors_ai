@@ -263,4 +263,10 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get temperature => 'Kreativita (teplota vzorkování)';
+
+  @override
+  String get vibrationsTitle => 'Vibrace';
+
+  @override
+  String get vibrationsLabel => 'Povolení nebo zakázání haptické odezvy';
 }

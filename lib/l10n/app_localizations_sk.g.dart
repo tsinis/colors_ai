@@ -263,4 +263,10 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get temperature => 'Kreativita (teplota vzorkovania)';
+
+  @override
+  String get vibrationsTitle => 'Vibrácie';
+
+  @override
+  String get vibrationsLabel => 'Povolenie alebo zakázanie hmatovej odozvy';
 }
