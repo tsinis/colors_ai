@@ -5,6 +5,8 @@ import '../../../app/theme/constants.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/extensions/string_extension.dart';
 import '../../../testing/test_keys.dart';
+import '../../../vibration/blocs/vibration_bloc.dart';
+import '../../../vibration/ui/widgets/vibration_disable_switch.dart';
 import '../../blocs/settings_bloc.dart';
 import '../../extensions/string_selected_api_extension.dart';
 import '../../mixins/huemint_settings.dart';
@@ -128,6 +130,7 @@ class SettingsDialog extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Divider(height: 1),
+              const VibrationDisableSwitch(style: _tightSpaceStyle),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 8, top: 12),
                 child: Text(context.l10n.appearance),
@@ -167,12 +170,15 @@ class SettingsDialog extends StatelessWidget {
           actions: <TextButton>[
             TextButton(
               key: TestKeys.resetSettingsButton,
-              onPressed: () => BlocProvider.of<SettingsBloc>(context)
-                ..add(const SettingsSystemThemeSelected())
-                ..add(const SettingsRegularColorsSelected())
-                ..add(const SettingsApiSelected(SelectedAPI.colormind))
-                ..add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2))
-                ..add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2)),
+              onPressed: () {
+                BlocProvider.of<SettingsBloc>(context)
+                  ..add(const SettingsSystemThemeSelected())
+                  ..add(const SettingsRegularColorsSelected())
+                  ..add(const SettingsApiSelected(SelectedAPI.colormind))
+                  ..add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2))
+                  ..add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
+                BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.settingsChanged(isEnabled: true));
+              },
               child: Text(
                 context.l10n.resetButtonLabel,
                 style: TextStyle(color: context.theme.errorColor),

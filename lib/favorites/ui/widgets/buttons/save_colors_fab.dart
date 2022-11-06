@@ -8,6 +8,7 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/repository/colors_repository.dart';
 import '../../../../navigation/blocs/navigation_bloc.dart';
 import '../../../../sound/blocs/sound_bloc.dart';
+import '../../../../vibration/blocs/vibration_bloc.dart';
 import '../../../blocs/add_favorites/fab_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 
@@ -61,6 +62,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
 
   Future<void> onFabPressed() {
     BlocProvider.of<SoundBloc>(context).add(const SoundEvent.favoritesAdded());
+    BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.vibrated());
     BlocProvider.of<FavoritesBloc>(context)
         .add(FavoritesAdded(favorite: context.read<ColorsRepository>().palette.colors));
     if (!alwaysShow) {

@@ -16,9 +16,12 @@ import 'onboarding/repository/onboarding_repository.dart';
 import 'onboarding/services/storage_providers/onboarding_hive_storage.dart';
 import 'settings/blocs/settings_bloc.dart';
 import 'settings/dao/generator_dao.dart';
+import 'vibration/blocs/vibration_bloc.dart';
+import 'vibration/services/vibrations.dart';
 
 Future<void> main() async {
   final HiveCipher? encryption = await const DataStorage().init();
+  final Vibrations vibrationService = await Vibrations.init();
   final GeneratorDAO generatorDao = GeneratorDAO();
   const SystemUI().init();
   runApp(
@@ -42,6 +45,10 @@ Future<void> main() async {
               FavoritesHiveStorage(encryption: encryption),
             ),
           )..add(const FavoritesStarted()),
+          lazy: false,
+        ),
+        BlocProvider<VibrationBloc>(
+          create: (_) => VibrationBloc(vibrationService)..add(const VibrationEvent.started()),
           lazy: false,
         ),
       ],
