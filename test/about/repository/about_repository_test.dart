@@ -40,7 +40,7 @@ Future<void> main() async {
     expect(fontLicenses.first.runtimeType, LicenseEntryWithLineBreaks);
 
     expect(aboutRepository.supportedUrlLocale, supportedUrlLocale);
-    when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
+    when<Future<bool>>(mockedUrlLauncher.openURL(licenses + supportedUrlLocale)).thenAnswer((_) async => true);
 
     final bool canOpenUrl = await aboutRepository.openAboutLicenses();
 

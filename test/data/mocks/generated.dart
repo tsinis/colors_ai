@@ -1,3 +1,4 @@
+// ignore_for_file: unused-files, generated.mocks.dart is used instead, this one is for code generation.
 import 'package:colors_ai/core/services/url_launcher.dart';
 import 'package:colors_ai/sound/services/sounds_player.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';

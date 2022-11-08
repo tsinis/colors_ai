@@ -30,11 +30,6 @@ void main() => group('$SoundsPlayer', () {
 
       setUp(calls.clear);
 
-      test('playSound() with null asset', () async {
-        await player.playSound(null, volume);
-        expect(calls.isEmpty, true);
-      });
-
       test('playSound() with null volume and with cache', () async {
         await player.playSound(asset, null, cachedFileNames: <String>[]);
         expect(calls.isEmpty, true);

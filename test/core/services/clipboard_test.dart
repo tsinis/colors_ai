@@ -24,23 +24,11 @@ void main() => group('$ClipBoard', () {
           final String? clipboardData = await clipboard.data;
           expect(clipboardData, null);
         });
-
-        test('null data', () async {
-          await clipboard.copyTextData();
-          final String? clipboardData = await clipboard.data;
-          expect(clipboardData, null);
-        });
       });
 
       test('copyColor valid color', () async {
         await clipboard.copyColor(color);
         final String? clipboardData = await clipboard.data;
         expect(clipboardData, 'FFFFFF');
-      });
-
-      test('copyColor null color', () async {
-        await clipboard.copyColor();
-        final String? clipboardData = await clipboard.data;
-        expect(clipboardData, null);
       });
     });

@@ -54,6 +54,7 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
   FakeHiveBox(Map<dynamic, T> items, {bool throwCorruptedException = false})
       : _items = items,
         _throwCorruptedException = throwCorruptedException;
+
   FakeHiveBox.empty()
       : _items = Map<dynamic, T>.fromEntries(<MapEntry<dynamic, T>>{}),
         _throwCorruptedException = false;
@@ -110,7 +111,7 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
   }
 
   @override
-  Future<void> put(Object? key, T value) async {
+  Future<void> put(covariant Object key, T value) async {
     _markBoxAsOpen();
     _items[key] = value;
     events.add(BoxEvent(key, value, false));

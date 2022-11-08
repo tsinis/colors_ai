@@ -5,8 +5,8 @@ import '../../../core/extensions/context_extensions.dart';
 import '../../blocs/vibration_bloc.dart';
 
 class VibrationDisableSwitch extends StatelessWidget {
-  final TextStyle? style;
-  const VibrationDisableSwitch({this.style, super.key});
+  final TextStyle style;
+  const VibrationDisableSwitch({required this.style, super.key});
 
   @override
   Widget build(BuildContext context) => BlocBuilder<VibrationBloc, VibrationState>(

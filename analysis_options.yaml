@@ -80,7 +80,7 @@ dart_code_metrics:
     - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
-    - avoid-top-level-members-in-tests: false # Until fixed in DCM action.
+    - avoid-top-level-members-in-tests: true
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
     - avoid-unnecessary-type-casts: true
@@ -97,7 +97,7 @@ dart_code_metrics:
     - format-comment: true
     - include-methods: true
     - member-ordering-extended: true
-    - missing-test-assertion: false # false positive on bloc tests.
+    - missing-test-assertion: true
     - newline-before-return: true
     - no-boolean-literal-compare: true
     - no-empty-block: true
@@ -326,14 +326,18 @@ linter:
 
     # Linter 1.15.0+
     avoid_final_parameters: true
+    collection_methods_unrelated_type: true
     combinators_ordering: true
     conditional_uri_does_not_exist: true
+    dangling_library_doc_comments: true
     discarded_futures: true
+    implicit_call_tearoffs: true
     no_leading_underscores_for_library_prefixes: true
     no_leading_underscores_for_local_identifiers: true
     secure_pubspec_urls: true
     sized_box_shrink_expand: true
     unnecessary_late: true
+    unnecessary_library_directive: true
     unnecessary_null_aware_operator_on_extension_on_nullable: true
     unnecessary_to_list_in_spreads: true
     unreachable_from_main: true
