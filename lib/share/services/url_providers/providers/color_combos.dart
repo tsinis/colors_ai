@@ -1,7 +1,12 @@
 part of '../colors_url_provider.dart';
 
+/// Example: https://www.colorcombos.com/combotester.html?color0=005B9A&color1=0191C8&color2=74C2E1&color3=7c1313&color4=8C8984.
 class ColorCombos extends ColorsUrlProvider {
-  const ColorCombos() : super(baseUrl: 'www.colorcombos.com/combotester.html?', separateSymbol: '&', formats: 'PNG +');
+  const ColorCombos({
+    super.baseUrl = 'www.colorcombos.com/combotester.html?',
+    super.separateSymbol = '&',
+    super.formats = 'PNG +',
+  });
 
   @override
   String url(ColorPalette palette) {
@@ -17,5 +22,5 @@ class ColorCombos extends ColorsUrlProvider {
 
     return sb.toString().substring(0, sb.length - 1);
   }
-  // Example: https://www.colorcombos.com/combotester.html?color0=005B9A&color1=0191C8&color2=74C2E1&color3=7c1313&color4=8C8984.
+
 }
