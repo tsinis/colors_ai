@@ -12,6 +12,15 @@
         "pflannery.vscode-versionlens",
         "felixangelov.bloc",
         "gaetschwartz.build-runner",
-        "blaxou.freezed"
+        "blaxou.freezed",
+        "nash.awesome-flutter-snippets",
+        "formulahendry.code-runner",
+        "peterhdd.dartgettersetter",
+        "gmlewis-vscode.flutter-stylizer",
+        "plibither8.remove-comments",
+        "tyriar.sort-lines",
+        "gruntfuggly.todo-tree",
+        "imagio.vscode-dimmer-block",
+        "redhat.vscode-yaml"
     ]
 }
