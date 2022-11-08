@@ -11,15 +11,14 @@ import '../../data/mocks/vibrations_mock.dart';
 Future<void> main() async {
   const String key = 'key';
   late Vibrations vibrations;
-  late VibrationsMock channel;
+  late VibrationsMock vibrator;
   late FakeStorage<bool> storage;
 
   setUpAll(TestWidgetsFlutterBinding.ensureInitialized);
 
   setUp(() async {
     HydratedBloc.storage = storage = FakeStorage<bool>();
-    channel = VibrationsMock(hasCustomVibrationsSupport: true);
-    VibrationsMock.channel.setMockMethodCallHandler(channel.handleMethodCall);
+    vibrator = VibrationsMock(hasCustomVibrationsSupport: true);
     vibrations = await Vibrations.init();
   });
 
@@ -31,6 +30,18 @@ Future<void> main() async {
       verify: (_) {
         expect(storage.writeCount, isZero);
         expect(storage.readCount, 1);
+      },
+    );
+
+    blocTest<VibrationBloc, VibrationState>(
+      'fromJson()',
+      build: () => VibrationBloc(vibrations, vibrationsKey: key),
+      expect: () => isEmpty,
+      verify: (VibrationBloc bloc) async {
+        expect(storage.readCount, 1);
+        await storage.write(key, false);
+        final VibrationState? state = bloc.fromJson(storage.map);
+        expect(state, const VibrationState.initial(canVibrate: true, isVibrationEnabled: false));
       },
     );
 
@@ -49,15 +60,56 @@ Future<void> main() async {
       '$VibrationEvent.vibrated',
       build: () => VibrationBloc(vibrations, vibrationsKey: key),
       act: (VibrationBloc bloc) {
-        expect(channel.calls(), isZero);
+        expect(vibrator.timesVibrated, isZero);
         bloc.add(const VibrationEvent.vibrated());
       },
       expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true, isVibrationEnabled: true)],
       verify: (_) {
         expect(storage.writeCount, isZero);
         expect(storage.readCount, 1);
-        expect(channel.calls(), 1);
+        expect(vibrator.timesVibrated, 1);
       },
     );
+
+    group('$VibrationEvent.settingsChanged', () {
+      blocTest<VibrationBloc, VibrationState>(
+        'settingsChanged(isEnabled: false)',
+        build: () => VibrationBloc(vibrations, vibrationsKey: key),
+        act: (VibrationBloc bloc) => bloc.add(const VibrationEvent.settingsChanged(isEnabled: false)),
+        expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true, isVibrationEnabled: false)],
+        verify: (_) {
+          expect(storage.writeCount, 0);
+          expect(storage.readCount, 1);
+        },
+      );
+
+      blocTest<VibrationBloc, VibrationState>(
+        'vibrate() after settingsChanged(isEnabled: false)',
+        build: () => VibrationBloc(vibrations, vibrationsKey: key),
+        act: (VibrationBloc bloc) => bloc
+          ..add(const VibrationEvent.settingsChanged(isEnabled: false))
+          ..add(const VibrationEvent.vibrated()),
+        expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true, isVibrationEnabled: false)],
+        verify: (_) {
+          expect(vibrator.timesVibrated, isZero);
+          expect(storage.writeCount, 0);
+          expect(storage.readCount, 1);
+        },
+      );
+
+      blocTest<VibrationBloc, VibrationState>(
+        'vibrate() after settingsChanged(isEnabled: true)',
+        build: () => VibrationBloc(vibrations, vibrationsKey: key),
+        act: (VibrationBloc bloc) => bloc
+          ..add(const VibrationEvent.settingsChanged(isEnabled: true))
+          ..add(const VibrationEvent.vibrated()),
+        expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true, isVibrationEnabled: true)],
+        verify: (_) {
+          expect(vibrator.timesVibrated, 1);
+          expect(storage.writeCount, 0);
+          expect(storage.readCount, 1);
+        },
+      );
+    });
   });
 }

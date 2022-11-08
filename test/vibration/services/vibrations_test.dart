@@ -21,7 +21,6 @@ Future<void> main() async {
 
   Future<VibrationsMock> mockMethodChannel(FakePlatform testPlatform) async {
     final VibrationsMock vibratorMock = vibrationsMock(testPlatform);
-    VibrationsMock.channel.setMockMethodCallHandler(vibratorMock.handleMethodCall);
     vibrations = await Vibrations.init();
 
     return vibratorMock;
@@ -31,31 +30,31 @@ Future<void> main() async {
     test(
       'vibrate on mobiles with initVibrations() and then vibrate()',
       () async {
-        final VibrationsMock channel = await mockMethodChannel(FakePlatform(operatingSystem: OperatingSystem.iOS));
+        final VibrationsMock vibrator = await mockMethodChannel(FakePlatform(operatingSystem: OperatingSystem.iOS));
         expect(vibrations.hasCustomVibrationsSupport, isTrue);
-        expect(channel.calls(), isZero);
+        expect(vibrator.timesVibrated, isZero);
         vibrations.vibrate();
-        expect(channel.calls(), 1);
+        expect(vibrator.timesVibrated, 1);
       },
     );
 
     test(
       'not vibrate on desktop platform with initVibrations() and then vibrate()',
       () async {
-        final VibrationsMock channel = await mockMethodChannel(FakePlatform(operatingSystem: OperatingSystem.macOS));
+        final VibrationsMock vibrator = await mockMethodChannel(FakePlatform(operatingSystem: OperatingSystem.macOS));
         expect(vibrations.hasCustomVibrationsSupport, isFalse);
         vibrations.vibrate();
-        expect(channel.calls(), isZero);
+        expect(vibrator.timesVibrated, isZero);
       },
     );
 
     test(
       'not vibrate on web/unknown platform with initVibrations() and then vibrate()',
       () async {
-        final VibrationsMock channel = await mockMethodChannel(FakePlatform(operatingSystem: OperatingSystem.unknown));
+        final VibrationsMock vibrator = await mockMethodChannel(FakePlatform(operatingSystem: OperatingSystem.unknown));
         expect(vibrations.hasCustomVibrationsSupport, isFalse);
         vibrations.vibrate();
-        expect(channel.calls(), isZero);
+        expect(vibrator.timesVibrated, isZero);
       },
     );
   });
