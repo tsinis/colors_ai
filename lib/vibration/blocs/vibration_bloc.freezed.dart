@@ -474,39 +474,39 @@ mixin _$VibrationState {
   bool get isVibrationEnabled => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
     required TResult Function(bool isVibrationEnabled) loadInProgress,
+    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
     TResult? Function(bool isVibrationEnabled)? loadInProgress,
+    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
     TResult Function(bool isVibrationEnabled)? loadInProgress,
+    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_Initial value) initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_Initial value)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -550,6 +550,146 @@ class _$VibrationStateCopyWithImpl<$Res, $Val extends VibrationState>
 }
 
 /// @nodoc
+abstract class _$$_LoadInProgressCopyWith<$Res>
+    implements $VibrationStateCopyWith<$Res> {
+  factory _$$_LoadInProgressCopyWith(
+          _$_LoadInProgress value, $Res Function(_$_LoadInProgress) then) =
+      __$$_LoadInProgressCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isVibrationEnabled});
+}
+
+/// @nodoc
+class __$$_LoadInProgressCopyWithImpl<$Res>
+    extends _$VibrationStateCopyWithImpl<$Res, _$_LoadInProgress>
+    implements _$$_LoadInProgressCopyWith<$Res> {
+  __$$_LoadInProgressCopyWithImpl(
+      _$_LoadInProgress _value, $Res Function(_$_LoadInProgress) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isVibrationEnabled = null,
+  }) {
+    return _then(_$_LoadInProgress(
+      isVibrationEnabled: null == isVibrationEnabled
+          ? _value.isVibrationEnabled
+          : isVibrationEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LoadInProgress implements _LoadInProgress {
+  const _$_LoadInProgress({this.isVibrationEnabled = true});
+
+  @override
+  @JsonKey()
+  final bool isVibrationEnabled;
+
+  @override
+  String toString() {
+    return 'VibrationState.loadInProgress(isVibrationEnabled: $isVibrationEnabled)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LoadInProgress &&
+            (identical(other.isVibrationEnabled, isVibrationEnabled) ||
+                other.isVibrationEnabled == isVibrationEnabled));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isVibrationEnabled);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
+      __$$_LoadInProgressCopyWithImpl<_$_LoadInProgress>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isVibrationEnabled) loadInProgress,
+    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
+  }) {
+    return loadInProgress(isVibrationEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isVibrationEnabled)? loadInProgress,
+    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
+  }) {
+    return loadInProgress?.call(isVibrationEnabled);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isVibrationEnabled)? loadInProgress,
+    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(isVibrationEnabled);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_Initial value) initial,
+  }) {
+    return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_Initial value)? initial,
+  }) {
+    return loadInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_Initial value)? initial,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadInProgress implements VibrationState {
+  const factory _LoadInProgress({final bool isVibrationEnabled}) =
+      _$_LoadInProgress;
+
+  @override
+  bool get isVibrationEnabled;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 abstract class _$$_InitialCopyWith<$Res>
     implements $VibrationStateCopyWith<$Res> {
   factory _$$_InitialCopyWith(
@@ -589,12 +729,13 @@ class __$$_InitialCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Initial implements _Initial {
-  const _$_Initial(
-      {required this.canVibrate, required this.isVibrationEnabled});
+  const _$_Initial({this.canVibrate = false, this.isVibrationEnabled = true});
 
   @override
+  @JsonKey()
   final bool canVibrate;
   @override
+  @JsonKey()
   final bool isVibrationEnabled;
 
   @override
@@ -625,8 +766,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
     required TResult Function(bool isVibrationEnabled) loadInProgress,
+    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
   }) {
     return initial(canVibrate, isVibrationEnabled);
   }
@@ -634,8 +775,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
     TResult? Function(bool isVibrationEnabled)? loadInProgress,
+    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
   }) {
     return initial?.call(canVibrate, isVibrationEnabled);
   }
@@ -643,8 +784,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
     TResult Function(bool isVibrationEnabled)? loadInProgress,
+    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -656,8 +797,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_Initial value) initial,
   }) {
     return initial(this);
   }
@@ -665,8 +806,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_Initial value)? initial,
   }) {
     return initial?.call(this);
   }
@@ -674,8 +815,8 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_Initial value)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -687,8 +828,7 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements VibrationState {
   const factory _Initial(
-      {required final bool canVibrate,
-      required final bool isVibrationEnabled}) = _$_Initial;
+      {final bool canVibrate, final bool isVibrationEnabled}) = _$_Initial;
 
   bool get canVibrate;
   @override
@@ -696,144 +836,5 @@ abstract class _Initial implements VibrationState {
   @override
   @JsonKey(ignore: true)
   _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_LoadInProgressCopyWith<$Res>
-    implements $VibrationStateCopyWith<$Res> {
-  factory _$$_LoadInProgressCopyWith(
-          _$_LoadInProgress value, $Res Function(_$_LoadInProgress) then) =
-      __$$_LoadInProgressCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool isVibrationEnabled});
-}
-
-/// @nodoc
-class __$$_LoadInProgressCopyWithImpl<$Res>
-    extends _$VibrationStateCopyWithImpl<$Res, _$_LoadInProgress>
-    implements _$$_LoadInProgressCopyWith<$Res> {
-  __$$_LoadInProgressCopyWithImpl(
-      _$_LoadInProgress _value, $Res Function(_$_LoadInProgress) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? isVibrationEnabled = null,
-  }) {
-    return _then(_$_LoadInProgress(
-      isVibrationEnabled: null == isVibrationEnabled
-          ? _value.isVibrationEnabled
-          : isVibrationEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_LoadInProgress implements _LoadInProgress {
-  const _$_LoadInProgress({required this.isVibrationEnabled});
-
-  @override
-  final bool isVibrationEnabled;
-
-  @override
-  String toString() {
-    return 'VibrationState.loadInProgress(isVibrationEnabled: $isVibrationEnabled)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_LoadInProgress &&
-            (identical(other.isVibrationEnabled, isVibrationEnabled) ||
-                other.isVibrationEnabled == isVibrationEnabled));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, isVibrationEnabled);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
-      __$$_LoadInProgressCopyWithImpl<_$_LoadInProgress>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
-    required TResult Function(bool isVibrationEnabled) loadInProgress,
-  }) {
-    return loadInProgress(isVibrationEnabled);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
-    TResult? Function(bool isVibrationEnabled)? loadInProgress,
-  }) {
-    return loadInProgress?.call(isVibrationEnabled);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
-    TResult Function(bool isVibrationEnabled)? loadInProgress,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress(isVibrationEnabled);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-  }) {
-    return loadInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-  }) {
-    return loadInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadInProgress implements VibrationState {
-  const factory _LoadInProgress({required final bool isVibrationEnabled}) =
-      _$_LoadInProgress;
-
-  @override
-  bool get isVibrationEnabled;
-  @override
-  @JsonKey(ignore: true)
-  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
       throw _privateConstructorUsedError;
 }

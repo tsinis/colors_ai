@@ -15,7 +15,7 @@ class VibrationBloc extends HydratedBloc<VibrationEvent, VibrationState> {
 
   VibrationBloc(this._vibrationService, {String vibrationsKey = 'vibrationsEnabled'})
       : _vibrationsKey = vibrationsKey,
-        super(const _Initial(canVibrate: false, isVibrationEnabled: true));
+        super(const _Initial());
 
   @override
   Stream<VibrationState> mapEventToState(VibrationEvent event) async* {
