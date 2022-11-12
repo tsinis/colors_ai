@@ -331,7 +331,9 @@ linter:
     conditional_uri_does_not_exist: true
     dangling_library_doc_comments: true
     discarded_futures: true
+    enable_null_safety: true
     implicit_call_tearoffs: true
+    library_annotations: true
     no_leading_underscores_for_library_prefixes: true
     no_leading_underscores_for_local_identifiers: true
     secure_pubspec_urls: true
