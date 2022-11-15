@@ -32,7 +32,7 @@ jobs:
         run: flutter test --coverage --no-pub
 
       - name: Check Code Coverage
-        uses: VeryGoodOpenSource/very_good_coverage@v2.0.0
+        uses: VeryGoodOpenSource/very_good_coverage@v2.1.0
         with:
           min_coverage: 92
           exclude: "**/*.g.dart **/*.gen.dart **/*.freezed.dart"
