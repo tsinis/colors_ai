@@ -390,7 +390,7 @@ packages:
       name: flutter_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.0"
+    version: "7.3.3"
   flutter_colorpicker:
     dependency: "direct main"
     description:
@@ -569,7 +569,7 @@ packages:
       name: hydrated_bloc
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.0.1"
+    version: "7.1.0"
   image:
     dependency: transitive
     description:
@@ -854,7 +854,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0"
+    version: "6.0.4"
   pub_semver:
     dependency: transitive
     description:
@@ -1172,7 +1172,7 @@ packages:
     dependency: "direct main"
     description:
       path: "plugins/window_size"
-      ref: "17d4710c17f4913137e7ec931f6e71eaef443363"
+      ref: HEAD
       resolved-ref: "17d4710c17f4913137e7ec931f6e71eaef443363"
       url: "https://github.com/google/flutter-desktop-embedding"
     source: git
