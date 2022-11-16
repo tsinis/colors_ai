@@ -45,7 +45,8 @@ class SettingsDialog extends StatelessWidget {
                     helperText: state.selectedAPI.helperText(context.l10n),
                   ),
                   value: state.selectedAPI,
-                  onChanged: (SelectedAPI? api) => BlocProvider.of<SettingsBloc>(context).add(SettingsApiSelected(api)),
+                  onChanged: (SelectedAPI? api) =>
+                      BlocProvider.of<SettingsBloc>(context).add(SettingsEvent.apiSelected(api)),
                   items: List<DropdownMenuItem<SelectedAPI>>.generate(
                     SelectedAPI.values.length,
                     (int index) => DropdownMenuItem<SelectedAPI>(
@@ -76,11 +77,11 @@ class SettingsDialog extends StatelessWidget {
                     onChanged: (bool isForUi) {
                       if (isForUi) {
                         BlocProvider.of<SettingsBloc>(context).add(
-                          const SettingsColorsForUiSelected(),
+                          const SettingsEvent.colorsForUiSelected(),
                         );
                       } else {
                         BlocProvider.of<SettingsBloc>(context).add(
-                          const SettingsRegularColorsSelected(),
+                          const SettingsEvent.colorsRegularSelected(),
                         );
                       }
                     },
@@ -104,8 +105,8 @@ class SettingsDialog extends StatelessWidget {
                             value: state.huemintAdjacency.toDouble(),
                             label: state.huemintAdjacency.toString(),
                             divisions: HuemintSettings.adjacencyMax,
-                            onChanged: (double adjacency) =>
-                                BlocProvider.of<SettingsBloc>(context).add(SettingsAdjacencyChanged(adjacency.toInt())),
+                            onChanged: (double adjacency) => BlocProvider.of<SettingsBloc>(context)
+                                .add(SettingsEvent.adjacencyChanged(adjacency.toInt())),
                             max: HuemintSettings.adjacencyMax.toDouble(),
                           ),
                         ),
@@ -118,8 +119,8 @@ class SettingsDialog extends StatelessWidget {
                           child: Slider(
                             value: state.huemintTemperature,
                             label: state.huemintTemperature.toString(),
-                            onChanged: (double temperature) =>
-                                BlocProvider.of<SettingsBloc>(context).add(SettingsTemperatureChanged(temperature)),
+                            onChanged: (double temperature) => BlocProvider.of<SettingsBloc>(context)
+                                .add(SettingsEvent.temperatureSelected(temperature)),
                             max: HuemintSettings.temperatureMax,
                           ),
                         ),
@@ -143,7 +144,7 @@ class SettingsDialog extends StatelessWidget {
                 subtitle: Text(context.l10n.lightThemeSubtitle, style: _tightSpaceStyle),
                 value: false,
                 groupValue: state.isDarkTheme,
-                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsLightThemeSelected()),
+                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.lightThemeSelected()),
               ),
               RadioListTile<bool?>(
                 key: TestKeys.darkThemeSelection,
@@ -152,7 +153,7 @@ class SettingsDialog extends StatelessWidget {
                 subtitle: Text(context.l10n.darkThemeSubtitle, style: _tightSpaceStyle),
                 value: true,
                 groupValue: state.isDarkTheme,
-                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsDarkThemeSelected()),
+                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.darkThemeSelected()),
               ),
               Flexible(
                 child: RadioListTile<bool?>(
@@ -162,7 +163,8 @@ class SettingsDialog extends StatelessWidget {
                   subtitle: Text(context.l10n.systemThemeSubtitle, style: _tightSpaceStyle),
                   value: null,
                   groupValue: state.isDarkTheme,
-                  onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected()),
+                  onChanged: (_) =>
+                      BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.systemThemeSelected()),
                 ),
               ),
             ],
@@ -172,11 +174,11 @@ class SettingsDialog extends StatelessWidget {
               key: TestKeys.resetSettingsButton,
               onPressed: () {
                 BlocProvider.of<SettingsBloc>(context)
-                  ..add(const SettingsSystemThemeSelected())
-                  ..add(const SettingsRegularColorsSelected())
-                  ..add(const SettingsApiSelected(SelectedAPI.colormind))
-                  ..add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2))
-                  ..add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
+                  ..add(const SettingsEvent.systemThemeSelected())
+                  ..add(const SettingsEvent.colorsRegularSelected())
+                  ..add(const SettingsEvent.apiSelected(SelectedAPI.colormind))
+                  ..add(const SettingsEvent.temperatureSelected(HuemintSettings.temperatureMax / 2))
+                  ..add(const SettingsEvent.adjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
                 BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.settingsChanged(isEnabled: true));
               },
               child: Text(

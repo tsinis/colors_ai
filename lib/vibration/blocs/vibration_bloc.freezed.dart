@@ -475,19 +475,20 @@ mixin _$VibrationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isVibrationEnabled) loadInProgress,
-    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
+    required TResult Function(bool? canVibrate, bool isVibrationEnabled)
+        initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isVibrationEnabled)? loadInProgress,
-    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
+    TResult? Function(bool? canVibrate, bool isVibrationEnabled)? initial,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isVibrationEnabled)? loadInProgress,
-    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
+    TResult Function(bool? canVibrate, bool isVibrationEnabled)? initial,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -618,7 +619,8 @@ class _$_LoadInProgress implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isVibrationEnabled) loadInProgress,
-    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
+    required TResult Function(bool? canVibrate, bool isVibrationEnabled)
+        initial,
   }) {
     return loadInProgress(isVibrationEnabled);
   }
@@ -627,7 +629,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isVibrationEnabled)? loadInProgress,
-    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
+    TResult? Function(bool? canVibrate, bool isVibrationEnabled)? initial,
   }) {
     return loadInProgress?.call(isVibrationEnabled);
   }
@@ -636,7 +638,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isVibrationEnabled)? loadInProgress,
-    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
+    TResult Function(bool? canVibrate, bool isVibrationEnabled)? initial,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -697,7 +699,7 @@ abstract class _$$_InitialCopyWith<$Res>
       __$$_InitialCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool canVibrate, bool isVibrationEnabled});
+  $Res call({bool? canVibrate, bool isVibrationEnabled});
 }
 
 /// @nodoc
@@ -710,14 +712,14 @@ class __$$_InitialCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? canVibrate = null,
+    Object? canVibrate = freezed,
     Object? isVibrationEnabled = null,
   }) {
     return _then(_$_Initial(
-      canVibrate: null == canVibrate
+      canVibrate: freezed == canVibrate
           ? _value.canVibrate
           : canVibrate // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       isVibrationEnabled: null == isVibrationEnabled
           ? _value.isVibrationEnabled
           : isVibrationEnabled // ignore: cast_nullable_to_non_nullable
@@ -733,7 +735,7 @@ class _$_Initial implements _Initial {
 
   @override
   @JsonKey()
-  final bool canVibrate;
+  final bool? canVibrate;
   @override
   @JsonKey()
   final bool isVibrationEnabled;
@@ -767,7 +769,8 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isVibrationEnabled) loadInProgress,
-    required TResult Function(bool canVibrate, bool isVibrationEnabled) initial,
+    required TResult Function(bool? canVibrate, bool isVibrationEnabled)
+        initial,
   }) {
     return initial(canVibrate, isVibrationEnabled);
   }
@@ -776,7 +779,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isVibrationEnabled)? loadInProgress,
-    TResult? Function(bool canVibrate, bool isVibrationEnabled)? initial,
+    TResult? Function(bool? canVibrate, bool isVibrationEnabled)? initial,
   }) {
     return initial?.call(canVibrate, isVibrationEnabled);
   }
@@ -785,7 +788,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isVibrationEnabled)? loadInProgress,
-    TResult Function(bool canVibrate, bool isVibrationEnabled)? initial,
+    TResult Function(bool? canVibrate, bool isVibrationEnabled)? initial,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -828,9 +831,9 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements VibrationState {
   const factory _Initial(
-      {final bool canVibrate, final bool isVibrationEnabled}) = _$_Initial;
+      {final bool? canVibrate, final bool isVibrationEnabled}) = _$_Initial;
 
-  bool get canVibrate;
+  bool? get canVibrate;
   @override
   bool get isVibrationEnabled;
   @override

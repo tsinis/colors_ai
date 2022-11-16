@@ -12,7 +12,7 @@ class VibrationDisableSwitch extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<VibrationBloc, VibrationState>(
         builder: (_, VibrationState state) => Visibility(
           visible: state.when(
-            initial: (bool canVibrate, __) => canVibrate,
+            initial: (bool? canVibrate, __) => canVibrate ?? false,
             loadInProgress: (_) => true,
           ),
           child: Padding(

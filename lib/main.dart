@@ -30,7 +30,7 @@ Future<void> main() async {
         BlocProvider<AboutBloc>(lazy: false, create: (_) => AboutBloc(AboutRepository())),
         BlocProvider<SettingsBloc>(
           lazy: false,
-          create: (_) => SettingsBloc(generatorDao)..add(const SettingsStarted()),
+          create: (_) => SettingsBloc(generatorDao)..add(const SettingsEvent.started()),
         ),
         BlocProvider<OnboardingBloc>(
           lazy: false,

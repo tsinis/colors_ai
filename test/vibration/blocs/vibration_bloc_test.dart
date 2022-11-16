@@ -76,7 +76,10 @@ Future<void> main() async {
         'settingsChanged(isEnabled: false)',
         build: () => VibrationBloc(vibrations, vibrationsKey: key),
         act: (VibrationBloc bloc) => bloc.add(const VibrationEvent.settingsChanged(isEnabled: false)),
-        expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true, isVibrationEnabled: false)],
+        expect: () => <VibrationState>[
+          const VibrationState.initial(isVibrationEnabled: false, canVibrate: false),
+          const VibrationState.initial(isVibrationEnabled: false, canVibrate: true),
+        ],
         verify: (_) {
           expect(storage.writeCount, 0);
           expect(storage.readCount, 1);
@@ -89,7 +92,10 @@ Future<void> main() async {
         act: (VibrationBloc bloc) => bloc
           ..add(const VibrationEvent.settingsChanged(isEnabled: false))
           ..add(const VibrationEvent.vibrated()),
-        expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true, isVibrationEnabled: false)],
+        expect: () => <VibrationState>[
+          const VibrationState.initial(isVibrationEnabled: false, canVibrate: false),
+          const VibrationState.initial(isVibrationEnabled: false, canVibrate: true),
+        ],
         verify: (_) {
           expect(vibrator.timesVibrated, isZero);
           expect(storage.writeCount, 0);
@@ -103,7 +109,10 @@ Future<void> main() async {
         act: (VibrationBloc bloc) => bloc
           ..add(const VibrationEvent.settingsChanged(isEnabled: true))
           ..add(const VibrationEvent.vibrated()),
-        expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true, isVibrationEnabled: true)],
+        expect: () => <VibrationState>[
+          const VibrationState.initial(isVibrationEnabled: true, canVibrate: false),
+          const VibrationState.initial(isVibrationEnabled: true, canVibrate: true),
+        ],
         verify: (_) {
           expect(vibrator.timesVibrated, 1);
           expect(storage.writeCount, 0);
