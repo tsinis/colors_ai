@@ -203,7 +203,12 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
                                               buttonSize: isPortrait ? third : Size.fromHeight(size.maxHeight),
                                             ),
                                             Center(
-                                              child: LockColorButton(index, color: contrastColor, buttonSize: third),
+                                              child: LockColorButton(
+                                                index,
+                                                bloc: BlocProvider.of<LockBloc>(context),
+                                                color: contrastColor,
+                                                buttonSize: third,
+                                              ),
                                             ),
                                           ],
                                         ),

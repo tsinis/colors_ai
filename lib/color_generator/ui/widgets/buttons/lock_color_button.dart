@@ -8,9 +8,11 @@ class LockColorButton extends StatelessWidget {
   final Size buttonSize;
   final Color color;
   final int index;
+  final LockBloc? bloc;
 
   const LockColorButton(
     this.index, {
+    required this.bloc,
     required this.color,
     this.buttonSize = const Size(24, 24),
     super.key,
@@ -18,6 +20,7 @@ class LockColorButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LockBloc, LockState>(
+        bloc: bloc,
         builder: (_, LockState state) {
           if (state is LockSuccess) {
             final bool isLocked = state.isLocked(index);
@@ -27,7 +30,7 @@ class LockColorButton extends StatelessWidget {
               color: color.withOpacity(isLocked ? 0.87 : 0.6),
               onPressed: () {
                 BlocProvider.of<SoundBloc>(context).add(const SoundEvent.locked());
-                BlocProvider.of<LockBloc>(context).add(LockChanged(index));
+                bloc?.add(LockChanged(index));
               },
               icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined),
             );
