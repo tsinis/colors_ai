@@ -56,6 +56,9 @@ jobs:
       - name: Update Linux dependencies
         run: sudo apt-get update -y
 
+      - name: Pre install libunwind
+        run: sudo apt install -y libunwind-dev
+
       - name: Install new Linux dependencies
         run: sudo apt-get --assume-yes --fix-missing install libgles2-mesa-dev clang cmake unzip curl ninja-build pkg-config libgtk-3-dev liblzma-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libsecret-1-dev libjsoncpp-dev libsecret-1-0
 
