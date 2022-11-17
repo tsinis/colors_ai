@@ -12,13 +12,11 @@ class ClipBoard {
 
   const ClipBoard({String dataFormat = Clipboard.kTextPlain}) : _dataFormat = dataFormat;
 
-  Future<void> copyColor([Color? color]) => copyTextData(color?.toHex());
+  Future<void> copyColor(Color color) => copyTextData(color.toHex());
 
-  Future<void> copyTextData([String? text]) async {
-    if (text == null || text.isEmpty) {
-      return;
+  Future<void> copyTextData(String text) async {
+    if (text.isNotEmpty) {
+      return Clipboard.setData(ClipboardData(text: text));
     }
-
-    return Clipboard.setData(ClipboardData(text: text));
   }
 }

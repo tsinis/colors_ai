@@ -67,7 +67,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                       onPressed: () => dialogContext.closeDialog(true),
                       child: Text(
                         context.l10n.removeButtonLabel,
-                        style: TextStyle(color: context.theme.errorColor),
+                        style: TextStyle(color: context.theme.colorScheme.error),
                       ),
                     ),
                   ],
@@ -96,7 +96,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                       child: Icon(
                         Mdi.bookmarkRemoveOutline,
                         size: 25,
-                        color: context.theme.errorColor,
+                        color: context.theme.colorScheme.error,
                       ),
                     )
                   else

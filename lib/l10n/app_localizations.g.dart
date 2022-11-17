@@ -388,7 +388,7 @@ abstract class AppLocalizations {
   /// Title of pop-up dialog and app bar, when removing some stored favorite palettes.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =1{Remove palette} one{Remove {count} palette}  other{Remove {count} palettes}}'**
+  /// **'{count, plural, one{Remove {count} palette}  other{Remove {count} palettes}}'**
   String removeSomeTitle(num count);
 
   /// Tooltip of floating action button that's saving palette to Favorites
@@ -576,6 +576,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Creativity (sampling temperature)'**
   String get temperature;
+
+  /// Vibrations switch tile title, in the settings dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibrations'**
+  String get vibrationsTitle;
+
+  /// Vibrations switch tile label, in the settings dialog.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable or disable haptic feedback'**
+  String get vibrationsLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -20,6 +20,39 @@ void main() => group('$RemoveAllFavoritesButton', () {
       late FavoritesBloc favoritesBloc;
       late RemoveFavoritesBloc removeFavoritesBloc;
 
+      Future<BuildContext?> pumpApp(
+        WidgetTester tester,
+        FavoritesBloc favoritesBloc,
+        RemoveFavoritesBloc removeFavoritesBloc,
+      ) async {
+        BuildContext? context;
+
+        await tester.pumpWidget(
+          MultiBlocProvider(
+            providers: <BlocProvider<BlocBase<Object>>>[
+              BlocProvider<FavoritesBloc>(
+                create: (_) => favoritesBloc,
+                lazy: false,
+              ),
+              BlocProvider<RemoveFavoritesBloc>(
+                create: (_) => removeFavoritesBloc..add(const RemoveFavoritesSelected(0)),
+              ),
+            ],
+            child: MaterialApp(
+              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              home: const Material(child: RemoveAllFavoritesButton()),
+              onGenerateTitle: (BuildContext titleContext) {
+                context = titleContext;
+
+                return '';
+              },
+            ),
+          ),
+        );
+
+        return context;
+      }
+
       setUpAll(createFakeStorageDir);
 
       setUp(
@@ -102,36 +135,3 @@ void main() => group('$RemoveAllFavoritesButton', () {
 
       tearDownAll(deleteFakeStorageDir);
     });
-
-Future<BuildContext?> pumpApp(
-  WidgetTester tester,
-  FavoritesBloc favoritesBloc,
-  RemoveFavoritesBloc removeFavoritesBloc,
-) async {
-  BuildContext? context;
-
-  await tester.pumpWidget(
-    MultiBlocProvider(
-      providers: <BlocProvider<BlocBase<Object>>>[
-        BlocProvider<FavoritesBloc>(
-          create: (_) => favoritesBloc,
-          lazy: false,
-        ),
-        BlocProvider<RemoveFavoritesBloc>(
-          create: (_) => removeFavoritesBloc..add(const RemoveFavoritesSelected(0)),
-        ),
-      ],
-      child: MaterialApp(
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        home: const Material(child: RemoveAllFavoritesButton()),
-        onGenerateTitle: (BuildContext titleContext) {
-          context = titleContext;
-
-          return '';
-        },
-      ),
-    ),
-  );
-
-  return context;
-}

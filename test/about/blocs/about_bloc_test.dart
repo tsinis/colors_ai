@@ -41,7 +41,7 @@ Future<void> main() async {
     '$AboutBloc on $Exception',
     build: () => AboutBloc(aboutRepository),
     act: (AboutBloc bloc) {
-      when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenThrow('Link tap error');
+      when<Future<bool>>(mockedUrlLauncher.openURL('')).thenThrow('Link tap error');
       bloc
         ..add(const AboutEvent.started(currentLocale: supportedUrlLocale))
         ..add(const AboutEvent.colormindTaped());

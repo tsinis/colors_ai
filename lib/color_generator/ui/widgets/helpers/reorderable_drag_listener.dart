@@ -20,16 +20,16 @@ class ReorderableDragListener extends StatelessWidget {
   @protected
   MultiDragGestureRecognizer createRecognizer() => DelayedMultiDragGestureRecognizer(debugOwner: this);
 
+  void _startDragging(BuildContext context, PointerDownEvent event) {
+    onDragStarted();
+    SliverReorderableList.maybeOf(context)
+        ?.startItemDragReorder(recognizer: createRecognizer(), index: index, event: event);
+  }
+
   @override
   Widget build(BuildContext context) => Listener(
         onPointerUp: (_) => onDragEnded(),
         onPointerDown: enabled ? (PointerDownEvent event) => _startDragging(context, event) : null,
         child: child,
       );
-
-  void _startDragging(BuildContext context, PointerDownEvent event) {
-    onDragStarted();
-    SliverReorderableList.maybeOf(context)
-        ?.startItemDragReorder(recognizer: createRecognizer(), index: index, event: event);
-  }
 }

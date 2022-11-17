@@ -15,7 +15,7 @@ class RemoveBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ColoredBox(
-        color: context.theme.errorColor,
+        color: context.theme.colorScheme.error,
         child: Align(
           alignment: _secondary ? Alignment.centerRight : Alignment.centerLeft,
           child: const Padding(

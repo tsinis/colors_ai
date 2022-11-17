@@ -19,7 +19,9 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   ShareBloc(this._share, {String urlProviderKey = 'url', String formatKey = 'format'})
       : _formatKey = formatKey,
         _urlProviderKey = urlProviderKey,
-        super(const ShareState.emptyInitial());
+        super(const ShareState.emptyInitial()) {
+    on<ShareEvent>(_onEvent);
+  }
 
   @override
   ShareState? fromJson(Map<String, dynamic> json) {
@@ -36,10 +38,15 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
   }
 
   @override
-  Stream<ShareState> mapEventToState(ShareEvent event) async* {
-    if (event == const ShareEvent.started()) {
-      await _share.init();
-    }
+  Map<String, dynamic>? toJson(ShareState state) => state.whenOrNull(
+        formatSelected: (ColorsUrlProvider? provider, FileFormat? format, _, __) => <String, String?>{
+          _urlProviderKey: provider?.keyName,
+          _formatKey: format?.name,
+        },
+      );
+
+  Future<void> _onEvent(ShareEvent event, Emitter<ShareState> emit) async {
+    await event.whenOrNull(started: () async => _share.init());
     try {
       event.whenOrNull(
         urlShared: _share.asUrl,
@@ -50,24 +57,16 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
         urlProviderSelected: (ColorsUrlProvider? provider) => _share.selectedUrlProvider = provider,
       );
     } catch (_) {
-      yield const ShareState.failure();
-      await _shareFailed();
+      emit(const ShareState.failure());
+      await Future<void>.delayed(Duration.zero);
     }
-    yield ShareState.formatSelected(
-      selectedProvider: _share.selectedUrlProvider,
-      selectedFormat: _share.selectedFormat,
-      canSharePdf: _share.canSharePdf,
-      canSharePng: _share.canSharePng,
+    emit(
+      ShareState.formatSelected(
+        selectedProvider: _share.selectedUrlProvider,
+        selectedFormat: _share.selectedFormat,
+        canSharePdf: _share.canSharePdf,
+        canSharePng: _share.canSharePng,
+      ),
     );
   }
-
-  @override
-  Map<String, dynamic>? toJson(ShareState state) => state.whenOrNull(
-        formatSelected: (ColorsUrlProvider? provider, FileFormat? format, _, __) => <String, String?>{
-          _urlProviderKey: provider?.keyName,
-          _formatKey: format?.name,
-        },
-      );
-
-  Future<void> _shareFailed() => Future<void>.delayed(Duration.zero);
 }

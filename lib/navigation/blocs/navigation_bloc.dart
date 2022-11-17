@@ -24,6 +24,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
         changed: (int newTabIndex) async* {
           try {
             yield _stateList.elementAt(newTabIndex);
+            // TODO: Use [elementAtOrNull] from [collection] package after Flutter version bump.
             // ignore: avoid_catching_errors, since it what elementAt method throws.
           } on RangeError catch (_) {
             yield NavigationState.generate;

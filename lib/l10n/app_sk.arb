@@ -57,7 +57,7 @@
             "paletteIndex": {}
         }
     },
-    "removeSomeTitle": "{count, plural, =1{Odobrať paletu} one{Odobrať {count} paletu} few{Odobrať {count} palety} other{Odobrať {count} palet}}",
+    "removeSomeTitle": "{count, plural, one{Odobrať {count} paletu} few{Odobrať {count} palety} other{Odobrať {count} palet}}",
     "@removeSomeTitle": {
         "placeholders": {
             "count": {}
@@ -108,5 +108,7 @@
     "colormindApiDescription": "Starší, má problémy s konektivitou",
     "huemintApiDescription": "Zbrusu nový, menej známy/populárny",
     "adjacency": "Priľahlosť (kontrast medzi farbami)",
-    "temperature": "Kreativita (teplota vzorkovania)"
+    "temperature": "Kreativita (teplota vzorkovania)",
+    "vibrationsTitle": "Vibrácie",
+    "vibrationsLabel": "Povolenie alebo zakázanie hmatovej odozvy"
 }

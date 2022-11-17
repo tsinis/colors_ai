@@ -64,6 +64,16 @@ dart_code_metrics:
       acceptable-level: 2
     - prefer-correct-identifier-length:
         exceptions: ["i", "x", "sb"] # i for index, x for math operations, sb for StringBuffer.
+    - avoid-top-level-members-in-tests:
+        exclude:
+          - test/data/*.dart
+          - test/data/**/*.dart
+          - test/**/data.dart
+          - lib/**
+    - missing-test-assertion:
+        include-assertions:
+          - verify
+          - verifyZeroInteractions
     - always-remove-listener: true
     - avoid-banned-imports: true
     - avoid-border-all: true
@@ -80,24 +90,20 @@ dart_code_metrics:
     - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
-    - avoid-top-level-members-in-tests: false # Until fixed in DCM action.
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
+    - avoid-cascade-after-if-null: true
     - avoid-unnecessary-type-casts: true
     - avoid-unrelated-type-assertions: true
     - avoid-unused-parameters: true
-    - avoid-use-expanded-as-spacer: true
     - avoid-wrapping-in-padding: true
     - ban-name: true
     - binary-expression-operand-order: true
     - check-for-equals-in-render-object-setters: true
-    - check-unused-code: true
     - consistent-update-render-object: true
     - double-literal-format: true
     - format-comment: true
-    - include-methods: true
-    - member-ordering-extended: true
-    - missing-test-assertion: false # false positive on bloc tests.
+    - member-ordering: true
     - newline-before-return: true
     - no-boolean-literal-compare: true
     - no-empty-block: true
@@ -107,7 +113,6 @@ dart_code_metrics:
     - prefer-commenting-analyzer-ignores: true
     - prefer-conditional-expressions: true
     - prefer-const-border-radius: true
-    - prefer-correct-edge-insets-constructor-rule: true
     - prefer-correct-test-file-name: true
     - prefer-correct-type-name: true
     - prefer-enums-by-name: true
@@ -122,7 +127,6 @@ dart_code_metrics:
     - prefer-trailing-comma: true
     - provide-correct-intl-args: true
     - tag-name: true
-    - technical-debt: true
 
 linter:
   rules:
@@ -340,3 +344,11 @@ linter:
     use_decorated_box: true
     use_late_for_private_fields_and_variables: true
     use_string_in_part_of_directives: true
+
+    # Linter 1.30.0+
+    # collection_methods_unrelated_type: true
+    # dangling_library_doc_comments: true
+    # enable_null_safety: true
+    # implicit_call_tearoffs: true
+    # library_annotations: true
+    # unnecessary_library_directive: true

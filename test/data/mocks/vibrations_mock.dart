@@ -1,18 +1,29 @@
 import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 class VibrationsMock {
-  static const MethodChannel channel = MethodChannel('vibration');
+  static const String vibrateCall = 'vibrate';
+  static const String hasVibratorCall = 'hasVibrator';
+  static const String hasCustomVibrationsSupportCall = 'hasCustomVibrationsSupport';
 
   final bool hasCustomVibrationsSupport;
   final bool hasVibrator;
+  final List<String> _calls;
 
-  const VibrationsMock({this.hasVibrator = true, this.hasCustomVibrationsSupport = false});
+  int get timesVibrated => _callsCount();
 
-  Future<bool?> handleMethodCall(MethodCall methodCall) async {
+  VibrationsMock({this.hasVibrator = true, this.hasCustomVibrationsSupport = false}) : _calls = <String>[] {
+    const MethodChannel('vibration').setMockMethodCallHandler(_handleMethodCall);
+  }
+
+  int _callsCount([String methodName = vibrateCall]) => _calls.where((String call) => call == methodName).length;
+
+  Future<bool?> _handleMethodCall(MethodCall methodCall) async {
+    _calls.add(methodCall.method);
     switch (methodCall.method) {
-      case 'hasVibrator':
+      case hasVibratorCall:
         return hasVibrator;
-      case 'hasCustomVibrationsSupport':
+      case hasCustomVibrationsSupportCall:
         return hasCustomVibrationsSupport;
     }
 
