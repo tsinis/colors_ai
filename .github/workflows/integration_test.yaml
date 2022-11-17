@@ -1,0 +1,67 @@
+name: integration_tests
+
+on:
+  pull_request:
+    branches:
+      - release
+    paths:
+      - "pubspec.yaml"
+
+jobs:
+  integration-test:
+    name: 📱 Run Mobile E2E tests
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get latest release tag
+        id: previoustag
+        uses: WyriHaximus/github-action-get-previous-tag@v1
+
+      - name: Get actual version number
+        id: read-version
+        uses: NiklasLehnfeld/flutter-version-number-action@main
+        with:
+          file-path: pubspec.yaml
+
+      - name: Compare version number with previous tag
+        uses: nick-invision/assert-action@v1
+        with:
+          expected: "${{ steps.previoustag.outputs.tag }}"
+          actual: ${{ steps.read-version.outputs.version-number }}
+          comparison: notStartsWith
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2.8.0
+        with:
+          cache: true
+          channel: 'beta'
+
+      - name: Install app dependencies
+        run: flutter pub get
+
+      - name: Start Simulator
+        run: open -a Simulator.app
+
+      - name: Integration Tests
+        run: flutter test integration_test -d iPhone
+
+      # - name: Setup Java
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     distribution: "zulu"
+      #     java-version: "18"
+
+      # - name: Run Android integration tests
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     arch: x86_64
+      #     api-level: 29
+      #     emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+      #     disable-animations: false
+      #     force-avd-creation: false
+      #     script: flutter test integration_test

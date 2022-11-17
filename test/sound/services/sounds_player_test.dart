@@ -10,6 +10,7 @@ import '../../data/helpers/utils.dart';
 void main() => group('$SoundsPlayer', () {
       const double volume = 0.5;
       const String asset = 'sounds/ui_lock.mp3';
+      // String setPlayerMode = 'setPlayerMode';  TODO: Turn on after fix.
       const String setVolumeMethod = 'setVolume';
       const Set<String> expectedMethodNames = <String>{'setSourceUrl', 'resume'};
 
@@ -27,12 +28,7 @@ void main() => group('$SoundsPlayer', () {
         player = SoundsPlayer();
       });
 
-      setUpAll(calls.clear);
-
-      test('playSound() with null asset', () async {
-        await player.playSound(null, volume);
-        expect(calls.isEmpty, true);
-      });
+      setUp(calls.clear);
 
       test('playSound() with null volume and with cache', () async {
         await player.playSound(asset, null, cachedFileNames: <String>[]);
@@ -47,7 +43,7 @@ void main() => group('$SoundsPlayer', () {
 
       test('playSound() with null volume and without cache', () async {
         await player.playSound(asset, null);
-        expect(methodNames(), <String>{setVolumeMethod, ...expectedMethodNames});
+        expect(methodNames(), <String>{...expectedMethodNames});
       });
 
       test('playSound() with non-null volume and without cache', () async {

@@ -21,16 +21,16 @@ class _NoNetworkState extends State<NoNetwork> with SingleTickerProviderStateMix
   late final AnimationController controller;
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     super.initState();
     controller = AnimationController(vsync: this);
     startAnimation();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   void startAnimation() => controller

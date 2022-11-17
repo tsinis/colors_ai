@@ -60,14 +60,14 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                   ),
                   actions: <TextButton>[
                     TextButton(
-                      onPressed: () => Navigator.pop(dialogContext, false),
+                      onPressed: () => dialogContext.closeDialog(false),
                       child: Text(context.materialL10n.cancelButtonLabel.toBeginningOfSentenceCase()),
                     ),
                     TextButton(
-                      onPressed: () => Navigator.pop(dialogContext, true),
+                      onPressed: () => dialogContext.closeDialog(true),
                       child: Text(
                         context.l10n.removeButtonLabel,
-                        style: TextStyle(color: context.theme.errorColor),
+                        style: TextStyle(color: context.theme.colorScheme.error),
                       ),
                     ),
                   ],
@@ -96,7 +96,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                       child: Icon(
                         Mdi.bookmarkRemoveOutline,
                         size: 25,
-                        color: context.theme.errorColor,
+                        color: context.theme.colorScheme.error,
                       ),
                     )
                   else

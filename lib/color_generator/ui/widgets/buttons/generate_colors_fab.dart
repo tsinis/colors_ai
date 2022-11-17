@@ -44,16 +44,16 @@ class _GenerateColorsFABState extends State<GenerateColorsFAB> with SingleTicker
   String get tooltip => context.l10n.generateTabLabel;
 
   @override
-  void dispose() {
-    fadeController.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     super.initState();
     fadeController = AnimationController(vsync: this, duration: kDefaultShortTransitionDuration)..forward();
     fabAnimation = CurvedAnimation(parent: fadeController, curve: widget.curve);
+  }
+
+  @override
+  void dispose() {
+    fadeController.dispose();
+    super.dispose();
   }
 
   void onFabPressed() {

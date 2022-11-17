@@ -6,6 +6,7 @@ import '../../../core/ui/constants.dart';
 import '../../../favorites/blocs/list_favorites/favorites_bloc.dart';
 import '../../blocs/navigation_bloc.dart';
 import '../../mixins/nav_tab_indexer.dart';
+import 'constants.dart';
 
 class BottomNavBar extends StatelessWidget with NavTabIndexer {
   final NavigationDestinationLabelBehavior labelBehavior;
@@ -22,6 +23,7 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
         builder: (_, FavoritesState saveState) {
           final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
           final List<String> tabLabels = tabNames(context.l10n);
+          final Color? iconColor = context.theme.primaryIconTheme.color;
 
           return NavigationBar(
             backgroundColor: context.theme.primaryColor,
@@ -34,21 +36,24 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
             },
             destinations: <NavigationDestination>[
               NavigationDestination(
+                key: kShareSelectedIcon.key,
                 label: tabLabels[shareTabIndex],
-                selectedIcon: const Icon(Icons.share),
-                icon: Icon(Icons.share_outlined, color: context.theme.primaryIconTheme.color),
+                selectedIcon: Icon(kShareSelectedIcon.icon),
+                icon: Icon(kShareUnselectedIcon.icon, color: iconColor),
               ),
               NavigationDestination(
+                key: kGenerateSelectedIcon.key,
                 label: tabLabels[colorsGenTabIndex],
-                icon: Icon(Icons.palette_outlined, color: context.theme.primaryIconTheme.color),
-                selectedIcon: const Icon(Icons.palette),
+                icon: Icon(kGenerateUnselectedIcon.icon, color: iconColor),
+                selectedIcon: Icon(kGenerateSelectedIcon.icon),
               ),
               NavigationDestination(
+                key: kFavoritesSelectedIcon.key,
                 label: isFavoritesEmpty ? context.l10n.noFavoritesTabLabel : context.l10n.favoritesTabLabel,
-                selectedIcon: const Icon(Icons.bookmarks),
+                selectedIcon: Icon(kFavoritesSelectedIcon.icon),
                 icon: Icon(
-                  Icons.bookmarks_outlined,
-                  color: isFavoritesEmpty ? context.theme.disabledColor : context.theme.primaryIconTheme.color,
+                  kFavoritesUnselectedIcon.icon,
+                  color: isFavoritesEmpty ? context.theme.disabledColor : iconColor,
                 ),
               ),
             ],

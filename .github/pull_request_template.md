@@ -19,5 +19,7 @@
 - [ ] ❌ Breaking change (fix or feature that would cause existing functionality to change)
 - [ ] 🧹 Code refactor
 - [ ] ✅ Platform-specific build configuration change
+- [ ] 🧪 Tests
 - [ ] 📝 Documentation
 - [ ] ⚙️ CI/CD and/or GitHub Workflow configuration change
+- [ ] 📦 Dependencies update

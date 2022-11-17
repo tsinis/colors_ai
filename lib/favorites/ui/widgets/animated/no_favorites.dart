@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 import 'no_favorites/empty_list.dart';
-import 'no_favorites/magnifier.dart';
+import 'no_favorites/magnifier_animation.dart';
 
 class NoFavorites extends StatefulWidget {
   const NoFavorites({super.key});
@@ -16,12 +16,6 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
   late final AnimationController controller;
   late final Animation<double> animation;
   late final Animation<double> reverseAnimation;
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   void initState() {
@@ -41,6 +35,12 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => FittedBox(
         fit: BoxFit.scaleDown,
         child: SizedBox(
@@ -50,7 +50,7 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
             children: <Widget>[
               CustomPaint(
                 size: const Size(320, 320),
-                painter: EmptyList(outlineColor: context.theme.textTheme.headline2!.color!),
+                painter: EmptyList(outlineColor: context.theme.textTheme.displayMedium!.color!),
               ),
               ScaleTransition(
                 scale: animation,
@@ -59,10 +59,10 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
                   turns: reverseAnimation,
                   child: CustomPaint(
                     size: const Size(240, 240),
-                    painter: Magnifier(
+                    painter: MagnifierAnimation(
                       backgroundColor: context.theme.floatingActionButtonTheme.backgroundColor!.withOpacity(0.3),
                       holdersColor: Colors.grey.shade800,
-                      outlineColor: context.theme.textTheme.headline2!.color!,
+                      outlineColor: context.theme.textTheme.displayMedium!.color!,
                     ),
                   ),
                 ),

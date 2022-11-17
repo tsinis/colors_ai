@@ -3,7 +3,6 @@ import 'package:colors_ai/onboarding/services/storage_providers/onboarding_hive_
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../data/fakes/fake_hive_box.dart';
-import '../../utils/fake_box_verify.dart';
 
 void main() => group('$OnboardingRepository', () {
       const bool onboardingDone = false;
@@ -18,34 +17,34 @@ void main() => group('$OnboardingRepository', () {
       });
 
       test('onboardingDone()', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         await onboardingRepository.onboardingDone();
         final Iterable<bool> storedValues = fakeBox.values;
         expect(storedValues.length, 1);
         expect(storedValues.first, onboardingDone);
-        verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
+        fakeBox.verifyNoBoxInteractions(shouldBeEmpty: false);
       });
 
       test('loadOnboardData on first run', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         final bool isFirstRun = await onboardingRepository.loadOnboardData;
         expect(isFirstRun, !onboardingDone);
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
       });
 
       test('loadOnboardData after onboardingDone()', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         bool isFirstRun = await onboardingRepository.loadOnboardData;
         expect(isFirstRun, !onboardingDone);
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         await onboardingRepository.onboardingDone();
         final Iterable<bool> storedValues = fakeBox.values;
         expect(storedValues.length, 1);
         expect(storedValues.first, onboardingDone);
-        verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
+        fakeBox.verifyNoBoxInteractions(shouldBeEmpty: false);
         isFirstRun = await onboardingRepository.loadOnboardData;
         expect(isFirstRun, onboardingDone);
-        verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
+        fakeBox.verifyNoBoxInteractions(shouldBeEmpty: false);
       });
 
       test('loadOnboardData from corrupted storage', () async {
@@ -53,9 +52,9 @@ void main() => group('$OnboardingRepository', () {
         final OnboardingRepository corruptedRepo = OnboardingRepository(
           OnboardingHiveStorage(openedBox: corruptedBox),
         );
-        verifyNoBoxInteractions(corruptedBox);
+        corruptedBox.verifyNoBoxInteractions();
         final bool isFirstRun = await corruptedRepo.loadOnboardData;
         expect(isFirstRun, onboardingDone);
-        verifyNoBoxInteractions(corruptedBox);
+        corruptedBox.verifyNoBoxInteractions();
       });
     });

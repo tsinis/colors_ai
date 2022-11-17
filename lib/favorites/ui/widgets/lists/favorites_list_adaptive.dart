@@ -36,7 +36,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
   int? hoveringPalette;
 
   double get cardHeight => widget.size + (widget.padding * 2);
-  Color get removeColor => context.theme.errorColor;
+  Color get removeColor => context.theme.colorScheme.error;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -115,7 +115,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                         icon: Icon(
                                                           Icons.delete_forever_outlined,
                                                           color: isSelectedToRemove
-                                                              ? context.theme.errorColor.withOpacity(0.8)
+                                                              ? context.theme.colorScheme.error.withOpacity(0.8)
                                                               : context
                                                                   .theme.bottomNavigationBarTheme.unselectedItemColor,
                                                         ),
@@ -151,12 +151,10 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                   children: List<Widget>.generate(
                                                     favorites.elementAt(paletteIndex).colors.length,
                                                     (int colorIndex) {
-                                                      final Color color =
-                                                          favorites.elementAt(paletteIndex).colors[colorIndex];
-                                                      final Color textColor = favorites
-                                                          .elementAt(paletteIndex)
-                                                          .colors[colorIndex]
-                                                          .contrastColor();
+                                                      final List<Color> colors =
+                                                          favorites.elementAt(paletteIndex).colors;
+                                                      final Color color = colors.elementAt(colorIndex);
+                                                      final Color textColor = color.contrastColor();
                                                       final double hoverKey = paletteIndex + (colorIndex / colorsCount);
                                                       final bool isHoveringColor = hoveringColor == hoverKey;
 
@@ -189,7 +187,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                                     BlocProvider.of<ColorPickerBloc>(context)
                                                                         .add(ColorPickerEvent.copied(color));
                                                                     BlocProvider.of<SnackbarBloc>(context)
-                                                                        .add(const ColorCopiedSuccess());
+                                                                        .add(const SnackbarEvent.colorCopied());
                                                                   },
                                                                   child: Text(
                                                                     color.toHex(),

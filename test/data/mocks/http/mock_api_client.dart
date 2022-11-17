@@ -1,3 +1,4 @@
+// ignore_for_file: prefer-moving-to-variable, not necessary, it's test mock.
 import 'dart:math' show Random;
 import 'dart:ui' show Color;
 

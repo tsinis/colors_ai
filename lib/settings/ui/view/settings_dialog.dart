@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/theme/constants.dart';
 import '../../../core/extensions/context_extensions.dart';
 import '../../../core/extensions/string_extension.dart';
+import '../../../testing/test_keys.dart';
+import '../../../vibration/blocs/vibration_bloc.dart';
+import '../../../vibration/ui/widgets/vibration_disable_switch.dart';
 import '../../blocs/settings_bloc.dart';
 import '../../extensions/string_selected_api_extension.dart';
 import '../../mixins/huemint_settings.dart';
@@ -17,7 +20,7 @@ class SettingsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, SettingsState state) => AlertDialog(
-          actionsPadding: const EdgeInsets.only(bottom: 8, right: 8),
+          actionsPadding: const EdgeInsets.only(bottom: 16, right: 16),
           shape: kDefaultShape,
           scrollable: true,
           contentPadding: const EdgeInsets.only(bottom: 16, top: 16),
@@ -29,6 +32,7 @@ class SettingsDialog extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: DropdownButtonFormField<SelectedAPI>(
+                  key: TestKeys.settingsDialogDropdownMenu,
                   isExpanded: true,
                   dropdownColor: context.theme.dialogBackgroundColor,
                   decoration: InputDecoration(
@@ -41,7 +45,8 @@ class SettingsDialog extends StatelessWidget {
                     helperText: state.selectedAPI.helperText(context.l10n),
                   ),
                   value: state.selectedAPI,
-                  onChanged: (SelectedAPI? api) => BlocProvider.of<SettingsBloc>(context).add(SettingsApiSelected(api)),
+                  onChanged: (SelectedAPI? api) =>
+                      BlocProvider.of<SettingsBloc>(context).add(SettingsEvent.apiSelected(api)),
                   items: List<DropdownMenuItem<SelectedAPI>>.generate(
                     SelectedAPI.values.length,
                     (int index) => DropdownMenuItem<SelectedAPI>(
@@ -72,11 +77,11 @@ class SettingsDialog extends StatelessWidget {
                     onChanged: (bool isForUi) {
                       if (isForUi) {
                         BlocProvider.of<SettingsBloc>(context).add(
-                          const SettingsColorsForUiSelected(),
+                          const SettingsEvent.colorsForUiSelected(),
                         );
                       } else {
                         BlocProvider.of<SettingsBloc>(context).add(
-                          const SettingsRegularColorsSelected(),
+                          const SettingsEvent.colorsRegularSelected(),
                         );
                       }
                     },
@@ -100,8 +105,8 @@ class SettingsDialog extends StatelessWidget {
                             value: state.huemintAdjacency.toDouble(),
                             label: state.huemintAdjacency.toString(),
                             divisions: HuemintSettings.adjacencyMax,
-                            onChanged: (double adjacency) =>
-                                BlocProvider.of<SettingsBloc>(context).add(SettingsAdjacencyChanged(adjacency.toInt())),
+                            onChanged: (double adjacency) => BlocProvider.of<SettingsBloc>(context)
+                                .add(SettingsEvent.adjacencyChanged(adjacency.toInt())),
                             max: HuemintSettings.adjacencyMax.toDouble(),
                           ),
                         ),
@@ -114,8 +119,8 @@ class SettingsDialog extends StatelessWidget {
                           child: Slider(
                             value: state.huemintTemperature,
                             label: state.huemintTemperature.toString(),
-                            onChanged: (double temperature) =>
-                                BlocProvider.of<SettingsBloc>(context).add(SettingsTemperatureChanged(temperature)),
+                            onChanged: (double temperature) => BlocProvider.of<SettingsBloc>(context)
+                                .add(SettingsEvent.temperatureSelected(temperature)),
                             max: HuemintSettings.temperatureMax,
                           ),
                         ),
@@ -126,54 +131,64 @@ class SettingsDialog extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               const Divider(height: 1),
+              const VibrationDisableSwitch(style: _tightSpaceStyle),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 8, top: 12),
                 child: Text(context.l10n.appearance),
               ),
               RadioListTile<bool?>(
+                key: TestKeys.lightThemeSelection,
                 dense: true,
                 title: Text(context.l10n.lightThemeTitle),
                 contentPadding: const EdgeInsets.only(right: 32, left: 16),
                 subtitle: Text(context.l10n.lightThemeSubtitle, style: _tightSpaceStyle),
                 value: false,
                 groupValue: state.isDarkTheme,
-                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsLightThemeSelected()),
+                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.lightThemeSelected()),
               ),
               RadioListTile<bool?>(
+                key: TestKeys.darkThemeSelection,
                 dense: true,
                 title: Text(context.l10n.darkThemeTitle),
                 subtitle: Text(context.l10n.darkThemeSubtitle, style: _tightSpaceStyle),
                 value: true,
                 groupValue: state.isDarkTheme,
-                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsDarkThemeSelected()),
+                onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.darkThemeSelected()),
               ),
               Flexible(
                 child: RadioListTile<bool?>(
+                  key: TestKeys.systemThemeSelection,
                   dense: true,
                   title: Text(context.l10n.systemThemeTitle),
                   subtitle: Text(context.l10n.systemThemeSubtitle, style: _tightSpaceStyle),
                   value: null,
                   groupValue: state.isDarkTheme,
-                  onChanged: (_) => BlocProvider.of<SettingsBloc>(context).add(const SettingsSystemThemeSelected()),
+                  onChanged: (_) =>
+                      BlocProvider.of<SettingsBloc>(context).add(const SettingsEvent.systemThemeSelected()),
                 ),
               ),
             ],
           ),
           actions: <TextButton>[
             TextButton(
-              onPressed: () => BlocProvider.of<SettingsBloc>(context)
-                ..add(const SettingsSystemThemeSelected())
-                ..add(const SettingsRegularColorsSelected())
-                ..add(const SettingsApiSelected(SelectedAPI.colormind))
-                ..add(const SettingsTemperatureChanged(HuemintSettings.temperatureMax / 2))
-                ..add(const SettingsAdjacencyChanged(HuemintSettings.adjacencyMax ~/ 2)),
+              key: TestKeys.resetSettingsButton,
+              onPressed: () {
+                BlocProvider.of<SettingsBloc>(context)
+                  ..add(const SettingsEvent.systemThemeSelected())
+                  ..add(const SettingsEvent.colorsRegularSelected())
+                  ..add(const SettingsEvent.apiSelected(SelectedAPI.colormind))
+                  ..add(const SettingsEvent.temperatureSelected(HuemintSettings.temperatureMax / 2))
+                  ..add(const SettingsEvent.adjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
+                BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.settingsChanged(isEnabled: true));
+              },
               child: Text(
                 context.l10n.resetButtonLabel,
-                style: TextStyle(color: context.theme.errorColor),
+                style: TextStyle(color: context.theme.colorScheme.error),
               ),
             ),
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              key: TestKeys.closeSettingsButton,
+              onPressed: context.closeDialog,
               child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
             ),
           ],

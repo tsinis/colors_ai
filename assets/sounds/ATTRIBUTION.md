@@ -1,4 +1,4 @@
-[![cc-by badge](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/legalcode)
+[![CC-BY Badge](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/legalcode)
 
 The following is a list of sound assets used in this application and their proper attribution.
 

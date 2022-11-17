@@ -3,7 +3,8 @@ import '../../core/models/color_palette/color_palette.dart';
 
 mixin TextBasedFileCreator {
   String toSvg(ColorPalette palette) {
-    final int width = palette.colors.length * 100;
+    final int length = palette.colors.length;
+    final int width = length * 100;
     final String start = '''
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 $width 100">
       <defs>
@@ -17,7 +18,7 @@ mixin TextBasedFileCreator {
       </g>
     </svg>''';
     final StringBuffer sb = StringBuffer(start);
-    for (int i = 0; i < palette.colors.length; i++) {
+    for (int i = 0; i < length; i++) {
       final String color = palette.colors.elementAt(i).toHex();
       final int x = i * 100;
       sb.write('\n        <rect width="100" height="100" x="$x" fill="#$color"/>');
@@ -30,11 +31,12 @@ mixin TextBasedFileCreator {
   String toJson(ColorPalette palette) {
     const String start = '{';
     const String end = '\n}';
+    final int length = palette.colors.length;
     final StringBuffer sb = StringBuffer(start);
-    for (int i = 0; i < palette.colors.length; i++) {
+    for (int i = 0; i < length; i++) {
       final String color = palette.colors.elementAt(i).toHex();
       sb.write('\n  "color-${i + 1}": "#$color"');
-      if (i != palette.colors.length - 1) {
+      if (i != length - 1) {
         sb.write(',');
       }
     }

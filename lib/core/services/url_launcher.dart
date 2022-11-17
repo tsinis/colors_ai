@@ -3,10 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 class UrlLauncher {
   const UrlLauncher();
 
-  Future<bool> openURL([String? url]) async {
-    if (url == null) {
-      return false;
-    }
+  Future<bool> openURL(String url) async {
     final Uri? maybeUrl = Uri.tryParse(url);
 
     if (maybeUrl == null) {

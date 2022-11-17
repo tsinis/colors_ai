@@ -62,6 +62,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String colorCopiedMessage(Object colorHexValue) {
+
     return 'Farba $colorHexValue skopírovaná!';
   }
 
@@ -151,18 +152,34 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String favoritePaletteSematic(Object paletteIndex) {
+
     return 'Číslo obľúbené palety: $paletteIndex';
   }
 
   @override
   String removeSomeTitle(num count) {
-    return intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      one: 'Odobrať paletu',
-      few: 'Odobrať $count palety',
-      other: 'Odobrať $count palet',
-    );
+    String _removeSomeTitle0(num count) {
+      return 'Odobrať $count palet';
+    }
+
+    String _removeSomeTitle1(num count) {
+      return 'Odobrať $count palety';
+    }
+
+    String _removeSomeTitle2(num count) {
+      return 'Odobrať $count paletu';
+    }
+
+    String _removeSomeTitle3(num count) {
+      return intl.Intl.pluralLogic(
+        count,
+        locale: localeName,
+      other: _removeSomeTitle0(count),
+      few: _removeSomeTitle1(count),
+      one: _removeSomeTitle2(count),
+      );
+    }
+    return _removeSomeTitle3(count);
   }
 
   @override
@@ -191,11 +208,13 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String copyAsFormat(Object fileFormat) {
+
     return 'Kopírovať $fileFormat';
   }
 
   @override
   String shareAsFormat(Object fileFormat) {
+
     return 'Zdieľať $fileFormat';
   }
 
@@ -237,6 +256,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String formatCopied(Object fileFormat) {
+
     return 'Obsah $fileFormat skopírovaný!';
   }
 
@@ -263,4 +283,10 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get temperature => 'Kreativita (teplota vzorkovania)';
+
+  @override
+  String get vibrationsTitle => 'Vibrácie';
+
+  @override
+  String get vibrationsLabel => 'Povolenie alebo zakázanie hmatovej odozvy';
 }

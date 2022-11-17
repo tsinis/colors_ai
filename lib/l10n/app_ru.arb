@@ -57,7 +57,7 @@
             "paletteIndex": {}
         }
     },
-    "removeSomeTitle": "{count, plural, =1{Удалить палитру} one{Удалить {count} палитру} two{Удалить {count} палитры} few{Удалить {count} палитры} many{Удалить {count} палитр} other{Удалить {count} палитры}}",
+    "removeSomeTitle": "{count, plural, one{Удалить {count} палитру} two{Удалить {count} палитры} few{Удалить {count} палитры} many{Удалить {count} палитр} other{Удалить {count} палитры}}",
     "@removeSomeTitle": {
         "placeholders": {
             "count": {}
@@ -108,5 +108,7 @@
     "colormindApiDescription": "Старый, имеет проблемы с соединением",
     "huemintApiDescription": "Новый, менее известный/популярный",
     "adjacency": " Смежность (контраст между цветами)",
-    "temperature": "Креативность (температура выборки)"
+    "temperature": "Креативность (температура выборки)",
+    "vibrationsTitle": "Вибрации",
+    "vibrationsLabel": "Включение или отключение вибраций"
 }

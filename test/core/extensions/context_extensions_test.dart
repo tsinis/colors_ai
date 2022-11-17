@@ -79,7 +79,41 @@ void main() => group(
               ),
             );
 
-            expect(theme.textTheme.bodyText1?.fontFamily, 'Roboto');
+            expect(theme.textTheme.bodyLarge?.fontFamily, 'Roboto');
+          },
+        );
+
+        testWidgets(
+          'closeDialog',
+          (WidgetTester tester) async {
+            late final BuildContext context;
+
+            await tester.pumpWidget(
+              MaterialApp(
+                home: Builder(
+                  builder: (BuildContext dialogContext) {
+                    context = dialogContext;
+
+                    return TextButton(
+                      onPressed: () => showAboutDialog(context: dialogContext),
+                      child: const Text('Open Dialog'),
+                    );
+                  },
+                ),
+              ),
+            );
+
+            await tester.tap(find.byType(TextButton));
+            await tester.pumpAndSettle();
+
+            final Finder dialog = find.byType(AboutDialog);
+
+            expect(dialog, findsOneWidget);
+
+            context.closeDialog<void>();
+            await tester.pumpAndSettle();
+
+            expect(dialog, findsNothing);
           },
         );
       },

@@ -1,9 +1,8 @@
 import 'dart:io' show Platform;
+import 'dart:ui' show Size;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-// Ignored because it's mocked in tests.
-// ignore: implementation_imports
+// ignore: implementation_imports, ignored because it's mocked in tests.
 import 'package:window_size/src/window_size_channel.dart';
 
 import '../../../core/ui/constants.dart';

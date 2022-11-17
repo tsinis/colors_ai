@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_asserts_with_message, require_trailing_commas
+// ignore_for_file: prefer_asserts_with_message, require_trailing_commas, prefer-moving-to-variable
 
 import 'package:flutter/material.dart';
 
@@ -27,6 +27,7 @@ class GradientSliderShape extends SliderTrackShape with BaseSliderTrackShape {
     required Animation<double> enableAnimation,
     required TextDirection textDirection,
     required Offset thumbCenter,
+    Offset? secondaryOffset,
     bool isDiscrete = false,
     bool isEnabled = false,
     double additionalActiveTrackHeight = 2,
