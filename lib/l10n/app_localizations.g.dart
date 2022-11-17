@@ -388,7 +388,7 @@ abstract class AppLocalizations {
   /// Title of pop-up dialog and app bar, when removing some stored favorite palettes.
   ///
   /// In en, this message translates to:
-  /// **'{count, plural, =1{Remove palette} one{Remove {count} palette}  other{Remove {count} palettes}}'**
+  /// **'{count, plural, one{Remove {count} palette}  other{Remove {count} palettes}}'**
   String removeSomeTitle(num count);
 
   /// Tooltip of floating action button that's saving palette to Favorites

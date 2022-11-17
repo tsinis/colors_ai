@@ -773,7 +773,7 @@ class MockUrlLauncher extends _i2.Mock implements _i11.UrlLauncher {
   }
 
   @override
-  _i9.Future<bool> openURL([String? url]) => (super.noSuchMethod(
+  _i9.Future<bool> openURL(String? url) => (super.noSuchMethod(
         Invocation.method(
           #openURL,
           [url],

@@ -57,7 +57,7 @@
             "paletteIndex": {}
         }
     },
-    "removeSomeTitle": "{count, plural, =1{Odebrat paletu} one{Odebrat {count} paletu} few{Odebrat {count} palety} other{Odebrat {count} palet}}",
+    "removeSomeTitle": "{count, plural, one{Odebrat {count} paletu} few{Odebrat {count} palety} other{Odebrat {count} palet}}",
     "@removeSomeTitle": {
         "placeholders": {
             "count": {}

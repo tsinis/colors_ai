@@ -345,12 +345,11 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ColorPickerCopied &&
-            const DeepCollectionEquality().equals(other.color, color));
+            (identical(other.color, color) || other.color == color));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(color));
+  int get hashCode => Object.hash(runtimeType, color);
 
   @JsonKey(ignore: true)
   @override
