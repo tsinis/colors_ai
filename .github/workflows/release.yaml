@@ -8,6 +8,7 @@ on:
       - "pubspec.yaml"
       - ".github/workflows/release.yaml"
 
+
 jobs:
   changelog:
     name: 📜 Create changelog
@@ -82,6 +83,7 @@ jobs:
         with:
           files: ./build/linux/x64/release/bundle/
           dest: ./colors-ai-linux.zip
+
 
       - name: Decode key.properties
         run: echo "${{ secrets.KEY_PROPERTIES_BASE64 }}" | base64 --decode > android/key.properties
