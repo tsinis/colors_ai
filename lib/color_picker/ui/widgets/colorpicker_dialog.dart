@@ -72,15 +72,15 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
   }
 
   @override
-  void dispose() {
-    hexController.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     selectedColor = widget.color;
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    hexController.dispose();
+    super.dispose();
   }
 
   @override

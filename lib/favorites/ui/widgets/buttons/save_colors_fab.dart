@@ -37,13 +37,6 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
   String get tooltip => context.l10n.savePaletteToFavorites;
 
   @override
-  void dispose() {
-    fadeController.dispose();
-    colorController.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     super.initState();
     fadeController = AnimationController(vsync: this, duration: kDefaultShortTransitionDuration)..forward();
@@ -58,6 +51,13 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
         reverseCurve: Curves.easeOutBack,
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    fadeController.dispose();
+    colorController.dispose();
+    super.dispose();
   }
 
   Future<void> onFabPressed() {

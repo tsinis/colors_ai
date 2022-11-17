@@ -71,7 +71,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                                   .add(RemoveFavoritesSelected(paletteIndex)),
                               enableFeedback: true,
                               minVerticalPadding: padding,
-                              selectedTileColor: context.theme.errorColor.withOpacity(0.2),
+                              selectedTileColor: context.theme.colorScheme.error.withOpacity(0.2),
                               selected: removeState.selections.contains(paletteIndex),
                               contentPadding: EdgeInsets.symmetric(horizontal: padding),
                               onTap: () {

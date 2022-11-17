@@ -63,10 +63,8 @@ class AppTheme {
 
   final ThemeData _lightTheme = ThemeData(
     useMaterial3: true,
-    primarySwatch: Colors.grey,
     primaryColor: Colors.grey.shade400,
     disabledColor: Colors.grey.shade600,
-    errorColor: Colors.red.shade900,
     scaffoldBackgroundColor: Colors.grey[350], // AAA compliant.
     primaryIconTheme: IconThemeData(color: Colors.grey[850]),
     dialogBackgroundColor: Colors.grey[350],
@@ -116,6 +114,7 @@ class AppTheme {
       selectedLabelTextStyle: TextStyle(color: Colors.grey.shade900),
       unselectedLabelTextStyle: TextStyle(color: Colors.grey[850]),
     ),
+    colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey).copyWith(error: Colors.red.shade900),
   );
 
   ThemeData get theme {

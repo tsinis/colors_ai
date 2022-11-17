@@ -27,6 +27,8 @@ class AboutAppDialog extends StatelessWidget {
     super.key,
   });
 
+  void _onLinkTap(BuildContext context, AboutEvent event) => BlocProvider.of<AboutBloc>(context).add(event);
+
   @override
   Widget build(BuildContext context) {
     final TextStyle? bodyText2 = context.theme.textTheme.bodyMedium;
@@ -99,6 +101,4 @@ class AboutAppDialog extends StatelessWidget {
       ],
     );
   }
-
-  void _onLinkTap(BuildContext context, AboutEvent event) => BlocProvider.of<AboutBloc>(context).add(event);
 }

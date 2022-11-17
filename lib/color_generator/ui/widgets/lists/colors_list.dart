@@ -56,12 +56,6 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
   List<Color> get palette => widget.palette.colors;
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     super.initState();
     refreshCompleter = Completer<void>();
@@ -74,6 +68,12 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     animation = CurvedAnimation(parent: controller, curve: widget.curve, reverseCurve: widget.reverseCurve);
     reverseAnimation = ReverseAnimation(animation);
     controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   Future<void> cancelOperation() => cancelableOperation.cancel();

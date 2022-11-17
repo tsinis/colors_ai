@@ -31,6 +31,27 @@ class FileShareSection extends ShareSectionInterface {
     Key? key,
   }) : super(key: key, maxWidth: width, palette: palette);
 
+  String? _helperText(AppLocalizations l10n) {
+    switch (selectedFormat) {
+      case FileFormat.pdfA4:
+      case FileFormat.pngA4:
+        return l10n.a4DimensionsSubtitle;
+      case FileFormat.pngLetter:
+      case FileFormat.pdfLetter:
+        return l10n.letterDimensionsSubtitle;
+      case FileFormat.svg:
+        return 'Scalable Vector Graphics';
+      case FileFormat.json:
+        return 'JavaScript Object Notation';
+      case FileFormat.scss:
+        return 'Sassy Cascading Style Sheets';
+    }
+  }
+
+  String _shareOrSaveButtonLabel(BuildContext context) => !kIsWeb && (Platform.isWindows || Platform.isLinux)
+      ? '${context.materialL10n.saveButtonLabel.toBeginningOfSentenceCase()} ${selectedFormat.format}'
+      : context.l10n.shareAsFormat(selectedFormat.format);
+
   @override
   Widget build(BuildContext context) {
     final bool isPortrait = context.media.orientation == Orientation.portrait;
@@ -104,25 +125,4 @@ class FileShareSection extends ShareSectionInterface {
       ),
     );
   }
-
-  String? _helperText(AppLocalizations l10n) {
-    switch (selectedFormat) {
-      case FileFormat.pdfA4:
-      case FileFormat.pngA4:
-        return l10n.a4DimensionsSubtitle;
-      case FileFormat.pngLetter:
-      case FileFormat.pdfLetter:
-        return l10n.letterDimensionsSubtitle;
-      case FileFormat.svg:
-        return 'Scalable Vector Graphics';
-      case FileFormat.json:
-        return 'JavaScript Object Notation';
-      case FileFormat.scss:
-        return 'Sassy Cascading Style Sheets';
-    }
-  }
-
-  String _shareOrSaveButtonLabel(BuildContext context) => !kIsWeb && (Platform.isWindows || Platform.isLinux)
-      ? '${context.materialL10n.saveButtonLabel.toBeginningOfSentenceCase()} ${selectedFormat.format}'
-      : context.l10n.shareAsFormat(selectedFormat.format);
 }

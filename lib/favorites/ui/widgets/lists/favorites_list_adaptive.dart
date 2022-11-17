@@ -36,7 +36,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
   int? hoveringPalette;
 
   double get cardHeight => widget.size + (widget.padding * 2);
-  Color get removeColor => context.theme.errorColor;
+  Color get removeColor => context.theme.colorScheme.error;
 
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
@@ -115,7 +115,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                                                         icon: Icon(
                                                           Icons.delete_forever_outlined,
                                                           color: isSelectedToRemove
-                                                              ? context.theme.errorColor.withOpacity(0.8)
+                                                              ? context.theme.colorScheme.error.withOpacity(0.8)
                                                               : context
                                                                   .theme.bottomNavigationBarTheme.unselectedItemColor,
                                                         ),

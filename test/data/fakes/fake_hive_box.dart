@@ -142,6 +142,11 @@ class FakeHiveBox<T> extends Fake implements Box<T> {
   Stream<BoxEvent> watch({Object? key}) =>
       (key == null) ? events.stream : events.stream.where((BoxEvent event) => event.key == key);
 
+  void verifyNoBoxInteractions({bool shouldBeEmpty = true, bool shouldBeOpen = false}) {
+    expect(this.isEmpty, shouldBeEmpty);
+    expect(this.isOpen, shouldBeOpen);
+  }
+
   void _markBoxAsOpen() {
     _throwErrorIfCorrupted();
     if (!isOpen) {

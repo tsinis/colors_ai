@@ -18,12 +18,6 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
   late final Animation<double> reverseAnimation;
 
   @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     super.initState();
     controller =
@@ -38,6 +32,12 @@ class _NoFavoritesState extends State<NoFavorites> with SingleTickerProviderStat
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
     reverseAnimation = ReverseAnimation(animation);
     controller.forward();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override

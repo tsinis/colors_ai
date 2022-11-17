@@ -183,7 +183,7 @@ class SettingsDialog extends StatelessWidget {
               },
               child: Text(
                 context.l10n.resetButtonLabel,
-                style: TextStyle(color: context.theme.errorColor),
+                style: TextStyle(color: context.theme.colorScheme.error),
               ),
             ),
             TextButton(

@@ -46,6 +46,16 @@ Future<void> main() async {
     );
 
     blocTest<VibrationBloc, VibrationState>(
+      'toJson()',
+      build: () => VibrationBloc(vibrations, vibrationsKey: key),
+      expect: () => isEmpty,
+      verify: (VibrationBloc bloc) {
+        final Map<String, bool>? map = bloc.toJson(const VibrationState.loadInProgress());
+        expect(map, <String, bool>{key: true});
+      },
+    );
+
+    blocTest<VibrationBloc, VibrationState>(
       '$VibrationEvent.started',
       build: () => VibrationBloc(vibrations, vibrationsKey: key),
       act: (VibrationBloc bloc) => bloc.add(const VibrationEvent.started()),

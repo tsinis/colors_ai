@@ -1,6 +1,7 @@
 import 'package:colors_ai/favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+// ignore: avoid-top-level-members-in-tests, for now, migrate to freezed and remove TODO.
 class RemoveFavoritesEventTest extends RemoveFavoritesEvent {
   const RemoveFavoritesEventTest();
 }
