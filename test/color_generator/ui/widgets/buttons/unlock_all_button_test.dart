@@ -18,7 +18,7 @@ void main() => group('$UnlockAllButton', () {
       testWidgets('tap', (WidgetTester tester) async {
         await tester.pumpWidget(
           MultiBlocProvider(
-            providers: <BlocProvider<BlocBase<Object?>>>[
+            providers: <BlocProvider<StateStreamableSource<Object?>>>[
               BlocProvider<SoundBloc>(create: (_) => SoundBloc(soundsRepository)),
               BlocProvider<LockBloc>(
                 create: (_) => LockBloc(
