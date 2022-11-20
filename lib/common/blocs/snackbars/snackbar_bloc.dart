@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 import '../../../core/services/clipboard.dart';
 import '../../../core/services/url_launcher.dart';
@@ -11,7 +11,7 @@ import 'snackbar_state.dart';
 export 'snackbar_event.dart';
 export 'snackbar_state.dart';
 
-class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
+class SnackbarBloc extends StreamBloc<SnackbarEvent, SnackbarState> {
   final ClipBoard _clipboard;
   final UrlLauncher _urlLauncher;
 
@@ -21,7 +21,7 @@ class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
         super(const SnackbarState.initial());
 
   @override
-  Stream<SnackbarState> mapEventToState(SnackbarEvent event) async* {
+  Stream<SnackbarState> mapEventToStates(SnackbarEvent event) async* {
     await event.whenOrNull(urlOpened: _urlLauncher.openURL);
 
     yield* event.maybeWhen(

@@ -1,10 +1,10 @@
 // ignore_for_file: prefer-moving-to-variable, not necessary, it's a test.
-import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/sound/blocs/sound_bloc.dart';
 import 'package:colors_ai/sound/models/sound.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../data/helpers/test_stream_bloc.dart';
 import '../data.dart';
 
 void main() => group(
@@ -19,11 +19,11 @@ void main() => group(
         };
 
         setUp(() => reset(mockedPlayer));
-        blocTest<SoundBloc, void>('on Initial', build: () => SoundBloc(soundsRepository), expect: () => isEmpty);
+        streamBlocTest<SoundBloc, void>('on Initial', build: () => SoundBloc(soundsRepository), expect: () => isEmpty);
 
         events.forEach(
           (SoundEvent event, String soundName) {
-            blocTest<SoundBloc, void>(
+            streamBlocTest<SoundBloc, void>(
               '${event.runtimeType}',
               build: () => SoundBloc(soundsRepository),
               act: (SoundBloc bloc) => bloc.add(event),

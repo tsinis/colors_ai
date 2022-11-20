@@ -29,7 +29,7 @@ void main() => group('$RemoveAllFavoritesButton', () {
 
         await tester.pumpWidget(
           MultiBlocProvider(
-            providers: <BlocProvider<BlocBase<Object>>>[
+            providers: <BlocProvider<StateStreamableSource<Object?>>>[
               BlocProvider<FavoritesBloc>(
                 create: (_) => favoritesBloc,
                 lazy: false,

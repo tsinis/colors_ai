@@ -1,20 +1,21 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/favorites/blocs/remove_favorites/remove_favorites_bloc.dart';
 import 'package:colors_ai/favorites/repository/remove_favorites_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../../data/helpers/test_stream_bloc.dart';
 
 void main() => group('$RemoveFavoritesBloc', () {
       late RemoveFavoritesRepository removeFavsRepository;
 
       setUp(() => removeFavsRepository = RemoveFavoritesRepository(Set<int>.of(<int>{0})));
 
-      blocTest<RemoveFavoritesBloc, void>(
+      streamBlocTest<RemoveFavoritesBloc, void>(
         'on Initial',
         build: () => RemoveFavoritesBloc(removeFavsRepository),
         expect: () => isEmpty,
       );
 
-      blocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
+      streamBlocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
         '$RemoveFavoritesShowed',
         build: () => RemoveFavoritesBloc(removeFavsRepository),
         act: (RemoveFavoritesBloc bloc) => bloc.add(const RemoveFavoritesShowed()),
@@ -22,7 +23,7 @@ void main() => group('$RemoveFavoritesBloc', () {
         verify: (RemoveFavoritesBloc bloc) => expect(bloc.state.selections, const <int>{0}),
       );
 
-      blocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
+      streamBlocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
         '$RemoveFavoritesRemoved',
         build: () => RemoveFavoritesBloc(removeFavsRepository),
         act: (RemoveFavoritesBloc bloc) => bloc.add(const RemoveFavoritesRemoved()),
@@ -33,7 +34,7 @@ void main() => group('$RemoveFavoritesBloc', () {
         verify: (RemoveFavoritesBloc bloc) => expect(bloc.state.selections.isEmpty, true),
       );
 
-      blocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
+      streamBlocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
         '$RemoveFavoritesSelected',
         build: () => RemoveFavoritesBloc(removeFavsRepository),
         act: (RemoveFavoritesBloc bloc) => bloc.add(const RemoveFavoritesSelected(0)),
@@ -44,7 +45,7 @@ void main() => group('$RemoveFavoritesBloc', () {
         verify: (RemoveFavoritesBloc bloc) => expect(bloc.state.selections.isEmpty, true),
       );
 
-      blocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
+      streamBlocTest<RemoveFavoritesBloc, RemoveFavoritesState>(
         '$RemoveFavoritesHided',
         build: () => RemoveFavoritesBloc(removeFavsRepository),
         act: (RemoveFavoritesBloc bloc) => bloc.add(const RemoveFavoritesHided()),

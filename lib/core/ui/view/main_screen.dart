@@ -54,7 +54,7 @@ class _NavigationScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
-        providers: <BlocProvider<BlocBase<Object?>>>[
+        providers: <BlocProvider<StateStreamableSource<Object?>>>[
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockBloc>(
             create: (_) => LockBloc(context.read<ColorsRepository>())..add(const LockStarted()),
@@ -108,7 +108,7 @@ class _NavigationScreenState extends State<MainScreen> {
                       ),
                     ),
                     body: MultiBlocProvider(
-                      providers: <BlocProvider<BlocBase<Object>>>[
+                      providers: <BlocProvider<StateStreamableSource<Object?>>>[
                         BlocProvider<ColorPickerBloc>(create: (_) => ColorPickerBloc()),
                         BlocProvider<ShareBloc>(
                           lazy: false,
