@@ -1,14 +1,14 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 part 'fab_event.dart';
 part 'fab_state.dart';
 
-class FabBloc extends Bloc<FabEvent, FabState> {
+class FabBloc extends StreamBloc<FabEvent, FabState> {
   FabBloc() : super(const FabInitial());
 
   @override
-  Stream<FabState> mapEventToState(FabEvent event) async* {
+  Stream<FabState> mapEventToStates(FabEvent event) async* {
     if (event is FabHided) {
       try {
         yield FabHideInitial();

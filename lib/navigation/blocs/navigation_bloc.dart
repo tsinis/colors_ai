@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 import 'navigation_event.dart';
 
@@ -8,7 +8,7 @@ export 'navigation_event.dart';
 
 part 'navigation_state.dart';
 
-class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
+class NavigationBloc extends StreamBloc<NavigationEvent, NavigationState> {
   final List<NavigationState> _stateList;
 
   NavigationBloc({
@@ -17,7 +17,7 @@ class NavigationBloc extends Bloc<NavigationEvent, NavigationState> {
         super(NavigationState.generate);
 
   @override
-  Stream<NavigationState> mapEventToState(NavigationEvent event) => event.when(
+  Stream<NavigationState> mapEventToStates(NavigationEvent event) => event.when(
         started: () async* {
           yield NavigationState.generate;
         },

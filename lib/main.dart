@@ -26,7 +26,7 @@ Future<void> main() async {
   const SystemUI().init();
   runApp(
     MultiBlocProvider(
-      providers: <BlocProvider<BlocBase<Object>>>[
+      providers: <BlocProvider<StateStreamableSource<Object?>>>[
         BlocProvider<AboutBloc>(lazy: false, create: (_) => AboutBloc(AboutRepository())),
         BlocProvider<SettingsBloc>(
           lazy: false,
