@@ -105,3 +105,6 @@ xffd
 xffffffff
 xfile
 yaml
+multiline
+Streamable
+writeln
