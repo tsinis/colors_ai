@@ -40,7 +40,6 @@ parts:
       - xz-utils
       - zip
     stage-packages:
-      - libjsoncpp1
       - libsecret-1-dev
     override-prime: ""
 
@@ -49,7 +48,6 @@ parts:
     plugin: nil
     source: .
     stage-packages:
-      - libjsoncpp1
       - libsecret-1-dev
     override-build: |
       set -eux

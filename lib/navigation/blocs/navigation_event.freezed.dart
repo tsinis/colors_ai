@@ -24,8 +24,8 @@ mixin _$NavigationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(int newTabIndex)? changed,
+    TResult? Function()? started,
+    TResult? Function(int newTabIndex)? changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$NavigationEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NavigationGeneratorTabStarted value)? started,
-    TResult Function(_NavigationTabChanged value)? changed,
+    TResult? Function(_NavigationGeneratorTabStarted value)? started,
+    TResult? Function(_NavigationTabChanged value)? changed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,17 +60,18 @@ mixin _$NavigationEvent {
 abstract class $NavigationEventCopyWith<$Res> {
   factory $NavigationEventCopyWith(
           NavigationEvent value, $Res Function(NavigationEvent) then) =
-      _$NavigationEventCopyWithImpl<$Res>;
+      _$NavigationEventCopyWithImpl<$Res, NavigationEvent>;
 }
 
 /// @nodoc
-class _$NavigationEventCopyWithImpl<$Res>
+class _$NavigationEventCopyWithImpl<$Res, $Val extends NavigationEvent>
     implements $NavigationEventCopyWith<$Res> {
   _$NavigationEventCopyWithImpl(this._value, this._then);
 
-  final NavigationEvent _value;
   // ignore: unused_field
-  final $Res Function(NavigationEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -83,16 +84,13 @@ abstract class _$$_NavigationGeneratorTabStartedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_NavigationGeneratorTabStartedCopyWithImpl<$Res>
-    extends _$NavigationEventCopyWithImpl<$Res>
+    extends _$NavigationEventCopyWithImpl<$Res,
+        _$_NavigationGeneratorTabStarted>
     implements _$$_NavigationGeneratorTabStartedCopyWith<$Res> {
   __$$_NavigationGeneratorTabStartedCopyWithImpl(
       _$_NavigationGeneratorTabStarted _value,
       $Res Function(_$_NavigationGeneratorTabStarted) _then)
-      : super(_value, (v) => _then(v as _$_NavigationGeneratorTabStarted));
-
-  @override
-  _$_NavigationGeneratorTabStarted get _value =>
-      super._value as _$_NavigationGeneratorTabStarted;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -128,8 +126,8 @@ class _$_NavigationGeneratorTabStarted
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(int newTabIndex)? changed,
+    TResult? Function()? started,
+    TResult? Function(int newTabIndex)? changed,
   }) {
     return started?.call();
   }
@@ -159,8 +157,8 @@ class _$_NavigationGeneratorTabStarted
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NavigationGeneratorTabStarted value)? started,
-    TResult Function(_NavigationTabChanged value)? changed,
+    TResult? Function(_NavigationGeneratorTabStarted value)? started,
+    TResult? Function(_NavigationTabChanged value)? changed,
   }) {
     return started?.call(this);
   }
@@ -189,26 +187,25 @@ abstract class _$$_NavigationTabChangedCopyWith<$Res> {
   factory _$$_NavigationTabChangedCopyWith(_$_NavigationTabChanged value,
           $Res Function(_$_NavigationTabChanged) then) =
       __$$_NavigationTabChangedCopyWithImpl<$Res>;
+  @useResult
   $Res call({int newTabIndex});
 }
 
 /// @nodoc
 class __$$_NavigationTabChangedCopyWithImpl<$Res>
-    extends _$NavigationEventCopyWithImpl<$Res>
+    extends _$NavigationEventCopyWithImpl<$Res, _$_NavigationTabChanged>
     implements _$$_NavigationTabChangedCopyWith<$Res> {
   __$$_NavigationTabChangedCopyWithImpl(_$_NavigationTabChanged _value,
       $Res Function(_$_NavigationTabChanged) _then)
-      : super(_value, (v) => _then(v as _$_NavigationTabChanged));
+      : super(_value, _then);
 
-  @override
-  _$_NavigationTabChanged get _value => super._value as _$_NavigationTabChanged;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? newTabIndex = freezed,
+    Object? newTabIndex = null,
   }) {
     return _then(_$_NavigationTabChanged(
-      newTabIndex == freezed
+      null == newTabIndex
           ? _value.newTabIndex
           : newTabIndex // ignore: cast_nullable_to_non_nullable
               as int,
@@ -234,16 +231,16 @@ class _$_NavigationTabChanged implements _NavigationTabChanged {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NavigationTabChanged &&
-            const DeepCollectionEquality()
-                .equals(other.newTabIndex, newTabIndex));
+            (identical(other.newTabIndex, newTabIndex) ||
+                other.newTabIndex == newTabIndex));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(newTabIndex));
+  int get hashCode => Object.hash(runtimeType, newTabIndex);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_NavigationTabChangedCopyWith<_$_NavigationTabChanged> get copyWith =>
       __$$_NavigationTabChangedCopyWithImpl<_$_NavigationTabChanged>(
           this, _$identity);
@@ -260,8 +257,8 @@ class _$_NavigationTabChanged implements _NavigationTabChanged {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(int newTabIndex)? changed,
+    TResult? Function()? started,
+    TResult? Function(int newTabIndex)? changed,
   }) {
     return changed?.call(newTabIndex);
   }
@@ -291,8 +288,8 @@ class _$_NavigationTabChanged implements _NavigationTabChanged {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_NavigationGeneratorTabStarted value)? started,
-    TResult Function(_NavigationTabChanged value)? changed,
+    TResult? Function(_NavigationGeneratorTabStarted value)? started,
+    TResult? Function(_NavigationTabChanged value)? changed,
   }) {
     return changed?.call(this);
   }

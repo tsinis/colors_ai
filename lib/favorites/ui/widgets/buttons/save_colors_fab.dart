@@ -8,6 +8,7 @@ import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/repository/colors_repository.dart';
 import '../../../../navigation/blocs/navigation_bloc.dart';
 import '../../../../sound/blocs/sound_bloc.dart';
+import '../../../../vibration/blocs/vibration_bloc.dart';
 import '../../../blocs/add_favorites/fab_bloc.dart';
 import '../../../blocs/list_favorites/favorites_bloc.dart';
 
@@ -36,13 +37,6 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
   String get tooltip => context.l10n.savePaletteToFavorites;
 
   @override
-  void dispose() {
-    fadeController.dispose();
-    colorController.dispose();
-    super.dispose();
-  }
-
-  @override
   void initState() {
     super.initState();
     fadeController = AnimationController(vsync: this, duration: kDefaultShortTransitionDuration)..forward();
@@ -59,8 +53,16 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
     );
   }
 
+  @override
+  void dispose() {
+    fadeController.dispose();
+    colorController.dispose();
+    super.dispose();
+  }
+
   Future<void> onFabPressed() {
     BlocProvider.of<SoundBloc>(context).add(const SoundEvent.favoritesAdded());
+    BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.vibrated());
     BlocProvider.of<FavoritesBloc>(context)
         .add(FavoritesAdded(favorite: context.read<ColorsRepository>().palette.colors));
     if (!alwaysShow) {

@@ -27,10 +27,12 @@ class AboutAppDialog extends StatelessWidget {
     super.key,
   });
 
+  void _onLinkTap(BuildContext context, AboutEvent event) => BlocProvider.of<AboutBloc>(context).add(event);
+
   @override
   Widget build(BuildContext context) {
-    final TextStyle? linkStyle =
-        linkTextStyle ?? context.theme.textTheme.bodyText2?.copyWith(color: context.theme.indicatorColor);
+    final TextStyle? bodyText2 = context.theme.textTheme.bodyMedium;
+    final TextStyle? linkStyle = linkTextStyle ?? bodyText2?.copyWith(color: context.theme.indicatorColor);
 
     return AboutDialogM3(
       applicationVersion: BlocProvider.of<AboutBloc>(context).state.maybeWhen(
@@ -46,7 +48,7 @@ class AboutAppDialog extends StatelessWidget {
           constraints: BoxConstraints(maxWidth: width),
           child: Text.rich(
             TextSpan(
-              style: context.theme.textTheme.bodyText2,
+              style: bodyText2,
               children: <TextSpan>[
                 TextSpan(text: context.l10n.aboutGenerator),
                 TextSpan(
@@ -99,6 +101,4 @@ class AboutAppDialog extends StatelessWidget {
       ],
     );
   }
-
-  void _onLinkTap(BuildContext context, AboutEvent event) => BlocProvider.of<AboutBloc>(context).add(event);
 }

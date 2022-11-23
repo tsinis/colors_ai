@@ -57,18 +57,22 @@ class UrlShareSection extends ShareSectionInterface {
                   BlocProvider.of<ShareBloc>(context).add(ShareEvent.urlProviderSelected(urlProvider: newProvider)),
               items: List<DropdownMenuItem<ColorsUrlProvider>>.generate(
                 providersList.length,
-                (int index) => DropdownMenuItem<ColorsUrlProvider>(
-                  value: providersList.elementAt(index),
-                  child: Text.rich(
-                    TextSpan(
-                      text: providersList.elementAt(index).name,
-                      children: (providersList.elementAt(index).formats != null)
-                          ? const <TextSpan>[TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
-                          : null,
+                (int index) {
+                  final ColorsUrlProvider provider = providersList.elementAt(index);
+
+                  return DropdownMenuItem<ColorsUrlProvider>(
+                    value: provider,
+                    child: Text.rich(
+                      TextSpan(
+                        text: provider.name,
+                        children: provider.formats != null
+                            ? const <TextSpan>[TextSpan(text: '*', style: TextStyle(color: Colors.grey))]
+                            : null,
+                      ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
+                  );
+                },
                 growable: false,
               ),
             ),
@@ -86,7 +90,7 @@ class UrlShareSection extends ShareSectionInterface {
                     label: Text(context.l10n.copyUrlButtonLabel),
                     onPressed: () {
                       BlocProvider.of<ShareBloc>(context).add(ShareEvent.urlCopied(palette));
-                      BlocProvider.of<SnackbarBloc>(context).add(const UrlCopiedSuccess());
+                      BlocProvider.of<SnackbarBloc>(context).add(const SnackbarEvent.urlCopied());
                     },
                   ),
                 ),

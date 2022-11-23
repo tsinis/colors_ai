@@ -3,7 +3,7 @@
 import 'dart:ui' show Color;
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../repository/favorites_repository.dart';
@@ -11,13 +11,13 @@ import '../../repository/favorites_repository.dart';
 part 'favorites_event.dart';
 part 'favorites_state.dart';
 
-class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
+class FavoritesBloc extends StreamBloc<FavoritesEvent, FavoritesState> {
   final FavoritesRepository _favorites;
 
   FavoritesBloc(this._favorites) : super(const FavoritesEmptyInitial());
 
   @override
-  Stream<FavoritesState> mapEventToState(FavoritesEvent event) async* {
+  Stream<FavoritesState> mapEventToStates(FavoritesEvent event) async* {
     if (event is FavoritesStarted) {
       yield const FavoritesLoadInProgress();
       final bool isDataLoaded = await _favorites.loadStoredFavorites;

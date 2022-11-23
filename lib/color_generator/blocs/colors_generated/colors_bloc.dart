@@ -3,7 +3,7 @@
 import 'dart:ui' show Color;
 
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 import '../../../core/models/color_palette/color_palette.dart';
 import '../../../core/repository/colors_repository.dart';
@@ -11,21 +11,19 @@ import '../../../core/repository/colors_repository.dart';
 part 'colors_event.dart';
 part 'colors_state.dart';
 
-class ColorsBloc extends Bloc<ColorsEvent, ColorsState> {
+class ColorsBloc extends StreamBloc<ColorsEvent, ColorsState> {
   final ColorsRepository _colorsRepository;
 
   ColorsBloc(this._colorsRepository) : super(const ColorsInitial());
 
   @override
-  Stream<ColorsState> mapEventToState(ColorsEvent event) async* {
+  Stream<ColorsState> mapEventToStates(ColorsEvent event) async* {
     if (event is ColorsStarted) {
       yield const ColorsLoadInProgress();
       yield ColorsLoadSuccess(_colorsRepository.palette);
     } else if (event is ColorsChanged) {
-      final Color? newColor = event.newColor;
-      if (newColor != null) {
-        _colorsRepository.changeColor(newColor, event.colorIndex);
-      }
+      final Color newColor = event.newColor;
+      _colorsRepository.changeColor(newColor, event.colorIndex);
       yield ColorsChangeSuccess(_colorsRepository.palette);
     } else if (event is ColorsGenerated) {
       yield ColorsLoadStarted(_colorsRepository.palette);

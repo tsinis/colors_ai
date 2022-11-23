@@ -29,7 +29,7 @@ class ColorsRestored extends ColorsEvent {
 
 class ColorsChanged extends ColorsEvent {
   final int colorIndex;
-  final Color? newColor;
+  final Color newColor;
 
   @override
   List<Object?> get props => <Object?>[colorIndex, newColor];

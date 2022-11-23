@@ -1,45 +1,58 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 import '../../../core/services/clipboard.dart';
 import '../../../core/services/url_launcher.dart';
 import '../../helpers/server_maintenance_check.dart';
+import 'snackbar_event.dart';
+import 'snackbar_state.dart';
 
-part 'snackbar_event.dart';
-part 'snackbar_state.dart';
+export 'snackbar_event.dart';
+export 'snackbar_state.dart';
 
-class SnackbarBloc extends Bloc<SnackbarEvent, SnackbarState> {
+class SnackbarBloc extends StreamBloc<SnackbarEvent, SnackbarState> {
   final ClipBoard _clipboard;
   final UrlLauncher _urlLauncher;
 
   SnackbarBloc({ClipBoard clipboard = const ClipBoard(), UrlLauncher urlLauncher = const UrlLauncher()})
       : _clipboard = clipboard,
         _urlLauncher = urlLauncher,
-        super(const SnackbarsInitial());
+        super(const SnackbarState.initial());
 
   @override
-  Stream<SnackbarState> mapEventToState(SnackbarEvent event) async* {
-    if (event is ServerStatusCheckedSuccess) {
-      if (serverMaintenanceNow(event.time)) {
-        yield const ServerStatusCheckSuccess();
-      }
-    } else if (event is ShareFail) {
-      yield const ShareAttemptFailure();
-    } else {
-      final String? clipboardData = await _clipboard.data;
-      final bool isValidData = clipboardData != null && clipboardData.isNotEmpty;
-      if (event is ColorCopiedSuccess) {
-        yield isValidData ? ColorCopySuccess(clipboardData) : const ClipboardCopyFailure();
-      } else if (event is UrlCopiedSuccess) {
-        yield isValidData ? UrlCopySuccess(clipboardData) : const ClipboardCopyFailure();
-      } else if (event is FileCopiedSuccess) {
-        yield isValidData ? FileCopySuccess(event.format) : const ClipboardCopyFailure();
-      } else if (event is UrlOpenedSuccess && isValidData) {
-        await _urlLauncher.openURL(clipboardData);
-      }
-    }
-    yield const SnackbarsInitial();
+  Stream<SnackbarState> mapEventToStates(SnackbarEvent event) async* {
+    await event.whenOrNull(urlOpened: _urlLauncher.openURL);
+
+    yield* event.maybeWhen(
+      shareFailed: () async* {
+        yield const SnackbarState.shareFailure();
+      },
+      serverStatusChecked: (DateTime? time) async* {
+        if (serverMaintenanceNow(time)) {
+          yield const SnackbarState.serverStatusCheck();
+        }
+      },
+      urlOpened: (_) async* {
+        const SnackbarState.initial();
+      },
+      orElse: () async* {
+        final String? clipboardData = await _clipboard.data;
+        final bool isValidData = clipboardData != null && clipboardData.isNotEmpty;
+        if (isValidData) {
+          final SnackbarState? state = event.whenOrNull(
+            fileCopied: SnackbarState.fileCopySuccess,
+            urlCopied: () => SnackbarState.urlCopySuccess(clipboardData),
+            colorCopied: () => SnackbarState.colorCopySuccess(clipboardData),
+          );
+          if (state != null) {
+            yield state;
+          }
+        } else {
+          yield const SnackbarState.copyFailure();
+        }
+      },
+    );
+    yield const SnackbarState.initial();
   }
 }

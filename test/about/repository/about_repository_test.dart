@@ -1,6 +1,6 @@
 import 'package:colors_ai/about/repository/about_repository.dart';
 import 'package:colors_ai/core/ui/constants.dart';
-import 'package:flutter/foundation.dart' show LicenseRegistry, LicenseEntryWithLineBreaks, LicenseEntry;
+import 'package:flutter/foundation.dart' show LicenseEntry, LicenseEntryWithLineBreaks, LicenseRegistry;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -24,6 +24,7 @@ Future<void> main() async {
       version: mockVersion,
       buildNumber: mockVersion,
       buildSignature: mockVersion,
+      installerStore: null,
     ),
   );
 
@@ -39,7 +40,7 @@ Future<void> main() async {
     expect(fontLicenses.first.runtimeType, LicenseEntryWithLineBreaks);
 
     expect(aboutRepository.supportedUrlLocale, supportedUrlLocale);
-    when<Future<bool>>(mockedUrlLauncher.openURL(any)).thenAnswer((_) async => true);
+    when<Future<bool>>(mockedUrlLauncher.openURL(licenses + supportedUrlLocale)).thenAnswer((_) async => true);
 
     final bool canOpenUrl = await aboutRepository.openAboutLicenses();
 

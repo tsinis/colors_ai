@@ -2,7 +2,6 @@ import 'package:colors_ai/onboarding/services/storage_providers/onboarding_hive_
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../data/fakes/fake_hive_box.dart';
-import '../../../utils/fake_box_verify.dart';
 
 void main() => group('$OnboardingHiveStorage', () {
       const bool onboardingDone = false;
@@ -15,59 +14,59 @@ void main() => group('$OnboardingHiveStorage', () {
       });
 
       test('saveNewValue()', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         await onboardStorage.saveNewValue(isFirstRun: onboardingDone);
         final Iterable<bool> storedValues = fakeBox.values;
         expect(storedValues.length, 1);
         expect(storedValues.first, onboardingDone);
-        verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
+        fakeBox.verifyNoBoxInteractions(shouldBeEmpty: false);
       });
 
       test('doMigration() with null old data', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         await onboardStorage.doMigration(null);
         final Iterable<bool> storedValues = fakeBox.values;
         expect(storedValues.isEmpty, true);
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
       });
 
       test('doMigration() with non-null old data', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         await onboardStorage.doMigration(onboardingDone);
         final Iterable<bool> storedValues = fakeBox.values;
         expect(storedValues.length, 1);
         expect(storedValues.first, onboardingDone);
-        verifyNoBoxInteractions(fakeBox, shouldBeOpen: true, shouldBeEmpty: false);
+        fakeBox.verifyNoBoxInteractions(shouldBeOpen: true, shouldBeEmpty: false);
       });
 
       test('loadValue on first run', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         final bool isFirstRun = await onboardStorage.loadValue;
         expect(isFirstRun, !onboardingDone);
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
       });
 
       test('loadValue after saveNewValue(isFirstRun: $onboardingDone)', () async {
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         bool isFirstRun = await onboardStorage.loadValue;
         expect(isFirstRun, !onboardingDone);
-        verifyNoBoxInteractions(fakeBox);
+        fakeBox.verifyNoBoxInteractions();
         await onboardStorage.saveNewValue(isFirstRun: onboardingDone);
         final Iterable<bool> storedValues = fakeBox.values;
         expect(storedValues.length, 1);
         expect(storedValues.first, isFalse);
-        verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
+        fakeBox.verifyNoBoxInteractions(shouldBeEmpty: false);
         isFirstRun = await onboardStorage.loadValue;
         expect(isFirstRun, onboardingDone);
-        verifyNoBoxInteractions(fakeBox, shouldBeEmpty: false);
+        fakeBox.verifyNoBoxInteractions(shouldBeEmpty: false);
       });
 
       test('loadValue from corrupted storage', () async {
         final FakeHiveBox<bool> corruptedBox = FakeHiveBox<bool>.corruptedEmpty();
         final OnboardingHiveStorage corruptedStorage = OnboardingHiveStorage(openedBox: corruptedBox);
-        verifyNoBoxInteractions(corruptedBox);
+        corruptedBox.verifyNoBoxInteractions();
         final bool isFirstRun = await corruptedStorage.loadValue;
         expect(isFirstRun, onboardingDone);
-        verifyNoBoxInteractions(corruptedBox);
+        corruptedBox.verifyNoBoxInteractions();
       });
     });

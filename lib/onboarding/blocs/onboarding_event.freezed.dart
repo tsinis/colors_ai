@@ -24,8 +24,8 @@ mixin _$OnboardingEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? finished,
-    TResult Function()? started,
+    TResult? Function()? finished,
+    TResult? Function()? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -43,8 +43,8 @@ mixin _$OnboardingEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingFinished value)? finished,
-    TResult Function(_OnboardingStarted value)? started,
+    TResult? Function(_OnboardingFinished value)? finished,
+    TResult? Function(_OnboardingStarted value)? started,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,17 +60,18 @@ mixin _$OnboardingEvent {
 abstract class $OnboardingEventCopyWith<$Res> {
   factory $OnboardingEventCopyWith(
           OnboardingEvent value, $Res Function(OnboardingEvent) then) =
-      _$OnboardingEventCopyWithImpl<$Res>;
+      _$OnboardingEventCopyWithImpl<$Res, OnboardingEvent>;
 }
 
 /// @nodoc
-class _$OnboardingEventCopyWithImpl<$Res>
+class _$OnboardingEventCopyWithImpl<$Res, $Val extends OnboardingEvent>
     implements $OnboardingEventCopyWith<$Res> {
   _$OnboardingEventCopyWithImpl(this._value, this._then);
 
-  final OnboardingEvent _value;
   // ignore: unused_field
-  final $Res Function(OnboardingEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -82,14 +83,11 @@ abstract class _$$_OnboardingFinishedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnboardingFinishedCopyWithImpl<$Res>
-    extends _$OnboardingEventCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res, _$_OnboardingFinished>
     implements _$$_OnboardingFinishedCopyWith<$Res> {
   __$$_OnboardingFinishedCopyWithImpl(
       _$_OnboardingFinished _value, $Res Function(_$_OnboardingFinished) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingFinished));
-
-  @override
-  _$_OnboardingFinished get _value => super._value as _$_OnboardingFinished;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -123,8 +121,8 @@ class _$_OnboardingFinished implements _OnboardingFinished {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? finished,
-    TResult Function()? started,
+    TResult? Function()? finished,
+    TResult? Function()? started,
   }) {
     return finished?.call();
   }
@@ -154,8 +152,8 @@ class _$_OnboardingFinished implements _OnboardingFinished {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingFinished value)? finished,
-    TResult Function(_OnboardingStarted value)? started,
+    TResult? Function(_OnboardingFinished value)? finished,
+    TResult? Function(_OnboardingStarted value)? started,
   }) {
     return finished?.call(this);
   }
@@ -187,14 +185,11 @@ abstract class _$$_OnboardingStartedCopyWith<$Res> {
 
 /// @nodoc
 class __$$_OnboardingStartedCopyWithImpl<$Res>
-    extends _$OnboardingEventCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res, _$_OnboardingStarted>
     implements _$$_OnboardingStartedCopyWith<$Res> {
   __$$_OnboardingStartedCopyWithImpl(
       _$_OnboardingStarted _value, $Res Function(_$_OnboardingStarted) _then)
-      : super(_value, (v) => _then(v as _$_OnboardingStarted));
-
-  @override
-  _$_OnboardingStarted get _value => super._value as _$_OnboardingStarted;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -228,8 +223,8 @@ class _$_OnboardingStarted implements _OnboardingStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? finished,
-    TResult Function()? started,
+    TResult? Function()? finished,
+    TResult? Function()? started,
   }) {
     return started?.call();
   }
@@ -259,8 +254,8 @@ class _$_OnboardingStarted implements _OnboardingStarted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_OnboardingFinished value)? finished,
-    TResult Function(_OnboardingStarted value)? started,
+    TResult? Function(_OnboardingFinished value)? finished,
+    TResult? Function(_OnboardingStarted value)? started,
   }) {
     return started?.call(this);
   }

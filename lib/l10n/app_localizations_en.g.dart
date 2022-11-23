@@ -62,6 +62,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String colorCopiedMessage(Object colorHexValue) {
+
     return 'Color $colorHexValue copied!';
   }
 
@@ -151,17 +152,29 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String favoritePaletteSematic(Object paletteIndex) {
+
     return 'Favorite color palette number: $paletteIndex';
   }
 
   @override
   String removeSomeTitle(num count) {
-    return intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      one: 'Remove palette',
-      other: 'Remove $count palettes',
-    );
+    String _removeSomeTitle0(num count) {
+      return 'Remove $count palettes';
+    }
+
+    String _removeSomeTitle1(num count) {
+      return 'Remove $count palette';
+    }
+
+    String _removeSomeTitle2(num count) {
+      return intl.Intl.pluralLogic(
+        count,
+        locale: localeName,
+      other: _removeSomeTitle0(count),
+      one: _removeSomeTitle1(count),
+      );
+    }
+    return _removeSomeTitle2(count);
   }
 
   @override
@@ -190,11 +203,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String copyAsFormat(Object fileFormat) {
+
     return 'Copy $fileFormat';
   }
 
   @override
   String shareAsFormat(Object fileFormat) {
+
     return 'Share $fileFormat';
   }
 
@@ -236,6 +251,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String formatCopied(Object fileFormat) {
+
     return '$fileFormat content copied!';
   }
 
@@ -262,4 +278,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get temperature => 'Creativity (sampling temperature)';
+
+  @override
+  String get vibrationsTitle => 'Vibrations';
+
+  @override
+  String get vibrationsLabel => 'Enable or disable haptic feedback';
 }

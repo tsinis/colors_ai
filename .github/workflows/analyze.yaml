@@ -15,6 +15,7 @@ jobs:
   analysis:
     name: 🕵️ Analyze
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' || !github.event.pull_request.draft }}
     timeout-minutes: 10
     steps:
       - name: Checks-out repository
@@ -29,9 +30,10 @@ jobs:
             cspell:filetypes/filetypes.txt
 
       - name: Install Flutter
-        uses: subosito/flutter-action@v2.7.1
+        uses: subosito/flutter-action@v2.8.0
         with:
           cache: true
+          channel: 'beta'
 
       - name: Install app dependencies
         run: flutter pub get
@@ -39,17 +41,16 @@ jobs:
       - name: Analyze project
         uses: invertase/github-action-dart-analyzer@v1
         with:
-          fatal-infos: true
           fatal-warnings: true
+          fatal-infos: true
 
       - name: Dart Code Metrics
-        uses: dart-code-checker/dart-code-metrics-action@v2.0.0
+        uses: dart-code-checker/dart-code-metrics-action@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           folders: "lib, test, integration_test"
           pull_request_comment: true
-          fatal_warnings: true
-          fatal_performance: true
-          fatal_style: true
           check_unused_files: true
-          check_unused_files_folders: "lib"
+          fatal_performance: true
+          fatal_warnings: true
+          fatal_style: true

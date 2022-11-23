@@ -47,7 +47,7 @@ class App extends StatelessWidget {
               return kAppName;
             },
             home: MultiBlocProvider(
-              providers: <BlocProvider<BlocBase<Object>>>[
+              providers: <BlocProvider<StateStreamableSource<Object?>>>[
                 BlocProvider<FabBloc>(create: (_) => FabBloc()),
                 BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
                 BlocProvider<RemoveFavoritesBloc>(

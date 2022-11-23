@@ -60,7 +60,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-More than 92% (∼96% actually, due to [mixin coverage bug in Dart language](https://github.com/dart-lang/sdk/issues/49887) since Dart 2.18) of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](../test) and [Integration tests](../integration_test).
+More than 93% (∼98% actually, due to [mixin coverage bug in Dart language](https://github.com/dart-lang/sdk/issues/49887) since Dart 2.18) of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](../test/) and [Integration tests](../integration_test/).
 
 ## Accessibility
 
@@ -86,11 +86,11 @@ flutter gen-l10n --output-localization-file=app_localizations.g.dart --no-synthe
 
 You should run all platforms (except Linux) versions of the app without any additional steps.
 
-* For Linux builds you will need to install those packages first (via sudo apt-get install): `clang, cmake, unzip, curl, ninja-build, pkg-config, libgtk-3-dev, liblzma-dev, libgstreamer1.0-dev, libgles2-mesa-dev, libgstreamer-plugins-base1.0-dev, libsecret-1-dev, libjsoncpp-dev`. If you want to run app from this binary, you will also need `libsecret-1-0` and `libjsoncpp1`. Please do not use a Snap version of Flutter, since it have a locked CMake version at this moment. So basically you can just run:
+* For Linux builds you will need to install those packages first (via sudo apt-get install): `clang, cmake, unzip, curl, ninja-build, pkg-config, libgtk-3-dev, liblzma-dev, libgstreamer1.0-dev, libgles2-mesa-dev, libgstreamer-plugins-base1.0-dev, libsecret-1-dev, libjsoncpp-dev`. If you want to run app from this binary, you will also need `libsecret-1-0`. Please do not use a Snap version of Flutter, since it have a locked CMake version at this moment. So basically you can just run:
 
 ```shell
 sudo apt-get update -y
-sudo apt-get --assume-yes --fix-missing install libgles2-mesa-dev clang cmake unzip curl ninja-build pkg-config libgtk-3-dev liblzma-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libsecret-1-dev libjsoncpp-dev libsecret-1-0 libjsoncpp1
+sudo apt-get --assume-yes --fix-missing install libgles2-mesa-dev clang cmake unzip curl ninja-build pkg-config libgtk-3-dev liblzma-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libsecret-1-dev libjsoncpp-dev libsecret-1-0
 ```
 
 ## Design

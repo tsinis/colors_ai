@@ -9,5 +9,6 @@ extension ContextExtensions on BuildContext {
   MaterialLocalizations get materialL10n => MaterialLocalizations.of(this);
   MediaQueryData get media => MediaQuery.of(this);
   ThemeData get theme => Theme.of(this);
+  // ignore: unnecessary-nullable, to match original [Navigator] pop method argument.
   void closeDialog<T>([T? result]) => Navigator.of(this).pop(result);
 }

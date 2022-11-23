@@ -1,13 +1,13 @@
-import 'dart:async';
-
 import 'package:equatable/equatable.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 import '../dao/generator_dao.dart';
 import '../mixins/huemint_settings.dart';
 import '../models/selected_api.dart';
+import 'settings_event.dart';
 
-part 'settings_event.dart';
+export 'settings_event.dart';
+
 part 'settings_state.dart';
 
 class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
@@ -30,7 +30,9 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
         _huemintAdjacencyKey = huemintAdjacencyKey,
         _huemintTemperatureKey = huemintTemperatureKey,
         _selectedApiKey = selectedApiKey,
-        super(const SettingsInitial());
+        super(const SettingsInitial()) {
+    on<SettingsEvent>(_onEvent);
+  }
 
   @override
   SettingsState? fromJson(Map<String, dynamic> json) {
@@ -52,47 +54,6 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
   }
 
   @override
-  Stream<SettingsState> mapEventToState(SettingsEvent event) async* {
-    if (event is SettingsLightThemeSelected) {
-      _generatorSettings.isDarkTheme = false;
-    } else if (event is SettingsDarkThemeSelected) {
-      _generatorSettings.isDarkTheme = true;
-    } else if (event is SettingsSystemThemeSelected) {
-      _generatorSettings.isDarkTheme = null;
-    } else if (event is SettingsColorsForUiSelected) {
-      _generatorSettings.colormindForUI = true;
-    } else if (event is SettingsRegularColorsSelected) {
-      _generatorSettings.colormindForUI = false;
-    } else if (event is SettingsTemperatureChanged) {
-      _generatorSettings.huemintTemperature = event.temperature.clamp(
-        HuemintSettings.temperatureMin,
-        HuemintSettings.temperatureMax,
-      );
-    } else if (event is SettingsAdjacencyChanged) {
-      _generatorSettings.huemintAdjacency = event.adjacency.clamp(
-        HuemintSettings.adjacencyMin,
-        HuemintSettings.adjacencyMax,
-      );
-    } else if (event is SettingsApiSelected) {
-      final SelectedAPI? api = event.api;
-      if (api != null) {
-        _generatorSettings.api = api;
-      }
-    }
-    try {
-      yield SettingsChangedInitial(
-        isDarkTheme: _generatorSettings.isDarkTheme,
-        colormindForUI: _generatorSettings.colormindForUI,
-        huemintAdjacency: _generatorSettings.huemintAdjacency,
-        huemintTemperature: _generatorSettings.huemintTemperature,
-        selectedAPI: _generatorSettings.api,
-      );
-    } on Exception catch (_) {
-      yield const SettingsFailure();
-    }
-  }
-
-  @override
   Map<String, dynamic>? toJson(SettingsState state) {
     if (state is SettingsChangedInitial) {
       return <String, Object?>{
@@ -105,5 +66,45 @@ class SettingsBloc extends HydratedBloc<SettingsEvent, SettingsState> {
     }
 
     return null;
+  }
+
+  void _emitState(Emitter<SettingsState> emit) {
+    try {
+      emit(
+        SettingsChangedInitial(
+          isDarkTheme: _generatorSettings.isDarkTheme,
+          colormindForUI: _generatorSettings.colormindForUI,
+          huemintAdjacency: _generatorSettings.huemintAdjacency,
+          huemintTemperature: _generatorSettings.huemintTemperature,
+          selectedAPI: _generatorSettings.api,
+        ),
+      );
+    } on Exception catch (_) {
+      emit(const SettingsFailure());
+    }
+  }
+
+  void _onEvent(SettingsEvent event, Emitter<SettingsState> emit) {
+    event.whenOrNull(
+      lightThemeSelected: () => _generatorSettings.isDarkTheme = false,
+      darkThemeSelected: () => _generatorSettings.isDarkTheme = true,
+      systemThemeSelected: () => _generatorSettings.isDarkTheme = null,
+      colorsForUiSelected: () => _generatorSettings.colormindForUI = true,
+      colorsRegularSelected: () => _generatorSettings.colormindForUI = false,
+      apiSelected: (SelectedAPI? api) {
+        if (api != null) {
+          _generatorSettings.api = api;
+        }
+      },
+      temperatureSelected: (double temperature) => _generatorSettings.huemintTemperature = temperature.clamp(
+        HuemintSettings.temperatureMin,
+        HuemintSettings.temperatureMax,
+      ),
+      adjacencyChanged: (int adjacency) => _generatorSettings.huemintAdjacency = adjacency.clamp(
+        HuemintSettings.adjacencyMin,
+        HuemintSettings.adjacencyMax,
+      ),
+    );
+    _emitState(emit);
   }
 }

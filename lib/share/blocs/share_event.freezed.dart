@@ -30,13 +30,13 @@ mixin _$ShareEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -65,13 +65,13 @@ mixin _$ShareEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,16 +92,18 @@ mixin _$ShareEvent {
 abstract class $ShareEventCopyWith<$Res> {
   factory $ShareEventCopyWith(
           ShareEvent value, $Res Function(ShareEvent) then) =
-      _$ShareEventCopyWithImpl<$Res>;
+      _$ShareEventCopyWithImpl<$Res, ShareEvent>;
 }
 
 /// @nodoc
-class _$ShareEventCopyWithImpl<$Res> implements $ShareEventCopyWith<$Res> {
+class _$ShareEventCopyWithImpl<$Res, $Val extends ShareEvent>
+    implements $ShareEventCopyWith<$Res> {
   _$ShareEventCopyWithImpl(this._value, this._then);
 
-  final ShareEvent _value;
   // ignore: unused_field
-  final $Res Function(ShareEvent) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -112,14 +114,12 @@ abstract class _$$_ShareStartedCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ShareStartedCopyWithImpl<$Res> extends _$ShareEventCopyWithImpl<$Res>
+class __$$_ShareStartedCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$_ShareStarted>
     implements _$$_ShareStartedCopyWith<$Res> {
   __$$_ShareStartedCopyWithImpl(
       _$_ShareStarted _value, $Res Function(_$_ShareStarted) _then)
-      : super(_value, (v) => _then(v as _$_ShareStarted));
-
-  @override
-  _$_ShareStarted get _value => super._value as _$_ShareStarted;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -159,13 +159,13 @@ class _$_ShareStarted implements _ShareStarted {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) {
     return started?.call();
   }
@@ -206,13 +206,13 @@ class _$_ShareStarted implements _ShareStarted {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) {
     return started?.call(this);
   }
@@ -245,26 +245,25 @@ abstract class _$$_ShareUrlSharedCopyWith<$Res> {
   factory _$$_ShareUrlSharedCopyWith(
           _$_ShareUrlShared value, $Res Function(_$_ShareUrlShared) then) =
       __$$_ShareUrlSharedCopyWithImpl<$Res>;
+  @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
 class __$$_ShareUrlSharedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$_ShareUrlShared>
     implements _$$_ShareUrlSharedCopyWith<$Res> {
   __$$_ShareUrlSharedCopyWithImpl(
       _$_ShareUrlShared _value, $Res Function(_$_ShareUrlShared) _then)
-      : super(_value, (v) => _then(v as _$_ShareUrlShared));
+      : super(_value, _then);
 
-  @override
-  _$_ShareUrlShared get _value => super._value as _$_ShareUrlShared;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? palette = freezed,
+    Object? palette = null,
   }) {
     return _then(_$_ShareUrlShared(
-      palette == freezed
+      null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
               as ColorPalette,
@@ -290,15 +289,15 @@ class _$_ShareUrlShared implements _ShareUrlShared {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShareUrlShared &&
-            const DeepCollectionEquality().equals(other.palette, palette));
+            (identical(other.palette, palette) || other.palette == palette));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(palette));
+  int get hashCode => Object.hash(runtimeType, palette);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShareUrlSharedCopyWith<_$_ShareUrlShared> get copyWith =>
       __$$_ShareUrlSharedCopyWithImpl<_$_ShareUrlShared>(this, _$identity);
 
@@ -320,13 +319,13 @@ class _$_ShareUrlShared implements _ShareUrlShared {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) {
     return urlShared?.call(palette);
   }
@@ -367,13 +366,13 @@ class _$_ShareUrlShared implements _ShareUrlShared {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) {
     return urlShared?.call(this);
   }
@@ -411,26 +410,25 @@ abstract class _$$_ShareUrlCopiedCopyWith<$Res> {
   factory _$$_ShareUrlCopiedCopyWith(
           _$_ShareUrlCopied value, $Res Function(_$_ShareUrlCopied) then) =
       __$$_ShareUrlCopiedCopyWithImpl<$Res>;
+  @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
 class __$$_ShareUrlCopiedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$_ShareUrlCopied>
     implements _$$_ShareUrlCopiedCopyWith<$Res> {
   __$$_ShareUrlCopiedCopyWithImpl(
       _$_ShareUrlCopied _value, $Res Function(_$_ShareUrlCopied) _then)
-      : super(_value, (v) => _then(v as _$_ShareUrlCopied));
+      : super(_value, _then);
 
-  @override
-  _$_ShareUrlCopied get _value => super._value as _$_ShareUrlCopied;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? palette = freezed,
+    Object? palette = null,
   }) {
     return _then(_$_ShareUrlCopied(
-      palette == freezed
+      null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
               as ColorPalette,
@@ -456,15 +454,15 @@ class _$_ShareUrlCopied implements _ShareUrlCopied {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShareUrlCopied &&
-            const DeepCollectionEquality().equals(other.palette, palette));
+            (identical(other.palette, palette) || other.palette == palette));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(palette));
+  int get hashCode => Object.hash(runtimeType, palette);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShareUrlCopiedCopyWith<_$_ShareUrlCopied> get copyWith =>
       __$$_ShareUrlCopiedCopyWithImpl<_$_ShareUrlCopied>(this, _$identity);
 
@@ -486,13 +484,13 @@ class _$_ShareUrlCopied implements _ShareUrlCopied {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) {
     return urlCopied?.call(palette);
   }
@@ -533,13 +531,13 @@ class _$_ShareUrlCopied implements _ShareUrlCopied {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) {
     return urlCopied?.call(this);
   }
@@ -577,26 +575,25 @@ abstract class _$$_ShareFileSharedCopyWith<$Res> {
   factory _$$_ShareFileSharedCopyWith(
           _$_ShareFileShared value, $Res Function(_$_ShareFileShared) then) =
       __$$_ShareFileSharedCopyWithImpl<$Res>;
+  @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
 class __$$_ShareFileSharedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$_ShareFileShared>
     implements _$$_ShareFileSharedCopyWith<$Res> {
   __$$_ShareFileSharedCopyWithImpl(
       _$_ShareFileShared _value, $Res Function(_$_ShareFileShared) _then)
-      : super(_value, (v) => _then(v as _$_ShareFileShared));
+      : super(_value, _then);
 
-  @override
-  _$_ShareFileShared get _value => super._value as _$_ShareFileShared;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? palette = freezed,
+    Object? palette = null,
   }) {
     return _then(_$_ShareFileShared(
-      palette == freezed
+      null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
               as ColorPalette,
@@ -622,15 +619,15 @@ class _$_ShareFileShared implements _ShareFileShared {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShareFileShared &&
-            const DeepCollectionEquality().equals(other.palette, palette));
+            (identical(other.palette, palette) || other.palette == palette));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(palette));
+  int get hashCode => Object.hash(runtimeType, palette);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShareFileSharedCopyWith<_$_ShareFileShared> get copyWith =>
       __$$_ShareFileSharedCopyWithImpl<_$_ShareFileShared>(this, _$identity);
 
@@ -652,13 +649,13 @@ class _$_ShareFileShared implements _ShareFileShared {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) {
     return fileShared?.call(palette);
   }
@@ -699,13 +696,13 @@ class _$_ShareFileShared implements _ShareFileShared {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) {
     return fileShared?.call(this);
   }
@@ -744,26 +741,25 @@ abstract class _$$_ShareFileCopiedCopyWith<$Res> {
   factory _$$_ShareFileCopiedCopyWith(
           _$_ShareFileCopied value, $Res Function(_$_ShareFileCopied) then) =
       __$$_ShareFileCopiedCopyWithImpl<$Res>;
+  @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
 class __$$_ShareFileCopiedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$_ShareFileCopied>
     implements _$$_ShareFileCopiedCopyWith<$Res> {
   __$$_ShareFileCopiedCopyWithImpl(
       _$_ShareFileCopied _value, $Res Function(_$_ShareFileCopied) _then)
-      : super(_value, (v) => _then(v as _$_ShareFileCopied));
+      : super(_value, _then);
 
-  @override
-  _$_ShareFileCopied get _value => super._value as _$_ShareFileCopied;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? palette = freezed,
+    Object? palette = null,
   }) {
     return _then(_$_ShareFileCopied(
-      palette == freezed
+      null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
               as ColorPalette,
@@ -789,15 +785,15 @@ class _$_ShareFileCopied implements _ShareFileCopied {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShareFileCopied &&
-            const DeepCollectionEquality().equals(other.palette, palette));
+            (identical(other.palette, palette) || other.palette == palette));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(palette));
+  int get hashCode => Object.hash(runtimeType, palette);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShareFileCopiedCopyWith<_$_ShareFileCopied> get copyWith =>
       __$$_ShareFileCopiedCopyWithImpl<_$_ShareFileCopied>(this, _$identity);
 
@@ -819,13 +815,13 @@ class _$_ShareFileCopied implements _ShareFileCopied {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) {
     return fileCopied?.call(palette);
   }
@@ -866,13 +862,13 @@ class _$_ShareFileCopied implements _ShareFileCopied {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) {
     return fileCopied?.call(this);
   }
@@ -911,26 +907,25 @@ abstract class _$$_ShareFormatSelectedCopyWith<$Res> {
   factory _$$_ShareFormatSelectedCopyWith(_$_ShareFormatSelected value,
           $Res Function(_$_ShareFormatSelected) then) =
       __$$_ShareFormatSelectedCopyWithImpl<$Res>;
+  @useResult
   $Res call({FileFormat? format});
 }
 
 /// @nodoc
 class __$$_ShareFormatSelectedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$_ShareFormatSelected>
     implements _$$_ShareFormatSelectedCopyWith<$Res> {
   __$$_ShareFormatSelectedCopyWithImpl(_$_ShareFormatSelected _value,
       $Res Function(_$_ShareFormatSelected) _then)
-      : super(_value, (v) => _then(v as _$_ShareFormatSelected));
+      : super(_value, _then);
 
-  @override
-  _$_ShareFormatSelected get _value => super._value as _$_ShareFormatSelected;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? format = freezed,
   }) {
     return _then(_$_ShareFormatSelected(
-      format: format == freezed
+      format: freezed == format
           ? _value.format
           : format // ignore: cast_nullable_to_non_nullable
               as FileFormat?,
@@ -956,15 +951,15 @@ class _$_ShareFormatSelected implements _ShareFormatSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShareFormatSelected &&
-            const DeepCollectionEquality().equals(other.format, format));
+            (identical(other.format, format) || other.format == format));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(format));
+  int get hashCode => Object.hash(runtimeType, format);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShareFormatSelectedCopyWith<_$_ShareFormatSelected> get copyWith =>
       __$$_ShareFormatSelectedCopyWithImpl<_$_ShareFormatSelected>(
           this, _$identity);
@@ -987,13 +982,13 @@ class _$_ShareFormatSelected implements _ShareFormatSelected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) {
     return formatSelected?.call(format);
   }
@@ -1034,13 +1029,13 @@ class _$_ShareFormatSelected implements _ShareFormatSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) {
     return formatSelected?.call(this);
   }
@@ -1080,27 +1075,25 @@ abstract class _$$_ShareUrlProviderSelectedCopyWith<$Res> {
           _$_ShareUrlProviderSelected value,
           $Res Function(_$_ShareUrlProviderSelected) then) =
       __$$_ShareUrlProviderSelectedCopyWithImpl<$Res>;
+  @useResult
   $Res call({ColorsUrlProvider? urlProvider});
 }
 
 /// @nodoc
 class __$$_ShareUrlProviderSelectedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$_ShareUrlProviderSelected>
     implements _$$_ShareUrlProviderSelectedCopyWith<$Res> {
   __$$_ShareUrlProviderSelectedCopyWithImpl(_$_ShareUrlProviderSelected _value,
       $Res Function(_$_ShareUrlProviderSelected) _then)
-      : super(_value, (v) => _then(v as _$_ShareUrlProviderSelected));
+      : super(_value, _then);
 
-  @override
-  _$_ShareUrlProviderSelected get _value =>
-      super._value as _$_ShareUrlProviderSelected;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? urlProvider = freezed,
   }) {
     return _then(_$_ShareUrlProviderSelected(
-      urlProvider: urlProvider == freezed
+      urlProvider: freezed == urlProvider
           ? _value.urlProvider
           : urlProvider // ignore: cast_nullable_to_non_nullable
               as ColorsUrlProvider?,
@@ -1126,16 +1119,16 @@ class _$_ShareUrlProviderSelected implements _ShareUrlProviderSelected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ShareUrlProviderSelected &&
-            const DeepCollectionEquality()
-                .equals(other.urlProvider, urlProvider));
+            (identical(other.urlProvider, urlProvider) ||
+                other.urlProvider == urlProvider));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(urlProvider));
+  int get hashCode => Object.hash(runtimeType, urlProvider);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ShareUrlProviderSelectedCopyWith<_$_ShareUrlProviderSelected>
       get copyWith => __$$_ShareUrlProviderSelectedCopyWithImpl<
           _$_ShareUrlProviderSelected>(this, _$identity);
@@ -1158,13 +1151,13 @@ class _$_ShareUrlProviderSelected implements _ShareUrlProviderSelected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(ColorPalette palette)? urlShared,
-    TResult Function(ColorPalette palette)? urlCopied,
-    TResult Function(ColorPalette palette)? fileShared,
-    TResult Function(ColorPalette palette)? fileCopied,
-    TResult Function(FileFormat? format)? formatSelected,
-    TResult Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
+    TResult? Function()? started,
+    TResult? Function(ColorPalette palette)? urlShared,
+    TResult? Function(ColorPalette palette)? urlCopied,
+    TResult? Function(ColorPalette palette)? fileShared,
+    TResult? Function(ColorPalette palette)? fileCopied,
+    TResult? Function(FileFormat? format)? formatSelected,
+    TResult? Function(ColorsUrlProvider? urlProvider)? urlProviderSelected,
   }) {
     return urlProviderSelected?.call(urlProvider);
   }
@@ -1205,13 +1198,13 @@ class _$_ShareUrlProviderSelected implements _ShareUrlProviderSelected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_ShareStarted value)? started,
-    TResult Function(_ShareUrlShared value)? urlShared,
-    TResult Function(_ShareUrlCopied value)? urlCopied,
-    TResult Function(_ShareFileShared value)? fileShared,
-    TResult Function(_ShareFileCopied value)? fileCopied,
-    TResult Function(_ShareFormatSelected value)? formatSelected,
-    TResult Function(_ShareUrlProviderSelected value)? urlProviderSelected,
+    TResult? Function(_ShareStarted value)? started,
+    TResult? Function(_ShareUrlShared value)? urlShared,
+    TResult? Function(_ShareUrlCopied value)? urlCopied,
+    TResult? Function(_ShareFileShared value)? fileShared,
+    TResult? Function(_ShareFileCopied value)? fileCopied,
+    TResult? Function(_ShareFormatSelected value)? formatSelected,
+    TResult? Function(_ShareUrlProviderSelected value)? urlProviderSelected,
   }) {
     return urlProviderSelected?.call(this);
   }

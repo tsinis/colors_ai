@@ -73,6 +73,6 @@
         }
     },
     "base_branches": [
-        "release"
+        "main"
     ]
 }
