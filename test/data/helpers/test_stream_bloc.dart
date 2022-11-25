@@ -135,6 +135,7 @@ class _TestStreamBloc extends BlocObserver {
   }
 }
 
+// ignore: unnecessary-nullable, to match original bloc test implementation.
 String _diff({required Object? expected, required Object? actual}) {
   final StringBuffer buffer = StringBuffer();
   final List<Diff> differences = diff(expected.toString(), actual.toString());
