@@ -130,7 +130,7 @@ class SettingsDialog extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              const Divider(height: 1),
+              Divider(height: 1, color: context.theme.colorScheme.primary),
               const VibrationDisableSwitch(style: _tightSpaceStyle),
               Padding(
                 padding: const EdgeInsets.only(left: 16, bottom: 8, top: 12),

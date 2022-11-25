@@ -42,15 +42,13 @@ class ShareColorsTab extends StatelessWidget {
           return LayoutBuilder(
             builder: (_, BoxConstraints size) {
               final Widget? child = state.whenOrNull(
-                formatSelected: (_, __, bool canSharePdf, bool canSharePng) => !canSharePdf
-                    ? const SizedBox.shrink()
-                    : FileShareSection(
-                        palette,
-                        width: size.maxWidth,
-                        canSharePng: canSharePng,
-                        canSharePdf: canSharePdf,
-                        selectedFormat: selectedFormat,
-                      ),
+                formatSelected: (_, __, bool canSharePdf, bool canSharePng) => FileShareSection(
+                  palette,
+                  width: size.maxWidth,
+                  canSharePng: false,
+                  canSharePdf: false,
+                  selectedFormat: selectedFormat,
+                ),
               );
 
               return isPortrait
