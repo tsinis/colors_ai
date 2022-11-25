@@ -23,11 +23,11 @@ dependencies:
   flutter_colorpicker: ^1.0.3 # Contributor
   flutter_localizations: # From Google
     sdk: flutter
-  flutter_secure_storage: ^6.0.0
+  flutter_secure_storage: ^6.1.0
   freezed_annotation: ^2.2.0 # for Freezed
   google_fonts: ^3.0.1 # From Google
   http: ^0.13.5 # From Google
-  hydrated_bloc: 9.0.0
+  hydrated_bloc: ^9.0.0
   intl: ^0.17.0 # From Google
   json_annotation: ^4.7.0 # From Google
   mdi: ^5.0.0-nullsafety.0
@@ -36,9 +36,9 @@ dependencies:
   platform_info: ^3.2.0 # Contributor
   printing: ^5.9.3
   share_plus: ^6.3.0 # From Flutter Community (former Google)
-  simple_animations: ^5.0.0+2
+  simple_animations: ^5.0.0+3
   stream_bloc: ^0.5.3
-  url_launcher: ^6.1.6 # From Google
+  url_launcher: ^6.1.7 # From Google
   vibration: ^1.7.6
   window_size: # From Google
     git:
@@ -46,15 +46,13 @@ dependencies:
       path: plugins/window_size
 
 dev_dependencies:
-  bloc_test: 9.1.0
+  bloc_test: ^9.1.0
   build_runner: ^2.3.2 # From Google
-  code_builder: ^4.3.0 # From Google
   dart_code_metrics: ^5.0.1 # Flutter Favorite
   flutter_lints: ^2.0.1 # From Google
   flutter_test: # From Google
     sdk: flutter
   freezed: ^2.2.1 # Flutter Favorite
-  golden_toolkit: ^0.13.0
   hive_generator: ^2.0.0
   integration_test: # From Google
     sdk: flutter
