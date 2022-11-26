@@ -2,7 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mdi/mdi.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../app/theme/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
@@ -94,14 +94,14 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                     FadeTransition(
                       opacity: animation,
                       child: Icon(
-                        Mdi.bookmarkRemoveOutline,
+                        MdiIcons.bookmarkRemoveOutline,
                         size: 25,
                         color: context.theme.colorScheme.error,
                       ),
                     )
                   else
-                    const Icon(Mdi.bookmarkRemoveOutline, size: 25),
-                  const Icon(Mdi.bookmarkOutline, size: 25),
+                    const Icon(MdiIcons.bookmarkRemoveOutline, size: 25),
+                  const Icon(MdiIcons.bookmarkOutline, size: 25),
                 ],
               ),
               onPressed: favState is FavoritesLoadSuccess

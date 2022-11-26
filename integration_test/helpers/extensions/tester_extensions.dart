@@ -51,4 +51,14 @@ extension TesterExtensions on WidgetTester {
 
     return finder;
   }
+
+  /// Taps on [finder] and waits for animation to complete.
+  Future<void> tapAndSettle(
+    Finder finder, {
+    bool warnIfMissed = true,
+    Duration duration = const Duration(milliseconds: 100),
+  }) async {
+    await tap(finder, warnIfMissed: warnIfMissed);
+    await pumpAndSettle(duration);
+  }
 }
