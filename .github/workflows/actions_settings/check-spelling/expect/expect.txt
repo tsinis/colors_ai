@@ -53,7 +53,7 @@ Linux
 LTRB
 luan
 maketintsandshades
-mdi
+Mdi
 mixin
 mockito
 mogol
