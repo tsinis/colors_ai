@@ -1170,7 +1170,7 @@ packages:
     source: hosted
     version: "1.21.7"
   test_api:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: test_api
       sha256: c9aba3b3dbfe8878845dfab5fa096eb8de7b62231baeeb1cea8e3ee81ca8c6d8

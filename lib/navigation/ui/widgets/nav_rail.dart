@@ -36,13 +36,21 @@ class _NavRailState extends State<NavRail> with NavTabIndexer {
     super.didChangeDependencies();
   }
 
+  void onTap() {
+    if (context.media.size.width > 840 || isExtended) {
+      setState(() => isExtended = !isExtended);
+    }
+  }
+
+  void onDestinationSelected(int newTabIndex, {required bool isFavoritesEmpty}) {
+    if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
+      BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.changed(newTabIndex));
+    }
+  }
+
   @override
   Widget build(BuildContext context) => GestureDetector(
-        onTap: () {
-          if (context.media.size.width > 840 || isExtended) {
-            setState(() => isExtended = !isExtended);
-          }
-        },
+        onTap: onTap,
         child: BlocBuilder<FavoritesBloc, FavoritesState>(
           builder: (_, FavoritesState saveState) {
             final bool isFavoritesEmpty = saveState is FavoritesEmptyInitial;
@@ -50,11 +58,8 @@ class _NavRailState extends State<NavRail> with NavTabIndexer {
 
             return NavigationRail(
               selectedIndex: widget.navState.index,
-              onDestinationSelected: (int newTabIndex) {
-                if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
-                  BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.changed(newTabIndex));
-                }
-              },
+              onDestinationSelected: (int newTabIndex) =>
+                  onDestinationSelected(newTabIndex, isFavoritesEmpty: isFavoritesEmpty),
               extended: isExtended,
               leading: Column(
                 mainAxisSize: MainAxisSize.min,

@@ -18,6 +18,11 @@ class LockColorButton extends StatelessWidget {
     super.key,
   });
 
+  void _onPressed(BuildContext context) {
+    BlocProvider.of<SoundBloc>(context).add(const SoundEvent.locked());
+    bloc.add(LockChanged(index));
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<LockBloc, LockState>(
         bloc: bloc,
@@ -28,10 +33,7 @@ class LockColorButton extends StatelessWidget {
             return IconButton(
               constraints: BoxConstraints(minWidth: buttonSize.width, minHeight: buttonSize.height),
               color: color.withOpacity(isLocked ? 0.87 : 0.6),
-              onPressed: () {
-                BlocProvider.of<SoundBloc>(context).add(const SoundEvent.locked());
-                bloc.add(LockChanged(index));
-              },
+              onPressed: () => _onPressed(context),
               icon: Icon(isLocked ? Icons.lock : Icons.lock_open_outlined),
             );
           } else {

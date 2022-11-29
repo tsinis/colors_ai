@@ -14,9 +14,9 @@ class SoundsRepository {
 
   void playFavoritesAdded() => unawaited(_playSound(Sound.notificationSimple));
 
-  Future<void> playCopy() => _playSound(Sound.notificationHigh);
-  Future<void> playLock() => _playSound(Sound.lock, volume: 0.8);
-  Future<void> playRefresh() => _playSound(Sound.refresh, volume: 0.6);
+  FutureOr<void> playCopy() => _playSound(Sound.notificationHigh);
+  FutureOr<void> playLock() => _playSound(Sound.lock, volume: 0.8);
+  FutureOr<void> playRefresh() => _playSound(Sound.refresh, volume: 0.6);
 
   Future<void> init() async {
     final Set<String> assetsToCache = Set<String>.unmodifiable(Sound.values.map<String>((Sound sound) => sound.asset));

@@ -17,13 +17,23 @@ class SettingsDialog extends StatelessWidget {
   static const TextStyle _tightSpaceStyle = TextStyle(letterSpacing: 0.5, height: 1.2);
   const SettingsDialog({super.key});
 
+  void _onPressed(BuildContext context) {
+    BlocProvider.of<SettingsBloc>(context)
+      ..add(const SettingsEvent.systemThemeSelected())
+      ..add(const SettingsEvent.colorsRegularSelected())
+      ..add(const SettingsEvent.apiSelected(SelectedAPI.colormind))
+      ..add(const SettingsEvent.temperatureSelected(HuemintSettings.temperatureMax / 2))
+      ..add(const SettingsEvent.adjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
+    BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.settingsChanged(isEnabled: true));
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, SettingsState state) => AlertDialog(
           actionsPadding: const EdgeInsets.only(bottom: 16, right: 16),
           shape: kDefaultShape,
           scrollable: true,
-          contentPadding: const EdgeInsets.only(bottom: 16, top: 16),
+          contentPadding: const EdgeInsets.symmetric(vertical: 16),
           title: Text(context.l10n.settings),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,17 +84,9 @@ class SettingsDialog extends StatelessWidget {
                     ),
                     activeColor: context.theme.indicatorColor,
                     value: state.colormindForUI,
-                    onChanged: (bool isForUi) {
-                      if (isForUi) {
-                        BlocProvider.of<SettingsBloc>(context).add(
-                          const SettingsEvent.colorsForUiSelected(),
-                        );
-                      } else {
-                        BlocProvider.of<SettingsBloc>(context).add(
-                          const SettingsEvent.colorsRegularSelected(),
-                        );
-                      }
-                    },
+                    onChanged: (bool isForUi) => BlocProvider.of<SettingsBloc>(context).add(
+                      isForUi ? const SettingsEvent.colorsForUiSelected() : const SettingsEvent.colorsRegularSelected(),
+                    ),
                   ),
                 ),
                 secondChild: Padding(
@@ -172,15 +174,7 @@ class SettingsDialog extends StatelessWidget {
           actions: <TextButton>[
             TextButton(
               key: TestKeys.resetSettingsButton,
-              onPressed: () {
-                BlocProvider.of<SettingsBloc>(context)
-                  ..add(const SettingsEvent.systemThemeSelected())
-                  ..add(const SettingsEvent.colorsRegularSelected())
-                  ..add(const SettingsEvent.apiSelected(SelectedAPI.colormind))
-                  ..add(const SettingsEvent.temperatureSelected(HuemintSettings.temperatureMax / 2))
-                  ..add(const SettingsEvent.adjacencyChanged(HuemintSettings.adjacencyMax ~/ 2));
-                BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.settingsChanged(isEnabled: true));
-              },
+              onPressed: () => _onPressed(context),
               child: Text(
                 context.l10n.resetButtonLabel,
                 style: TextStyle(color: context.theme.colorScheme.error),

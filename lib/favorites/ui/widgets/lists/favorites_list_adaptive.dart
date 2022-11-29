@@ -1,3 +1,4 @@
+// ignore_for_file: prefer-extracting-callbacks
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

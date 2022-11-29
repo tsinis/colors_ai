@@ -79,6 +79,7 @@ class FileShareSection extends ShareSectionInterface {
                   BlocProvider.of<ShareBloc>(context).add(ShareEvent.formatSelected(format: newFormat)),
               items: List<DropdownMenuItem<FileFormat>>.generate(
                 FileFormat.values.length,
+                // ignore: prefer-extracting-callbacks, against avoid-returning-widgets rule.
                 (int index) {
                   final FileFormat fileFormat = FileFormat.values.elementAt(index);
 

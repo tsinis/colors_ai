@@ -10,13 +10,15 @@ class UnlockAllButton extends StatelessWidget {
 
   const UnlockAllButton({this.icon = const Icon(Icons.lock_open_outlined), super.key});
 
+  void _onPressed(BuildContext context) {
+    BlocProvider.of<SoundBloc>(context).add(const SoundEvent.locked());
+    BlocProvider.of<LockBloc>(context).add(const LockAllUnlocked());
+  }
+
   @override
   Widget build(BuildContext context) => IconButton(
         tooltip: context.l10n.unlockAllColors,
         icon: icon,
-        onPressed: () {
-          BlocProvider.of<SoundBloc>(context).add(const SoundEvent.locked());
-          BlocProvider.of<LockBloc>(context).add(const LockAllUnlocked());
-        },
+        onPressed: () => _onPressed(context),
       );
 }

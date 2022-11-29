@@ -23,6 +23,17 @@ class FavoritesListSwipeable extends StatelessWidget {
     super.key,
   });
 
+  void _onTap(BuildContext context, ColorPalette palette) {
+    BlocProvider.of<LockBloc>(context).add(const LockAllUnlocked());
+    BlocProvider.of<ColorsBloc>(context).add(ColorsRestored(palette: palette));
+    BlocProvider.of<NavigationBloc>(context).add(const NavigationEvent.started());
+  }
+
+  void _onResize(BuildContext context, int colorToRemoveIndex) {
+    BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
+    BlocProvider.of<FavoritesBloc>(context).add(FavoritesOneRemoved(colorToRemoveIndex: colorToRemoveIndex));
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<RemoveFavoritesBloc, RemoveFavoritesState>(
         builder: (_, RemoveFavoritesState removeState) => BlocBuilder<FavoritesBloc, FavoritesState>(
@@ -57,11 +68,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                         itemCount: favorites.length,
                         itemBuilder: (_, int paletteIndex) => Dismissible(
                           key: UniqueKey(),
-                          onResize: () {
-                            BlocProvider.of<RemoveFavoritesBloc>(context).add(const RemoveFavoritesRemoved());
-                            BlocProvider.of<FavoritesBloc>(context)
-                                .add(FavoritesOneRemoved(colorToRemoveIndex: paletteIndex));
-                          },
+                          onResize: () => _onResize(context, paletteIndex),
                           secondaryBackground: const RemoveBackground.secondary(),
                           background: const RemoveBackground.primary(),
                           child: Semantics(
@@ -74,15 +81,11 @@ class FavoritesListSwipeable extends StatelessWidget {
                               selectedTileColor: context.theme.colorScheme.error.withOpacity(0.2),
                               selected: removeState.selections.contains(paletteIndex),
                               contentPadding: EdgeInsets.symmetric(horizontal: padding),
-                              onTap: () {
-                                BlocProvider.of<LockBloc>(context).add(const LockAllUnlocked());
-                                BlocProvider.of<ColorsBloc>(context)
-                                    .add(ColorsRestored(palette: favorites.elementAt(paletteIndex)));
-                                BlocProvider.of<NavigationBloc>(context).add(const NavigationEvent.started());
-                              },
+                              onTap: () => _onTap(context, favorites.elementAt(paletteIndex)),
                               title: Row(
                                 children: List<Widget>.generate(
                                   favorites.elementAt(paletteIndex).colors.length,
+                                  // ignore: prefer-extracting-callbacks, against avoid-returning-widgets rule.
                                   (int colorIndex) {
                                     final List<Color> colors = favorites.elementAt(paletteIndex).colors;
                                     final Color color = colors.elementAt(colorIndex);

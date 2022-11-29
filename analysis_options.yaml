@@ -74,25 +74,30 @@ dart_code_metrics:
         include-assertions:
           - verify
           - verifyZeroInteractions
+    - avoid-passing-async-when-sync-expected:
+        exclude:
+          - test/**
+    - avoid-redundant-async:
+        exclude:
+          - test/**
     - always-remove-listener: true
+    # - arguments-ordering: true # Until DCM 5.1+
     - avoid-banned-imports: true
     - avoid-border-all: true
+    - avoid-cascade-after-if-null: true
     - avoid-collection-methods-with-unrelated-types: true
     - avoid-duplicate-exports: true
     - avoid-dynamic: true
+    - avoid-expanded-as-spacer: true
     - avoid-global-state: true
     - avoid-missing-enum-constant-in-map: true
     - avoid-non-ascii-symbols: true
     - avoid-non-null-assertion: true
-    - avoid-passing-async-when-sync-expected: false # False positive in tests/onTap callbacks.
-    - avoid-redundant-async: false # False positive in overrides and blocs.
     - avoid-returning-widgets: true
-    - avoid-shrink-wrap-in-lists: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
-    - avoid-cascade-after-if-null: true
     - avoid-unnecessary-type-casts: true
     - avoid-unrelated-type-assertions: true
     - avoid-unused-parameters: true
@@ -113,9 +118,11 @@ dart_code_metrics:
     - prefer-commenting-analyzer-ignores: true
     - prefer-conditional-expressions: true
     - prefer-const-border-radius: true
+    - prefer-correct-edge-insets-constructor: true
     - prefer-correct-test-file-name: true
     - prefer-correct-type-name: true
     - prefer-enums-by-name: true
+    - prefer-extracting-callbacks: true
     - prefer-first: true
     - prefer-immediate-return: true
     - prefer-intl-name: true
@@ -346,9 +353,9 @@ linter:
     use_string_in_part_of_directives: true
 
     # Linter 1.30.0+
-    # collection_methods_unrelated_type: true
-    # dangling_library_doc_comments: true
-    # enable_null_safety: true
-    # implicit_call_tearoffs: true
-    # library_annotations: true
-    # unnecessary_library_directive: true
+    collection_methods_unrelated_type: true
+    dangling_library_doc_comments: true
+    enable_null_safety: true
+    implicit_call_tearoffs: true
+    library_annotations: true
+    unnecessary_library_directive: true

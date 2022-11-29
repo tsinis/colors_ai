@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:colors_ai/common/blocs/snackbars/snackbar_bloc.dart';
 import 'package:colors_ai/core/services/clipboard.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -21,7 +19,8 @@ void main() {
   void testCopyEvent(SnackbarEvent event, {bool withException = false}) {
     final ClipBoard clipboard = FakeClipboard(throwExceptionOnCopy: withException);
     if (!withException) {
-      unawaited(clipboard.copyTextData('data'));
+      // ignore: discarded_futures, it's just a mocked clipboard, this will by sync.
+      clipboard.copyTextData('data');
     }
     streamBlocTest<SnackbarBloc, SnackbarState>(
       '${event.runtimeType}${withException ? ' with invalid clipboard data' : ''}',

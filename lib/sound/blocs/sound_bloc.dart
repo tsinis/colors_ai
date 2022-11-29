@@ -15,11 +15,7 @@ class SoundBloc extends StreamBloc<SoundEvent, void> {
 
   @override
   Stream<void> mapEventToStates(SoundEvent event) async* {
-    event.when(
-      copied: _soundRepository.playCopy,
-      locked: _soundRepository.playLock,
-      refreshed: _soundRepository.playRefresh,
-      favoritesAdded: _soundRepository.playFavoritesAdded,
+    await event.whenOrNull(
       started: () async {
         await _soundRepository.init();
 
@@ -28,6 +24,13 @@ class SoundBloc extends StreamBloc<SoundEvent, void> {
           _soundRepository.playFavoritesAdded();
         }
       },
+    );
+
+    event.whenOrNull(
+      copied: _soundRepository.playCopy,
+      locked: _soundRepository.playLock,
+      refreshed: _soundRepository.playRefresh,
+      favoritesAdded: _soundRepository.playFavoritesAdded,
     );
   }
 }
