@@ -22,6 +22,7 @@ class FileLayout extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: List<Widget>.generate(
           _palette.colors.length,
+          // ignore: prefer-extracting-callbacks, against avoid-returning-widgets rule.
           (int colorsIndex) {
             final String hex = _palette.colors.elementAt(colorsIndex).toHex();
 
@@ -34,6 +35,7 @@ class FileLayout extends StatelessWidget {
                   child: Column(
                     children: List<Widget>.generate(
                       ColorSpace.values.length,
+                      // ignore: prefer-extracting-callbacks, against avoid-returning-widgets rule.
                       (int spacesIndex) {
                         final bool isEven = spacesIndex.isEven;
                         final ColorSpace colorSpace = ColorSpace.values.elementAt(spacesIndex);

@@ -18,6 +18,12 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
     super.key,
   });
 
+  void onDestinationSelected(int newTabIndex, BuildContext context, {required bool isFavoritesEmpty}) {
+    if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
+      BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.changed(newTabIndex));
+    }
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<FavoritesBloc, FavoritesState>(
         builder: (_, FavoritesState saveState) {
@@ -29,11 +35,8 @@ class BottomNavBar extends StatelessWidget with NavTabIndexer {
             backgroundColor: context.theme.primaryColor,
             labelBehavior: labelBehavior,
             selectedIndex: navState.index,
-            onDestinationSelected: (int newTabIndex) {
-              if (!(isFavoritesEmpty && newTabIndex == favoritesTabIndex)) {
-                BlocProvider.of<NavigationBloc>(context).add(NavigationEvent.changed(newTabIndex));
-              }
-            },
+            onDestinationSelected: (int newTabIndex) =>
+                onDestinationSelected(newTabIndex, context, isFavoritesEmpty: isFavoritesEmpty),
             destinations: <NavigationDestination>[
               NavigationDestination(
                 key: kShareSelectedIcon.key,

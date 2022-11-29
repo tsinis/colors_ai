@@ -51,11 +51,16 @@ class _AnimatedListItemState extends State<AnimatedListTile> {
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(Duration(milliseconds: widget.index * (widget.duration.inMilliseconds ~/ widget.length)), () {
-      if (mounted) {
-        setState(() => isAnimationDone = true);
-      }
-    });
+    Future<void>.delayed(
+      Duration(milliseconds: widget.index * (widget.duration.inMilliseconds ~/ widget.length)),
+      setAnimationDone,
+    );
+  }
+
+  void setAnimationDone() {
+    if (mounted) {
+      setState(() => isAnimationDone = true);
+    }
   }
 
   @override

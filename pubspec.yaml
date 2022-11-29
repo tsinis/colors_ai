@@ -61,6 +61,9 @@ dev_dependencies:
   mockito: ^5.3.2 # From Google
   msix: 2.7.3 # Flutter Favorite (generating from SVG)
 
+dependency_overrides:
+  test_api: ^0.4.12 # Until next minor/major Flutter version bump.
+
 flutter:
   uses-material-design: true
   assets:

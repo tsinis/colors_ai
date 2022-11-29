@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui' show Color;
 
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
@@ -12,9 +13,9 @@ class ClipBoard {
 
   const ClipBoard({String dataFormat = Clipboard.kTextPlain}) : _dataFormat = dataFormat;
 
-  Future<void> copyColor(Color color) => copyTextData(color.toHex());
+  FutureOr<void> copyColor(Color color) => copyTextData(color.toHex());
 
-  Future<void> copyTextData(String text) async {
+  FutureOr<void> copyTextData(String text) {
     if (text.isNotEmpty) {
       return Clipboard.setData(ClipboardData(text: text));
     }
