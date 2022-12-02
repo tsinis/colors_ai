@@ -309,10 +309,10 @@ packages:
     dependency: "direct dev"
     description:
       name: dart_code_metrics
-      sha256: fb234cda3fb5ed12e09ebaab1c78b3264d33f8eee22bc5f98cb4b2d5822d7b0b
+      sha256: "5d34ce876862f16b97458ddd9ced4aa527dc0d32e546986ebdf665786363276b"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.1"
+    version: "5.1.0"
   dart_style:
     dependency: transitive
     description:
@@ -397,10 +397,10 @@ packages:
     dependency: transitive
     description:
       name: file_selector_platform_interface
-      sha256: "432c4c729de319cc924eb2ac25f8f7216ca70bbbcb054aa14abe26a018453cc4"
+      sha256: "17cdfe3d13a7d3e29e3d3978577ce840fcf94497d7de51bdea378abf9a34fc2c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.4.0"
   file_selector_web:
     dependency: transitive
     description:
@@ -526,10 +526,10 @@ packages:
     dependency: "direct dev"
     description:
       name: freezed
-      sha256: "7070a65156b1d60b81649005843b9a6ec861db6903dec2db082c95473c8f5f72"
+      sha256: "267055676c5111e1b17c48c285dcd89fa0d2cea807c22c1e90278ca4f76163e5"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.3.0"
   freezed_annotation:
     dependency: "direct main"
     description:
@@ -542,10 +542,10 @@ packages:
     dependency: transitive
     description:
       name: frontend_server_client
-      sha256: "82715f8041a85a534a7bf64400b2ee0bb3d594ccf695d97c0bb017259657ff5d"
+      sha256: "408e3ca148b31c20282ad6f37ebfa6f4bdc8fede5b74bc2f08d9d92b55db3612"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.0"
   fuchsia_remote_debug_protocol:
     dependency: transitive
     description: flutter
@@ -752,10 +752,10 @@ packages:
     dependency: transitive
     description:
       name: mime
-      sha256: dab22e92b41aa1255ea90ddc4bc2feaf35544fd0728e209638cad041a6e3928a
+      sha256: "52e38f7e1143ef39daf532117d6b8f8f617bf4bcd6044ed8c29040d20d269630"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.0.3"
   mockito:
     dependency: "direct dev"
     description:
@@ -768,10 +768,10 @@ packages:
     dependency: transitive
     description:
       name: mocktail
-      sha256: dd85ca5229cf677079fd9ac740aebfc34d9287cdf294e6b2ba9fae25c39e4dc2
+      sha256: "80a996cd9a69284b3dc521ce185ffe9150cde69767c2d3a0720147d93c0cef53"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.3.0"
   msix:
     dependency: "direct dev"
     description:
@@ -848,10 +848,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: "1dab723dd8feeb80afb39c7be894f09df1457243d930010f6f328fb8c660c5e1"
+      sha256: a776c088d671b27f6e3aa8881d64b87b3e80201c64e8869b811325de7a76c15e
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.21"
+    version: "2.0.22"
   path_provider_ios:
     dependency: transitive
     description:
@@ -976,10 +976,10 @@ packages:
     dependency: transitive
     description:
       name: pub_updater
-      sha256: "05f8e129c6f58878cf2995ca206378e1c15f668483e4ab75de028157cf02d049"
+      sha256: "00e42b515aa046b171d05bbe2dd566c0feaab7808c33c5bacb5beff93cf16561"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.2"
+    version: "0.2.3"
   pubspec_parse:
     dependency: transitive
     description:
@@ -1165,26 +1165,26 @@ packages:
     dependency: transitive
     description:
       name: test
-      sha256: "03dbf5cb87d56394ffe951eef93893b43624240aa8dd16f6f063ee01fcb22aee"
+      sha256: a5fcd2d25eeadbb6589e80198a47d6a464ba3e2049da473943b8af9797900c2d
       url: "https://pub.dev"
     source: hosted
-    version: "1.21.7"
+    version: "1.22.0"
   test_api:
     dependency: "direct overridden"
     description:
       name: test_api
-      sha256: c9aba3b3dbfe8878845dfab5fa096eb8de7b62231baeeb1cea8e3ee81ca8c6d8
+      sha256: ad540f65f92caa91bf21dfc8ffb8c589d6e4dc0c2267818b4cc2792857706206
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.15"
+    version: "0.4.16"
   test_core:
     dependency: transitive
     description:
       name: test_core
-      sha256: f99f8a4c093d6c5adbe100494ccc259ec69c8f86eb769d661e5af18f9b6b9375
+      sha256: "0ef9755ec6d746951ba0aabe62f874b707690b5ede0fecc818b138fcc9b14888"
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.19"
+    version: "0.4.20"
   timing:
     dependency: transitive
     description:
@@ -1213,10 +1213,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "2514dc16ac169adf55159268d7bf70317d9f2fc9ef5bb02020bb7ad710c0aeb4"
+      sha256: "6f91d30ce9060c204b2dbe728adb300750fa4b228e8f7ed1b961aa1ceb728799"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.21"
+    version: "6.0.22"
   url_launcher_ios:
     dependency: transitive
     description:
@@ -1333,10 +1333,10 @@ packages:
     dependency: transitive
     description:
       name: win32
-      sha256: d13ac5deea7327f027b3b97ee19ee210f68256ecf3f1a304bcfb992ee947637c
+      sha256: ca121dbbadb3e43b449053feab0cdf3f2bff93b107cacf0290e3d29f717374b6
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.1"
+    version: "3.1.2"
   window_size:
     dependency: "direct main"
     description:

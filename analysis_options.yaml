@@ -80,8 +80,12 @@ dart_code_metrics:
     - avoid-redundant-async:
         exclude:
           - test/**
+    - prefer-static-class:
+        exclude:
+          - test/**
+          - lib/**/constants.dart
+          - integration_test/**
     - always-remove-listener: true
-    # - arguments-ordering: true # Until DCM 5.1+
     - avoid-banned-imports: true
     - avoid-border-all: true
     - avoid-cascade-after-if-null: true
@@ -102,7 +106,7 @@ dart_code_metrics:
     - avoid-unrelated-type-assertions: true
     - avoid-unused-parameters: true
     - avoid-wrapping-in-padding: true
-    - ban-name: true
+    - ban-name: false # Until https://github.com/dart-code-checker/dart-code-metrics/issues/1087
     - binary-expression-operand-order: true
     - check-for-equals-in-render-object-setters: true
     - consistent-update-render-object: true

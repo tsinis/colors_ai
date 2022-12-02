@@ -2,6 +2,7 @@ import 'package:color_converter/color_converter.dart';
 
 import '../models/color_space.dart';
 
+// ignore: prefer-static-class, doesn't make sense for a single method.
 String colorSpaceConverter(ColorSpace space, String hex) {
   switch (space) {
     case ColorSpace.rgb:
