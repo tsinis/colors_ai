@@ -33,6 +33,7 @@ class SnackbarBloc extends StreamBloc<SnackbarEvent, SnackbarState> {
           yield const SnackbarState.serverStatusCheck();
         }
       },
+      // ignore: avoid-redundant-async, it's asynchronous generator not Future.
       urlOpened: (_) async* {
         const SnackbarState.initial();
       },

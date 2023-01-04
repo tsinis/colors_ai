@@ -41,7 +41,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
           final bool haveSelection = state.selections.isNotEmpty;
           if (state is RemoveFavoritesOpenDialogInitial) {
             SchedulerBinding.instance.addPostFrameCallback(
-              // ignore: prefer-async-await, avoid-passing-async-when-sync-expected, for readability.
+              // ignore: prefer-async-await, avoid-redundant-async, avoid-passing-async-when-sync-expected, for readability.
               (_) async => showModal<bool>(
                 context: dialogContext,
                 configuration: const FadeScaleTransitionConfiguration(
