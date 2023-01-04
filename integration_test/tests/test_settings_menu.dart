@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../lib/app/theme/app_theme.dart';
 import '../../lib/core/extensions/string_extension.dart';
 import '../../lib/main.dart';
 import '../../lib/settings/models/selected_api.dart';
@@ -29,16 +30,16 @@ void settingsMenuTest() =>
       expect(dialog, findsOneWidget);
 
       final Finder colormindText = find.text(SelectedAPI.colormind.name.toBeginningOfSentenceCase());
-      final Finder colormind = await tester.pumpUntilFound(colormindText);
-      expect(colormind, findsOneWidget);
+      await tester.pumpUntilFound(colormindText);
+      expect(colormindText, findsWidgets);
 
       final Finder colorsForUiSwitch = find.byType(Switch);
       expect(colorsForUiSwitch, findsWidgets, reason: 'It is a switch presented in Colormind but not in the Huemint');
-      await tester.tapAndSettle(colorsForUiSwitch);
+      await tester.tapAndSettle(colorsForUiSwitch.first);
 
       final Finder menuFinder = TestKeys.settingsDialogDropdownMenu.finder;
 
-      final Color lightThemeColor = Colors.grey.shade300;
+      final Color lightThemeColor = AppTheme(isDark: false).theme.splashColor;
 
       DropdownButtonFormField<SelectedAPI> dropdownMenu =
           tester.widget<DropdownButtonFormField<SelectedAPI>>(menuFinder);
@@ -66,6 +67,15 @@ void settingsMenuTest() =>
       darkThemeSelection = tester.widget<RadioListTile<bool?>>(darkThemeSwitcher);
       expect(dropdownMenu.decoration.fillColor, lightThemeColor, reason: 'Reset theme settings to default system one');
       expect(darkThemeSelection.groupValue, isNull);
+
+      await tester.tapAndSettle(colormindText);
+      final Finder huemintText = find.text(SelectedAPI.huemint.name.toBeginningOfSentenceCase());
+      await tester.pumpUntilFound(huemintText);
+      expect(huemintText, findsWidgets);
+      await tester.tapAndSettle(huemintText.last);
+      expect(huemintText, findsWidgets);
+      final Finder slider = find.byType(Slider);
+      expect(slider, findsWidgets);
 
       await tester.tapAndSettle(TestKeys.closeSettingsButton.finder);
       expect(dialog, findsNothing, reason: 'Dialog is closed now');

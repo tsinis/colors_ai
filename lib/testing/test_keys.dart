@@ -32,5 +32,11 @@ class TestKeys {
   static const Key generateTabButton = Key('generateTabButton');
   static const Key favoritesTabButton = Key('favoritesTabButton');
 
+  // Share tabs related keys.
+  static const Key copyUrlButton = Key('copyUrlButton');
+  static const Key shareUrlButton = Key('shareUrlButton');
+  static const Key copyFileButton = Key('copyFileButton');
+  static const Key shareFileButton = Key('shareFileButton');
+
   const TestKeys._();
 }

@@ -6,6 +6,7 @@ import 'package:platform_info/platform_info.dart';
 import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
+import '../../../../testing/test_keys.dart';
 import '../../../blocs/share_bloc.dart';
 import '../../../services/url_providers/colors_url_provider.dart';
 import 'share_section_interface.dart';
@@ -92,6 +93,7 @@ class UrlShareSection extends ShareSectionInterface {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
+                    key: TestKeys.copyUrlButton,
                     icon: const Icon(Icons.content_copy_outlined, size: 20),
                     label: Text(context.l10n.copyUrlButtonLabel),
                     onPressed: () => _onPressed(context),
@@ -100,7 +102,8 @@ class UrlShareSection extends ShareSectionInterface {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElevatedButton.icon(
-                    icon: const Icon(Icons.link, size: 20),
+                    key: TestKeys.shareUrlButton,
+                    icon: const Icon(Icons.link_outlined, size: 20),
                     label: Text(context.l10n.shareUrlButtonLabel),
                     onPressed: _isNotSupportedByOS
                         ? null

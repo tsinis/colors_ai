@@ -1,4 +1,4 @@
-// Ignored because JSON can have dynamic content
+// Ignored because JSON can have dynamic content.
 // ignore_for_file: avoid-dynamic
 import 'dart:convert';
 import 'dart:ui';
@@ -16,11 +16,11 @@ class HuemintColors extends ColorsFromAPI {
   const HuemintColors({List<Color> colors = const <Color>[]}) : super(colors);
 
   factory HuemintColors.fromJson(Map<String, dynamic> json) {
-    // Ignored because JSON can have dynamic content
+    // Ignored because JSON can have dynamic content.
     // ignore: avoid_dynamic_calls
     final List<dynamic> stringColors = json[jsonKey].first[paletteKey] as List<dynamic>;
     final Iterable<Color?> maybeColors =
-        // Ignored because JSON can have dynamic content
+        // Ignored because JSON can have dynamic content.
         // ignore: avoid_annotating_with_dynamic
         stringColors.map((dynamic hex) => colorFromHex(hex.toString(), enableAlpha: false));
 

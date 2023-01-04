@@ -1,5 +1,6 @@
-/// ignore_for_file: avoid-throw-in-catch-block, to match original bloc_test implementation.
 import 'dart:async';
+
+/// ignore_for_file: avoid-throw-in-catch-block, to match original bloc_test implementation.
 
 import 'package:bloc/bloc.dart';
 import 'package:diff_match_patch/diff_match_patch.dart';

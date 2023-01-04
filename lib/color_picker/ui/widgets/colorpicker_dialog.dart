@@ -63,6 +63,9 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
       hideErrorMessage();
     } else {
       setColorFromHex();
+      if (!mounted) {
+        return;
+      }
       setState(() => hasError = true);
       Future<void>.delayed(const Duration(seconds: 4), setColorAndHideMessage);
     }

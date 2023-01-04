@@ -80,12 +80,17 @@ dart_code_metrics:
     - avoid-redundant-async:
         exclude:
           - test/**
+    - prefer-static-class:
+        exclude:
+          - test/**
+          - lib/**/constants.dart
+          - integration_test/**
     - always-remove-listener: true
-    # - arguments-ordering: true # Until DCM 5.1+
     - avoid-banned-imports: true
     - avoid-border-all: true
     - avoid-cascade-after-if-null: true
     - avoid-collection-methods-with-unrelated-types: true
+    - avoid-double-slash-imports: true
     - avoid-duplicate-exports: true
     - avoid-dynamic: true
     - avoid-expanded-as-spacer: true
@@ -96,6 +101,7 @@ dart_code_metrics:
     - avoid-returning-widgets: true
     - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
+    - avoid-unnecessary-conditionals: true
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
     - avoid-unnecessary-type-casts: true
@@ -132,8 +138,10 @@ dart_code_metrics:
     - prefer-moving-to-variable: true
     - prefer-single-widget-per-file: true
     - prefer-trailing-comma: true
+    - prefer-using-list-view: true
     - provide-correct-intl-args: true
     - tag-name: true
+    - use-setstate-synchronously: true
 
 linter:
   rules:

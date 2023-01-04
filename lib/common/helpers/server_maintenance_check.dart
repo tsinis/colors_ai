@@ -1,5 +1,6 @@
 import 'package:clock/clock.dart';
 
+// ignore: prefer-static-class, will be removed in the future.
 bool serverMaintenanceNow([DateTime? time]) {
   final DateTime utc = (time ?? clock.now()).toUtc();
 
