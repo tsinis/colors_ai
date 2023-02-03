@@ -25,7 +25,7 @@ dependencies:
     sdk: flutter
   flutter_secure_storage: ^7.0.1
   freezed_annotation: ^2.2.0 # for Freezed
-  google_fonts: ^4.0.1 # From Google
+  google_fonts: ^4.0.3 # From Google
   http: ^0.13.5 # From Google
   hydrated_bloc: ^9.0.0
   intl: ^0.17.0 # From Google
