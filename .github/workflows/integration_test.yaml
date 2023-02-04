@@ -39,7 +39,6 @@ jobs:
         uses: subosito/flutter-action@v2.8.0
         with:
           cache: true
-          channel: 'beta'
 
       - name: Install app dependencies
         run: flutter pub get

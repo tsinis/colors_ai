@@ -34,7 +34,7 @@ dependencies:
   package_info_plus: ^3.0.2 # From Flutter Community (former Google)
   path_provider: ^2.0.12 # From Google
   platform_info: ^3.2.0 # Contributor
-  printing: ^5.9.3
+  printing: ^5.10.1
   share_plus: ^6.3.0 # From Flutter Community (former Google)
   simple_animations: ^5.0.0+3
   stream_bloc: ^0.5.3
@@ -60,9 +60,6 @@ dev_dependencies:
   linter: ^1.30.0 # From Google
   mockito: ^5.3.2 # From Google
   msix: 2.7.3 # Flutter Favorite (generating from SVG)
-
-dependency_overrides:
-  test_api: ^0.4.12 # Until next minor/major Flutter version bump.
 
 flutter:
   uses-material-design: true

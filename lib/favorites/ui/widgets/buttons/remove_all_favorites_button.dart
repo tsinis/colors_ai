@@ -85,30 +85,32 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
           }
 
           return BlocBuilder<FavoritesBloc, FavoritesState>(
-            builder: (_, FavoritesState favState) => IconButton(
-              tooltip:
-                  haveSelection ? context.l10n.removeSomeTitle(state.selections.length) : context.l10n.removeAllTitle,
-              icon: Stack(
-                children: <Widget>[
-                  if (haveSelection)
-                    FadeTransition(
-                      opacity: animation,
-                      child: Icon(
-                        MdiIcons.bookmarkRemoveOutline,
-                        size: 25,
-                        color: context.theme.colorScheme.error,
-                      ),
-                    )
-                  else
-                    const Icon(MdiIcons.bookmarkRemoveOutline, size: 25),
-                  const Icon(MdiIcons.bookmarkOutline, size: 25),
-                ],
-              ),
-              onPressed: favState is FavoritesLoadSuccess
-                  ? () => BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(
-                        const RemoveFavoritesShowed(),
+            builder: (_, FavoritesState favState) => RepaintBoundary(
+              child: IconButton(
+                tooltip:
+                    haveSelection ? context.l10n.removeSomeTitle(state.selections.length) : context.l10n.removeAllTitle,
+                icon: Stack(
+                  children: <Widget>[
+                    if (haveSelection)
+                      FadeTransition(
+                        opacity: animation,
+                        child: Icon(
+                          MdiIcons.bookmarkRemoveOutline,
+                          size: 25,
+                          color: context.theme.colorScheme.error,
+                        ),
                       )
-                  : null,
+                    else
+                      const Icon(MdiIcons.bookmarkRemoveOutline, size: 25),
+                    const Icon(MdiIcons.bookmarkOutline, size: 25),
+                  ],
+                ),
+                onPressed: favState is FavoritesLoadSuccess
+                    ? () => BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(
+                          const RemoveFavoritesShowed(),
+                        )
+                    : null,
+              ),
             ),
           );
         },

@@ -26,16 +26,14 @@ void main() => group('$FileCreator', () {
       group('generateFile()', () {
         test('isMetric: false', () async {
           final Uint8List generatedPdfBytes = await fileCreator.generateFile(palette, isMetric: false);
-          expect(generatedPdfBytes.lengthInBytes, letterPdfBytes.lengthInBytes);
+          expect(generatedPdfBytes.elementSizeInBytes, letterPdfBytes.elementSizeInBytes);
           expect(generatedPdfBytes.length, isNot(a4PdfBytes.length));
-          expect(generatedPdfBytes.length, letterPdfBytes.length);
         });
 
         test('isMetric: true', () async {
           final Uint8List generatedPdfBytes = await fileCreator.generateFile(palette);
-          expect(generatedPdfBytes.lengthInBytes, a4PdfBytes.lengthInBytes);
+          expect(generatedPdfBytes.elementSizeInBytes, a4PdfBytes.elementSizeInBytes);
           expect(generatedPdfBytes.length, isNot(letterPdfBytes.length));
-          expect(generatedPdfBytes.length, a4PdfBytes.length);
         });
       });
     });

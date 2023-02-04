@@ -9,7 +9,7 @@ import audioplayers_darwin
 import file_selector_macos
 import flutter_secure_storage_macos
 import package_info_plus
-import path_provider_macos
+import path_provider_foundation
 import printing
 import share_plus
 import url_launcher_macos

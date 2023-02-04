@@ -81,13 +81,13 @@ class OnboardingOverlay extends StatelessWidget {
                 child: SizedBox(
                   width: size.maxWidth * 0.66,
                   height: size.maxHeight / (length - 2),
-                  child: Transform.scale(scale: 0.66, child: const PullToRefreshAnimation()),
+                  child: Transform.scale(scale: 0.66, child: const RepaintBoundary(child: PullToRefreshAnimation())),
                 ),
               )
             else
               Align(
                 alignment: Alignment(0, isPortrait ? 0.7 : 0),
-                child: const SpaceBarAnimation(Colors.white),
+                child: const RepaintBoundary(child: SpaceBarAnimation(Colors.white)),
               ),
             Align(
               alignment: Alignment.bottomLeft,
