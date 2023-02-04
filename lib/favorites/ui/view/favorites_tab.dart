@@ -31,7 +31,7 @@ class FavoritesTab extends StatelessWidget {
                         child: FractionallySizedBox(
                           widthFactor: 0.6,
                           heightFactor: 0.7,
-                          child: NoFavorites(),
+                          child: RepaintBoundary(child: NoFavorites()),
                         ),
                       ),
                       Padding(

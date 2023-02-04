@@ -136,6 +136,7 @@ dart_code_metrics:
     - prefer-last: true
     - prefer-match-file-name: true
     - prefer-moving-to-variable: true
+    - prefer-provide-intl-description: true
     - prefer-single-widget-per-file: true
     - prefer-trailing-comma: true
     - prefer-using-list-view: true

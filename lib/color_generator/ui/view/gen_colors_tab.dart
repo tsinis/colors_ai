@@ -30,7 +30,13 @@ class GenColorsTab extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                const Flexible(child: FractionallySizedBox(widthFactor: 0.8, heightFactor: 0.8, child: NoNetwork())),
+                const Flexible(
+                  child: FractionallySizedBox(
+                    widthFactor: 0.8,
+                    heightFactor: 0.8,
+                    child: RepaintBoundary(child: NoNetwork()),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Text.rich(
