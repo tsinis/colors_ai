@@ -49,4 +49,7 @@ class FakeStorage<T> implements Storage {
     _writeCount++;
     map[key] = value;
   }
+
+  @override
+  Future<void> close() => clear();
 }
