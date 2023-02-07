@@ -19,7 +19,7 @@ dependencies:
   file_selector: ^0.9.2+2 # From Google
   flutter: # From Google
     sdk: flutter
-  flutter_bloc: ^8.1.1  # Flutter Favorite
+  flutter_bloc: ^8.1.2  # Flutter Favorite
   flutter_colorpicker: ^1.0.3 # Contributor
   flutter_localizations: # From Google
     sdk: flutter
