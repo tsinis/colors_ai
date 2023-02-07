@@ -27,7 +27,7 @@ dependencies:
   freezed_annotation: ^2.2.0 # for Freezed
   google_fonts: ^4.0.3 # From Google
   http: ^0.13.5 # From Google
-  hydrated_bloc: ^9.0.0
+  hydrated_bloc: ^9.1.0
   intl: ^0.17.0 # From Google
   json_annotation: ^4.8.0 # From Google
   material_design_icons_flutter: ^6.0.7096
