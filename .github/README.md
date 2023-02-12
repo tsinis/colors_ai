@@ -13,7 +13,7 @@
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/colors-ai)
 [<img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Get_it_from_Microsoft_Badge.svg" width="155" alt="Get it from Microsoft">](https://apps.microsoft.com/store/detail/colors-ai/9NJVF29FV74V)
 
-Or download signed binaries for **all mainstream platforms** in the [Releases](https://github.com/tsinis/colors_ai/releases) section of this repository.
+Or download signed binaries for **all mainstream platforms** in the [Releases](https://github.com/tsinis/colors_ai/releases) section of this repository. The APK is also available through the [IzzyOnDroid repo](https://apt.izzysoft.de/fdroid/index) in a [F-Droid](https://f-droid.org/) client [here](https://apt.izzysoft.de/fdroid/index/apk/is.tsin.colors_ai.colors_ai).
 
 # Colors AI 🎨🤖
 
