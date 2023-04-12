@@ -63,28 +63,28 @@ packages:
       name: audioplayers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.0.1"
   audioplayers_android:
     dependency: transitive
     description:
       name: audioplayers_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   audioplayers_darwin:
     dependency: transitive
     description:
       name: audioplayers_darwin
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "4.0.1"
   audioplayers_linux:
     dependency: transitive
     description:
       name: audioplayers_linux
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   audioplayers_platform_interface:
     dependency: transitive
     description:
@@ -98,14 +98,14 @@ packages:
       name: audioplayers_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "3.0.1"
   audioplayers_windows:
     dependency: transitive
     description:
       name: audioplayers_windows
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   barcode:
     dependency: transitive
     description:
