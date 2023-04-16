@@ -13,13 +13,13 @@ environment:
 
 dependencies:
   animations: ^2.0.7 # From Google
-  audioplayers: ^4.0.0
+  audioplayers: ^4.0.1
   color_converter: ^0.2.1
   equatable: ^2.0.5 # From Flutter Community
-  file_selector: ^0.9.2+2 # From Google
+  file_selector: ^0.9.2+4 # From Google
   flutter: # From Google
     sdk: flutter
-  flutter_bloc: ^8.1.2  # Flutter Favorite
+  flutter_bloc: ^8.1.2  # Flutter Favorite, Contributor
   flutter_colorpicker: ^1.0.3 # Contributor
   flutter_localizations: # From Google
     sdk: flutter
@@ -31,7 +31,7 @@ dependencies:
   intl: ^0.17.0 # From Google
   json_annotation: ^4.8.0 # From Google
   material_design_icons_flutter: ^6.0.7096
-  package_info_plus: ^3.0.3 # From Flutter Community (former Google)
+  package_info_plus: ^3.1.0 # From Flutter Community (former Google)
   path_provider: ^2.0.14 # From Google
   platform_info: ^3.2.0 # Contributor
   printing: ^5.10.3
