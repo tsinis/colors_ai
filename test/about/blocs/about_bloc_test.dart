@@ -24,7 +24,6 @@ Future<void> main() async {
       version: mockVersion,
       buildNumber: mockVersion,
       buildSignature: mockVersion,
-      installerStore: null,
     ),
   );
 
