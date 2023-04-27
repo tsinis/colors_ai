@@ -31,7 +31,7 @@ dependencies:
   intl: ^0.17.0 # From Google
   json_annotation: ^4.8.0 # From Google
   material_design_icons_flutter: ^6.0.7096
-  package_info_plus: ^3.1.1 # From Flutter Community (former Google)
+  package_info_plus: ^3.1.2 # From Flutter Community (former Google)
   path_provider: ^2.0.14 # From Google
   platform_info: ^3.2.0 # Contributor
   printing: ^5.10.3
