@@ -280,7 +280,7 @@ packages:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.7.2"
+    version: "5.7.3"
   dart_code_metrics_presets:
     dependency: transitive
     description:
@@ -868,7 +868,7 @@ packages:
       name: pub_updater
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.4"
+    version: "0.3.0"
   pubspec_parse:
     dependency: transitive
     description:
