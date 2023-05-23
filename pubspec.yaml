@@ -28,14 +28,14 @@ dependencies:
   google_fonts: ^4.0.4 # From Google
   http: ^0.13.6 # From Google
   hydrated_bloc: ^9.1.0
-  intl: ^0.17.0 # From Google
+  intl: ^0.18.0 # From Google
   json_annotation: ^4.8.1 # From Google
   material_design_icons_flutter: ^6.0.7096
   package_info_plus: ^3.1.2 # From Flutter Community (former Google)
   path_provider: ^2.0.14 # From Google
   platform_info: ^3.2.0 # Contributor
   printing: ^5.10.3
-  share_plus: ^6.3.4 # From Flutter Community (former Google)
+  share_plus: ^7.0.1 # From Flutter Community (former Google)
   simple_animations: ^5.0.0+3
   stream_bloc: ^0.5.3
   url_launcher: ^6.1.11 # From Google
