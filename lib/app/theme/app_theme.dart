@@ -1,5 +1,6 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart' show SchedulerBinding;
 
 class AppTheme {
   final bool? isDark;
@@ -120,7 +121,7 @@ class AppTheme {
   );
 
   ThemeData get theme {
-    final bool isDarkTheme = isDark ?? SchedulerBinding.instance.window.platformBrightness == Brightness.dark;
+    final bool isDarkTheme = isDark ?? PlatformDispatcher.instance.platformBrightness == Brightness.dark;
 
     return isDarkTheme ? _darkTheme : _lightTheme;
   }

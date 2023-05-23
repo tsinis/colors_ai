@@ -182,7 +182,7 @@ class SettingsDialog extends StatelessWidget {
             ),
             TextButton(
               key: TestKeys.closeSettingsButton,
-              onPressed: context.closeDialog,
+              onPressed: context.closeDialog<void>,
               child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
             ),
           ],

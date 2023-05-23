@@ -10,7 +10,10 @@ void main() => group('$ClipBoard', () {
 
       setUpAll(TestWidgetsFlutterBinding.ensureInitialized);
 
-      setUp(() => SystemChannels.platform.setMockMethodCallHandler(ClipboardMock().handleMethodCall));
+      setUp(
+        () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(SystemChannels.platform, ClipboardMock().handleMethodCall),
+      );
 
       group('copyTextData and data', () {
         test('valid data', () async {
@@ -22,7 +25,7 @@ void main() => group('$ClipBoard', () {
         test('empty data', () async {
           await clipboard.copyTextData('');
           final String? clipboardData = await clipboard.data;
-          expect(clipboardData, null);
+          expect(clipboardData, isNull);
         });
       });
 
