@@ -9,7 +9,13 @@ class ClipBoard {
   final String _dataFormat;
 
   // TODO: Fix on Android with new Kotlin version.
-  Future<String?> get data async => (await Clipboard.getData(_dataFormat))?.text;
+  Future<String?> get data async {
+    try {
+      return (await Clipboard.getData(_dataFormat))?.text;
+    } catch (_) {
+      return null;
+    }
+  }
 
   const ClipBoard({String dataFormat = Clipboard.kTextPlain}) : _dataFormat = dataFormat;
 

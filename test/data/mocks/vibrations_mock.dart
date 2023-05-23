@@ -13,7 +13,8 @@ class VibrationsMock {
   int get timesVibrated => _callsCount();
 
   VibrationsMock({this.hasVibrator = true, this.hasCustomVibrationsSupport = false}) : _calls = <String>[] {
-    const MethodChannel('vibration').setMockMethodCallHandler(_handleMethodCall);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(const MethodChannel('vibration'), _handleMethodCall);
   }
 
   int _callsCount([String methodName = vibrateCall]) => _calls.where((String call) => call == methodName).length;

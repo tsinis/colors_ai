@@ -24,7 +24,8 @@ void main() => group('$SoundsPlayer', () {
       setUpAll(() {
         TestWidgetsFlutterBinding.ensureInitialized();
         PathProviderPlatform.instance = FakePathProviderPlatform(temporaryPath: fakeStorageDir);
-        channel.setMockMethodCallHandler((MethodCall call) async => calls.add(call));
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+            .setMockMethodCallHandler(channel, (MethodCall call) async => calls.add(call));
         player = SoundsPlayer();
       });
 
