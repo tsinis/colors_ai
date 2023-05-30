@@ -1,55 +1,42 @@
+// ignore_for_file: missing-test-assertion
+import 'package:audioplayers/audioplayers.dart';
 import 'package:colors_ai/sound/services/sounds_player.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:path_provider_platform_interface/path_provider_platform_interface.dart';
+import 'package:mockito/mockito.dart';
 
-import '../../data/fakes/constants.dart';
-import '../../data/fakes/fake_path_provider_platform.dart';
 import '../../data/helpers/utils.dart';
+import '../../data/mocks/generated.mocks.dart';
 
 void main() => group('$SoundsPlayer', () {
       const double volume = 0.5;
       const String asset = 'sounds/ui_lock.mp3';
-      // String setPlayerMode = 'setPlayerMode';  TODO: Turn on after fix.
-      const String setVolumeMethod = 'setVolume';
-      const Set<String> expectedMethodNames = <String>{'setSourceUrl', 'resume'};
+      final MockAudioPlayer player = MockAudioPlayer();
+      late SoundsPlayer sounds;
 
-      const MethodChannel channel = MethodChannel('xyz.luan/audioplayers');
-      final List<MethodCall> calls = <MethodCall>[];
-
-      late SoundsPlayer player;
-
-      Set<String> methodNames() => calls.map((MethodCall call) => call.method).toSet();
-
-      setUpAll(() {
-        TestWidgetsFlutterBinding.ensureInitialized();
-        PathProviderPlatform.instance = FakePathProviderPlatform(temporaryPath: fakeStorageDir);
-        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-            .setMockMethodCallHandler(channel, (MethodCall call) async => calls.add(call));
-        player = SoundsPlayer();
+      setUp(() async {
+        reset(player);
+        when<AudioCache>(player.audioCache).thenAnswer((_) => AudioCache());
+        sounds = SoundsPlayer(player);
       });
 
-      setUp(calls.clear);
-
       test('playSound() with null volume and with cache', () async {
-        await player.playSound(asset, null, cachedFileNames: <String>[]);
-        expect(calls.isEmpty, true);
+        await sounds.playSound(asset, null, cachedFileNames: <String>[]);
+        verifyNever(player.setVolume(volume));
       });
 
       test('playSound() with non-null volume and with cache', () async {
-        await player.playSound(asset, volume, cachedFileNames: <String>[]);
-        expect(calls.length, 1);
-        expect(calls.first.method, setVolumeMethod);
+        await sounds.playSound(asset, volume, cachedFileNames: <String>[]);
+        verify(player.setVolume(volume)).called(1);
       });
 
       test('playSound() with null volume and without cache', () async {
-        await player.playSound(asset, null);
-        expect(methodNames(), <String>{...expectedMethodNames});
+        await sounds.playSound(asset, null);
+        verify(player.play(any)).called(1);
       });
 
       test('playSound() with non-null volume and without cache', () async {
-        await player.playSound(asset, volume);
-        expect(methodNames(), <String>{setVolumeMethod, ...expectedMethodNames});
+        await sounds.playSound(asset, volume);
+        verify(player.play(any, volume: volume)).called(1);
       });
 
       tearDownAll(deleteFakeStorageDir);
