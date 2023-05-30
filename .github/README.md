@@ -1,4 +1,4 @@
-[![Codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg?token=HXC806IIKE)](https://codecov.io/gh/tsinis/colors_ai)
+[![Codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg)](https://codecov.io/gh/tsinis/colors_ai)
 [![Tests](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml/badge.svg)](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml)
 [![CodeFactor](https://www.codefactor.io/repository/github/tsinis/colors_ai/badge)](https://www.codefactor.io/repository/github/tsinis/colors_ai)
 [![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&label=colors-ai&url=https://play.cuzi.workers.dev/play?i=is.tsin.colors_ai.colors_ai)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
