@@ -29,7 +29,7 @@ dependencies:
   hydrated_bloc: ^9.1.1
   json_annotation: ^4.8.1 # From Google
   material_design_icons_flutter: ^6.0.7096
-  package_info_plus: ^4.0.1 # From Flutter Community (former Google)
+  package_info_plus: ^4.0.2 # From Flutter Community (former Google)
   path_provider: ^2.0.15 # From Google
   platform_info: ^4.0.0 # Contributor
   printing: ^5.10.4
