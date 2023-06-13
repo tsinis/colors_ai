@@ -101,8 +101,8 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
                         ),
                       )
                     else
-                      const Icon(MdiIcons.bookmarkRemoveOutline, size: 25),
-                    const Icon(MdiIcons.bookmarkOutline, size: 25),
+                      Icon(MdiIcons.bookmarkRemoveOutline, size: 25),
+                    Icon(MdiIcons.bookmarkOutline, size: 25),
                   ],
                 ),
                 onPressed: favState is FavoritesLoadSuccess
