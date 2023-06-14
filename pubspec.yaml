@@ -34,7 +34,7 @@ dependencies:
   platform_info: ^4.0.0 # Contributor
   printing: ^5.11.0
   share_plus: ^7.0.2 # From Flutter Community (former Google)
-  simple_animations: ^5.0.1
+  simple_animations: ^5.0.2
   stream_bloc: ^0.5.3
   url_launcher: ^6.1.11 # From Google
   vibration: ^1.7.7
