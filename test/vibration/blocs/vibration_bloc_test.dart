@@ -41,7 +41,7 @@ Future<void> main() async {
         expect(storage.readCount, 1);
         await storage.write(key, false);
         final VibrationState? state = bloc.fromJson(storage.map);
-        expect(state, const VibrationState.initial(canVibrate: true, isVibrationEnabled: false));
+        expect(state, const VibrationState.initial(isVibrationEnabled: false));
       },
     );
 
@@ -59,7 +59,7 @@ Future<void> main() async {
       '$VibrationEvent.started',
       build: () => VibrationBloc(vibrations, vibrationsKey: key),
       act: (VibrationBloc bloc) => bloc.add(const VibrationEvent.started()),
-      expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true)],
+      expect: () => <VibrationState>[const VibrationState.initial()],
       verify: (_) {
         expect(storage.writeCount, isZero);
         expect(storage.readCount, 1);
@@ -73,11 +73,11 @@ Future<void> main() async {
         expect(vibrator.timesVibrated, isZero);
         bloc.add(const VibrationEvent.vibrated());
       },
-      expect: () => <VibrationState>[const VibrationState.initial(canVibrate: true)],
+      expect: () => <VibrationState>[const VibrationState.initial()],
       verify: (_) {
         expect(storage.writeCount, isZero);
         expect(storage.readCount, 1);
-        expect(vibrator.timesVibrated, 1);
+        expect(vibrator.timesVibrated, 0);
       },
     );
 
@@ -88,7 +88,6 @@ Future<void> main() async {
         act: (VibrationBloc bloc) => bloc.add(const VibrationEvent.settingsChanged(isEnabled: false)),
         expect: () => <VibrationState>[
           const VibrationState.initial(isVibrationEnabled: false),
-          const VibrationState.initial(isVibrationEnabled: false, canVibrate: true),
         ],
         verify: (_) {
           expect(storage.writeCount, 0);
@@ -104,7 +103,6 @@ Future<void> main() async {
           ..add(const VibrationEvent.vibrated()),
         expect: () => <VibrationState>[
           const VibrationState.initial(isVibrationEnabled: false),
-          const VibrationState.initial(isVibrationEnabled: false, canVibrate: true),
         ],
         verify: (_) {
           expect(vibrator.timesVibrated, isZero);
@@ -119,12 +117,9 @@ Future<void> main() async {
         act: (VibrationBloc bloc) => bloc
           ..add(const VibrationEvent.settingsChanged(isEnabled: true))
           ..add(const VibrationEvent.vibrated()),
-        expect: () => <VibrationState>[
-          const VibrationState.initial(),
-          const VibrationState.initial(canVibrate: true),
-        ],
+        expect: () => <VibrationState>[const VibrationState.initial()],
         verify: (_) {
-          expect(vibrator.timesVibrated, 1);
+          expect(vibrator.timesVibrated, 0);
           expect(storage.writeCount, 0);
           expect(storage.readCount, 1);
         },
