@@ -129,12 +129,12 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   }
 
   Future<void> _saveFile(File file) async {
-    final String? path = await getSavePath();
-    if (path == null) {
+    final FileSaveLocation? saveLocation = await getSaveLocation();
+    if (saveLocation == null) {
       return;
     }
     final XFile textFile = XFile(file.path, name: _fileName);
-    await textFile.saveTo(path);
+    await textFile.saveTo(saveLocation.path);
   }
 
   FutureOr<bool> _shareBytes(Uint8List bytes) {
