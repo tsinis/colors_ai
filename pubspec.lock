@@ -920,10 +920,10 @@ packages:
     dependency: "direct main"
     description:
       name: platform_info
-      sha256: "0a21e43af133fa7591eb0df7bd1dfb23005d0b7f40a521ecf7f3c176beda7cc8"
+      sha256: "61f3bd25642d6624b3d3111892b517cdb17c37a1837189fee346fcc6dd09b052"
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.0"
+    version: "4.0.2"
   plugin_platform_interface:
     dependency: transitive
     description:
