@@ -46,7 +46,7 @@ dependencies:
 dev_dependencies:
   bloc_test: ^9.1.3
   build_runner: ^2.4.6 # From Google
-  dart_code_metrics: ^5.7.5 # Flutter Favorite
+  dart_code_metrics: ^5.7.6 # Flutter Favorite
   flutter_lints: ^2.0.2 # From Google
   flutter_test: # From Google
     sdk: flutter
