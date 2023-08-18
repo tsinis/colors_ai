@@ -5,7 +5,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     reviewers:
       - "tsinis"
     commit-message:
@@ -17,7 +17,7 @@ updates:
     versioning-strategy: increase
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     reviewers:
       - "tsinis"
     commit-message:
@@ -25,3 +25,14 @@ updates:
       include: "scope"
     ignore:
       - dependency-name: "msix"
+
+  # Maintain dependencies for Android
+  - package-ecosystem: gradle
+    directory: "/android"
+    schedule:
+      interval: "weekly"
+    reviewers:
+      - "tsinis"
+    commit-message:
+      prefix: "chore"
+      include: "scope"
