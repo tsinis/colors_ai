@@ -80,7 +80,7 @@ parts:
 apps:
   colors-ai:
     command: bin/colors_ai
-    extensions: [gnome]
+    extensions: [gnome-3-38]
     plugs:
       - home
       - network
