@@ -1,27 +1,21 @@
 name: colors-ai
-version: 2.2.2
+version: git
 summary: Colors AI
 description: A color scheme generator that uses deep learning from public APIs.
-
+source-code: https://github.com/tsinis/colors_ai
 confinement: strict
 license: MIT
-base: core20
+base: core22
 grade: stable
 compression: lzo
 architectures:
   - build-on: [amd64]
 
 parts:
-  flutter-git:
-    source: https://github.com/flutter/flutter.git
-    source-branch: stable
-    source-depth: 1
-    plugin: nil
-    override-build: |
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/libexec
-      cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
-      ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $SNAPCRAFT_PART_INSTALL/usr/bin/flutter
+  colors-ai:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart
     build-packages:
       - libblkid1
       - libjsoncpp-dev
@@ -41,32 +35,11 @@ parts:
       - zip
     stage-packages:
       - libsecret-1-dev
-    override-prime: ""
-
-  colors-ai:
-    after: [flutter-git]
-    plugin: nil
-    source: .
-    stage-packages:
-      - libsecret-1-dev
-    override-build: |
-      set -eux
-      flutter channel stable
-      flutter upgrade
-      flutter config --enable-linux-desktop
-      ls
-      cd ..
-      ls
-      flutter pub get
-      rm -rf build
-      flutter build linux --release -v
-      mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
-      cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
 
 apps:
   colors-ai:
     command: bin/colors_ai
-    extensions: [gnome-3-38]
+    extensions: [gnome]
     plugs:
       - home
       - network
