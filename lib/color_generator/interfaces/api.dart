@@ -58,10 +58,8 @@ abstract class API<T extends Object> {
       throw const FormatException('Cannot parse host.');
     }
     final String payload = jsonEncode(body);
-    final Client? httpClient = _httpClient;
-    final Response response = httpClient != null
-        ? await httpClient.post(uri, headers: _headers, body: payload).timeout(_timeout)
-        : await post(uri, headers: _headers, body: payload).timeout(_timeout);
+    final Client httpClient = _httpClient ?? Client();
+    final Response response = await httpClient.post(uri, headers: _headers, body: payload).timeout(_timeout);
 
     if (isErrorStatusCode(response.statusCode)) {
       throw Exception('Network error, status Code: ${response.statusCode}.');

@@ -1,4 +1,4 @@
-// Ignored because JSON can have dynamic content
+// Ignored because JSON can have dynamic content.
 // ignore_for_file: avoid-dynamic
 import 'dart:ui' show Color;
 
@@ -11,7 +11,7 @@ class ColormindColorsConverter implements JsonConverter<List<Color>, List<dynami
   const ColormindColorsConverter();
 
   @override
-  // Ignored because JSON can have dynamic content
+  // Ignored because JSON can have dynamic content.
   // ignore: avoid_annotating_with_dynamic
   List<Color> fromJson(List<dynamic> rgbs) => rgbs.map<Color>((dynamic rgb) {
         if (rgb is! List) {

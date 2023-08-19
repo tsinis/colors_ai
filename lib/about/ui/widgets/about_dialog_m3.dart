@@ -68,7 +68,7 @@ class AboutDialogM3 extends StatelessWidget {
           ),
           TextButton(
             key: TestKeys.closeAboutDialogButton,
-            onPressed: context.closeDialog,
+            onPressed: context.closeDialog<void>,
             child: Text(context.materialL10n.closeButtonLabel.toBeginningOfSentenceCase()),
           ),
         ],

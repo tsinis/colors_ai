@@ -2,7 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mdi/mdi.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../app/theme/constants.dart';
 import '../../../../core/extensions/context_extensions.dart';
@@ -41,7 +41,7 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
           final bool haveSelection = state.selections.isNotEmpty;
           if (state is RemoveFavoritesOpenDialogInitial) {
             SchedulerBinding.instance.addPostFrameCallback(
-              // ignore: prefer-async-await, for readability.
+              // ignore: prefer-async-await, avoid-redundant-async, avoid-passing-async-when-sync-expected, for readability.
               (_) async => showModal<bool>(
                 context: dialogContext,
                 configuration: const FadeScaleTransitionConfiguration(
@@ -85,30 +85,32 @@ class _RemoveAllFavoritesButtonState extends State<RemoveAllFavoritesButton> wit
           }
 
           return BlocBuilder<FavoritesBloc, FavoritesState>(
-            builder: (_, FavoritesState favState) => IconButton(
-              tooltip:
-                  haveSelection ? context.l10n.removeSomeTitle(state.selections.length) : context.l10n.removeAllTitle,
-              icon: Stack(
-                children: <Widget>[
-                  if (haveSelection)
-                    FadeTransition(
-                      opacity: animation,
-                      child: Icon(
-                        Mdi.bookmarkRemoveOutline,
-                        size: 25,
-                        color: context.theme.colorScheme.error,
-                      ),
-                    )
-                  else
-                    const Icon(Mdi.bookmarkRemoveOutline, size: 25),
-                  const Icon(Mdi.bookmarkOutline, size: 25),
-                ],
-              ),
-              onPressed: favState is FavoritesLoadSuccess
-                  ? () => BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(
-                        const RemoveFavoritesShowed(),
+            builder: (_, FavoritesState favState) => RepaintBoundary(
+              child: IconButton(
+                tooltip:
+                    haveSelection ? context.l10n.removeSomeTitle(state.selections.length) : context.l10n.removeAllTitle,
+                icon: Stack(
+                  children: <Widget>[
+                    if (haveSelection)
+                      FadeTransition(
+                        opacity: animation,
+                        child: Icon(
+                          MdiIcons.bookmarkRemoveOutline,
+                          size: 25,
+                          color: context.theme.colorScheme.error,
+                        ),
                       )
-                  : null,
+                    else
+                      Icon(MdiIcons.bookmarkRemoveOutline, size: 25),
+                    Icon(MdiIcons.bookmarkOutline, size: 25),
+                  ],
+                ),
+                onPressed: favState is FavoritesLoadSuccess
+                    ? () => BlocProvider.of<RemoveFavoritesBloc>(dialogContext).add(
+                          const RemoveFavoritesShowed(),
+                        )
+                    : null,
+              ),
             ),
           );
         },

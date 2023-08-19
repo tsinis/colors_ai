@@ -62,6 +62,14 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
     }
   }
 
+  void onTap(FileFormat file) {
+    setState(() => isHovering = !isHovering);
+    if (!file.isPrintable) {
+      BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileCopied(widget._palette));
+      BlocProvider.of<SnackbarBloc>(context).add(SnackbarEvent.fileCopied(file.format));
+    }
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<ShareBloc, ShareState>(
         builder: (_, ShareState state) {
@@ -71,13 +79,7 @@ class _FileExportPreviewState extends State<FileExportPreview> with TextBasedFil
           final FileFormat file = selectedFormat ?? FileFormat.values.first;
 
           return GestureDetector(
-            onTap: () {
-              setState(() => isHovering = !isHovering);
-              if (!file.isPrintable) {
-                BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileCopied(widget._palette));
-                BlocProvider.of<SnackbarBloc>(context).add(SnackbarEvent.fileCopied(file.format));
-              }
-            },
+            onTap: () => onTap(file),
             child: MouseRegion(
               onEnter: (_) => setState(() => isHovering = true),
               onExit: (_) => setState(() => isHovering = false),

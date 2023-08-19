@@ -24,7 +24,7 @@ jobs:
 
       - name: Create changelog
         id: build_changelog
-        uses: mikepenz/release-changelog-builder-action@v3.4.0
+        uses: mikepenz/release-changelog-builder-action@v3.7.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -64,10 +64,9 @@ jobs:
         run: sudo apt-get --assume-yes --fix-missing install libgles2-mesa-dev clang cmake unzip curl ninja-build pkg-config libgtk-3-dev liblzma-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libsecret-1-dev libjsoncpp-dev libsecret-1-0
 
       - name: Install Flutter
-        uses: subosito/flutter-action@v2.8.0
+        uses: subosito/flutter-action@v2.10.0
         with:
           cache: true
-          channel: 'beta'
 
       - name: Enable Linux
         run: flutter config --enable-linux-desktop
@@ -92,18 +91,21 @@ jobs:
         run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > android/app/key.jks
 
       - name: Build Android app
-        run: flutter build appbundle --release && flutter build apk --release
+        run: flutter build appbundle --release && flutter build apk --split-per-abi --release
 
-      - name: Rename APK
-        run: mv ./build/app/outputs/flutter-apk/app-release.apk ./build/app/outputs/flutter-apk/colors-ai-android.apk
+      - name: Rename APKs
+        run: |
+          mv ./build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk ./build/app/outputs/flutter-apk/colors-ai-armeabi-v7a.apk
+          mv ./build/app/outputs/flutter-apk/app-arm64-v8a-release.apk ./build/app/outputs/flutter-apk/colors-ai-arm64-v8a.apk
+          mv ./build/app/outputs/flutter-apk/app-x86_64-release.apk ./build/app/outputs/flutter-apk/colors-ai-x86_64.apk
 
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/flutter-apk/colors-ai-android.apk,colors-ai-linux.zip"
+          artifacts: "build/app/outputs/flutter-apk/colors-ai-armeabi-v7a.apk,build/app/outputs/flutter-apk/colors-ai-arm64-v8a.apk,build/app/outputs/flutter-apk/colors-ai-x86_64.apk,colors-ai-linux.zip"
           body: "${{ github.event.head_commit.message }}"
           token: ${{ secrets.GH_TOKEN }}
-          tag: "${{env.RELEASE_TAG}}"
+          tag: "${{ env.RELEASE_TAG }}"
           allowUpdates: true
 
       - name: Save AAB to Artifacts
@@ -128,10 +130,9 @@ jobs:
         uses: WyriHaximus/github-action-get-previous-tag@v1
 
       - name: Install Flutter
-        uses: subosito/flutter-action@v2.8.0
+        uses: subosito/flutter-action@v2.10.0
         with:
           cache: true
-          channel: 'beta'
 
       - name: Enable Windows
         run: flutter config --enable-windows-desktop
@@ -188,10 +189,9 @@ jobs:
         uses: WyriHaximus/github-action-get-previous-tag@v1
 
       - name: Install Flutter
-        uses: subosito/flutter-action@v2.8.0
+        uses: subosito/flutter-action@v2.10.0
         with:
           cache: true
-          channel: 'beta'
 
       - name: Enable macOS
         run: flutter config --enable-macos-desktop

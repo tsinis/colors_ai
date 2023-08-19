@@ -27,6 +27,14 @@ class App extends StatelessWidget {
       : _generator = generator,
         super(key: key);
 
+  String onGenerateTitle(BuildContext context) {
+    BlocProvider.of<AboutBloc>(context).add(
+      AboutEvent.started(currentLocale: Localizations.localeOf(context).languageCode),
+    );
+
+    return kAppName;
+  }
+
   @override
   Widget build(BuildContext context) => BlocBuilder<SettingsBloc, SettingsState>(
         builder: (_, SettingsState settingsState) {
@@ -39,15 +47,9 @@ class App extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             theme: AppTheme(isDark: settingsState.isDarkTheme).theme,
-            onGenerateTitle: (BuildContext context) {
-              BlocProvider.of<AboutBloc>(context).add(
-                AboutEvent.started(currentLocale: Localizations.localeOf(context).languageCode),
-              );
-
-              return kAppName;
-            },
+            onGenerateTitle: onGenerateTitle,
             home: MultiBlocProvider(
-              providers: <BlocProvider<BlocBase<Object>>>[
+              providers: <BlocProvider<StateStreamableSource<Object?>>>[
                 BlocProvider<FabBloc>(create: (_) => FabBloc()),
                 BlocProvider<NavigationBloc>(create: (_) => NavigationBloc()),
                 BlocProvider<RemoveFavoritesBloc>(

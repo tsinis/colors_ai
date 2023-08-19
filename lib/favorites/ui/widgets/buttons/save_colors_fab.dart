@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +62,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
     super.dispose();
   }
 
-  Future<void> onFabPressed() {
+  FutureOr<void> onFabPressed() {
     BlocProvider.of<SoundBloc>(context).add(const SoundEvent.favoritesAdded());
     BlocProvider.of<VibrationBloc>(context).add(const VibrationEvent.vibrated());
     BlocProvider.of<FavoritesBloc>(context)
@@ -85,7 +87,7 @@ class _SaveColorsFABState extends State<SaveColorsFAB> with TickerProviderStateM
             }
 
             return Padding(
-              padding: isExtended ? const EdgeInsets.fromLTRB(16, 8, 16, 0) : const EdgeInsets.only(top: 8),
+              padding: isExtended ? const EdgeInsets.only(left: 16, top: 8, right: 16) : const EdgeInsets.only(top: 8),
               child: BlocBuilder<NavigationBloc, NavigationState>(
                 builder: (_, NavigationState navState) {
                   isGenerateTab = navState == NavigationState.generate;

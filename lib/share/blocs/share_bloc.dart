@@ -46,7 +46,7 @@ class ShareBloc extends HydratedBloc<ShareEvent, ShareState> {
       );
 
   Future<void> _onEvent(ShareEvent event, Emitter<ShareState> emit) async {
-    await event.whenOrNull(started: () async => _share.init());
+    await event.whenOrNull(started: _share.init);
     try {
       event.whenOrNull(
         urlShared: _share.asUrl,

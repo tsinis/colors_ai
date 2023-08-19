@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 import '../repository/about_repository.dart';
 import 'about_event.dart';
@@ -9,13 +9,13 @@ import 'about_state.dart';
 export 'about_event.dart';
 export 'about_state.dart';
 
-class AboutBloc extends Bloc<AboutEvent, AboutState> {
+class AboutBloc extends StreamBloc<AboutEvent, AboutState> {
   final AboutRepository _aboutRepository;
 
   AboutBloc(this._aboutRepository) : super(const AboutState.initial());
 
   @override
-  Stream<AboutState> mapEventToState(AboutEvent event) async* {
+  Stream<AboutState> mapEventToStates(AboutEvent event) async* {
     try {
       await event.when(
         started: _aboutRepository.init,

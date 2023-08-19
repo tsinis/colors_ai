@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stream_bloc/stream_bloc.dart';
 
 import '../../core/services/clipboard.dart';
 import 'colorpicker_event.dart';
@@ -9,7 +9,7 @@ import 'colorpicker_state.dart';
 export 'colorpicker_event.dart';
 export 'colorpicker_state.dart';
 
-class ColorPickerBloc extends Bloc<ColorPickerEvent, ColorPickerState> {
+class ColorPickerBloc extends StreamBloc<ColorPickerEvent, ColorPickerState> {
   final ClipBoard _clipboard;
 
   ColorPickerBloc({ClipBoard clipboard = const ClipBoard()})
@@ -17,7 +17,7 @@ class ColorPickerBloc extends Bloc<ColorPickerEvent, ColorPickerState> {
         super(const ColorPickerState.close());
 
   @override
-  Stream<ColorPickerState> mapEventToState(ColorPickerEvent event) => event.when(
+  Stream<ColorPickerState> mapEventToStates(ColorPickerEvent event) => event.when(
         copied: (Color color) async* {
           try {
             await _clipboard.copyColor(color);

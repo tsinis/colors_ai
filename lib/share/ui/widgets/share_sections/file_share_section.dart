@@ -8,6 +8,7 @@ import '../../../../common/blocs/snackbars/snackbar_bloc.dart';
 import '../../../../core/extensions/context_extensions.dart';
 import '../../../../core/extensions/string_extension.dart';
 import '../../../../core/models/color_palette/color_palette.dart';
+import '../../../../testing/test_keys.dart';
 import '../../../blocs/share_bloc.dart';
 import '../../../extensions/file_format_extension.dart';
 import '../../../models/file_format.dart';
@@ -79,6 +80,7 @@ class FileShareSection extends ShareSectionInterface {
                   BlocProvider.of<ShareBloc>(context).add(ShareEvent.formatSelected(format: newFormat)),
               items: List<DropdownMenuItem<FileFormat>>.generate(
                 FileFormat.values.length,
+                // ignore: prefer-extracting-callbacks, against avoid-returning-widgets rule.
                 (int index) {
                   final FileFormat fileFormat = FileFormat.values.elementAt(index);
 
@@ -100,7 +102,8 @@ class FileShareSection extends ShareSectionInterface {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: OutlinedButton.icon(
-                    icon: const Icon(Icons.content_copy_outlined, size: 20),
+                    key: TestKeys.copyFileButton,
+                    icon: const Icon(Icons.file_copy_outlined, size: 20),
                     label: Text(context.l10n.copyAsFormat(selectedFormat.format)),
                     onPressed: _cannotCopy
                         ? null
@@ -113,7 +116,8 @@ class FileShareSection extends ShareSectionInterface {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: ElevatedButton.icon(
-                    icon: const Icon(Icons.link, size: 20),
+                    key: TestKeys.shareFileButton,
+                    icon: const Icon(Icons.share_outlined, size: 20),
                     label: Text(_shareOrSaveButtonLabel(context)),
                     onPressed: () => BlocProvider.of<ShareBloc>(context).add(ShareEvent.fileShared(palette)),
                   ),

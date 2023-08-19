@@ -1,6 +1,7 @@
 import 'dart:ui' show Color;
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../core/extensions/color_extensions.dart';
 import '../../../core/models/color_palette/color_palette.dart';
@@ -28,6 +29,9 @@ abstract class ColorsUrlProvider with EquatableMixin {
   final String _separateSymbol;
 
   String? get formats => _formats;
+
+  @visibleForTesting
+  String get fullUrl => _fullUrl;
 
   String get name {
     final String? providerName = _providerName;

@@ -1,3 +1,4 @@
+// ignore_for_file: prefer-extracting-callbacks
 import 'dart:async';
 
 import 'package:async/async.dart';
@@ -76,7 +77,7 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     super.dispose();
   }
 
-  Future<void> cancelOperation() => cancelableOperation.cancel();
+  FutureOr<void> cancelOperation() => cancelableOperation.cancel();
 
   void changeHoverIndex([int? index]) => setState(() => hoverIndex = index);
 
@@ -84,15 +85,19 @@ class _ColorsListState extends State<ColorsList> with SingleTickerProviderStateM
     bool toHideFab = true;
     cancelableOperation = CancelableOperation<void>.fromFuture(
       Future<void>.delayed(kLongPressTimeout, () {
-        if (toHideFab) {
-          BlocProvider.of<FabBloc>(context).add(const FabHided());
-        }
+        onOperationCall(toHideFab: toHideFab);
       }),
       onCancel: () {
         BlocProvider.of<FabBloc>(context).add(const FabShowed());
         toHideFab = false;
       },
     );
+  }
+
+  void onOperationCall({required bool toHideFab}) {
+    if (toHideFab) {
+      BlocProvider.of<FabBloc>(context).add(const FabHided());
+    }
   }
 
   @override

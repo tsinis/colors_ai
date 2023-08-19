@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show SchedulerBinding;
@@ -11,18 +13,18 @@ import '../../extensions/context_extensions.dart';
 class OverflowMenu extends StatelessWidget {
   const OverflowMenu({super.key});
 
-  void showDialog(BuildContext context, Widget dialog) {
-    SchedulerBinding.instance.addPostFrameCallback(
-      (_) async => showModal<void>(
-        context: context,
-        builder: (_) => dialog,
-        configuration: const FadeScaleTransitionConfiguration(
-          transitionDuration: kDefaultTransitionDuration,
-          reverseTransitionDuration: kDefaultReverseTransitionDuration,
+  void showDialog(BuildContext context, Widget dialog) => SchedulerBinding.instance.addPostFrameCallback(
+        (_) => unawaited(
+          showModal<void>(
+            context: context,
+            builder: (_) => dialog,
+            configuration: const FadeScaleTransitionConfiguration(
+              transitionDuration: kDefaultTransitionDuration,
+              reverseTransitionDuration: kDefaultReverseTransitionDuration,
+            ),
+          ),
         ),
-      ),
-    );
-  }
+      );
 
   @override
   Widget build(BuildContext context) => PopupMenuButton<void>(

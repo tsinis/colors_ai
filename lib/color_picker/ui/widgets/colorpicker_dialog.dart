@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show TextInputFormatter;
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -53,7 +55,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
     }
   }
 
-  Future<void> validateAndPaste() async {
+  FutureOr<void> validateAndPaste() async {
     final String? clipboardData = await widget.clipboard.data;
     final String? pastedText = HexFormatter.formatCompleteInput(clipboardData);
     if (pastedText != null) {
@@ -61,13 +63,18 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
       hideErrorMessage();
     } else {
       setColorFromHex();
+      if (!mounted) {
+        return;
+      }
       setState(() => hasError = true);
-      Future<void>.delayed(const Duration(seconds: 4), () {
-        if (mounted) {
-          setColorFromHex();
-          hideErrorMessage();
-        }
-      });
+      Future<void>.delayed(const Duration(seconds: 4), setColorAndHideMessage);
+    }
+  }
+
+  void setColorAndHideMessage() {
+    if (mounted) {
+      setColorFromHex();
+      hideErrorMessage();
     }
   }
 
@@ -100,7 +107,7 @@ class _ColorpickerDialogState extends State<ColorpickerDialog> {
             onColorChanged: widget.onColorChanged,
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
+            padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
             child: TextFormField(
               controller: hexController,
               maxLength: 6,

@@ -1,12 +1,13 @@
 import 'dart:ui';
 
-import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/color_generator/blocs/colors_locked/lock_bloc.dart';
 import 'package:colors_ai/color_generator/models/locks/locked_colors.dart';
 import 'package:colors_ai/core/models/color_palette/color_palette.dart';
 import 'package:colors_ai/core/repository/colors_repository.dart';
 import 'package:colors_ai/settings/dao/generator_dao.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import '../../../data/helpers/test_stream_bloc.dart';
 
 void main() => group('$LockBloc', () {
       late LockedColors lockedColors;
@@ -21,13 +22,13 @@ void main() => group('$LockBloc', () {
         );
       });
 
-      blocTest<LockBloc, void>(
+      streamBlocTest<LockBloc, void>(
         'on Initial',
         build: () => LockBloc(colorsRepository),
         expect: () => isEmpty,
       );
 
-      blocTest<LockBloc, LockState>(
+      streamBlocTest<LockBloc, LockState>(
         '$LockStarted',
         build: () => LockBloc(colorsRepository),
         act: (LockBloc bloc) => bloc.add(const LockStarted()),
@@ -42,7 +43,7 @@ void main() => group('$LockBloc', () {
         },
       );
 
-      blocTest<LockBloc, LockState>(
+      streamBlocTest<LockBloc, LockState>(
         '$LockChanged onlyLock false',
         build: () => LockBloc(colorsRepository),
         act: (LockBloc bloc) => bloc.add(const LockChanged(0)),
@@ -50,7 +51,7 @@ void main() => group('$LockBloc', () {
         verify: (LockBloc bloc) => expect(lockedColors.list, <bool>[false, false]),
       );
 
-      blocTest<LockBloc, LockState>(
+      streamBlocTest<LockBloc, LockState>(
         '$LockChanged onlyLock true',
         build: () => LockBloc(colorsRepository),
         act: (LockBloc bloc) => bloc.add(const LockChanged(0, onlyLock: true)),
@@ -58,7 +59,7 @@ void main() => group('$LockBloc', () {
         verify: (LockBloc bloc) => expect(lockedColors.list, <bool>[true, false]),
       );
 
-      blocTest<LockBloc, LockState>(
+      streamBlocTest<LockBloc, LockState>(
         '$LockAllUnlocked',
         build: () => LockBloc(colorsRepository),
         act: (LockBloc bloc) => bloc.add(const LockAllUnlocked()),

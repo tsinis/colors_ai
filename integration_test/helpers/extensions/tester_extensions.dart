@@ -10,18 +10,20 @@ extension TesterExtensions on WidgetTester {
   /// which it tries to redraw the screen, triggers a frame after [pumpDuration]
   /// amount of time and search for the requested object
   /// in widget tree until the timer expires.
-  ///```dart
+  ///
+  /// ```dart
   /// final foundButton = await tester.pumpUntilFound(
   ///   find.byKey(LoginPageKey.loginButton),
   /// );
   /// expect(foundButton, findsOneWidget);
   /// ```
-  /// [finder] is mandatory, it's an object to find which
+  ///
+  /// The [finder] is mandatory, it's an object to find which
   /// is also returned after timeout.
-  /// [timeoutInSeconds] is optional, sets maximum amount of seconds
+  /// The [timeoutInSeconds] is optional, sets maximum amount of seconds
   /// to wait for the object to appear.
-  /// If finder does not find the expected element: throws an [TimeoutException]
-  /// after [timeoutInSeconds] ends. Default to 'false'.
+  /// If [finder] does not find the expected element, it throws an [TimeoutException]
+  /// after [timeoutInSeconds] ends, default to 'false'.
   Future<Finder> pumpUntilFound(
     Finder finder, {
     Duration? pumpDuration = const Duration(milliseconds: 10),
@@ -50,5 +52,16 @@ extension TesterExtensions on WidgetTester {
     timer.cancel();
 
     return finder;
+  }
+
+  /// Taps on [finder] and waits for animation to complete.
+  Future<void> tapAndSettle(
+    Finder finder, {
+    bool warnIfMissed = true,
+    Duration duration = const Duration(milliseconds: 100),
+  }) async {
+    await ensureVisible(finder);
+    await tap(finder, warnIfMissed: warnIfMissed);
+    await pumpAndSettle(duration);
   }
 }

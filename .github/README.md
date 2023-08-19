@@ -1,7 +1,7 @@
-[![Codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg?token=HXC806IIKE)](https://codecov.io/gh/tsinis/colors_ai)
-[![CodeFactor](https://www.codefactor.io/repository/github/tsinis/colors_ai/badge)](https://www.codefactor.io/repository/github/tsinis/colors_ai)
+[![Codecov](https://codecov.io/gh/tsinis/colors_ai/branch/main/graph/badge.svg)](https://codecov.io/gh/tsinis/colors_ai)
 [![Tests](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml/badge.svg)](https://github.com/tsinis/colors_ai/actions/workflows/test.yaml)
-[![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&url=https%3A%2F%2Fplayshields.herokuapp.com%2Fplay%3Fi%3Dis.tsin.colors_ai.colors_ai%26l%3DStore%26m%3D%24version)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
+[![CodeFactor](https://www.codefactor.io/repository/github/tsinis/colors_ai/badge)](https://www.codefactor.io/repository/github/tsinis/colors_ai)
+[![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&label=colors-ai&url=https://play.cuzi.workers.dev/play?i=is.tsin.colors_ai.colors_ai)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Snapcraft](https://snapcraft.io/colors-ai/badge.svg)](https://snapcraft.io/colors-ai)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
 [![Stars](https://img.shields.io/github/stars/tsinis/colors_ai?logo=github)](https://github.com/tsinis/colors_ai/stars)
@@ -60,7 +60,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-More than 93% (∼98% actually, due to [mixin coverage bug in Dart language](https://github.com/dart-lang/sdk/issues/49887) since Dart 2.18) of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget, Golden](../test/) and [Integration tests](../integration_test/).
+More than 98% of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget](../test/) and [Integration tests](../integration_test/).
 
 ## Accessibility
 
@@ -68,7 +68,7 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 ## How to run it
 
-Flutter **3** or higher is assumed to be installed. For your convenience, all generated code has been committed to this repository, so all you have to do is run this command from the terminal/command line from the project's root folder:
+Flutter **3.13** or higher is assumed to be installed. For your convenience, all generated code has been committed to this repository, so all you have to do is run this command from the terminal/command line from the project's root folder:
 
 ```shell
 flutter run
@@ -101,6 +101,7 @@ All animations here are made with pure Flutter. The application's UI is designed
 
 * [ ] Refactor.
 * [ ] Use Freezed for more Events/States.
+* [ ] Use new Enums from Dart 2.17+.
 * [x] Separate data layer more.
 * [x] Create more interfaces for Data and Repository layers.
 * [x] Add exports to PDF and PNG.

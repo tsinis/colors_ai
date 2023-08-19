@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui' show Color;
 
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
@@ -8,13 +9,19 @@ class ClipBoard {
   final String _dataFormat;
 
   // TODO: Fix on Android with new Kotlin version.
-  Future<String?> get data async => (await Clipboard.getData(_dataFormat))?.text;
+  Future<String?> get data async {
+    try {
+      return (await Clipboard.getData(_dataFormat))?.text;
+    } catch (_) {
+      return null;
+    }
+  }
 
   const ClipBoard({String dataFormat = Clipboard.kTextPlain}) : _dataFormat = dataFormat;
 
-  Future<void> copyColor(Color color) => copyTextData(color.toHex());
+  FutureOr<void> copyColor(Color color) => copyTextData(color.toHex());
 
-  Future<void> copyTextData(String text) async {
+  FutureOr<void> copyTextData(String text) {
     if (text.isNotEmpty) {
       return Clipboard.setData(ClipboardData(text: text));
     }

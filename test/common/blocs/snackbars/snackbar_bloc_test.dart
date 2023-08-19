@@ -1,12 +1,10 @@
-import 'dart:async';
-
-import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/common/blocs/snackbars/snackbar_bloc.dart';
 import 'package:colors_ai/core/services/clipboard.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../data/fakes/fake_clipboard.dart';
+import '../../../data/helpers/test_stream_bloc.dart';
 import '../../data.dart';
 
 void main() {
@@ -21,9 +19,10 @@ void main() {
   void testCopyEvent(SnackbarEvent event, {bool withException = false}) {
     final ClipBoard clipboard = FakeClipboard(throwExceptionOnCopy: withException);
     if (!withException) {
-      unawaited(clipboard.copyTextData('data'));
+      // ignore: discarded_futures, it's just a mocked clipboard, this will by sync.
+      clipboard.copyTextData('data');
     }
-    blocTest<SnackbarBloc, SnackbarState>(
+    streamBlocTest<SnackbarBloc, SnackbarState>(
       '${event.runtimeType}${withException ? ' with invalid clipboard data' : ''}',
       build: () => SnackbarBloc(clipboard: clipboard),
       act: (SnackbarBloc bloc) => bloc.add(event),
@@ -36,9 +35,9 @@ void main() {
   }
 
   group('$SnackbarBloc', () {
-    blocTest<SnackbarBloc, SnackbarState>('on Initial', build: SnackbarBloc.new, expect: () => isEmpty);
+    streamBlocTest<SnackbarBloc, SnackbarState>('on Initial', build: SnackbarBloc.new, expect: () => isEmpty);
 
-    blocTest<SnackbarBloc, SnackbarState>(
+    streamBlocTest<SnackbarBloc, SnackbarState>(
       '$SnackbarEvent.shareFailed',
       build: SnackbarBloc.new,
       act: (SnackbarBloc bloc) => bloc.add(const SnackbarEvent.shareFailed()),
@@ -49,21 +48,21 @@ void main() {
       ..forEach(testCopyEvent)
       ..forEach((SnackbarEvent event) => testCopyEvent(event, withException: true));
 
-    blocTest<SnackbarBloc, SnackbarState>(
+    streamBlocTest<SnackbarBloc, SnackbarState>(
       '$SnackbarEvent.serverStatusChecked during maintenance time',
       build: SnackbarBloc.new,
       act: (SnackbarBloc bloc) => bloc.add(SnackbarEvent.serverStatusChecked(maintenanceTime)),
       expect: () => <SnackbarState>[const SnackbarState.serverStatusCheck(), const SnackbarState.initial()],
     );
 
-    blocTest<SnackbarBloc, SnackbarState>(
+    streamBlocTest<SnackbarBloc, SnackbarState>(
       'no $SnackbarEvent.serverStatusChecked after maintenance time',
       build: SnackbarBloc.new,
       act: (SnackbarBloc bloc) => bloc.add(SnackbarEvent.serverStatusChecked(noMaintenanceTime)),
       expect: () => <SnackbarState>[const SnackbarState.initial()],
     );
 
-    blocTest<SnackbarBloc, SnackbarState>(
+    streamBlocTest<SnackbarBloc, SnackbarState>(
       '$SnackbarEvent.urlOpened with invalid data',
       build: () => SnackbarBloc(clipboard: FakeClipboard(), urlLauncher: mockedUrlLauncher),
       act: (SnackbarBloc bloc) => bloc.add(const SnackbarEvent.urlOpened(url)),
@@ -73,7 +72,7 @@ void main() {
 
     final ClipBoard clipboard = FakeClipboard();
 
-    blocTest<SnackbarBloc, SnackbarState>(
+    streamBlocTest<SnackbarBloc, SnackbarState>(
       '$SnackbarEvent.urlOpened with valid data',
       build: () => SnackbarBloc(clipboard: clipboard, urlLauncher: mockedUrlLauncher),
       act: (SnackbarBloc bloc) async {

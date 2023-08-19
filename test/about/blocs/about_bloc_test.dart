@@ -1,10 +1,10 @@
-import 'package:bloc_test/bloc_test.dart';
 import 'package:colors_ai/about/blocs/about_bloc.dart';
 import 'package:colors_ai/core/ui/constants.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../data/helpers/test_stream_bloc.dart';
 import '../data.dart';
 
 Future<void> main() async {
@@ -24,20 +24,19 @@ Future<void> main() async {
       version: mockVersion,
       buildNumber: mockVersion,
       buildSignature: mockVersion,
-      installerStore: null,
     ),
   );
 
   setUp(() => reset(mockedUrlLauncher));
 
-  blocTest<AboutBloc, AboutState>(
+  streamBlocTest<AboutBloc, AboutState>(
     '$AboutBloc on Initial',
     build: () => AboutBloc(aboutRepository),
     expect: () => isEmpty,
     verify: (AboutBloc bloc) => expect(bloc.state, const AboutState.initial()),
   );
 
-  blocTest<AboutBloc, AboutState>(
+  streamBlocTest<AboutBloc, AboutState>(
     '$AboutBloc on $Exception',
     build: () => AboutBloc(aboutRepository),
     act: (AboutBloc bloc) {
@@ -50,7 +49,7 @@ Future<void> main() async {
     expect: () => <AboutState>[const AboutState.failure(), const AboutState.loaded(appVersion: '1.0')],
   );
 
-  blocTest<AboutBloc, AboutState>(
+  streamBlocTest<AboutBloc, AboutState>(
     '$AboutBloc AboutState.started(currentLocale:$supportedUrlLocale)',
     build: () => AboutBloc(aboutRepository),
     act: (AboutBloc bloc) => bloc.add(const AboutEvent.started(currentLocale: supportedUrlLocale)),
@@ -61,7 +60,7 @@ Future<void> main() async {
     },
   );
 
-  blocTest<AboutBloc, AboutState>(
+  streamBlocTest<AboutBloc, AboutState>(
     '$AboutBloc AboutState.started(currentLocale:$undefinedUrlLocale)',
     build: () => AboutBloc(aboutRepository),
     act: (AboutBloc bloc) => bloc.add(const AboutEvent.started(currentLocale: undefinedUrlLocale)),
@@ -77,7 +76,7 @@ Future<void> main() async {
     (MapEntry<String, AboutEvent> e) async {
       final String url = e.key;
       final AboutEvent event = e.value;
-      blocTest<AboutBloc, AboutState>(
+      streamBlocTest<AboutBloc, AboutState>(
         '$AboutBloc ${event.runtimeType}',
         build: () => AboutBloc(aboutRepository),
         act: (AboutBloc bloc) {

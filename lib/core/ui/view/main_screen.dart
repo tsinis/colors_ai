@@ -52,9 +52,60 @@ class _NavigationScreenState extends State<MainScreen> {
     super.initState();
   }
 
+  void onKeyEvent(KeyEvent event, BuildContext context, {required bool isGenTab}) {
+    if (event is KeyUpEvent) {
+      return;
+    }
+    if (event.logicalKey == LogicalKeyboardKey.tab && !showGenFab) {
+      setState(() => showGenFab = true);
+    }
+    if (event.logicalKey == kSpacebar && isGenTab) {
+      if (kIsWeb) {
+        BlocProvider.of<SoundBloc>(context).add(const SoundEvent.refreshed());
+      }
+      BlocProvider.of<ColorsBloc>(context).add(const ColorsGenerated());
+    }
+  }
+
+  void snackbarListener(BuildContext context, SnackbarState snackbarState) {
+    final String? message = snackbarState.whenOrNull(
+      serverStatusCheck: () => context.l10n.serverMaintenanceMessage,
+      urlCopySuccess: (_) => context.l10n.urlCopiedMessage,
+      shareFailure: () => context.l10n.shareFailedMessage,
+      colorCopySuccess: context.l10n.colorCopiedMessage,
+      fileCopySuccess: context.l10n.formatCopied,
+    );
+
+    if (message == null) {
+      return;
+    }
+    BlocProvider.of<SoundBloc>(context).add(const SoundEvent.copied());
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: Text(message),
+        behavior: snackbarState.whenOrNull(
+              shareFailure: () => isPortrait ? SnackBarBehavior.fixed : null,
+              urlCopySuccess: (_) => isPortrait ? SnackBarBehavior.fixed : null,
+              fileCopySuccess: (_) => isPortrait ? SnackBarBehavior.fixed : null,
+            ) ??
+            SnackBarBehavior.floating,
+        action: snackbarState.whenOrNull(
+          urlCopySuccess: (String url) => SnackBarAction(
+            textColor: context.theme.scaffoldBackgroundColor,
+            label: context.l10n.urlOpenButtonLabel,
+            onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(
+              SnackbarEvent.urlOpened(url),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
-        providers: <BlocProvider<BlocBase<Object?>>>[
+        providers: <BlocProvider<StateStreamableSource<Object?>>>[
           BlocProvider<SoundBloc>(create: (_) => soundBloc),
           BlocProvider<LockBloc>(
             create: (_) => LockBloc(context.read<ColorsRepository>())..add(const LockStarted()),
@@ -80,20 +131,7 @@ class _NavigationScreenState extends State<MainScreen> {
                 focusNode: keyboardListenerNode,
                 includeSemantics: false,
                 autofocus: true,
-                onKeyEvent: (KeyEvent event) {
-                  if (event is KeyUpEvent) {
-                    return;
-                  }
-                  if (event.logicalKey == LogicalKeyboardKey.tab && !showGenFab) {
-                    setState(() => showGenFab = true);
-                  }
-                  if (event.logicalKey == kSpacebar && isGenTab) {
-                    if (kIsWeb) {
-                      BlocProvider.of<SoundBloc>(navContext).add(const SoundEvent.refreshed());
-                    }
-                    BlocProvider.of<ColorsBloc>(navContext).add(const ColorsGenerated());
-                  }
-                },
+                onKeyEvent: (KeyEvent event) => onKeyEvent(event, navContext, isGenTab: isGenTab),
                 child: AnnotatedRegion<SystemUiOverlayStyle>(
                   value: overlayStyle,
                   child: Scaffold(
@@ -108,7 +146,7 @@ class _NavigationScreenState extends State<MainScreen> {
                       ),
                     ),
                     body: MultiBlocProvider(
-                      providers: <BlocProvider<BlocBase<Object>>>[
+                      providers: <BlocProvider<StateStreamableSource<Object?>>>[
                         BlocProvider<ColorPickerBloc>(create: (_) => ColorPickerBloc()),
                         BlocProvider<ShareBloc>(
                           lazy: false,
@@ -119,41 +157,7 @@ class _NavigationScreenState extends State<MainScreen> {
                         ),
                       ],
                       child: BlocListener<SnackbarBloc, SnackbarState>(
-                        listener: (BuildContext context, SnackbarState snackbarState) {
-                          final String? message = snackbarState.whenOrNull(
-                            serverStatusCheck: () => context.l10n.serverMaintenanceMessage,
-                            urlCopySuccess: (_) => context.l10n.urlCopiedMessage,
-                            shareFailure: () => context.l10n.shareFailedMessage,
-                            colorCopySuccess: context.l10n.colorCopiedMessage,
-                            fileCopySuccess: context.l10n.formatCopied,
-                          );
-
-                          if (message == null) {
-                            return;
-                          }
-                          BlocProvider.of<SoundBloc>(context).add(const SoundEvent.copied());
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              duration: const Duration(seconds: 2),
-                              content: Text(message),
-                              behavior: snackbarState.whenOrNull(
-                                    shareFailure: () => isPortrait ? SnackBarBehavior.fixed : null,
-                                    urlCopySuccess: (_) => isPortrait ? SnackBarBehavior.fixed : null,
-                                    fileCopySuccess: (_) => isPortrait ? SnackBarBehavior.fixed : null,
-                                  ) ??
-                                  SnackBarBehavior.floating,
-                              action: snackbarState.whenOrNull(
-                                urlCopySuccess: (String url) => SnackBarAction(
-                                  textColor: context.theme.scaffoldBackgroundColor,
-                                  label: context.l10n.urlOpenButtonLabel,
-                                  onPressed: () => BlocProvider.of<SnackbarBloc>(context).add(
-                                    SnackbarEvent.urlOpened(url),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          );
-                        },
+                        listener: snackbarListener,
                         child: SafeArea(
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,

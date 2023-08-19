@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io' show File;
 // ignore: unnecessary_import, because DCM is not yet updated to Flutter 3.3.0
 import 'dart:typed_data' show Uint8List;
@@ -66,11 +67,13 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
           break;
         case FileFormat.pngA4:
           await Printing.raster(await generateFile(palette)).forEach(
+            // ignore: avoid-passing-async-when-sync-expected, it's 3rd party package.
             (PdfRaster page) async => _shareBytes(await page.toPng()),
           );
           break;
         case FileFormat.pngLetter:
           await Printing.raster(await generateFile(palette, isMetric: false))
+              // ignore: avoid-passing-async-when-sync-expected, it's 3rd party package.
               .forEach((PdfRaster page) async => _shareBytes(await page.toPng()));
           break;
         case FileFormat.svg:
@@ -90,7 +93,7 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
     }
   }
 
-  Future<void> asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
+  FutureOr<void> asUrl(ColorPalette palette) => _convertColorsToUrl(palette);
 
   Future<bool> copyFile(ColorPalette palette) async {
     try {
@@ -126,15 +129,15 @@ class ShareRepository with FileCreator, TextBasedFileCreator, DeviceCapabilities
   }
 
   Future<void> _saveFile(File file) async {
-    final String? path = await getSavePath();
-    if (path == null) {
+    final FileSaveLocation? saveLocation = await getSaveLocation();
+    if (saveLocation == null) {
       return;
     }
     final XFile textFile = XFile(file.path, name: _fileName);
-    await textFile.saveTo(path);
+    await textFile.saveTo(saveLocation.path);
   }
 
-  Future<bool> _shareBytes(Uint8List bytes) {
+  FutureOr<bool> _shareBytes(Uint8List bytes) {
     if (kIsWeb) {
       if (_fileExtension == 'pdf') {
         return Printing.sharePdf(bytes: bytes);

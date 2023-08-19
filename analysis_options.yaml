@@ -20,9 +20,10 @@ analyzer:
     # Conditional imports
     - "lib/share/repository/conditional_import/**"
 
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
 
   errors:
     # Info
@@ -74,25 +75,36 @@ dart_code_metrics:
         include-assertions:
           - verify
           - verifyZeroInteractions
+    - avoid-passing-async-when-sync-expected:
+        exclude:
+          - test/**
+    - avoid-redundant-async:
+        exclude:
+          - test/**
+    - prefer-static-class:
+        exclude:
+          - test/**
+          - lib/**/constants.dart
+          - integration_test/**
     - always-remove-listener: true
     - avoid-banned-imports: true
     - avoid-border-all: true
+    - avoid-cascade-after-if-null: true
     - avoid-collection-methods-with-unrelated-types: true
+    - avoid-double-slash-imports: true
     - avoid-duplicate-exports: true
     - avoid-dynamic: true
+    - avoid-expanded-as-spacer: true
     - avoid-global-state: true
     - avoid-missing-enum-constant-in-map: true
     - avoid-non-ascii-symbols: true
     - avoid-non-null-assertion: true
-    - avoid-passing-async-when-sync-expected: false # False positive in tests/onTap callbacks.
-    - avoid-redundant-async: false # False positive in overrides and blocs.
     - avoid-returning-widgets: true
     - avoid-shrink-wrap-in-lists: true
-    - avoid-shrink-wrap-in-lists: true
     - avoid-throw-in-catch-block: true
+    - avoid-unnecessary-conditionals: true
     - avoid-unnecessary-setstate: true
     - avoid-unnecessary-type-assertions: true
-    - avoid-cascade-after-if-null: true
     - avoid-unnecessary-type-casts: true
     - avoid-unrelated-type-assertions: true
     - avoid-unused-parameters: true
@@ -113,9 +125,11 @@ dart_code_metrics:
     - prefer-commenting-analyzer-ignores: true
     - prefer-conditional-expressions: true
     - prefer-const-border-radius: true
+    - prefer-correct-edge-insets-constructor: true
     - prefer-correct-test-file-name: true
     - prefer-correct-type-name: true
     - prefer-enums-by-name: true
+    - prefer-extracting-callbacks: true
     - prefer-first: true
     - prefer-immediate-return: true
     - prefer-intl-name: true
@@ -123,10 +137,13 @@ dart_code_metrics:
     - prefer-last: true
     - prefer-match-file-name: true
     - prefer-moving-to-variable: true
+    - prefer-provide-intl-description: true
     - prefer-single-widget-per-file: true
     - prefer-trailing-comma: true
+    - prefer-using-list-view: true
     - provide-correct-intl-args: true
     - tag-name: true
+    - use-setstate-synchronously: true
 
 linter:
   rules:
@@ -175,10 +192,8 @@ linter:
     comment_references: true
     control_flow_in_finally: true
     empty_statements: true
-    iterable_contains_unrelated_type: true
     join_return_with_assignment: true
     leading_newlines_in_multiline_strings: true
-    list_remove_unrelated_type: true
     literal_only_boolean_expressions: true
     missing_whitespace_between_adjacent_strings: true
     no_adjacent_strings_in_list: true
@@ -251,7 +266,6 @@ linter:
     prefer_collection_literals: true
     prefer_conditional_assignment: true
     prefer_contains: true
-    prefer_equal_for_default_values: true
     prefer_final_fields: true
     prefer_for_elements_to_map_fromIterable: true
     prefer_generic_function_type_aliases: true
@@ -346,9 +360,15 @@ linter:
     use_string_in_part_of_directives: true
 
     # Linter 1.30.0+
-    # collection_methods_unrelated_type: true
-    # dangling_library_doc_comments: true
-    # enable_null_safety: true
-    # implicit_call_tearoffs: true
-    # library_annotations: true
-    # unnecessary_library_directive: true
+    collection_methods_unrelated_type: true
+    dangling_library_doc_comments: true
+    # TODO:
+    # body_might_complete_normally_catch_error: true
+    # cast_from_null_always_fails: true
+    # cast_from_nullable_always_fails: true
+    # deprecated_colon_for_default_value: true
+    # duplicate_export: true
+    enable_null_safety: true
+    implicit_call_tearoffs: true
+    library_annotations: true
+    unnecessary_library_directive: true
