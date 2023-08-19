@@ -23,6 +23,7 @@ parts:
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
       ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $SNAPCRAFT_PART_INSTALL/usr/bin/flutter
     build-packages:
+      - libpcre3-dev
       - gnome-keyring
       - libblkid1
       - libjsoncpp-dev
@@ -41,6 +42,7 @@ parts:
       - xz-utils
       - zip
     stage-packages:
+      - libpcre3-dev
       - libsecret-1-0
       - libjsoncpp-dev
       - gnome-keyring
@@ -70,3 +72,25 @@ apps:
     plugs:
       - home
       - network
+build-packages:
+      - gnome-keyring
+      - libblkid1
+      - libjsoncpp-dev
+      - libsecret-1-dev
+      - cmake
+      - curl
+      - clang
+      - unzip
+      - ninja-build
+      - pkg-config
+      - libgtk-3-dev
+      - liblzma-dev
+      - libgstreamer1.0-dev
+      - libgstreamer-plugins-base1.0-dev
+      - libgles2-mesa-dev
+      - xz-utils
+      - zip
+    stage-packages:
+      - libsecret-1-0
+      - libjsoncpp-dev
+      - gnome-keyring
