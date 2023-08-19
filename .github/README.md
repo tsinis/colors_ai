@@ -60,7 +60,7 @@ The application uses a **feature-driven** directory structure. This project stru
 
 ### Tests
 
-More than 93% (∼98% actually, due to [mixin coverage bug in Dart language](https://github.com/dart-lang/sdk/issues/49887) since Dart 2.19) of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget](../test/) and [Integration tests](../integration_test/).
+More than 98% of the application is [covered by hundreds of tests](https://app.codecov.io/gh/tsinis/colors_ai), you can find here: [Unit (mainly), Widget](../test/) and [Integration tests](../integration_test/).
 
 ## Accessibility
 
@@ -68,7 +68,7 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 ## How to run it
 
-Flutter **3.6** or higher is assumed to be installed. For your convenience, all generated code has been committed to this repository, so all you have to do is run this command from the terminal/command line from the project's root folder:
+Flutter **3.13** or higher is assumed to be installed. For your convenience, all generated code has been committed to this repository, so all you have to do is run this command from the terminal/command line from the project's root folder:
 
 ```shell
 flutter run
