@@ -12,16 +12,11 @@ architectures:
   - build-on: [amd64]
 
 parts:
-  flutter-git:
-    source: https://github.com/flutter/flutter.git
-    source-branch: stable
-    source-depth: 1
-    plugin: nil
-    override-build: |
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
-      mkdir -p $SNAPCRAFT_PART_INSTALL/usr/libexec
-      cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
-      ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $SNAPCRAFT_PART_INSTALL/usr/bin/flutter
+  colors-ai:
+    source: .
+    plugin: flutter
+    build-snaps: [yq]
+    flutter-target: lib/main.dart
     build-packages:
       - clang
       - cmake
@@ -58,24 +53,10 @@ parts:
       - libjsoncpp-dev
       - libpcre3-dev
       - libsecret-1-0
-    override-prime: ""
-
-  colors-ai:
-    after: [flutter-git]
-    plugin: nil
-    source: .
-    stage-packages:
-      - libsecret-1-dev
     override-build: |
-      set -eux
-      flutter channel stable
-      flutter upgrade
-      flutter config --enable-linux-desktop
-      flutter pub get
-      rm -rf build
-      flutter build linux --release
-      mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
-      cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
+      snapcraftctl build
+      version=$(yq r pubspec.yaml version | cut -d'+' -f1)
+      snapcraftctl set-version "$version"
 
 apps:
   colors-ai:
