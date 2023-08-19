@@ -18,6 +18,9 @@ parts:
     source-depth: 1
     plugin: nil
     override-build: |
+      version=$(yq e '.version' pubspec.yaml | cut -d'+' -f1)
+      echo "version: $version"
+      snapcraftctl set-version "$version"
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/libexec
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
@@ -71,7 +74,8 @@ parts:
       - libsecret-1-0
     override-build: |
       set -eux
-      version=$(yq r pubspec.yaml version | cut -d'+' -f1)
+      version=$(yq e '.version' pubspec.yaml | cut -d'+' -f1)
+      echo "version: $version"
       snapcraftctl set-version "$version"
       flutter channel stable
       flutter upgrade
