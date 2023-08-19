@@ -1,0 +1,29 @@
+name: snapcraft_release
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy_on_snapcraft:
+    name: 🤖 Build Android and Linux apps
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: 📚 Checks-out repository
+        uses: actions/checkout@v3
+
+      - name: 📦 Build Snap
+        uses: snapcore/action-build@v1.1.2
+        id: snapcraft
+        with:
+          path: linux/snap
+
+      - name: 🚀 Publish to Snap Store
+        uses: snapcore/action-publish@v1.1.1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_LOGIN }}
+        with:
+          snap: ${{ steps.snapcraft.outputs.snap }}
+          release: edge
