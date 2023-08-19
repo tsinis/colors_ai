@@ -23,6 +23,7 @@ parts:
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
       ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $SNAPCRAFT_PART_INSTALL/usr/bin/flutter
     build-packages:
+      - gnome-keyring
       - libblkid1
       - libjsoncpp-dev
       - libsecret-1-dev
@@ -40,7 +41,9 @@ parts:
       - xz-utils
       - zip
     stage-packages:
-      - libsecret-1-dev
+      - libsecret-1-0
+      - libjsoncpp-dev
+      - gnome-keyring
     override-prime: ""
 
   colors-ai:
