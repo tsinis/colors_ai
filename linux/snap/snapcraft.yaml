@@ -54,6 +54,9 @@ parts:
       flutter channel stable
       flutter upgrade
       flutter config --enable-linux-desktop
+      ls
+      cd ..
+      ls
       flutter pub get
       rm -rf build
       flutter build linux --release -v

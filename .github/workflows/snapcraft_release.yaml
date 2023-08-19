@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy_on_snapcraft:
-    name: 🤖 Build Android and Linux apps
+    name: 🤖 Build Snap and Publish to Snap Store
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
