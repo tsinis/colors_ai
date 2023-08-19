@@ -5,7 +5,7 @@ description: A color scheme generator that uses deep learning from public APIs.
 source-code: https://github.com/tsinis/colors_ai
 confinement: strict
 license: MIT
-base: core22
+base: core18
 grade: stable
 compression: lzo
 architectures:
@@ -23,29 +23,29 @@ parts:
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
       ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $SNAPCRAFT_PART_INSTALL/usr/bin/flutter
     build-packages:
-      - libpcre3-dev
-      - gnome-keyring
-      - libblkid1
-      - libjsoncpp-dev
-      - libsecret-1-dev
+      - clang
       - cmake
       - curl
-      - clang
-      - unzip
+      - gnome-keyring
+      - libblkid1
+      - libgles2-mesa-dev
+      - libgstreamer-plugins-base1.0-dev
+      - libgstreamer1.0-dev
+      - libgtk-3-dev
+      - libjsoncpp-dev
+      - liblzma-dev
+      - libpcre3-dev
+      - libsecret-1-dev
       - ninja-build
       - pkg-config
-      - libgtk-3-dev
-      - liblzma-dev
-      - libgstreamer1.0-dev
-      - libgstreamer-plugins-base1.0-dev
-      - libgles2-mesa-dev
+      - unzip
       - xz-utils
       - zip
     stage-packages:
+      - gnome-keyring
+      - libjsoncpp-dev
       - libpcre3-dev
       - libsecret-1-0
-      - libjsoncpp-dev
-      - gnome-keyring
     override-prime: ""
 
   colors-ai:
@@ -61,7 +61,7 @@ parts:
       flutter config --enable-linux-desktop
       flutter pub get
       rm -rf build
-      flutter build linux --release -v
+      flutter build linux --release
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
 
