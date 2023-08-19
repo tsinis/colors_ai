@@ -192,10 +192,8 @@ linter:
     comment_references: true
     control_flow_in_finally: true
     empty_statements: true
-    iterable_contains_unrelated_type: true
     join_return_with_assignment: true
     leading_newlines_in_multiline_strings: true
-    list_remove_unrelated_type: true
     literal_only_boolean_expressions: true
     missing_whitespace_between_adjacent_strings: true
     no_adjacent_strings_in_list: true
@@ -364,6 +362,12 @@ linter:
     # Linter 1.30.0+
     collection_methods_unrelated_type: true
     dangling_library_doc_comments: true
+    # TODO:
+    # body_might_complete_normally_catch_error: true
+    # cast_from_null_always_fails: true
+    # cast_from_nullable_always_fails: true
+    # deprecated_colon_for_default_value: true
+    # duplicate_export: true
     enable_null_safety: true
     implicit_call_tearoffs: true
     library_annotations: true

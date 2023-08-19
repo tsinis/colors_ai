@@ -1,4 +1,4 @@
-version: 2.2.1+13
+version: 2.2.2+14
 name: colors_ai
 description: Color scheme generator that uses deep learning from public providers.
 repository: https://github.com/tsinis/colors_ai
@@ -8,8 +8,8 @@ maintainer: Roman Cinis
 publish_to: "none"
 
 environment:
-  sdk: ">=3.0.0"
-  flutter: ">=3.10.0"
+  sdk: ">=3.1.0"
+  flutter: ">=3.13.0"
 
 dependencies:
   animations: ^2.0.7 # From Google
@@ -71,7 +71,7 @@ msix_config:
   identity_name: 53621RomanCinis.ColorsAI
   languages: en-us, sk-sk, ru-ru, cs-cz
   logo_path: snap\gui\colors-ai-icon.svg
-  msix_version: 2.2.1.0
+  msix_version: 2.2.2.0
   publisher_display_name: Roman Cinis
   publisher: CN=3F745294-7EE6-4235-B7C5-8E22B9089351
   store: true
