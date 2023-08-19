@@ -40,8 +40,8 @@ android {
 
     defaultConfig {
         applicationId "is.tsin.colors_ai.colors_ai"
-        minSdkVersion 18
-        targetSdkVersion 33
+        minSdkVersion 19
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
@@ -63,7 +63,6 @@ android {
             signingConfig signingConfigs.release
         }
     }
-    ndkVersion "22.1.7171670"
 }
 
 flutter {
