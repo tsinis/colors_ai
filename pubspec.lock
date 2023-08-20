@@ -491,10 +491,11 @@ packages:
   flutter_secure_storage:
     dependency: "direct main"
     description:
-      name: flutter_secure_storage
-      sha256: "98352186ee7ad3639ccc77ad7924b773ff6883076ab952437d20f18a61f0a7c5"
-      url: "https://pub.dev"
-    source: hosted
+      path: flutter_secure_storage
+      ref: develop
+      resolved-ref: abb0b8d243b026b96fd7b5c3c1f29b452a8188a7
+      url: "https://github.com/mogol/flutter_secure_storage.git"
+    source: git
     version: "8.0.0"
   flutter_secure_storage_linux:
     dependency: transitive
