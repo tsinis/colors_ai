@@ -1,5 +1,4 @@
 name: colors-ai
-version: git
 adopt-info: colors-ai
 summary: Colors AI
 description: A color scheme generator that uses deep learning from public APIs.
