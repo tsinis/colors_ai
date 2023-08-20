@@ -1,5 +1,6 @@
 name: colors-ai
 version: git
+adopt-info: colors-ai
 summary: Colors AI
 description: A color scheme generator that uses deep learning from public APIs.
 source-code: https://github.com/tsinis/colors_ai
@@ -89,3 +90,4 @@ apps:
     plugs:
       - home
       - network
+      - x11
