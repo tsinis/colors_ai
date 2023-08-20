@@ -18,9 +18,6 @@ parts:
     source-depth: 1
     plugin: nil
     override-build: |
-      version=$(awk '/version:/ { match($0, /[0-9]+\.[0-9]+\.[0-9]+\+/); print substr($0, RSTART, RLENGTH-1) }' pubspec.yaml)
-      if [[ -z "$version" ]]; then echo "Error: Failed to extract version from pubspec.yaml"; exit 1; fi; echo "Extracted version: $version"
-      snapcraftctl set-version "$version"
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/libexec
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
