@@ -32,6 +32,11 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
 android {
+    namespace 'is.tsin.colors_ai.colors_ai'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
     compileSdkVersion 33
 
     sourceSets {
