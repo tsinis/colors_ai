@@ -5,7 +5,7 @@ description: A color scheme generator that uses deep learning from public APIs.
 source-code: https://github.com/tsinis/colors_ai
 confinement: strict
 license: MIT
-base: core20
+base: core22
 grade: stable
 compression: lzo
 architectures:
@@ -64,9 +64,24 @@ parts:
     after: [flutter-git]
     plugin: nil
     source: .
+    build-packages:
+      - bash
+      - curl
+      - file
+      - git
+      - unzip
+      - xz-utils
+      - libglu1-mesa
+      - clang
+      - cmake
+      - ninja-build
+      - pkg-config
+      - libgtk-3-dev
+      - liblzma-dev
+      - libstdc++-12-dev
     stage-packages:
       - gnome-keyring
-      - libjsoncpp-dev
+      - libjsoncpp25
       - libsecret-1-0
     override-build: |
       set -eux
@@ -84,8 +99,8 @@ parts:
 
 apps:
   colors-ai:
-    command: bin/colors_ai
-    extensions: [gnome-3-38]
+    command: colors_ai
+    extensions: [gnome]
     plugs:
       - home
       - network
