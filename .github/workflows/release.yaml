@@ -282,3 +282,27 @@ jobs:
           client-secret: ${{ secrets.AZURE_AD_APPLICATION_SECRET }}
           app-id: ${{ secrets.WINDOWS_STORE_APP_ID }}
           package-path: "${{ github.workspace }}/release"
+
+  publish-on-snapcraft:
+    name: 🛍️ Build Snap and Publish to Snap Store
+    needs: build-android-linux
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checks-out repository
+        uses: actions/checkout@v3
+
+      - name: Move Snap directory to root
+        run: mv linux/snap .
+
+      - name: Build Snap
+        uses: snapcore/action-build@v1.1.2
+        id: snapcraft
+
+      - name: 🚀 Publish to Snap Store
+        uses: snapcore/action-publish@v1.1.1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_LOGIN }}
+        with:
+          snap: ${{ steps.snapcraft.outputs.snap }}
+          release: edge

@@ -1,11 +1,11 @@
 name: colors-ai
-version: 2.1.0
+adopt-info: colors-ai
 summary: Colors AI
 description: A color scheme generator that uses deep learning from public APIs.
-
+source-code: https://github.com/tsinis/colors_ai
 confinement: strict
 license: MIT
-base: core20
+base: core22
 grade: stable
 compression: lzo
 architectures:
@@ -23,47 +23,85 @@ parts:
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter
       ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $SNAPCRAFT_PART_INSTALL/usr/bin/flutter
     build-packages:
-      - libblkid1
-      - libjsoncpp-dev
-      - libsecret-1-dev
+      - clang
       - cmake
       - curl
-      - clang
-      - unzip
+      - gnome-keyring
+      - libblkid1
+      - libgles2-mesa-dev
+      - libgstreamer-plugins-bad1.0-dev
+      - libgstreamer-plugins-base1.0-dev
+      - libgstreamer-plugins-good1.0-dev
+      - libgstreamer1.0-dev
+      - libgtk-3-dev
+      - libjsoncpp-dev
+      - liblzma-dev
+      - libpcre3-dev
+      - libsecret-1-dev
       - ninja-build
       - pkg-config
-      - libgtk-3-dev
-      - liblzma-dev
-      - libgstreamer1.0-dev
-      - libgstreamer-plugins-base1.0-dev
-      - libgles2-mesa-dev
+      - unzip
       - xz-utils
       - zip
     stage-packages:
-      - libsecret-1-dev
+      - gnome-keyring
+      - gstreamer1.0-alsa
+      - gstreamer1.0-gl
+      - gstreamer1.0-gtk3
+      - gstreamer1.0-libav
+      - gstreamer1.0-plugins-bad
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - gstreamer1.0-pulseaudio
+      - gstreamer1.0-qt5
+      - gstreamer1.0-x
+      - libjsoncpp-dev
+      - libpcre3-dev
+      - libsecret-1-0
     override-prime: ""
 
   colors-ai:
     after: [flutter-git]
     plugin: nil
     source: .
+    build-packages:
+      - bash
+      - curl
+      - file
+      - git
+      - unzip
+      - xz-utils
+      - libglu1-mesa
+      - clang
+      - cmake
+      - ninja-build
+      - pkg-config
+      - libgtk-3-dev
+      - liblzma-dev
+      - libstdc++-12-dev
     stage-packages:
-      - libsecret-1-dev
+      - gnome-keyring
+      - libjsoncpp25
+      - libsecret-1-0
     override-build: |
       set -eux
+      version=$(awk '/version:/ { match($0, /[0-9]+\.[0-9]+\.[0-9]+\+/); print substr($0, RSTART, RLENGTH-1) }' pubspec.yaml)
+      if [[ -z "$version" ]]; then echo "Error: Failed to extract version from pubspec.yaml"; exit 1; fi; echo "Extracted version: $version"
+      snapcraftctl set-version "$version"
       flutter channel stable
       flutter upgrade
       flutter config --enable-linux-desktop
       flutter pub get
       rm -rf build
-      flutter build linux --release -v
+      flutter build linux --release
       mkdir -p $SNAPCRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $SNAPCRAFT_PART_INSTALL/bin/
 
 apps:
   colors-ai:
     command: bin/colors_ai
-    extensions: [gnome-3-38]
+    extensions: [gnome]
     plugs:
       - home
       - network
+      - x11

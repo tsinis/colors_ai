@@ -8,8 +8,7 @@ maintainer: Roman Cinis
 publish_to: "none"
 
 environment:
-  sdk: ">=3.1.0"
-  flutter: ">=3.13.0"
+  sdk: ">=3.0.0"
 
 dependencies:
   animations: ^2.0.7 # From Google
@@ -23,7 +22,11 @@ dependencies:
   flutter_colorpicker: ^1.0.3 # Contributor
   flutter_localizations: # From Google
     sdk: flutter
-  flutter_secure_storage: ^8.0.0
+  flutter_secure_storage:
+    git: # Until https://github.com/mogol/flutter_secure_storage/issues/594.
+      url: https://github.com/mogol/flutter_secure_storage.git
+      ref: develop
+      path: flutter_secure_storage
   freezed_annotation: ^2.4.1 # for Freezed
   google_fonts: ^4.0.4 # From Google
   hydrated_bloc: ^9.1.2
