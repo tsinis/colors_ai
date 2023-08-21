@@ -14,7 +14,8 @@ architectures:
 parts:
   flutter-git:
     source: https://github.com/flutter/flutter.git
-    source-branch: master
+    source-branch: stable
+    source-depth: 1
     plugin: nil
     override-build: |
       mkdir -p $SNAPCRAFT_PART_INSTALL/usr/bin
@@ -72,6 +73,7 @@ parts:
       version=$(awk '/version:/ { match($0, /[0-9]+\.[0-9]+\.[0-9]+\+/); print substr($0, RSTART, RLENGTH-1) }' pubspec.yaml)
       if [[ -z "$version" ]]; then echo "Error: Failed to extract version from pubspec.yaml"; exit 1; fi; echo "Extracted version: $version"
       snapcraftctl set-version "$version"
+      flutter channel stable
       flutter upgrade
       flutter config --enable-linux-desktop
       flutter pub get
