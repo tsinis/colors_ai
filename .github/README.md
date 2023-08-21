@@ -68,7 +68,7 @@ The app was originally designed to be accessible by **WCAG 2.1 AA standards at m
 
 ## How to run it
 
-Flutter **3.13** or higher is assumed to be installed. For your convenience, all generated code has been committed to this repository, so all you have to do is run this command from the terminal/command line from the project's root folder:
+Latest Flutter (stable or higher) is assumed to be installed. For your convenience, all generated code has been committed to this repository, so all you have to do is run this command from the terminal/command line from the project's root folder:
 
 ```shell
 flutter run
