@@ -99,7 +99,7 @@ parts:
 
 apps:
   colors-ai:
-    command: colors_ai
+    command: bin/colors_ai
     extensions: [gnome]
     plugs:
       - home
