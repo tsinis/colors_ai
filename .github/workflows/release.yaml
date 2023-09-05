@@ -18,7 +18,7 @@ jobs:
       changelog: ${{ steps.build_changelog.outputs.changelog }}
     steps:
       - name: Checks-out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -36,7 +36,7 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Checks-out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Read pubspec.yaml version
         uses: KJ002/read-yaml@1.6
@@ -121,7 +121,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - name: Checks-out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -180,7 +180,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checks-out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -239,7 +239,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checks-out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Get AAB from Artifacts
         uses: actions/download-artifact@v3
@@ -290,7 +290,7 @@ jobs:
     timeout-minutes: 25
     steps:
       - name: Checks-out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Move Snap directory to root
         run: mv linux/snap .
