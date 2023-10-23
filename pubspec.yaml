@@ -46,7 +46,7 @@ dev_dependencies:
   bloc_test: ^9.1.4
   build_runner: ^2.4.6 # From Google
   dart_code_metrics: ^5.7.6 # Flutter Favorite
-  flutter_lints: ^2.0.3 # From Google
+  flutter_lints: ^3.0.0 # From Google
   flutter_test: # From Google
     sdk: flutter
   freezed: ^2.4.5 # Flutter Favorite
