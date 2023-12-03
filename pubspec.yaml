@@ -8,11 +8,11 @@ maintainer: Roman Cinis
 publish_to: "none"
 
 environment:
-  sdk: ">=3.0.0"
+  sdk: ^3.1.0
 
 dependencies:
   animations: ^2.0.8 # From Google
-  audioplayers: ^5.2.0
+  audioplayers: ^5.2.1
   color_converter: ^0.2.1
   equatable: ^2.0.5 # From Flutter Community
   file_selector: ^1.0.1 # From Google
@@ -24,11 +24,11 @@ dependencies:
     sdk: flutter
   flutter_secure_storage: ^9.0.0
   freezed_annotation: ^2.4.1 # for Freezed
-  google_fonts: ^4.0.4 # From Google
+  google_fonts: ^6.1.0 # From Google
   hydrated_bloc: ^9.1.2
   json_annotation: ^4.8.1 # From Google
   material_design_icons_flutter: ^7.0.7296
-  package_info_plus: ^4.2.0 # From Flutter Community (former Google)
+  package_info_plus: ^5.0.1 # From Flutter Community (former Google)
   path_provider: ^2.1.1 # From Google
   platform_info: ^4.0.2 # Contributor
   printing: ^5.11.1
@@ -44,9 +44,11 @@ dependencies:
 
 dev_dependencies:
   bloc_test: ^9.1.5
-  build_runner: ^2.4.6 # From Google
-  dart_code_metrics: ^5.7.6 # Flutter Favorite
-  flutter_lints: ^2.0.3 # From Google
+  build_runner: ^2.4.7 # From Google
+  dart_code_metrics: # Flutter Favorite
+    git:
+      url: https://github.com/tsinis/dart-code-metrics
+  flutter_lints: ^3.0.1 # From Google
   flutter_test: # From Google
     sdk: flutter
   freezed: ^2.4.5 # Flutter Favorite
@@ -54,7 +56,7 @@ dev_dependencies:
   integration_test: # From Google
     sdk: flutter
   json_serializable: ^6.7.1 # From Google
-  mockito: ^5.4.2 # From Google
+  mockito: ^5.4.3 # From Google
   msix: 2.7.3 # Flutter Favorite (generating from SVG)
 
 flutter:
