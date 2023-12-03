@@ -1,14 +1,13 @@
 {
   "editor.formatOnSave": true,
+  "git.branchProtection": ["master", "main"],
   "dart.lineLength": 120,
   "[dart]": {
-    "editor.rulers": [
-      120
-    ],
+    "editor.rulers": [120],
     "editor.defaultFormatter": "Dart-Code.dart-code",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
-    },
+      "source.organizeImports": "explicit"
+    }
   },
   "cSpell.words": [
     "Appbundle",

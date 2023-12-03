@@ -24,8 +24,8 @@ class UrlShareSection extends ShareSectionInterface {
     required this.providersList,
     required this.selectedUrlProvider,
     required this.exportFormats,
-    Key? key,
-  }) : super(maxWidth: width, palette: palette, key: key);
+    super.key,
+  }) : super(maxWidth: width, palette: palette);
 
   void _onPressed(BuildContext context) {
     BlocProvider.of<ShareBloc>(context).add(ShareEvent.urlCopied(palette));

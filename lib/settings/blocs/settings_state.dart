@@ -44,16 +44,10 @@ class SettingsFailure extends SettingsState {
 
 class SettingsChangedInitial extends SettingsState {
   const SettingsChangedInitial({
-    required SelectedAPI selectedAPI,
-    required bool colormindForUI,
-    required int huemintAdjacency,
-    required double huemintTemperature,
-    bool? isDarkTheme,
-  }) : super(
-          isDarkTheme: isDarkTheme,
-          colormindForUI: colormindForUI,
-          huemintAdjacency: huemintAdjacency,
-          huemintTemperature: huemintTemperature,
-          selectedAPI: selectedAPI,
-        );
+    required super.selectedAPI,
+    required super.colormindForUI,
+    required super.huemintAdjacency,
+    required super.huemintTemperature,
+    super.isDarkTheme,
+  });
 }

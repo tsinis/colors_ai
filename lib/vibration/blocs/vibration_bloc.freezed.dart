@@ -81,24 +81,25 @@ class _$VibrationEventCopyWithImpl<$Res, $Val extends VibrationEvent>
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$VibrationEventCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$VibrationEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
@@ -108,7 +109,7 @@ class _$_Started implements _Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
@@ -184,24 +185,24 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements VibrationEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$_VibratedCopyWith<$Res> {
-  factory _$$_VibratedCopyWith(
-          _$_Vibrated value, $Res Function(_$_Vibrated) then) =
-      __$$_VibratedCopyWithImpl<$Res>;
+abstract class _$$VibratedImplCopyWith<$Res> {
+  factory _$$VibratedImplCopyWith(
+          _$VibratedImpl value, $Res Function(_$VibratedImpl) then) =
+      __$$VibratedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int durationInMs});
 }
 
 /// @nodoc
-class __$$_VibratedCopyWithImpl<$Res>
-    extends _$VibrationEventCopyWithImpl<$Res, _$_Vibrated>
-    implements _$$_VibratedCopyWith<$Res> {
-  __$$_VibratedCopyWithImpl(
-      _$_Vibrated _value, $Res Function(_$_Vibrated) _then)
+class __$$VibratedImplCopyWithImpl<$Res>
+    extends _$VibrationEventCopyWithImpl<$Res, _$VibratedImpl>
+    implements _$$VibratedImplCopyWith<$Res> {
+  __$$VibratedImplCopyWithImpl(
+      _$VibratedImpl _value, $Res Function(_$VibratedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -209,7 +210,7 @@ class __$$_VibratedCopyWithImpl<$Res>
   $Res call({
     Object? durationInMs = null,
   }) {
-    return _then(_$_Vibrated(
+    return _then(_$VibratedImpl(
       null == durationInMs
           ? _value.durationInMs
           : durationInMs // ignore: cast_nullable_to_non_nullable
@@ -220,8 +221,8 @@ class __$$_VibratedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Vibrated implements _Vibrated {
-  const _$_Vibrated([this.durationInMs = 150]);
+class _$VibratedImpl implements _Vibrated {
+  const _$VibratedImpl([this.durationInMs = 150]);
 
   @override
   @JsonKey()
@@ -236,7 +237,7 @@ class _$_Vibrated implements _Vibrated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Vibrated &&
+            other is _$VibratedImpl &&
             (identical(other.durationInMs, durationInMs) ||
                 other.durationInMs == durationInMs));
   }
@@ -247,8 +248,8 @@ class _$_Vibrated implements _Vibrated {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_VibratedCopyWith<_$_Vibrated> get copyWith =>
-      __$$_VibratedCopyWithImpl<_$_Vibrated>(this, _$identity);
+  _$$VibratedImplCopyWith<_$VibratedImpl> get copyWith =>
+      __$$VibratedImplCopyWithImpl<_$VibratedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -320,29 +321,29 @@ class _$_Vibrated implements _Vibrated {
 }
 
 abstract class _Vibrated implements VibrationEvent {
-  const factory _Vibrated([final int durationInMs]) = _$_Vibrated;
+  const factory _Vibrated([final int durationInMs]) = _$VibratedImpl;
 
   int get durationInMs;
   @JsonKey(ignore: true)
-  _$$_VibratedCopyWith<_$_Vibrated> get copyWith =>
+  _$$VibratedImplCopyWith<_$VibratedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SettingsChangedCopyWith<$Res> {
-  factory _$$_SettingsChangedCopyWith(
-          _$_SettingsChanged value, $Res Function(_$_SettingsChanged) then) =
-      __$$_SettingsChangedCopyWithImpl<$Res>;
+abstract class _$$SettingsChangedImplCopyWith<$Res> {
+  factory _$$SettingsChangedImplCopyWith(_$SettingsChangedImpl value,
+          $Res Function(_$SettingsChangedImpl) then) =
+      __$$SettingsChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool isEnabled});
 }
 
 /// @nodoc
-class __$$_SettingsChangedCopyWithImpl<$Res>
-    extends _$VibrationEventCopyWithImpl<$Res, _$_SettingsChanged>
-    implements _$$_SettingsChangedCopyWith<$Res> {
-  __$$_SettingsChangedCopyWithImpl(
-      _$_SettingsChanged _value, $Res Function(_$_SettingsChanged) _then)
+class __$$SettingsChangedImplCopyWithImpl<$Res>
+    extends _$VibrationEventCopyWithImpl<$Res, _$SettingsChangedImpl>
+    implements _$$SettingsChangedImplCopyWith<$Res> {
+  __$$SettingsChangedImplCopyWithImpl(
+      _$SettingsChangedImpl _value, $Res Function(_$SettingsChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -350,7 +351,7 @@ class __$$_SettingsChangedCopyWithImpl<$Res>
   $Res call({
     Object? isEnabled = null,
   }) {
-    return _then(_$_SettingsChanged(
+    return _then(_$SettingsChangedImpl(
       isEnabled: null == isEnabled
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -361,8 +362,8 @@ class __$$_SettingsChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SettingsChanged implements _SettingsChanged {
-  const _$_SettingsChanged({required this.isEnabled});
+class _$SettingsChangedImpl implements _SettingsChanged {
+  const _$SettingsChangedImpl({required this.isEnabled});
 
   @override
   final bool isEnabled;
@@ -376,7 +377,7 @@ class _$_SettingsChanged implements _SettingsChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SettingsChanged &&
+            other is _$SettingsChangedImpl &&
             (identical(other.isEnabled, isEnabled) ||
                 other.isEnabled == isEnabled));
   }
@@ -387,8 +388,9 @@ class _$_SettingsChanged implements _SettingsChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SettingsChangedCopyWith<_$_SettingsChanged> get copyWith =>
-      __$$_SettingsChangedCopyWithImpl<_$_SettingsChanged>(this, _$identity);
+  _$$SettingsChangedImplCopyWith<_$SettingsChangedImpl> get copyWith =>
+      __$$SettingsChangedImplCopyWithImpl<_$SettingsChangedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -461,11 +463,11 @@ class _$_SettingsChanged implements _SettingsChanged {
 
 abstract class _SettingsChanged implements VibrationEvent {
   const factory _SettingsChanged({required final bool isEnabled}) =
-      _$_SettingsChanged;
+      _$SettingsChangedImpl;
 
   bool get isEnabled;
   @JsonKey(ignore: true)
-  _$$_SettingsChangedCopyWith<_$_SettingsChanged> get copyWith =>
+  _$$SettingsChangedImplCopyWith<_$SettingsChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -551,22 +553,22 @@ class _$VibrationStateCopyWithImpl<$Res, $Val extends VibrationState>
 }
 
 /// @nodoc
-abstract class _$$_LoadInProgressCopyWith<$Res>
+abstract class _$$LoadInProgressImplCopyWith<$Res>
     implements $VibrationStateCopyWith<$Res> {
-  factory _$$_LoadInProgressCopyWith(
-          _$_LoadInProgress value, $Res Function(_$_LoadInProgress) then) =
-      __$$_LoadInProgressCopyWithImpl<$Res>;
+  factory _$$LoadInProgressImplCopyWith(_$LoadInProgressImpl value,
+          $Res Function(_$LoadInProgressImpl) then) =
+      __$$LoadInProgressImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isVibrationEnabled});
 }
 
 /// @nodoc
-class __$$_LoadInProgressCopyWithImpl<$Res>
-    extends _$VibrationStateCopyWithImpl<$Res, _$_LoadInProgress>
-    implements _$$_LoadInProgressCopyWith<$Res> {
-  __$$_LoadInProgressCopyWithImpl(
-      _$_LoadInProgress _value, $Res Function(_$_LoadInProgress) _then)
+class __$$LoadInProgressImplCopyWithImpl<$Res>
+    extends _$VibrationStateCopyWithImpl<$Res, _$LoadInProgressImpl>
+    implements _$$LoadInProgressImplCopyWith<$Res> {
+  __$$LoadInProgressImplCopyWithImpl(
+      _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -574,7 +576,7 @@ class __$$_LoadInProgressCopyWithImpl<$Res>
   $Res call({
     Object? isVibrationEnabled = null,
   }) {
-    return _then(_$_LoadInProgress(
+    return _then(_$LoadInProgressImpl(
       isVibrationEnabled: null == isVibrationEnabled
           ? _value.isVibrationEnabled
           : isVibrationEnabled // ignore: cast_nullable_to_non_nullable
@@ -585,8 +587,8 @@ class __$$_LoadInProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoadInProgress implements _LoadInProgress {
-  const _$_LoadInProgress({this.isVibrationEnabled = true});
+class _$LoadInProgressImpl implements _LoadInProgress {
+  const _$LoadInProgressImpl({this.isVibrationEnabled = true});
 
   @override
   @JsonKey()
@@ -601,7 +603,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadInProgress &&
+            other is _$LoadInProgressImpl &&
             (identical(other.isVibrationEnabled, isVibrationEnabled) ||
                 other.isVibrationEnabled == isVibrationEnabled));
   }
@@ -612,8 +614,9 @@ class _$_LoadInProgress implements _LoadInProgress {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
-      __$$_LoadInProgressCopyWithImpl<_$_LoadInProgress>(this, _$identity);
+  _$$LoadInProgressImplCopyWith<_$LoadInProgressImpl> get copyWith =>
+      __$$LoadInProgressImplCopyWithImpl<_$LoadInProgressImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -681,32 +684,33 @@ class _$_LoadInProgress implements _LoadInProgress {
 
 abstract class _LoadInProgress implements VibrationState {
   const factory _LoadInProgress({final bool isVibrationEnabled}) =
-      _$_LoadInProgress;
+      _$LoadInProgressImpl;
 
   @override
   bool get isVibrationEnabled;
   @override
   @JsonKey(ignore: true)
-  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
+  _$$LoadInProgressImplCopyWith<_$LoadInProgressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res>
+abstract class _$$InitialImplCopyWith<$Res>
     implements $VibrationStateCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool? canVibrate, bool isVibrationEnabled});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res>
-    extends _$VibrationStateCopyWithImpl<$Res, _$_Initial>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$VibrationStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -715,7 +719,7 @@ class __$$_InitialCopyWithImpl<$Res>
     Object? canVibrate = freezed,
     Object? isVibrationEnabled = null,
   }) {
-    return _then(_$_Initial(
+    return _then(_$InitialImpl(
       canVibrate: freezed == canVibrate
           ? _value.canVibrate
           : canVibrate // ignore: cast_nullable_to_non_nullable
@@ -730,8 +734,9 @@ class __$$_InitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial({this.canVibrate = false, this.isVibrationEnabled = true});
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl(
+      {this.canVibrate = false, this.isVibrationEnabled = true});
 
   @override
   @JsonKey()
@@ -749,7 +754,7 @@ class _$_Initial implements _Initial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$InitialImpl &&
             (identical(other.canVibrate, canVibrate) ||
                 other.canVibrate == canVibrate) &&
             (identical(other.isVibrationEnabled, isVibrationEnabled) ||
@@ -762,8 +767,8 @@ class _$_Initial implements _Initial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
+      __$$InitialImplCopyWithImpl<_$InitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -831,13 +836,13 @@ class _$_Initial implements _Initial {
 
 abstract class _Initial implements VibrationState {
   const factory _Initial(
-      {final bool? canVibrate, final bool isVibrationEnabled}) = _$_Initial;
+      {final bool? canVibrate, final bool isVibrationEnabled}) = _$InitialImpl;
 
   bool? get canVibrate;
   @override
   bool get isVibrationEnabled;
   @override
   @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+  _$$InitialImplCopyWith<_$InitialImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

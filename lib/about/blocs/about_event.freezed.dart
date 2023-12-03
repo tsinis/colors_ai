@@ -105,25 +105,25 @@ class _$AboutEventCopyWithImpl<$Res, $Val extends AboutEvent>
 }
 
 /// @nodoc
-abstract class _$$_AboutColormindTapedCopyWith<$Res> {
-  factory _$$_AboutColormindTapedCopyWith(_$_AboutColormindTaped value,
-          $Res Function(_$_AboutColormindTaped) then) =
-      __$$_AboutColormindTapedCopyWithImpl<$Res>;
+abstract class _$$AboutColormindTapedImplCopyWith<$Res> {
+  factory _$$AboutColormindTapedImplCopyWith(_$AboutColormindTapedImpl value,
+          $Res Function(_$AboutColormindTapedImpl) then) =
+      __$$AboutColormindTapedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutColormindTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res, _$_AboutColormindTaped>
-    implements _$$_AboutColormindTapedCopyWith<$Res> {
-  __$$_AboutColormindTapedCopyWithImpl(_$_AboutColormindTaped _value,
-      $Res Function(_$_AboutColormindTaped) _then)
+class __$$AboutColormindTapedImplCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$AboutColormindTapedImpl>
+    implements _$$AboutColormindTapedImplCopyWith<$Res> {
+  __$$AboutColormindTapedImplCopyWithImpl(_$AboutColormindTapedImpl _value,
+      $Res Function(_$AboutColormindTapedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutColormindTaped implements _AboutColormindTaped {
-  const _$_AboutColormindTaped();
+class _$AboutColormindTapedImpl implements _AboutColormindTaped {
+  const _$AboutColormindTapedImpl();
 
   @override
   String toString() {
@@ -133,7 +133,8 @@ class _$_AboutColormindTaped implements _AboutColormindTaped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutColormindTaped);
+        (other.runtimeType == runtimeType &&
+            other is _$AboutColormindTapedImpl);
   }
 
   @override
@@ -233,29 +234,29 @@ class _$_AboutColormindTaped implements _AboutColormindTaped {
 }
 
 abstract class _AboutColormindTaped implements AboutEvent {
-  const factory _AboutColormindTaped() = _$_AboutColormindTaped;
+  const factory _AboutColormindTaped() = _$AboutColormindTapedImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutGoogleTapedCopyWith<$Res> {
-  factory _$$_AboutGoogleTapedCopyWith(
-          _$_AboutGoogleTaped value, $Res Function(_$_AboutGoogleTaped) then) =
-      __$$_AboutGoogleTapedCopyWithImpl<$Res>;
+abstract class _$$AboutGoogleTapedImplCopyWith<$Res> {
+  factory _$$AboutGoogleTapedImplCopyWith(_$AboutGoogleTapedImpl value,
+          $Res Function(_$AboutGoogleTapedImpl) then) =
+      __$$AboutGoogleTapedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutGoogleTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res, _$_AboutGoogleTaped>
-    implements _$$_AboutGoogleTapedCopyWith<$Res> {
-  __$$_AboutGoogleTapedCopyWithImpl(
-      _$_AboutGoogleTaped _value, $Res Function(_$_AboutGoogleTaped) _then)
+class __$$AboutGoogleTapedImplCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$AboutGoogleTapedImpl>
+    implements _$$AboutGoogleTapedImplCopyWith<$Res> {
+  __$$AboutGoogleTapedImplCopyWithImpl(_$AboutGoogleTapedImpl _value,
+      $Res Function(_$AboutGoogleTapedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutGoogleTaped implements _AboutGoogleTaped {
-  const _$_AboutGoogleTaped();
+class _$AboutGoogleTapedImpl implements _AboutGoogleTaped {
+  const _$AboutGoogleTapedImpl();
 
   @override
   String toString() {
@@ -265,7 +266,7 @@ class _$_AboutGoogleTaped implements _AboutGoogleTaped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutGoogleTaped);
+        (other.runtimeType == runtimeType && other is _$AboutGoogleTapedImpl);
   }
 
   @override
@@ -365,29 +366,29 @@ class _$_AboutGoogleTaped implements _AboutGoogleTaped {
 }
 
 abstract class _AboutGoogleTaped implements AboutEvent {
-  const factory _AboutGoogleTaped() = _$_AboutGoogleTaped;
+  const factory _AboutGoogleTaped() = _$AboutGoogleTapedImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutHuemintTapedCopyWith<$Res> {
-  factory _$$_AboutHuemintTapedCopyWith(_$_AboutHuemintTaped value,
-          $Res Function(_$_AboutHuemintTaped) then) =
-      __$$_AboutHuemintTapedCopyWithImpl<$Res>;
+abstract class _$$AboutHuemintTapedImplCopyWith<$Res> {
+  factory _$$AboutHuemintTapedImplCopyWith(_$AboutHuemintTapedImpl value,
+          $Res Function(_$AboutHuemintTapedImpl) then) =
+      __$$AboutHuemintTapedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutHuemintTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res, _$_AboutHuemintTaped>
-    implements _$$_AboutHuemintTapedCopyWith<$Res> {
-  __$$_AboutHuemintTapedCopyWithImpl(
-      _$_AboutHuemintTaped _value, $Res Function(_$_AboutHuemintTaped) _then)
+class __$$AboutHuemintTapedImplCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$AboutHuemintTapedImpl>
+    implements _$$AboutHuemintTapedImplCopyWith<$Res> {
+  __$$AboutHuemintTapedImplCopyWithImpl(_$AboutHuemintTapedImpl _value,
+      $Res Function(_$AboutHuemintTapedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutHuemintTaped implements _AboutHuemintTaped {
-  const _$_AboutHuemintTaped();
+class _$AboutHuemintTapedImpl implements _AboutHuemintTaped {
+  const _$AboutHuemintTapedImpl();
 
   @override
   String toString() {
@@ -397,7 +398,7 @@ class _$_AboutHuemintTaped implements _AboutHuemintTaped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutHuemintTaped);
+        (other.runtimeType == runtimeType && other is _$AboutHuemintTapedImpl);
   }
 
   @override
@@ -497,29 +498,29 @@ class _$_AboutHuemintTaped implements _AboutHuemintTaped {
 }
 
 abstract class _AboutHuemintTaped implements AboutEvent {
-  const factory _AboutHuemintTaped() = _$_AboutHuemintTaped;
+  const factory _AboutHuemintTaped() = _$AboutHuemintTapedImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutLicensesTapedCopyWith<$Res> {
-  factory _$$_AboutLicensesTapedCopyWith(_$_AboutLicensesTaped value,
-          $Res Function(_$_AboutLicensesTaped) then) =
-      __$$_AboutLicensesTapedCopyWithImpl<$Res>;
+abstract class _$$AboutLicensesTapedImplCopyWith<$Res> {
+  factory _$$AboutLicensesTapedImplCopyWith(_$AboutLicensesTapedImpl value,
+          $Res Function(_$AboutLicensesTapedImpl) then) =
+      __$$AboutLicensesTapedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutLicensesTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res, _$_AboutLicensesTaped>
-    implements _$$_AboutLicensesTapedCopyWith<$Res> {
-  __$$_AboutLicensesTapedCopyWithImpl(
-      _$_AboutLicensesTaped _value, $Res Function(_$_AboutLicensesTaped) _then)
+class __$$AboutLicensesTapedImplCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$AboutLicensesTapedImpl>
+    implements _$$AboutLicensesTapedImplCopyWith<$Res> {
+  __$$AboutLicensesTapedImplCopyWithImpl(_$AboutLicensesTapedImpl _value,
+      $Res Function(_$AboutLicensesTapedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutLicensesTaped implements _AboutLicensesTaped {
-  const _$_AboutLicensesTaped();
+class _$AboutLicensesTapedImpl implements _AboutLicensesTaped {
+  const _$AboutLicensesTapedImpl();
 
   @override
   String toString() {
@@ -529,7 +530,7 @@ class _$_AboutLicensesTaped implements _AboutLicensesTaped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutLicensesTaped);
+        (other.runtimeType == runtimeType && other is _$AboutLicensesTapedImpl);
   }
 
   @override
@@ -629,29 +630,29 @@ class _$_AboutLicensesTaped implements _AboutLicensesTaped {
 }
 
 abstract class _AboutLicensesTaped implements AboutEvent {
-  const factory _AboutLicensesTaped() = _$_AboutLicensesTaped;
+  const factory _AboutLicensesTaped() = _$AboutLicensesTapedImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutSoundsTapedCopyWith<$Res> {
-  factory _$$_AboutSoundsTapedCopyWith(
-          _$_AboutSoundsTaped value, $Res Function(_$_AboutSoundsTaped) then) =
-      __$$_AboutSoundsTapedCopyWithImpl<$Res>;
+abstract class _$$AboutSoundsTapedImplCopyWith<$Res> {
+  factory _$$AboutSoundsTapedImplCopyWith(_$AboutSoundsTapedImpl value,
+          $Res Function(_$AboutSoundsTapedImpl) then) =
+      __$$AboutSoundsTapedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutSoundsTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res, _$_AboutSoundsTaped>
-    implements _$$_AboutSoundsTapedCopyWith<$Res> {
-  __$$_AboutSoundsTapedCopyWithImpl(
-      _$_AboutSoundsTaped _value, $Res Function(_$_AboutSoundsTaped) _then)
+class __$$AboutSoundsTapedImplCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$AboutSoundsTapedImpl>
+    implements _$$AboutSoundsTapedImplCopyWith<$Res> {
+  __$$AboutSoundsTapedImplCopyWithImpl(_$AboutSoundsTapedImpl _value,
+      $Res Function(_$AboutSoundsTapedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutSoundsTaped implements _AboutSoundsTaped {
-  const _$_AboutSoundsTaped();
+class _$AboutSoundsTapedImpl implements _AboutSoundsTaped {
+  const _$AboutSoundsTapedImpl();
 
   @override
   String toString() {
@@ -661,7 +662,7 @@ class _$_AboutSoundsTaped implements _AboutSoundsTaped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutSoundsTaped);
+        (other.runtimeType == runtimeType && other is _$AboutSoundsTapedImpl);
   }
 
   @override
@@ -761,29 +762,29 @@ class _$_AboutSoundsTaped implements _AboutSoundsTaped {
 }
 
 abstract class _AboutSoundsTaped implements AboutEvent {
-  const factory _AboutSoundsTaped() = _$_AboutSoundsTaped;
+  const factory _AboutSoundsTaped() = _$AboutSoundsTapedImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutSourceCodeTapedCopyWith<$Res> {
-  factory _$$_AboutSourceCodeTapedCopyWith(_$_AboutSourceCodeTaped value,
-          $Res Function(_$_AboutSourceCodeTaped) then) =
-      __$$_AboutSourceCodeTapedCopyWithImpl<$Res>;
+abstract class _$$AboutSourceCodeTapedImplCopyWith<$Res> {
+  factory _$$AboutSourceCodeTapedImplCopyWith(_$AboutSourceCodeTapedImpl value,
+          $Res Function(_$AboutSourceCodeTapedImpl) then) =
+      __$$AboutSourceCodeTapedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutSourceCodeTapedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res, _$_AboutSourceCodeTaped>
-    implements _$$_AboutSourceCodeTapedCopyWith<$Res> {
-  __$$_AboutSourceCodeTapedCopyWithImpl(_$_AboutSourceCodeTaped _value,
-      $Res Function(_$_AboutSourceCodeTaped) _then)
+class __$$AboutSourceCodeTapedImplCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$AboutSourceCodeTapedImpl>
+    implements _$$AboutSourceCodeTapedImplCopyWith<$Res> {
+  __$$AboutSourceCodeTapedImplCopyWithImpl(_$AboutSourceCodeTapedImpl _value,
+      $Res Function(_$AboutSourceCodeTapedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutSourceCodeTaped implements _AboutSourceCodeTaped {
-  const _$_AboutSourceCodeTaped();
+class _$AboutSourceCodeTapedImpl implements _AboutSourceCodeTaped {
+  const _$AboutSourceCodeTapedImpl();
 
   @override
   String toString() {
@@ -793,7 +794,8 @@ class _$_AboutSourceCodeTaped implements _AboutSourceCodeTaped {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutSourceCodeTaped);
+        (other.runtimeType == runtimeType &&
+            other is _$AboutSourceCodeTapedImpl);
   }
 
   @override
@@ -893,24 +895,24 @@ class _$_AboutSourceCodeTaped implements _AboutSourceCodeTaped {
 }
 
 abstract class _AboutSourceCodeTaped implements AboutEvent {
-  const factory _AboutSourceCodeTaped() = _$_AboutSourceCodeTaped;
+  const factory _AboutSourceCodeTaped() = _$AboutSourceCodeTapedImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutStartedCopyWith<$Res> {
-  factory _$$_AboutStartedCopyWith(
-          _$_AboutStarted value, $Res Function(_$_AboutStarted) then) =
-      __$$_AboutStartedCopyWithImpl<$Res>;
+abstract class _$$AboutStartedImplCopyWith<$Res> {
+  factory _$$AboutStartedImplCopyWith(
+          _$AboutStartedImpl value, $Res Function(_$AboutStartedImpl) then) =
+      __$$AboutStartedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String currentLocale});
 }
 
 /// @nodoc
-class __$$_AboutStartedCopyWithImpl<$Res>
-    extends _$AboutEventCopyWithImpl<$Res, _$_AboutStarted>
-    implements _$$_AboutStartedCopyWith<$Res> {
-  __$$_AboutStartedCopyWithImpl(
-      _$_AboutStarted _value, $Res Function(_$_AboutStarted) _then)
+class __$$AboutStartedImplCopyWithImpl<$Res>
+    extends _$AboutEventCopyWithImpl<$Res, _$AboutStartedImpl>
+    implements _$$AboutStartedImplCopyWith<$Res> {
+  __$$AboutStartedImplCopyWithImpl(
+      _$AboutStartedImpl _value, $Res Function(_$AboutStartedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -918,7 +920,7 @@ class __$$_AboutStartedCopyWithImpl<$Res>
   $Res call({
     Object? currentLocale = null,
   }) {
-    return _then(_$_AboutStarted(
+    return _then(_$AboutStartedImpl(
       currentLocale: null == currentLocale
           ? _value.currentLocale
           : currentLocale // ignore: cast_nullable_to_non_nullable
@@ -929,8 +931,8 @@ class __$$_AboutStartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AboutStarted implements _AboutStarted {
-  const _$_AboutStarted({required this.currentLocale});
+class _$AboutStartedImpl implements _AboutStarted {
+  const _$AboutStartedImpl({required this.currentLocale});
 
   @override
   final String currentLocale;
@@ -944,7 +946,7 @@ class _$_AboutStarted implements _AboutStarted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AboutStarted &&
+            other is _$AboutStartedImpl &&
             (identical(other.currentLocale, currentLocale) ||
                 other.currentLocale == currentLocale));
   }
@@ -955,8 +957,8 @@ class _$_AboutStarted implements _AboutStarted {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
-      __$$_AboutStartedCopyWithImpl<_$_AboutStarted>(this, _$identity);
+  _$$AboutStartedImplCopyWith<_$AboutStartedImpl> get copyWith =>
+      __$$AboutStartedImplCopyWithImpl<_$AboutStartedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1053,10 +1055,10 @@ class _$_AboutStarted implements _AboutStarted {
 
 abstract class _AboutStarted implements AboutEvent {
   const factory _AboutStarted({required final String currentLocale}) =
-      _$_AboutStarted;
+      _$AboutStartedImpl;
 
   String get currentLocale;
   @JsonKey(ignore: true)
-  _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
+  _$$AboutStartedImplCopyWith<_$AboutStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

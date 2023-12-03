@@ -2,7 +2,7 @@ import 'package:colors_ai/color_generator/interfaces/manipulate_list_interface.d
 import 'package:flutter_test/flutter_test.dart';
 
 class _ManipulateListInterfaceTest extends ManipulateListInterface<bool> {
-  const _ManipulateListInterfaceTest(List<bool> list) : super(list);
+  const _ManipulateListInterfaceTest(super.list);
 }
 
 void main() => group('ManipulateListInterface', () {

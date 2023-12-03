@@ -75,25 +75,25 @@ class _$OnboardingEventCopyWithImpl<$Res, $Val extends OnboardingEvent>
 }
 
 /// @nodoc
-abstract class _$$_OnboardingFinishedCopyWith<$Res> {
-  factory _$$_OnboardingFinishedCopyWith(_$_OnboardingFinished value,
-          $Res Function(_$_OnboardingFinished) then) =
-      __$$_OnboardingFinishedCopyWithImpl<$Res>;
+abstract class _$$OnboardingFinishedImplCopyWith<$Res> {
+  factory _$$OnboardingFinishedImplCopyWith(_$OnboardingFinishedImpl value,
+          $Res Function(_$OnboardingFinishedImpl) then) =
+      __$$OnboardingFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnboardingFinishedCopyWithImpl<$Res>
-    extends _$OnboardingEventCopyWithImpl<$Res, _$_OnboardingFinished>
-    implements _$$_OnboardingFinishedCopyWith<$Res> {
-  __$$_OnboardingFinishedCopyWithImpl(
-      _$_OnboardingFinished _value, $Res Function(_$_OnboardingFinished) _then)
+class __$$OnboardingFinishedImplCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res, _$OnboardingFinishedImpl>
+    implements _$$OnboardingFinishedImplCopyWith<$Res> {
+  __$$OnboardingFinishedImplCopyWithImpl(_$OnboardingFinishedImpl _value,
+      $Res Function(_$OnboardingFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnboardingFinished implements _OnboardingFinished {
-  const _$_OnboardingFinished();
+class _$OnboardingFinishedImpl implements _OnboardingFinished {
+  const _$OnboardingFinishedImpl();
 
   @override
   String toString() {
@@ -103,7 +103,7 @@ class _$_OnboardingFinished implements _OnboardingFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnboardingFinished);
+        (other.runtimeType == runtimeType && other is _$OnboardingFinishedImpl);
   }
 
   @override
@@ -173,29 +173,29 @@ class _$_OnboardingFinished implements _OnboardingFinished {
 }
 
 abstract class _OnboardingFinished implements OnboardingEvent {
-  const factory _OnboardingFinished() = _$_OnboardingFinished;
+  const factory _OnboardingFinished() = _$OnboardingFinishedImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnboardingStartedCopyWith<$Res> {
-  factory _$$_OnboardingStartedCopyWith(_$_OnboardingStarted value,
-          $Res Function(_$_OnboardingStarted) then) =
-      __$$_OnboardingStartedCopyWithImpl<$Res>;
+abstract class _$$OnboardingStartedImplCopyWith<$Res> {
+  factory _$$OnboardingStartedImplCopyWith(_$OnboardingStartedImpl value,
+          $Res Function(_$OnboardingStartedImpl) then) =
+      __$$OnboardingStartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnboardingStartedCopyWithImpl<$Res>
-    extends _$OnboardingEventCopyWithImpl<$Res, _$_OnboardingStarted>
-    implements _$$_OnboardingStartedCopyWith<$Res> {
-  __$$_OnboardingStartedCopyWithImpl(
-      _$_OnboardingStarted _value, $Res Function(_$_OnboardingStarted) _then)
+class __$$OnboardingStartedImplCopyWithImpl<$Res>
+    extends _$OnboardingEventCopyWithImpl<$Res, _$OnboardingStartedImpl>
+    implements _$$OnboardingStartedImplCopyWith<$Res> {
+  __$$OnboardingStartedImplCopyWithImpl(_$OnboardingStartedImpl _value,
+      $Res Function(_$OnboardingStartedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnboardingStarted implements _OnboardingStarted {
-  const _$_OnboardingStarted();
+class _$OnboardingStartedImpl implements _OnboardingStarted {
+  const _$OnboardingStartedImpl();
 
   @override
   String toString() {
@@ -205,7 +205,7 @@ class _$_OnboardingStarted implements _OnboardingStarted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnboardingStarted);
+        (other.runtimeType == runtimeType && other is _$OnboardingStartedImpl);
   }
 
   @override
@@ -275,5 +275,5 @@ class _$_OnboardingStarted implements _OnboardingStarted {
 }
 
 abstract class _OnboardingStarted implements OnboardingEvent {
-  const factory _OnboardingStarted() = _$_OnboardingStarted;
+  const factory _OnboardingStarted() = _$OnboardingStartedImpl;
 }

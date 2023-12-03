@@ -29,8 +29,8 @@ class FileShareSection extends ShareSectionInterface {
     required this.canSharePdf,
     required this.canSharePng,
     this.additionalInfo,
-    Key? key,
-  }) : super(key: key, maxWidth: width, palette: palette);
+    super.key,
+  }) : super(maxWidth: width, palette: palette);
 
   String? _helperText(AppLocalizations l10n) {
     switch (selectedFormat) {

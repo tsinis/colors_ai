@@ -65,6 +65,25 @@ void main() => group(
         );
 
         testWidgets(
+          'textScaler',
+          (WidgetTester tester) async {
+            late final TextScaler scaler;
+
+            await tester.pumpWidget(
+              MaterialApp(
+                builder: (BuildContext context, Widget? _) {
+                  scaler = context.textScaler;
+
+                  return const SizedBox.shrink();
+                },
+              ),
+            );
+
+            expect(scaler, isNotNull);
+          },
+        );
+
+        testWidgets(
           'theme',
           (WidgetTester tester) async {
             late final ThemeData theme;

@@ -112,25 +112,25 @@ class _$SnackbarStateCopyWithImpl<$Res, $Val extends SnackbarState>
 }
 
 /// @nodoc
-abstract class _$$_SnackbarInitialCopyWith<$Res> {
-  factory _$$_SnackbarInitialCopyWith(
-          _$_SnackbarInitial value, $Res Function(_$_SnackbarInitial) then) =
-      __$$_SnackbarInitialCopyWithImpl<$Res>;
+abstract class _$$SnackbarInitialImplCopyWith<$Res> {
+  factory _$$SnackbarInitialImplCopyWith(_$SnackbarInitialImpl value,
+          $Res Function(_$SnackbarInitialImpl) then) =
+      __$$SnackbarInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SnackbarInitialCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarInitial>
-    implements _$$_SnackbarInitialCopyWith<$Res> {
-  __$$_SnackbarInitialCopyWithImpl(
-      _$_SnackbarInitial _value, $Res Function(_$_SnackbarInitial) _then)
+class __$$SnackbarInitialImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarInitialImpl>
+    implements _$$SnackbarInitialImplCopyWith<$Res> {
+  __$$SnackbarInitialImplCopyWithImpl(
+      _$SnackbarInitialImpl _value, $Res Function(_$SnackbarInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SnackbarInitial implements _SnackbarInitial {
-  const _$_SnackbarInitial();
+class _$SnackbarInitialImpl implements _SnackbarInitial {
+  const _$SnackbarInitialImpl();
 
   @override
   String toString() {
@@ -140,7 +140,7 @@ class _$_SnackbarInitial implements _SnackbarInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SnackbarInitial);
+        (other.runtimeType == runtimeType && other is _$SnackbarInitialImpl);
   }
 
   @override
@@ -247,24 +247,26 @@ class _$_SnackbarInitial implements _SnackbarInitial {
 }
 
 abstract class _SnackbarInitial implements SnackbarState {
-  const factory _SnackbarInitial() = _$_SnackbarInitial;
+  const factory _SnackbarInitial() = _$SnackbarInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_SnackbarUrlCopySuccessCopyWith<$Res> {
-  factory _$$_SnackbarUrlCopySuccessCopyWith(_$_SnackbarUrlCopySuccess value,
-          $Res Function(_$_SnackbarUrlCopySuccess) then) =
-      __$$_SnackbarUrlCopySuccessCopyWithImpl<$Res>;
+abstract class _$$SnackbarUrlCopySuccessImplCopyWith<$Res> {
+  factory _$$SnackbarUrlCopySuccessImplCopyWith(
+          _$SnackbarUrlCopySuccessImpl value,
+          $Res Function(_$SnackbarUrlCopySuccessImpl) then) =
+      __$$SnackbarUrlCopySuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String url});
 }
 
 /// @nodoc
-class __$$_SnackbarUrlCopySuccessCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarUrlCopySuccess>
-    implements _$$_SnackbarUrlCopySuccessCopyWith<$Res> {
-  __$$_SnackbarUrlCopySuccessCopyWithImpl(_$_SnackbarUrlCopySuccess _value,
-      $Res Function(_$_SnackbarUrlCopySuccess) _then)
+class __$$SnackbarUrlCopySuccessImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarUrlCopySuccessImpl>
+    implements _$$SnackbarUrlCopySuccessImplCopyWith<$Res> {
+  __$$SnackbarUrlCopySuccessImplCopyWithImpl(
+      _$SnackbarUrlCopySuccessImpl _value,
+      $Res Function(_$SnackbarUrlCopySuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -272,7 +274,7 @@ class __$$_SnackbarUrlCopySuccessCopyWithImpl<$Res>
   $Res call({
     Object? url = null,
   }) {
-    return _then(_$_SnackbarUrlCopySuccess(
+    return _then(_$SnackbarUrlCopySuccessImpl(
       null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -283,8 +285,8 @@ class __$$_SnackbarUrlCopySuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SnackbarUrlCopySuccess implements _SnackbarUrlCopySuccess {
-  const _$_SnackbarUrlCopySuccess(this.url);
+class _$SnackbarUrlCopySuccessImpl implements _SnackbarUrlCopySuccess {
+  const _$SnackbarUrlCopySuccessImpl(this.url);
 
   @override
   final String url;
@@ -298,7 +300,7 @@ class _$_SnackbarUrlCopySuccess implements _SnackbarUrlCopySuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SnackbarUrlCopySuccess &&
+            other is _$SnackbarUrlCopySuccessImpl &&
             (identical(other.url, url) || other.url == url));
   }
 
@@ -308,9 +310,9 @@ class _$_SnackbarUrlCopySuccess implements _SnackbarUrlCopySuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SnackbarUrlCopySuccessCopyWith<_$_SnackbarUrlCopySuccess> get copyWith =>
-      __$$_SnackbarUrlCopySuccessCopyWithImpl<_$_SnackbarUrlCopySuccess>(
-          this, _$identity);
+  _$$SnackbarUrlCopySuccessImplCopyWith<_$SnackbarUrlCopySuccessImpl>
+      get copyWith => __$$SnackbarUrlCopySuccessImplCopyWithImpl<
+          _$SnackbarUrlCopySuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -414,29 +416,31 @@ class _$_SnackbarUrlCopySuccess implements _SnackbarUrlCopySuccess {
 
 abstract class _SnackbarUrlCopySuccess implements SnackbarState {
   const factory _SnackbarUrlCopySuccess(final String url) =
-      _$_SnackbarUrlCopySuccess;
+      _$SnackbarUrlCopySuccessImpl;
 
   String get url;
   @JsonKey(ignore: true)
-  _$$_SnackbarUrlCopySuccessCopyWith<_$_SnackbarUrlCopySuccess> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SnackbarUrlCopySuccessImplCopyWith<_$SnackbarUrlCopySuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SnackbarFileCopySuccessCopyWith<$Res> {
-  factory _$$_SnackbarFileCopySuccessCopyWith(_$_SnackbarFileCopySuccess value,
-          $Res Function(_$_SnackbarFileCopySuccess) then) =
-      __$$_SnackbarFileCopySuccessCopyWithImpl<$Res>;
+abstract class _$$SnackbarFileCopySuccessImplCopyWith<$Res> {
+  factory _$$SnackbarFileCopySuccessImplCopyWith(
+          _$SnackbarFileCopySuccessImpl value,
+          $Res Function(_$SnackbarFileCopySuccessImpl) then) =
+      __$$SnackbarFileCopySuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String format});
 }
 
 /// @nodoc
-class __$$_SnackbarFileCopySuccessCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarFileCopySuccess>
-    implements _$$_SnackbarFileCopySuccessCopyWith<$Res> {
-  __$$_SnackbarFileCopySuccessCopyWithImpl(_$_SnackbarFileCopySuccess _value,
-      $Res Function(_$_SnackbarFileCopySuccess) _then)
+class __$$SnackbarFileCopySuccessImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarFileCopySuccessImpl>
+    implements _$$SnackbarFileCopySuccessImplCopyWith<$Res> {
+  __$$SnackbarFileCopySuccessImplCopyWithImpl(
+      _$SnackbarFileCopySuccessImpl _value,
+      $Res Function(_$SnackbarFileCopySuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -444,7 +448,7 @@ class __$$_SnackbarFileCopySuccessCopyWithImpl<$Res>
   $Res call({
     Object? format = null,
   }) {
-    return _then(_$_SnackbarFileCopySuccess(
+    return _then(_$SnackbarFileCopySuccessImpl(
       null == format
           ? _value.format
           : format // ignore: cast_nullable_to_non_nullable
@@ -455,8 +459,8 @@ class __$$_SnackbarFileCopySuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SnackbarFileCopySuccess implements _SnackbarFileCopySuccess {
-  const _$_SnackbarFileCopySuccess(this.format);
+class _$SnackbarFileCopySuccessImpl implements _SnackbarFileCopySuccess {
+  const _$SnackbarFileCopySuccessImpl(this.format);
 
   @override
   final String format;
@@ -470,7 +474,7 @@ class _$_SnackbarFileCopySuccess implements _SnackbarFileCopySuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SnackbarFileCopySuccess &&
+            other is _$SnackbarFileCopySuccessImpl &&
             (identical(other.format, format) || other.format == format));
   }
 
@@ -480,10 +484,9 @@ class _$_SnackbarFileCopySuccess implements _SnackbarFileCopySuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SnackbarFileCopySuccessCopyWith<_$_SnackbarFileCopySuccess>
-      get copyWith =>
-          __$$_SnackbarFileCopySuccessCopyWithImpl<_$_SnackbarFileCopySuccess>(
-              this, _$identity);
+  _$$SnackbarFileCopySuccessImplCopyWith<_$SnackbarFileCopySuccessImpl>
+      get copyWith => __$$SnackbarFileCopySuccessImplCopyWithImpl<
+          _$SnackbarFileCopySuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -587,30 +590,31 @@ class _$_SnackbarFileCopySuccess implements _SnackbarFileCopySuccess {
 
 abstract class _SnackbarFileCopySuccess implements SnackbarState {
   const factory _SnackbarFileCopySuccess(final String format) =
-      _$_SnackbarFileCopySuccess;
+      _$SnackbarFileCopySuccessImpl;
 
   String get format;
   @JsonKey(ignore: true)
-  _$$_SnackbarFileCopySuccessCopyWith<_$_SnackbarFileCopySuccess>
+  _$$SnackbarFileCopySuccessImplCopyWith<_$SnackbarFileCopySuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SnackbarColorCopySuccessCopyWith<$Res> {
-  factory _$$_SnackbarColorCopySuccessCopyWith(
-          _$_SnackbarColorCopySuccess value,
-          $Res Function(_$_SnackbarColorCopySuccess) then) =
-      __$$_SnackbarColorCopySuccessCopyWithImpl<$Res>;
+abstract class _$$SnackbarColorCopySuccessImplCopyWith<$Res> {
+  factory _$$SnackbarColorCopySuccessImplCopyWith(
+          _$SnackbarColorCopySuccessImpl value,
+          $Res Function(_$SnackbarColorCopySuccessImpl) then) =
+      __$$SnackbarColorCopySuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String hex});
 }
 
 /// @nodoc
-class __$$_SnackbarColorCopySuccessCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarColorCopySuccess>
-    implements _$$_SnackbarColorCopySuccessCopyWith<$Res> {
-  __$$_SnackbarColorCopySuccessCopyWithImpl(_$_SnackbarColorCopySuccess _value,
-      $Res Function(_$_SnackbarColorCopySuccess) _then)
+class __$$SnackbarColorCopySuccessImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarColorCopySuccessImpl>
+    implements _$$SnackbarColorCopySuccessImplCopyWith<$Res> {
+  __$$SnackbarColorCopySuccessImplCopyWithImpl(
+      _$SnackbarColorCopySuccessImpl _value,
+      $Res Function(_$SnackbarColorCopySuccessImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -618,7 +622,7 @@ class __$$_SnackbarColorCopySuccessCopyWithImpl<$Res>
   $Res call({
     Object? hex = null,
   }) {
-    return _then(_$_SnackbarColorCopySuccess(
+    return _then(_$SnackbarColorCopySuccessImpl(
       null == hex
           ? _value.hex
           : hex // ignore: cast_nullable_to_non_nullable
@@ -629,8 +633,8 @@ class __$$_SnackbarColorCopySuccessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SnackbarColorCopySuccess implements _SnackbarColorCopySuccess {
-  const _$_SnackbarColorCopySuccess(this.hex);
+class _$SnackbarColorCopySuccessImpl implements _SnackbarColorCopySuccess {
+  const _$SnackbarColorCopySuccessImpl(this.hex);
 
   @override
   final String hex;
@@ -644,7 +648,7 @@ class _$_SnackbarColorCopySuccess implements _SnackbarColorCopySuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SnackbarColorCopySuccess &&
+            other is _$SnackbarColorCopySuccessImpl &&
             (identical(other.hex, hex) || other.hex == hex));
   }
 
@@ -654,9 +658,9 @@ class _$_SnackbarColorCopySuccess implements _SnackbarColorCopySuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SnackbarColorCopySuccessCopyWith<_$_SnackbarColorCopySuccess>
-      get copyWith => __$$_SnackbarColorCopySuccessCopyWithImpl<
-          _$_SnackbarColorCopySuccess>(this, _$identity);
+  _$$SnackbarColorCopySuccessImplCopyWith<_$SnackbarColorCopySuccessImpl>
+      get copyWith => __$$SnackbarColorCopySuccessImplCopyWithImpl<
+          _$SnackbarColorCopySuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -760,36 +764,36 @@ class _$_SnackbarColorCopySuccess implements _SnackbarColorCopySuccess {
 
 abstract class _SnackbarColorCopySuccess implements SnackbarState {
   const factory _SnackbarColorCopySuccess(final String hex) =
-      _$_SnackbarColorCopySuccess;
+      _$SnackbarColorCopySuccessImpl;
 
   String get hex;
   @JsonKey(ignore: true)
-  _$$_SnackbarColorCopySuccessCopyWith<_$_SnackbarColorCopySuccess>
+  _$$SnackbarColorCopySuccessImplCopyWith<_$SnackbarColorCopySuccessImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_SnackbarServerStatusCheckCopyWith<$Res> {
-  factory _$$_SnackbarServerStatusCheckCopyWith(
-          _$_SnackbarServerStatusCheck value,
-          $Res Function(_$_SnackbarServerStatusCheck) then) =
-      __$$_SnackbarServerStatusCheckCopyWithImpl<$Res>;
+abstract class _$$SnackbarServerStatusCheckImplCopyWith<$Res> {
+  factory _$$SnackbarServerStatusCheckImplCopyWith(
+          _$SnackbarServerStatusCheckImpl value,
+          $Res Function(_$SnackbarServerStatusCheckImpl) then) =
+      __$$SnackbarServerStatusCheckImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SnackbarServerStatusCheckCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarServerStatusCheck>
-    implements _$$_SnackbarServerStatusCheckCopyWith<$Res> {
-  __$$_SnackbarServerStatusCheckCopyWithImpl(
-      _$_SnackbarServerStatusCheck _value,
-      $Res Function(_$_SnackbarServerStatusCheck) _then)
+class __$$SnackbarServerStatusCheckImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarServerStatusCheckImpl>
+    implements _$$SnackbarServerStatusCheckImplCopyWith<$Res> {
+  __$$SnackbarServerStatusCheckImplCopyWithImpl(
+      _$SnackbarServerStatusCheckImpl _value,
+      $Res Function(_$SnackbarServerStatusCheckImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SnackbarServerStatusCheck implements _SnackbarServerStatusCheck {
-  const _$_SnackbarServerStatusCheck();
+class _$SnackbarServerStatusCheckImpl implements _SnackbarServerStatusCheck {
+  const _$SnackbarServerStatusCheckImpl();
 
   @override
   String toString() {
@@ -800,7 +804,7 @@ class _$_SnackbarServerStatusCheck implements _SnackbarServerStatusCheck {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SnackbarServerStatusCheck);
+            other is _$SnackbarServerStatusCheckImpl);
   }
 
   @override
@@ -907,29 +911,29 @@ class _$_SnackbarServerStatusCheck implements _SnackbarServerStatusCheck {
 }
 
 abstract class _SnackbarServerStatusCheck implements SnackbarState {
-  const factory _SnackbarServerStatusCheck() = _$_SnackbarServerStatusCheck;
+  const factory _SnackbarServerStatusCheck() = _$SnackbarServerStatusCheckImpl;
 }
 
 /// @nodoc
-abstract class _$$_SnackbarShareFailureCopyWith<$Res> {
-  factory _$$_SnackbarShareFailureCopyWith(_$_SnackbarShareFailure value,
-          $Res Function(_$_SnackbarShareFailure) then) =
-      __$$_SnackbarShareFailureCopyWithImpl<$Res>;
+abstract class _$$SnackbarShareFailureImplCopyWith<$Res> {
+  factory _$$SnackbarShareFailureImplCopyWith(_$SnackbarShareFailureImpl value,
+          $Res Function(_$SnackbarShareFailureImpl) then) =
+      __$$SnackbarShareFailureImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SnackbarShareFailureCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarShareFailure>
-    implements _$$_SnackbarShareFailureCopyWith<$Res> {
-  __$$_SnackbarShareFailureCopyWithImpl(_$_SnackbarShareFailure _value,
-      $Res Function(_$_SnackbarShareFailure) _then)
+class __$$SnackbarShareFailureImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarShareFailureImpl>
+    implements _$$SnackbarShareFailureImplCopyWith<$Res> {
+  __$$SnackbarShareFailureImplCopyWithImpl(_$SnackbarShareFailureImpl _value,
+      $Res Function(_$SnackbarShareFailureImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SnackbarShareFailure implements _SnackbarShareFailure {
-  const _$_SnackbarShareFailure();
+class _$SnackbarShareFailureImpl implements _SnackbarShareFailure {
+  const _$SnackbarShareFailureImpl();
 
   @override
   String toString() {
@@ -939,7 +943,8 @@ class _$_SnackbarShareFailure implements _SnackbarShareFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SnackbarShareFailure);
+        (other.runtimeType == runtimeType &&
+            other is _$SnackbarShareFailureImpl);
   }
 
   @override
@@ -1046,29 +1051,29 @@ class _$_SnackbarShareFailure implements _SnackbarShareFailure {
 }
 
 abstract class _SnackbarShareFailure implements SnackbarState {
-  const factory _SnackbarShareFailure() = _$_SnackbarShareFailure;
+  const factory _SnackbarShareFailure() = _$SnackbarShareFailureImpl;
 }
 
 /// @nodoc
-abstract class _$$_SnackbarCopyFailureCopyWith<$Res> {
-  factory _$$_SnackbarCopyFailureCopyWith(_$_SnackbarCopyFailure value,
-          $Res Function(_$_SnackbarCopyFailure) then) =
-      __$$_SnackbarCopyFailureCopyWithImpl<$Res>;
+abstract class _$$SnackbarCopyFailureImplCopyWith<$Res> {
+  factory _$$SnackbarCopyFailureImplCopyWith(_$SnackbarCopyFailureImpl value,
+          $Res Function(_$SnackbarCopyFailureImpl) then) =
+      __$$SnackbarCopyFailureImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SnackbarCopyFailureCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarCopyFailure>
-    implements _$$_SnackbarCopyFailureCopyWith<$Res> {
-  __$$_SnackbarCopyFailureCopyWithImpl(_$_SnackbarCopyFailure _value,
-      $Res Function(_$_SnackbarCopyFailure) _then)
+class __$$SnackbarCopyFailureImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarCopyFailureImpl>
+    implements _$$SnackbarCopyFailureImplCopyWith<$Res> {
+  __$$SnackbarCopyFailureImplCopyWithImpl(_$SnackbarCopyFailureImpl _value,
+      $Res Function(_$SnackbarCopyFailureImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SnackbarCopyFailure implements _SnackbarCopyFailure {
-  const _$_SnackbarCopyFailure();
+class _$SnackbarCopyFailureImpl implements _SnackbarCopyFailure {
+  const _$SnackbarCopyFailureImpl();
 
   @override
   String toString() {
@@ -1078,7 +1083,8 @@ class _$_SnackbarCopyFailure implements _SnackbarCopyFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SnackbarCopyFailure);
+        (other.runtimeType == runtimeType &&
+            other is _$SnackbarCopyFailureImpl);
   }
 
   @override
@@ -1185,29 +1191,29 @@ class _$_SnackbarCopyFailure implements _SnackbarCopyFailure {
 }
 
 abstract class _SnackbarCopyFailure implements SnackbarState {
-  const factory _SnackbarCopyFailure() = _$_SnackbarCopyFailure;
+  const factory _SnackbarCopyFailure() = _$SnackbarCopyFailureImpl;
 }
 
 /// @nodoc
-abstract class _$$_SnackbarOtherFailureCopyWith<$Res> {
-  factory _$$_SnackbarOtherFailureCopyWith(_$_SnackbarOtherFailure value,
-          $Res Function(_$_SnackbarOtherFailure) then) =
-      __$$_SnackbarOtherFailureCopyWithImpl<$Res>;
+abstract class _$$SnackbarOtherFailureImplCopyWith<$Res> {
+  factory _$$SnackbarOtherFailureImplCopyWith(_$SnackbarOtherFailureImpl value,
+          $Res Function(_$SnackbarOtherFailureImpl) then) =
+      __$$SnackbarOtherFailureImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SnackbarOtherFailureCopyWithImpl<$Res>
-    extends _$SnackbarStateCopyWithImpl<$Res, _$_SnackbarOtherFailure>
-    implements _$$_SnackbarOtherFailureCopyWith<$Res> {
-  __$$_SnackbarOtherFailureCopyWithImpl(_$_SnackbarOtherFailure _value,
-      $Res Function(_$_SnackbarOtherFailure) _then)
+class __$$SnackbarOtherFailureImplCopyWithImpl<$Res>
+    extends _$SnackbarStateCopyWithImpl<$Res, _$SnackbarOtherFailureImpl>
+    implements _$$SnackbarOtherFailureImplCopyWith<$Res> {
+  __$$SnackbarOtherFailureImplCopyWithImpl(_$SnackbarOtherFailureImpl _value,
+      $Res Function(_$SnackbarOtherFailureImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SnackbarOtherFailure implements _SnackbarOtherFailure {
-  const _$_SnackbarOtherFailure();
+class _$SnackbarOtherFailureImpl implements _SnackbarOtherFailure {
+  const _$SnackbarOtherFailureImpl();
 
   @override
   String toString() {
@@ -1217,7 +1223,8 @@ class _$_SnackbarOtherFailure implements _SnackbarOtherFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SnackbarOtherFailure);
+        (other.runtimeType == runtimeType &&
+            other is _$SnackbarOtherFailureImpl);
   }
 
   @override
@@ -1324,5 +1331,5 @@ class _$_SnackbarOtherFailure implements _SnackbarOtherFailure {
 }
 
 abstract class _SnackbarOtherFailure implements SnackbarState {
-  const factory _SnackbarOtherFailure() = _$_SnackbarOtherFailure;
+  const factory _SnackbarOtherFailure() = _$SnackbarOtherFailureImpl;
 }

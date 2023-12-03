@@ -23,9 +23,9 @@ class ColorsChangeSuccess extends ColorsState {
 }
 
 class ColorsLoadSuccess extends ColorsChangeSuccess {
-  ColorsLoadSuccess(ColorPalette palette) : super(palette);
+  ColorsLoadSuccess(super.palette);
 }
 
 class ColorsLoadStarted extends ColorsChangeSuccess {
-  ColorsLoadStarted(ColorPalette palette) : super(palette);
+  ColorsLoadStarted(super.palette);
 }

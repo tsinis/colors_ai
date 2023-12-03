@@ -87,25 +87,25 @@ class _$AboutStateCopyWithImpl<$Res, $Val extends AboutState>
 }
 
 /// @nodoc
-abstract class _$$_AboutFailureCopyWith<$Res> {
-  factory _$$_AboutFailureCopyWith(
-          _$_AboutFailure value, $Res Function(_$_AboutFailure) then) =
-      __$$_AboutFailureCopyWithImpl<$Res>;
+abstract class _$$AboutFailureImplCopyWith<$Res> {
+  factory _$$AboutFailureImplCopyWith(
+          _$AboutFailureImpl value, $Res Function(_$AboutFailureImpl) then) =
+      __$$AboutFailureImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutFailureCopyWithImpl<$Res>
-    extends _$AboutStateCopyWithImpl<$Res, _$_AboutFailure>
-    implements _$$_AboutFailureCopyWith<$Res> {
-  __$$_AboutFailureCopyWithImpl(
-      _$_AboutFailure _value, $Res Function(_$_AboutFailure) _then)
+class __$$AboutFailureImplCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$AboutFailureImpl>
+    implements _$$AboutFailureImplCopyWith<$Res> {
+  __$$AboutFailureImplCopyWithImpl(
+      _$AboutFailureImpl _value, $Res Function(_$AboutFailureImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutFailure implements _AboutFailure {
-  const _$_AboutFailure();
+class _$AboutFailureImpl implements _AboutFailure {
+  const _$AboutFailureImpl();
 
   @override
   String toString() {
@@ -115,7 +115,7 @@ class _$_AboutFailure implements _AboutFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutFailure);
+        (other.runtimeType == runtimeType && other is _$AboutFailureImpl);
   }
 
   @override
@@ -197,29 +197,29 @@ class _$_AboutFailure implements _AboutFailure {
 }
 
 abstract class _AboutFailure implements AboutState {
-  const factory _AboutFailure() = _$_AboutFailure;
+  const factory _AboutFailure() = _$AboutFailureImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutInitialCopyWith<$Res> {
-  factory _$$_AboutInitialCopyWith(
-          _$_AboutInitial value, $Res Function(_$_AboutInitial) then) =
-      __$$_AboutInitialCopyWithImpl<$Res>;
+abstract class _$$AboutInitialImplCopyWith<$Res> {
+  factory _$$AboutInitialImplCopyWith(
+          _$AboutInitialImpl value, $Res Function(_$AboutInitialImpl) then) =
+      __$$AboutInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_AboutInitialCopyWithImpl<$Res>
-    extends _$AboutStateCopyWithImpl<$Res, _$_AboutInitial>
-    implements _$$_AboutInitialCopyWith<$Res> {
-  __$$_AboutInitialCopyWithImpl(
-      _$_AboutInitial _value, $Res Function(_$_AboutInitial) _then)
+class __$$AboutInitialImplCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$AboutInitialImpl>
+    implements _$$AboutInitialImplCopyWith<$Res> {
+  __$$AboutInitialImplCopyWithImpl(
+      _$AboutInitialImpl _value, $Res Function(_$AboutInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_AboutInitial implements _AboutInitial {
-  const _$_AboutInitial();
+class _$AboutInitialImpl implements _AboutInitial {
+  const _$AboutInitialImpl();
 
   @override
   String toString() {
@@ -229,7 +229,7 @@ class _$_AboutInitial implements _AboutInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_AboutInitial);
+        (other.runtimeType == runtimeType && other is _$AboutInitialImpl);
   }
 
   @override
@@ -311,24 +311,24 @@ class _$_AboutInitial implements _AboutInitial {
 }
 
 abstract class _AboutInitial implements AboutState {
-  const factory _AboutInitial() = _$_AboutInitial;
+  const factory _AboutInitial() = _$AboutInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_AboutLoadedCopyWith<$Res> {
-  factory _$$_AboutLoadedCopyWith(
-          _$_AboutLoaded value, $Res Function(_$_AboutLoaded) then) =
-      __$$_AboutLoadedCopyWithImpl<$Res>;
+abstract class _$$AboutLoadedImplCopyWith<$Res> {
+  factory _$$AboutLoadedImplCopyWith(
+          _$AboutLoadedImpl value, $Res Function(_$AboutLoadedImpl) then) =
+      __$$AboutLoadedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String appVersion});
 }
 
 /// @nodoc
-class __$$_AboutLoadedCopyWithImpl<$Res>
-    extends _$AboutStateCopyWithImpl<$Res, _$_AboutLoaded>
-    implements _$$_AboutLoadedCopyWith<$Res> {
-  __$$_AboutLoadedCopyWithImpl(
-      _$_AboutLoaded _value, $Res Function(_$_AboutLoaded) _then)
+class __$$AboutLoadedImplCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$AboutLoadedImpl>
+    implements _$$AboutLoadedImplCopyWith<$Res> {
+  __$$AboutLoadedImplCopyWithImpl(
+      _$AboutLoadedImpl _value, $Res Function(_$AboutLoadedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -336,7 +336,7 @@ class __$$_AboutLoadedCopyWithImpl<$Res>
   $Res call({
     Object? appVersion = null,
   }) {
-    return _then(_$_AboutLoaded(
+    return _then(_$AboutLoadedImpl(
       appVersion: null == appVersion
           ? _value.appVersion
           : appVersion // ignore: cast_nullable_to_non_nullable
@@ -347,8 +347,8 @@ class __$$_AboutLoadedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AboutLoaded implements _AboutLoaded {
-  const _$_AboutLoaded({required this.appVersion});
+class _$AboutLoadedImpl implements _AboutLoaded {
+  const _$AboutLoadedImpl({required this.appVersion});
 
   @override
   final String appVersion;
@@ -362,7 +362,7 @@ class _$_AboutLoaded implements _AboutLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AboutLoaded &&
+            other is _$AboutLoadedImpl &&
             (identical(other.appVersion, appVersion) ||
                 other.appVersion == appVersion));
   }
@@ -373,8 +373,8 @@ class _$_AboutLoaded implements _AboutLoaded {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AboutLoadedCopyWith<_$_AboutLoaded> get copyWith =>
-      __$$_AboutLoadedCopyWithImpl<_$_AboutLoaded>(this, _$identity);
+  _$$AboutLoadedImplCopyWith<_$AboutLoadedImpl> get copyWith =>
+      __$$AboutLoadedImplCopyWithImpl<_$AboutLoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -453,29 +453,29 @@ class _$_AboutLoaded implements _AboutLoaded {
 
 abstract class _AboutLoaded implements AboutState {
   const factory _AboutLoaded({required final String appVersion}) =
-      _$_AboutLoaded;
+      _$AboutLoadedImpl;
 
   String get appVersion;
   @JsonKey(ignore: true)
-  _$$_AboutLoadedCopyWith<_$_AboutLoaded> get copyWith =>
+  _$$AboutLoadedImplCopyWith<_$AboutLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AboutStartedCopyWith<$Res> {
-  factory _$$_AboutStartedCopyWith(
-          _$_AboutStarted value, $Res Function(_$_AboutStarted) then) =
-      __$$_AboutStartedCopyWithImpl<$Res>;
+abstract class _$$AboutStartedImplCopyWith<$Res> {
+  factory _$$AboutStartedImplCopyWith(
+          _$AboutStartedImpl value, $Res Function(_$AboutStartedImpl) then) =
+      __$$AboutStartedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String currentLocale});
 }
 
 /// @nodoc
-class __$$_AboutStartedCopyWithImpl<$Res>
-    extends _$AboutStateCopyWithImpl<$Res, _$_AboutStarted>
-    implements _$$_AboutStartedCopyWith<$Res> {
-  __$$_AboutStartedCopyWithImpl(
-      _$_AboutStarted _value, $Res Function(_$_AboutStarted) _then)
+class __$$AboutStartedImplCopyWithImpl<$Res>
+    extends _$AboutStateCopyWithImpl<$Res, _$AboutStartedImpl>
+    implements _$$AboutStartedImplCopyWith<$Res> {
+  __$$AboutStartedImplCopyWithImpl(
+      _$AboutStartedImpl _value, $Res Function(_$AboutStartedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -483,7 +483,7 @@ class __$$_AboutStartedCopyWithImpl<$Res>
   $Res call({
     Object? currentLocale = null,
   }) {
-    return _then(_$_AboutStarted(
+    return _then(_$AboutStartedImpl(
       currentLocale: null == currentLocale
           ? _value.currentLocale
           : currentLocale // ignore: cast_nullable_to_non_nullable
@@ -494,8 +494,8 @@ class __$$_AboutStartedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AboutStarted implements _AboutStarted {
-  const _$_AboutStarted({required this.currentLocale});
+class _$AboutStartedImpl implements _AboutStarted {
+  const _$AboutStartedImpl({required this.currentLocale});
 
   @override
   final String currentLocale;
@@ -509,7 +509,7 @@ class _$_AboutStarted implements _AboutStarted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AboutStarted &&
+            other is _$AboutStartedImpl &&
             (identical(other.currentLocale, currentLocale) ||
                 other.currentLocale == currentLocale));
   }
@@ -520,8 +520,8 @@ class _$_AboutStarted implements _AboutStarted {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
-      __$$_AboutStartedCopyWithImpl<_$_AboutStarted>(this, _$identity);
+  _$$AboutStartedImplCopyWith<_$AboutStartedImpl> get copyWith =>
+      __$$AboutStartedImplCopyWithImpl<_$AboutStartedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -600,10 +600,10 @@ class _$_AboutStarted implements _AboutStarted {
 
 abstract class _AboutStarted implements AboutState {
   const factory _AboutStarted({required final String currentLocale}) =
-      _$_AboutStarted;
+      _$AboutStartedImpl;
 
   String get currentLocale;
   @JsonKey(ignore: true)
-  _$$_AboutStartedCopyWith<_$_AboutStarted> get copyWith =>
+  _$$AboutStartedImplCopyWith<_$AboutStartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

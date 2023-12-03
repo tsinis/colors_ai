@@ -23,9 +23,7 @@ import 'theme/constants.dart';
 class App extends StatelessWidget {
   final GeneratorDAO _generator;
 
-  const App({required GeneratorDAO generator, Key? key})
-      : _generator = generator,
-        super(key: key);
+  const App({required GeneratorDAO generator, super.key}) : _generator = generator;
 
   String onGenerateTitle(BuildContext context) {
     BlocProvider.of<AboutBloc>(context).add(

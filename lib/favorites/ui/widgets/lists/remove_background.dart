@@ -5,13 +5,8 @@ import '../../../../core/extensions/context_extensions.dart';
 class RemoveBackground extends StatelessWidget {
   final bool _secondary;
 
-  const RemoveBackground.primary({Key? key})
-      : _secondary = false,
-        super(key: key);
-
-  const RemoveBackground.secondary({Key? key})
-      : _secondary = true,
-        super(key: key);
+  const RemoveBackground.primary({super.key}) : _secondary = false;
+  const RemoveBackground.secondary({super.key}) : _secondary = true;
 
   @override
   Widget build(BuildContext context) => ColoredBox(

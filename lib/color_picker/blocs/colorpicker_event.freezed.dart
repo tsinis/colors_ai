@@ -81,25 +81,25 @@ class _$ColorPickerEventCopyWithImpl<$Res, $Val extends ColorPickerEvent>
 }
 
 /// @nodoc
-abstract class _$$_ColorPickerHidedCopyWith<$Res> {
-  factory _$$_ColorPickerHidedCopyWith(
-          _$_ColorPickerHided value, $Res Function(_$_ColorPickerHided) then) =
-      __$$_ColorPickerHidedCopyWithImpl<$Res>;
+abstract class _$$ColorPickerHidedImplCopyWith<$Res> {
+  factory _$$ColorPickerHidedImplCopyWith(_$ColorPickerHidedImpl value,
+          $Res Function(_$ColorPickerHidedImpl) then) =
+      __$$ColorPickerHidedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ColorPickerHidedCopyWithImpl<$Res>
-    extends _$ColorPickerEventCopyWithImpl<$Res, _$_ColorPickerHided>
-    implements _$$_ColorPickerHidedCopyWith<$Res> {
-  __$$_ColorPickerHidedCopyWithImpl(
-      _$_ColorPickerHided _value, $Res Function(_$_ColorPickerHided) _then)
+class __$$ColorPickerHidedImplCopyWithImpl<$Res>
+    extends _$ColorPickerEventCopyWithImpl<$Res, _$ColorPickerHidedImpl>
+    implements _$$ColorPickerHidedImplCopyWith<$Res> {
+  __$$ColorPickerHidedImplCopyWithImpl(_$ColorPickerHidedImpl _value,
+      $Res Function(_$ColorPickerHidedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ColorPickerHided implements _ColorPickerHided {
-  const _$_ColorPickerHided();
+class _$ColorPickerHidedImpl implements _ColorPickerHided {
+  const _$ColorPickerHidedImpl();
 
   @override
   String toString() {
@@ -109,7 +109,7 @@ class _$_ColorPickerHided implements _ColorPickerHided {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ColorPickerHided);
+        (other.runtimeType == runtimeType && other is _$ColorPickerHidedImpl);
   }
 
   @override
@@ -185,29 +185,29 @@ class _$_ColorPickerHided implements _ColorPickerHided {
 }
 
 abstract class _ColorPickerHided implements ColorPickerEvent {
-  const factory _ColorPickerHided() = _$_ColorPickerHided;
+  const factory _ColorPickerHided() = _$ColorPickerHidedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ColorPickerShowedCopyWith<$Res> {
-  factory _$$_ColorPickerShowedCopyWith(_$_ColorPickerShowed value,
-          $Res Function(_$_ColorPickerShowed) then) =
-      __$$_ColorPickerShowedCopyWithImpl<$Res>;
+abstract class _$$ColorPickerShowedImplCopyWith<$Res> {
+  factory _$$ColorPickerShowedImplCopyWith(_$ColorPickerShowedImpl value,
+          $Res Function(_$ColorPickerShowedImpl) then) =
+      __$$ColorPickerShowedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ColorPickerShowedCopyWithImpl<$Res>
-    extends _$ColorPickerEventCopyWithImpl<$Res, _$_ColorPickerShowed>
-    implements _$$_ColorPickerShowedCopyWith<$Res> {
-  __$$_ColorPickerShowedCopyWithImpl(
-      _$_ColorPickerShowed _value, $Res Function(_$_ColorPickerShowed) _then)
+class __$$ColorPickerShowedImplCopyWithImpl<$Res>
+    extends _$ColorPickerEventCopyWithImpl<$Res, _$ColorPickerShowedImpl>
+    implements _$$ColorPickerShowedImplCopyWith<$Res> {
+  __$$ColorPickerShowedImplCopyWithImpl(_$ColorPickerShowedImpl _value,
+      $Res Function(_$ColorPickerShowedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ColorPickerShowed implements _ColorPickerShowed {
-  const _$_ColorPickerShowed();
+class _$ColorPickerShowedImpl implements _ColorPickerShowed {
+  const _$ColorPickerShowedImpl();
 
   @override
   String toString() {
@@ -217,7 +217,7 @@ class _$_ColorPickerShowed implements _ColorPickerShowed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ColorPickerShowed);
+        (other.runtimeType == runtimeType && other is _$ColorPickerShowedImpl);
   }
 
   @override
@@ -293,24 +293,24 @@ class _$_ColorPickerShowed implements _ColorPickerShowed {
 }
 
 abstract class _ColorPickerShowed implements ColorPickerEvent {
-  const factory _ColorPickerShowed() = _$_ColorPickerShowed;
+  const factory _ColorPickerShowed() = _$ColorPickerShowedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ColorPickerCopiedCopyWith<$Res> {
-  factory _$$_ColorPickerCopiedCopyWith(_$_ColorPickerCopied value,
-          $Res Function(_$_ColorPickerCopied) then) =
-      __$$_ColorPickerCopiedCopyWithImpl<$Res>;
+abstract class _$$ColorPickerCopiedImplCopyWith<$Res> {
+  factory _$$ColorPickerCopiedImplCopyWith(_$ColorPickerCopiedImpl value,
+          $Res Function(_$ColorPickerCopiedImpl) then) =
+      __$$ColorPickerCopiedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Color color});
 }
 
 /// @nodoc
-class __$$_ColorPickerCopiedCopyWithImpl<$Res>
-    extends _$ColorPickerEventCopyWithImpl<$Res, _$_ColorPickerCopied>
-    implements _$$_ColorPickerCopiedCopyWith<$Res> {
-  __$$_ColorPickerCopiedCopyWithImpl(
-      _$_ColorPickerCopied _value, $Res Function(_$_ColorPickerCopied) _then)
+class __$$ColorPickerCopiedImplCopyWithImpl<$Res>
+    extends _$ColorPickerEventCopyWithImpl<$Res, _$ColorPickerCopiedImpl>
+    implements _$$ColorPickerCopiedImplCopyWith<$Res> {
+  __$$ColorPickerCopiedImplCopyWithImpl(_$ColorPickerCopiedImpl _value,
+      $Res Function(_$ColorPickerCopiedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -318,7 +318,7 @@ class __$$_ColorPickerCopiedCopyWithImpl<$Res>
   $Res call({
     Object? color = null,
   }) {
-    return _then(_$_ColorPickerCopied(
+    return _then(_$ColorPickerCopiedImpl(
       null == color
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -329,8 +329,8 @@ class __$$_ColorPickerCopiedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ColorPickerCopied implements _ColorPickerCopied {
-  const _$_ColorPickerCopied(this.color);
+class _$ColorPickerCopiedImpl implements _ColorPickerCopied {
+  const _$ColorPickerCopiedImpl(this.color);
 
   @override
   final Color color;
@@ -344,7 +344,7 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ColorPickerCopied &&
+            other is _$ColorPickerCopiedImpl &&
             (identical(other.color, color) || other.color == color));
   }
 
@@ -354,8 +354,8 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ColorPickerCopiedCopyWith<_$_ColorPickerCopied> get copyWith =>
-      __$$_ColorPickerCopiedCopyWithImpl<_$_ColorPickerCopied>(
+  _$$ColorPickerCopiedImplCopyWith<_$ColorPickerCopiedImpl> get copyWith =>
+      __$$ColorPickerCopiedImplCopyWithImpl<_$ColorPickerCopiedImpl>(
           this, _$identity);
 
   @override
@@ -428,10 +428,10 @@ class _$_ColorPickerCopied implements _ColorPickerCopied {
 }
 
 abstract class _ColorPickerCopied implements ColorPickerEvent {
-  const factory _ColorPickerCopied(final Color color) = _$_ColorPickerCopied;
+  const factory _ColorPickerCopied(final Color color) = _$ColorPickerCopiedImpl;
 
   Color get color;
   @JsonKey(ignore: true)
-  _$$_ColorPickerCopiedCopyWith<_$_ColorPickerCopied> get copyWith =>
+  _$$ColorPickerCopiedImplCopyWith<_$ColorPickerCopiedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

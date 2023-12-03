@@ -46,7 +46,7 @@ class FavoritesListSwipeable extends StatelessWidget {
                   final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
                   final double cardHeight =
                       (size.maxWidth - (padding * 2) - (colorsCount * (padding / 2))) / colorsCount;
-                  final double maxHeighForTip = size.maxHeight - padding - (tipHeight * context.media.textScaleFactor);
+                  final double maxHeighForTip = size.maxHeight - padding - context.textScaler.scale(tipHeight);
                   final bool canShowTip = favorites.length * (cardHeight + (padding * 2.5)) <= maxHeighForTip;
 
                   return Stack(
