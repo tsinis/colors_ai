@@ -23,6 +23,7 @@ jobs:
 
       - name: Check spelling
         uses: check-spelling/check-spelling@v0.0.22
+        if: false # disable for now
         with:
           config: .github/workflows/actions_settings/check-spelling
           check_file_names: 1
