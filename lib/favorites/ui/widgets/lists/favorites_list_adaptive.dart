@@ -47,7 +47,7 @@ class _FavoritesListState extends State<FavoritesListAdaptive> {
                   builder: (_, BoxConstraints windowSize) {
                     final List<ColorPalette> favorites = state.palettes;
                     final int colorsCount = favorites.isNotEmpty ? favorites.first.colors.length : 0;
-                    final double maxHeighForTip = widget.padding + (40 * context.media.textScaleFactor);
+                    final double maxHeighForTip = widget.padding + context.textScaler.scale(40);
                     final bool canShowTip = favorites.length * cardHeight <= windowSize.maxHeight - maxHeighForTip;
 
                     return Stack(

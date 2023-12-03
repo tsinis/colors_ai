@@ -5,16 +5,11 @@ import 'data.dart';
 
 class _ColorsUrlProviderTest extends ColorsUrlProvider {
   const _ColorsUrlProviderTest({
-    required String baseUrl,
-    required String separateSymbol,
-    String? formats,
-    String? providerName,
-  }) : super(
-          baseUrl: baseUrl,
-          formats: formats,
-          providerName: providerName,
-          separateSymbol: separateSymbol,
-        );
+    required super.baseUrl,
+    required super.separateSymbol,
+    super.formats,
+    super.providerName,
+  });
 }
 
 void main() {

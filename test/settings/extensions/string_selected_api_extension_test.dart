@@ -26,11 +26,9 @@ void main() => testWidgets('StringSelectedApiExtension helperText()', (WidgetTes
 
       final Finder colormindFinder = find.byKey(colormindKey);
       expect(colormindFinder, findsOneWidget);
-      colormindFinder.precache();
 
       final Finder huemintFinder = find.byKey(huemintKey);
       expect(huemintFinder, findsOneWidget);
-      huemintFinder.precache();
 
       final Widget colormindWidget = colormindFinder.evaluate().first.widget;
       expect(colormindWidget, isA<Text>());

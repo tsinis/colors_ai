@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:colors_ai/color_generator/interfaces/api.dart';
-import 'package:colors_ai/color_generator/interfaces/colors_from_api.dart';
 import 'package:colors_ai/color_generator/models/colors/colors_providers/colormind/colormind_colors.dart';
 import 'package:colors_ai/core/extensions/color_palette_extension.dart';
 import 'package:colors_ai/core/models/color_palette/color_palette.dart';
@@ -13,15 +12,13 @@ import 'data.dart';
 
 class _APITest extends API<Color> {
   const _APITest(
-    String host,
-    ColorsFromAPI apiColors,
+    super.host,
+    super.apiColors,
     String unlockedColorChar,
     String generateModelKey,
     String paletteInputKey,
     Client httpClient,
   ) : super(
-          host,
-          apiColors,
           generateModelKey: generateModelKey,
           paletteInputKey: paletteInputKey,
           unlockedColorChar: unlockedColorChar,

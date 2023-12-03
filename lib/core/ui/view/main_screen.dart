@@ -29,8 +29,7 @@ import '../widgets/overflow_menu.dart';
 class MainScreen extends StatefulWidget {
   final List<Widget> navTabs;
 
-  const MainScreen({this.navTabs = const <Widget>[ShareColorsTab(), GenColorsTab(), FavoritesTab()], Key? key})
-      : super(key: key);
+  const MainScreen({this.navTabs = const <Widget>[ShareColorsTab(), GenColorsTab(), FavoritesTab()], super.key});
 
   @override
   State<MainScreen> createState() => _NavigationScreenState();

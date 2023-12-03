@@ -10,13 +10,13 @@ abstract class RemoveFavoritesState extends Equatable {
 }
 
 class RemoveFavoritesOpenDialogInitial extends RemoveFavoritesState {
-  const RemoveFavoritesOpenDialogInitial(Set<int> selections) : super(selections);
+  const RemoveFavoritesOpenDialogInitial(super.selections);
 }
 
 class RemoveFavoritesSelectionSelected extends RemoveFavoritesState {
-  const RemoveFavoritesSelectionSelected(Set<int> selections) : super(selections);
+  const RemoveFavoritesSelectionSelected(super.selections);
 }
 
 class RemoveFavoritesSelectionChanged extends RemoveFavoritesState {
-  const RemoveFavoritesSelectionChanged(Set<int> selections) : super(selections);
+  const RemoveFavoritesSelectionChanged(super.selections);
 }

@@ -4,7 +4,7 @@
 [![Google Play Store](https://img.shields.io/endpoint?color=3A8D3A&logo=google-play&logoColor=green&label=colors-ai&url=https://play.cuzi.workers.dev/play?i=is.tsin.colors_ai.colors_ai)](https://play.google.com/store/apps/details?id=is.tsin.colors_ai.colors_ai)
 [![Snapcraft](https://snapcraft.io/colors-ai/badge.svg)](https://snapcraft.io/colors-ai)
 [![Releases](https://img.shields.io/github/v/release/tsinis/colors_ai)](https://github.com/tsinis/colors_ai/releases)
-[![Stars](https://img.shields.io/github/stars/tsinis/colors_ai?logo=github)](https://github.com/tsinis/colors_ai/stars)
+[![Stars](https://img.shields.io/github/stars/tsinis/colors_ai?logo=github)](https://github.com/tsinis/colors_ai/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [![Video](../resources/images/video_preview.jpg)](https://vimeo.com/tsinis/colors-ai)
