@@ -87,25 +87,25 @@ class _$ShareStateCopyWithImpl<$Res, $Val extends ShareState>
 }
 
 /// @nodoc
-abstract class _$$_ShareFailureCopyWith<$Res> {
-  factory _$$_ShareFailureCopyWith(
-          _$_ShareFailure value, $Res Function(_$_ShareFailure) then) =
-      __$$_ShareFailureCopyWithImpl<$Res>;
+abstract class _$$ShareFailureImplCopyWith<$Res> {
+  factory _$$ShareFailureImplCopyWith(
+          _$ShareFailureImpl value, $Res Function(_$ShareFailureImpl) then) =
+      __$$ShareFailureImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ShareFailureCopyWithImpl<$Res>
-    extends _$ShareStateCopyWithImpl<$Res, _$_ShareFailure>
-    implements _$$_ShareFailureCopyWith<$Res> {
-  __$$_ShareFailureCopyWithImpl(
-      _$_ShareFailure _value, $Res Function(_$_ShareFailure) _then)
+class __$$ShareFailureImplCopyWithImpl<$Res>
+    extends _$ShareStateCopyWithImpl<$Res, _$ShareFailureImpl>
+    implements _$$ShareFailureImplCopyWith<$Res> {
+  __$$ShareFailureImplCopyWithImpl(
+      _$ShareFailureImpl _value, $Res Function(_$ShareFailureImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ShareFailure implements _ShareFailure {
-  const _$_ShareFailure();
+class _$ShareFailureImpl implements _ShareFailure {
+  const _$ShareFailureImpl();
 
   @override
   String toString() {
@@ -115,7 +115,7 @@ class _$_ShareFailure implements _ShareFailure {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ShareFailure);
+        (other.runtimeType == runtimeType && other is _$ShareFailureImpl);
   }
 
   @override
@@ -197,29 +197,29 @@ class _$_ShareFailure implements _ShareFailure {
 }
 
 abstract class _ShareFailure implements ShareState {
-  const factory _ShareFailure() = _$_ShareFailure;
+  const factory _ShareFailure() = _$ShareFailureImpl;
 }
 
 /// @nodoc
-abstract class _$$_ShareEmptyInitialCopyWith<$Res> {
-  factory _$$_ShareEmptyInitialCopyWith(_$_ShareEmptyInitial value,
-          $Res Function(_$_ShareEmptyInitial) then) =
-      __$$_ShareEmptyInitialCopyWithImpl<$Res>;
+abstract class _$$ShareEmptyInitialImplCopyWith<$Res> {
+  factory _$$ShareEmptyInitialImplCopyWith(_$ShareEmptyInitialImpl value,
+          $Res Function(_$ShareEmptyInitialImpl) then) =
+      __$$ShareEmptyInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ShareEmptyInitialCopyWithImpl<$Res>
-    extends _$ShareStateCopyWithImpl<$Res, _$_ShareEmptyInitial>
-    implements _$$_ShareEmptyInitialCopyWith<$Res> {
-  __$$_ShareEmptyInitialCopyWithImpl(
-      _$_ShareEmptyInitial _value, $Res Function(_$_ShareEmptyInitial) _then)
+class __$$ShareEmptyInitialImplCopyWithImpl<$Res>
+    extends _$ShareStateCopyWithImpl<$Res, _$ShareEmptyInitialImpl>
+    implements _$$ShareEmptyInitialImplCopyWith<$Res> {
+  __$$ShareEmptyInitialImplCopyWithImpl(_$ShareEmptyInitialImpl _value,
+      $Res Function(_$ShareEmptyInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ShareEmptyInitial implements _ShareEmptyInitial {
-  const _$_ShareEmptyInitial();
+class _$ShareEmptyInitialImpl implements _ShareEmptyInitial {
+  const _$ShareEmptyInitialImpl();
 
   @override
   String toString() {
@@ -229,7 +229,7 @@ class _$_ShareEmptyInitial implements _ShareEmptyInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ShareEmptyInitial);
+        (other.runtimeType == runtimeType && other is _$ShareEmptyInitialImpl);
   }
 
   @override
@@ -311,15 +311,15 @@ class _$_ShareEmptyInitial implements _ShareEmptyInitial {
 }
 
 abstract class _ShareEmptyInitial implements ShareState {
-  const factory _ShareEmptyInitial() = _$_ShareEmptyInitial;
+  const factory _ShareEmptyInitial() = _$ShareEmptyInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_ShareFormatSelectedInitialCopyWith<$Res> {
-  factory _$$_ShareFormatSelectedInitialCopyWith(
-          _$_ShareFormatSelectedInitial value,
-          $Res Function(_$_ShareFormatSelectedInitial) then) =
-      __$$_ShareFormatSelectedInitialCopyWithImpl<$Res>;
+abstract class _$$ShareFormatSelectedInitialImplCopyWith<$Res> {
+  factory _$$ShareFormatSelectedInitialImplCopyWith(
+          _$ShareFormatSelectedInitialImpl value,
+          $Res Function(_$ShareFormatSelectedInitialImpl) then) =
+      __$$ShareFormatSelectedInitialImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {ColorsUrlProvider? selectedProvider,
@@ -329,12 +329,12 @@ abstract class _$$_ShareFormatSelectedInitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ShareFormatSelectedInitialCopyWithImpl<$Res>
-    extends _$ShareStateCopyWithImpl<$Res, _$_ShareFormatSelectedInitial>
-    implements _$$_ShareFormatSelectedInitialCopyWith<$Res> {
-  __$$_ShareFormatSelectedInitialCopyWithImpl(
-      _$_ShareFormatSelectedInitial _value,
-      $Res Function(_$_ShareFormatSelectedInitial) _then)
+class __$$ShareFormatSelectedInitialImplCopyWithImpl<$Res>
+    extends _$ShareStateCopyWithImpl<$Res, _$ShareFormatSelectedInitialImpl>
+    implements _$$ShareFormatSelectedInitialImplCopyWith<$Res> {
+  __$$ShareFormatSelectedInitialImplCopyWithImpl(
+      _$ShareFormatSelectedInitialImpl _value,
+      $Res Function(_$ShareFormatSelectedInitialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -345,7 +345,7 @@ class __$$_ShareFormatSelectedInitialCopyWithImpl<$Res>
     Object? canSharePdf = null,
     Object? canSharePng = null,
   }) {
-    return _then(_$_ShareFormatSelectedInitial(
+    return _then(_$ShareFormatSelectedInitialImpl(
       selectedProvider: freezed == selectedProvider
           ? _value.selectedProvider
           : selectedProvider // ignore: cast_nullable_to_non_nullable
@@ -368,8 +368,8 @@ class __$$_ShareFormatSelectedInitialCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShareFormatSelectedInitial implements _ShareFormatSelectedInitial {
-  const _$_ShareFormatSelectedInitial(
+class _$ShareFormatSelectedInitialImpl implements _ShareFormatSelectedInitial {
+  const _$ShareFormatSelectedInitialImpl(
       {required this.selectedProvider,
       required this.selectedFormat,
       required this.canSharePdf,
@@ -393,7 +393,7 @@ class _$_ShareFormatSelectedInitial implements _ShareFormatSelectedInitial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareFormatSelectedInitial &&
+            other is _$ShareFormatSelectedInitialImpl &&
             (identical(other.selectedProvider, selectedProvider) ||
                 other.selectedProvider == selectedProvider) &&
             (identical(other.selectedFormat, selectedFormat) ||
@@ -411,9 +411,9 @@ class _$_ShareFormatSelectedInitial implements _ShareFormatSelectedInitial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareFormatSelectedInitialCopyWith<_$_ShareFormatSelectedInitial>
-      get copyWith => __$$_ShareFormatSelectedInitialCopyWithImpl<
-          _$_ShareFormatSelectedInitial>(this, _$identity);
+  _$$ShareFormatSelectedInitialImplCopyWith<_$ShareFormatSelectedInitialImpl>
+      get copyWith => __$$ShareFormatSelectedInitialImplCopyWithImpl<
+          _$ShareFormatSelectedInitialImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -498,13 +498,13 @@ abstract class _ShareFormatSelectedInitial implements ShareState {
       {required final ColorsUrlProvider? selectedProvider,
       required final FileFormat? selectedFormat,
       required final bool canSharePdf,
-      required final bool canSharePng}) = _$_ShareFormatSelectedInitial;
+      required final bool canSharePng}) = _$ShareFormatSelectedInitialImpl;
 
   ColorsUrlProvider? get selectedProvider;
   FileFormat? get selectedFormat;
   bool get canSharePdf;
   bool get canSharePng;
   @JsonKey(ignore: true)
-  _$$_ShareFormatSelectedInitialCopyWith<_$_ShareFormatSelectedInitial>
+  _$$ShareFormatSelectedInitialImplCopyWith<_$ShareFormatSelectedInitialImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

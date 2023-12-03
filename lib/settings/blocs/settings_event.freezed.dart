@@ -118,24 +118,25 @@ class _$SettingsEventCopyWithImpl<$Res, $Val extends SettingsEvent>
 }
 
 /// @nodoc
-abstract class _$$_StartedCopyWith<$Res> {
-  factory _$$_StartedCopyWith(
-          _$_Started value, $Res Function(_$_Started) then) =
-      __$$_StartedCopyWithImpl<$Res>;
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_StartedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_Started>
-    implements _$$_StartedCopyWith<$Res> {
-  __$$_StartedCopyWithImpl(_$_Started _value, $Res Function(_$_Started) _then)
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_Started implements _Started {
-  const _$_Started();
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
@@ -145,7 +146,7 @@ class _$_Started implements _Started {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_Started);
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
@@ -258,29 +259,29 @@ class _$_Started implements _Started {
 }
 
 abstract class _Started implements SettingsEvent {
-  const factory _Started() = _$_Started;
+  const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$_LightThemeSelectedCopyWith<$Res> {
-  factory _$$_LightThemeSelectedCopyWith(_$_LightThemeSelected value,
-          $Res Function(_$_LightThemeSelected) then) =
-      __$$_LightThemeSelectedCopyWithImpl<$Res>;
+abstract class _$$LightThemeSelectedImplCopyWith<$Res> {
+  factory _$$LightThemeSelectedImplCopyWith(_$LightThemeSelectedImpl value,
+          $Res Function(_$LightThemeSelectedImpl) then) =
+      __$$LightThemeSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_LightThemeSelectedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_LightThemeSelected>
-    implements _$$_LightThemeSelectedCopyWith<$Res> {
-  __$$_LightThemeSelectedCopyWithImpl(
-      _$_LightThemeSelected _value, $Res Function(_$_LightThemeSelected) _then)
+class __$$LightThemeSelectedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$LightThemeSelectedImpl>
+    implements _$$LightThemeSelectedImplCopyWith<$Res> {
+  __$$LightThemeSelectedImplCopyWithImpl(_$LightThemeSelectedImpl _value,
+      $Res Function(_$LightThemeSelectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_LightThemeSelected implements _LightThemeSelected {
-  const _$_LightThemeSelected();
+class _$LightThemeSelectedImpl implements _LightThemeSelected {
+  const _$LightThemeSelectedImpl();
 
   @override
   String toString() {
@@ -290,7 +291,7 @@ class _$_LightThemeSelected implements _LightThemeSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LightThemeSelected);
+        (other.runtimeType == runtimeType && other is _$LightThemeSelectedImpl);
   }
 
   @override
@@ -403,29 +404,29 @@ class _$_LightThemeSelected implements _LightThemeSelected {
 }
 
 abstract class _LightThemeSelected implements SettingsEvent {
-  const factory _LightThemeSelected() = _$_LightThemeSelected;
+  const factory _LightThemeSelected() = _$LightThemeSelectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_DarkThemeSelectedCopyWith<$Res> {
-  factory _$$_DarkThemeSelectedCopyWith(_$_DarkThemeSelected value,
-          $Res Function(_$_DarkThemeSelected) then) =
-      __$$_DarkThemeSelectedCopyWithImpl<$Res>;
+abstract class _$$DarkThemeSelectedImplCopyWith<$Res> {
+  factory _$$DarkThemeSelectedImplCopyWith(_$DarkThemeSelectedImpl value,
+          $Res Function(_$DarkThemeSelectedImpl) then) =
+      __$$DarkThemeSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_DarkThemeSelectedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_DarkThemeSelected>
-    implements _$$_DarkThemeSelectedCopyWith<$Res> {
-  __$$_DarkThemeSelectedCopyWithImpl(
-      _$_DarkThemeSelected _value, $Res Function(_$_DarkThemeSelected) _then)
+class __$$DarkThemeSelectedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$DarkThemeSelectedImpl>
+    implements _$$DarkThemeSelectedImplCopyWith<$Res> {
+  __$$DarkThemeSelectedImplCopyWithImpl(_$DarkThemeSelectedImpl _value,
+      $Res Function(_$DarkThemeSelectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_DarkThemeSelected implements _DarkThemeSelected {
-  const _$_DarkThemeSelected();
+class _$DarkThemeSelectedImpl implements _DarkThemeSelected {
+  const _$DarkThemeSelectedImpl();
 
   @override
   String toString() {
@@ -435,7 +436,7 @@ class _$_DarkThemeSelected implements _DarkThemeSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DarkThemeSelected);
+        (other.runtimeType == runtimeType && other is _$DarkThemeSelectedImpl);
   }
 
   @override
@@ -548,29 +549,29 @@ class _$_DarkThemeSelected implements _DarkThemeSelected {
 }
 
 abstract class _DarkThemeSelected implements SettingsEvent {
-  const factory _DarkThemeSelected() = _$_DarkThemeSelected;
+  const factory _DarkThemeSelected() = _$DarkThemeSelectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_SystemThemeSelectedCopyWith<$Res> {
-  factory _$$_SystemThemeSelectedCopyWith(_$_SystemThemeSelected value,
-          $Res Function(_$_SystemThemeSelected) then) =
-      __$$_SystemThemeSelectedCopyWithImpl<$Res>;
+abstract class _$$SystemThemeSelectedImplCopyWith<$Res> {
+  factory _$$SystemThemeSelectedImplCopyWith(_$SystemThemeSelectedImpl value,
+          $Res Function(_$SystemThemeSelectedImpl) then) =
+      __$$SystemThemeSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SystemThemeSelectedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_SystemThemeSelected>
-    implements _$$_SystemThemeSelectedCopyWith<$Res> {
-  __$$_SystemThemeSelectedCopyWithImpl(_$_SystemThemeSelected _value,
-      $Res Function(_$_SystemThemeSelected) _then)
+class __$$SystemThemeSelectedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$SystemThemeSelectedImpl>
+    implements _$$SystemThemeSelectedImplCopyWith<$Res> {
+  __$$SystemThemeSelectedImplCopyWithImpl(_$SystemThemeSelectedImpl _value,
+      $Res Function(_$SystemThemeSelectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SystemThemeSelected implements _SystemThemeSelected {
-  const _$_SystemThemeSelected();
+class _$SystemThemeSelectedImpl implements _SystemThemeSelected {
+  const _$SystemThemeSelectedImpl();
 
   @override
   String toString() {
@@ -580,7 +581,8 @@ class _$_SystemThemeSelected implements _SystemThemeSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SystemThemeSelected);
+        (other.runtimeType == runtimeType &&
+            other is _$SystemThemeSelectedImpl);
   }
 
   @override
@@ -693,29 +695,29 @@ class _$_SystemThemeSelected implements _SystemThemeSelected {
 }
 
 abstract class _SystemThemeSelected implements SettingsEvent {
-  const factory _SystemThemeSelected() = _$_SystemThemeSelected;
+  const factory _SystemThemeSelected() = _$SystemThemeSelectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ColorsForUiSelectedCopyWith<$Res> {
-  factory _$$_ColorsForUiSelectedCopyWith(_$_ColorsForUiSelected value,
-          $Res Function(_$_ColorsForUiSelected) then) =
-      __$$_ColorsForUiSelectedCopyWithImpl<$Res>;
+abstract class _$$ColorsForUiSelectedImplCopyWith<$Res> {
+  factory _$$ColorsForUiSelectedImplCopyWith(_$ColorsForUiSelectedImpl value,
+          $Res Function(_$ColorsForUiSelectedImpl) then) =
+      __$$ColorsForUiSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ColorsForUiSelectedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_ColorsForUiSelected>
-    implements _$$_ColorsForUiSelectedCopyWith<$Res> {
-  __$$_ColorsForUiSelectedCopyWithImpl(_$_ColorsForUiSelected _value,
-      $Res Function(_$_ColorsForUiSelected) _then)
+class __$$ColorsForUiSelectedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ColorsForUiSelectedImpl>
+    implements _$$ColorsForUiSelectedImplCopyWith<$Res> {
+  __$$ColorsForUiSelectedImplCopyWithImpl(_$ColorsForUiSelectedImpl _value,
+      $Res Function(_$ColorsForUiSelectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ColorsForUiSelected implements _ColorsForUiSelected {
-  const _$_ColorsForUiSelected();
+class _$ColorsForUiSelectedImpl implements _ColorsForUiSelected {
+  const _$ColorsForUiSelectedImpl();
 
   @override
   String toString() {
@@ -725,7 +727,8 @@ class _$_ColorsForUiSelected implements _ColorsForUiSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ColorsForUiSelected);
+        (other.runtimeType == runtimeType &&
+            other is _$ColorsForUiSelectedImpl);
   }
 
   @override
@@ -838,29 +841,30 @@ class _$_ColorsForUiSelected implements _ColorsForUiSelected {
 }
 
 abstract class _ColorsForUiSelected implements SettingsEvent {
-  const factory _ColorsForUiSelected() = _$_ColorsForUiSelected;
+  const factory _ColorsForUiSelected() = _$ColorsForUiSelectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ColorsRegularSelectedCopyWith<$Res> {
-  factory _$$_ColorsRegularSelectedCopyWith(_$_ColorsRegularSelected value,
-          $Res Function(_$_ColorsRegularSelected) then) =
-      __$$_ColorsRegularSelectedCopyWithImpl<$Res>;
+abstract class _$$ColorsRegularSelectedImplCopyWith<$Res> {
+  factory _$$ColorsRegularSelectedImplCopyWith(
+          _$ColorsRegularSelectedImpl value,
+          $Res Function(_$ColorsRegularSelectedImpl) then) =
+      __$$ColorsRegularSelectedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ColorsRegularSelectedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_ColorsRegularSelected>
-    implements _$$_ColorsRegularSelectedCopyWith<$Res> {
-  __$$_ColorsRegularSelectedCopyWithImpl(_$_ColorsRegularSelected _value,
-      $Res Function(_$_ColorsRegularSelected) _then)
+class __$$ColorsRegularSelectedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ColorsRegularSelectedImpl>
+    implements _$$ColorsRegularSelectedImplCopyWith<$Res> {
+  __$$ColorsRegularSelectedImplCopyWithImpl(_$ColorsRegularSelectedImpl _value,
+      $Res Function(_$ColorsRegularSelectedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ColorsRegularSelected implements _ColorsRegularSelected {
-  const _$_ColorsRegularSelected();
+class _$ColorsRegularSelectedImpl implements _ColorsRegularSelected {
+  const _$ColorsRegularSelectedImpl();
 
   @override
   String toString() {
@@ -870,7 +874,8 @@ class _$_ColorsRegularSelected implements _ColorsRegularSelected {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ColorsRegularSelected);
+        (other.runtimeType == runtimeType &&
+            other is _$ColorsRegularSelectedImpl);
   }
 
   @override
@@ -983,24 +988,24 @@ class _$_ColorsRegularSelected implements _ColorsRegularSelected {
 }
 
 abstract class _ColorsRegularSelected implements SettingsEvent {
-  const factory _ColorsRegularSelected() = _$_ColorsRegularSelected;
+  const factory _ColorsRegularSelected() = _$ColorsRegularSelectedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ApiSelectedCopyWith<$Res> {
-  factory _$$_ApiSelectedCopyWith(
-          _$_ApiSelected value, $Res Function(_$_ApiSelected) then) =
-      __$$_ApiSelectedCopyWithImpl<$Res>;
+abstract class _$$ApiSelectedImplCopyWith<$Res> {
+  factory _$$ApiSelectedImplCopyWith(
+          _$ApiSelectedImpl value, $Res Function(_$ApiSelectedImpl) then) =
+      __$$ApiSelectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({SelectedAPI? api});
 }
 
 /// @nodoc
-class __$$_ApiSelectedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_ApiSelected>
-    implements _$$_ApiSelectedCopyWith<$Res> {
-  __$$_ApiSelectedCopyWithImpl(
-      _$_ApiSelected _value, $Res Function(_$_ApiSelected) _then)
+class __$$ApiSelectedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$ApiSelectedImpl>
+    implements _$$ApiSelectedImplCopyWith<$Res> {
+  __$$ApiSelectedImplCopyWithImpl(
+      _$ApiSelectedImpl _value, $Res Function(_$ApiSelectedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1008,7 +1013,7 @@ class __$$_ApiSelectedCopyWithImpl<$Res>
   $Res call({
     Object? api = freezed,
   }) {
-    return _then(_$_ApiSelected(
+    return _then(_$ApiSelectedImpl(
       freezed == api
           ? _value.api
           : api // ignore: cast_nullable_to_non_nullable
@@ -1019,8 +1024,8 @@ class __$$_ApiSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ApiSelected implements _ApiSelected {
-  const _$_ApiSelected(this.api);
+class _$ApiSelectedImpl implements _ApiSelected {
+  const _$ApiSelectedImpl(this.api);
 
   @override
   final SelectedAPI? api;
@@ -1034,7 +1039,7 @@ class _$_ApiSelected implements _ApiSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApiSelected &&
+            other is _$ApiSelectedImpl &&
             (identical(other.api, api) || other.api == api));
   }
 
@@ -1044,8 +1049,8 @@ class _$_ApiSelected implements _ApiSelected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApiSelectedCopyWith<_$_ApiSelected> get copyWith =>
-      __$$_ApiSelectedCopyWithImpl<_$_ApiSelected>(this, _$identity);
+  _$$ApiSelectedImplCopyWith<_$ApiSelectedImpl> get copyWith =>
+      __$$ApiSelectedImplCopyWithImpl<_$ApiSelectedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1154,29 +1159,29 @@ class _$_ApiSelected implements _ApiSelected {
 }
 
 abstract class _ApiSelected implements SettingsEvent {
-  const factory _ApiSelected(final SelectedAPI? api) = _$_ApiSelected;
+  const factory _ApiSelected(final SelectedAPI? api) = _$ApiSelectedImpl;
 
   SelectedAPI? get api;
   @JsonKey(ignore: true)
-  _$$_ApiSelectedCopyWith<_$_ApiSelected> get copyWith =>
+  _$$ApiSelectedImplCopyWith<_$ApiSelectedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_AdjacencyChangedCopyWith<$Res> {
-  factory _$$_AdjacencyChangedCopyWith(
-          _$_AdjacencyChanged value, $Res Function(_$_AdjacencyChanged) then) =
-      __$$_AdjacencyChangedCopyWithImpl<$Res>;
+abstract class _$$AdjacencyChangedImplCopyWith<$Res> {
+  factory _$$AdjacencyChangedImplCopyWith(_$AdjacencyChangedImpl value,
+          $Res Function(_$AdjacencyChangedImpl) then) =
+      __$$AdjacencyChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int adjacency});
 }
 
 /// @nodoc
-class __$$_AdjacencyChangedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_AdjacencyChanged>
-    implements _$$_AdjacencyChangedCopyWith<$Res> {
-  __$$_AdjacencyChangedCopyWithImpl(
-      _$_AdjacencyChanged _value, $Res Function(_$_AdjacencyChanged) _then)
+class __$$AdjacencyChangedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$AdjacencyChangedImpl>
+    implements _$$AdjacencyChangedImplCopyWith<$Res> {
+  __$$AdjacencyChangedImplCopyWithImpl(_$AdjacencyChangedImpl _value,
+      $Res Function(_$AdjacencyChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1184,7 +1189,7 @@ class __$$_AdjacencyChangedCopyWithImpl<$Res>
   $Res call({
     Object? adjacency = null,
   }) {
-    return _then(_$_AdjacencyChanged(
+    return _then(_$AdjacencyChangedImpl(
       null == adjacency
           ? _value.adjacency
           : adjacency // ignore: cast_nullable_to_non_nullable
@@ -1195,8 +1200,8 @@ class __$$_AdjacencyChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AdjacencyChanged implements _AdjacencyChanged {
-  const _$_AdjacencyChanged(this.adjacency);
+class _$AdjacencyChangedImpl implements _AdjacencyChanged {
+  const _$AdjacencyChangedImpl(this.adjacency);
 
   @override
   final int adjacency;
@@ -1210,7 +1215,7 @@ class _$_AdjacencyChanged implements _AdjacencyChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AdjacencyChanged &&
+            other is _$AdjacencyChangedImpl &&
             (identical(other.adjacency, adjacency) ||
                 other.adjacency == adjacency));
   }
@@ -1221,8 +1226,9 @@ class _$_AdjacencyChanged implements _AdjacencyChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AdjacencyChangedCopyWith<_$_AdjacencyChanged> get copyWith =>
-      __$$_AdjacencyChangedCopyWithImpl<_$_AdjacencyChanged>(this, _$identity);
+  _$$AdjacencyChangedImplCopyWith<_$AdjacencyChangedImpl> get copyWith =>
+      __$$AdjacencyChangedImplCopyWithImpl<_$AdjacencyChangedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1331,29 +1337,29 @@ class _$_AdjacencyChanged implements _AdjacencyChanged {
 }
 
 abstract class _AdjacencyChanged implements SettingsEvent {
-  const factory _AdjacencyChanged(final int adjacency) = _$_AdjacencyChanged;
+  const factory _AdjacencyChanged(final int adjacency) = _$AdjacencyChangedImpl;
 
   int get adjacency;
   @JsonKey(ignore: true)
-  _$$_AdjacencyChangedCopyWith<_$_AdjacencyChanged> get copyWith =>
+  _$$AdjacencyChangedImplCopyWith<_$AdjacencyChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_TemperatureSelectedCopyWith<$Res> {
-  factory _$$_TemperatureSelectedCopyWith(_$_TemperatureSelected value,
-          $Res Function(_$_TemperatureSelected) then) =
-      __$$_TemperatureSelectedCopyWithImpl<$Res>;
+abstract class _$$TemperatureSelectedImplCopyWith<$Res> {
+  factory _$$TemperatureSelectedImplCopyWith(_$TemperatureSelectedImpl value,
+          $Res Function(_$TemperatureSelectedImpl) then) =
+      __$$TemperatureSelectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({double temperature});
 }
 
 /// @nodoc
-class __$$_TemperatureSelectedCopyWithImpl<$Res>
-    extends _$SettingsEventCopyWithImpl<$Res, _$_TemperatureSelected>
-    implements _$$_TemperatureSelectedCopyWith<$Res> {
-  __$$_TemperatureSelectedCopyWithImpl(_$_TemperatureSelected _value,
-      $Res Function(_$_TemperatureSelected) _then)
+class __$$TemperatureSelectedImplCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res, _$TemperatureSelectedImpl>
+    implements _$$TemperatureSelectedImplCopyWith<$Res> {
+  __$$TemperatureSelectedImplCopyWithImpl(_$TemperatureSelectedImpl _value,
+      $Res Function(_$TemperatureSelectedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1361,7 +1367,7 @@ class __$$_TemperatureSelectedCopyWithImpl<$Res>
   $Res call({
     Object? temperature = null,
   }) {
-    return _then(_$_TemperatureSelected(
+    return _then(_$TemperatureSelectedImpl(
       null == temperature
           ? _value.temperature
           : temperature // ignore: cast_nullable_to_non_nullable
@@ -1372,8 +1378,8 @@ class __$$_TemperatureSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TemperatureSelected implements _TemperatureSelected {
-  const _$_TemperatureSelected(this.temperature);
+class _$TemperatureSelectedImpl implements _TemperatureSelected {
+  const _$TemperatureSelectedImpl(this.temperature);
 
   @override
   final double temperature;
@@ -1387,7 +1393,7 @@ class _$_TemperatureSelected implements _TemperatureSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TemperatureSelected &&
+            other is _$TemperatureSelectedImpl &&
             (identical(other.temperature, temperature) ||
                 other.temperature == temperature));
   }
@@ -1398,8 +1404,8 @@ class _$_TemperatureSelected implements _TemperatureSelected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TemperatureSelectedCopyWith<_$_TemperatureSelected> get copyWith =>
-      __$$_TemperatureSelectedCopyWithImpl<_$_TemperatureSelected>(
+  _$$TemperatureSelectedImplCopyWith<_$TemperatureSelectedImpl> get copyWith =>
+      __$$TemperatureSelectedImplCopyWithImpl<_$TemperatureSelectedImpl>(
           this, _$identity);
 
   @override
@@ -1510,10 +1516,10 @@ class _$_TemperatureSelected implements _TemperatureSelected {
 
 abstract class _TemperatureSelected implements SettingsEvent {
   const factory _TemperatureSelected(final double temperature) =
-      _$_TemperatureSelected;
+      _$TemperatureSelectedImpl;
 
   double get temperature;
   @JsonKey(ignore: true)
-  _$$_TemperatureSelectedCopyWith<_$_TemperatureSelected> get copyWith =>
+  _$$TemperatureSelectedImplCopyWith<_$TemperatureSelectedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -87,25 +87,25 @@ class _$OnboardingStateCopyWithImpl<$Res, $Val extends OnboardingState>
 }
 
 /// @nodoc
-abstract class _$$_OnboardingInitialCopyWith<$Res> {
-  factory _$$_OnboardingInitialCopyWith(_$_OnboardingInitial value,
-          $Res Function(_$_OnboardingInitial) then) =
-      __$$_OnboardingInitialCopyWithImpl<$Res>;
+abstract class _$$OnboardingInitialImplCopyWith<$Res> {
+  factory _$$OnboardingInitialImplCopyWith(_$OnboardingInitialImpl value,
+          $Res Function(_$OnboardingInitialImpl) then) =
+      __$$OnboardingInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnboardingInitialCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingInitial>
-    implements _$$_OnboardingInitialCopyWith<$Res> {
-  __$$_OnboardingInitialCopyWithImpl(
-      _$_OnboardingInitial _value, $Res Function(_$_OnboardingInitial) _then)
+class __$$OnboardingInitialImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingInitialImpl>
+    implements _$$OnboardingInitialImplCopyWith<$Res> {
+  __$$OnboardingInitialImplCopyWithImpl(_$OnboardingInitialImpl _value,
+      $Res Function(_$OnboardingInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnboardingInitial implements _OnboardingInitial {
-  const _$_OnboardingInitial();
+class _$OnboardingInitialImpl implements _OnboardingInitial {
+  const _$OnboardingInitialImpl();
 
   @override
   String toString() {
@@ -115,7 +115,7 @@ class _$_OnboardingInitial implements _OnboardingInitial {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnboardingInitial);
+        (other.runtimeType == runtimeType && other is _$OnboardingInitialImpl);
   }
 
   @override
@@ -197,29 +197,29 @@ class _$_OnboardingInitial implements _OnboardingInitial {
 }
 
 abstract class _OnboardingInitial implements OnboardingState {
-  const factory _OnboardingInitial() = _$_OnboardingInitial;
+  const factory _OnboardingInitial() = _$OnboardingInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnboardingLoadingCopyWith<$Res> {
-  factory _$$_OnboardingLoadingCopyWith(_$_OnboardingLoading value,
-          $Res Function(_$_OnboardingLoading) then) =
-      __$$_OnboardingLoadingCopyWithImpl<$Res>;
+abstract class _$$OnboardingLoadingImplCopyWith<$Res> {
+  factory _$$OnboardingLoadingImplCopyWith(_$OnboardingLoadingImpl value,
+          $Res Function(_$OnboardingLoadingImpl) then) =
+      __$$OnboardingLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnboardingLoadingCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingLoading>
-    implements _$$_OnboardingLoadingCopyWith<$Res> {
-  __$$_OnboardingLoadingCopyWithImpl(
-      _$_OnboardingLoading _value, $Res Function(_$_OnboardingLoading) _then)
+class __$$OnboardingLoadingImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingLoadingImpl>
+    implements _$$OnboardingLoadingImplCopyWith<$Res> {
+  __$$OnboardingLoadingImplCopyWithImpl(_$OnboardingLoadingImpl _value,
+      $Res Function(_$OnboardingLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnboardingLoading implements _OnboardingLoading {
-  const _$_OnboardingLoading();
+class _$OnboardingLoadingImpl implements _OnboardingLoading {
+  const _$OnboardingLoadingImpl();
 
   @override
   String toString() {
@@ -229,7 +229,7 @@ class _$_OnboardingLoading implements _OnboardingLoading {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnboardingLoading);
+        (other.runtimeType == runtimeType && other is _$OnboardingLoadingImpl);
   }
 
   @override
@@ -311,29 +311,30 @@ class _$_OnboardingLoading implements _OnboardingLoading {
 }
 
 abstract class _OnboardingLoading implements OnboardingState {
-  const factory _OnboardingLoading() = _$_OnboardingLoading;
+  const factory _OnboardingLoading() = _$OnboardingLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnboardingNotFinishedCopyWith<$Res> {
-  factory _$$_OnboardingNotFinishedCopyWith(_$_OnboardingNotFinished value,
-          $Res Function(_$_OnboardingNotFinished) then) =
-      __$$_OnboardingNotFinishedCopyWithImpl<$Res>;
+abstract class _$$OnboardingNotFinishedImplCopyWith<$Res> {
+  factory _$$OnboardingNotFinishedImplCopyWith(
+          _$OnboardingNotFinishedImpl value,
+          $Res Function(_$OnboardingNotFinishedImpl) then) =
+      __$$OnboardingNotFinishedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnboardingNotFinishedCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingNotFinished>
-    implements _$$_OnboardingNotFinishedCopyWith<$Res> {
-  __$$_OnboardingNotFinishedCopyWithImpl(_$_OnboardingNotFinished _value,
-      $Res Function(_$_OnboardingNotFinished) _then)
+class __$$OnboardingNotFinishedImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingNotFinishedImpl>
+    implements _$$OnboardingNotFinishedImplCopyWith<$Res> {
+  __$$OnboardingNotFinishedImplCopyWithImpl(_$OnboardingNotFinishedImpl _value,
+      $Res Function(_$OnboardingNotFinishedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnboardingNotFinished implements _OnboardingNotFinished {
-  const _$_OnboardingNotFinished();
+class _$OnboardingNotFinishedImpl implements _OnboardingNotFinished {
+  const _$OnboardingNotFinishedImpl();
 
   @override
   String toString() {
@@ -343,7 +344,8 @@ class _$_OnboardingNotFinished implements _OnboardingNotFinished {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnboardingNotFinished);
+        (other.runtimeType == runtimeType &&
+            other is _$OnboardingNotFinishedImpl);
   }
 
   @override
@@ -425,29 +427,30 @@ class _$_OnboardingNotFinished implements _OnboardingNotFinished {
 }
 
 abstract class _OnboardingNotFinished implements OnboardingState {
-  const factory _OnboardingNotFinished() = _$_OnboardingNotFinished;
+  const factory _OnboardingNotFinished() = _$OnboardingNotFinishedImpl;
 }
 
 /// @nodoc
-abstract class _$$_OnboardingDoneSuccessCopyWith<$Res> {
-  factory _$$_OnboardingDoneSuccessCopyWith(_$_OnboardingDoneSuccess value,
-          $Res Function(_$_OnboardingDoneSuccess) then) =
-      __$$_OnboardingDoneSuccessCopyWithImpl<$Res>;
+abstract class _$$OnboardingDoneSuccessImplCopyWith<$Res> {
+  factory _$$OnboardingDoneSuccessImplCopyWith(
+          _$OnboardingDoneSuccessImpl value,
+          $Res Function(_$OnboardingDoneSuccessImpl) then) =
+      __$$OnboardingDoneSuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_OnboardingDoneSuccessCopyWithImpl<$Res>
-    extends _$OnboardingStateCopyWithImpl<$Res, _$_OnboardingDoneSuccess>
-    implements _$$_OnboardingDoneSuccessCopyWith<$Res> {
-  __$$_OnboardingDoneSuccessCopyWithImpl(_$_OnboardingDoneSuccess _value,
-      $Res Function(_$_OnboardingDoneSuccess) _then)
+class __$$OnboardingDoneSuccessImplCopyWithImpl<$Res>
+    extends _$OnboardingStateCopyWithImpl<$Res, _$OnboardingDoneSuccessImpl>
+    implements _$$OnboardingDoneSuccessImplCopyWith<$Res> {
+  __$$OnboardingDoneSuccessImplCopyWithImpl(_$OnboardingDoneSuccessImpl _value,
+      $Res Function(_$OnboardingDoneSuccessImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_OnboardingDoneSuccess implements _OnboardingDoneSuccess {
-  const _$_OnboardingDoneSuccess();
+class _$OnboardingDoneSuccessImpl implements _OnboardingDoneSuccess {
+  const _$OnboardingDoneSuccessImpl();
 
   @override
   String toString() {
@@ -457,7 +460,8 @@ class _$_OnboardingDoneSuccess implements _OnboardingDoneSuccess {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_OnboardingDoneSuccess);
+        (other.runtimeType == runtimeType &&
+            other is _$OnboardingDoneSuccessImpl);
   }
 
   @override
@@ -539,5 +543,5 @@ class _$_OnboardingDoneSuccess implements _OnboardingDoneSuccess {
 }
 
 abstract class _OnboardingDoneSuccess implements OnboardingState {
-  const factory _OnboardingDoneSuccess() = _$_OnboardingDoneSuccess;
+  const factory _OnboardingDoneSuccess() = _$OnboardingDoneSuccessImpl;
 }

@@ -75,29 +75,29 @@ class _$NavigationEventCopyWithImpl<$Res, $Val extends NavigationEvent>
 }
 
 /// @nodoc
-abstract class _$$_NavigationGeneratorTabStartedCopyWith<$Res> {
-  factory _$$_NavigationGeneratorTabStartedCopyWith(
-          _$_NavigationGeneratorTabStarted value,
-          $Res Function(_$_NavigationGeneratorTabStarted) then) =
-      __$$_NavigationGeneratorTabStartedCopyWithImpl<$Res>;
+abstract class _$$NavigationGeneratorTabStartedImplCopyWith<$Res> {
+  factory _$$NavigationGeneratorTabStartedImplCopyWith(
+          _$NavigationGeneratorTabStartedImpl value,
+          $Res Function(_$NavigationGeneratorTabStartedImpl) then) =
+      __$$NavigationGeneratorTabStartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_NavigationGeneratorTabStartedCopyWithImpl<$Res>
+class __$$NavigationGeneratorTabStartedImplCopyWithImpl<$Res>
     extends _$NavigationEventCopyWithImpl<$Res,
-        _$_NavigationGeneratorTabStarted>
-    implements _$$_NavigationGeneratorTabStartedCopyWith<$Res> {
-  __$$_NavigationGeneratorTabStartedCopyWithImpl(
-      _$_NavigationGeneratorTabStarted _value,
-      $Res Function(_$_NavigationGeneratorTabStarted) _then)
+        _$NavigationGeneratorTabStartedImpl>
+    implements _$$NavigationGeneratorTabStartedImplCopyWith<$Res> {
+  __$$NavigationGeneratorTabStartedImplCopyWithImpl(
+      _$NavigationGeneratorTabStartedImpl _value,
+      $Res Function(_$NavigationGeneratorTabStartedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_NavigationGeneratorTabStarted
+class _$NavigationGeneratorTabStartedImpl
     implements _NavigationGeneratorTabStarted {
-  const _$_NavigationGeneratorTabStarted();
+  const _$NavigationGeneratorTabStartedImpl();
 
   @override
   String toString() {
@@ -108,7 +108,7 @@ class _$_NavigationGeneratorTabStarted
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NavigationGeneratorTabStarted);
+            other is _$NavigationGeneratorTabStartedImpl);
   }
 
   @override
@@ -179,24 +179,24 @@ class _$_NavigationGeneratorTabStarted
 
 abstract class _NavigationGeneratorTabStarted implements NavigationEvent {
   const factory _NavigationGeneratorTabStarted() =
-      _$_NavigationGeneratorTabStarted;
+      _$NavigationGeneratorTabStartedImpl;
 }
 
 /// @nodoc
-abstract class _$$_NavigationTabChangedCopyWith<$Res> {
-  factory _$$_NavigationTabChangedCopyWith(_$_NavigationTabChanged value,
-          $Res Function(_$_NavigationTabChanged) then) =
-      __$$_NavigationTabChangedCopyWithImpl<$Res>;
+abstract class _$$NavigationTabChangedImplCopyWith<$Res> {
+  factory _$$NavigationTabChangedImplCopyWith(_$NavigationTabChangedImpl value,
+          $Res Function(_$NavigationTabChangedImpl) then) =
+      __$$NavigationTabChangedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int newTabIndex});
 }
 
 /// @nodoc
-class __$$_NavigationTabChangedCopyWithImpl<$Res>
-    extends _$NavigationEventCopyWithImpl<$Res, _$_NavigationTabChanged>
-    implements _$$_NavigationTabChangedCopyWith<$Res> {
-  __$$_NavigationTabChangedCopyWithImpl(_$_NavigationTabChanged _value,
-      $Res Function(_$_NavigationTabChanged) _then)
+class __$$NavigationTabChangedImplCopyWithImpl<$Res>
+    extends _$NavigationEventCopyWithImpl<$Res, _$NavigationTabChangedImpl>
+    implements _$$NavigationTabChangedImplCopyWith<$Res> {
+  __$$NavigationTabChangedImplCopyWithImpl(_$NavigationTabChangedImpl _value,
+      $Res Function(_$NavigationTabChangedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -204,7 +204,7 @@ class __$$_NavigationTabChangedCopyWithImpl<$Res>
   $Res call({
     Object? newTabIndex = null,
   }) {
-    return _then(_$_NavigationTabChanged(
+    return _then(_$NavigationTabChangedImpl(
       null == newTabIndex
           ? _value.newTabIndex
           : newTabIndex // ignore: cast_nullable_to_non_nullable
@@ -215,8 +215,8 @@ class __$$_NavigationTabChangedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_NavigationTabChanged implements _NavigationTabChanged {
-  const _$_NavigationTabChanged(this.newTabIndex);
+class _$NavigationTabChangedImpl implements _NavigationTabChanged {
+  const _$NavigationTabChangedImpl(this.newTabIndex);
 
   @override
   final int newTabIndex;
@@ -230,7 +230,7 @@ class _$_NavigationTabChanged implements _NavigationTabChanged {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NavigationTabChanged &&
+            other is _$NavigationTabChangedImpl &&
             (identical(other.newTabIndex, newTabIndex) ||
                 other.newTabIndex == newTabIndex));
   }
@@ -241,9 +241,10 @@ class _$_NavigationTabChanged implements _NavigationTabChanged {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NavigationTabChangedCopyWith<_$_NavigationTabChanged> get copyWith =>
-      __$$_NavigationTabChangedCopyWithImpl<_$_NavigationTabChanged>(
-          this, _$identity);
+  _$$NavigationTabChangedImplCopyWith<_$NavigationTabChangedImpl>
+      get copyWith =>
+          __$$NavigationTabChangedImplCopyWithImpl<_$NavigationTabChangedImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -310,10 +311,10 @@ class _$_NavigationTabChanged implements _NavigationTabChanged {
 
 abstract class _NavigationTabChanged implements NavigationEvent {
   const factory _NavigationTabChanged(final int newTabIndex) =
-      _$_NavigationTabChanged;
+      _$NavigationTabChangedImpl;
 
   int get newTabIndex;
   @JsonKey(ignore: true)
-  _$$_NavigationTabChangedCopyWith<_$_NavigationTabChanged> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$NavigationTabChangedImplCopyWith<_$NavigationTabChangedImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

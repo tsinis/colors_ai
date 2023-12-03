@@ -107,25 +107,25 @@ class _$ShareEventCopyWithImpl<$Res, $Val extends ShareEvent>
 }
 
 /// @nodoc
-abstract class _$$_ShareStartedCopyWith<$Res> {
-  factory _$$_ShareStartedCopyWith(
-          _$_ShareStarted value, $Res Function(_$_ShareStarted) then) =
-      __$$_ShareStartedCopyWithImpl<$Res>;
+abstract class _$$ShareStartedImplCopyWith<$Res> {
+  factory _$$ShareStartedImplCopyWith(
+          _$ShareStartedImpl value, $Res Function(_$ShareStartedImpl) then) =
+      __$$ShareStartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ShareStartedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res, _$_ShareStarted>
-    implements _$$_ShareStartedCopyWith<$Res> {
-  __$$_ShareStartedCopyWithImpl(
-      _$_ShareStarted _value, $Res Function(_$_ShareStarted) _then)
+class __$$ShareStartedImplCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$ShareStartedImpl>
+    implements _$$ShareStartedImplCopyWith<$Res> {
+  __$$ShareStartedImplCopyWithImpl(
+      _$ShareStartedImpl _value, $Res Function(_$ShareStartedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ShareStarted implements _ShareStarted {
-  const _$_ShareStarted();
+class _$ShareStartedImpl implements _ShareStarted {
+  const _$ShareStartedImpl();
 
   @override
   String toString() {
@@ -135,7 +135,7 @@ class _$_ShareStarted implements _ShareStarted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ShareStarted);
+        (other.runtimeType == runtimeType && other is _$ShareStartedImpl);
   }
 
   @override
@@ -237,24 +237,24 @@ class _$_ShareStarted implements _ShareStarted {
 }
 
 abstract class _ShareStarted implements ShareEvent {
-  const factory _ShareStarted() = _$_ShareStarted;
+  const factory _ShareStarted() = _$ShareStartedImpl;
 }
 
 /// @nodoc
-abstract class _$$_ShareUrlSharedCopyWith<$Res> {
-  factory _$$_ShareUrlSharedCopyWith(
-          _$_ShareUrlShared value, $Res Function(_$_ShareUrlShared) then) =
-      __$$_ShareUrlSharedCopyWithImpl<$Res>;
+abstract class _$$ShareUrlSharedImplCopyWith<$Res> {
+  factory _$$ShareUrlSharedImplCopyWith(_$ShareUrlSharedImpl value,
+          $Res Function(_$ShareUrlSharedImpl) then) =
+      __$$ShareUrlSharedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
-class __$$_ShareUrlSharedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res, _$_ShareUrlShared>
-    implements _$$_ShareUrlSharedCopyWith<$Res> {
-  __$$_ShareUrlSharedCopyWithImpl(
-      _$_ShareUrlShared _value, $Res Function(_$_ShareUrlShared) _then)
+class __$$ShareUrlSharedImplCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$ShareUrlSharedImpl>
+    implements _$$ShareUrlSharedImplCopyWith<$Res> {
+  __$$ShareUrlSharedImplCopyWithImpl(
+      _$ShareUrlSharedImpl _value, $Res Function(_$ShareUrlSharedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -262,7 +262,7 @@ class __$$_ShareUrlSharedCopyWithImpl<$Res>
   $Res call({
     Object? palette = null,
   }) {
-    return _then(_$_ShareUrlShared(
+    return _then(_$ShareUrlSharedImpl(
       null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
@@ -273,8 +273,8 @@ class __$$_ShareUrlSharedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShareUrlShared implements _ShareUrlShared {
-  const _$_ShareUrlShared(this.palette);
+class _$ShareUrlSharedImpl implements _ShareUrlShared {
+  const _$ShareUrlSharedImpl(this.palette);
 
   @override
   final ColorPalette palette;
@@ -288,7 +288,7 @@ class _$_ShareUrlShared implements _ShareUrlShared {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareUrlShared &&
+            other is _$ShareUrlSharedImpl &&
             (identical(other.palette, palette) || other.palette == palette));
   }
 
@@ -298,8 +298,9 @@ class _$_ShareUrlShared implements _ShareUrlShared {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareUrlSharedCopyWith<_$_ShareUrlShared> get copyWith =>
-      __$$_ShareUrlSharedCopyWithImpl<_$_ShareUrlShared>(this, _$identity);
+  _$$ShareUrlSharedImplCopyWith<_$ShareUrlSharedImpl> get copyWith =>
+      __$$ShareUrlSharedImplCopyWithImpl<_$ShareUrlSharedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -397,29 +398,30 @@ class _$_ShareUrlShared implements _ShareUrlShared {
 }
 
 abstract class _ShareUrlShared implements ShareEvent {
-  const factory _ShareUrlShared(final ColorPalette palette) = _$_ShareUrlShared;
+  const factory _ShareUrlShared(final ColorPalette palette) =
+      _$ShareUrlSharedImpl;
 
   ColorPalette get palette;
   @JsonKey(ignore: true)
-  _$$_ShareUrlSharedCopyWith<_$_ShareUrlShared> get copyWith =>
+  _$$ShareUrlSharedImplCopyWith<_$ShareUrlSharedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ShareUrlCopiedCopyWith<$Res> {
-  factory _$$_ShareUrlCopiedCopyWith(
-          _$_ShareUrlCopied value, $Res Function(_$_ShareUrlCopied) then) =
-      __$$_ShareUrlCopiedCopyWithImpl<$Res>;
+abstract class _$$ShareUrlCopiedImplCopyWith<$Res> {
+  factory _$$ShareUrlCopiedImplCopyWith(_$ShareUrlCopiedImpl value,
+          $Res Function(_$ShareUrlCopiedImpl) then) =
+      __$$ShareUrlCopiedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
-class __$$_ShareUrlCopiedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res, _$_ShareUrlCopied>
-    implements _$$_ShareUrlCopiedCopyWith<$Res> {
-  __$$_ShareUrlCopiedCopyWithImpl(
-      _$_ShareUrlCopied _value, $Res Function(_$_ShareUrlCopied) _then)
+class __$$ShareUrlCopiedImplCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$ShareUrlCopiedImpl>
+    implements _$$ShareUrlCopiedImplCopyWith<$Res> {
+  __$$ShareUrlCopiedImplCopyWithImpl(
+      _$ShareUrlCopiedImpl _value, $Res Function(_$ShareUrlCopiedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -427,7 +429,7 @@ class __$$_ShareUrlCopiedCopyWithImpl<$Res>
   $Res call({
     Object? palette = null,
   }) {
-    return _then(_$_ShareUrlCopied(
+    return _then(_$ShareUrlCopiedImpl(
       null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
@@ -438,8 +440,8 @@ class __$$_ShareUrlCopiedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShareUrlCopied implements _ShareUrlCopied {
-  const _$_ShareUrlCopied(this.palette);
+class _$ShareUrlCopiedImpl implements _ShareUrlCopied {
+  const _$ShareUrlCopiedImpl(this.palette);
 
   @override
   final ColorPalette palette;
@@ -453,7 +455,7 @@ class _$_ShareUrlCopied implements _ShareUrlCopied {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareUrlCopied &&
+            other is _$ShareUrlCopiedImpl &&
             (identical(other.palette, palette) || other.palette == palette));
   }
 
@@ -463,8 +465,9 @@ class _$_ShareUrlCopied implements _ShareUrlCopied {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareUrlCopiedCopyWith<_$_ShareUrlCopied> get copyWith =>
-      __$$_ShareUrlCopiedCopyWithImpl<_$_ShareUrlCopied>(this, _$identity);
+  _$$ShareUrlCopiedImplCopyWith<_$ShareUrlCopiedImpl> get copyWith =>
+      __$$ShareUrlCopiedImplCopyWithImpl<_$ShareUrlCopiedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -562,29 +565,30 @@ class _$_ShareUrlCopied implements _ShareUrlCopied {
 }
 
 abstract class _ShareUrlCopied implements ShareEvent {
-  const factory _ShareUrlCopied(final ColorPalette palette) = _$_ShareUrlCopied;
+  const factory _ShareUrlCopied(final ColorPalette palette) =
+      _$ShareUrlCopiedImpl;
 
   ColorPalette get palette;
   @JsonKey(ignore: true)
-  _$$_ShareUrlCopiedCopyWith<_$_ShareUrlCopied> get copyWith =>
+  _$$ShareUrlCopiedImplCopyWith<_$ShareUrlCopiedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ShareFileSharedCopyWith<$Res> {
-  factory _$$_ShareFileSharedCopyWith(
-          _$_ShareFileShared value, $Res Function(_$_ShareFileShared) then) =
-      __$$_ShareFileSharedCopyWithImpl<$Res>;
+abstract class _$$ShareFileSharedImplCopyWith<$Res> {
+  factory _$$ShareFileSharedImplCopyWith(_$ShareFileSharedImpl value,
+          $Res Function(_$ShareFileSharedImpl) then) =
+      __$$ShareFileSharedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
-class __$$_ShareFileSharedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res, _$_ShareFileShared>
-    implements _$$_ShareFileSharedCopyWith<$Res> {
-  __$$_ShareFileSharedCopyWithImpl(
-      _$_ShareFileShared _value, $Res Function(_$_ShareFileShared) _then)
+class __$$ShareFileSharedImplCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$ShareFileSharedImpl>
+    implements _$$ShareFileSharedImplCopyWith<$Res> {
+  __$$ShareFileSharedImplCopyWithImpl(
+      _$ShareFileSharedImpl _value, $Res Function(_$ShareFileSharedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -592,7 +596,7 @@ class __$$_ShareFileSharedCopyWithImpl<$Res>
   $Res call({
     Object? palette = null,
   }) {
-    return _then(_$_ShareFileShared(
+    return _then(_$ShareFileSharedImpl(
       null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
@@ -603,8 +607,8 @@ class __$$_ShareFileSharedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShareFileShared implements _ShareFileShared {
-  const _$_ShareFileShared(this.palette);
+class _$ShareFileSharedImpl implements _ShareFileShared {
+  const _$ShareFileSharedImpl(this.palette);
 
   @override
   final ColorPalette palette;
@@ -618,7 +622,7 @@ class _$_ShareFileShared implements _ShareFileShared {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareFileShared &&
+            other is _$ShareFileSharedImpl &&
             (identical(other.palette, palette) || other.palette == palette));
   }
 
@@ -628,8 +632,9 @@ class _$_ShareFileShared implements _ShareFileShared {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareFileSharedCopyWith<_$_ShareFileShared> get copyWith =>
-      __$$_ShareFileSharedCopyWithImpl<_$_ShareFileShared>(this, _$identity);
+  _$$ShareFileSharedImplCopyWith<_$ShareFileSharedImpl> get copyWith =>
+      __$$ShareFileSharedImplCopyWithImpl<_$ShareFileSharedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -728,29 +733,29 @@ class _$_ShareFileShared implements _ShareFileShared {
 
 abstract class _ShareFileShared implements ShareEvent {
   const factory _ShareFileShared(final ColorPalette palette) =
-      _$_ShareFileShared;
+      _$ShareFileSharedImpl;
 
   ColorPalette get palette;
   @JsonKey(ignore: true)
-  _$$_ShareFileSharedCopyWith<_$_ShareFileShared> get copyWith =>
+  _$$ShareFileSharedImplCopyWith<_$ShareFileSharedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ShareFileCopiedCopyWith<$Res> {
-  factory _$$_ShareFileCopiedCopyWith(
-          _$_ShareFileCopied value, $Res Function(_$_ShareFileCopied) then) =
-      __$$_ShareFileCopiedCopyWithImpl<$Res>;
+abstract class _$$ShareFileCopiedImplCopyWith<$Res> {
+  factory _$$ShareFileCopiedImplCopyWith(_$ShareFileCopiedImpl value,
+          $Res Function(_$ShareFileCopiedImpl) then) =
+      __$$ShareFileCopiedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ColorPalette palette});
 }
 
 /// @nodoc
-class __$$_ShareFileCopiedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res, _$_ShareFileCopied>
-    implements _$$_ShareFileCopiedCopyWith<$Res> {
-  __$$_ShareFileCopiedCopyWithImpl(
-      _$_ShareFileCopied _value, $Res Function(_$_ShareFileCopied) _then)
+class __$$ShareFileCopiedImplCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$ShareFileCopiedImpl>
+    implements _$$ShareFileCopiedImplCopyWith<$Res> {
+  __$$ShareFileCopiedImplCopyWithImpl(
+      _$ShareFileCopiedImpl _value, $Res Function(_$ShareFileCopiedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -758,7 +763,7 @@ class __$$_ShareFileCopiedCopyWithImpl<$Res>
   $Res call({
     Object? palette = null,
   }) {
-    return _then(_$_ShareFileCopied(
+    return _then(_$ShareFileCopiedImpl(
       null == palette
           ? _value.palette
           : palette // ignore: cast_nullable_to_non_nullable
@@ -769,8 +774,8 @@ class __$$_ShareFileCopiedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShareFileCopied implements _ShareFileCopied {
-  const _$_ShareFileCopied(this.palette);
+class _$ShareFileCopiedImpl implements _ShareFileCopied {
+  const _$ShareFileCopiedImpl(this.palette);
 
   @override
   final ColorPalette palette;
@@ -784,7 +789,7 @@ class _$_ShareFileCopied implements _ShareFileCopied {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareFileCopied &&
+            other is _$ShareFileCopiedImpl &&
             (identical(other.palette, palette) || other.palette == palette));
   }
 
@@ -794,8 +799,9 @@ class _$_ShareFileCopied implements _ShareFileCopied {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareFileCopiedCopyWith<_$_ShareFileCopied> get copyWith =>
-      __$$_ShareFileCopiedCopyWithImpl<_$_ShareFileCopied>(this, _$identity);
+  _$$ShareFileCopiedImplCopyWith<_$ShareFileCopiedImpl> get copyWith =>
+      __$$ShareFileCopiedImplCopyWithImpl<_$ShareFileCopiedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -894,29 +900,29 @@ class _$_ShareFileCopied implements _ShareFileCopied {
 
 abstract class _ShareFileCopied implements ShareEvent {
   const factory _ShareFileCopied(final ColorPalette palette) =
-      _$_ShareFileCopied;
+      _$ShareFileCopiedImpl;
 
   ColorPalette get palette;
   @JsonKey(ignore: true)
-  _$$_ShareFileCopiedCopyWith<_$_ShareFileCopied> get copyWith =>
+  _$$ShareFileCopiedImplCopyWith<_$ShareFileCopiedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ShareFormatSelectedCopyWith<$Res> {
-  factory _$$_ShareFormatSelectedCopyWith(_$_ShareFormatSelected value,
-          $Res Function(_$_ShareFormatSelected) then) =
-      __$$_ShareFormatSelectedCopyWithImpl<$Res>;
+abstract class _$$ShareFormatSelectedImplCopyWith<$Res> {
+  factory _$$ShareFormatSelectedImplCopyWith(_$ShareFormatSelectedImpl value,
+          $Res Function(_$ShareFormatSelectedImpl) then) =
+      __$$ShareFormatSelectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({FileFormat? format});
 }
 
 /// @nodoc
-class __$$_ShareFormatSelectedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res, _$_ShareFormatSelected>
-    implements _$$_ShareFormatSelectedCopyWith<$Res> {
-  __$$_ShareFormatSelectedCopyWithImpl(_$_ShareFormatSelected _value,
-      $Res Function(_$_ShareFormatSelected) _then)
+class __$$ShareFormatSelectedImplCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$ShareFormatSelectedImpl>
+    implements _$$ShareFormatSelectedImplCopyWith<$Res> {
+  __$$ShareFormatSelectedImplCopyWithImpl(_$ShareFormatSelectedImpl _value,
+      $Res Function(_$ShareFormatSelectedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -924,7 +930,7 @@ class __$$_ShareFormatSelectedCopyWithImpl<$Res>
   $Res call({
     Object? format = freezed,
   }) {
-    return _then(_$_ShareFormatSelected(
+    return _then(_$ShareFormatSelectedImpl(
       format: freezed == format
           ? _value.format
           : format // ignore: cast_nullable_to_non_nullable
@@ -935,8 +941,8 @@ class __$$_ShareFormatSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShareFormatSelected implements _ShareFormatSelected {
-  const _$_ShareFormatSelected({required this.format});
+class _$ShareFormatSelectedImpl implements _ShareFormatSelected {
+  const _$ShareFormatSelectedImpl({required this.format});
 
   @override
   final FileFormat? format;
@@ -950,7 +956,7 @@ class _$_ShareFormatSelected implements _ShareFormatSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareFormatSelected &&
+            other is _$ShareFormatSelectedImpl &&
             (identical(other.format, format) || other.format == format));
   }
 
@@ -960,8 +966,8 @@ class _$_ShareFormatSelected implements _ShareFormatSelected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareFormatSelectedCopyWith<_$_ShareFormatSelected> get copyWith =>
-      __$$_ShareFormatSelectedCopyWithImpl<_$_ShareFormatSelected>(
+  _$$ShareFormatSelectedImplCopyWith<_$ShareFormatSelectedImpl> get copyWith =>
+      __$$ShareFormatSelectedImplCopyWithImpl<_$ShareFormatSelectedImpl>(
           this, _$identity);
 
   @override
@@ -1061,30 +1067,31 @@ class _$_ShareFormatSelected implements _ShareFormatSelected {
 
 abstract class _ShareFormatSelected implements ShareEvent {
   const factory _ShareFormatSelected({required final FileFormat? format}) =
-      _$_ShareFormatSelected;
+      _$ShareFormatSelectedImpl;
 
   FileFormat? get format;
   @JsonKey(ignore: true)
-  _$$_ShareFormatSelectedCopyWith<_$_ShareFormatSelected> get copyWith =>
+  _$$ShareFormatSelectedImplCopyWith<_$ShareFormatSelectedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_ShareUrlProviderSelectedCopyWith<$Res> {
-  factory _$$_ShareUrlProviderSelectedCopyWith(
-          _$_ShareUrlProviderSelected value,
-          $Res Function(_$_ShareUrlProviderSelected) then) =
-      __$$_ShareUrlProviderSelectedCopyWithImpl<$Res>;
+abstract class _$$ShareUrlProviderSelectedImplCopyWith<$Res> {
+  factory _$$ShareUrlProviderSelectedImplCopyWith(
+          _$ShareUrlProviderSelectedImpl value,
+          $Res Function(_$ShareUrlProviderSelectedImpl) then) =
+      __$$ShareUrlProviderSelectedImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ColorsUrlProvider? urlProvider});
 }
 
 /// @nodoc
-class __$$_ShareUrlProviderSelectedCopyWithImpl<$Res>
-    extends _$ShareEventCopyWithImpl<$Res, _$_ShareUrlProviderSelected>
-    implements _$$_ShareUrlProviderSelectedCopyWith<$Res> {
-  __$$_ShareUrlProviderSelectedCopyWithImpl(_$_ShareUrlProviderSelected _value,
-      $Res Function(_$_ShareUrlProviderSelected) _then)
+class __$$ShareUrlProviderSelectedImplCopyWithImpl<$Res>
+    extends _$ShareEventCopyWithImpl<$Res, _$ShareUrlProviderSelectedImpl>
+    implements _$$ShareUrlProviderSelectedImplCopyWith<$Res> {
+  __$$ShareUrlProviderSelectedImplCopyWithImpl(
+      _$ShareUrlProviderSelectedImpl _value,
+      $Res Function(_$ShareUrlProviderSelectedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1092,7 +1099,7 @@ class __$$_ShareUrlProviderSelectedCopyWithImpl<$Res>
   $Res call({
     Object? urlProvider = freezed,
   }) {
-    return _then(_$_ShareUrlProviderSelected(
+    return _then(_$ShareUrlProviderSelectedImpl(
       urlProvider: freezed == urlProvider
           ? _value.urlProvider
           : urlProvider // ignore: cast_nullable_to_non_nullable
@@ -1103,8 +1110,8 @@ class __$$_ShareUrlProviderSelectedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ShareUrlProviderSelected implements _ShareUrlProviderSelected {
-  const _$_ShareUrlProviderSelected({required this.urlProvider});
+class _$ShareUrlProviderSelectedImpl implements _ShareUrlProviderSelected {
+  const _$ShareUrlProviderSelectedImpl({required this.urlProvider});
 
   @override
   final ColorsUrlProvider? urlProvider;
@@ -1118,7 +1125,7 @@ class _$_ShareUrlProviderSelected implements _ShareUrlProviderSelected {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShareUrlProviderSelected &&
+            other is _$ShareUrlProviderSelectedImpl &&
             (identical(other.urlProvider, urlProvider) ||
                 other.urlProvider == urlProvider));
   }
@@ -1129,9 +1136,9 @@ class _$_ShareUrlProviderSelected implements _ShareUrlProviderSelected {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShareUrlProviderSelectedCopyWith<_$_ShareUrlProviderSelected>
-      get copyWith => __$$_ShareUrlProviderSelectedCopyWithImpl<
-          _$_ShareUrlProviderSelected>(this, _$identity);
+  _$$ShareUrlProviderSelectedImplCopyWith<_$ShareUrlProviderSelectedImpl>
+      get copyWith => __$$ShareUrlProviderSelectedImplCopyWithImpl<
+          _$ShareUrlProviderSelectedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1231,10 +1238,10 @@ class _$_ShareUrlProviderSelected implements _ShareUrlProviderSelected {
 abstract class _ShareUrlProviderSelected implements ShareEvent {
   const factory _ShareUrlProviderSelected(
           {required final ColorsUrlProvider? urlProvider}) =
-      _$_ShareUrlProviderSelected;
+      _$ShareUrlProviderSelectedImpl;
 
   ColorsUrlProvider? get urlProvider;
   @JsonKey(ignore: true)
-  _$$_ShareUrlProviderSelectedCopyWith<_$_ShareUrlProviderSelected>
+  _$$ShareUrlProviderSelectedImplCopyWith<_$ShareUrlProviderSelectedImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

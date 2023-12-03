@@ -93,25 +93,25 @@ class _$SoundEventCopyWithImpl<$Res, $Val extends SoundEvent>
 }
 
 /// @nodoc
-abstract class _$$_SoundLockedCopyWith<$Res> {
-  factory _$$_SoundLockedCopyWith(
-          _$_SoundLocked value, $Res Function(_$_SoundLocked) then) =
-      __$$_SoundLockedCopyWithImpl<$Res>;
+abstract class _$$SoundLockedImplCopyWith<$Res> {
+  factory _$$SoundLockedImplCopyWith(
+          _$SoundLockedImpl value, $Res Function(_$SoundLockedImpl) then) =
+      __$$SoundLockedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SoundLockedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundLocked>
-    implements _$$_SoundLockedCopyWith<$Res> {
-  __$$_SoundLockedCopyWithImpl(
-      _$_SoundLocked _value, $Res Function(_$_SoundLocked) _then)
+class __$$SoundLockedImplCopyWithImpl<$Res>
+    extends _$SoundEventCopyWithImpl<$Res, _$SoundLockedImpl>
+    implements _$$SoundLockedImplCopyWith<$Res> {
+  __$$SoundLockedImplCopyWithImpl(
+      _$SoundLockedImpl _value, $Res Function(_$SoundLockedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SoundLocked implements _SoundLocked {
-  const _$_SoundLocked();
+class _$SoundLockedImpl implements _SoundLocked {
+  const _$SoundLockedImpl();
 
   @override
   String toString() {
@@ -121,7 +121,7 @@ class _$_SoundLocked implements _SoundLocked {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SoundLocked);
+        (other.runtimeType == runtimeType && other is _$SoundLockedImpl);
   }
 
   @override
@@ -209,29 +209,29 @@ class _$_SoundLocked implements _SoundLocked {
 }
 
 abstract class _SoundLocked implements SoundEvent {
-  const factory _SoundLocked() = _$_SoundLocked;
+  const factory _SoundLocked() = _$SoundLockedImpl;
 }
 
 /// @nodoc
-abstract class _$$_SoundStartedCopyWith<$Res> {
-  factory _$$_SoundStartedCopyWith(
-          _$_SoundStarted value, $Res Function(_$_SoundStarted) then) =
-      __$$_SoundStartedCopyWithImpl<$Res>;
+abstract class _$$SoundStartedImplCopyWith<$Res> {
+  factory _$$SoundStartedImplCopyWith(
+          _$SoundStartedImpl value, $Res Function(_$SoundStartedImpl) then) =
+      __$$SoundStartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SoundStartedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundStarted>
-    implements _$$_SoundStartedCopyWith<$Res> {
-  __$$_SoundStartedCopyWithImpl(
-      _$_SoundStarted _value, $Res Function(_$_SoundStarted) _then)
+class __$$SoundStartedImplCopyWithImpl<$Res>
+    extends _$SoundEventCopyWithImpl<$Res, _$SoundStartedImpl>
+    implements _$$SoundStartedImplCopyWith<$Res> {
+  __$$SoundStartedImplCopyWithImpl(
+      _$SoundStartedImpl _value, $Res Function(_$SoundStartedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SoundStarted implements _SoundStarted {
-  const _$_SoundStarted();
+class _$SoundStartedImpl implements _SoundStarted {
+  const _$SoundStartedImpl();
 
   @override
   String toString() {
@@ -241,7 +241,7 @@ class _$_SoundStarted implements _SoundStarted {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SoundStarted);
+        (other.runtimeType == runtimeType && other is _$SoundStartedImpl);
   }
 
   @override
@@ -329,29 +329,29 @@ class _$_SoundStarted implements _SoundStarted {
 }
 
 abstract class _SoundStarted implements SoundEvent {
-  const factory _SoundStarted() = _$_SoundStarted;
+  const factory _SoundStarted() = _$SoundStartedImpl;
 }
 
 /// @nodoc
-abstract class _$$_SoundCopiedCopyWith<$Res> {
-  factory _$$_SoundCopiedCopyWith(
-          _$_SoundCopied value, $Res Function(_$_SoundCopied) then) =
-      __$$_SoundCopiedCopyWithImpl<$Res>;
+abstract class _$$SoundCopiedImplCopyWith<$Res> {
+  factory _$$SoundCopiedImplCopyWith(
+          _$SoundCopiedImpl value, $Res Function(_$SoundCopiedImpl) then) =
+      __$$SoundCopiedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SoundCopiedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundCopied>
-    implements _$$_SoundCopiedCopyWith<$Res> {
-  __$$_SoundCopiedCopyWithImpl(
-      _$_SoundCopied _value, $Res Function(_$_SoundCopied) _then)
+class __$$SoundCopiedImplCopyWithImpl<$Res>
+    extends _$SoundEventCopyWithImpl<$Res, _$SoundCopiedImpl>
+    implements _$$SoundCopiedImplCopyWith<$Res> {
+  __$$SoundCopiedImplCopyWithImpl(
+      _$SoundCopiedImpl _value, $Res Function(_$SoundCopiedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SoundCopied implements _SoundCopied {
-  const _$_SoundCopied();
+class _$SoundCopiedImpl implements _SoundCopied {
+  const _$SoundCopiedImpl();
 
   @override
   String toString() {
@@ -361,7 +361,7 @@ class _$_SoundCopied implements _SoundCopied {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SoundCopied);
+        (other.runtimeType == runtimeType && other is _$SoundCopiedImpl);
   }
 
   @override
@@ -449,29 +449,29 @@ class _$_SoundCopied implements _SoundCopied {
 }
 
 abstract class _SoundCopied implements SoundEvent {
-  const factory _SoundCopied() = _$_SoundCopied;
+  const factory _SoundCopied() = _$SoundCopiedImpl;
 }
 
 /// @nodoc
-abstract class _$$_SoundRefreshedCopyWith<$Res> {
-  factory _$$_SoundRefreshedCopyWith(
-          _$_SoundRefreshed value, $Res Function(_$_SoundRefreshed) then) =
-      __$$_SoundRefreshedCopyWithImpl<$Res>;
+abstract class _$$SoundRefreshedImplCopyWith<$Res> {
+  factory _$$SoundRefreshedImplCopyWith(_$SoundRefreshedImpl value,
+          $Res Function(_$SoundRefreshedImpl) then) =
+      __$$SoundRefreshedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SoundRefreshedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundRefreshed>
-    implements _$$_SoundRefreshedCopyWith<$Res> {
-  __$$_SoundRefreshedCopyWithImpl(
-      _$_SoundRefreshed _value, $Res Function(_$_SoundRefreshed) _then)
+class __$$SoundRefreshedImplCopyWithImpl<$Res>
+    extends _$SoundEventCopyWithImpl<$Res, _$SoundRefreshedImpl>
+    implements _$$SoundRefreshedImplCopyWith<$Res> {
+  __$$SoundRefreshedImplCopyWithImpl(
+      _$SoundRefreshedImpl _value, $Res Function(_$SoundRefreshedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SoundRefreshed implements _SoundRefreshed {
-  const _$_SoundRefreshed();
+class _$SoundRefreshedImpl implements _SoundRefreshed {
+  const _$SoundRefreshedImpl();
 
   @override
   String toString() {
@@ -481,7 +481,7 @@ class _$_SoundRefreshed implements _SoundRefreshed {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SoundRefreshed);
+        (other.runtimeType == runtimeType && other is _$SoundRefreshedImpl);
   }
 
   @override
@@ -569,29 +569,29 @@ class _$_SoundRefreshed implements _SoundRefreshed {
 }
 
 abstract class _SoundRefreshed implements SoundEvent {
-  const factory _SoundRefreshed() = _$_SoundRefreshed;
+  const factory _SoundRefreshed() = _$SoundRefreshedImpl;
 }
 
 /// @nodoc
-abstract class _$$_SoundFavoritesAddedCopyWith<$Res> {
-  factory _$$_SoundFavoritesAddedCopyWith(_$_SoundFavoritesAdded value,
-          $Res Function(_$_SoundFavoritesAdded) then) =
-      __$$_SoundFavoritesAddedCopyWithImpl<$Res>;
+abstract class _$$SoundFavoritesAddedImplCopyWith<$Res> {
+  factory _$$SoundFavoritesAddedImplCopyWith(_$SoundFavoritesAddedImpl value,
+          $Res Function(_$SoundFavoritesAddedImpl) then) =
+      __$$SoundFavoritesAddedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_SoundFavoritesAddedCopyWithImpl<$Res>
-    extends _$SoundEventCopyWithImpl<$Res, _$_SoundFavoritesAdded>
-    implements _$$_SoundFavoritesAddedCopyWith<$Res> {
-  __$$_SoundFavoritesAddedCopyWithImpl(_$_SoundFavoritesAdded _value,
-      $Res Function(_$_SoundFavoritesAdded) _then)
+class __$$SoundFavoritesAddedImplCopyWithImpl<$Res>
+    extends _$SoundEventCopyWithImpl<$Res, _$SoundFavoritesAddedImpl>
+    implements _$$SoundFavoritesAddedImplCopyWith<$Res> {
+  __$$SoundFavoritesAddedImplCopyWithImpl(_$SoundFavoritesAddedImpl _value,
+      $Res Function(_$SoundFavoritesAddedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_SoundFavoritesAdded implements _SoundFavoritesAdded {
-  const _$_SoundFavoritesAdded();
+class _$SoundFavoritesAddedImpl implements _SoundFavoritesAdded {
+  const _$SoundFavoritesAddedImpl();
 
   @override
   String toString() {
@@ -601,7 +601,8 @@ class _$_SoundFavoritesAdded implements _SoundFavoritesAdded {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_SoundFavoritesAdded);
+        (other.runtimeType == runtimeType &&
+            other is _$SoundFavoritesAddedImpl);
   }
 
   @override
@@ -689,5 +690,5 @@ class _$_SoundFavoritesAdded implements _SoundFavoritesAdded {
 }
 
 abstract class _SoundFavoritesAdded implements SoundEvent {
-  const factory _SoundFavoritesAdded() = _$_SoundFavoritesAdded;
+  const factory _SoundFavoritesAdded() = _$SoundFavoritesAddedImpl;
 }
