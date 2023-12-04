@@ -36,7 +36,7 @@ dependencies:
   simple_animations: ^5.0.2
   stream_bloc: ^0.5.3
   url_launcher: ^6.2.1 # From Google
-  vibration: 1.7.7
+  vibration: 1.8.4
   window_size: # From Google
     git:
       url: https://github.com/google/flutter-desktop-embedding
