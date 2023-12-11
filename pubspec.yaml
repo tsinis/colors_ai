@@ -35,7 +35,7 @@ dependencies:
   share_plus: ^7.2.1 # From Flutter Community (former Google)
   simple_animations: ^5.0.2
   stream_bloc: ^0.5.3
-  url_launcher: ^6.2.1 # From Google
+  url_launcher: ^6.2.2 # From Google
   vibration: 1.7.7
   window_size: # From Google
     git:
