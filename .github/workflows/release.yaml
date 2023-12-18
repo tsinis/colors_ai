@@ -109,7 +109,7 @@ jobs:
           allowUpdates: true
 
       - name: Save AAB to Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: APPBUNDLE
           path: build/app/outputs/bundle/release/app-release.aab
@@ -147,7 +147,7 @@ jobs:
         run: flutter pub run msix:create
 
       - name: Save MSIX to Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-release-build
           path: build\windows\runner\Release\colors_ai.msix
