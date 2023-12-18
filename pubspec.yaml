@@ -56,7 +56,7 @@ dev_dependencies:
   integration_test: # From Google
     sdk: flutter
   json_serializable: ^6.7.1 # From Google
-  mockito: ^5.4.3 # From Google
+  mockito: ^5.4.4 # From Google
   msix: 2.7.3 # Flutter Favorite (generating from SVG)
 
 flutter:
