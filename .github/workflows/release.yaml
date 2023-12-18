@@ -242,7 +242,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Get AAB from Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: APPBUNDLE
 
@@ -268,7 +268,7 @@ jobs:
     name: 🏪 Publish app in Microsoft Store
     timeout-minutes: 15
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         name: Download Release
         with:
           name: windows-release-build
