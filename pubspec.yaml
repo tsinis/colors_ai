@@ -15,7 +15,7 @@ dependencies:
   audioplayers: ^5.2.1
   color_converter: ^0.2.1
   equatable: ^2.0.5 # From Flutter Community
-  file_selector: ^1.0.1 # From Google
+  file_selector: ^1.0.2 # From Google
   flutter: # From Google
     sdk: flutter
   flutter_bloc: ^8.1.3  # Flutter Favorite, Contributor
