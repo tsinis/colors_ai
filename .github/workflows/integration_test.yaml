@@ -29,7 +29,7 @@ jobs:
           file-path: pubspec.yaml
 
       - name: Compare version number with previous tag
-        uses: nick-invision/assert-action@v1
+        uses: nick-invision/assert-action@v2
         with:
           expected: "${{ steps.previoustag.outputs.tag }}"
           actual: ${{ steps.read-version.outputs.version-number }}
