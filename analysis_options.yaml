@@ -177,7 +177,6 @@ linter:
     avoid_print: true
     avoid_redundant_argument_values: true
     avoid_renaming_method_parameters: true
-    avoid_returning_null_for_future: true
     avoid_returning_null_for_void: true
     avoid_single_cascade_in_expression_statements: true
     avoid_slow_async_io: true
@@ -245,7 +244,6 @@ linter:
 
     # Pedantic 1.9.0
     always_declare_return_types: true
-    always_require_non_null_named_parameters: true
     annotate_overrides: true
     avoid_empty_else: true
     avoid_init_to_null: true
@@ -294,7 +292,6 @@ linter:
     avoid_function_literals_in_foreach_calls: true
     avoid_positional_boolean_parameters: true
     avoid_private_typedef_functions: true
-    avoid_returning_null: true
     avoid_returning_this: true
     avoid_setters_without_getters: true
     camel_case_types: true
