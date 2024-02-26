@@ -31,7 +31,7 @@ dependencies:
   package_info_plus: ^5.0.1 # From Flutter Community (former Google)
   path_provider: ^2.1.2 # From Google
   platform_info: ^4.0.2 # Contributor
-  printing: ^5.11.1
+  printing: ^5.12.0
   share_plus: ^7.2.2 # From Flutter Community (former Google)
   simple_animations: ^5.0.2
   stream_bloc: ^0.5.3
