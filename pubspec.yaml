@@ -43,7 +43,7 @@ dependencies:
       path: plugins/window_size
 
 dev_dependencies:
-  bloc_test: ^9.1.6
+  bloc_test: ^9.1.7
   build_runner: ^2.4.8 # From Google
   dart_code_metrics: # Flutter Favorite
     git:
