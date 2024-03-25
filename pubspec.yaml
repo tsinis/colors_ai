@@ -25,7 +25,7 @@ dependencies:
   flutter_secure_storage: ^9.0.0
   freezed_annotation: ^2.4.1 # for Freezed
   google_fonts: ^6.2.1 # From Google
-  hydrated_bloc: ^9.1.4
+  hydrated_bloc: ^9.1.5
   json_annotation: ^4.8.1 # From Google
   material_design_icons_flutter: ^7.0.7296
   package_info_plus: ^5.0.1 # From Flutter Community (former Google)
