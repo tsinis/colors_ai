@@ -45,7 +45,7 @@ jobs:
     timeout-minutes: 4
     steps:
       - name: Lint Pull Request Title
-        uses: amannn/action-semantic-pull-request@v5.4.0
+        uses: amannn/action-semantic-pull-request@v5.5.2
         with:
           requireScope: false
         env:
