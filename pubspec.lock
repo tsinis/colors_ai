@@ -318,10 +318,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "7e4e8b42026b59135ca1ade3a1a46c5e7855757e"
+      resolved-ref: "15a0daacee49d035672b2d6522974fea440b8f19"
       url: "https://github.com/tsinis/dart-code-metrics"
     source: git
-    version: "5.7.6+1"
+    version: "5.8.0+1"
   dart_code_metrics_presets:
     dependency: transitive
     description:
