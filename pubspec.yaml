@@ -22,7 +22,7 @@ dependencies:
   flutter_colorpicker: ^1.0.3 # Contributor
   flutter_localizations: # From Google
     sdk: flutter
-  flutter_secure_storage: ^9.0.0
+  flutter_secure_storage: ^9.2.2
   freezed_annotation: ^2.4.1 # for Freezed
   google_fonts: ^6.2.1 # From Google
   hydrated_bloc: ^9.1.5
