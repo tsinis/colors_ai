@@ -23,7 +23,7 @@ dependencies:
   flutter_localizations: # From Google
     sdk: flutter
   flutter_secure_storage: ^9.0.0
-  freezed_annotation: ^2.4.1 # for Freezed
+  freezed_annotation: ^2.4.4 # for Freezed
   google_fonts: ^6.2.1 # From Google
   hydrated_bloc: ^9.1.5
   json_annotation: ^4.9.0 # From Google
