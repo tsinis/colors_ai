@@ -17,6 +17,9 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
 
 # Colors AI 🎨🤖
 
+> [!WARNING]
+> **This repository is being archived** due to a lack of time and the presence of significant technical debt. While I'm no longer actively maintaining it, I believe the project can still be a valuable resource for the community.
+
 ## Table of content
 
 * [Description](#description)
