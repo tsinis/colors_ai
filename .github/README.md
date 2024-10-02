@@ -18,7 +18,7 @@ Or download signed binaries for **all mainstream platforms** in the [Releases](h
 # Colors AI 🎨🤖
 
 > [!WARNING]
-> **This repository is being archived** due to a lack of time and the presence of significant technical debt. While I'm no longer actively maintaining it, I believe the project can still be a valuable resource for the community.
+> **This repository is being archived** due to a lack of time and the presence of significant technical debt. While I'm no longer actively maintaining it, I believe the project can still be a valuable resource for the community. From now on I will focus more on the [sealed_world](https://github.com/tsinis/sealed_world) eco-system.
 
 ## Table of content
 
